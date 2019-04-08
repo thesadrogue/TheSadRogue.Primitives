@@ -174,38 +174,10 @@ namespace SadRogue.Primitives
 		/// Creates a rectangle with the given minimum and maximum extents. Effectively a
 		/// constructor, but with extra overloads not possible to provide in constructors alone.
 		/// </summary>
-		/// <param name="minX">Minimum x coordinate that is inside the rectangle.</param>
-		/// <param name="minY">Minimum y coordinate that is inside the rectangle.</param>
-		/// <param name="maxX">Maximum x coordinate that is inside the rectangle.</param>
-		/// <param name="maxY">Maximum y coordinate that is inside the rectangle.</param>
-		/// <returns>A new Rectangle with the given minimum and maximum extents.</returns>
-		public static Rectangle WithExtents(int minX, int minY, int maxX, int maxY) => new Rectangle(minX, minY, maxX - minX + 1, maxY - minY + 1);
-
-		/// <summary>
-		/// Creates a rectangle with the given minimum and maximum extents. Effectively a
-		/// constructor, but with extra overloads not possible to provide in constructors alone.
-		/// </summary>
 		/// <param name="minExtent">Minimum (x, y) coordinates that are inside the rectangle.</param>
 		/// <param name="maxExtent">Maximum (x, y) coordinates that are inside the rectangle.</param>
 		/// <returns>A new Rectangle with the given minimum and maximum extents.</returns>
 		public static Rectangle WithExtents(Point minExtent, Point maxExtent) => new Rectangle(minExtent, maxExtent);
-
-		/// <summary>
-		/// Creates a rectangle centered on the given position, with the given horizontal and
-		/// vertical radius values. Effectively a constructor, but with extra overloads not possible
-		/// to provide in constructors alone.
-		/// </summary>
-		/// <param name="centerX">X-value of the center of the rectangle.</param>
-		/// <param name="centerY">Y-value of the center of the rectangle.</param>
-		/// <param name="horizontalRadius">
-		/// Number of units to the left and right of the center point that are included within the rectangle.
-		/// </param>
-		/// <param name="verticalRadius">
-		/// Number of units to the top and bottom of the center point that are included within the rectangle.
-		/// </param>
-		/// <returns>A new rectangle with the given center point and radius values.</returns>
-		public static Rectangle WithRadius(int centerX, int centerY, int horizontalRadius, int verticalRadius)
-			=> new Rectangle(centerX - horizontalRadius, centerY - verticalRadius, 2 * horizontalRadius + 1, 2 * verticalRadius + 1);
 
 		/// <summary>
 		/// Creates a rectangle centered on the given position, with the given horizontal and
@@ -231,7 +203,7 @@ namespace SadRogue.Primitives
 		/// <param name="width">Width of the rectangle.</param>
 		/// <param name="height">Height of the rectangle.</param>
 		/// <returns>A new rectangle at the given position with the given width and height.</returns>
-		public static Rectangle WithPositionAndSize(int x, int y, int width, int height) => new Rectangle(x, y, width, height);
+		public static Rectangle WithPositionAndSize(Point position, int width, int height) => new Rectangle(position.X, position.Y, width, height);
 
 		/// <summary>
 		/// Creates a rectangle with the given position and size. Effectively a constructor, but with
@@ -278,11 +250,11 @@ namespace SadRogue.Primitives
 
 			for (int x = r1.X; x <= r1.MaxExtentX; x++)
 				for (int y = r1.Y; y <= r1.MaxExtentY; y++)
-					retVal.Add(x, y);
+					retVal.Add(new Point(x, y));
 
 			for (int x = r2.X; x <= r2.MaxExtentX; x++)
 				for (int y = r2.Y; y <= r2.MaxExtentY; y++)
-					retVal.Add(x, y);
+					retVal.Add(new Point(x, y));
 
 			return retVal;
 		}
@@ -368,18 +340,6 @@ namespace SadRogue.Primitives
 			=> new Rectangle(center.X - (Width / 2), center.Y - (Height / 2), Width, Height);
 
 		/// <summary>
-		/// Creates and returns a new rectangle that is the same size as the current one, but with
-		/// the center moved to the given position.
-		/// </summary>
-		/// <param name="x">X-value for the center-point of the new rectangle.</param>
-		/// <param name="y">Y-value for the center-point of the new rectangle.</param>
-		/// <returns>
-		/// A new rectangle that is the same size as the current one, but with the center moved to
-		/// the given location.
-		/// </returns>
-		public Rectangle WithCenter(int x, int y) => WithCenter(new Point(x, y));
-
-		/// <summary>
 		/// Creates and returns a new rectangle whose position is the same as the current one, but
 		/// has its height changed by the given delta-change value.
 		/// </summary>
@@ -387,18 +347,6 @@ namespace SadRogue.Primitives
 		/// <returns>A new rectangle whose height is modified by the given delta-change value.</returns>
 		public Rectangle ChangeHeight(int deltaHeight)
 			=> new Rectangle(X, Y, Width, Height + deltaHeight);
-
-		/// <summary>
-		/// Creates and returns a new rectangle whose position is the same as the current one, but
-		/// has its width and height changed by the given delta-change values.
-		/// </summary>
-		/// <param name="deltaWidth">Delta-change for the width of the new rectangle.</param>
-		/// <param name="deltaHeight">Delta-change for the height of the new rectangle.</param>
-		/// <returns>
-		/// A new rectangle whose width/height are modified by the given delta-change values.
-		/// </returns>
-		public Rectangle ChangeSize(int deltaWidth, int deltaHeight)
-			=> new Rectangle(X, Y, Width + deltaWidth, Height + deltaHeight);
 
 		/// <summary>
 		/// Creates and returns a new rectangle whose position is the same as the current one, but
@@ -432,14 +380,6 @@ namespace SadRogue.Primitives
 		{
 			return (position.X >= X && position.X < (X + Width) && position.Y >= Y && position.Y < (Y + Height));
 		}
-
-		/// <summary>
-		/// Returns whether or not the specified point is considered within the rectangle.
-		/// </summary>
-		/// <param name="x">The x-value position to check.</param>
-		/// <param name="y">The y-value position to check.</param>
-		/// <returns>Whether or not the specified point is considered within the rectangle.</returns>
-		public bool Contains(int x, int y) => Contains(new Point(x, y));
 
 		/// <summary>
 		/// Returns whether or not the specified rectangle is considered completely contained within
@@ -521,14 +461,6 @@ namespace SadRogue.Primitives
 			=> new Rectangle(position.X, position.Y, Width, Height);
 
 		/// <summary>
-		/// Creates and returns a new rectangle that has its position moved to the given position.
-		/// </summary>
-		/// <param name="x">X-value for the position of the new rectangle.</param>
-		/// <param name="y">Y-value for the position of the new rectangle.</param>
-		/// <returns>A new rectangle with the position changed to the given value.</returns>
-		public Rectangle WithPosition(int x, int y) => WithPosition(new Point(x, y));
-
-		/// <summary>
 		/// Creates and returns a new rectangle that has its position moved in the given direction.
 		/// </summary>
 		/// <param name="direction">The direction to move the new rectangle in.</param>
@@ -584,16 +516,6 @@ namespace SadRogue.Primitives
 
 		/// <summary>
 		/// Creates and returns a new rectangle that has been shrunk/expanded as necessary, such that
-		/// the maximum extent is the specified value.
-		/// </summary>
-		/// <param name="x">The x-value for the minimum extent of the new rectangle.</param>
-		/// <param name="y">The y-value for the minimum extent of the new rectangle.</param>
-		/// <returns>A new rectangle that has its maximum extent adjusted to the specified value.</returns>
-		public Rectangle WithMaxExtent(int x, int y)
-			=> new Rectangle(MinExtent, new Point(x, y));
-
-		/// <summary>
-		/// Creates and returns a new rectangle that has been shrunk/expanded as necessary, such that
 		/// the x-value of maximum extent is changed to the specified value.
 		/// </summary>
 		/// <param name="x">The x-coordinate for the maximum extent of the new rectangle.</param>
@@ -618,16 +540,6 @@ namespace SadRogue.Primitives
 		/// <returns>A new rectangle that has its minimum extent adjusted to the specified value.</returns>
 		public Rectangle WithMinExtent(Point minExtent)
 			=> new Rectangle(minExtent, MaxExtent);
-
-		/// <summary>
-		/// Creates and returns a new rectangle that has been shrunk/expanded as necessary, such that
-		/// the minimum extent is the specified value.
-		/// </summary>
-		/// <param name="x">The x-value for the minimum extent of the new rectangle.</param>
-		/// <param name="y">The y-value for the minimum extent of the new rectangle.</param>
-		/// <returns>A new rectangle that has its minimum extent adjusted to the specified value.</returns>
-		public Rectangle WithMinExtent(int x, int y)
-			=> new Rectangle(new Point(x, y), MaxExtent);
 
 		/// <summary>
 		/// Creates and returns a new rectangle that has been shrunk/expanded as necessary, such that
@@ -697,18 +609,6 @@ namespace SadRogue.Primitives
 			=> new Rectangle(X + deltaChange.X, Y + deltaChange.Y, Width, Height);
 
 		/// <summary>
-		/// Creates and returns a new rectangle whose position has been moved by the given
-		/// delta-change values.
-		/// </summary>
-		/// <param name="dx">Delta-x value by which to move the new rectangle.</param>
-		/// <param name="dy">Delta-y value by which to move the new rectangle.</param>
-		/// <returns>
-		/// A new rectangle, whose position has been moved by the given delta-change values.
-		/// </returns>
-		public Rectangle Translate(int dx, int dy)
-			=> new Rectangle(X + dx, Y + dy, Width, Height);
-
-		/// <summary>
 		/// Creates and returns a new rectangle whose x-position has been moved by the given delta value.
 		/// </summary>
 		/// <param name="dx">Value by which to move the new rectangle's x-position.</param>
@@ -723,172 +623,7 @@ namespace SadRogue.Primitives
 		/// <returns>A new rectangle, whose y-position has been moved by the given delta-y value.</returns>
 		public Rectangle TranslateY(int dy)
 			=> new Rectangle(X, Y + dy, Width, Height);
-		/*
-		#if ALLCONVERSIONS
-		#region MonoGame Conversions
-		/// <summary>
-		/// Implicitly converts a GoRogue Rectangle to an equivalent MonoGame Rectangle.
-		/// </summary>
-		/// <param name="rect" />
-		/// <returns />
-		public static implicit operator XnaRectangle(Rectangle rect) => new XnaRectangle(rect.X, rect.Y, rect.Width, rect.Height);
-		/// <summary>
-		/// Implicitly converts a MonoGame Rectangle to an equivalent GoRogue Rectangle.
-		/// </summary>
-		/// <param name="rect" />
-		/// <returns />
-		public static implicit operator Rectangle(XnaRectangle rect) => new Rectangle(rect.X, rect.Y, rect.Width, rect.Height);
-
-		/// <summary>
-		/// True if the two rectangles represent the same area.
-		/// </summary>
-		/// <param name="r1"></param>
-		/// <param name="r2"></param>
-		/// <returns>True if the two rectangles are equal, false if not.</returns>
-		public static bool operator ==(Rectangle r1, XnaRectangle r2)
-		{
-			return r1.X == r2.X && r1.Y == r2.Y && r1.Width == r2.Width && r1.Height == r2.Height;
-		}
-
-		/// <summary>
-		/// True if any of the rectangles' x/y/width/height values are not equal.
-		/// </summary>
-		/// <param name="r1"></param>
-		/// <param name="r2"></param>
-		/// <returns>
-		/// True if any of the x/y/width/height values are not equal, false if they are all equal.
-		/// </returns>
-		public static bool operator !=(Rectangle r1, XnaRectangle r2) => !(r1 == r2);
-
-		/// <summary>
-		/// True if the two rectangles represent the same area.
-		/// </summary>
-		/// <param name="r1"></param>
-		/// <param name="r2"></param>
-		/// <returns>True if the two rectangles are equal, false if not.</returns>
-		public static bool operator ==(XnaRectangle r1, Rectangle r2)
-		{
-			return r1.X == r2.X && r1.Y == r2.Y && r1.Width == r2.Width && r1.Height == r2.Height;
-		}
-
-		/// <summary>
-		/// True if any of the rectangles' x/y/width/height values are not equal.
-		/// </summary>
-		/// <param name="r1"></param>
-		/// <param name="r2"></param>
-		/// <returns>
-		/// True if any of the x/y/width/height values are not equal, false if they are all equal.
-		/// </returns>
-		public static bool operator !=(XnaRectangle r1, Rectangle r2) => !(r1 == r2);
-		#endregion
-		#endif
-
-		#region System Drawing Conversions
-		/// <summary>
-		/// Implicitly converts a GoRogue Rectangle to an equivalent System.Drawing.Rectangle.
-		/// </summary>
-		/// <param name="rect" />
-		/// <returns />
-		public static implicit operator DrawingRectangle(Rectangle rect) => new DrawingRectangle(rect.X, rect.Y, rect.Width, rect.Height);
-		/// <summary>
-		/// Implicitly converts a System.Drawing.Rectangle to an equivalent GoRogue Rectangle.
-		/// </summary>
-		/// <param name="rect" />
-		/// <returns />
-		public static implicit operator Rectangle(DrawingRectangle rect) => new Rectangle(rect.X, rect.Y, rect.Width, rect.Height);
-
-		/// <summary>
-		/// Implicitly converts a GoRogue Rectangle to an equivalent System.Drawing.RectangleF.
-		/// </summary>
-		/// <param name="rect" />
-		/// <returns />
-		public static implicit operator DrawingRectangleF(Rectangle rect) => new DrawingRectangleF(rect.X, rect.Y, rect.Width, rect.Height);
-
-		/// <summary>
-		/// True if the two rectangles represent the same area.
-		/// </summary>
-		/// <param name="r1"></param>
-		/// <param name="r2"></param>
-		/// <returns>True if the two rectangles are equal, false if not.</returns>
-		public static bool operator ==(Rectangle r1, DrawingRectangle r2)
-		{
-			return r1.X == r2.X && r1.Y == r2.Y && r1.Width == r2.Width && r1.Height == r2.Height;
-		}
-
-		/// <summary>
-		/// True if any of the rectangles' x/y/width/height values are not equal.
-		/// </summary>
-		/// <param name="r1"></param>
-		/// <param name="r2"></param>
-		/// <returns>
-		/// True if any of the x/y/width/height values are not equal, false if they are all equal.
-		/// </returns>
-		public static bool operator !=(Rectangle r1, DrawingRectangle r2) => !(r1 == r2);
-
-		/// <summary>
-		/// True if the two rectangles represent the same area.
-		/// </summary>
-		/// <param name="r1"></param>
-		/// <param name="r2"></param>
-		/// <returns>True if the two rectangles are equal, false if not.</returns>
-		public static bool operator ==(DrawingRectangle r1, Rectangle r2)
-		{
-			return r1.X == r2.X && r1.Y == r2.Y && r1.Width == r2.Width && r1.Height == r2.Height;
-		}
-
-		/// <summary>
-		/// True if any of the rectangles' x/y/width/height values are not equal.
-		/// </summary>
-		/// <param name="r1"></param>
-		/// <param name="r2"></param>
-		/// <returns>
-		/// True if any of the x/y/width/height values are not equal, false if they are all equal.
-		/// </returns>
-		public static bool operator !=(DrawingRectangle r1, Rectangle r2) => !(r1 == r2);
-
-		/// <summary>
-		/// True if the two rectangles represent the same area.
-		/// </summary>
-		/// <param name="r1"></param>
-		/// <param name="r2"></param>
-		/// <returns>True if the two rectangles are equal, false if not.</returns>
-		public static bool operator ==(Rectangle r1, DrawingRectangleF r2)
-		{
-			return r1.X == r2.X && r1.Y == r2.Y && r1.Width == r2.Width && r1.Height == r2.Height;
-		}
-
-		/// <summary>
-		/// True if any of the rectangles' x/y/width/height values are not equal.
-		/// </summary>
-		/// <param name="r1"></param>
-		/// <param name="r2"></param>
-		/// <returns>
-		/// True if any of the x/y/width/height values are not equal, false if they are all equal.
-		/// </returns>
-		public static bool operator !=(Rectangle r1, DrawingRectangleF r2) => !(r1 == r2);
-
-		/// <summary>
-		/// True if the two rectangles represent the same area.
-		/// </summary>
-		/// <param name="r1"></param>
-		/// <param name="r2"></param>
-		/// <returns>True if the two rectangles are equal, false if not.</returns>
-		public static bool operator ==(DrawingRectangleF r1, Rectangle r2)
-		{
-			return r1.X == r2.X && r1.Y == r2.Y && r1.Width == r2.Width && r1.Height == r2.Height;
-		}
-
-		/// <summary>
-		/// True if any of the rectangles' x/y/width/height values are not equal.
-		/// </summary>
-		/// <param name="r1"></param>
-		/// <param name="r2"></param>
-		/// <returns>
-		/// True if any of the x/y/width/height values are not equal, false if they are all equal.
-		/// </returns>
-		public static bool operator !=(DrawingRectangleF r1, Rectangle r2) => !(r1 == r2);
-		#endregion
-		*/
+		
 		#region Tuple Compability
 		/// <summary>
 		/// Implicitly converts a GoRogue Rectangle to an equivalent tuple of 4 integers (x, y, width, height).

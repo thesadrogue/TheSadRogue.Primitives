@@ -242,15 +242,6 @@ namespace SadRogue.Primitives
 
 		/// <summary>
 		/// Gets all neighbors of the specified location, based on the current adjacency method.
-		/// Cardinals are returned before any diagonals.
-		/// </summary>
-		/// <param name="startingX">X-coordinate of location to return neighbors for.</param>
-		/// <param name="startingY">Y-coordinate of location to return neighbors for.</param>
-		/// <returns>All neighbors of the given location.</returns>
-		public IEnumerable<Point> Neighbors(int startingX, int startingY) => Neighbors(new Point(startingX, startingY));
-
-		/// <summary>
-		/// Gets all neighbors of the specified location, based on the current adjacency method.
 		/// Neighbors are returned in clockwise order, starting with the neighbor in the given
 		/// starting direction.
 		/// </summary>
@@ -269,22 +260,6 @@ namespace SadRogue.Primitives
 
 		/// <summary>
 		/// Gets all neighbors of the specified location, based on the current adjacency method.
-		/// Neighbors are returned in clockwise order, starting with the neighbor in the given
-		/// starting direction.
-		/// </summary>
-		/// <param name="startingX">X-coordinate of location to return neighbors for.</param>
-		/// <param name="startingY">Y-coordinate of location to return neighbors for.</param>
-		/// <param name="startingDirection">
-		/// The neighbor in this direction will be returned first, proceeding clockwise.
-		/// If null or <see cref="Direction.NONE"/> is specified, the default starting direction
-		/// is used, which is UP for CARDINALS/EIGHT_WAY, and UP_RIGHT for DIAGONALS.
-		/// </param>
-		/// <returns>All neighbors of the given location.</returns>
-		public IEnumerable<Point> NeighborsClockwise(int startingX, int startingY, Direction startingDirection = null)
-			=> NeighborsClockwise(new Point(startingX, startingY), startingDirection);
-
-		/// <summary>
-		/// Gets all neighbors of the specified location, based on the current adjacency method.
 		/// Neighbors are returned in counter-clockwise order, starting with the neighbor in the given
 		/// starting direction.
 		/// </summary>
@@ -300,22 +275,6 @@ namespace SadRogue.Primitives
 			foreach (var dir in DirectionsOfNeighborsCounterClockwise(startingDirection))
 				yield return startingLocation + dir;
 		}
-
-		/// <summary>
-		/// Gets all neighbors of the specified location, based on the current adjacency method.
-		/// Neighbors are returned in counter-clockwise order, starting with the neighbor in the given
-		/// starting direction.
-		/// </summary>
-		/// <param name="startingX">X-coordinate of location to return neighbors for.</param>
-		/// <param name="startingY">Y-coordinate of location to return neighbors for.</param>
-		/// <param name="startingDirection">
-		/// The neighbor in this direction will be returned first, proceeding counter-clockwise.
-		/// If null or <see cref="Direction.NONE"/> is specified, the default starting direction
-		/// is used, which is UP for CARDINALS/EIGHT_WAY, and UP_LEFT for DIAGONALS.
-		/// </param>
-		/// <returns>All neighbors of the given location.</returns>
-		public IEnumerable<Point> NeighborsCounterClockwise(int startingX, int startingY, Direction startingDirection = null)
-			=> NeighborsCounterClockwise(new Point(startingX, startingY), startingDirection);
 
 		/// <summary>
 		/// Returns a string representation of the AdjacencyRule.

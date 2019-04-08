@@ -10,6 +10,8 @@ namespace System.Numerics.Grid
 		public static MonoPoint ToMonoPoint(this SadRoguePoint self) => new MonoPoint(self.X, self.Y);
 		public static SadRoguePoint Add(this SadRoguePoint self, MonoPoint other) => new SadRoguePoint(self.X + other.X, self.Y + other.Y);
 		public static SadRoguePoint Subtract(this SadRoguePoint self, MonoPoint other) => new SadRoguePoint(self.X - other.X, self.Y - other.Y);
+
+		public static bool Equals(this SadRoguePoint self, MonoPoint other) => self.X == other.X && self.Y == other.Y;
 	}
 }
 
@@ -29,5 +31,7 @@ namespace Microsoft.Xna.Framework
 		public static MonoPoint Multiply(this MonoPoint self, double d) => new MonoPoint((int)Math.Round(self.X * d), (int)Math.Round(self.Y * d));
 
 		public static MonoPoint Divide(this MonoPoint self, double d) => new MonoPoint((int)Math.Round(self.X / d), (int)Math.Round(self.Y / d));
+
+		public static bool Equals(this MonoPoint self, SadRoguePoint other) => self.X == other.X && self.Y == other.Y;
 	}
 }

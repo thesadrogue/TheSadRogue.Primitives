@@ -238,21 +238,7 @@ namespace SadRogue.Primitives
 		/// <returns>
 		/// The cardinal direction that most closely matches the heading indicated by the given line.
 		/// </returns>
-		public static Direction GetCardinalDirection(Point start, Point end) => GetCardinalDirection(end.X - start.X, end.Y - start.Y);
-
-		/// <summary>
-		/// Returns the cardinal direction that most closely matches the degree heading of the given
-		/// line. Rounds clockwise if the heading is exactly on a diagonal direction. Similar to
-		/// <see cref="GetDirection(int, int, int, int)"/>, except this function returns only cardinal directions.
-		/// </summary>
-		/// <param name="startX">X-coordinate of the starting position of the line.</param>
-		/// <param name="startY">Y-coordinate of the starting position of the line.</param>
-		/// <param name="endX">X-coordinate of the ending position of the line.</param>
-		/// <param name="endY">Y-coordinate of the ending position of the line.</param>
-		/// <returns>
-		/// The cardinal direction that most closely matches the heading indicated by the given line.
-		/// </returns>
-		public static Direction GetCardinalDirection(int startX, int startY, int endX, int endY) => GetCardinalDirection(endX - startX, endY - startY);
+		public static Direction GetCardinalDirection(Point start, Point end) => GetCardinalDirection(new Point(end.X - start.X, end.Y - start.Y));
 
 		/// <summary>
 		/// Returns the cardinal direction that most closely matches the degree heading of a line
@@ -266,20 +252,11 @@ namespace SadRogue.Primitives
 		/// <returns>
 		/// The cardinal direction that most closely matches the degree heading of the given line.
 		/// </returns>
-		public static Direction GetCardinalDirection(Point deltaChange) => GetCardinalDirection(deltaChange.X, deltaChange.Y);
-
-		/// <summary>
-		/// Returns the cardinal direction that most closely matches the degree heading of a line
-		/// with the given dx and dy values. Rounds clockwise if exactly on a diagonal direction.
-		/// Similar to <see cref="GetDirection(int, int)"/>, except this function returns only cardinal directions.
-		/// </summary>
-		/// <param name="dx">The change in x-values across the line.</param>
-		/// <param name="dy">The change in x-values across the line.</param>
-		/// <returns>
-		/// The cardinal direction that most closely matches the degree heading of the given line.
-		/// </returns>
-		public static Direction GetCardinalDirection(int dx, int dy)
+		public static Direction GetCardinalDirection(Point deltaChange)
 		{
+			int dx = deltaChange.X;
+			int dy = deltaChange.Y;
+
 			if (dx == 0 && dy == 0)
 				return NONE;
 
@@ -311,20 +288,8 @@ namespace SadRogue.Primitives
 		/// <returns>
 		/// The direction that most closely matches the heading indicated by the given line.
 		/// </returns>
-		public static Direction GetDirection(Point start, Point end) => GetDirection(end.X - start.X, end.Y - start.Y);
+		public static Direction GetDirection(Point start, Point end) => GetDirection(new Point(end.X - start.X, end.Y - start.Y));
 
-		/// <summary>
-		/// Returns the direction that most closely matches the degree heading of the given line.
-		/// Rounds clockwise if the heading is exactly between two directions.
-		/// </summary>
-		/// <param name="startX">X-coordinate of the starting position of the line.</param>
-		/// <param name="startY">Y-coordinate of the starting position of the line.</param>
-		/// <param name="endX">X-coordinate of the ending position of the line.</param>
-		/// <param name="endY">Y-coordinate of the ending position of the line.</param>
-		/// <returns>
-		/// The direction that most closely matches the heading indicated by the given line.
-		/// </returns>
-		public static Direction GetDirection(int startX, int startY, int endX, int endY) => GetDirection(endX - startX, endY - startY);
 
 		/// <summary>
 		/// Returns the direction that most closely matches the degree heading of a line with the
@@ -337,19 +302,11 @@ namespace SadRogue.Primitives
 		/// <returns>
 		/// The direction that most closely matches the heading indicated by the given input.
 		/// </returns>
-		public static Direction GetDirection(Point deltaChange) => GetDirection(deltaChange.X, deltaChange.Y);
-
-		/// <summary>
-		/// Returns the direction that most closely matches the degree heading of a line with the
-		/// given dx and dy values. Rounds clockwise if the heading is exactly between two directions.
-		/// </summary>
-		/// <param name="dx">The change in x-values across the line.</param>
-		/// <param name="dy">The change in y-values across the line.</param>
-		/// <returns>
-		/// The direction that most closely matches the heading indicated by the given input.
-		/// </returns>
-		public static Direction GetDirection(int dx, int dy)
+		public static Direction GetDirection(Point deltaChange)
 		{
+			int dx = deltaChange.X;
+			int dy = deltaChange.Y;
+
 			if (dx == 0 && dy == 0)
 				return NONE;
 

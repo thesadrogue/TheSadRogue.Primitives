@@ -6,6 +6,7 @@
 	/// </summary>
 	public static class PointExtensions
 	{
+		// TODO: Multiply and divide
 		public static Point Add(this Point self, Point other) => self + other;
 		public static Point Add(this Point self, int i) => self + i;
 		public static Point Add(this Point self, Direction dir) => self + dir;

@@ -141,16 +141,6 @@ namespace SadRogue.Primitives
 		/// <summary>
 		/// Returns the distance between the two (2D) points specified.
 		/// </summary>
-		/// <param name="startX">X-Coordinate of the starting point.</param>
-		/// <param name="startY">Y-Coordinate of the starting point.</param>
-		/// <param name="endX">X-Coordinate of the ending point.</param>
-		/// <param name="endY">Y-Coordinate of the ending point.</param>
-		/// <returns>The distance between the two points.</returns>
-		public double Calculate(int startX, int startY, int endX, int endY) => Calculate((double)startX, (double)startY, (double)endX, (double)endY);
-
-		/// <summary>
-		/// Returns the distance between the two (2D) points specified.
-		/// </summary>
 		/// <param name="start">Starting point.</param>
 		/// <param name="end">Ending point.</param>
 		/// <returns>The distance between the two points.</returns>
@@ -179,14 +169,6 @@ namespace SadRogue.Primitives
 		/// ///
 		/// <returns>The distance between two locations withe the given delta-change values.</returns>
 		public double Calculate(Point deltaChange) => Calculate((double)deltaChange.X, (double)deltaChange.Y);
-
-		/// <summary>
-		/// Returns the distance between two locations, given the change in X and change in Y value.
-		/// </summary>
-		/// <param name="dx">The delta-x between the two locations.</param>
-		/// <param name="dy">The delta-y between the two locations.</param>
-		/// <returns>The distance between two locations with the given delta-change values.</returns>
-		public double Calculate(int dx, int dy) => Calculate((double)dx, (double)dy);
 
 		/// <summary>
 		/// Returns the distance between two locations, given the change in X and change in Y value.

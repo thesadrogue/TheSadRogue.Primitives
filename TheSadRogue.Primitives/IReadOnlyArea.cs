@@ -34,14 +34,6 @@ namespace SadRogue.Primitives
 		/// <summary>
 		/// Determines whether or not the given position is considered within the area or not.
 		/// </summary>
-		/// <param name="x">X-coordinate of the position to check.</param>
-		/// <param name="y">Y-coordinate of the position to check.</param>
-		/// <returns>True if the specified position is within the area, false otherwise.</returns>
-		bool Contains(int x, int y);
-
-		/// <summary>
-		/// Determines whether or not the given position is considered within the area or not.
-		/// </summary>
 		/// <param name="position">The position to check.</param>
 		/// <returns>True if the specified position is within the area, false otherwise.</returns>
 		bool Contains(Point position);

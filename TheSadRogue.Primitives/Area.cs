@@ -214,18 +214,6 @@ namespace SadRogue.Primitives
 		}
 
 		/// <summary>
-		/// Adds the given position to the list of points within the area if it is not already in the
-		/// list, or does nothing otherwise.
-		/// </summary>
-		/// <remarks>
-		/// Because the class uses a hash set internally to
-		/// determine what points have already been added, this is an average case O(1) operation.
-		/// </remarks>
-		/// <param name="x">X-coordinate of the position to add.</param>
-		/// <param name="y">Y-coordinate of the position to add.</param>
-		public void Add(int x, int y) => Add(new Point(x, y));
-
-		/// <summary>
 		/// Adds all coordinates in the given map area to this one.
 		/// </summary>
 		/// <param name="area">Area containing positions to add.</param>
@@ -243,17 +231,6 @@ namespace SadRogue.Primitives
 		public bool Contains(Point position)
 		{
 			return positionsSet.Contains(position);
-		}
-
-		/// <summary>
-		/// Determines whether or not the given position is considered within the area or not.
-		/// </summary>
-		/// <param name="x">X-coordinate of the position to check.</param>
-		/// <param name="y">Y-coordinate of the position to check.</param>
-		/// <returns>True if the specified position is within the area, false otherwise.</returns>
-		public bool Contains(int x, int y)
-		{
-			return positionsSet.Contains(new Point(x, y));
 		}
 
 		/// <summary>
@@ -384,15 +361,6 @@ namespace SadRogue.Primitives
 			else
 				Remove(new HashSet<Point>(positions));
 		}
-
-		/// <summary>
-		/// Removes the given position specified from the MapArea. Particularly when the Remove
-		/// operation changes the bounds, this operation can be expensive, so if you must do multiple
-		/// Remove operations, it would be best to group them into 1 using <see cref="Remove(IEnumerable{Point})"/>.
-		/// </summary>
-		/// <param name="x">X-coordinate of the position to remove.</param>
-		/// <param name="y">Y-coordinate of the position to remove.</param>
-		public void Remove(int x, int y) => Remove(new Point(x, y));
 
 		/// <summary>
 		/// Removes all positions in the given map area from this one.

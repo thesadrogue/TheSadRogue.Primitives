@@ -54,18 +54,8 @@ namespace SadRogue.Primitives
 		/// <param name="start">Position of line starting point.</param>
 		/// <param name="end">Position of line ending point.</param>
 		/// <returns>The degree bearing of the line specified by the two given points.</returns>
-		public static double BearingOfLine(Point start, Point end) => BearingOfLine(end.X - start.X, end.Y - start.Y);
+		public static double BearingOfLine(Point start, Point end) => BearingOfLine(start - end);
 
-		/// <summary>
-		/// Calculates degree bearing of the line ((startX, startY) =&gt; (endX, endY)), where 0 points
-		/// in the direction <see cref="Direction.UP"/>.
-		/// </summary>
-		/// <param name="startX">X-value of the position of line starting point.</param>
-		/// <param name="startY">Y-value of the position of line starting point.</param>
-		/// <param name="endX">X-value of the position of line ending point.</param>
-		/// <param name="endY">Y-value of the position of line ending point.</param>
-		/// <returns>The degree bearing of the line specified by the two given points.</returns>
-		public static double BearingOfLine(int startX, int startY, int endX, int endY) => BearingOfLine(endX - startX, endY - startY);
 
 		/// <summary>
 		/// Calculates the degree bearing of a line with the given delta-x and delta-y values, where
@@ -76,17 +66,11 @@ namespace SadRogue.Primitives
 		/// is the change in y-values across the line.
 		/// </param>
 		/// <returns>The degree bearing of the line with the given dx and dy values.</returns>
-		public static double BearingOfLine(Point deltaChange) => BearingOfLine(deltaChange.X, deltaChange.Y);
-
-		/// <summary>
-		/// Calculates the degree bearing of a line with the given delta-x and delta-y values, where
-		/// 0 degreees points in the direction <see cref="Direction.UP"/>.
-		/// </summary>
-		/// <param name="dx">The change in x-values across the line.</param>
-		/// <param name="dy">the change in y-values across the line</param>
-		/// <returns>The degree bearing of the line with the given dx and dy values.</returns>
-		public static double BearingOfLine(int dx, int dy)
+		public static double BearingOfLine(Point deltaChange)
 		{
+			int dx = deltaChange.X;
+			int dy = deltaChange.Y;
+
 			dy *= Direction.yMult;
 			double angle = Math.Atan2(dy, dx);
 			double degree = MathHelpers.ToDegree(angle);
@@ -107,23 +91,7 @@ namespace SadRogue.Primitives
 		/// The "magnitude" of the euclidean distance between the two points -- basically the
 		/// distance formula without the square root.
 		/// </returns>
-		public static double EuclideanDistanceMagnitude(Point c1, Point c2) => EuclideanDistanceMagnitude(c2.X - c1.X, c2.Y - c1.Y);
-
-		/// <summary>
-		/// Returns the result of the euclidean distance formula, without the square root -- eg., (x2
-		/// - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1). Use this if you only care about the magnitude
-		/// of the distance -- eg., if you're trying to compare two distances. Omitting the square
-		/// root provides a speed increase.
-		/// </summary>
-		/// <param name="x1">The x-value of the first location.</param>
-		/// <param name="y1">The y-value of the first location.</param>
-		/// <param name="x2">The x-value of the second location.</param>
-		/// <param name="y2">The y-value of the second location.</param>
-		/// <returns>
-		/// The "magnitude" of the euclidean distance between the two points -- basically the
-		/// distance formula without the square root.
-		/// </returns>
-		public static double EuclideanDistanceMagnitude(int x1, int y1, int x2, int y2) => EuclideanDistanceMagnitude(x2 - x1, y2 - y1);
+		public static double EuclideanDistanceMagnitude(Point c1, Point c2) => EuclideanDistanceMagnitude(c2 - c1);
 
 		/// <summary>
 		/// Returns the result of the euclidean distance formula, without the square root, given the
@@ -139,21 +107,7 @@ namespace SadRogue.Primitives
 		/// The "magnitude" of the euclidean distance of two locations with the given dx and dy
 		/// values -- basically the distance formula without the square root.
 		/// </returns>
-		public static double EuclideanDistanceMagnitude(Point deltaChange) => EuclideanDistanceMagnitude(deltaChange.X, deltaChange.Y);
-
-		/// <summary>
-		/// Returns the result of the euclidean distance formula, without the square root, given the
-		/// dx and dy values between two points -- eg., (dx * dx) + (dy * dy). Use this if you only
-		/// care about the magnitude of the distance -- eg., if you're trying to compare two distances.
-		/// Omitting the square root provides a speed increase.
-		/// </summary>
-		/// <param name="dx">The change in x-values between the two points.</param>
-		/// <param name="dy">The change in y-values between the two points.</param>
-		/// <returns>
-		/// The "magnitude" of the euclidean distance of two locations with the given dx and dy
-		/// values -- basically the distance formula without the square root.
-		/// </returns>
-		public static double EuclideanDistanceMagnitude(int dx, int dy) => dx * dx + dy * dy;
+		public static double EuclideanDistanceMagnitude(Point deltaChange) => deltaChange.X * deltaChange.X + deltaChange.Y * deltaChange.Y;
 
 
 		/// <summary>
@@ -164,16 +118,6 @@ namespace SadRogue.Primitives
 		/// <returns>The midpoint between <paramref name="c1"/> and <paramref name="c2"/>.</returns>
 		public static Point Midpoint(Point c1, Point c2) =>
 			new Point((int)Math.Round((c1.X + c2.X) / 2.0f, MidpointRounding.AwayFromZero), (int)Math.Round((c1.Y + c2.Y) / 2.0f, MidpointRounding.AwayFromZero));
-
-		/// <summary>
-		/// Returns the midpoint between the two points.
-		/// </summary>
-		/// <param name="x1">The x-value of the first location.</param>
-		/// <param name="y1">The y-value of the first location.</param>
-		/// <param name="x2">The x-value of the second location.</param>
-		/// <param name="y2">The y-value of the second location.</param>
-		/// <returns>The midpoint between the two points.</returns>
-		public static Point Midpoint(int x1, int y1, int x2, int y2) => Midpoint(new Point(x1, y1), new Point(x2, y2));
 
 		/// <summary>
 		/// Returns the coordinate (c1.X - c2.X, c1.Y - c2.Y)
@@ -352,14 +296,6 @@ namespace SadRogue.Primitives
 		public override string ToString() => $"({X},{Y})";
 
 		/// <summary>
-		/// Translates the coordinate by the given dx and dy values.
-		/// </summary>
-		/// <param name="dx">Delta x to add to coordinate.</param>
-		/// <param name="dy">Delta y to add to coordinate.</param>
-		/// <returns>The coordinate (<see cref="X"/> + <paramref name="dx"/>, <see cref="Y"/> + <paramref name="dy"/>)</returns>
-		public Point Translate(int dx, int dy) => new Point(X + dx, Y + dy);
-
-		/// <summary>
 		/// Returns the coordinate resulting from adding dx to the X-value of the coordinate, and dy
 		/// to the Y-value of the coordinate.
 		/// </summary>
@@ -377,390 +313,6 @@ namespace SadRogue.Primitives
 		/// <returns>True if the two coordinates are equal, false if not.</returns>
 		public bool Equals(Point other) => X == other.X && Y == other.Y;
 		
-		/*
-		#if ALLCONVERSIONS
-		#region MonoGame Compatibility
-		/// <summary>
-		/// Implicitly converts a Coord to an equivalent MonoGame point.
-		/// </summary>
-		/// <param name="c" />
-		/// <returns />
-		public static implicit operator MonoPoint(Coord c) => new MonoPoint(c.X, c.Y);
-		/// <summary>
-		/// Implicitly converts a MonoGame Point to an equivalent Coord.
-		/// </summary>
-		/// <param name="p" />
-		/// <returns />
-		public static implicit operator Coord(MonoPoint p) => new Coord(p.X, p.Y);
-		/// <summary>
-		/// Adds the x and y values of a Coord to a MonoGame Point.
-		/// </summary>
-		/// <param name="p" />
-		/// <param name="c" />
-		/// <returns>A MonoGame Point (p.X + c.X, p.Y + c.Y).</returns>
-		public static MonoPoint operator +(MonoPoint p, Coord c) => new MonoPoint(p.X + c.X, p.Y + c.Y);
-		/// <summary>
-		/// Adds the x and y values of a MonoGame Point to a Coord.
-		/// </summary>
-		/// <param name="c" />
-		/// <param name="p" />
-		/// <returns>A Coord (c.X + p.X, c.Y + p.Y).</returns>
-		public static Coord operator +(Coord c, MonoPoint p) => new Coord(c.X + p.X, c.Y + p.Y);
-		
-		/// <summary>
-		/// Subtracts the x and y values of a Coord from a MonoGame Point.
-		/// </summary>
-		/// <param name="p" />
-		/// <param name="c" />
-		/// <returns>A MonoGame Point (p.X - c.X, p.Y - c.Y).</returns>
-		public static MonoPoint operator -(MonoPoint p, Coord c) => new MonoPoint(p.X - c.X, p.Y - c.Y);
-		/// <summary>
-		/// Subtracts the x and y values of a MonoGame Point from a Coord.
-		/// </summary>
-		/// <param name="c" />
-		/// <param name="p" />
-		/// <returns>A Coord (c.X - p.X, c.Y - p.Y).</returns>
-		public static Coord operator -(Coord c, MonoPoint p) => new Coord(c.X - p.X, c.Y - p.Y);
-
-		/// <summary>
-		/// True if the two point's X and Y values are equal.
-		/// </summary>
-		/// <param name="c1"></param>
-		/// <param name="p2"></param>
-		/// <returns>True if the two coordinates are equal, false if not.</returns>
-		public static bool operator ==(Coord c1, MonoPoint p2)
-		{
-			return c1.X == p2.X && c1.Y == p2.Y;
-		}
-
-		/// <summary>
-		/// True if either the x-values or y-values are not equal.
-		/// </summary>
-		/// <param name="c1"></param>
-		/// <param name="p2"></param>
-		/// <returns>
-		/// True if either the x-values or y-values are not equal, false if they are both equal.
-		/// </returns>
-		public static bool operator !=(Coord c1, MonoPoint p2) => !(c1 == p2);
-
-		/// <summary>
-		/// True if the two point's X and Y values are equal.
-		/// </summary>
-		/// <param name="p1"></param>
-		/// <param name="c2"></param>
-		/// <returns>True if the two coordinates are equal, false if not.</returns>
-		public static bool operator ==(MonoPoint p1, Coord c2)
-		{
-			return p1.X == c2.X && p1.Y == c2.Y;
-		}
-
-		/// <summary>
-		/// True if either the x-values or y-values are not equal.
-		/// </summary>
-		/// <param name="p1"></param>
-		/// <param name="c2"></param>
-		/// <returns>
-		/// True if either the x-values or y-values are not equal, false if they are both equal.
-		/// </returns>
-		public static bool operator !=(MonoPoint p1, Coord c2) => !(p1 == c2);
-		#endregion
-		#endif
-
-		#region System.Drawing Compatibility
-		/// <summary>
-		/// Implicitly converts a Coord to an equivalent System.Drawing.Point.
-		/// </summary>
-		/// <param name="c" />
-		/// <returns />
-		public static implicit operator DrawingPoint(Coord c) => new DrawingPoint(c.X, c.Y);
-		/// <summary>
-		/// Implicitly converts a System.Drawing.Point to an equivalent Coord.
-		/// </summary>
-		/// <param name="p" />
-		/// <returns />
-		public static implicit operator Coord(DrawingPoint p) => new Coord(p.X, p.Y);
-		/// <summary>
-		/// Implicitly converts a Coord to an equivalent System.Drawing.PointF.
-		/// </summary>
-		/// <param name="c" />
-		/// <returns />
-		public static implicit operator PointF(Coord c) => new PointF(c.X, c.Y);
-		/// <summary>
-		/// Implicitly converts a Coord to an equivalent System.Drawing.Size.
-		/// </summary>
-		/// <param name="c" />
-		/// <returns />
-		public static implicit operator Size(Coord c) => new Size(c.X, c.Y);
-		/// <summary>
-		/// Implicitly converts a System.Drawing.Size to an equivalent Coord.
-		/// </summary>
-		/// <param name="s" />
-		/// <returns />
-		public static implicit operator Coord(Size s) => new Coord(s.Width, s.Height);
-		/// <summary>
-		/// Implicitly converts a Coord to an equivalent System.Drawing.SizeF.
-		/// </summary>
-		/// <param name="c" />
-		/// <returns />
-		public static implicit operator SizeF(Coord c) => new SizeF(c.X, c.Y);
-		
-		/// <summary>
-		/// Adds the x and y values of a Coord to a System.Drawing.Point.
-		/// </summary>
-		/// <param name="p" />
-		/// <param name="c" />
-		/// <returns>A System.Drawing.Point (p.X + c.X, p.Y + c.Y).</returns>
-		public static DrawingPoint operator +(DrawingPoint p, Coord c) => new DrawingPoint(p.X + c.X, p.Y + c.Y);
-		/// <summary>
-		/// Adds the x and y values of a System.Drawing.Point to a Coord.
-		/// </summary>
-		/// <param name="c" />
-		/// <param name="p" />
-		/// <returns>A Coord (c.X + p.X, c.Y + p.Y).</returns>
-		public static Coord operator +(Coord c, DrawingPoint p) => new Coord(c.X + p.X, c.Y + p.Y);
-		/// <summary>
-		/// Adds the x and y values of a Coord to a System.Drawing.PointF.
-		/// </summary>
-		/// <param name="p" />
-		/// <param name="c" />
-		/// <returns>A System.Drawing.PointF (p.X + c.X, p.Y + c.Y).</returns>
-		public static PointF operator +(PointF p, Coord c) => new PointF(p.X + c.X, p.Y + c.Y);
-		
-		/// <summary>
-		/// Subtracts the x and y values of a Coord from a System.Drawing.Point.
-		/// </summary>
-		/// <param name="p" />
-		/// <param name="c" />
-		/// <returns>A System.Drawing.Point (p.X - c.X, p.Y - c.Y).</returns>
-		public static DrawingPoint operator -(DrawingPoint p, Coord c) => new DrawingPoint(p.X - c.X, p.Y - c.Y);
-		/// <summary>
-		/// Subtracts the x and y values of a System.Drawing.Point from a Coord.
-		/// </summary>
-		/// <param name="c" />
-		/// <param name="p" />
-		/// <returns>A Coord (c.X - p.X, c.Y - p.Y).</returns>
-		public static Coord operator -(Coord c, DrawingPoint p) => new Coord(c.X - p.X, c.Y - p.Y);
-		/// <summary>
-		/// Subtracts the x and y values of a Coord from a System.Drawing.PointF.
-		/// </summary>
-		/// <param name="p" />
-		/// <param name="c" />
-		/// <returns>A System.Drawing.PointF (p.X - c.X, p.Y - c.Y).</returns>
-		public static PointF operator -(PointF p, Coord c) => new PointF(p.X - c.X, p.Y - c.Y);
-		
-		/// <summary>
-		/// Adds the x and y values of a Coord to a System.Drawing.Size.
-		/// </summary>
-		/// <param name="s" />
-		/// <param name="c" />
-		/// <returns>A System.Drawing.Size (s.Width + c.X, s.Height + c.Y).</returns>
-		public static Size operator +(Size s, Coord c) => new Size(s.Width + c.X, s.Height + c.Y);
-		/// <summary>
-		/// Adds the x and y values of a System.Drawing.Size to a Coord.
-		/// </summary>
-		/// <param name="c" />
-		/// <param name="s" />
-		/// <returns>A Coord (c.X + s.Width, c.Y + s.Height).</returns>
-		public static Coord operator +(Coord c, Size s) => new Coord(c.X + s.Width, c.Y + s.Height);
-		/// <summary>
-		/// Adds the x and y values of a Coord to a System.Drawing.SizeF.
-		/// </summary>
-		/// <param name="s" />
-		/// <param name="c" />
-		/// <returns>A System.Drawing.SizeF (s.Width + c.X, s.Height + c.Y).</returns>
-		public static SizeF operator +(SizeF s, Coord c) => new SizeF(s.Width + c.X, s.Height + c.Y);
-		
-		/// <summary>
-		/// Subtracts the x and y values of a Coord from a System.Drawing.Size.
-		/// </summary>
-		/// <param name="s" />
-		/// <param name="c" />
-		/// <returns>A System.Drawing.Size (s.Width - c.X, s.Height - c.Y).</returns>
-		public static Size operator -(Size s, Coord c) => new Size(s.Width - c.X, s.Height - c.Y);
-		/// <summary>
-		/// Subtracts the x and y values of a System.Drawing.Size from a Coord.
-		/// </summary>
-		/// <param name="c" />
-		/// <param name="s" />
-		/// <returns>A Coord (c.X - s.Width, c.Y - s.Height).</returns>
-		public static Coord operator -(Coord c, Size s) => new Coord(c.X - s.Width, c.Y - s.Height);
-		/// <summary>
-		/// Subtracts the x and y values of a Coord from a System.Drawing.SizeF.
-		/// </summary>
-		/// <param name="s" />
-		/// <param name="c" />
-		/// <returns>A System.Drawing.SizeF (s.Width - c.X, s.Height - c.Y).</returns>
-		public static SizeF operator -(SizeF s, Coord c) => new SizeF(s.Width - c.X, s.Height - c.Y);
-
-		/// <summary>
-		/// True if the two point's X and Y values are equal.
-		/// </summary>
-		/// <param name="c1"></param>
-		/// <param name="p2"></param>
-		/// <returns>True if the two coordinates are equal, false if not.</returns>
-		public static bool operator ==(Coord c1, DrawingPoint p2)
-		{
-			return c1.X == p2.X && c1.Y == p2.Y;
-		}
-
-		/// <summary>
-		/// True if either the x-values or y-values are not equal.
-		/// </summary>
-		/// <param name="c1"></param>
-		/// <param name="p2"></param>
-		/// <returns>
-		/// True if either the x-values or y-values are not equal, false if they are both equal.
-		/// </returns>
-		public static bool operator !=(Coord c1, DrawingPoint p2) => !(c1 == p2);
-
-		/// <summary>
-		/// True if the two point's X and Y values are equal.
-		/// </summary>
-		/// <param name="p1"></param>
-		/// <param name="c2"></param>
-		/// <returns>True if the two coordinates are equal, false if not.</returns>
-		public static bool operator ==(DrawingPoint p1, Coord c2)
-		{
-			return p1.X == c2.X && p1.Y == c2.Y;
-		}
-
-		/// <summary>
-		/// True if either the x-values or y-values are not equal.
-		/// </summary>
-		/// <param name="p1"></param>
-		/// <param name="c2"></param>
-		/// <returns>
-		/// True if either the x-values or y-values are not equal, false if they are both equal.
-		/// </returns>
-		public static bool operator !=(DrawingPoint p1, Coord c2) => !(p1 == c2);
-
-		/// <summary>
-		/// True if the two point's X and Y values are equal.
-		/// </summary>
-		/// <param name="c1"></param>
-		/// <param name="p2"></param>
-		/// <returns>True if the two coordinates are equal, false if not.</returns>
-		public static bool operator ==(Coord c1, PointF p2)
-		{
-			return c1.X == p2.X && c1.Y == p2.Y;
-		}
-
-		/// <summary>
-		/// True if either the x-values or y-values are not equal.
-		/// </summary>
-		/// <param name="c1"></param>
-		/// <param name="p2"></param>
-		/// <returns>
-		/// True if either the x-values or y-values are not equal, false if they are both equal.
-		/// </returns>
-		public static bool operator !=(Coord c1, PointF p2) => !(c1 == p2);
-
-		/// <summary>
-		/// True if the two point's X and Y values are equal.
-		/// </summary>
-		/// <param name="p1"></param>
-		/// <param name="c2"></param>
-		/// <returns>True if the two coordinates are equal, false if not.</returns>
-		public static bool operator ==(PointF p1, Coord c2)
-		{
-			return p1.X == c2.X && p1.Y == c2.Y;
-		}
-
-		/// <summary>
-		/// True if either the x-values or y-values are not equal.
-		/// </summary>
-		/// <param name="p1"></param>
-		/// <param name="c2"></param>
-		/// <returns>
-		/// True if either the x-values or y-values are not equal, false if they are both equal.
-		/// </returns>
-		public static bool operator !=(PointF p1, Coord c2) => !(p1 == c2);
-
-		/// <summary>
-		/// True if the point's x/y values equal the size's width/height values.
-		/// </summary>
-		/// <param name="c"></param>
-		/// <param name="size"></param>
-		/// <returns>True if the given Coord and Size are equivalent, false if not.</returns>
-		public static bool operator ==(Coord c, Size size)
-		{
-			return c.X == size.Width && c.Y == size.Height;
-		}
-
-		/// <summary>
-		/// True if either the x/Width values or the y/Height values do not match.
-		/// </summary>
-		/// <param name="c"></param>
-		/// <param name="size"></param>
-		/// <returns>
-		/// True if either the x/Width values or the y/Height values are not equal, false if they are both equal.
-		/// </returns>
-		public static bool operator !=(Coord c, Size size) => !(c == size);
-
-		/// <summary>
-		/// True if the size's width/height values equal the point's x/y values.
-		/// </summary>
-		/// <param name="size"></param>
-		/// <param name="c"></param>
-		/// <returns>True if the given Size and Coord are equivalent, false if not.</returns>
-		public static bool operator ==(Size size, Coord c)
-		{
-			return size.Width == c.X && size.Height == c.Y;
-		}
-
-		/// <summary>
-		/// True if either the Width/x values or the Height/y values do not match.
-		/// </summary>
-		/// <param name="size"></param>
-		/// <param name="c"></param>
-		/// <returns>
-		/// True if either the Width/x values or the Height/y values are not equal, false if they are both equal.
-		/// </returns>
-		public static bool operator !=(Size size, Coord c) => !(size == c);
-
-		/// <summary>
-		/// True if the point's x/y values equal the size's width/height values.
-		/// </summary>
-		/// <param name="c"></param>
-		/// <param name="size"></param>
-		/// <returns>True if the given Coord and SizeF are equivalent, false if not.</returns>
-		public static bool operator ==(Coord c, SizeF size)
-		{
-			return c.X == size.Width && c.Y == size.Height;
-		}
-
-		/// <summary>
-		/// True if either the x/Width values or the y/Height values do not match.
-		/// </summary>
-		/// <param name="c"></param>
-		/// <param name="size"></param>
-		/// <returns>
-		/// True if either the x/Width values or the y/Height values are not equal, false if they are both equal.
-		/// </returns>
-		public static bool operator !=(Coord c, SizeF size) => !(c == size);
-
-		/// <summary>
-		/// True if the size's width/height values equal the point's x/y values.
-		/// </summary>
-		/// <param name="size"></param>
-		/// <param name="c"></param>
-		/// <returns>True if the given SizeF and Coord are equivalent, false if not.</returns>
-		public static bool operator ==(SizeF size, Coord c)
-		{
-			return size.Width == c.X && size.Height == c.Y;
-		}
-
-		/// <summary>
-		/// True if either the Width/x values or the Height/y values do not match.
-		/// </summary>
-		/// <param name="size"></param>
-		/// <param name="c"></param>
-		/// <returns>
-		/// True if either the Width/x values or the Height/y values are not equal, false if they are both equal.
-		/// </returns>
-		public static bool operator !=(SizeF size, Coord c) => !(size == c);
-		#endregion
-		*/
 		#region TupleCompatibility
 		/// <summary>
 		/// Adds support for C# Deconstruction syntax.

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace SadRogue.Primitives
 {
@@ -69,6 +70,52 @@ namespace SadRogue.Primitives
             /// </summary>
             CIRCLE,
         };
+
+        public IEnumerable<Point> PositionsInRadius(Point center, int radius, Rectangle bounds)
+            => PositionsInRadius(new RadiusLocationContext(center, radius, bounds));
+
+        public IEnumerable<Point> PositionsInRadius(Point center, int radius)
+            => PositionsInRadius(new RadiusLocationContext(center, radius));
+
+        public IEnumerable<Point> PositionsInRadius(RadiusLocationContext context)
+        {
+            if (context._newlyInitialized)
+                context._newlyInitialized = false;
+            else
+                Array.Clear(context._inQueue, 0, context._inQueue.Length);
+
+            int startArrayIndex = context._inQueue.GetLength(0) / 2;
+            Point topLeft = context.Center - context.Radius;
+            AdjacencyRule rule = this;
+            Distance distCalc = this;
+
+            var q = new Queue<Point>();
+            q.Enqueue(context.Center);
+            context._inQueue[startArrayIndex, startArrayIndex] = true;
+
+            Point cur;
+            Point localNeighbor;
+
+            while (q.Count != 0)
+            {
+                cur = q.Dequeue();
+                yield return cur;
+
+                // Add neighbors
+                foreach (var neighbor in rule.Neighbors(cur))
+                {
+                    localNeighbor = neighbor - topLeft;
+
+                    if (context._inQueue[localNeighbor.X, localNeighbor.Y] ||
+                        context.Bounds != Rectangle.EMPTY && !context.Bounds.Contains(neighbor) ||
+                        distCalc.Calculate(context.Center, neighbor) > context.Radius)
+                        continue;
+
+                    q.Enqueue(neighbor);
+                    context._inQueue[localNeighbor.X, localNeighbor.Y] = true;
+                }
+            }
+        }
 
         /// <summary>
         /// Allows implicit casting to the <see cref="AdjacencyRule"/> type.
@@ -148,5 +195,44 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <returns>A string representation of the Radius.</returns>
         public override string ToString() => writeVals[(int)Type];
+    }
+
+    public class RadiusLocationContext
+    {
+        internal bool[,] _inQueue;
+        internal bool _newlyInitialized;
+
+        private int _radius;
+        public int Radius
+        {
+            get => _radius;
+            set
+            {
+                if (_radius != value)
+                {
+                    _radius = value;
+                    int size = _radius * 2 + 1;
+                    _inQueue = new bool[size, size];
+                }
+            }
+        }
+
+        public Point Center { get; set; }
+
+        public Rectangle Bounds;
+
+        public RadiusLocationContext(Point center, int radius, Rectangle bounds)
+        {
+            Center = center;
+            _radius = radius;
+            Bounds = bounds;
+
+            int size = _radius * 2 + 1;
+            _inQueue = new bool[size, size];
+            _newlyInitialized = true;
+        }
+
+        public RadiusLocationContext(Point center, int radius)
+            : this(center, radius, Rectangle.EMPTY) { }
     }
 }

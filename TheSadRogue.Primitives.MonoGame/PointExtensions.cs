@@ -1,0 +1,33 @@
+﻿using MonoPoint = Microsoft.Xna.Framework.Point;
+using SadRoguePoint = SadRogue.Primitives.Point;
+using System;
+
+namespace System.Numerics.Grid
+{
+	public static class SadRoguePointExtensions
+	{
+		
+		public static MonoPoint ToMonoPoint(this SadRoguePoint self) => new MonoPoint(self.X, self.Y);
+		public static SadRoguePoint Add(this SadRoguePoint self, MonoPoint other) => new SadRoguePoint(self.X + other.X, self.Y + other.Y);
+		public static SadRoguePoint Subtract(this SadRoguePoint self, MonoPoint other) => new SadRoguePoint(self.X - other.X, self.Y - other.Y);
+	}
+}
+
+namespace Microsoft.Xna.Framework
+{
+	using SadRogue.Primitives;
+	public static class MonoPointExtensions
+	{
+		public static SadRoguePoint ToPoint(this MonoPoint self) => new SadRoguePoint(self.X, self.Y);
+		public static MonoPoint Add(this MonoPoint self, SadRoguePoint other) => new MonoPoint(self.X + other.X, self.Y + other.Y);
+		public static MonoPoint Add(this MonoPoint self, int i) => new MonoPoint(self.X + i, self.Y + i);
+		public static MonoPoint Add(this MonoPoint self, Direction dir) => new MonoPoint(self.X + dir.DeltaX, self.Y + dir.DeltaY);
+		public static MonoPoint Subtract(this MonoPoint self, SadRoguePoint other) => new MonoPoint(self.X - other.X, self.Y - other.Y);
+		public static MonoPoint Subtract(this MonoPoint self, int i) => new MonoPoint(self.X - i, self.Y - i);
+
+		public static MonoPoint Multiply(this MonoPoint self, int i) => new MonoPoint(self.X * i, self.Y * i);
+		public static MonoPoint Multiply(this MonoPoint self, double d) => new MonoPoint((int)Math.Round(self.X * d), (int)Math.Round(self.Y * d));
+
+		public static MonoPoint Divide(this MonoPoint self, double d) => new MonoPoint((int)Math.Round(self.X / d), (int)Math.Round(self.Y / d));
+	}
+}

@@ -371,7 +371,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="c" />
         /// <param name="tuple" />
-        /// <returns>A Coord (c.X + tuple.x, c.Y + tuple.y).</returns>
+        /// <returns>Position (c.X + tuple.x, c.Y + tuple.y).</returns>
         public static Point operator +(Point c, (int x, int y) tuple) => new Point(c.X + tuple.x, c.Y + tuple.y);
 
         /// <summary>
@@ -386,8 +386,42 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="c" />
         /// <param name="tuple" />
-        /// <returns>A Coord (c.X - tuple.x, c.Y - tuple.y).</returns>
+        /// <returns>Position (c.X - tuple.x, c.Y - tuple.y).</returns>
         public static Point operator -(Point c, (int x, int y) tuple) => new Point(c.X - tuple.x, c.Y - tuple.y);
+
+        /// <summary>
+        /// Multiples the x and y values of a tuple of two integers by the x and y values of a Point.
+        /// </summary>
+        /// <param name="tuple"/>
+        /// <param name="c"/>
+        /// <returns>Position (tuple.x * c.X, tuple.y * c.Y).</returns>
+        public static (int x, int y) operator *((int x, int y) tuple, Point c) => (tuple.x * c.X, tuple.y * c.Y);
+
+        /// <summary>
+        /// Multiples the x and y values of a Point by the x and y values of a tuple of two integers.
+        /// </summary>
+        /// <param name="c"/>
+        /// <param name="tuple"/>
+        /// <returns>Position (c.X * tuple.x, c.Y * tuple.y).</returns>
+        public static Point operator *(Point c, (int x, int y) tuple) => new Point(c.X * tuple.x, c.Y * tuple.y);
+
+        /// <summary>
+        /// Divides the x/y values of a tuple of two integers by the x/y values of a Point, rounding to the nearest integer.
+        /// </summary>
+        /// <param name="tuple"/>
+        /// <param name="c"/>
+        /// <returns>Position (tuple.x / c.X, tuple.y / c.Y), with each value rounded to the nearest integer.</returns>
+        public static (int x, int y) operator /((int x, int y) tuple, Point c)
+            => new Point((int)Math.Round(tuple.x / (double)c.X, MidpointRounding.AwayFromZero), (int)Math.Round(tuple.y / (double)c.Y, MidpointRounding.AwayFromZero));
+
+        /// <summary>
+        /// Divides the x/y values of a Point by the x/y values of a tuple of two integers, rounding to the nearest integer.
+        /// </summary>
+        /// <param name="tuple"/>
+        /// <param name="c"/>
+        /// <returns>Position (c.X / tuple.x, c.Y / tuple.y), with each value rounded to the nearest integer.</returns>
+        public static (int x, int y) operator /(Point c, (int x, int y) tuple)
+            => new Point((int)Math.Round(c.X / (double)tuple.x, MidpointRounding.AwayFromZero), (int)Math.Round(c.Y / (double)tuple.y, MidpointRounding.AwayFromZero));
 
         /// <summary>
         /// True if the two point's x and y values are equal.

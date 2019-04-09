@@ -244,12 +244,22 @@ namespace SadRogue.Primitives
         public override string ToString() => writeVals[(int)Type];
     }
 
+    /// <summary>
+    /// A context representing information necessary to get all the positions in a radius via functions like
+    /// <see cref="Radius.PositionsInRadius(RadiusLocationContext)"/>.  Storing a context and re-using it may be
+    /// more performant in cases where you're getting the positions in a radius of the same size many times,
+    /// even if the location center point or shape of the radius is changing.
+    /// </summary>
     public class RadiusLocationContext
     {
         internal bool[,] _inQueue;
         internal bool _newlyInitialized;
 
         private int _radius;
+
+        /// <summary>
+        /// The length of the radius represented.
+        /// </summary>
         public int Radius
         {
             get => _radius;
@@ -264,10 +274,26 @@ namespace SadRogue.Primitives
             }
         }
 
+        /// <summary>
+        /// The centr-point of the radius represented.
+        /// </summary>
         public Point Center { get; set; }
 
+        /// <summary>
+        /// Represents the bounds that restrict the valid positions that are considered
+        /// inside the radius.  Any positions inside the radius but outside the bounds
+        /// will be ignored and considered outside the radius.Set to <see cref="Rectangle.EMPTY"/>
+        /// to indicate no bounds.
+        /// </summary>
         public Rectangle Bounds;
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="center">The starting center-point of the radius.</param>
+        /// <param name="radius">The starting length of the radius.</param>
+        /// <param name="bounds">The bounds to restrict the radius to.  Any positions inside the radius but outside
+        /// the bounds will be ignored and considered outside the radius.</param>
         public RadiusLocationContext(Point center, int radius, Rectangle bounds)
         {
             Center = center;
@@ -279,6 +305,11 @@ namespace SadRogue.Primitives
             _newlyInitialized = true;
         }
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="center">The starting center-point of the radius.</param>
+        /// <param name="radius">The starting length of the radius.</param>
         public RadiusLocationContext(Point center, int radius)
             : this(center, radius, Rectangle.EMPTY) { }
     }

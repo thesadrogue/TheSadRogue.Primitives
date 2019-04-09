@@ -47,6 +47,14 @@
         public static Point Subtract(this Point self, int i) => self - i;
 
         /// <summary>
+        /// Multiplies the current Point's x/y values by the given Point's x/y values.
+        /// </summary>
+        /// <param name="self"/>
+        /// <param name="other"/>
+        /// <returns>Position (self.X * other.X, self.Y * other.Y).</returns>
+        public static Point Multiply(this Point self, Point other) => self * other;
+
+        /// <summary>
         /// Multiplies the current Point's x/y values by the given scalar.
         /// </summary>
         /// <param name="self"/>
@@ -61,6 +69,14 @@
         /// <param name="d"/>
         /// <returns>Position (self.X * d, self.Y * d), with each value rounded to the nearest integer.</returns>
         public static Point Multiply(this Point self, double d) => self * d;
+
+        /// <summary>
+        /// Divides the current Point's x/y values by the given Point's x/y values, rounding to the nearest integer.
+        /// </summary>
+        /// <param name="self"/>
+        /// <param name="other"/>
+        /// <returns>Position (self.X / other.X, self.Y / other.Y), with each value rounded to the nearest integer.</returns>
+        public static Point Divide(this Point self, Point other) => self / other;
 
         /// <summary>
         /// Divides the current Point's x/y values by the given scalar, rounding to the nearest integer.

@@ -145,6 +145,14 @@ namespace SadRogue.Primitives
         public static bool operator !=(Point c1, Point c2) => !(c1 == c2);
 
         /// <summary>
+        /// Multiplies the x and y values of the points together.
+        /// </summary>
+        /// <param name="c1"/>
+        /// <param name="c2"/>
+        /// <returns>Position (c1.X * c2.X, c1.Y * c2.Y)</returns>
+        public static Point operator *(Point c1, Point c2) => new Point(c1.X * c2.X, c1.Y * c2.Y);
+
+        /// <summary>
         /// Multiplies the x and y of <paramref name="c"/> by <paramref name="i"/>.
         /// </summary>
         /// <param name="c"></param>
@@ -166,14 +174,14 @@ namespace SadRogue.Primitives
             new Point((int)Math.Round(c.X * i, MidpointRounding.AwayFromZero), (int)Math.Round(c.Y * i, MidpointRounding.AwayFromZero));
 
         /// <summary>
-        /// Divides the x and y of <paramref name="c"/> by <paramref name="i"/>, rounding resulting values
-        /// to the nearest integer.
+        /// Divides the x/y components of <paramref name="c1"/> by the x/y components of <paramref name="c2"/>, rounding each resulting
+        /// value to the nearest integer.
         /// </summary>
-        /// <param name="c"></param>
-        /// <param name="i"></param>
-        /// <returns>(c.X / <paramref name="i"/>, c.Y / <paramref name="i"/>), with the resulting values rounded to the nearest integer.</returns>
-        public static Point operator /(Point c, int i) =>
-            new Point((int)Math.Round(c.X / (double)i, MidpointRounding.AwayFromZero), (int)Math.Round(c.Y / (double)i, MidpointRounding.AwayFromZero));
+        /// <param name="c1"/>
+        /// <param name="c2"/>
+        /// <returns>Position (c1.X / c2.X, c1.Y / c2.Y), with each value rounded to the nearest integer.</returns>
+        public static Point operator /(Point c1, Point c2) =>
+            new Point((int)Math.Round(c1.X / (double)c2.X, MidpointRounding.AwayFromZero), (int)Math.Round(c1.Y / (double)c2.Y, MidpointRounding.AwayFromZero));
 
         /// <summary>
         /// Divides the x and y of <paramref name="c"/> by <paramref name="i"/>, rounding resulting values
@@ -225,7 +233,7 @@ namespace SadRogue.Primitives
         /// <param name="index">The index in 1D form.</param>
         /// <param name="width">The width of the 2D array.</param>
         /// <returns>The position represented by the 1D index given.</returns>
-        public static Point ToCoord(int index, int width) => new Point(index % width, index / width);
+        public static Point FromIndex(int index, int width) => new Point(index % width, index / width);
 
         /// <summary>
         /// Returns <paramref name="y"/> * <paramref name="width"/> + <paramref name="x"/>.
@@ -304,6 +312,20 @@ namespace SadRogue.Primitives
         /// </param>
         /// <returns>The position (<see cref="X"/> + deltaChange.X, <see cref="Y"/> + deltaChange.Y)</returns>
         public Point Translate(Point deltaChange) => new Point(X + deltaChange.X, Y + deltaChange.Y);
+
+        /// <summary>
+        /// Creates a new Point with its X value moved to the given one.
+        /// </summary>
+        /// <param name="x">X-value for the new Point.</param>
+        /// <returns>A new Point, with its X value changed to the given one.</returns>
+        public Point WithX(int x) => new Point(x, Y);
+
+        /// <summary>
+        /// Creates a new Point with its Y value moved to the given one.
+        /// </summary>
+        /// <param name="y">Y-value for the new Point.</param>
+        /// <returns>A new Point, with its Y value changed to the given one.</returns>
+        public Point WithY(int y) => new Point(X, y);
 
         /// <summary>
         /// True if the given coordinate has equal x and y values to the current one.

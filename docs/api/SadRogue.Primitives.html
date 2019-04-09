@@ -1,0 +1,205 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Namespace SadRogue.Primitives
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Namespace SadRogue.Primitives
+   ">
+    <meta name="generator" content="docfx 2.41.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="SadRogue.Primitives">
+  
+  <h1 id="SadRogue_Primitives" data-uid="SadRogue.Primitives" class="text-break">Namespace SadRogue.Primitives
+  </h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 remarks"></div>
+    <h3 id="classes">Classes
+  </h3>
+      <h4><a class="xref" href="SadRogue.Primitives.AdjacencyRule.html">AdjacencyRule</a></h4>
+      <section><p>Class representing a method for determining which coordinates are adjacent to a given
+coordinate, and which directions those neighbors are in. Cannot be instantiated -- premade
+static instances are provided.</p>
+</section>
+      <h4><a class="xref" href="SadRogue.Primitives.Area.html">Area</a></h4>
+      <section><p>Represents an arbitrarily-shaped 2D area. Stores and provides access to a list of each
+unique position in the area.</p>
+</section>
+      <h4><a class="xref" href="SadRogue.Primitives.BoundedRectangle.html">BoundedRectangle</a></h4>
+      <section><p>This class defines a 2D rectanglar area, whose area is automatically &quot;locked&quot; to
+being inside a rectangular bounding box as it is changed. A typical use might be
+keeping track of a camera's view area.</p>
+</section>
+      <h4><a class="xref" href="SadRogue.Primitives.Direction.html">Direction</a></h4>
+      <section><p>Represents the concept of a &quot;direction&quot; on a grid, and &quot;defines&quot; the coordinate plane via the
+<a class="xref" href="SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_YIncreasesUpward">YIncreasesUpward</a> flag. Interacts with Point to allow easy translation
+of positions in a direction, and contains numerous helper functions for retrieving directions in
+various orders, getting direction closest to a line, etc.</p>
+</section>
+      <h4><a class="xref" href="SadRogue.Primitives.Distance.html">Distance</a></h4>
+      <section><p>Class representing methods of calculating distance on a grid. You cannot create instances of this
+class using a constructor -- instead this class contains static instances representing the
+various distance calculations.</p>
+</section>
+      <h4><a class="xref" href="SadRogue.Primitives.Gradient.html">Gradient</a></h4>
+      <section><p>Represents a gradient with multiple color stops.</p>
+</section>
+      <h4><a class="xref" href="SadRogue.Primitives.MathHelpers.html">MathHelpers</a></h4>
+      <section><p>Static class consisting of mathematical &quot;helper&quot; functions and constants that can be useful
+for performing operations on a 2D grid.</p>
+</section>
+      <h4><a class="xref" href="SadRogue.Primitives.PointExtensions.html">PointExtensions</a></h4>
+      <section><p>Contains set of operators that match ones defined by other packages for interoperability,
+so syntax may be uniform.  Functionality is similar to the corresponding actual operators for Point.</p>
+</section>
+      <h4><a class="xref" href="SadRogue.Primitives.Radius.html">Radius</a></h4>
+      <section><p>Class representing different shapes that define the concept of a radius on a grid. You cannot
+create instances of this class using a constructor -- instead, this class contains static instances
+representing the various radius shapes.</p>
+</section>
+      <h4><a class="xref" href="SadRogue.Primitives.RadiusLocationContext.html">RadiusLocationContext</a></h4>
+      <section><p>A context representing information necessary to get all the positions in a radius via functions like
+<a class="xref" href="SadRogue.Primitives.Radius.html#SadRogue_Primitives_Radius_PositionsInRadius_SadRogue_Primitives_RadiusLocationContext_">PositionsInRadius(RadiusLocationContext)</a>.  Storing a context and re-using it may be
+more performant in cases where you're getting the positions in a radius of the same size many times,
+even if the location center point or shape of the radius is changing.</p>
+</section>
+    <h3 id="structs">Structs
+  </h3>
+      <h4><a class="xref" href="SadRogue.Primitives.Color.html">Color</a></h4>
+      <section><p>Describes a 32-bit packed color.</p>
+</section>
+      <h4><a class="xref" href="SadRogue.Primitives.GradientStop.html">GradientStop</a></h4>
+      <section><p>A gradient stop. Defines a color and where it is located within the gradient.</p>
+</section>
+      <h4><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></h4>
+      <section><p>A structure that represents a standard 2D point.  Provides numerous functions and operators that enable
+common grid/position-related math and operations.</p>
+</section>
+      <h4><a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a></h4>
+      <section><p>Represents a 2D rectangle. Provides numerous static functions that enable creation and common operations
+involving rectangles.</p>
+</section>
+    <h3 id="interfaces">Interfaces
+  </h3>
+      <h4><a class="xref" href="SadRogue.Primitives.IReadOnlyArea.html">IReadOnlyArea</a></h4>
+      <section><p>Read-only interface for an arbitry 2D area.</p>
+</section>
+    <h3 id="enums">Enums
+  </h3>
+      <h4><a class="xref" href="SadRogue.Primitives.AdjacencyRule.Types.html">AdjacencyRule.Types</a></h4>
+      <section><p>Enum representing <a class="xref" href="SadRogue.Primitives.AdjacencyRule.html">AdjacencyRule</a> types. Each AdjacencyRule instance has a <a class="xref" href="SadRogue.Primitives.AdjacencyRule.html#SadRogue_Primitives_AdjacencyRule_Type">Type</a> field
+which contains the corresponding value from this enum.  Useful for easy mapping of AdjacencyRule
+types to a primitive type (for cases like a switch statement).</p>
+</section>
+      <h4><a class="xref" href="SadRogue.Primitives.Direction.Types.html">Direction.Types</a></h4>
+      <section><p>Enum representing Direction types. Each Direction instance has a <a class="xref" href="SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_Type">Type</a> field
+which contains the corresponding value from this enum.  Useful for easy mapping of Direction
+types to a primitive type (for cases like a switch statement).</p>
+</section>
+      <h4><a class="xref" href="SadRogue.Primitives.Distance.Types.html">Distance.Types</a></h4>
+      <section><p>Enum representing Distance types. Each Distance instance has a <a class="xref" href="SadRogue.Primitives.Distance.html#SadRogue_Primitives_Distance_Type">Type</a> field
+which contains the corresponding value from this enum.  Useful for easy mapping of Distance
+types to a primitive type (for cases like a switch statement).</p>
+</section>
+      <h4><a class="xref" href="SadRogue.Primitives.Radius.Types.html">Radius.Types</a></h4>
+      <section><p>Enum representing Radius types. Each Radius instance has a <a class="xref" href="SadRogue.Primitives.Radius.html#SadRogue_Primitives_Radius_Type">Type</a> field
+which contains the corresponding value from this enum.  Useful for easy mapping of Radius
+types to a primitive type (for cases like a switch statement).</p>
+</section>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

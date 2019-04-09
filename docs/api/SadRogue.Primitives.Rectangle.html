@@ -1,0 +1,3472 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Struct Rectangle
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Struct Rectangle
+   ">
+    <meta name="generator" content="docfx 2.41.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="SadRogue.Primitives.Rectangle">
+  
+  
+  <h1 id="SadRogue_Primitives_Rectangle" data-uid="SadRogue.Primitives.Rectangle" class="text-break">Struct Rectangle
+  </h1>
+  <div class="markdown level0 summary"><p>Represents a 2D rectangle. Provides numerous static functions that enable creation and common operations
+involving rectangles.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><span class="xref">System.IEquatable</span>&lt;<a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a>&gt;</div>
+    <div><span class="xref">System.IEquatable</span>&lt;<span class="xref">System.ValueTuple</span>&lt;<span class="xref">System.Int32</span>, <span class="xref">System.Int32</span>, <span class="xref">System.Int32</span>, <span class="xref">System.Int32</span>&gt;&gt;</div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="SadRogue.Primitives.html">SadRogue.Primitives</a></h6>
+  <h6><strong>Assembly</strong>: TheSadRogue.Primitives.dll</h6>
+  <h5 id="SadRogue_Primitives_Rectangle_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public struct Rectangle : IEquatable&lt;Rectangle&gt;, IEquatable&lt;(int x, int y, int width, int height)&gt;</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle__ctor_SadRogue_Primitives_Point_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.%23ctor(SadRogue.Primitives.Point%2CSadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L37">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle__ctor_" data-uid="SadRogue.Primitives.Rectangle.#ctor*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle__ctor_SadRogue_Primitives_Point_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Rectangle.#ctor(SadRogue.Primitives.Point,SadRogue.Primitives.Point)">Rectangle(Point, Point)</h4>
+  <div class="markdown level1 summary"><p>Constructor.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Rectangle(Point minExtent, Point maxExtent)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><span class="parametername">minExtent</span></td>
+        <td><p>Minimum x and y values that are considered inside the rectangle.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><span class="parametername">maxExtent</span></td>
+        <td><p>Maximum x and y values that are considered inside the rectangle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle__ctor_SadRogue_Primitives_Point_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.%23ctor(SadRogue.Primitives.Point%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L55">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle__ctor_" data-uid="SadRogue.Primitives.Rectangle.#ctor*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle__ctor_SadRogue_Primitives_Point_System_Int32_System_Int32_" data-uid="SadRogue.Primitives.Rectangle.#ctor(SadRogue.Primitives.Point,System.Int32,System.Int32)">Rectangle(Point, Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Constructor.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Rectangle(Point center, int horizontalRadius, int verticalRadius)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><span class="parametername">center</span></td>
+        <td><p>The center point of the rectangle.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">horizontalRadius</span></td>
+        <td><p>Number of units to the left and right of the center point that are included within the rectangle.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">verticalRadius</span></td>
+        <td><p>Number of units to the top and bottom of the center point that are included within the rectangle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle__ctor_System_Int32_System_Int32_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.%23ctor(System.Int32%2CSystem.Int32%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L24">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle__ctor_" data-uid="SadRogue.Primitives.Rectangle.#ctor*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle__ctor_System_Int32_System_Int32_System_Int32_System_Int32_" data-uid="SadRogue.Primitives.Rectangle.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">Rectangle(Int32, Int32, Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Constructor.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Rectangle(int x, int y, int width, int height)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">x</span></td>
+        <td><p>Minimum x coordinate that is inside the rectangle.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">y</span></td>
+        <td><p>Minimum y coordinate that is inside the rectangle.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">width</span></td>
+        <td><p>Width of the rectangle.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">height</span></td>
+        <td><p>Height of the rectangle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="fields">Fields
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_EMPTY.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.EMPTY%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L15">View Source</a>
+  </span>
+  <h4 id="SadRogue_Primitives_Rectangle_EMPTY" data-uid="SadRogue.Primitives.Rectangle.EMPTY">EMPTY</h4>
+  <div class="markdown level1 summary"><p>The empty rectangle. Has origin of (0, 0) with 0 width and height.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly Rectangle EMPTY</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_Height.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.Height%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L80">View Source</a>
+  </span>
+  <h4 id="SadRogue_Primitives_Rectangle_Height" data-uid="SadRogue.Primitives.Rectangle.Height">Height</h4>
+  <div class="markdown level1 summary"><p>The height of the rectangle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly int Height</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_Width.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.Width%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L148">View Source</a>
+  </span>
+  <h4 id="SadRogue_Primitives_Rectangle_Width" data-uid="SadRogue.Primitives.Rectangle.Width">Width</h4>
+  <div class="markdown level1 summary"><p>The width of the rectangle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly int Width</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_X.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.X%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L153">View Source</a>
+  </span>
+  <h4 id="SadRogue_Primitives_Rectangle_X" data-uid="SadRogue.Primitives.Rectangle.X">X</h4>
+  <div class="markdown level1 summary"><p>X-coordinate of position of the rectangle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly int X</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_Y.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.Y%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L158">View Source</a>
+  </span>
+  <h4 id="SadRogue_Primitives_Rectangle_Y" data-uid="SadRogue.Primitives.Rectangle.Y">Y</h4>
+  <div class="markdown level1 summary"><p>Y-coordinate of position of the rectangle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly int Y</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_Area.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.Area%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L66">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_Area_" data-uid="SadRogue.Primitives.Rectangle.Area*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_Area" data-uid="SadRogue.Primitives.Rectangle.Area">Area</h4>
+  <div class="markdown level1 summary"><p>Calculates the area of the rectangle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Area { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_Center.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.Center%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L72">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_Center_" data-uid="SadRogue.Primitives.Rectangle.Center*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_Center" data-uid="SadRogue.Primitives.Rectangle.Center">Center</h4>
+  <div class="markdown level1 summary"><p>The center coordinate of the rectangle, rounded up if the exact center is between two
+positions. The center of a rectangle with width/height 1 is its <a class="xref" href="SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_Position">Position</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Point Center { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_IsEmpty.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.IsEmpty%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L85">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_IsEmpty_" data-uid="SadRogue.Primitives.Rectangle.IsEmpty*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_IsEmpty" data-uid="SadRogue.Primitives.Rectangle.IsEmpty">IsEmpty</h4>
+  <div class="markdown level1 summary"><p>Whether or not this rectangle is empty (has width and height of 0).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsEmpty { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_MaxExtent.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.MaxExtent%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L90">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_MaxExtent_" data-uid="SadRogue.Primitives.Rectangle.MaxExtent*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_MaxExtent" data-uid="SadRogue.Primitives.Rectangle.MaxExtent">MaxExtent</h4>
+  <div class="markdown level1 summary"><p>The maximum X and Y coordinates that are included in the rectangle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Point MaxExtent { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_MaxExtentX.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.MaxExtentX%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L98">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_MaxExtentX_" data-uid="SadRogue.Primitives.Rectangle.MaxExtentX*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_MaxExtentX" data-uid="SadRogue.Primitives.Rectangle.MaxExtentX">MaxExtentX</h4>
+  <div class="markdown level1 summary"><p>The maximum X-coordinate that is included in the rectangle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int MaxExtentX { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_MaxExtentY.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.MaxExtentY%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L106">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_MaxExtentY_" data-uid="SadRogue.Primitives.Rectangle.MaxExtentY*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_MaxExtentY" data-uid="SadRogue.Primitives.Rectangle.MaxExtentY">MaxExtentY</h4>
+  <div class="markdown level1 summary"><p>The maximum Y-coordinate that is included in the rectangle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int MaxExtentY { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_MinExtent.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.MinExtent%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L116">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_MinExtent_" data-uid="SadRogue.Primitives.Rectangle.MinExtent*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_MinExtent" data-uid="SadRogue.Primitives.Rectangle.MinExtent">MinExtent</h4>
+  <div class="markdown level1 summary"><p>Minimum extent of the rectangle (minimum x and y values that are included within it).
+Identical to <a class="xref" href="SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_Position">Position</a> because we define the rectangle's position by its
+minimum extent.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Point MinExtent { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_MinExtentX.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.MinExtentX%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L123">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_MinExtentX_" data-uid="SadRogue.Primitives.Rectangle.MinExtentX*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_MinExtentX" data-uid="SadRogue.Primitives.Rectangle.MinExtentX">MinExtentX</h4>
+  <div class="markdown level1 summary"><p>X-value of the minimum extent of the rectangle (minimum x value that is included within
+it). Identical to the <a class="xref" href="SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_X">X</a> value because we define the rectangle's position
+by its minimum extent.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int MinExtentX { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_MinExtentY.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.MinExtentY%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L130">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_MinExtentY_" data-uid="SadRogue.Primitives.Rectangle.MinExtentY*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_MinExtentY" data-uid="SadRogue.Primitives.Rectangle.MinExtentY">MinExtentY</h4>
+  <div class="markdown level1 summary"><p>Y-value of the minimum extent of the rectangle (minimum y value that is included within
+it). Identical to the <a class="xref" href="SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_Y">Y</a> value because we define the rectangle's position
+by its minimum extent.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int MinExtentY { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_Position.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.Position%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L135">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_Position_" data-uid="SadRogue.Primitives.Rectangle.Position*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_Position" data-uid="SadRogue.Primitives.Rectangle.Position">Position</h4>
+  <div class="markdown level1 summary"><p>Coord representing the position (min x- and y-values) of the rectangle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Point Position { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_Size.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.Size%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L143">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_Size_" data-uid="SadRogue.Primitives.Rectangle.Size*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_Size" data-uid="SadRogue.Primitives.Rectangle.Size">Size</h4>
+  <div class="markdown level1 summary"><p>Returns a coordinate (Width, Height), which represents the size of the rectangle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Point Size { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_ChangeHeight_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.ChangeHeight(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L334">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_ChangeHeight_" data-uid="SadRogue.Primitives.Rectangle.ChangeHeight*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_ChangeHeight_System_Int32_" data-uid="SadRogue.Primitives.Rectangle.ChangeHeight(System.Int32)">ChangeHeight(Int32)</h4>
+  <div class="markdown level1 summary"><p>Creates and returns a new rectangle whose position is the same as the current one, but
+has its height changed by the given delta-change value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Rectangle ChangeHeight(int deltaHeight)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">deltaHeight</span></td>
+        <td><p>Delta-change for the height of the new rectangle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a></td>
+        <td><p>A new rectangle whose height is modified by the given delta-change value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_ChangeSize_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.ChangeSize(SadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L348">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_ChangeSize_" data-uid="SadRogue.Primitives.Rectangle.ChangeSize*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_ChangeSize_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Rectangle.ChangeSize(SadRogue.Primitives.Point)">ChangeSize(Point)</h4>
+  <div class="markdown level1 summary"><p>Creates and returns a new rectangle whose position is the same as the current one, but
+has its width and height changed by the given delta-change values.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Rectangle ChangeSize(Point deltaChange)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><span class="parametername">deltaChange</span></td>
+        <td><p>Vector (deltaWidth, deltaHeight) specifying the delta-change values for the width/height
+of the new Rectangle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a></td>
+        <td><p>A new rectangle whose width/height are modified by the given delta-change values.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_ChangeWidth_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.ChangeWidth(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L357">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_ChangeWidth_" data-uid="SadRogue.Primitives.Rectangle.ChangeWidth*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_ChangeWidth_System_Int32_" data-uid="SadRogue.Primitives.Rectangle.ChangeWidth(System.Int32)">ChangeWidth(Int32)</h4>
+  <div class="markdown level1 summary"><p>Creates and returns a new rectangle whose position is the same as the current one, but
+has its width changed by the given delta-change value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Rectangle ChangeWidth(int deltaWidth)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">deltaWidth</span></td>
+        <td><p>Delta-change for the width of the new rectangle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a></td>
+        <td><p>A new rectangle whose width is modified by the given delta-change value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_Contains_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.Contains(SadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L365">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_Contains_" data-uid="SadRogue.Primitives.Rectangle.Contains*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_Contains_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Rectangle.Contains(SadRogue.Primitives.Point)">Contains(Point)</h4>
+  <div class="markdown level1 summary"><p>Returns whether or not the specified point is considered within the rectangle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Contains(Point position)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><span class="parametername">position</span></td>
+        <td><p>The position to check.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>Whether or not the specified point is considered within the rectangle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_Contains_SadRogue_Primitives_Rectangle_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.Contains(SadRogue.Primitives.Rectangle)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L378">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_Contains_" data-uid="SadRogue.Primitives.Rectangle.Contains*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_Contains_SadRogue_Primitives_Rectangle_" data-uid="SadRogue.Primitives.Rectangle.Contains(SadRogue.Primitives.Rectangle)">Contains(Rectangle)</h4>
+  <div class="markdown level1 summary"><p>Returns whether or not the specified rectangle is considered completely contained within
+the current one.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Contains(Rectangle other)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a></td>
+        <td><span class="parametername">other</span></td>
+        <td><p>The rectangle to check.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>True if the given rectangle is completely contained within the current one, false otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_Deconstruct_System_Int32__System_Int32__System_Int32__System_Int32__.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.Deconstruct(System.Int32%40%2CSystem.Int32%40%2CSystem.Int32%40%2CSystem.Int32%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L633">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_Deconstruct_" data-uid="SadRogue.Primitives.Rectangle.Deconstruct*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_Deconstruct_System_Int32__System_Int32__System_Int32__System_Int32__" data-uid="SadRogue.Primitives.Rectangle.Deconstruct(System.Int32@,System.Int32@,System.Int32@,System.Int32@)">Deconstruct(out Int32, out Int32, out Int32, out Int32)</h4>
+  <div class="markdown level1 summary"><p>Adds support for C# Deconstruction syntax.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Deconstruct(out int x, out int y, out int width, out int height)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">x</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">y</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">width</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">height</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_Equals_SadRogue_Primitives_Rectangle_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.Equals(SadRogue.Primitives.Rectangle)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L391">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_Equals_" data-uid="SadRogue.Primitives.Rectangle.Equals*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_Equals_SadRogue_Primitives_Rectangle_" data-uid="SadRogue.Primitives.Rectangle.Equals(SadRogue.Primitives.Rectangle)">Equals(Rectangle)</h4>
+  <div class="markdown level1 summary"><p>Compares based upon whether or not the areas contained within the rectangle are identical
+in both position and extents.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Equals(Rectangle other)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a></td>
+        <td><span class="parametername">other</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>true if the area of the two rectangles encompass the exact same area, false otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_Equals_System_Object_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.Equals(System.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L403">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_Equals_" data-uid="SadRogue.Primitives.Rectangle.Equals*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_Equals_System_Object_" data-uid="SadRogue.Primitives.Rectangle.Equals(System.Object)">Equals(Object)</h4>
+  <div class="markdown level1 summary"><p>Compares to an arbitrary object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool Equals(object obj)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">obj</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>true if the object specified is a rectangle instance and encompasses the same area, false otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">System.ValueType.Equals(System.Object)</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_Equals_System_ValueTuple_System_Int32_System_Int32_System_Int32_System_Int32__.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.Equals(System.ValueTuple%7BSystem.Int32%2CSystem.Int32%2CSystem.Int32%2CSystem.Int32%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L688">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_Equals_" data-uid="SadRogue.Primitives.Rectangle.Equals*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_Equals_System_ValueTuple_System_Int32_System_Int32_System_Int32_System_Int32__" data-uid="SadRogue.Primitives.Rectangle.Equals(System.ValueTuple{System.Int32,System.Int32,System.Int32,System.Int32})">Equals((Int32 x, Int32 y, Int32 width, Int32 height))</h4>
+  <div class="markdown level1 summary"><p>True if the given position has equal x and y values to the current one.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Equals((int x, int y, int width, int height)other)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ValueTuple</span>&lt;<span class="xref">System.Int32</span>, <span class="xref">System.Int32</span>, <span class="xref">System.Int32</span>, <span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="parametername">other</span></td>
+        <td><p>Point to compare.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>True if the two positions are equal, false if not.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_Expand_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.Expand(System.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L418">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_Expand_" data-uid="SadRogue.Primitives.Rectangle.Expand*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_Expand_System_Int32_System_Int32_" data-uid="SadRogue.Primitives.Rectangle.Expand(System.Int32,System.Int32)">Expand(Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Returns a new rectangle, expanded to include the additional specified rows/columns.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Rectangle Expand(int horizontalChange, int verticalChange)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">horizontalChange</span></td>
+        <td><p>Number of additional columns to include on the left/right of the rectangle.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">verticalChange</span></td>
+        <td><p>Number of additional rows to include on the top/bottom of the rectangle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a></td>
+        <td><p>A new rectangle, expanded appropriately.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_GetDifference_SadRogue_Primitives_Rectangle_SadRogue_Primitives_Rectangle_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.GetDifference(SadRogue.Primitives.Rectangle%2CSadRogue.Primitives.Rectangle)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L211">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_GetDifference_" data-uid="SadRogue.Primitives.Rectangle.GetDifference*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_GetDifference_SadRogue_Primitives_Rectangle_SadRogue_Primitives_Rectangle_" data-uid="SadRogue.Primitives.Rectangle.GetDifference(SadRogue.Primitives.Rectangle,SadRogue.Primitives.Rectangle)">GetDifference(Rectangle, Rectangle)</h4>
+  <div class="markdown level1 summary"><p>Gets an <a class="xref" href="SadRogue.Primitives.Area.html">Area</a> representing every location in <code data-dev-comment-type="paramref" class="paramref">rect1</code> that
+is NOT in <code data-dev-comment-type="paramref" class="paramref">rect2</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Area GetDifference(Rectangle rect1, Rectangle rect2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a></td>
+        <td><span class="parametername">rect1</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a></td>
+        <td><span class="parametername">rect2</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Area.html">Area</a></td>
+        <td><p>A <a class="xref" href="SadRogue.Primitives.Area.html">Area</a> representing every location in <code data-dev-comment-type="paramref" class="paramref">rect1</code> that
+is NOT in <code data-dev-comment-type="paramref" class="paramref">rect2</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_GetExactUnion_SadRogue_Primitives_Rectangle_SadRogue_Primitives_Rectangle_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.GetExactUnion(SadRogue.Primitives.Rectangle%2CSadRogue.Primitives.Rectangle)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L233">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_GetExactUnion_" data-uid="SadRogue.Primitives.Rectangle.GetExactUnion*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_GetExactUnion_SadRogue_Primitives_Rectangle_SadRogue_Primitives_Rectangle_" data-uid="SadRogue.Primitives.Rectangle.GetExactUnion(SadRogue.Primitives.Rectangle,SadRogue.Primitives.Rectangle)">GetExactUnion(Rectangle, Rectangle)</h4>
+  <div class="markdown level1 summary"><p>Gets a <a class="xref" href="SadRogue.Primitives.Area.html">Area</a> representing the exact union of the specified rectangles, eg.
+an area containing all locations from either rectangle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Area GetExactUnion(Rectangle r1, Rectangle r2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a></td>
+        <td><span class="parametername">r1</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a></td>
+        <td><span class="parametername">r2</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Area.html">Area</a></td>
+        <td><p>A <a class="xref" href="SadRogue.Primitives.Area.html">Area</a> containing every position in either rectangle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_GetHashCode.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.GetHashCode%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L425">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_GetHashCode_" data-uid="SadRogue.Primitives.Rectangle.GetHashCode*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_GetHashCode" data-uid="SadRogue.Primitives.Rectangle.GetHashCode">GetHashCode()</h4>
+  <div class="markdown level1 summary"><p>Simple hashing.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>Hash code for rectangle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">System.ValueType.GetHashCode()</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_GetIntersection_SadRogue_Primitives_Rectangle_SadRogue_Primitives_Rectangle_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.GetIntersection(SadRogue.Primitives.Rectangle%2CSadRogue.Primitives.Rectangle)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L258">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_GetIntersection_" data-uid="SadRogue.Primitives.Rectangle.GetIntersection*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_GetIntersection_SadRogue_Primitives_Rectangle_SadRogue_Primitives_Rectangle_" data-uid="SadRogue.Primitives.Rectangle.GetIntersection(SadRogue.Primitives.Rectangle,SadRogue.Primitives.Rectangle)">GetIntersection(Rectangle, Rectangle)</h4>
+  <div class="markdown level1 summary"><p>Returns the rectangle that represents the intersection of the two rectangles specified,
+or the empty rectangle if the specified rectangles do not intersect.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Rectangle GetIntersection(Rectangle r1, Rectangle r2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a></td>
+        <td><span class="parametername">r1</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a></td>
+        <td><span class="parametername">r2</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a></td>
+        <td><p>Rectangle representing the intersection of <code data-dev-comment-type="paramref" class="paramref">r1</code> and <code data-dev-comment-type="paramref" class="paramref">r2</code>, or
+the empty rectangle if the two rectangles do not intersect.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_GetUnion_SadRogue_Primitives_Rectangle_SadRogue_Primitives_Rectangle_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.GetUnion(SadRogue.Primitives.Rectangle%2CSadRogue.Primitives.Rectangle)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L284">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_GetUnion_" data-uid="SadRogue.Primitives.Rectangle.GetUnion*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_GetUnion_SadRogue_Primitives_Rectangle_SadRogue_Primitives_Rectangle_" data-uid="SadRogue.Primitives.Rectangle.GetUnion(SadRogue.Primitives.Rectangle,SadRogue.Primitives.Rectangle)">GetUnion(Rectangle, Rectangle)</h4>
+  <div class="markdown level1 summary"><p>Gets the smallest possible rectangle that includes the entire area of both <code data-dev-comment-type="paramref" class="paramref">r1</code> and
+<code data-dev-comment-type="paramref" class="paramref">r2</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Rectangle GetUnion(Rectangle r1, Rectangle r2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a></td>
+        <td><span class="parametername">r1</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a></td>
+        <td><span class="parametername">r2</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a></td>
+        <td><p>The smallest possible rectangle that includes the entire area of both <code data-dev-comment-type="paramref" class="paramref">r1</code> and
+<code data-dev-comment-type="paramref" class="paramref">r2</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_Intersects_SadRogue_Primitives_Rectangle_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.Intersects(SadRogue.Primitives.Rectangle)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L435">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_Intersects_" data-uid="SadRogue.Primitives.Rectangle.Intersects*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_Intersects_SadRogue_Primitives_Rectangle_" data-uid="SadRogue.Primitives.Rectangle.Intersects(SadRogue.Primitives.Rectangle)">Intersects(Rectangle)</h4>
+  <div class="markdown level1 summary"><p>Returns whether or not the given rectangle intersects the current one.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Intersects(Rectangle other)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a></td>
+        <td><span class="parametername">other</span></td>
+        <td><p>The rectangle to check.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>True if the given rectangle intersects with the current one, false otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_MaxXPositions.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.MaxXPositions%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L745">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_MaxXPositions_" data-uid="SadRogue.Primitives.Rectangle.MaxXPositions*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_MaxXPositions" data-uid="SadRogue.Primitives.Rectangle.MaxXPositions">MaxXPositions()</h4>
+  <div class="markdown level1 summary"><p>Gets all positions that reside on the max-x line of the rectangle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;Point&gt; MaxXPositions()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<a class="xref" href="SadRogue.Primitives.Point.html">Point</a>&gt;</td>
+        <td><p>IEnumerable of all positions that lie on the max-x line of the rectangle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_MaxYPositions.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.MaxYPositions%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L725">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_MaxYPositions_" data-uid="SadRogue.Primitives.Rectangle.MaxYPositions*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_MaxYPositions" data-uid="SadRogue.Primitives.Rectangle.MaxYPositions">MaxYPositions()</h4>
+  <div class="markdown level1 summary"><p>Gets all positions that reside on the max-y line of the rectangle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;Point&gt; MaxYPositions()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<a class="xref" href="SadRogue.Primitives.Point.html">Point</a>&gt;</td>
+        <td><p>IEnumerable of all positions that lie on the max-y line of the rectangle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_MinXPositions.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.MinXPositions%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L735">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_MinXPositions_" data-uid="SadRogue.Primitives.Rectangle.MinXPositions*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_MinXPositions" data-uid="SadRogue.Primitives.Rectangle.MinXPositions">MinXPositions()</h4>
+  <div class="markdown level1 summary"><p>Gets all positions that reside on the min-x line of the rectangle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;Point&gt; MinXPositions()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<a class="xref" href="SadRogue.Primitives.Point.html">Point</a>&gt;</td>
+        <td><p>IEnumerable of all positions that lie on the min-x line of the rectangle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_MinYPositions.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.MinYPositions%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L715">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_MinYPositions_" data-uid="SadRogue.Primitives.Rectangle.MinYPositions*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_MinYPositions" data-uid="SadRogue.Primitives.Rectangle.MinYPositions">MinYPositions()</h4>
+  <div class="markdown level1 summary"><p>Gets all positions that reside on the min-y line of the rectangle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;Point&gt; MinYPositions()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<a class="xref" href="SadRogue.Primitives.Point.html">Point</a>&gt;</td>
+        <td><p>IEnumerable of all positions that lie on the min-y line of the rectangle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_PerimeterPositions.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.PerimeterPositions%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L696">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_PerimeterPositions_" data-uid="SadRogue.Primitives.Rectangle.PerimeterPositions*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_PerimeterPositions" data-uid="SadRogue.Primitives.Rectangle.PerimeterPositions">PerimeterPositions()</h4>
+  <div class="markdown level1 summary"><p>Gets all positions that reside on the inner perimeter of the rectangle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;Point&gt; PerimeterPositions()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<a class="xref" href="SadRogue.Primitives.Point.html">Point</a>&gt;</td>
+        <td><p>IEnumerable of all positions that reside on the inner perimeter of the rectangle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_Positions.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.Positions%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L477">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_Positions_" data-uid="SadRogue.Primitives.Rectangle.Positions*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_Positions" data-uid="SadRogue.Primitives.Rectangle.Positions">Positions()</h4>
+  <div class="markdown level1 summary"><p>Returns all positions in the rectangle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;Point&gt; Positions()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<a class="xref" href="SadRogue.Primitives.Point.html">Point</a>&gt;</td>
+        <td><p>All positions in the rectangle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_PositionsOnSide_SadRogue_Primitives_Direction_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.PositionsOnSide(SadRogue.Primitives.Direction)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L757">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_PositionsOnSide_" data-uid="SadRogue.Primitives.Rectangle.PositionsOnSide*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_PositionsOnSide_SadRogue_Primitives_Direction_" data-uid="SadRogue.Primitives.Rectangle.PositionsOnSide(SadRogue.Primitives.Direction)">PositionsOnSide(Direction)</h4>
+  <div class="markdown level1 summary"><p>Gets an IEnumerable of all positions that line on the inner perimiter of the rectangle,
+on the given side of the rectangle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;Point&gt; PositionsOnSide(Direction side)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Direction.html">Direction</a></td>
+        <td><span class="parametername">side</span></td>
+        <td><p>Side to get positions for.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<a class="xref" href="SadRogue.Primitives.Point.html">Point</a>&gt;</td>
+        <td><p>IEnumerable of all positions that line on the inner perimieter of the rectangle on the given side.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_ToString.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.ToString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L580">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_ToString_" data-uid="SadRogue.Primitives.Rectangle.ToString*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_ToString" data-uid="SadRogue.Primitives.Rectangle.ToString">ToString()</h4>
+  <div class="markdown level1 summary"><p>Returns a string representing the rectangle, formatted as
+(<a class="xref" href="SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_X">X</a>, <a class="xref" href="SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_Y">Y</a>) -&gt; (<a class="xref" href="SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_MaxExtentX">MaxExtentX</a>, <a class="xref" href="SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_MaxExtentY">MaxExtentY</a>)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>String formatted as above.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">System.ValueType.ToString()</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_Translate_SadRogue_Primitives_Direction_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.Translate(SadRogue.Primitives.Direction)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L453">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_Translate_" data-uid="SadRogue.Primitives.Rectangle.Translate*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_Translate_SadRogue_Primitives_Direction_" data-uid="SadRogue.Primitives.Rectangle.Translate(SadRogue.Primitives.Direction)">Translate(Direction)</h4>
+  <div class="markdown level1 summary"><p>Creates and returns a new rectangle that has its position moved in the given direction.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Rectangle Translate(Direction direction)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Direction.html">Direction</a></td>
+        <td><span class="parametername">direction</span></td>
+        <td><p>The direction to move the new rectangle in.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a></td>
+        <td><p>A new rectangle that has its position moved in the given direction.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_Translate_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.Translate(SadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L593">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_Translate_" data-uid="SadRogue.Primitives.Rectangle.Translate*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_Translate_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Rectangle.Translate(SadRogue.Primitives.Point)">Translate(Point)</h4>
+  <div class="markdown level1 summary"><p>Creates and returns a new rectangle whose position has been moved by the given
+delta-change values.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Rectangle Translate(Point deltaChange)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><span class="parametername">deltaChange</span></td>
+        <td><p>Delta-x and delta-y values by which to move the new rectangle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a></td>
+        <td><p>A new rectangle, whose position has been moved by the given delta-change values.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_TranslateX_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.TranslateX(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L601">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_TranslateX_" data-uid="SadRogue.Primitives.Rectangle.TranslateX*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_TranslateX_System_Int32_" data-uid="SadRogue.Primitives.Rectangle.TranslateX(System.Int32)">TranslateX(Int32)</h4>
+  <div class="markdown level1 summary"><p>Creates and returns a new rectangle whose x-position has been moved by the given delta value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Rectangle TranslateX(int dx)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">dx</span></td>
+        <td><p>Value by which to move the new rectangle's x-position.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a></td>
+        <td><p>A new rectangle, whose x-position has been moved by the given delta-x value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_TranslateY_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.TranslateY(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L609">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_TranslateY_" data-uid="SadRogue.Primitives.Rectangle.TranslateY*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_TranslateY_System_Int32_" data-uid="SadRogue.Primitives.Rectangle.TranslateY(System.Int32)">TranslateY(Int32)</h4>
+  <div class="markdown level1 summary"><p>Creates and returns a new rectangle whose y-position has been moved by the given delta value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Rectangle TranslateY(int dy)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">dy</span></td>
+        <td><p>Value by which to move the new rectangle's y-position.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a></td>
+        <td><p>A new rectangle, whose y-position has been moved by the given delta-y value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_WithCenter_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.WithCenter(SadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L325">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_WithCenter_" data-uid="SadRogue.Primitives.Rectangle.WithCenter*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_WithCenter_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Rectangle.WithCenter(SadRogue.Primitives.Point)">WithCenter(Point)</h4>
+  <div class="markdown level1 summary"><p>Creates and returns a new rectangle that is the same size as the current one, but with
+the center moved to the given position.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Rectangle WithCenter(Point center)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><span class="parametername">center</span></td>
+        <td><p>The center-point for the new rectangle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a></td>
+        <td><p>A new rectangle that is the same size as the current one, but with the center moved to
+the given location.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_WithExtents_SadRogue_Primitives_Point_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.WithExtents(SadRogue.Primitives.Point%2CSadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L167">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_WithExtents_" data-uid="SadRogue.Primitives.Rectangle.WithExtents*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_WithExtents_SadRogue_Primitives_Point_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Rectangle.WithExtents(SadRogue.Primitives.Point,SadRogue.Primitives.Point)">WithExtents(Point, Point)</h4>
+  <div class="markdown level1 summary"><p>Creates a rectangle with the given minimum and maximum extents. Effectively a
+constructor, but with extra overloads not possible to provide in constructors alone.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Rectangle WithExtents(Point minExtent, Point maxExtent)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><span class="parametername">minExtent</span></td>
+        <td><p>Minimum (x, y) coordinates that are inside the rectangle.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><span class="parametername">maxExtent</span></td>
+        <td><p>Maximum (x, y) coordinates that are inside the rectangle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a></td>
+        <td><p>A new Rectangle with the given minimum and maximum extents.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_WithHeight_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.WithHeight(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L490">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_WithHeight_" data-uid="SadRogue.Primitives.Rectangle.WithHeight*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_WithHeight_System_Int32_" data-uid="SadRogue.Primitives.Rectangle.WithHeight(System.Int32)">WithHeight(Int32)</h4>
+  <div class="markdown level1 summary"><p>Creates and returns a new rectangle that has the same position and width as the current
+one, but with the height changed to the given value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Rectangle WithHeight(int height)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">height</span></td>
+        <td><p>The height for the new rectangle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a></td>
+        <td><p>A new rectangle with its height changed to the given value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_WithMaxExtent_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.WithMaxExtent(SadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L499">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_WithMaxExtent_" data-uid="SadRogue.Primitives.Rectangle.WithMaxExtent*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_WithMaxExtent_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Rectangle.WithMaxExtent(SadRogue.Primitives.Point)">WithMaxExtent(Point)</h4>
+  <div class="markdown level1 summary"><p>Creates and returns a new rectangle that has been shrunk/expanded as necessary, such that
+the maximum extent is the specified value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Rectangle WithMaxExtent(Point maxExtent)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><span class="parametername">maxExtent</span></td>
+        <td><p>The maximum extent of the new rectangle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a></td>
+        <td><p>A new rectangle that has its maximum extent adjusted to the specified value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_WithMaxExtentX_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.WithMaxExtentX(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L508">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_WithMaxExtentX_" data-uid="SadRogue.Primitives.Rectangle.WithMaxExtentX*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_WithMaxExtentX_System_Int32_" data-uid="SadRogue.Primitives.Rectangle.WithMaxExtentX(System.Int32)">WithMaxExtentX(Int32)</h4>
+  <div class="markdown level1 summary"><p>Creates and returns a new rectangle that has been shrunk/expanded as necessary, such that
+the x-value of maximum extent is changed to the specified value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Rectangle WithMaxExtentX(int x)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">x</span></td>
+        <td><p>The x-coordinate for the maximum extent of the new rectangle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a></td>
+        <td><p>A new rectangle, with its <a class="xref" href="SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_MaxExtentX">MaxExtentX</a> adjusted to the specified value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_WithMaxExtentY_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.WithMaxExtentY(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L517">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_WithMaxExtentY_" data-uid="SadRogue.Primitives.Rectangle.WithMaxExtentY*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_WithMaxExtentY_System_Int32_" data-uid="SadRogue.Primitives.Rectangle.WithMaxExtentY(System.Int32)">WithMaxExtentY(Int32)</h4>
+  <div class="markdown level1 summary"><p>Creates and returns a new rectangle that has been shrunk/expanded as necessary, such that
+the y-value of maximum extent is changed to the specified value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Rectangle WithMaxExtentY(int y)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">y</span></td>
+        <td><p>The y-coordinate for the maximum extent of the new rectangle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a></td>
+        <td><p>A new rectangle, with its <a class="xref" href="SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_MaxExtentY">MaxExtentY</a> adjusted to the specified value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_WithMinExtent_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.WithMinExtent(SadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L526">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_WithMinExtent_" data-uid="SadRogue.Primitives.Rectangle.WithMinExtent*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_WithMinExtent_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Rectangle.WithMinExtent(SadRogue.Primitives.Point)">WithMinExtent(Point)</h4>
+  <div class="markdown level1 summary"><p>Creates and returns a new rectangle that has been shrunk/expanded as necessary, such that
+the minimum extent is the specified value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Rectangle WithMinExtent(Point minExtent)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><span class="parametername">minExtent</span></td>
+        <td><p>The minimum extent of the new rectangle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a></td>
+        <td><p>A new rectangle that has its minimum extent adjusted to the specified value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_WithMinExtentX_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.WithMinExtentX(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L535">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_WithMinExtentX_" data-uid="SadRogue.Primitives.Rectangle.WithMinExtentX*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_WithMinExtentX_System_Int32_" data-uid="SadRogue.Primitives.Rectangle.WithMinExtentX(System.Int32)">WithMinExtentX(Int32)</h4>
+  <div class="markdown level1 summary"><p>Creates and returns a new rectangle that has been shrunk/expanded as necessary, such that
+the x-value of minimum extent is changed to the specified value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Rectangle WithMinExtentX(int x)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">x</span></td>
+        <td><p>The x-coordinate for the minimum extent of the new rectangle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a></td>
+        <td><p>A new rectangle, with its <a class="xref" href="SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_MinExtentX">MinExtentX</a> adjusted to the specified value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_WithMinExtentY_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.WithMinExtentY(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L545">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_WithMinExtentY_" data-uid="SadRogue.Primitives.Rectangle.WithMinExtentY*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_WithMinExtentY_System_Int32_" data-uid="SadRogue.Primitives.Rectangle.WithMinExtentY(System.Int32)">WithMinExtentY(Int32)</h4>
+  <div class="markdown level1 summary"><p>Creates and returns a new rectangle that has been shrunk/expanded as necessary, such that
+the y-value of minimum extent is changed to the specified value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Rectangle WithMinExtentY(int y)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">y</span></td>
+        <td><p>The y-coordinate for the minimum extent of the new rectangle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a></td>
+        <td><p>A new rectangle, with its <a class="xref" href="SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_MinExtentY">MinExtentY</a> adjusted to the specified value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_WithPosition_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.WithPosition(SadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L445">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_WithPosition_" data-uid="SadRogue.Primitives.Rectangle.WithPosition*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_WithPosition_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Rectangle.WithPosition(SadRogue.Primitives.Point)">WithPosition(Point)</h4>
+  <div class="markdown level1 summary"><p>Creates and returns a new rectangle that has its <a class="xref" href="SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_Position">Position</a> moved to the given position.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Rectangle WithPosition(Point position)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><span class="parametername">position</span></td>
+        <td><p>The position for the new rectangle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a></td>
+        <td><p>A new rectangle that has its position changed to the given value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_WithPositionAndSize_SadRogue_Primitives_Point_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.WithPositionAndSize(SadRogue.Primitives.Point%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L192">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_WithPositionAndSize_" data-uid="SadRogue.Primitives.Rectangle.WithPositionAndSize*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_WithPositionAndSize_SadRogue_Primitives_Point_System_Int32_System_Int32_" data-uid="SadRogue.Primitives.Rectangle.WithPositionAndSize(SadRogue.Primitives.Point,System.Int32,System.Int32)">WithPositionAndSize(Point, Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Creates a rectangle with the given position and size. Effectively a constructor, but with
+extra overloads not possible to provide in constructors alone.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Rectangle WithPositionAndSize(Point position, int width, int height)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><span class="parametername">position</span></td>
+        <td><p>Minimum x/y coordinate that is inside the rectangle.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">width</span></td>
+        <td><p>Width of the rectangle.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">height</span></td>
+        <td><p>Height of the rectangle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a></td>
+        <td><p>A new rectangle at the given position with the given width and height.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_WithPostionAndSize_SadRogue_Primitives_Point_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.WithPostionAndSize(SadRogue.Primitives.Point%2CSadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L201">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_WithPostionAndSize_" data-uid="SadRogue.Primitives.Rectangle.WithPostionAndSize*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_WithPostionAndSize_SadRogue_Primitives_Point_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Rectangle.WithPostionAndSize(SadRogue.Primitives.Point,SadRogue.Primitives.Point)">WithPostionAndSize(Point, Point)</h4>
+  <div class="markdown level1 summary"><p>Creates a rectangle with the given position and size. Effectively a constructor, but with
+extra overloads not possible to provide in constructors alone.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Rectangle WithPostionAndSize(Point position, Point size)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><span class="parametername">position</span></td>
+        <td><p>Minimum (x, y) values that are inside the resulting rectangle.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><span class="parametername">size</span></td>
+        <td><p>The size of the rectangle, in form (width, height).</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a></td>
+        <td><p>A new rectangle at the given position with the given size.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_WithRadius_SadRogue_Primitives_Point_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.WithRadius(SadRogue.Primitives.Point%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L182">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_WithRadius_" data-uid="SadRogue.Primitives.Rectangle.WithRadius*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_WithRadius_SadRogue_Primitives_Point_System_Int32_System_Int32_" data-uid="SadRogue.Primitives.Rectangle.WithRadius(SadRogue.Primitives.Point,System.Int32,System.Int32)">WithRadius(Point, Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Creates a rectangle centered on the given position, with the given horizontal and
+vertical radius values. Effectively a constructor, but with extra overloads not possible
+to provide in constructors alone.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Rectangle WithRadius(Point center, int horizontalRadius, int verticalRadius)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><span class="parametername">center</span></td>
+        <td><p>Center of the rectangle.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">horizontalRadius</span></td>
+        <td><p>Number of units to the left and right of the center point that are included within the rectangle.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">verticalRadius</span></td>
+        <td><p>Number of units to the top and bottom of the center point that are included within the rectangle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a></td>
+        <td><p>A new rectangle with the given center point and radius values.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_WithSize_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.WithSize(SadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L564">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_WithSize_" data-uid="SadRogue.Primitives.Rectangle.WithSize*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_WithSize_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Rectangle.WithSize(SadRogue.Primitives.Point)">WithSize(Point)</h4>
+  <div class="markdown level1 summary"><p>Creates and returns a new rectangle whose position is the same as the current one, but
+has the specified width and height.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Rectangle WithSize(Point size)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><span class="parametername">size</span></td>
+        <td><p>Vector (width, height) specifying the width/height of the new rectangle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a></td>
+        <td><p>A new rectangle with the given width and height.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_WithSize_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.WithSize(System.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L555">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_WithSize_" data-uid="SadRogue.Primitives.Rectangle.WithSize*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_WithSize_System_Int32_System_Int32_" data-uid="SadRogue.Primitives.Rectangle.WithSize(System.Int32,System.Int32)">WithSize(Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Creates and returns a new rectangle whose position is the same as the current one, but
+has the specified width and height.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Rectangle WithSize(int width, int height)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">width</span></td>
+        <td><p>The width for the new rectangle.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">height</span></td>
+        <td><p>The height for the new rectangle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a></td>
+        <td><p>A new rectangle with the given width and height.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_WithWidth_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.WithWidth(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L573">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_WithWidth_" data-uid="SadRogue.Primitives.Rectangle.WithWidth*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_WithWidth_System_Int32_" data-uid="SadRogue.Primitives.Rectangle.WithWidth(System.Int32)">WithWidth(Int32)</h4>
+  <div class="markdown level1 summary"><p>Creates and returns a new rectangle that is exactly the same as the current one, but with
+the width changed to the given value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Rectangle WithWidth(int width)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">width</span></td>
+        <td><p>The width for the new rectangle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a></td>
+        <td><p>A new rectangle with its <a class="xref" href="SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_Width">Width</a> changed to the given value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_WithX_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.WithX(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L464">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_WithX_" data-uid="SadRogue.Primitives.Rectangle.WithX*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_WithX_System_Int32_" data-uid="SadRogue.Primitives.Rectangle.WithX(System.Int32)">WithX(Int32)</h4>
+  <div class="markdown level1 summary"><p>Creates and returns a new rectangle that has its X value moved to the given x-coordinate.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Rectangle WithX(int x)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">x</span></td>
+        <td><p>The X value for the new rectangle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a></td>
+        <td><p>A new rectangle with X changed to the given value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_WithY_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.WithY(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L471">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_WithY_" data-uid="SadRogue.Primitives.Rectangle.WithY*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_WithY_System_Int32_" data-uid="SadRogue.Primitives.Rectangle.WithY(System.Int32)">WithY(Int32)</h4>
+  <div class="markdown level1 summary"><p>Creates and returns a new rectangle that has its Y value moved to the given y-coordinate.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Rectangle WithY(int y)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">y</span></td>
+        <td><p>The Y value for the new rectangle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a></td>
+        <td><p>A new rectangle with Y changed to the given value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="operators">Operators
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_op_Equality_SadRogue_Primitives_Rectangle_SadRogue_Primitives_Rectangle_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.op_Equality(SadRogue.Primitives.Rectangle%2CSadRogue.Primitives.Rectangle)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L311">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_op_Equality_" data-uid="SadRogue.Primitives.Rectangle.op_Equality*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_op_Equality_SadRogue_Primitives_Rectangle_SadRogue_Primitives_Rectangle_" data-uid="SadRogue.Primitives.Rectangle.op_Equality(SadRogue.Primitives.Rectangle,SadRogue.Primitives.Rectangle)">Equality(Rectangle, Rectangle)</h4>
+  <div class="markdown level1 summary"><p>Returns whether or not the rectangles have the same position and extents.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator ==(Rectangle r1, Rectangle r2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a></td>
+        <td><span class="parametername">r1</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a></td>
+        <td><span class="parametername">r2</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>true if the area of the two rectangles encompass the exact same area, false otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_op_Equality_SadRogue_Primitives_Rectangle_System_ValueTuple_System_Int32_System_Int32_System_Int32_System_Int32__.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.op_Equality(SadRogue.Primitives.Rectangle%2CSystem.ValueTuple%7BSystem.Int32%2CSystem.Int32%2CSystem.Int32%2CSystem.Int32%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L647">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_op_Equality_" data-uid="SadRogue.Primitives.Rectangle.op_Equality*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_op_Equality_SadRogue_Primitives_Rectangle_System_ValueTuple_System_Int32_System_Int32_System_Int32_System_Int32__" data-uid="SadRogue.Primitives.Rectangle.op_Equality(SadRogue.Primitives.Rectangle,System.ValueTuple{System.Int32,System.Int32,System.Int32,System.Int32})">Equality(Rectangle, (Int32 x, Int32 y, Int32 width, Int32 height))</h4>
+  <div class="markdown level1 summary"><p>True if the two rectangles represent the same area.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator ==(Rectangle r1, (int x, int y, int width, int height)r2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a></td>
+        <td><span class="parametername">r1</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ValueTuple</span>&lt;<span class="xref">System.Int32</span>, <span class="xref">System.Int32</span>, <span class="xref">System.Int32</span>, <span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="parametername">r2</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>True if the two rectangles are equal, false if not.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_op_Equality_System_ValueTuple_System_Int32_System_Int32_System_Int32_System_Int32__SadRogue_Primitives_Rectangle_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.op_Equality(System.ValueTuple%7BSystem.Int32%2CSystem.Int32%2CSystem.Int32%2CSystem.Int32%7D%2CSadRogue.Primitives.Rectangle)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L668">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_op_Equality_" data-uid="SadRogue.Primitives.Rectangle.op_Equality*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_op_Equality_System_ValueTuple_System_Int32_System_Int32_System_Int32_System_Int32__SadRogue_Primitives_Rectangle_" data-uid="SadRogue.Primitives.Rectangle.op_Equality(System.ValueTuple{System.Int32,System.Int32,System.Int32,System.Int32},SadRogue.Primitives.Rectangle)">Equality((Int32 x, Int32 y, Int32 width, Int32 height), Rectangle)</h4>
+  <div class="markdown level1 summary"><p>True if the two rectangles represent the same area.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator ==((int x, int y, int width, int height)r1, Rectangle r2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ValueTuple</span>&lt;<span class="xref">System.Int32</span>, <span class="xref">System.Int32</span>, <span class="xref">System.Int32</span>, <span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="parametername">r1</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a></td>
+        <td><span class="parametername">r2</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>True if the two rectangles are equal, false if not.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_op_Implicit_SadRogue_Primitives_Rectangle__System_ValueTuple_System_Int32_System_Int32_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.op_Implicit(SadRogue.Primitives.Rectangle)~System.ValueTuple%7BSystem.Int32%2CSystem.Int32%2CSystem.Int32%2CSystem.Int32%7D%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L618">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_op_Implicit_" data-uid="SadRogue.Primitives.Rectangle.op_Implicit*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_op_Implicit_SadRogue_Primitives_Rectangle__System_ValueTuple_System_Int32_System_Int32_System_Int32_System_Int32_" data-uid="SadRogue.Primitives.Rectangle.op_Implicit(SadRogue.Primitives.Rectangle)~System.ValueTuple{System.Int32,System.Int32,System.Int32,System.Int32}">Implicit(Rectangle to (Int32 x, Int32 y, Int32 width, Int32 height))</h4>
+  <div class="markdown level1 summary"><p>Implicitly converts a GoRogue Rectangle to an equivalent tuple of 4 integers (x, y, width, height).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator (int x, int y, int width, int height)(Rectangle rect)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a></td>
+        <td><span class="parametername">rect</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ValueTuple</span>&lt;<span class="xref">System.Int32</span>, <span class="xref">System.Int32</span>, <span class="xref">System.Int32</span>, <span class="xref">System.Int32</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_op_Implicit_System_ValueTuple_System_Int32_System_Int32_System_Int32_System_Int32___SadRogue_Primitives_Rectangle.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.op_Implicit(System.ValueTuple%7BSystem.Int32%2CSystem.Int32%2CSystem.Int32%2CSystem.Int32%7D)~SadRogue.Primitives.Rectangle%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L624">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_op_Implicit_" data-uid="SadRogue.Primitives.Rectangle.op_Implicit*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_op_Implicit_System_ValueTuple_System_Int32_System_Int32_System_Int32_System_Int32___SadRogue_Primitives_Rectangle" data-uid="SadRogue.Primitives.Rectangle.op_Implicit(System.ValueTuple{System.Int32,System.Int32,System.Int32,System.Int32})~SadRogue.Primitives.Rectangle">Implicit((Int32 x, Int32 y, Int32 width, Int32 height) to Rectangle)</h4>
+  <div class="markdown level1 summary"><p>Implicitly converts a tuple of 4 integers (x, y, width, height) to an equivalent GoRogue Rectangle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator Rectangle((int x, int y, int width, int height)tuple)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ValueTuple</span>&lt;<span class="xref">System.Int32</span>, <span class="xref">System.Int32</span>, <span class="xref">System.Int32</span>, <span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="parametername">tuple</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_op_Inequality_SadRogue_Primitives_Rectangle_SadRogue_Primitives_Rectangle_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.op_Inequality(SadRogue.Primitives.Rectangle%2CSadRogue.Primitives.Rectangle)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L298">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_op_Inequality_" data-uid="SadRogue.Primitives.Rectangle.op_Inequality*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_op_Inequality_SadRogue_Primitives_Rectangle_SadRogue_Primitives_Rectangle_" data-uid="SadRogue.Primitives.Rectangle.op_Inequality(SadRogue.Primitives.Rectangle,SadRogue.Primitives.Rectangle)">Inequality(Rectangle, Rectangle)</h4>
+  <div class="markdown level1 summary"><p>Returns whether or not the rectangles differ in either their positions or extents.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator !=(Rectangle r1, Rectangle r2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a></td>
+        <td><span class="parametername">r1</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a></td>
+        <td><span class="parametername">r2</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>true if the rectangles do NOT encompass the same area, false otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_op_Inequality_SadRogue_Primitives_Rectangle_System_ValueTuple_System_Int32_System_Int32_System_Int32_System_Int32__.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.op_Inequality(SadRogue.Primitives.Rectangle%2CSystem.ValueTuple%7BSystem.Int32%2CSystem.Int32%2CSystem.Int32%2CSystem.Int32%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L660">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_op_Inequality_" data-uid="SadRogue.Primitives.Rectangle.op_Inequality*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_op_Inequality_SadRogue_Primitives_Rectangle_System_ValueTuple_System_Int32_System_Int32_System_Int32_System_Int32__" data-uid="SadRogue.Primitives.Rectangle.op_Inequality(SadRogue.Primitives.Rectangle,System.ValueTuple{System.Int32,System.Int32,System.Int32,System.Int32})">Inequality(Rectangle, (Int32 x, Int32 y, Int32 width, Int32 height))</h4>
+  <div class="markdown level1 summary"><p>True if any of the rectangles' x/y/width/height values are not equal.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator !=(Rectangle r1, (int x, int y, int width, int height)r2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a></td>
+        <td><span class="parametername">r1</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ValueTuple</span>&lt;<span class="xref">System.Int32</span>, <span class="xref">System.Int32</span>, <span class="xref">System.Int32</span>, <span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="parametername">r2</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>True if any of the x/y/width/height values are not equal, false if they are all equal.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle_op_Inequality_System_ValueTuple_System_Int32_System_Int32_System_Int32_System_Int32__SadRogue_Primitives_Rectangle_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle.op_Inequality(System.ValueTuple%7BSystem.Int32%2CSystem.Int32%2CSystem.Int32%2CSystem.Int32%7D%2CSadRogue.Primitives.Rectangle)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L681">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Rectangle_op_Inequality_" data-uid="SadRogue.Primitives.Rectangle.op_Inequality*"></a>
+  <h4 id="SadRogue_Primitives_Rectangle_op_Inequality_System_ValueTuple_System_Int32_System_Int32_System_Int32_System_Int32__SadRogue_Primitives_Rectangle_" data-uid="SadRogue.Primitives.Rectangle.op_Inequality(System.ValueTuple{System.Int32,System.Int32,System.Int32,System.Int32},SadRogue.Primitives.Rectangle)">Inequality((Int32 x, Int32 y, Int32 width, Int32 height), Rectangle)</h4>
+  <div class="markdown level1 summary"><p>True if any of the rectangles' x/y/width/height values are not equal.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator !=((int x, int y, int width, int height)r1, Rectangle r2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ValueTuple</span>&lt;<span class="xref">System.Int32</span>, <span class="xref">System.Int32</span>, <span class="xref">System.Int32</span>, <span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="parametername">r1</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a></td>
+        <td><span class="parametername">r2</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>True if any of the x/y/width/height values are not equal, false if they are all equal.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">System.IEquatable&lt;T&gt;</span>
+  </div>
+  <div>
+      <span class="xref">System.IEquatable&lt;T&gt;</span>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Rectangle.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Rectangle%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Rectangle.cs/#L10" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

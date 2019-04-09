@@ -5,4 +5,12 @@
     <RootNamespace>SadRogue.Primitives</RootNamespace>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\$(Configuration)\netstandard2.0\TheSadRogue.Primitives.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\$(Configuration)\netstandard2.0\TheSadRogue.Primitives.xml</DocumentationFile>
+  </PropertyGroup>
+
 </Project>

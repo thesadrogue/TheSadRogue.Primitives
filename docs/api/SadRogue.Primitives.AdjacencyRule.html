@@ -1,0 +1,683 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class AdjacencyRule
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class AdjacencyRule
+   ">
+    <meta name="generator" content="docfx 2.41.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="SadRogue.Primitives.AdjacencyRule">
+  
+  
+  <h1 id="SadRogue_Primitives_AdjacencyRule" data-uid="SadRogue.Primitives.AdjacencyRule" class="text-break">Class AdjacencyRule
+  </h1>
+  <div class="markdown level0 summary"><p>Class representing a method for determining which coordinates are adjacent to a given
+coordinate, and which directions those neighbors are in. Cannot be instantiated -- premade
+static instances are provided.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">AdjacencyRule</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="SadRogue.Primitives.html">SadRogue.Primitives</a></h6>
+  <h6><strong>Assembly</strong>: TheSadRogue.Primitives.dll</h6>
+  <h5 id="SadRogue_Primitives_AdjacencyRule_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class AdjacencyRule</code></pre>
+  </div>
+  <h3 id="fields">Fields
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_AdjacencyRule_CARDINALS.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.AdjacencyRule.CARDINALS%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/AdjacencyRule.cs/#L17">View Source</a>
+  </span>
+  <h4 id="SadRogue_Primitives_AdjacencyRule_CARDINALS" data-uid="SadRogue.Primitives.AdjacencyRule.CARDINALS">CARDINALS</h4>
+  <div class="markdown level1 summary"><p>Represents method of determining adjacency where neighbors are considered adjacent if
+they are in a cardinal direction, eg. 4-way (manhattan-based) connectivity.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly AdjacencyRule CARDINALS</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.AdjacencyRule.html">AdjacencyRule</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_AdjacencyRule_DIAGONALS.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.AdjacencyRule.DIAGONALS%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/AdjacencyRule.cs/#L23">View Source</a>
+  </span>
+  <h4 id="SadRogue_Primitives_AdjacencyRule_DIAGONALS" data-uid="SadRogue.Primitives.AdjacencyRule.DIAGONALS">DIAGONALS</h4>
+  <div class="markdown level1 summary"><p>Represents method of determining adjacency where neighbors are considered adjacent only
+if they are in a diagonal direction.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly AdjacencyRule DIAGONALS</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.AdjacencyRule.html">AdjacencyRule</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_AdjacencyRule_EIGHT_WAY.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.AdjacencyRule.EIGHT_WAY%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/AdjacencyRule.cs/#L29">View Source</a>
+  </span>
+  <h4 id="SadRogue_Primitives_AdjacencyRule_EIGHT_WAY" data-uid="SadRogue.Primitives.AdjacencyRule.EIGHT_WAY">EIGHT_WAY</h4>
+  <div class="markdown level1 summary"><p>Represents method of determining adjacency where all 8 possible neighbors are considered
+adjacent (eg. 8-way connectivity).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly AdjacencyRule EIGHT_WAY</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.AdjacencyRule.html">AdjacencyRule</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_AdjacencyRule_Type.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.AdjacencyRule.Type%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/AdjacencyRule.cs/#L66">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_AdjacencyRule_Type_" data-uid="SadRogue.Primitives.AdjacencyRule.Type*"></a>
+  <h4 id="SadRogue_Primitives_AdjacencyRule_Type" data-uid="SadRogue.Primitives.AdjacencyRule.Type">Type</h4>
+  <div class="markdown level1 summary"><p>Enum value representing the method of determining adjacency -- useful for using
+<a class="xref" href="SadRogue.Primitives.AdjacencyRule.html">AdjacencyRule</a> types in switch statements.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AdjacencyRule.Types Type { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.AdjacencyRule.Types.html">AdjacencyRule.Types</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_AdjacencyRule_DirectionsOfNeighbors.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.AdjacencyRule.DirectionsOfNeighbors%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/AdjacencyRule.cs/#L96">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_AdjacencyRule_DirectionsOfNeighbors_" data-uid="SadRogue.Primitives.AdjacencyRule.DirectionsOfNeighbors*"></a>
+  <h4 id="SadRogue_Primitives_AdjacencyRule_DirectionsOfNeighbors" data-uid="SadRogue.Primitives.AdjacencyRule.DirectionsOfNeighbors">DirectionsOfNeighbors()</h4>
+  <div class="markdown level1 summary"><p>Gets directions leading to neighboring locations, according to the current adjacency
+method. Cardinals are returned before any diagonals.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;Direction&gt; DirectionsOfNeighbors()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<a class="xref" href="SadRogue.Primitives.Direction.html">Direction</a>&gt;</td>
+        <td><p>Directions that lead to neighboring locations.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_AdjacencyRule_DirectionsOfNeighborsClockwise_SadRogue_Primitives_Direction_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.AdjacencyRule.DirectionsOfNeighborsClockwise(SadRogue.Primitives.Direction)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/AdjacencyRule.cs/#L136">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_AdjacencyRule_DirectionsOfNeighborsClockwise_" data-uid="SadRogue.Primitives.AdjacencyRule.DirectionsOfNeighborsClockwise*"></a>
+  <h4 id="SadRogue_Primitives_AdjacencyRule_DirectionsOfNeighborsClockwise_SadRogue_Primitives_Direction_" data-uid="SadRogue.Primitives.AdjacencyRule.DirectionsOfNeighborsClockwise(SadRogue.Primitives.Direction)">DirectionsOfNeighborsClockwise(Direction)</h4>
+  <div class="markdown level1 summary"><p>Gets directions leading to neighboring locations, according to the current adjacency
+method. Appropriate directions are returned in clockwise order from the given starting
+direction.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;Direction&gt; DirectionsOfNeighborsClockwise(Direction startingDirection = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Direction.html">Direction</a></td>
+        <td><span class="parametername">startingDirection</span></td>
+        <td><p>The direction to start with.  null or <a class="xref" href="SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_NONE">NONE</a>
+causes the default starting direction to be used, which is UP for CARDINALS/EIGHT_WAY, and UP_RIGHT
+for diagonals.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<a class="xref" href="SadRogue.Primitives.Direction.html">Direction</a>&gt;</td>
+        <td><p>Directions that lead to neighboring locations.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_AdjacencyRule_DirectionsOfNeighborsCounterClockwise_SadRogue_Primitives_Direction_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.AdjacencyRule.DirectionsOfNeighborsCounterClockwise(SadRogue.Primitives.Direction)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/AdjacencyRule.cs/#L188">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_AdjacencyRule_DirectionsOfNeighborsCounterClockwise_" data-uid="SadRogue.Primitives.AdjacencyRule.DirectionsOfNeighborsCounterClockwise*"></a>
+  <h4 id="SadRogue_Primitives_AdjacencyRule_DirectionsOfNeighborsCounterClockwise_SadRogue_Primitives_Direction_" data-uid="SadRogue.Primitives.AdjacencyRule.DirectionsOfNeighborsCounterClockwise(SadRogue.Primitives.Direction)">DirectionsOfNeighborsCounterClockwise(Direction)</h4>
+  <div class="markdown level1 summary"><p>Gets directions leading to neighboring locations, according to the current adjacency
+method. Appropriate directions are returned in counter-clockwise order from the given
+starting direction.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;Direction&gt; DirectionsOfNeighborsCounterClockwise(Direction startingDirection = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Direction.html">Direction</a></td>
+        <td><span class="parametername">startingDirection</span></td>
+        <td><p>The direction to start with.  null or <a class="xref" href="SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_NONE">NONE</a>
+causes the default starting direction to be used, which is UP for CARDINALS/EIGHT_WAY, and UP_LEFT
+for diagonals.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<a class="xref" href="SadRogue.Primitives.Direction.html">Direction</a>&gt;</td>
+        <td><p>Directions that lead to neighboring locations.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_AdjacencyRule_Neighbors_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.AdjacencyRule.Neighbors(SadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/AdjacencyRule.cs/#L237">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_AdjacencyRule_Neighbors_" data-uid="SadRogue.Primitives.AdjacencyRule.Neighbors*"></a>
+  <h4 id="SadRogue_Primitives_AdjacencyRule_Neighbors_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.AdjacencyRule.Neighbors(SadRogue.Primitives.Point)">Neighbors(Point)</h4>
+  <div class="markdown level1 summary"><p>Gets all neighbors of the specified location, based on the current adjacency method.
+Cardinals are returned before any diagonals.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;Point&gt; Neighbors(Point startingLocation)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><span class="parametername">startingLocation</span></td>
+        <td><p>Location to return neighbors for.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<a class="xref" href="SadRogue.Primitives.Point.html">Point</a>&gt;</td>
+        <td><p>All neighbors of the given location.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_AdjacencyRule_NeighborsClockwise_SadRogue_Primitives_Point_SadRogue_Primitives_Direction_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.AdjacencyRule.NeighborsClockwise(SadRogue.Primitives.Point%2CSadRogue.Primitives.Direction)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/AdjacencyRule.cs/#L256">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_AdjacencyRule_NeighborsClockwise_" data-uid="SadRogue.Primitives.AdjacencyRule.NeighborsClockwise*"></a>
+  <h4 id="SadRogue_Primitives_AdjacencyRule_NeighborsClockwise_SadRogue_Primitives_Point_SadRogue_Primitives_Direction_" data-uid="SadRogue.Primitives.AdjacencyRule.NeighborsClockwise(SadRogue.Primitives.Point,SadRogue.Primitives.Direction)">NeighborsClockwise(Point, Direction)</h4>
+  <div class="markdown level1 summary"><p>Gets all neighbors of the specified location, based on the current adjacency method.
+Neighbors are returned in clockwise order, starting with the neighbor in the given
+starting direction.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;Point&gt; NeighborsClockwise(Point startingLocation, Direction startingDirection = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><span class="parametername">startingLocation</span></td>
+        <td><p>Location to return neighbors for.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Direction.html">Direction</a></td>
+        <td><span class="parametername">startingDirection</span></td>
+        <td><p>The neighbor in this direction will be returned first, proceeding clockwise.
+If null or <a class="xref" href="SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_NONE">NONE</a> is specified, the default starting direction
+is used, which is <a class="xref" href="SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_UP">UP</a> for CARDINALS/EIGHT_WAY, and <a class="xref" href="SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_UP_RIGHT">UP_RIGHT</a>
+for DIAGONALS.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<a class="xref" href="SadRogue.Primitives.Point.html">Point</a>&gt;</td>
+        <td><p>All neighbors of the given location.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_AdjacencyRule_NeighborsCounterClockwise_SadRogue_Primitives_Point_SadRogue_Primitives_Direction_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.AdjacencyRule.NeighborsCounterClockwise(SadRogue.Primitives.Point%2CSadRogue.Primitives.Direction)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/AdjacencyRule.cs/#L275">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_AdjacencyRule_NeighborsCounterClockwise_" data-uid="SadRogue.Primitives.AdjacencyRule.NeighborsCounterClockwise*"></a>
+  <h4 id="SadRogue_Primitives_AdjacencyRule_NeighborsCounterClockwise_SadRogue_Primitives_Point_SadRogue_Primitives_Direction_" data-uid="SadRogue.Primitives.AdjacencyRule.NeighborsCounterClockwise(SadRogue.Primitives.Point,SadRogue.Primitives.Direction)">NeighborsCounterClockwise(Point, Direction)</h4>
+  <div class="markdown level1 summary"><p>Gets all neighbors of the specified location, based on the current adjacency method.
+Neighbors are returned in counter-clockwise order, starting with the neighbor in the given
+starting direction.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;Point&gt; NeighborsCounterClockwise(Point startingLocation, Direction startingDirection = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><span class="parametername">startingLocation</span></td>
+        <td><p>Location to return neighbors for.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Direction.html">Direction</a></td>
+        <td><span class="parametername">startingDirection</span></td>
+        <td><p>The neighbor in this direction will be returned first, proceeding counter-clockwise.
+If null or <a class="xref" href="SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_NONE">NONE</a> is specified, the default starting direction
+is used, which is <a class="xref" href="SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_UP">UP</a> for CARDINALS/EIGHT_WAY, and
+<a class="xref" href="SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_UP_LEFT">UP_LEFT</a> for DIAGONALS.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<a class="xref" href="SadRogue.Primitives.Point.html">Point</a>&gt;</td>
+        <td><p>All neighbors of the given location.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_AdjacencyRule_ToAdjacencyRule_SadRogue_Primitives_AdjacencyRule_Types_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.AdjacencyRule.ToAdjacencyRule(SadRogue.Primitives.AdjacencyRule.Types)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/AdjacencyRule.cs/#L73">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_AdjacencyRule_ToAdjacencyRule_" data-uid="SadRogue.Primitives.AdjacencyRule.ToAdjacencyRule*"></a>
+  <h4 id="SadRogue_Primitives_AdjacencyRule_ToAdjacencyRule_SadRogue_Primitives_AdjacencyRule_Types_" data-uid="SadRogue.Primitives.AdjacencyRule.ToAdjacencyRule(SadRogue.Primitives.AdjacencyRule.Types)">ToAdjacencyRule(AdjacencyRule.Types)</h4>
+  <div class="markdown level1 summary"><p>Gets the <a class="xref" href="SadRogue.Primitives.AdjacencyRule.html">AdjacencyRule</a> class instance representing the adjacency type specified.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static AdjacencyRule ToAdjacencyRule(AdjacencyRule.Types adjacencyRuleType)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.AdjacencyRule.Types.html">AdjacencyRule.Types</a></td>
+        <td><span class="parametername">adjacencyRuleType</span></td>
+        <td><p>The enum value for the adjacency method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.AdjacencyRule.html">AdjacencyRule</a></td>
+        <td><p>The <a class="xref" href="SadRogue.Primitives.AdjacencyRule.html">AdjacencyRule</a> class representing the given adjacency method type.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_AdjacencyRule_ToString.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.AdjacencyRule.ToString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/AdjacencyRule.cs/#L285">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_AdjacencyRule_ToString_" data-uid="SadRogue.Primitives.AdjacencyRule.ToString*"></a>
+  <h4 id="SadRogue_Primitives_AdjacencyRule_ToString" data-uid="SadRogue.Primitives.AdjacencyRule.ToString">ToString()</h4>
+  <div class="markdown level1 summary"><p>Returns a string representation of the <a class="xref" href="SadRogue.Primitives.AdjacencyRule.html">AdjacencyRule</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>A string representation of the <a class="xref" href="SadRogue.Primitives.AdjacencyRule.html">AdjacencyRule</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">System.Object.ToString()</span></div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_AdjacencyRule.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.AdjacencyRule%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/AdjacencyRule.cs/#L11" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

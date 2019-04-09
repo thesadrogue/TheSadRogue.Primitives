@@ -185,8 +185,7 @@ namespace SadRogue.Primitives
         /// Creates a rectangle with the given position and size. Effectively a constructor, but with
         /// extra overloads not possible to provide in constructors alone.
         /// </summary>
-        /// <param name="x">Minimum x coordinate that is inside the rectangle.</param>
-        /// <param name="y">Minimum y coordinate that is inside the rectangle.</param>
+        /// <param name="position">Minimum x/y coordinate that is inside the rectangle.</param>
         /// <param name="width">Width of the rectangle.</param>
         /// <param name="height">Height of the rectangle.</param>
         /// <returns>A new rectangle at the given position with the given width and height.</returns>

@@ -3640,6 +3640,170 @@ references:
   isSpec: "True"
   fullName: SadRogue.Primitives.MathHelpers.ToRadian
   nameWithType: MathHelpers.ToRadian
+- uid: SadRogue.Primitives.MathHelpers.Wrap(System.Single,System.Single,System.Single)
+  name: Wrap(Single, Single, Single)
+  href: api/SadRogue.Primitives.MathHelpers.html#SadRogue_Primitives_MathHelpers_Wrap_System_Single_System_Single_System_Single_
+  commentId: M:SadRogue.Primitives.MathHelpers.Wrap(System.Single,System.Single,System.Single)
+  fullName: SadRogue.Primitives.MathHelpers.Wrap(System.Single, System.Single, System.Single)
+  nameWithType: MathHelpers.Wrap(Single, Single, Single)
+- uid: SadRogue.Primitives.MathHelpers.Wrap*
+  name: Wrap
+  href: api/SadRogue.Primitives.MathHelpers.html#SadRogue_Primitives_MathHelpers_Wrap_
+  commentId: Overload:SadRogue.Primitives.MathHelpers.Wrap
+  isSpec: "True"
+  fullName: SadRogue.Primitives.MathHelpers.Wrap
+  nameWithType: MathHelpers.Wrap
+- uid: SadRogue.Primitives.Palette
+  name: Palette
+  href: api/SadRogue.Primitives.Palette.html
+  commentId: T:SadRogue.Primitives.Palette
+  fullName: SadRogue.Primitives.Palette
+  nameWithType: Palette
+- uid: SadRogue.Primitives.Palette.#ctor(System.Collections.Generic.IEnumerable{SadRogue.Primitives.Color})
+  name: Palette(IEnumerable<Color>)
+  href: api/SadRogue.Primitives.Palette.html#SadRogue_Primitives_Palette__ctor_System_Collections_Generic_IEnumerable_SadRogue_Primitives_Color__
+  commentId: M:SadRogue.Primitives.Palette.#ctor(System.Collections.Generic.IEnumerable{SadRogue.Primitives.Color})
+  name.vb: Palette(IEnumerable(Of Color))
+  fullName: SadRogue.Primitives.Palette.Palette(System.Collections.Generic.IEnumerable<SadRogue.Primitives.Color>)
+  fullName.vb: SadRogue.Primitives.Palette.Palette(System.Collections.Generic.IEnumerable(Of SadRogue.Primitives.Color))
+  nameWithType: Palette.Palette(IEnumerable<Color>)
+  nameWithType.vb: Palette.Palette(IEnumerable(Of Color))
+- uid: SadRogue.Primitives.Palette.#ctor(System.Int32)
+  name: Palette(Int32)
+  href: api/SadRogue.Primitives.Palette.html#SadRogue_Primitives_Palette__ctor_System_Int32_
+  commentId: M:SadRogue.Primitives.Palette.#ctor(System.Int32)
+  fullName: SadRogue.Primitives.Palette.Palette(System.Int32)
+  nameWithType: Palette.Palette(Int32)
+- uid: SadRogue.Primitives.Palette.#ctor*
+  name: Palette
+  href: api/SadRogue.Primitives.Palette.html#SadRogue_Primitives_Palette__ctor_
+  commentId: Overload:SadRogue.Primitives.Palette.#ctor
+  isSpec: "True"
+  fullName: SadRogue.Primitives.Palette.Palette
+  nameWithType: Palette.Palette
+- uid: SadRogue.Primitives.Palette.GetEnumerator
+  name: GetEnumerator()
+  href: api/SadRogue.Primitives.Palette.html#SadRogue_Primitives_Palette_GetEnumerator
+  commentId: M:SadRogue.Primitives.Palette.GetEnumerator
+  fullName: SadRogue.Primitives.Palette.GetEnumerator()
+  nameWithType: Palette.GetEnumerator()
+- uid: SadRogue.Primitives.Palette.GetEnumerator*
+  name: GetEnumerator
+  href: api/SadRogue.Primitives.Palette.html#SadRogue_Primitives_Palette_GetEnumerator_
+  commentId: Overload:SadRogue.Primitives.Palette.GetEnumerator
+  isSpec: "True"
+  fullName: SadRogue.Primitives.Palette.GetEnumerator
+  nameWithType: Palette.GetEnumerator
+- uid: SadRogue.Primitives.Palette.GetNearest(SadRogue.Primitives.Color)
+  name: GetNearest(Color)
+  href: api/SadRogue.Primitives.Palette.html#SadRogue_Primitives_Palette_GetNearest_SadRogue_Primitives_Color_
+  commentId: M:SadRogue.Primitives.Palette.GetNearest(SadRogue.Primitives.Color)
+  fullName: SadRogue.Primitives.Palette.GetNearest(SadRogue.Primitives.Color)
+  nameWithType: Palette.GetNearest(Color)
+- uid: SadRogue.Primitives.Palette.GetNearest*
+  name: GetNearest
+  href: api/SadRogue.Primitives.Palette.html#SadRogue_Primitives_Palette_GetNearest_
+  commentId: Overload:SadRogue.Primitives.Palette.GetNearest
+  isSpec: "True"
+  fullName: SadRogue.Primitives.Palette.GetNearest
+  nameWithType: Palette.GetNearest
+- uid: SadRogue.Primitives.Palette.GetNearestIndex(SadRogue.Primitives.Color)
+  name: GetNearestIndex(Color)
+  href: api/SadRogue.Primitives.Palette.html#SadRogue_Primitives_Palette_GetNearestIndex_SadRogue_Primitives_Color_
+  commentId: M:SadRogue.Primitives.Palette.GetNearestIndex(SadRogue.Primitives.Color)
+  fullName: SadRogue.Primitives.Palette.GetNearestIndex(SadRogue.Primitives.Color)
+  nameWithType: Palette.GetNearestIndex(Color)
+- uid: SadRogue.Primitives.Palette.GetNearestIndex*
+  name: GetNearestIndex
+  href: api/SadRogue.Primitives.Palette.html#SadRogue_Primitives_Palette_GetNearestIndex_
+  commentId: Overload:SadRogue.Primitives.Palette.GetNearestIndex
+  isSpec: "True"
+  fullName: SadRogue.Primitives.Palette.GetNearestIndex
+  nameWithType: Palette.GetNearestIndex
+- uid: SadRogue.Primitives.Palette.Item(System.Int32)
+  name: Item[Int32]
+  href: api/SadRogue.Primitives.Palette.html#SadRogue_Primitives_Palette_Item_System_Int32_
+  commentId: P:SadRogue.Primitives.Palette.Item(System.Int32)
+  name.vb: Item(Int32)
+  fullName: SadRogue.Primitives.Palette.Item[System.Int32]
+  fullName.vb: SadRogue.Primitives.Palette.Item(System.Int32)
+  nameWithType: Palette.Item[Int32]
+  nameWithType.vb: Palette.Item(Int32)
+- uid: SadRogue.Primitives.Palette.Item*
+  name: Item
+  href: api/SadRogue.Primitives.Palette.html#SadRogue_Primitives_Palette_Item_
+  commentId: Overload:SadRogue.Primitives.Palette.Item
+  isSpec: "True"
+  fullName: SadRogue.Primitives.Palette.Item
+  nameWithType: Palette.Item
+- uid: SadRogue.Primitives.Palette.Length
+  name: Length
+  href: api/SadRogue.Primitives.Palette.html#SadRogue_Primitives_Palette_Length
+  commentId: P:SadRogue.Primitives.Palette.Length
+  fullName: SadRogue.Primitives.Palette.Length
+  nameWithType: Palette.Length
+- uid: SadRogue.Primitives.Palette.Length*
+  name: Length
+  href: api/SadRogue.Primitives.Palette.html#SadRogue_Primitives_Palette_Length_
+  commentId: Overload:SadRogue.Primitives.Palette.Length
+  isSpec: "True"
+  fullName: SadRogue.Primitives.Palette.Length
+  nameWithType: Palette.Length
+- uid: SadRogue.Primitives.Palette.ShiftLeft
+  name: ShiftLeft()
+  href: api/SadRogue.Primitives.Palette.html#SadRogue_Primitives_Palette_ShiftLeft
+  commentId: M:SadRogue.Primitives.Palette.ShiftLeft
+  fullName: SadRogue.Primitives.Palette.ShiftLeft()
+  nameWithType: Palette.ShiftLeft()
+- uid: SadRogue.Primitives.Palette.ShiftLeft(System.Int32,System.Int32)
+  name: ShiftLeft(Int32, Int32)
+  href: api/SadRogue.Primitives.Palette.html#SadRogue_Primitives_Palette_ShiftLeft_System_Int32_System_Int32_
+  commentId: M:SadRogue.Primitives.Palette.ShiftLeft(System.Int32,System.Int32)
+  fullName: SadRogue.Primitives.Palette.ShiftLeft(System.Int32, System.Int32)
+  nameWithType: Palette.ShiftLeft(Int32, Int32)
+- uid: SadRogue.Primitives.Palette.ShiftLeft*
+  name: ShiftLeft
+  href: api/SadRogue.Primitives.Palette.html#SadRogue_Primitives_Palette_ShiftLeft_
+  commentId: Overload:SadRogue.Primitives.Palette.ShiftLeft
+  isSpec: "True"
+  fullName: SadRogue.Primitives.Palette.ShiftLeft
+  nameWithType: Palette.ShiftLeft
+- uid: SadRogue.Primitives.Palette.ShiftRight
+  name: ShiftRight()
+  href: api/SadRogue.Primitives.Palette.html#SadRogue_Primitives_Palette_ShiftRight
+  commentId: M:SadRogue.Primitives.Palette.ShiftRight
+  fullName: SadRogue.Primitives.Palette.ShiftRight()
+  nameWithType: Palette.ShiftRight()
+- uid: SadRogue.Primitives.Palette.ShiftRight(System.Int32,System.Int32)
+  name: ShiftRight(Int32, Int32)
+  href: api/SadRogue.Primitives.Palette.html#SadRogue_Primitives_Palette_ShiftRight_System_Int32_System_Int32_
+  commentId: M:SadRogue.Primitives.Palette.ShiftRight(System.Int32,System.Int32)
+  fullName: SadRogue.Primitives.Palette.ShiftRight(System.Int32, System.Int32)
+  nameWithType: Palette.ShiftRight(Int32, Int32)
+- uid: SadRogue.Primitives.Palette.ShiftRight*
+  name: ShiftRight
+  href: api/SadRogue.Primitives.Palette.html#SadRogue_Primitives_Palette_ShiftRight_
+  commentId: Overload:SadRogue.Primitives.Palette.ShiftRight
+  isSpec: "True"
+  fullName: SadRogue.Primitives.Palette.ShiftRight
+  nameWithType: Palette.ShiftRight
+- uid: SadRogue.Primitives.Palette.System#Collections#IEnumerable#GetEnumerator
+  name: IEnumerable.GetEnumerator()
+  href: api/SadRogue.Primitives.Palette.html#SadRogue_Primitives_Palette_System_Collections_IEnumerable_GetEnumerator
+  commentId: M:SadRogue.Primitives.Palette.System#Collections#IEnumerable#GetEnumerator
+  name.vb: System.Collections.IEnumerable.GetEnumerator()
+  fullName: SadRogue.Primitives.Palette.System.Collections.IEnumerable.GetEnumerator()
+  nameWithType: Palette.IEnumerable.GetEnumerator()
+  nameWithType.vb: Palette.System.Collections.IEnumerable.GetEnumerator()
+- uid: SadRogue.Primitives.Palette.System#Collections#IEnumerable#GetEnumerator*
+  name: IEnumerable.GetEnumerator
+  href: api/SadRogue.Primitives.Palette.html#SadRogue_Primitives_Palette_System_Collections_IEnumerable_GetEnumerator_
+  commentId: Overload:SadRogue.Primitives.Palette.System#Collections#IEnumerable#GetEnumerator
+  isSpec: "True"
+  name.vb: System.Collections.IEnumerable.GetEnumerator
+  fullName: SadRogue.Primitives.Palette.System.Collections.IEnumerable.GetEnumerator
+  nameWithType: Palette.IEnumerable.GetEnumerator
+  nameWithType.vb: Palette.System.Collections.IEnumerable.GetEnumerator
 - uid: SadRogue.Primitives.Point
   name: Point
   href: api/SadRogue.Primitives.Point.html

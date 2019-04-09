@@ -153,7 +153,19 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.MathHelpers.html",
-          "hash": "OYLwq6zvnopveg08Lk44Zw=="
+          "hash": "DcQGBplyaabDtVneDmWkTg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SadRogue.Primitives.Palette.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SadRogue.Primitives.Palette.html",
+          "hash": "MnADQEfzRsqCSPqioWEA9g=="
         }
       },
       "is_incremental": false,
@@ -237,7 +249,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.html",
-          "hash": "7viavcPueb99ft+FqsHFyQ=="
+          "hash": "x7+tSMUy5dQ8oopDN3CiYA=="
         }
       },
       "is_incremental": false,
@@ -252,7 +264,7 @@
           "hash": "gSjIkQyQcJ4Y7DJMB5m96Q=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -261,7 +273,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "I7PCC0VbVkskn+4yT/BodQ=="
+          "hash": "e+6UhS6OjGVNTvz1IoxybQ=="
         }
       },
       "is_incremental": false,
@@ -325,24 +337,24 @@
         "skipped_file_count": 0
       },
       "processors": {
-        "ManagedReferenceDocumentProcessor": {
-          "can_incremental": true,
-          "incrementalPhase": "build",
-          "total_file_count": 20,
-          "skipped_file_count": 1
-        },
-        "ConceptualDocumentProcessor": {
-          "can_incremental": true,
-          "incrementalPhase": "build",
-          "total_file_count": 3,
-          "skipped_file_count": 3
-        },
         "TocDocumentProcessor": {
           "can_incremental": false,
           "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build",
           "total_file_count": 0,
           "skipped_file_count": 0
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build",
+          "total_file_count": 21,
+          "skipped_file_count": 18
+        },
+        "ConceptualDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build",
+          "total_file_count": 3,
+          "skipped_file_count": 3
         }
       }
     },

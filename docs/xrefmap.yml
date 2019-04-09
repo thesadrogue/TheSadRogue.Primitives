@@ -3841,12 +3841,24 @@ references:
   commentId: M:SadRogue.Primitives.Point.op_Division(SadRogue.Primitives.Point,System.Double)
   fullName: SadRogue.Primitives.Point.Division(SadRogue.Primitives.Point, System.Double)
   nameWithType: Point.Division(Point, Double)
-- uid: SadRogue.Primitives.Point.op_Division(SadRogue.Primitives.Point,System.Int32)
-  name: Division(Point, Int32)
-  href: api/SadRogue.Primitives.Point.html#SadRogue_Primitives_Point_op_Division_SadRogue_Primitives_Point_System_Int32_
-  commentId: M:SadRogue.Primitives.Point.op_Division(SadRogue.Primitives.Point,System.Int32)
-  fullName: SadRogue.Primitives.Point.Division(SadRogue.Primitives.Point, System.Int32)
-  nameWithType: Point.Division(Point, Int32)
+- uid: SadRogue.Primitives.Point.op_Division(SadRogue.Primitives.Point,System.ValueTuple{System.Int32,System.Int32})
+  name: Division(Point, (Int32 x, Int32 y))
+  href: api/SadRogue.Primitives.Point.html#SadRogue_Primitives_Point_op_Division_SadRogue_Primitives_Point_System_ValueTuple_System_Int32_System_Int32__
+  commentId: M:SadRogue.Primitives.Point.op_Division(SadRogue.Primitives.Point,System.ValueTuple{System.Int32,System.Int32})
+  name.vb: Division(Point, (x As Int32, y As Int32))
+  fullName: SadRogue.Primitives.Point.Division(SadRogue.Primitives.Point, System.ValueTuple<System.Int32, System.Int32>)
+  fullName.vb: SadRogue.Primitives.Point.Division(SadRogue.Primitives.Point, System.ValueTuple(Of System.Int32, System.Int32))
+  nameWithType: Point.Division(Point, (Int32 x, Int32 y))
+  nameWithType.vb: Point.Division(Point, (x As Int32, y As Int32))
+- uid: SadRogue.Primitives.Point.op_Division(System.ValueTuple{System.Int32,System.Int32},SadRogue.Primitives.Point)
+  name: Division((Int32 x, Int32 y), Point)
+  href: api/SadRogue.Primitives.Point.html#SadRogue_Primitives_Point_op_Division_System_ValueTuple_System_Int32_System_Int32__SadRogue_Primitives_Point_
+  commentId: M:SadRogue.Primitives.Point.op_Division(System.ValueTuple{System.Int32,System.Int32},SadRogue.Primitives.Point)
+  name.vb: Division((x As Int32, y As Int32), Point)
+  fullName: SadRogue.Primitives.Point.Division(System.ValueTuple<System.Int32, System.Int32>, SadRogue.Primitives.Point)
+  fullName.vb: SadRogue.Primitives.Point.Division(System.ValueTuple(Of System.Int32, System.Int32), SadRogue.Primitives.Point)
+  nameWithType: Point.Division((Int32 x, Int32 y), Point)
+  nameWithType.vb: Point.Division((x As Int32, y As Int32), Point)
 - uid: SadRogue.Primitives.Point.op_Division*
   name: Division
   href: api/SadRogue.Primitives.Point.html#SadRogue_Primitives_Point_op_Division_
@@ -3962,6 +3974,24 @@ references:
   commentId: M:SadRogue.Primitives.Point.op_Multiply(SadRogue.Primitives.Point,System.Int32)
   fullName: SadRogue.Primitives.Point.Multiply(SadRogue.Primitives.Point, System.Int32)
   nameWithType: Point.Multiply(Point, Int32)
+- uid: SadRogue.Primitives.Point.op_Multiply(SadRogue.Primitives.Point,System.ValueTuple{System.Int32,System.Int32})
+  name: Multiply(Point, (Int32 x, Int32 y))
+  href: api/SadRogue.Primitives.Point.html#SadRogue_Primitives_Point_op_Multiply_SadRogue_Primitives_Point_System_ValueTuple_System_Int32_System_Int32__
+  commentId: M:SadRogue.Primitives.Point.op_Multiply(SadRogue.Primitives.Point,System.ValueTuple{System.Int32,System.Int32})
+  name.vb: Multiply(Point, (x As Int32, y As Int32))
+  fullName: SadRogue.Primitives.Point.Multiply(SadRogue.Primitives.Point, System.ValueTuple<System.Int32, System.Int32>)
+  fullName.vb: SadRogue.Primitives.Point.Multiply(SadRogue.Primitives.Point, System.ValueTuple(Of System.Int32, System.Int32))
+  nameWithType: Point.Multiply(Point, (Int32 x, Int32 y))
+  nameWithType.vb: Point.Multiply(Point, (x As Int32, y As Int32))
+- uid: SadRogue.Primitives.Point.op_Multiply(System.ValueTuple{System.Int32,System.Int32},SadRogue.Primitives.Point)
+  name: Multiply((Int32 x, Int32 y), Point)
+  href: api/SadRogue.Primitives.Point.html#SadRogue_Primitives_Point_op_Multiply_System_ValueTuple_System_Int32_System_Int32__SadRogue_Primitives_Point_
+  commentId: M:SadRogue.Primitives.Point.op_Multiply(System.ValueTuple{System.Int32,System.Int32},SadRogue.Primitives.Point)
+  name.vb: Multiply((x As Int32, y As Int32), Point)
+  fullName: SadRogue.Primitives.Point.Multiply(System.ValueTuple<System.Int32, System.Int32>, SadRogue.Primitives.Point)
+  fullName.vb: SadRogue.Primitives.Point.Multiply(System.ValueTuple(Of System.Int32, System.Int32), SadRogue.Primitives.Point)
+  nameWithType: Point.Multiply((Int32 x, Int32 y), Point)
+  nameWithType.vb: Point.Multiply((x As Int32, y As Int32), Point)
 - uid: SadRogue.Primitives.Point.op_Multiply*
   name: Multiply
   href: api/SadRogue.Primitives.Point.html#SadRogue_Primitives_Point_op_Multiply_
@@ -4146,6 +4176,12 @@ references:
   isSpec: "True"
   fullName: SadRogue.Primitives.PointExtensions.Add
   nameWithType: PointExtensions.Add
+- uid: SadRogue.Primitives.PointExtensions.Divide(SadRogue.Primitives.Point,SadRogue.Primitives.Point)
+  name: Divide(Point, Point)
+  href: api/SadRogue.Primitives.PointExtensions.html#SadRogue_Primitives_PointExtensions_Divide_SadRogue_Primitives_Point_SadRogue_Primitives_Point_
+  commentId: M:SadRogue.Primitives.PointExtensions.Divide(SadRogue.Primitives.Point,SadRogue.Primitives.Point)
+  fullName: SadRogue.Primitives.PointExtensions.Divide(SadRogue.Primitives.Point, SadRogue.Primitives.Point)
+  nameWithType: PointExtensions.Divide(Point, Point)
 - uid: SadRogue.Primitives.PointExtensions.Divide(SadRogue.Primitives.Point,System.Double)
   name: Divide(Point, Double)
   href: api/SadRogue.Primitives.PointExtensions.html#SadRogue_Primitives_PointExtensions_Divide_SadRogue_Primitives_Point_System_Double_
@@ -4165,6 +4201,12 @@ references:
   isSpec: "True"
   fullName: SadRogue.Primitives.PointExtensions.Divide
   nameWithType: PointExtensions.Divide
+- uid: SadRogue.Primitives.PointExtensions.Multiply(SadRogue.Primitives.Point,SadRogue.Primitives.Point)
+  name: Multiply(Point, Point)
+  href: api/SadRogue.Primitives.PointExtensions.html#SadRogue_Primitives_PointExtensions_Multiply_SadRogue_Primitives_Point_SadRogue_Primitives_Point_
+  commentId: M:SadRogue.Primitives.PointExtensions.Multiply(SadRogue.Primitives.Point,SadRogue.Primitives.Point)
+  fullName: SadRogue.Primitives.PointExtensions.Multiply(SadRogue.Primitives.Point, SadRogue.Primitives.Point)
+  nameWithType: PointExtensions.Multiply(Point, Point)
 - uid: SadRogue.Primitives.PointExtensions.Multiply(SadRogue.Primitives.Point,System.Double)
   name: Multiply(Point, Double)
   href: api/SadRogue.Primitives.PointExtensions.html#SadRogue_Primitives_PointExtensions_Multiply_SadRogue_Primitives_Point_System_Double_

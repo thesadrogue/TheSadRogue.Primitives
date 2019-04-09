@@ -4,16 +4,9 @@ using System.Collections.Generic;
 namespace SadRogue.Primitives
 {
     /// <summary>
-    /// Represents a rectangle in terms of grid squares. Provides numerous static functions that enable
-    /// creation and common operations involving rectangles, as well as implicit conversion operators that
-    /// enable interoperability with rectangle representations from other libraries.
+    /// Represents a 2D rectangle. Provides numerous static functions that enable creation and common operations
+    /// involving rectangles.
     /// </summary>
-    /// <remarks>
-    /// Rectangle is designed to be extremely efficient and interoperable with equivalent representations in other libraries,
-    /// so in general, in an environment where you have multiple rectangle representations defined, it is best to prefer
-    /// Rectangle where possible, as something that accepts or works with Rectangle will generally work with other supported types
-    /// as well.
-    /// </remarks>
     public struct Rectangle : IEquatable<Rectangle>, IEquatable<(int x, int y, int width, int height)>
     {
         /// <summary>
@@ -137,12 +130,6 @@ namespace SadRogue.Primitives
         public int MinExtentY { get => Y; }
 
         /// <summary>
-        /// Calculates the perimeter length of the rectangle.  This is equal to the mathematical
-        /// perimeter, NOT the number of grid squares around the perimiter.
-        /// </summary>
-        public int Perimeter { get => (2 * Width) + (2 * Height); }
-
-        /// <summary>
         /// Coord representing the position (min x- and y-values) of the rectangle.
         /// </summary>
         public Point Position
@@ -215,12 +202,12 @@ namespace SadRogue.Primitives
         public static Rectangle WithPostionAndSize(Point position, Point size) => new Rectangle(position.X, position.Y, size.X, size.Y);
 
         /// <summary>
-        /// Gets a <see cref="Grid2D.Area"/> representing every location in <paramref name="rect1"/> that
+        /// Gets an <see cref="Primitives.Area"/> representing every location in <paramref name="rect1"/> that
         /// is NOT in <paramref name="rect2"/>.
         /// </summary>
         /// <param name="rect1"/>
         /// <param name="rect2"/>
-        /// <returns>A <see cref="Grid2D.Area"/> representing every location in <paramref name="rect1"/> that
+        /// <returns>A <see cref="Primitives.Area"/> representing every location in <paramref name="rect1"/> that
         /// is NOT in <paramref name="rect2"/>.</returns>
         public static Area GetDifference(Rectangle rect1, Rectangle rect2)
         {
@@ -238,12 +225,12 @@ namespace SadRogue.Primitives
         }
 
         /// <summary>
-        /// Gets a <see cref="Grid2D.Area"/> representing the exact union of the specified rectangles, eg.
-        /// a MapArea containing all locations from either rectangle.
+        /// Gets a <see cref="Primitives.Area"/> representing the exact union of the specified rectangles, eg.
+        /// an area containing all locations from either rectangle.
         /// </summary>
         /// <param name="r1"/>
         /// <param name="r2"/>
-        /// <returns>A <see cref="Grid2D.Area"/> containing every position in either rectangle.</returns>
+        /// <returns>A <see cref="Primitives.Area"/> containing every position in either rectangle.</returns>
         public static Area GetExactUnion(Rectangle r1, Rectangle r2)
         {
             var retVal = new Area();
@@ -420,14 +407,13 @@ namespace SadRogue.Primitives
         }
 
         /// <summary>
-        /// Returns a new rectangle, expanded to include the additional specified number of tiles on
-        /// the left/right and top/bottom.
+        /// Returns a new rectangle, expanded to include the additional specified rows/columns.
         /// </summary>
         /// <param name="horizontalChange">
-        /// Number of additional tiles to include on the left/right of the rectangle.
+        /// Number of additional columns to include on the left/right of the rectangle.
         /// </param>
         /// <param name="verticalChange">
-        /// Number of additional tiles to include on the top/bottom of the rectangle.
+        /// Number of additional rows to include on the top/bottom of the rectangle.
         /// </param>
         /// <returns>A new rectangle, expanded appropriately.</returns>
         public Rectangle Expand(int horizontalChange, int verticalChange)

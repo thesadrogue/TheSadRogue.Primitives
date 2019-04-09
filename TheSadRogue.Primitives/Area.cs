@@ -6,8 +6,8 @@ using System.Text;
 namespace SadRogue.Primitives
 {
     /// <summary>
-    /// Represents an arbitrarily-shaped area of a map. Stores and provides access to a list of each
-    /// unique position considered connected.
+    /// Represents an arbitrarily-shaped 2D area. Stores and provides access to a list of each
+    /// unique position in the area.
     /// </summary>
     public class Area : IReadOnlyArea
     {
@@ -46,22 +46,22 @@ namespace SadRogue.Primitives
         }
 
         /// <summary>
-        /// Number of (unique) positions in the currently stored list.
+        /// Number of (unique) positions in the area.
         /// </summary>
         public int Count { get { return _positions.Count; } }
 
         /// <summary>
-        /// List of all (unique) positions in the list.
+        /// List of all (unique) positions in the area.
         /// </summary>
         public IReadOnlyList<Point> Positions { get { return _positions.AsReadOnly(); } }
 
         /// <summary>
-        /// Gets a MapArea containing all positions in <paramref name="area1"/>, minus those that are in
+        /// Gets an area containing all positions in <paramref name="area1"/>, minus those that are in
         /// <paramref name="area2"/>.
         /// </summary>
-        /// <param name="area1">The first MapArea.</param>
-        /// <param name="area2">The second MapArea.</param>
-        /// <returns>A MapArea with exactly those positions in <paramref name="area1"/> that are NOT in
+        /// <param name="area1"/>
+        /// <param name="area2"/>
+        /// <returns>A area with exactly those positions in <paramref name="area1"/> that are NOT in
         /// <paramref name="area2"/>.</returns>
         public static Area GetDifference(IReadOnlyArea area1, IReadOnlyArea area2)
         {
@@ -79,11 +79,11 @@ namespace SadRogue.Primitives
         }
 
         /// <summary>
-        /// Gets a MapArea containing exactly those positions contained in both of the given MapAreas.
+        /// Gets an area containing exactly those positions contained in both of the given areas.
         /// </summary>
-        /// <param name="area1">First MapArea.</param>
-        /// <param name="area2">Second MapArea.</param>
-        /// <returns>A MapArea containing exactly those positions contained in both of the given MapAreas.</returns>
+        /// <param name="area1"/>
+        /// <param name="area2"/>
+        /// <returns>An area containing exactly those positions contained in both of the given areas.</returns>
         public static Area GetIntersection(IReadOnlyArea area1, IReadOnlyArea area2)
         {
             var retVal = new Area();
@@ -102,11 +102,11 @@ namespace SadRogue.Primitives
         }
 
         /// <summary>
-        /// Gets a new MapArea containing every position in one or both given map areas.
+        /// Gets an area containing every position in one or both given areas.
         /// </summary>
-        /// <param name="area1">First MapArea.</param>
-        /// <param name="area2">Second MapArea.</param>
-        /// <returns>A MapArea containing only those positions in one or both of the given MapAreas.</returns>
+        /// <param name="area1"/>
+        /// <param name="area2"/>
+        /// <returns>An area containing only those positions in one or both of the given areas.</returns>
         public static Area GetUnion(IReadOnlyArea area1, IReadOnlyArea area2)
         {
             var retVal = new Area();
@@ -120,18 +120,18 @@ namespace SadRogue.Primitives
         /// <summary>
         /// Inequality comparison -- true if the two areas do NOT contain exactly the same points.
         /// </summary>
-        /// <param name="lhs">First MapArea to compare.</param>
-        /// <param name="rhs">Second MapArea to compare.</param>
-        /// <returns>True if the MapAreas do NOT contain exactly the same points, false otherwise.</returns>
+        /// <param name="lhs"/>
+        /// <param name="rhs"/>
+        /// <returns>True if the areas do NOT contain exactly the same points, false otherwise.</returns>
         public static bool operator !=(Area lhs, Area rhs) => !(lhs == rhs);
 
         /// <summary>
-        /// Creates a new MapArea with the Coords all shifted by the given vector.
+        /// Creates an area with the positions all shifted by the given vector.
         /// </summary>
-        /// <param name="lhs">MapArea.</param>
-        /// <param name="rhs">Coord (vector) to add.</param>
+        /// <param name="lhs"/>
+        /// <param name="rhs">Vector) to add to each position in <paramref name="lhs"/>.</param>
         /// <returns>
-        /// A new MapArea with the positions all translated by the given amount in x and y directions.
+        /// An area with the positions all translated by the given amount in x and y directions.
         /// </returns>
         public static Area operator +(Area lhs, Point rhs)
         {
@@ -144,12 +144,11 @@ namespace SadRogue.Primitives
         }
 
         /// <summary>
-        /// Compares for equality. Returns true if the two MapAreas are the same reference, or if
-        /// they contain exactly the same points.
+        /// Compares for equality. Returns true if the two areas contain exactly the same points.
         /// </summary>
-        /// <param name="lhs">First MapArea to compare.</param>
-        /// <param name="rhs">Second MapArea to compare.</param>
-        /// <returns>True if the MapAreas contain exactly the same points, false otherwise.</returns>
+        /// <param name="lhs"/>
+        /// <param name="rhs"/>
+        /// <returns>True if the areas contain exactly the same points, false otherwise.</returns>
         public static bool operator ==(Area lhs, Area rhs)
         {
             if (ReferenceEquals(lhs, rhs))
@@ -159,7 +158,11 @@ namespace SadRogue.Primitives
             if (ReferenceEquals(null, lhs) || ReferenceEquals(null, rhs))
                 return false;
 
+            // Quick checks that can short-circuit a function that would otherwise require looping over all points
             if (lhs.Count != rhs.Count)
+                return false;
+
+            if (lhs.Bounds != rhs.Bounds)
                 return false;
 
             foreach (var pos in lhs.Positions)
@@ -174,8 +177,8 @@ namespace SadRogue.Primitives
         /// list, or does nothing otherwise.
         /// </summary>
         /// <remarks>
-        /// Because the class uses a hash set internally to
-        /// determine what points have already been added, this is an average case O(1) operation.
+        /// Because the class uses a hash set internally to determine what points have already been added,
+        /// this is an average case O(1) operation.
         /// </remarks>
         /// <param name="position">The position to add.</param>
         public void Add(Point position)
@@ -206,7 +209,7 @@ namespace SadRogue.Primitives
         /// <summary>
         /// Adds all positions in the given rectangle to the area, if they are not already present.
         /// </summary>
-        /// <param name="rectangle">Rectangle whose points to add.</param>
+        /// <param name="rectangle">Rectangle indicating which points to add.</param>
         public void Add(Rectangle rectangle)
         {
             foreach (var pos in rectangle.Positions())
@@ -214,7 +217,7 @@ namespace SadRogue.Primitives
         }
 
         /// <summary>
-        /// Adds all coordinates in the given map area to this one.
+        /// Adds all positions in the given map area to this one.
         /// </summary>
         /// <param name="area">Area containing positions to add.</param>
         public void Add(IReadOnlyArea area)
@@ -224,14 +227,11 @@ namespace SadRogue.Primitives
         }
 
         /// <summary>
-        /// Determines whether or not the given position is considered within the area or not.
+        /// Determines whether or not the given position is within the area or not.
         /// </summary>
         /// <param name="position">The position to check.</param>
         /// <returns>True if the specified position is within the area, false otherwise.</returns>
-        public bool Contains(Point position)
-        {
-            return positionsSet.Contains(position);
-        }
+        public bool Contains(Point position) => positionsSet.Contains(position);
 
         /// <summary>
         /// Returns whether or not the given area is completely contained within the current one.
@@ -253,11 +253,12 @@ namespace SadRogue.Primitives
         }
 
         /// <summary>
-        /// Same as operator==. Returns false of obj is not a MapArea.
+        /// Returns true if the given object is an Area and the two areas contain exactly the same points,
+        /// false otherwise.
         /// </summary>
         /// <param name="obj">Object to compare</param>
         /// <returns>
-        /// True if the object given is a MapArea and is equal (contains the same points), false otherwise.
+        /// True if the object given is a area and contains exactly the same points, false otherwise.
         /// </returns>
         public override bool Equals(object obj)
         {
@@ -303,15 +304,15 @@ namespace SadRogue.Primitives
         }
 
         /// <summary>
-        /// Removes the given position specified from the MapArea. Particularly when the Remove
+        /// Removes the given position specified from the area. Particularly when the remove operation
         /// operation changes the bounds, this operation can be expensive, so if you must do multiple
-        /// Remove operations, it would be best to group them into 1 using <see cref="Remove(IEnumerable{Point})"/>.
+        /// remove operations, it would be best to group them into 1 using <see cref="Remove(IEnumerable{Point})"/>.
         /// </summary>
         /// <param name="position">The position to remove.</param>
         public void Remove(Point position) => Remove(YieldCoord(position));
 
         /// <summary>
-        /// Removes positions for which the given predicate returns true from the MapArea.
+        /// Removes positions for which the given predicate returns true from the area.
         /// </summary>
         /// <param name="predicate">Predicate returning true for positions that should be removed.</param>
         public void Remove(Func<Point, bool> predicate)
@@ -333,7 +334,7 @@ namespace SadRogue.Primitives
         }
 
         /// <summary>
-        /// Removes the given positions from the specified MapArea.
+        /// Removes the given positions from the specified area.
         /// </summary>
         /// <param name="positions">Positions to remove.</param>
         public void Remove(HashSet<Point> positions)
@@ -351,7 +352,7 @@ namespace SadRogue.Primitives
         }
 
         /// <summary>
-        /// Removes the given positions from the specified MapArea.
+        /// Removes the given positions from the specified area.
         /// </summary>
         /// <param name="positions">Positions to remove.</param>
         public void Remove(IEnumerable<Point> positions)
@@ -369,16 +370,16 @@ namespace SadRogue.Primitives
         public void Remove(IReadOnlyArea area) => Remove(area.Positions);
 
         /// <summary>
-        /// Removes all positions in the given Rectangle from this MapArea.
+        /// Removes all positions in the given rectangle from this area.
         /// </summary>
         /// <param name="rectangle">Rectangle containing positions to remove.</param>
         public void Remove(Rectangle rectangle) => Remove(rectangle.Positions());
 
         /// <summary>
-        /// Returns the string of each position in the MapArea, in a square-bracket enclosed list,
+        /// Returns the string of each position in the area, in a square-bracket enclosed list,
         /// eg. [(1, 2), (3, 4), (5, 6)].
         /// </summary>
-        /// <returns>A string representation of those coordinates in the MapArea.</returns>
+        /// <returns>A string representation of those coordinates in the area.</returns>
         public override string ToString()
         {
             var result = new StringBuilder("[");

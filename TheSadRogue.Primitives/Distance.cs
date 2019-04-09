@@ -9,8 +9,9 @@ namespace SadRogue.Primitives
     /// </summary>
     /// <remarks>
     /// Provides functions that calculate the distance between two points according to the distance
-    /// measurement being used. Instances of Distance are also implicitly convertible to <see cref="AdjacencyRule"/>
-    /// types (since an adjacency method is implied by a distance calculation), and <see cref="Radius"/> types.
+    /// measurement being used. Instances of Distance are also implicitly convertible to both
+    /// <see cref="Radius"/> and <see cref="AdjacencyRule"/> (since both a method of determining adjacent
+    /// locations and a radius shape are implied by a distance calculation).
     /// </remarks>
     public class Distance
     {

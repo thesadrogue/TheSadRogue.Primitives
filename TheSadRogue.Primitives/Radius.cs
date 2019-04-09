@@ -71,12 +71,59 @@ namespace SadRogue.Primitives
             CIRCLE,
         };
 
+        /// <summary>
+        /// Returns an IEnumerable of all positions in a radius of the current shape defined by the given parameters.
+        /// </summary>
+        /// <remarks>
+        /// If you are getting postions for a radius of the same size frequently, it may be more performant to instead
+        /// construct a <see cref="RadiusLocationContext"/> to represent it, and pass that to
+        /// <see cref="PositionsInRadius(RadiusLocationContext)"/>.
+        /// 
+        /// The positions returned are all guaranteed to be within the <paramref name="bounds"/> specified.  As well,
+        /// they are guaranteed to be in order from least distance from center to most distance if either
+        /// <see cref="Radius.DIAMOND"/> or <see cref="Radius.SQUARE"/> is being used.
+        /// </remarks>
+        /// <param name="center">Center-point of the radius.</param>
+        /// <param name="radius">Length of the radius.</param>
+        /// <param name="bounds">Bounds to restrict the returned values by.</param>
+        /// <returns>All points in the radius shape defined by the given parameters, in order from least distance to greatest
+        /// if <see cref="Radius.DIAMOND"/> or <see cref="Radius.SQUARE"/> is being used.</returns>
         public IEnumerable<Point> PositionsInRadius(Point center, int radius, Rectangle bounds)
             => PositionsInRadius(new RadiusLocationContext(center, radius, bounds));
 
+        /// <summary>
+        /// Returns an IEnumerable of all positions in a radius of the current shape defined by the given parameters.
+        /// </summary>
+        /// <remarks>
+        /// If you are getting postions for a radius of the same size frequently, it may be more performant to instead
+        /// construct a <see cref="RadiusLocationContext"/> to represent it, and pass that to
+        /// <see cref="PositionsInRadius(RadiusLocationContext)"/>.
+        /// 
+        /// The positions returned are guaranteed to be in order from least distance from center to most distance if either
+        /// <see cref="Radius.DIAMOND"/> or <see cref="Radius.SQUARE"/> is being used.
+        /// </remarks>
+        /// <param name="center">Center-point of the radius.</param>
+        /// <param name="radius">Length of the radius.</param>
+        /// <returns>All points in the radius shape defined by the given parameters, in order from least distance to greatest
+        /// if <see cref="Radius.DIAMOND"/> or <see cref="Radius.SQUARE"/> is being used.</returns>
         public IEnumerable<Point> PositionsInRadius(Point center, int radius)
             => PositionsInRadius(new RadiusLocationContext(center, radius));
 
+        /// <summary>
+        /// Returns an IEnumerable of all positions in a radius of the current shape defined by the given context.  Creating
+        /// a context to store, and using this function instead of another overload may be more performant when you plan to get
+        /// the positions for a radius of the same size multiple times, even if the shape/position are changing.
+        /// </summary>
+        /// <remarks>
+        /// The positions returned are all guaranteed to be within the <paramref name="bounds"/> specified in the context, unless
+        /// the bounds are unspecified, in which case no bound restriction results.
+        /// 
+        /// As well, they are guaranteed to be in order from least distance from center to most distance if either
+        /// <see cref="Radius.DIAMOND"/> or <see cref="Radius.SQUARE"/> is being used.
+        /// </remarks>
+        /// <param name="context">Context defining radius parameters.</param>
+        /// <returns>All points in the radius shape defined by the given context, in order from least distance to greatest
+        /// if <see cref="Radius.DIAMOND"/> or <see cref="Radius.SQUARE"/> is being used.</returns>
         public IEnumerable<Point> PositionsInRadius(RadiusLocationContext context)
         {
             if (context._newlyInitialized)

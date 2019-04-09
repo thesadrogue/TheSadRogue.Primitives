@@ -3,9 +3,8 @@
 namespace SadRogue.Primitives
 {
     /// <summary>
-    /// A structure that represents a standard 2D point.  Provides numerous functions and operatorsthat enable
-    /// common grid/position-related math and operations.  Other packages also may define extension methods to
-    /// enable interoperability with this type.
+    /// A structure that represents a standard 2D point.  Provides numerous functions and operators that enable
+    /// common grid/position-related math and operations.
     /// </summary>
     /// <remarks>
     /// Point instances can be created using the standard Point c = new Point(x, y) syntax.  In addition,
@@ -18,22 +17,22 @@ namespace SadRogue.Primitives
     public struct Point : IEquatable<Point>, IEquatable<(int x, int y)>
     {
         /// <summary>
-        /// Coord value that represents None or no position (since Coord is not a nullable type).
+        /// Point value that represents None or no position (since Point is not a nullable type).
         /// Typically you would use this constant instead of null.
         /// </summary>
         /// <remarks>
-        /// This constant has (x, y) values (int.MinValue, int.MinValue), so a coordinate with those
+        /// This constant has (x, y) values (int.MinValue, int.MinValue), so a position with those
         /// x/y values is not considered a valid coordinate by many functions.
         /// </remarks>
         public static readonly Point NONE = new Point(int.MinValue, int.MinValue);
 
         /// <summary>
-        /// X-value of the coordinate.
+        /// X-value of the position.
         /// </summary>
         public readonly int X;
 
         /// <summary>
-        /// Y-value of the coordinate.
+        /// Y-value of the position.
         /// </summary>
         public readonly int Y;
 
@@ -160,7 +159,7 @@ namespace SadRogue.Primitives
         /// <param name="c"></param>
         /// <param name="i"></param>
         /// <returns>
-        /// Coordinate (c.X * <paramref name="i"/>, c.Y * <paramref name="i"/>), with the resulting values
+        /// Position (c.X * <paramref name="i"/>, c.Y * <paramref name="i"/>), with the resulting values
         /// rounded to nearest integer.
         /// </returns>
         public static Point operator *(Point c, double i) =>
@@ -187,11 +186,11 @@ namespace SadRogue.Primitives
             new Point((int)Math.Round(c.X / i, MidpointRounding.AwayFromZero), (int)Math.Round(c.Y / i, MidpointRounding.AwayFromZero));
 
         /// <summary>
-        /// Returns the coordinate (c1.X + c2.X, c1.Y + c2.Y).
+        /// Returns the position (c1.X + c2.X, c1.Y + c2.Y).
         /// </summary>
         /// <param name="c1"></param>
         /// <param name="c2"></param>
-        /// <returns>The coordinate (c1.X + c2.X, c1.Y + c2.Y)</returns>
+        /// <returns>The position (c1.X + c2.X, c1.Y + c2.Y)</returns>
         public static Point operator +(Point c1, Point c2) => new Point(c1.X + c2.X, c1.Y + c2.Y);
 
         /// <summary>
@@ -199,16 +198,16 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="c"></param>
         /// <param name="i"></param>
-        /// <returns>Coordinate (c.X + <paramref name="i"/>, c.Y + <paramref name="i"/>.</returns>
+        /// <returns>Position (c.X + <paramref name="i"/>, c.Y + <paramref name="i"/>.</returns>
         public static Point operator +(Point c, int i) => new Point(c.X + i, c.Y + i);
 
         /// <summary>
-        /// Translates the given coordinate by one unit in the given direction.
+        /// Translates the given position by one unit in the given direction.
         /// </summary>
         /// <param name="c"></param>
         /// <param name="d"></param>
         /// <returns>
-        /// Coordinate (c.X + d.DeltaX, c.Y + d.DeltaY)
+        /// Position (c.X + d.DeltaX, c.Y + d.DeltaY)
         /// </returns>
         public static Point operator +(Point c, Direction d) => new Point(c.X + d.DeltaX, c.Y + d.DeltaY);
 
@@ -217,7 +216,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="c1"></param>
         /// <param name="c2"></param>
-        /// <returns>True if the two coordinates are equal, false if not.</returns>
+        /// <returns>True if the two positions are equal, false if not.</returns>
         public static bool operator ==(Point c1, Point c2) => c1.X == c2.X && c1.Y == c2.Y;
 
         /// <summary>
@@ -234,7 +233,7 @@ namespace SadRogue.Primitives
         /// <param name="x">X-value of the coordinate.</param>
         /// <param name="y">Y-value of the coordinate.</param>
         /// <param name="width">The width of the 2D array, used to do the math to calculate index.</param>
-        /// <returns>The 1D index of this Coord.</returns>
+        /// <returns>The 1D index of the position specified.</returns>
         public static int ToIndex(int x, int y, int width) => y * width + x;
 
         /// <summary>
@@ -254,16 +253,16 @@ namespace SadRogue.Primitives
         public static int ToYValue(int index, int width) => index / width;
 
         /// <summary>
-        /// Same as operator == in this case; returns false if <paramref name="obj"/> is not a Coord.
+        /// Same as operator == in this case; returns false if <paramref name="obj"/> is not a Point.
         /// </summary>
-        /// <param name="obj">The object to compare the current Coord to.</param>
+        /// <param name="obj">The object to compare the current Point to.</param>
         /// <returns>
-        /// True if <paramref name="obj"/> is a Coord instance, and the two coordinates are equal, false otherwise.
+        /// True if <paramref name="obj"/> is a Coord instance, and the two positions are equal, false otherwise.
         /// </returns>
         public override bool Equals(object obj) => obj is Point c && Equals(c);
 
         /// <summary>
-        /// Returns a hash code for the Coord. The important parts: it should be fairly fast and it
+        /// Returns a hash code for the Point. The important parts: it should be fairly fast and it
         /// does not collide often.
         /// </summary>
         /// <remarks>
@@ -271,9 +270,9 @@ namespace SadRogue.Primitives
         /// <see cref="Y"/>, with X and Y each multiplied by a differet large integer, then xors
         /// the mixed values, does a right shift, and finally multiplies by an overflowing prime
         /// number.  This hashing algorithm should produce an exceptionally low collision rate for
-        /// coordinates between (0, 0) and (255, 255).
+        /// coordinates between (0, 0) and (255, 255), and remain relatively reasonable beyond that.
         /// </remarks>
-        /// <returns>The hash-code for the Coord.</returns>
+        /// <returns>The hash-code for the Point.</returns>
         public override int GetHashCode()
         {
             // Intentional overflow on both of these, part of hash-code generation
@@ -286,7 +285,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="width">The width of the 2D map/array this location is referring to --
         /// used to do the math to calculate index.</param>
-        /// <returns>The 1D index of this Coord.</returns>
+        /// <returns>The 1D index of this Point.</returns>
         public int ToIndex(int width) => Y * width + X;
 
         /// <summary>
@@ -296,21 +295,21 @@ namespace SadRogue.Primitives
         public override string ToString() => $"({X},{Y})";
 
         /// <summary>
-        /// Returns the coordinate resulting from adding dx to the X-value of the coordinate, and dy
-        /// to the Y-value of the coordinate.
+        /// Returns the position resulting from adding dx to the X-value of the position, and dy
+        /// to the Y-value of the position.
         /// </summary>
         /// <param name="deltaChange">
         /// Vector where deltaChange.X represents the delta-x value and deltaChange.Y represents the
         /// delta-y value.
         /// </param>
-        /// <returns>The coordinate (<see cref="X"/> + deltaChange.X, <see cref="Y"/> + deltaChange.Y)</returns>
+        /// <returns>The position (<see cref="X"/> + deltaChange.X, <see cref="Y"/> + deltaChange.Y)</returns>
         public Point Translate(Point deltaChange) => new Point(X + deltaChange.X, Y + deltaChange.Y);
 
         /// <summary>
         /// True if the given coordinate has equal x and y values to the current one.
         /// </summary>
-        /// <param name="other">Coordinate to compare.</param>
-        /// <returns>True if the two coordinates are equal, false if not.</returns>
+        /// <param name="other">Position to compare.</param>
+        /// <returns>True if the two positions are equal, false if not.</returns>
         public bool Equals(Point other) => X == other.X && Y == other.Y;
 
         #region TupleCompatibility
@@ -326,27 +325,27 @@ namespace SadRogue.Primitives
         }
 
         /// <summary>
-        /// Implicitly converts a Coord to an equivalent tuple of two integers.
+        /// Implicitly converts a Point to an equivalent tuple of two integers.
         /// </summary>
         /// <param name="c" />
         /// <returns />
         public static implicit operator (int x, int y) (Point c) => (c.X, c.Y);
         /// <summary>
-        /// Implicitly converts a tuple of two integers to an equivalent Coord.
+        /// Implicitly converts a tuple of two integers to an equivalent Point.
         /// </summary>
         /// <param name="tuple" />
         /// <returns />
         public static implicit operator Point((int x, int y) tuple) => new Point(tuple.x, tuple.y);
 
         /// <summary>
-        /// Adds the x and y values of a Coord to the corresponding values of a tuple of two integers.
+        /// Adds the x and y values of a Point to the corresponding values of a tuple of two integers.
         /// </summary>
         /// <param name="tuple" />
         /// <param name="c" />
         /// <returns>A tuple (tuple.x + c.X, tuple.y + c.Y).</returns>
         public static (int x, int y) operator +((int x, int y) tuple, Point c) => (tuple.x + c.X, tuple.y + c.Y);
         /// <summary>
-        /// Adds the x and y values of a tuple of two integers to a Coord.
+        /// Adds the x and y values of a tuple of two integers to a Point.
         /// </summary>
         /// <param name="c" />
         /// <param name="tuple" />
@@ -354,14 +353,14 @@ namespace SadRogue.Primitives
         public static Point operator +(Point c, (int x, int y) tuple) => new Point(c.X + tuple.x, c.Y + tuple.y);
 
         /// <summary>
-        /// Subtracts the x and y values of a Coord from a tuple of two integers.
+        /// Subtracts the x and y values of a Point from a tuple of two integers.
         /// </summary>
         /// <param name="tuple" />
         /// <param name="c" />
         /// <returns>A tuple (tuple.x - c.X, tuple.y - c.Y).</returns>
         public static (int x, int y) operator -((int x, int y) tuple, Point c) => (tuple.x - c.X, tuple.y - c.Y);
         /// <summary>
-        /// Subtracts the x and y values of a tuple of two integers from a Coord.
+        /// Subtracts the x and y values of a tuple of two integers from a Point.
         /// </summary>
         /// <param name="c" />
         /// <param name="tuple" />

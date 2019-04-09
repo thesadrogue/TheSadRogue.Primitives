@@ -37,7 +37,7 @@ namespace SadRogue.Primitives
         }
 
         /// <summary>
-        /// Enum representing AdjacencyRule types. Each AdjacencyRule instance has a <see cref="Type"/> field
+        /// Enum representing <see cref="AdjacencyRule"/> types. Each AdjacencyRule instance has a <see cref="Type"/> field
         /// which contains the corresponding value from this enum.  Useful for easy mapping of AdjacencyRule
         /// types to a primitive type (for cases like a switch statement).
         /// </summary>
@@ -61,15 +61,15 @@ namespace SadRogue.Primitives
 
         /// <summary>
         /// Enum value representing the method of determining adjacency -- useful for using
-        /// AdjacencyRule types in switch statements.
+        /// <see cref="AdjacencyRule"/> types in switch statements.
         /// </summary>
         public Types Type { get; private set; }
 
         /// <summary>
-        /// Gets the AdjacencyRule class instance representing the adjacency type specified.
+        /// Gets the <see cref="AdjacencyRule"/> class instance representing the adjacency type specified.
         /// </summary>
         /// <param name="adjacencyRuleType">The enum value for the adjacency method.</param>
-        /// <returns>The AdjacencyRule class representing the given adjacency method type.</returns>
+        /// <returns>The <see cref="AdjacencyRule"/> class representing the given adjacency method type.</returns>
         public static AdjacencyRule ToAdjacencyRule(Types adjacencyRuleType)
         {
             switch (adjacencyRuleType)
@@ -249,7 +249,8 @@ namespace SadRogue.Primitives
         /// <param name="startingDirection">
         /// The neighbor in this direction will be returned first, proceeding clockwise.
         /// If null or <see cref="Direction.NONE"/> is specified, the default starting direction
-        /// is used, which is UP for CARDINALS/EIGHT_WAY, and UP_RIGHT for DIAGONALS.
+        /// is used, which is <see cref="Direction.UP"/> for CARDINALS/EIGHT_WAY, and <see cref="Direction.UP_RIGHT"/>
+        /// for DIAGONALS.
         /// </param>
         /// <returns>All neighbors of the given location.</returns>
         public IEnumerable<Point> NeighborsClockwise(Point startingLocation, Direction startingDirection = null)
@@ -267,7 +268,8 @@ namespace SadRogue.Primitives
         /// <param name="startingDirection">
         /// The neighbor in this direction will be returned first, proceeding counter-clockwise.
         /// If null or <see cref="Direction.NONE"/> is specified, the default starting direction
-        /// is used, which is UP for CARDINALS/EIGHT_WAY, and UP_LEFT for DIAGONALS.
+        /// is used, which is <see cref="Direction.UP"/> for CARDINALS/EIGHT_WAY, and
+        /// <see cref="Direction.UP_LEFT"/> for DIAGONALS.
         /// </param>
         /// <returns>All neighbors of the given location.</returns>
         public IEnumerable<Point> NeighborsCounterClockwise(Point startingLocation, Direction startingDirection = null)
@@ -277,9 +279,9 @@ namespace SadRogue.Primitives
         }
 
         /// <summary>
-        /// Returns a string representation of the AdjacencyRule.
+        /// Returns a string representation of the <see cref="AdjacencyRule"/>.
         /// </summary>
-        /// <returns>A string representation of the AdjacencyRule.</returns>
+        /// <returns>A string representation of the <see cref="AdjacencyRule"/>.</returns>
         public override string ToString() => writeVals[(int)Type];
     }
 }

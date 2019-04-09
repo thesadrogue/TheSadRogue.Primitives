@@ -3,14 +3,13 @@
 namespace SadRogue.Primitives
 {
     /// <summary>
-    /// Represents the concept of a "direction" on a grid, and "defines" the coordinate plane GoRogue
-    /// uses via the <see cref="Direction.YIncreasesUpward"/> flag. Interacts with Coord and other
-    /// supported library's equivalent types to allow easy translation of positions in a direction, and
-    /// contains numerous helper functions for retrieving directions in various orders, getting direction
-    /// closest to a line, etc.
+    /// Represents the concept of a "direction" on a grid, and "defines" the coordinate plane via the
+    /// <see cref="Direction.YIncreasesUpward"/> flag. Interacts with Point to allow easy translation
+    /// of positions in a direction, and contains numerous helper functions for retrieving directions in
+    /// various orders, getting direction closest to a line, etc.
     /// </summary>
     /// <remarks>
-    /// The static <see cref="Direction.YIncreasesUpward"/> flag defines the way that many GoRogue algorithms
+    /// The static <see cref="Direction.YIncreasesUpward"/> flag defines the way that many algorithms
     /// interpret the coordinate plane.  By default, this flag is false, meaning that the y-value of positions
     /// is assumed to DECREASE as you proceed in the direction defined by <see cref="Direction.UP"/>, and
     /// increase as you go downward.  If the coordinate plane is displayed on the screen, the origin would be
@@ -185,7 +184,7 @@ namespace SadRogue.Primitives
         }
 
         /// <summary>
-        /// Whether or not a positive y-value indicates an upward change. If true, Directions with an
+        /// Whether or not a positive y-value indicates an upward change. If true, directions with an
         /// upwards component represent a positive change in y-value, and ones with downward components
         /// represent a negative change in y-value.  Setting this to false (which is the default) inverts
         /// this.
@@ -418,33 +417,6 @@ namespace SadRogue.Primitives
         /// <returns>String representation of the direction.</returns>
         public override string ToString() => writeVals[(int)Type];
 
-        /*
-		#if ALLCONVERSIONS
-		#region MonoGame Compatibility
-		/// <summary>
-		/// Translates the given position by one unit in the given direction.
-		/// </summary>
-		/// <param name="p"/>
-		/// <param name="d"/>
-		/// <returns>
-		/// Position (p.X + d.DeltaX, p.Y + d.DeltaY).
-		/// </returns>
-		public static MonoPoint operator +(MonoPoint p, Direction d) => new MonoPoint(p.X + d.DeltaX, p.Y + d.DeltaY);
-		#endregion
-		#endif
-
-		#region System.Drawing Compatibility
-		/// <summary>
-		/// Translates the given position by one unit in the given direction.
-		/// </summary>
-		/// <param name="p"/>
-		/// <param name="d"/>
-		/// <returns>
-		/// Position (p.X + d.DeltaX, p.Y + d.DeltaY).
-		/// </returns>
-		public static DrawingPoint operator +(DrawingPoint p, Direction d) => new DrawingPoint(p.X + d.DeltaX, p.Y + d.DeltaY);
-		#endregion
-		*/
         #region Tuple Compatibility
         /// <summary>
         /// Translates the given position by one unit in the given direction.

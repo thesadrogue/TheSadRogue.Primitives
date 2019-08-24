@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace SadRogue.Primitives
 {
     /// <summary>
-    /// Class representing different shapes that define the concept of a radius on a grid. You cannot
+    /// Structure representing different shapes that define the concept of a radius on a grid. You cannot
     /// create instances of this class using a constructor -- instead, this class contains static instances
     /// representing the various radius shapes.
     /// </summary>

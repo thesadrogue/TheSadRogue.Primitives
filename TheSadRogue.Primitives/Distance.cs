@@ -3,7 +3,7 @@
 namespace SadRogue.Primitives
 {
     /// <summary>
-    /// Class representing methods of calculating distance on a grid. You cannot create instances of this
+    /// Structure representing methods of calculating distance on a grid. You cannot create instances of this
     /// class using a constructor -- instead this class contains static instances representing the
     /// various distance calculations.
     /// </summary>

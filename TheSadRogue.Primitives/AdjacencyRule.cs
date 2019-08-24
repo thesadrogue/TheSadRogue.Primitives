@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace SadRogue.Primitives
 {
     /// <summary>
-    /// Class representing a method for determining which coordinates are adjacent to a given
+    /// Structure representing a method for determining which coordinates are adjacent to a given
     /// coordinate, and which directions those neighbors are in. Cannot be instantiated -- premade
     /// static instances are provided.
     /// </summary>

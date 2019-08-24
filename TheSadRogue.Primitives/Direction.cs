@@ -4,7 +4,7 @@ using System.Linq;
 namespace SadRogue.Primitives
 {
     /// <summary>
-    /// Represents the concept of a "direction" on a grid, and "defines" the coordinate plane via the
+    /// Structure representing the concept of a "direction" on a grid, and "defines" the coordinate plane via the
     /// <see cref="Direction.YIncreasesUpward"/> flag. Interacts with Point to allow easy translation
     /// of positions in a direction, and contains numerous helper functions for retrieving directions in
     /// various orders, getting direction closest to a line, etc.
@@ -160,11 +160,14 @@ namespace SadRogue.Primitives
         public static readonly Direction UP_RIGHT;
 
         /// <summary>
-        /// Whether or not a positive y-value indicates an upward change. If true, directions with an
-        /// upwards component represent a positive change in y-value, and ones with downward components
-        /// represent a negative change in y-value.  Setting this to false (which is the default) inverts
-        /// this.
+        /// Whether or not a positive y-value indicates an upward change. Changing this in a multi-threaded environment where a thread might be
+        /// in the middle of performing operations using directions can lead to unintended behavior -- it is intended that this configuration be done
+        /// as part of an initialization routine.
         /// </summary>
+        /// <remarks>
+        /// If true, directions with an upwards component represent a positive change in y-value, and ones with downward components
+        /// represent a negative change in y-value.  Setting this to false (which is the default) inverts this.
+        /// </remarks>
         public static bool YIncreasesUpward
         {
             get { return _yIncreasesUpward; }

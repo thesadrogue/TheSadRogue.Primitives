@@ -25,8 +25,8 @@ namespace SadRogue.Primitives
         private static readonly string[] writeVals = Enum.GetNames(typeof(Types));
 
         // All directions that aren't NONE.
-        private static Types[] validTypes = Enum.GetValues(typeof(Types)).Cast<Types>().Skip(1).ToArray();
-        private static (int dx, int dy)[] deltaVals;
+        private static readonly Types[] validTypes = Enum.GetValues(typeof(Types)).Cast<Types>().Skip(1).ToArray();
+        private static readonly (int dx, int dy)[] deltaVals;
 
         private static bool _yIncreasesUpward;
 
@@ -197,7 +197,7 @@ namespace SadRogue.Primitives
         /// <summary>
         /// Change in y-value represented by this direction.
         /// </summary>
-        public int DeltaY => deltaVals[(int)Type].dx;
+        public int DeltaY => deltaVals[(int)Type].dy;
 
         /// <summary>
         /// Enum type corresponding to direction being represented.
@@ -363,14 +363,14 @@ namespace SadRogue.Primitives
         /// <returns>
         /// The given direction moved counter-clockwise <paramref name="i"/> times.
         /// </returns>
-        public static Direction operator -(Direction d, int i) => (d == NONE) ? NONE : ToDirection(validTypes[WrapAround((int)d.Type - i, 8)]);
+        public static Direction operator -(Direction d, int i) => (d == NONE) ? NONE : ToDirection(validTypes[WrapAround((int)d.Type - i - 1, 8)]);
 
         /// <summary>
         /// Moves the direction counter-clockwise by one.
         /// </summary>
         /// <param name="d"/>
         /// <returns>The direction one unit counterclockwise of <paramref name="d"/>.</returns>
-        public static Direction operator --(Direction d) => (d == NONE) ? NONE : ToDirection(validTypes[WrapAround((int)d.Type - 1, 8)]);
+        public static Direction operator --(Direction d) => (d == NONE) ? NONE : ToDirection(validTypes[WrapAround((int)d.Type - 2, 8)]);
 
         /// <summary>
         /// Moves the direction clockwise <paramref name="i"/> times.
@@ -380,14 +380,14 @@ namespace SadRogue.Primitives
         /// <returns>
         /// The given direction moved clockwise <paramref name="i"/> times.
         /// </returns>
-        public static Direction operator +(Direction d, int i) => (d == NONE) ? NONE : ToDirection(validTypes[WrapAround((int)d.Type + i, 8)]);
+        public static Direction operator +(Direction d, int i) => (d == NONE) ? NONE : ToDirection(validTypes[WrapAround((int)d.Type + i - 1, 8)]);
 
         /// <summary>
         /// Moves the direction clockwise by one.
         /// </summary>
         /// <param name="d"/>
         /// <returns>The direction one unit clockwise of <paramref name="d"/>.</returns>
-        public static Direction operator ++(Direction d) => (d == NONE) ? NONE : ToDirection(validTypes[WrapAround((int)d.Type + 1, 8)]);
+        public static Direction operator ++(Direction d) => (d == NONE) ? NONE : ToDirection(validTypes[WrapAround((int)d.Type, 8)]);
 
         /// <summary>
         /// Gets the Direction class instance representing the direction type specified.

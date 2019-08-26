@@ -141,7 +141,7 @@ namespace SadRogue.Primitives
                     if (startingDirection == Direction.NONE)
                         startingDirection = Direction.UP;
 
-                    if ((int)startingDirection.Type % 2 == 1)
+                    if ((int)startingDirection.Type % 2 == 0)
                         startingDirection++; // Make it a cardinal
 
                     yield return startingDirection;
@@ -151,10 +151,10 @@ namespace SadRogue.Primitives
                     break;
 
                 case Types.DIAGONALS:
-                    if (startingDirection == null || startingDirection == Direction.NONE)
+                    if (startingDirection == Direction.NONE)
                         startingDirection = Direction.UP_RIGHT;
 
-                    if ((int)startingDirection.Type % 2 == 0)
+                    if ((int)startingDirection.Type % 2 == 1)
                         startingDirection++; // Make it a diagonal
 
                     yield return startingDirection;
@@ -164,7 +164,7 @@ namespace SadRogue.Primitives
                     break;
 
                 case Types.EIGHT_WAY:
-                    if (startingDirection == null || startingDirection == Direction.NONE)
+                    if (startingDirection == Direction.NONE)
                         startingDirection = Direction.UP;
 
                     for (int i = 1; i <= 8; i++)

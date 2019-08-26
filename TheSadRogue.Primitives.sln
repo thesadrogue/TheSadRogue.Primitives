@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheSadRogue.Primitives.UnitTests", "TheSadRogue.Primitives.UnitTests\TheSadRogue.Primitives.UnitTests.csproj", "{1921EDDE-6FF1-42C9-AC69-A09074B1CFAA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,10 @@ Global
 		{A755972B-142E-41D0-ABF4-D36B5385EBFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A755972B-142E-41D0-ABF4-D36B5385EBFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A755972B-142E-41D0-ABF4-D36B5385EBFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1921EDDE-6FF1-42C9-AC69-A09074B1CFAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1921EDDE-6FF1-42C9-AC69-A09074B1CFAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1921EDDE-6FF1-42C9-AC69-A09074B1CFAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1921EDDE-6FF1-42C9-AC69-A09074B1CFAA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

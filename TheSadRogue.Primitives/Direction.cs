@@ -431,6 +431,12 @@ namespace SadRogue.Primitives
         }
 
         /// <summary>
+        /// Returns true if the current direction is a cardinal direction.
+        /// </summary>
+        /// <returns>True if the current direction is a cardinal direction, false otherwise.</returns>
+        public bool IsCardinal() => this != NONE && (DeltaX == 0 || DeltaY == 0);
+
+        /// <summary>
         /// Writes the string (eg. "UP", "UP_RIGHT", etc.) for the direction.
         /// </summary>
         /// <returns>String representation of the direction.</returns>

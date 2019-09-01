@@ -1,25 +1,25 @@
-using System;
+﻿using System;
 using System.Linq;
 using Xunit;
+using XUnit.ValueTuples;
 using SadRogue.Primitives;
 using System.Collections.Generic;
 
 namespace TheSadRogue.Primitives.UnitTests
 {
+    // We must do these sequentially (not in paralell), as some of the tests change YIncreasesUpwards, which can very much mess with other threads using any function
+    // that relies on directions.  There is a feature of XUnit that should technically allow these to be in the same assembly, but it seems to only separate the collection
+    // from itself, and attempting to extrapolate which functions view directions is time consuming and the frequent switching of that flag is not something that should be done
+    // in production anyway.  Thus anything that manipulates shared state will be in this assembly.
     public class DirectionTests
     {
         #region TestData
-        static private Direction[] validDirections = AdjacencyRule.EIGHT_WAY.DirectionsOfNeighborsClockwise().ToArray();
-        static public IEnumerable<ValueTuple<Direction>> ValidDirections = validDirections.ToValueTuples();
+        static public Direction[] ValidDirections = AdjacencyRule.EIGHT_WAY.DirectionsOfNeighborsClockwise().ToArray();
+        static public Direction[] AllDirections => ValidDirections.Append(Direction.NONE).ToArray();
+        static public Point[] TestPoints => new[] { new Point(1, 2), new Point(0, 0), new Point(-2, -5) };
+        static public IEnumerable<(Point, Direction)> CoordDirPairs => TestPoints.Combinate(AllDirections);
 
-        static public Direction[] allDirections
-            => validDirections.Append(Direction.NONE).ToArray();
-
-        static public IEnumerable<ValueTuple<Direction>> AllDirections => allDirections.ToValueTuples();
-        static public Point[] testPoints => new[] { new Point(1, 2), new Point(0, 0), new Point(-2, -5) };
-        static public IEnumerable<(Point, Direction)> CoordDirPairs => testPoints.Combinate(allDirections);
-
-        static public IEnumerable<(Direction, int)> AddSubDirPairs => validDirections.Combinate(Enumerable.Range(0, 11));
+        static public IEnumerable<(Direction, int)> AddSubDirPairs => ValidDirections.Combinate(Enumerable.Range(0, 11));
 
         static public IEnumerable<(Point, Point, Direction)> GetDirectionBasePairs =>
             new (Point p1, Point p2, Direction d)[] {
@@ -76,6 +76,11 @@ namespace TheSadRogue.Primitives.UnitTests
             (Direction.LEFT, (-1, 0), (-1, 0)),
             (Direction.UP_LEFT, (-1, -1), (-1, 1))
         );
+
+        static public IEnumerable<(Direction, bool)> IsCardinalPairs
+            => AdjacencyRule.CARDINALS.DirectionsOfNeighbors().Combinate(true.ToEnumerable())
+            .Concat(AdjacencyRule.DIAGONALS.DirectionsOfNeighbors().Combinate(false.ToEnumerable()))
+            .Append((Direction.NONE, false));
         #endregion
 
 
@@ -88,7 +93,7 @@ namespace TheSadRogue.Primitives.UnitTests
 
         #region Equality/Inequality
         [Theory]
-        [MemberData2(nameof(ValidDirections))]
+        [MemberDataEnumerable(nameof(ValidDirections))]
         public void TestValidEquality(Direction dir)
         {
             Direction compareTo = dir;
@@ -107,12 +112,12 @@ namespace TheSadRogue.Primitives.UnitTests
         {
             Direction none = Direction.NONE;
             Assert.True(none == Direction.NONE);
-            foreach (var i in validDirections)
+            foreach (var i in ValidDirections)
                 Assert.False(Direction.NONE == i);
         }
 
         [Theory]
-        [MemberData2(nameof(ValidDirections))]
+        [MemberDataEnumerable(nameof(ValidDirections))]
         public void TestValidInequality(Direction dir)
         {
             Direction compareTo = dir;
@@ -131,24 +136,24 @@ namespace TheSadRogue.Primitives.UnitTests
         {
             Direction none = Direction.NONE;
             Assert.False(none != Direction.NONE);
-            foreach (var i in validDirections)
+            foreach (var i in ValidDirections)
                 Assert.True(Direction.NONE != i);
         }
 
         [Theory]
-        [MemberData2(nameof(AllDirections))]
+        [MemberDataEnumerable(nameof(AllDirections))]
         public void TestEqualityInqeualityOpposite(Direction compareDir)
         {
-            var dirs = allDirections.ToArray();
+            var dirs = AllDirections;
 
             foreach (var dir in dirs)
                 Assert.NotEqual(dir == compareDir, dir != compareDir);
         }
         [Theory]
-        [MemberData2(nameof(AllDirections))]
+        [MemberDataEnumerable(nameof(AllDirections))]
         public void TestEqualityEquivalence(Direction compareDir)
         {
-            var dirs = allDirections.ToArray();
+            var dirs = AllDirections;
 
             foreach (var dir in dirs)
             {
@@ -160,7 +165,7 @@ namespace TheSadRogue.Primitives.UnitTests
 
         #region Addition/Subtraction
         [Theory]
-        [MemberData2(nameof(CoordDirPairs))]
+        [MemberDataTuple(nameof(CoordDirPairs))]
         public void AddToPoint(Point start, Direction dir)
         {
             Point res = start + dir;
@@ -169,10 +174,10 @@ namespace TheSadRogue.Primitives.UnitTests
         }
 
         [Theory]
-        [MemberData2(nameof(AddSubDirPairs))]
+        [MemberDataTuple(nameof(AddSubDirPairs))]
         public void AddToDirection(Direction dir, int value)
         {
-            var dirs = validDirections;
+            var dirs = ValidDirections;
 
             int start = Array.FindIndex(dirs, x => x == dir);
             Assert.False(start == -1, "Could not find direction in valid directions list.");
@@ -182,10 +187,10 @@ namespace TheSadRogue.Primitives.UnitTests
         }
 
         [Theory]
-        [MemberData2(nameof(AddSubDirPairs))]
+        [MemberDataTuple(nameof(AddSubDirPairs))]
         public void SubFromDirection(Direction dir, int value)
         {
-            var dirs = validDirections;
+            var dirs = ValidDirections;
 
             int start = Array.FindIndex(dirs, x => x == dir);
             Assert.False(start == -1, "Could not find direction in valid directions list.");
@@ -199,11 +204,11 @@ namespace TheSadRogue.Primitives.UnitTests
         }
 
         [Theory]
-        [MemberData2(nameof(ValidDirections))]
+        [MemberDataEnumerable(nameof(ValidDirections))]
         public void IncrementValidDirection(Direction startingDir)
         {
             Direction oldDir = startingDir;
-            var dirs = validDirections;
+            var dirs = ValidDirections;
             int start = Array.FindIndex(dirs, x => x == startingDir);
             Assert.False(start == -1, "Couldn't find starting direction in directions.");
 
@@ -217,11 +222,11 @@ namespace TheSadRogue.Primitives.UnitTests
         }
 
         [Theory]
-        [MemberData2(nameof(ValidDirections))]
+        [MemberDataEnumerable(nameof(ValidDirections))]
         public void DecrementValidDirection(Direction startingDir)
         {
             Direction oldDir = startingDir;
-            var dirs = validDirections;
+            var dirs = ValidDirections;
             int start = Array.FindIndex(dirs, x => x == startingDir);
             Assert.False(start == -1, "Couldn't find starting direction in directions.");
 
@@ -241,7 +246,7 @@ namespace TheSadRogue.Primitives.UnitTests
 
         #region DirectionTypeToDirectionConversion
         [Theory]
-        [MemberData2(nameof(TypeDirectionConversion))]
+        [MemberDataTuple(nameof(TypeDirectionConversion))]
         public void DirectionTypeConversion(Direction.Types type, Direction expectedDir)
         {
             Direction dir = Direction.ToDirection(type);
@@ -251,7 +256,7 @@ namespace TheSadRogue.Primitives.UnitTests
 
         #region YIncreasesUpwardsToggles
         [Theory]
-        [MemberData2(nameof(YIncreasesDeltaValues))]
+        [MemberDataTuple(nameof(YIncreasesDeltaValues))]
         public void YIncreasesUpwardDeltaToggle(Direction dir, (int dx, int dy) expectedPreDeltas, (int dx, int dy) expectedPostDeltas)
         {
             Assert.False(Direction.YIncreasesUpward, "Direction.YIncreasesUpwards is expected to be false as default.");
@@ -269,7 +274,7 @@ namespace TheSadRogue.Primitives.UnitTests
         }
 
         [Theory]
-        [MemberData2(nameof(AllDirections))]
+        [MemberDataEnumerable(nameof(AllDirections))]
         public void YIncreaseUpwardEquality(Direction dir)
         {
             Assert.False(Direction.YIncreasesUpward, "Direction.YIncreasesUpwards is expected to be false as default.");
@@ -368,5 +373,12 @@ namespace TheSadRogue.Primitives.UnitTests
             }
         }
         #endregion
+
+        [Theory]
+        [MemberDataTuple(nameof(IsCardinalPairs))]
+        public void IsCardinal(Direction dir, bool expected)
+        {
+            Assert.Equal(expected, dir.IsCardinal());
+        }
     }
 }

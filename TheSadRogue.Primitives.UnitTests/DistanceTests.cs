@@ -1,9 +1,7 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Xunit;
 using XUnit.ValueTuples;
 using SadRogue.Primitives;
-using System.Collections.Generic;
 
 namespace TheSadRogue.Primitives.UnitTests
 {

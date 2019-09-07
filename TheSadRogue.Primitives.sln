@@ -12,7 +12,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheSadRogue.Primitives.UnitTests", "TheSadRogue.Primitives.UnitTests\TheSadRogue.Primitives.UnitTests.csproj", "{1921EDDE-6FF1-42C9-AC69-A09074B1CFAA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheSadRogue.Primitives.UnitTests.NonThreadSafe", "TheSadRogue.Primitives.UnitTests.NonThreadSafe\TheSadRogue.Primitives.UnitTests.NonThreadSafe.csproj", "{E2F9DB89-66ED-479F-813A-472C9F1F0D31}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "TheSadRogue.Primitives.UnitTests.Shared", "TheSadRogue.Primitives.UnitTests.Shared\TheSadRogue.Primitives.UnitTests.Shared.shproj", "{8C95FBF7-C9BF-44FD-8D9F-EA9836027EBD}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		TheSadRogue.Primitives.UnitTests.Shared\TheSadRogue.Primitives.UnitTests.Shared.projitems*{8c95fbf7-c9bf-44fd-8d9f-ea9836027ebd}*SharedItemsImports = 13
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -26,6 +35,14 @@ Global
 		{A755972B-142E-41D0-ABF4-D36B5385EBFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A755972B-142E-41D0-ABF4-D36B5385EBFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A755972B-142E-41D0-ABF4-D36B5385EBFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1921EDDE-6FF1-42C9-AC69-A09074B1CFAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1921EDDE-6FF1-42C9-AC69-A09074B1CFAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1921EDDE-6FF1-42C9-AC69-A09074B1CFAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1921EDDE-6FF1-42C9-AC69-A09074B1CFAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2F9DB89-66ED-479F-813A-472C9F1F0D31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2F9DB89-66ED-479F-813A-472C9F1F0D31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2F9DB89-66ED-479F-813A-472C9F1F0D31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2F9DB89-66ED-479F-813A-472C9F1F0D31}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

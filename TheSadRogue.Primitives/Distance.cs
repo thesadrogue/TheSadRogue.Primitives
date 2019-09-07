@@ -3,7 +3,7 @@
 namespace SadRogue.Primitives
 {
     /// <summary>
-    /// Class representing methods of calculating distance on a grid. You cannot create instances of this
+    /// Structure representing methods of calculating distance on a grid. You cannot create instances of this
     /// class using a constructor -- instead this class contains static instances representing the
     /// various distance calculations.
     /// </summary>
@@ -13,7 +13,7 @@ namespace SadRogue.Primitives
     /// <see cref="Radius"/> and <see cref="AdjacencyRule"/> (since both a method of determining adjacent
     /// locations and a radius shape are implied by a distance calculation).
     /// </remarks>
-    public class Distance
+    public struct Distance : IEquatable<Distance>
     {
         /// <summary>
         /// Represents chebyshev distance (equivalent to 8-way movement with no extra cost for diagonals).
@@ -88,7 +88,7 @@ namespace SadRogue.Primitives
                     return Radius.SQUARE;
 
                 default:
-                    return null; // Will not occur
+                    throw new Exception($"Could not convert {nameof(Distance)} to {nameof(Radius)} -- this is a bug!"); // Will not occur
             }
         }
 
@@ -112,7 +112,7 @@ namespace SadRogue.Primitives
                     return AdjacencyRule.EIGHT_WAY;
 
                 default:
-                    return null; // Will not occur
+                    throw new Exception($"Could not convert {nameof(Distance)} to {nameof(AdjacencyRule)} -- this is a bug!"); // Will not occur
             }
         }
 
@@ -135,7 +135,7 @@ namespace SadRogue.Primitives
                     return CHEBYSHEV;
 
                 default:
-                    return null; // Will never occur
+                    throw new Exception($"Could not convert {nameof(Types)} to {nameof(Distance)} -- this is a bug!"); // Will not occur
             }
         }
 
@@ -199,6 +199,46 @@ namespace SadRogue.Primitives
             }
             return radius;
         }
+
+        /// <summary>
+        /// True if the given Distance has the same Type the current one.
+        /// </summary>
+        /// <param name="other">Distance to compare.</param>
+        /// <returns>True if the two distance calculation methods are the same, false if not.</returns>
+        public bool Equals(Distance other) => Type == other.Type;
+
+        /// <summary>
+        /// Same as operator == in this case; returns false if <paramref name="obj"/> is not a Distance.
+        /// </summary>
+        /// <param name="obj">The object to compare the current Distance to.</param>
+        /// <returns>
+        /// True if <paramref name="obj"/> is a Distance, and the two distance calculations are equal, false otherwise.
+        /// </returns>
+        public override bool Equals(object obj) => obj is Distance c && Equals(c);
+
+        /// <summary>
+        /// Returns a hash-map value for the current object.
+        /// </summary>
+        /// <returns/>
+        public override int GetHashCode() => Type.GetHashCode();
+
+        /// <summary>
+        /// True if the two Distances have the same Type.
+        /// </summary>
+        /// <param name="lhs"/>
+        /// <param name="rhs"/>
+        /// <returns>True if the two distance calculations are equal, false if not.</returns>
+        public static bool operator ==(Distance lhs, Distance rhs) => lhs.Type == rhs.Type;
+
+        /// <summary>
+        /// True if the types are not equal.
+        /// </summary>
+        /// <param name="lhs"/>
+        /// <param name="rhs"/>
+        /// <returns>
+        /// True if the types are not equal, false if they are both equal.
+        /// </returns>
+        public static bool operator !=(Distance lhs, Distance rhs) => !(lhs == rhs);
 
         /// <summary>
         /// Returns a string representation of the distance calculation method represented.

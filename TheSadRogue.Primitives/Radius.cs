@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace SadRogue.Primitives
 {
     /// <summary>
-    /// Class representing different shapes that define the concept of a radius on a grid. You cannot
+    /// Structure representing different shapes that define the concept of a radius on a grid. You cannot
     /// create instances of this class using a constructor -- instead, this class contains static instances
     /// representing the various radius shapes.
     /// </summary>
@@ -14,7 +14,7 @@ namespace SadRogue.Primitives
     /// of determining adjacent locations and a method of calculating distance are implied by a radius
     /// shape).
     /// </remarks>
-    public class Radius
+    public struct Radius : IEquatable<Radius>
     {
         /// <summary>
         /// Radius is a circle around the center point. CIRCLE would represent movement radius in
@@ -165,6 +165,46 @@ namespace SadRogue.Primitives
         }
 
         /// <summary>
+        /// True if the given Radius has the same Type the current one.
+        /// </summary>
+        /// <param name="other">Radius to compare.</param>
+        /// <returns>True if the two radius shapes are the same, false if not.</returns>
+        public bool Equals(Radius other) => Type == other.Type;
+
+        /// <summary>
+        /// Same as operator == in this case; returns false if <paramref name="obj"/> is not a Radius.
+        /// </summary>
+        /// <param name="obj">The object to compare the current Radius to.</param>
+        /// <returns>
+        /// True if <paramref name="obj"/> is a Radius, and the two radius shapes are equal, false otherwise.
+        /// </returns>
+        public override bool Equals(object obj) => obj is Radius c && Equals(c);
+
+        /// <summary>
+        /// Returns a hash-map value for the current object.
+        /// </summary>
+        /// <returns/>
+        public override int GetHashCode() => Type.GetHashCode();
+
+        /// <summary>
+        /// True if the two radius shapes have the same Type.
+        /// </summary>
+        /// <param name="lhs"/>
+        /// <param name="rhs"/>
+        /// <returns>True if the two radius shapes are equal, false if not.</returns>
+        public static bool operator ==(Radius lhs, Radius rhs) => lhs.Type == rhs.Type;
+
+        /// <summary>
+        /// True if the types are not equal.
+        /// </summary>
+        /// <param name="lhs"/>
+        /// <param name="rhs"/>
+        /// <returns>
+        /// True if the types are not equal, false if they are both equal.
+        /// </returns>
+        public static bool operator !=(Radius lhs, Radius rhs) => !(lhs == rhs);
+
+        /// <summary>
         /// Allows implicit casting to the <see cref="AdjacencyRule"/> type.
         /// </summary>
         /// <remarks>
@@ -184,7 +224,7 @@ namespace SadRogue.Primitives
                     return AdjacencyRule.CARDINALS;
 
                 default:
-                    return null; // Will not occur
+                    throw new Exception($"Could not convert {nameof(Distance)} to {nameof(Radius)} -- this is a bug!"); // Will not occur
             }
         }
 
@@ -210,7 +250,7 @@ namespace SadRogue.Primitives
                     return Distance.CHEBYSHEV;
 
                 default:
-                    return null; // Will not occur
+                    throw new Exception($"Could not convert {nameof(Radius)} to {nameof(Distance)} -- this is a bug!"); // Will not occur
             }
         }
 
@@ -233,7 +273,7 @@ namespace SadRogue.Primitives
                     return SQUARE;
 
                 default:
-                    return null; // Will never occur
+                    throw new Exception($"Could not convert {nameof(Types)} to {nameof(Radius)} -- this is a bug!"); // Will not occur
             }
         }
 

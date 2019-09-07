@@ -4,11 +4,11 @@ using System.Collections.Generic;
 namespace SadRogue.Primitives
 {
     /// <summary>
-    /// Class representing a method for determining which coordinates are adjacent to a given
+    /// Structure representing a method for determining which coordinates are adjacent to a given
     /// coordinate, and which directions those neighbors are in. Cannot be instantiated -- premade
     /// static instances are provided.
     /// </summary>
-    public class AdjacencyRule
+    public struct AdjacencyRule : IEquatable<AdjacencyRule>
     {
         /// <summary>
         /// Represents method of determining adjacency where neighbors are considered adjacent if
@@ -63,7 +63,7 @@ namespace SadRogue.Primitives
         /// Enum value representing the method of determining adjacency -- useful for using
         /// <see cref="AdjacencyRule"/> types in switch statements.
         /// </summary>
-        public Types Type { get; private set; }
+        public readonly Types Type;
 
         /// <summary>
         /// Gets the <see cref="AdjacencyRule"/> class instance representing the adjacency type specified.
@@ -84,7 +84,7 @@ namespace SadRogue.Primitives
                     return EIGHT_WAY;
 
                 default:
-                    return null; // Will not occur
+                    throw new Exception($"Could not convert {nameof(Type)} type to {nameof(AdjacencyRule)} -- this is a bug!."); // Will not occur
             }
         }
 
@@ -129,19 +129,19 @@ namespace SadRogue.Primitives
         /// method. Appropriate directions are returned in clockwise order from the given starting
         /// direction.
         /// </summary>
-        /// <param name="startingDirection">The direction to start with.  null or <see cref="Direction.NONE"/>
+        /// <param name="startingDirection">The direction to start with.  <see cref="Direction.NONE"/>
         /// causes the default starting direction to be used, which is UP for CARDINALS/EIGHT_WAY, and UP_RIGHT
         /// for diagonals.</param>
         /// <returns>Directions that lead to neighboring locations.</returns>
-        public IEnumerable<Direction> DirectionsOfNeighborsClockwise(Direction startingDirection = null)
+        public IEnumerable<Direction> DirectionsOfNeighborsClockwise(Direction startingDirection = default)
         {
             switch (Type)
             {
                 case Types.CARDINALS:
-                    if (startingDirection == null || startingDirection == Direction.NONE)
+                    if (startingDirection == Direction.NONE)
                         startingDirection = Direction.UP;
 
-                    if ((int)startingDirection.Type % 2 == 1)
+                    if ((int)startingDirection.Type % 2 == 0)
                         startingDirection++; // Make it a cardinal
 
                     yield return startingDirection;
@@ -151,10 +151,10 @@ namespace SadRogue.Primitives
                     break;
 
                 case Types.DIAGONALS:
-                    if (startingDirection == null || startingDirection == Direction.NONE)
+                    if (startingDirection == Direction.NONE)
                         startingDirection = Direction.UP_RIGHT;
 
-                    if ((int)startingDirection.Type % 2 == 0)
+                    if ((int)startingDirection.Type % 2 == 1)
                         startingDirection++; // Make it a diagonal
 
                     yield return startingDirection;
@@ -164,7 +164,7 @@ namespace SadRogue.Primitives
                     break;
 
                 case Types.EIGHT_WAY:
-                    if (startingDirection == null || startingDirection == Direction.NONE)
+                    if (startingDirection == Direction.NONE)
                         startingDirection = Direction.UP;
 
                     for (int i = 1; i <= 8; i++)
@@ -185,15 +185,15 @@ namespace SadRogue.Primitives
         /// causes the default starting direction to be used, which is UP for CARDINALS/EIGHT_WAY, and UP_LEFT
         /// for diagonals.</param>
         /// <returns>Directions that lead to neighboring locations.</returns>
-        public IEnumerable<Direction> DirectionsOfNeighborsCounterClockwise(Direction startingDirection = null)
+        public IEnumerable<Direction> DirectionsOfNeighborsCounterClockwise(Direction startingDirection = default)
         {
             switch (Type)
             {
                 case Types.CARDINALS:
-                    if (startingDirection == null || startingDirection == Direction.NONE)
+                    if (startingDirection == Direction.NONE)
                         startingDirection = Direction.UP;
 
-                    if ((int)startingDirection.Type % 2 == 1)
+                    if ((int)startingDirection.Type % 2 == 0)
                         startingDirection--; // Make it a cardinal
 
                     yield return startingDirection;
@@ -206,7 +206,7 @@ namespace SadRogue.Primitives
                     if (startingDirection == null || startingDirection == Direction.NONE)
                         startingDirection = Direction.UP_LEFT;
 
-                    if ((int)startingDirection.Type % 2 == 0)
+                    if ((int)startingDirection.Type % 2 == 1)
                         startingDirection--; // Make it a diagonal
 
                     yield return startingDirection;
@@ -248,12 +248,12 @@ namespace SadRogue.Primitives
         /// <param name="startingLocation">Location to return neighbors for.</param>
         /// <param name="startingDirection">
         /// The neighbor in this direction will be returned first, proceeding clockwise.
-        /// If null or <see cref="Direction.NONE"/> is specified, the default starting direction
+        /// If <see cref="Direction.NONE"/> is specified, the default starting direction
         /// is used, which is <see cref="Direction.UP"/> for CARDINALS/EIGHT_WAY, and <see cref="Direction.UP_RIGHT"/>
         /// for DIAGONALS.
         /// </param>
         /// <returns>All neighbors of the given location.</returns>
-        public IEnumerable<Point> NeighborsClockwise(Point startingLocation, Direction startingDirection = null)
+        public IEnumerable<Point> NeighborsClockwise(Point startingLocation, Direction startingDirection = default)
         {
             foreach (var dir in DirectionsOfNeighborsClockwise(startingDirection))
                 yield return startingLocation + dir;
@@ -267,16 +267,56 @@ namespace SadRogue.Primitives
         /// <param name="startingLocation">Location to return neighbors for.</param>
         /// <param name="startingDirection">
         /// The neighbor in this direction will be returned first, proceeding counter-clockwise.
-        /// If null or <see cref="Direction.NONE"/> is specified, the default starting direction
+        /// If <see cref="Direction.NONE"/> is specified, the default starting direction
         /// is used, which is <see cref="Direction.UP"/> for CARDINALS/EIGHT_WAY, and
         /// <see cref="Direction.UP_LEFT"/> for DIAGONALS.
         /// </param>
         /// <returns>All neighbors of the given location.</returns>
-        public IEnumerable<Point> NeighborsCounterClockwise(Point startingLocation, Direction startingDirection = null)
+        public IEnumerable<Point> NeighborsCounterClockwise(Point startingLocation, Direction startingDirection = default)
         {
             foreach (var dir in DirectionsOfNeighborsCounterClockwise(startingDirection))
                 yield return startingLocation + dir;
         }
+
+        /// <summary>
+        /// True if the given AdjacencyRule has the same Type the current one.
+        /// </summary>
+        /// <param name="other">AdjacencyRule to compare.</param>
+        /// <returns>True if the two directions are the same, false if not.</returns>
+        public bool Equals(AdjacencyRule other) => Type == other.Type;
+
+        /// <summary>
+        /// Same as operator == in this case; returns false if <paramref name="obj"/> is not an AdjacencyRule.
+        /// </summary>
+        /// <param name="obj">The object to compare the current AdjacencyRule to.</param>
+        /// <returns>
+        /// True if <paramref name="obj"/> is an AdjacencyRule, and the two adjacency rules are equal, false otherwise.
+        /// </returns>
+        public override bool Equals(object obj) => obj is AdjacencyRule c && Equals(c);
+
+        /// <summary>
+        /// Returns a hash-map value for the current object.
+        /// </summary>
+        /// <returns/>
+        public override int GetHashCode() => Type.GetHashCode();
+
+        /// <summary>
+        /// True if the two adjacency rules have the same Type.
+        /// </summary>
+        /// <param name="lhs"/>
+        /// <param name="rhs"/>
+        /// <returns>True if the two adjacency rules are equal, false if not.</returns>
+        public static bool operator ==(AdjacencyRule lhs, AdjacencyRule rhs) => lhs.Type == rhs.Type;
+
+        /// <summary>
+        /// True if the types are not equal.
+        /// </summary>
+        /// <param name="lhs"/>
+        /// <param name="rhs"/>
+        /// <returns>
+        /// True if the types are not equal, false if they are both equal.
+        /// </returns>
+        public static bool operator !=(AdjacencyRule lhs, AdjacencyRule rhs) => !(lhs == rhs);
 
         /// <summary>
         /// Returns a string representation of the <see cref="AdjacencyRule"/>.

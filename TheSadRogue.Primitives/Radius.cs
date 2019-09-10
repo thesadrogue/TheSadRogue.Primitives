@@ -14,18 +14,21 @@ namespace SadRogue.Primitives
     /// of determining adjacent locations and a method of calculating distance are implied by a radius
     /// shape).
     /// </remarks>
+    [Serializable]
     public struct Radius : IEquatable<Radius>
     {
         /// <summary>
         /// Radius is a circle around the center point. CIRCLE would represent movement radius in
         /// an 8-way movement scheme with a ~1.41 cost multiplier for diagonal movement.
         /// </summary>
+        [NonSerialized]
         public static readonly Radius CIRCLE = new Radius(Types.CIRCLE);
 
         /// <summary>
         /// Radius is a diamond around the center point. DIAMOND would represent movement radius
         /// in a 4-way movement scheme.
         /// </summary>
+        [NonSerialized]
         public static readonly Radius DIAMOND = new Radius(Types.DIAMOND);
 
         /// <summary>
@@ -33,6 +36,7 @@ namespace SadRogue.Primitives
         /// an 8-way movement scheme, where all 8 squares around an item are considered equal distance
         /// away.
         /// </summary>
+        [NonSerialized]
         public static readonly Radius SQUARE = new Radius(Types.SQUARE);
 
         /// <summary>
@@ -41,6 +45,7 @@ namespace SadRogue.Primitives
         /// </summary>
         public readonly Types Type;
 
+        [NonSerialized]
         private static readonly string[] writeVals = Enum.GetNames(typeof(Types));
 
         private Radius(Types type)

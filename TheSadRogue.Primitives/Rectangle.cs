@@ -7,11 +7,13 @@ namespace SadRogue.Primitives
     /// Represents a 2D rectangle. Provides numerous static functions that enable creation and common operations
     /// involving rectangles.
     /// </summary>
+    [Serializable]
     public struct Rectangle : IEquatable<Rectangle>, IEquatable<(int x, int y, int width, int height)>
     {
         /// <summary>
         /// The empty rectangle. Has origin of (0, 0) with 0 width and height.
         /// </summary>
+        [NonSerialized]
         public static readonly Rectangle EMPTY = new Rectangle(0, 0, 0, 0);
 
         /// <summary>

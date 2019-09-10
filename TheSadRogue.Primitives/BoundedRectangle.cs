@@ -7,6 +7,7 @@ namespace SadRogue.Primitives
 	/// being inside a rectangular bounding box as it is changed. A typical use might be
 	/// keeping track of a camera's view area.
 	/// </summary>
+    [Serializable]
 	public class BoundedRectangle : IEquatable<BoundedRectangle>
     {
         private Rectangle _area;

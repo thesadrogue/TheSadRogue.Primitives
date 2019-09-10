@@ -8,26 +8,31 @@ namespace SadRogue.Primitives
     /// coordinate, and which directions those neighbors are in. Cannot be instantiated -- premade
     /// static instances are provided.
     /// </summary>
+    [Serializable]
     public struct AdjacencyRule : IEquatable<AdjacencyRule>
     {
         /// <summary>
         /// Represents method of determining adjacency where neighbors are considered adjacent if
         /// they are in a cardinal direction, eg. 4-way (manhattan-based) connectivity.
         /// </summary>
+        [NonSerialized]
         public static readonly AdjacencyRule CARDINALS = new AdjacencyRule(Types.CARDINALS);
 
         /// <summary>
         /// Represents method of determining adjacency where neighbors are considered adjacent only
         /// if they are in a diagonal direction.
         /// </summary>
+        [NonSerialized]
         public static readonly AdjacencyRule DIAGONALS = new AdjacencyRule(Types.DIAGONALS);
 
         /// <summary>
         /// Represents method of determining adjacency where all 8 possible neighbors are considered
         /// adjacent (eg. 8-way connectivity).
         /// </summary>
+        [NonSerialized]
         public static readonly AdjacencyRule EIGHT_WAY = new AdjacencyRule(Types.EIGHT_WAY);
 
+        [NonSerialized]
         private static readonly string[] writeVals = Enum.GetNames(typeof(Types));
 
         // Constructor, takes type.

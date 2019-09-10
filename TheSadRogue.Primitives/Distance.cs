@@ -13,21 +13,25 @@ namespace SadRogue.Primitives
     /// <see cref="Radius"/> and <see cref="AdjacencyRule"/> (since both a method of determining adjacent
     /// locations and a radius shape are implied by a distance calculation).
     /// </remarks>
+    [Serializable]
     public struct Distance : IEquatable<Distance>
     {
         /// <summary>
         /// Represents chebyshev distance (equivalent to 8-way movement with no extra cost for diagonals).
         /// </summary>
+        [NonSerialized]
         public static Distance CHEBYSHEV = new Distance(Types.CHEBYSHEV);
 
         /// <summary>
         /// Represents euclidean distance (equivalent to 8-way movement with ~1.41 movement cost for diagonals).
         /// </summary>
+        [NonSerialized]
         public static Distance EUCLIDEAN = new Distance(Types.EUCLIDEAN);
 
         /// <summary>
         /// Represents manhattan distance (equivalent to 4-way, cardinal-only movement).
         /// </summary>
+        [NonSerialized]
         public static Distance MANHATTAN = new Distance(Types.MANHATTAN);
 
         /// <summary>
@@ -36,6 +40,7 @@ namespace SadRogue.Primitives
         /// </summary>
         public readonly Types Type;
 
+        [NonSerialized]
         private static readonly string[] writeVals = Enum.GetNames(typeof(Types));
 
         private Distance(Types type)

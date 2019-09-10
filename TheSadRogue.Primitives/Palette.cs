@@ -7,6 +7,7 @@ namespace SadRogue.Primitives
     /// <summary>
     /// A palette of colors.
     /// </summary>
+    [Serializable]
     public class Palette : IEnumerable<Color>
     {
         Color[] colors;

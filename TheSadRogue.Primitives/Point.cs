@@ -14,6 +14,7 @@ namespace SadRogue.Primitives
     /// Point also provides operators and static helper functions that perform common grid math/operations,
     /// as well as interoperability with other grid-based classes like <see cref="Direction"/>.
     /// </remarks>
+    [Serializable]
     public struct Point : IEquatable<Point>, IEquatable<(int x, int y)>
     {
         /// <summary>
@@ -24,6 +25,7 @@ namespace SadRogue.Primitives
         /// This constant has (x, y) values (int.MinValue, int.MinValue), so a position with those
         /// x/y values is not considered a valid coordinate by many functions.
         /// </remarks>
+        [NonSerialized]
         public static readonly Point NONE = new Point(int.MinValue, int.MinValue);
 
         /// <summary>

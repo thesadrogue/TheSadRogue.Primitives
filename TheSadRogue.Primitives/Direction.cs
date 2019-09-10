@@ -54,7 +54,8 @@ namespace SadRogue.Primitives
 
             // YIncreasesUpward property setter sets all the remaining dx/dy values in the array
             initYInc = false;
-            YIncreasesUpward = false; // Initializes rest of distance values
+            // Initializes rest of distance values.  Safe to do becuase nobody can be using directions, as they haven't been initialized.
+            SetYIncreasesUpwardsUnsafe(false);
         }
 
         private Direction(Types type)
@@ -160,34 +161,15 @@ namespace SadRogue.Primitives
         public static readonly Direction UP_RIGHT;
 
         /// <summary>
-        /// Whether or not a positive y-value indicates an upward change. Changing this in a multi-threaded environment where a thread might be
-        /// in the middle of performing operations using directions can lead to unintended behavior -- it is intended that this configuration be done
-        /// as part of an initialization routine.
+        /// Whether or not a positive y-value indicates an upward change. To set this value, use <see cref="SetYIncreasesUpwardsUnsafe(bool)"/>, however note that this is an unsafe
+        /// operation in a multi-threaded environment where one or more threads may be using Directions.  It is intended that this configuration be done as part of an initialization
+        /// routine.
         /// </summary>
         /// <remarks>
         /// If true, directions with an upwards component represent a positive change in y-value, and ones with downward components
-        /// represent a negative change in y-value.  Setting this to false (which is the default) inverts this.
+        /// represent a negative change in y-value.  Changing this to false (which is the default) inverts this.
         /// </remarks>
-        public static bool YIncreasesUpward
-        {
-            get { return _yIncreasesUpward; }
-            set
-            {
-                if (_yIncreasesUpward != value || !initYInc)
-                {
-                    initYInc = true;
-                    _yIncreasesUpward = value;
-                    yMult = (_yIncreasesUpward) ? -1 : 1;
-
-                    deltaVals[(int)Types.UP] = (0, -1 * yMult);
-                    deltaVals[(int)Types.DOWN] = (0, 1 * yMult);
-                    deltaVals[(int)Types.UP_LEFT] = (-1, -1 * yMult);
-                    deltaVals[(int)Types.UP_RIGHT] = (1, -1 * yMult);
-                    deltaVals[(int)Types.DOWN_LEFT] = (-1, 1 * yMult);
-                    deltaVals[(int)Types.DOWN_RIGHT] = (1, 1 * yMult);
-                }
-            }
-        }
+        public static bool YIncreasesUpward => _yIncreasesUpward;
 
         /// <summary>
         /// Change in x-value represented by this direction.
@@ -245,6 +227,28 @@ namespace SadRogue.Primitives
         public static bool operator !=(Direction lhs, Direction rhs) => !(lhs == rhs);
 
         internal static int yMult { get; private set; }
+
+        /// <summary>
+        /// Changes the value of <see cref="YIncreasesUpward"/>.  This operation is not safe to perform if another thread may be directly or indirectly using Directions.
+        /// It is intended that this value be set once to match your environment as part of an initialization routine.
+        /// </summary>
+        /// <param name="newValue">New value to assign to <see cref="YIncreasesUpward"/>.</param>
+        public static void SetYIncreasesUpwardsUnsafe(bool newValue)
+        {
+            if (_yIncreasesUpward != newValue || !initYInc)
+            {
+                initYInc = true;
+                _yIncreasesUpward = newValue;
+                yMult = (_yIncreasesUpward) ? -1 : 1;
+
+                deltaVals[(int)Types.UP] = (0, -1 * yMult);
+                deltaVals[(int)Types.DOWN] = (0, 1 * yMult);
+                deltaVals[(int)Types.UP_LEFT] = (-1, -1 * yMult);
+                deltaVals[(int)Types.UP_RIGHT] = (1, -1 * yMult);
+                deltaVals[(int)Types.DOWN_LEFT] = (-1, 1 * yMult);
+                deltaVals[(int)Types.DOWN_RIGHT] = (1, 1 * yMult);
+            }
+        }
 
         /// <summary>
         /// Returns the cardinal direction that most closely matches the degree heading of the given

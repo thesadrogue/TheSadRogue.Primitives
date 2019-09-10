@@ -264,11 +264,11 @@ namespace TheSadRogue.Primitives.UnitTests
             Assert.Equal(expectedPreDeltas.dx, dir.DeltaX);
             Assert.Equal(expectedPreDeltas.dy, dir.DeltaY);
 
-            Direction.YIncreasesUpward = true;
+            Direction.SetYIncreasesUpwardsUnsafe(true);
             Assert.Equal(expectedPostDeltas.dx, dir.DeltaX);
             Assert.Equal(expectedPostDeltas.dy, dir.DeltaY);
 
-            Direction.YIncreasesUpward = false;
+            Direction.SetYIncreasesUpwardsUnsafe(false);
             Assert.Equal(expectedPreDeltas.dx, dir.DeltaX);
             Assert.Equal(expectedPreDeltas.dy, dir.DeltaY);
         }
@@ -282,12 +282,12 @@ namespace TheSadRogue.Primitives.UnitTests
             Assert.True(dir.Equals(Direction.ToDirection(dir.Type)));
             Assert.True(dir.Equals((object)Direction.ToDirection(dir.Type)));
 
-            Direction.YIncreasesUpward = true;
+            Direction.SetYIncreasesUpwardsUnsafe(true);
             Assert.True(dir == Direction.ToDirection(dir.Type));
             Assert.True(dir.Equals(Direction.ToDirection(dir.Type)));
             Assert.True(dir.Equals((object)Direction.ToDirection(dir.Type)));
 
-            Direction.YIncreasesUpward = false;
+            Direction.SetYIncreasesUpwardsUnsafe(false);
             Assert.True(dir == Direction.ToDirection(dir.Type));
             Assert.True(dir.Equals(Direction.ToDirection(dir.Type)));
             Assert.True(dir.Equals((object)Direction.ToDirection(dir.Type)));
@@ -309,7 +309,7 @@ namespace TheSadRogue.Primitives.UnitTests
 
             // The test cases create the second point by adding a direction, so if we re-grab the enumerable after flipping
             // the YIncreasesUpwards flag, everything should still match up if we're accounting for the y-deltas properly.
-            Direction.YIncreasesUpward = true;
+            Direction.SetYIncreasesUpwardsUnsafe(true);
             testCases = GetDirectionPairs.ToArray();
             foreach (var testCase in testCases)
             {
@@ -317,7 +317,7 @@ namespace TheSadRogue.Primitives.UnitTests
                 Assert.Equal(testCase.expectedDir, dir);
             }
 
-            Direction.YIncreasesUpward = false;
+            Direction.SetYIncreasesUpwardsUnsafe(false);
         }
 
         [Fact]
@@ -348,7 +348,7 @@ namespace TheSadRogue.Primitives.UnitTests
 
             // The test cases create the second point by adding a direction, so if we re-grab the enumerable after flipping
             // the YIncreasesUpwards flag, everything should still match up if we're accounting for the y-deltas properly.
-            Direction.YIncreasesUpward = true;
+            Direction.SetYIncreasesUpwardsUnsafe(true);
             testCases = GetCardinalDirectionPairs.ToArray();
             foreach (var testCase in testCases)
             {
@@ -356,7 +356,7 @@ namespace TheSadRogue.Primitives.UnitTests
                 Assert.Equal(testCase.expectedDir, dir);
             }
 
-            Direction.YIncreasesUpward = false;
+            Direction.SetYIncreasesUpwardsUnsafe(false);
         }
 
         [Fact]

@@ -20,16 +20,22 @@ namespace SadRogue.Primitives
     /// left corner, and matches a typical mathmatical definition of a euclidean coordinate plane, as well as the scene
     /// coordinate plane defined by Unity and other game engines.
     /// </remarks>
+    [Serializable]
     public struct Direction : IEquatable<Direction>
     {
+        [NonSerialized]
         private static readonly string[] writeVals = Enum.GetNames(typeof(Types));
 
         // All directions that aren't NONE.
+        [NonSerialized]
         private static readonly Types[] validTypes = Enum.GetValues(typeof(Types)).Cast<Types>().Skip(1).ToArray();
+        [NonSerialized]
         private static readonly (int dx, int dy)[] deltaVals;
 
+        [NonSerialized]
         private static bool _yIncreasesUpward;
 
+        [NonSerialized]
         private static bool initYInc;
 
         static Direction()
@@ -118,46 +124,55 @@ namespace SadRogue.Primitives
         /// <summary>
         /// Down direction.
         /// </summary>
+        [NonSerialized]
         public static readonly Direction DOWN;
 
         /// <summary>
         /// Down-left direction.
         /// </summary>
+        [NonSerialized]
         public static readonly Direction DOWN_LEFT;
 
         /// <summary>
         /// Down-right direction.
         /// </summary>
+        [NonSerialized]
         public static readonly Direction DOWN_RIGHT;
 
         /// <summary>
         /// Left direction.
         /// </summary>
+        [NonSerialized]
         public static readonly Direction LEFT;
 
         /// <summary>
         /// No direction.
         /// </summary>
+        [NonSerialized]
         public static readonly Direction NONE;
 
         /// <summary>
         /// Right direction.
         /// </summary>
+        [NonSerialized]
         public static readonly Direction RIGHT;
 
         /// <summary>
         /// Up direction.
         /// </summary>
+        [NonSerialized]
         public static readonly Direction UP;
 
         /// <summary>
         /// Up-left direction.
         /// </summary>
+        [NonSerialized]
         public static readonly Direction UP_LEFT;
 
         /// <summary>
         /// Up-right direction.
         /// </summary>
+        [NonSerialized]
         public static readonly Direction UP_RIGHT;
 
         /// <summary>
@@ -226,7 +241,9 @@ namespace SadRogue.Primitives
         /// </returns>
         public static bool operator !=(Direction lhs, Direction rhs) => !(lhs == rhs);
 
-        internal static int yMult { get; private set; }
+        // Do not change manually outside of YIncreasesUpwards functionality
+        [NonSerialized]
+        internal static int yMult;
 
         /// <summary>
         /// Changes the value of <see cref="YIncreasesUpward"/>.  This operation is not safe to perform if another thread may be directly or indirectly using Directions.

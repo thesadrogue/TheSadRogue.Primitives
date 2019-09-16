@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Collections;
+using System;
 
 namespace SadRogue.Primitives
 {
     /// <summary>
     /// A gradient stop. Defines a color and where it is located within the gradient.
     /// </summary>
-    public struct GradientStop
+    [Serializable]
+    public struct GradientStop : IEquatable<GradientStop>
     {
         /// <summary>
         /// The color.
@@ -28,11 +30,21 @@ namespace SadRogue.Primitives
             Color = color;
             Stop = stop;
         }
+
+        public static bool operator ==(GradientStop lhs, GradientStop rhs) => lhs.Color == rhs.Color && lhs.Stop == rhs.Stop;
+        public static bool operator !=(GradientStop lhs, GradientStop rhs) => !(lhs == rhs);
+
+        public override int GetHashCode() => Color.GetHashCode() ^ Stop.GetHashCode();
+
+        public override bool Equals(object obj) => obj is GradientStop g && this == g;
+
+        public bool Equals(GradientStop g) => Color == g.Color && Stop == g.Stop;
     }
 
     /// <summary>
     /// Represents a gradient with multiple color stops.
     /// </summary>
+    [Serializable]
     public class Gradient : IEnumerable<GradientStop>
     {
         /// <summary>

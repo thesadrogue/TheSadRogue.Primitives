@@ -14,6 +14,7 @@ namespace SadRogue.Primitives
     /// </summary>
     [DataContract]
     [DebuggerDisplay("{DebugDisplayString,nq}")]
+    [Serializable]
     public struct Color : IEquatable<Color>
     {
         static Color()

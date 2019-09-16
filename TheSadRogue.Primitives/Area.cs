@@ -9,6 +9,7 @@ namespace SadRogue.Primitives
     /// Represents an arbitrarily-shaped 2D area. Stores and provides access to a list of each
     /// unique position in the area.
     /// </summary>
+    [Serializable]
     public class Area : IReadOnlyArea
     {
         private readonly HashSet<Point> positionsSet;

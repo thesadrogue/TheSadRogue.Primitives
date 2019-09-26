@@ -1,8 +1,9 @@
-﻿using MonoPoint = Microsoft.Xna.Framework.Point;
+﻿using System;
+using SadRogue.Primitives;
+using MonoPoint = Microsoft.Xna.Framework.Point;
 using SadRoguePoint = SadRogue.Primitives.Point;
-using System;
 
-namespace System.Numerics.Grid
+namespace SadRogue.Primitives
 {
     public static class SadRoguePointExtensions
     {
@@ -13,7 +14,7 @@ namespace System.Numerics.Grid
 
         public static SadRoguePoint Multiply(this SadRoguePoint self, MonoPoint other) => new SadRoguePoint(self.X * other.X, self.Y * other.Y);
         public static SadRoguePoint Divide(this SadRoguePoint self, MonoPoint other)
-            => new SadRoguePoint((int)Math.Round(self. X / (double)other.X,MidpointRounding.AwayFromZero), (int)Math.Round(self.Y / (double)other.Y, MidpointRounding.AwayFromZero));
+            => new SadRoguePoint((int)Math.Round(self.X / (double)other.X, MidpointRounding.AwayFromZero), (int)Math.Round(self.Y / (double)other.Y, MidpointRounding.AwayFromZero));
 
         public static bool Equals(this SadRoguePoint self, MonoPoint other) => self.X == other.X && self.Y == other.Y;
     }
@@ -21,7 +22,6 @@ namespace System.Numerics.Grid
 
 namespace Microsoft.Xna.Framework
 {
-    using SadRogue.Primitives;
     public static class MonoPointExtensions
     {
         public static SadRoguePoint ToPoint(this MonoPoint self) => new SadRoguePoint(self.X, self.Y);

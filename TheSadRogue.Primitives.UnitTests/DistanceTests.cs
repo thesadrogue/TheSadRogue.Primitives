@@ -1,23 +1,23 @@
 ﻿using System.Linq;
+using SadRogue.Primitives;
 using Xunit;
 using XUnit.ValueTuples;
-using SadRogue.Primitives;
 
 namespace TheSadRogue.Primitives.UnitTests
 {
     public class DistanceTests
     {
         #region Testdata
-        public static Distance[] Distances => new Distance[] { Distance.MANHATTAN, Distance.CHEBYSHEV, Distance.EUCLIDEAN };
+        public static Distance[] Distances => new Distance[] { Distance.Manhattan, Distance.Chebyshev, Distance.Euclidean };
 
         public static (Distance.Types, Distance)[] TypeDistanceConversion => new (Distance.Types, Distance)[]
-        { (Distance.Types.CHEBYSHEV, Distance.CHEBYSHEV), (Distance.Types.EUCLIDEAN, Distance.EUCLIDEAN), (Distance.Types.MANHATTAN, Distance.MANHATTAN) };
+        { (Distance.Types.Chebyshev, Distance.Chebyshev), (Distance.Types.Euclidean, Distance.Euclidean), (Distance.Types.Manhattan, Distance.Manhattan) };
 
         public static (Distance, AdjacencyRule)[] AdjacencyRuleConversionValues => new (Distance, AdjacencyRule)[]
-        { (Distance.CHEBYSHEV, AdjacencyRule.EIGHT_WAY), (Distance.EUCLIDEAN, AdjacencyRule.EIGHT_WAY), (Distance.MANHATTAN, AdjacencyRule.CARDINALS) };
+        { (Distance.Chebyshev, AdjacencyRule.EightWay), (Distance.Euclidean, AdjacencyRule.EightWay), (Distance.Manhattan, AdjacencyRule.Cardinals) };
 
         public static (Distance, Radius)[] RadiusConversionValues => new (Distance, Radius)[]
-        { (Distance.CHEBYSHEV, Radius.SQUARE), (Distance.EUCLIDEAN, Radius.CIRCLE), (Distance.MANHATTAN, Radius.DIAMOND) };
+        { (Distance.Chebyshev, Radius.Square), (Distance.Euclidean, Radius.Circle), (Distance.Manhattan, Radius.Diamond) };
         #endregion
 
         #region Equality/Inequality
@@ -25,8 +25,8 @@ namespace TheSadRogue.Primitives.UnitTests
         [MemberDataEnumerable(nameof(Distances))]
         public void TestEquality(Distance dist)
         {
-            var compareTo = dist;
-            var allDists = Distances;
+            Distance compareTo = dist;
+            Distance[] allDists = Distances;
             Assert.True(dist == compareTo);
 
             Assert.Equal(1, allDists.Count(i => i == compareTo));
@@ -36,8 +36,8 @@ namespace TheSadRogue.Primitives.UnitTests
         [MemberDataEnumerable(nameof(Distances))]
         public void TestInequality(Distance dist)
         {
-            var compareTo = dist;
-            var allDists = Distances;
+            Distance compareTo = dist;
+            Distance[] allDists = Distances;
             Assert.False(dist != compareTo);
 
             Assert.Equal(allDists.Length - 1, allDists.Count(i => i != compareTo));
@@ -47,19 +47,21 @@ namespace TheSadRogue.Primitives.UnitTests
         [MemberDataEnumerable(nameof(Distances))]
         public void TestEqualityInqeualityOpposite(Distance compareDist)
         {
-            var dists = Distances;
+            Distance[] dists = Distances;
 
-            foreach (var dist in dists)
+            foreach (Distance dist in dists)
+            {
                 Assert.NotEqual(dist == compareDist, dist != compareDist);
+            }
         }
 
         [Theory]
         [MemberDataEnumerable(nameof(Distances))]
         public void TestEqualityEquivalence(Distance compareDist)
         {
-            var dists = Distances;
+            Distance[] dists = Distances;
 
-            foreach (var dist in dists)
+            foreach (Distance dist in dists)
             {
                 Assert.Equal(dist == compareDist, dist.Equals(compareDist));
                 Assert.Equal(dist == compareDist, dist.Equals((object)compareDist));
@@ -80,10 +82,7 @@ namespace TheSadRogue.Primitives.UnitTests
         #region DistanceImplicitConversions
         [Theory]
         [MemberDataTuple(nameof(AdjacencyRuleConversionValues))]
-        public void AdjacencyRuleConversion(Distance dist, AdjacencyRule expected)
-        {
-            Assert.Equal(expected, dist);
-        }
+        public void AdjacencyRuleConversion(Distance dist, AdjacencyRule expected) => Assert.Equal(expected, dist);
 
         [Theory]
         [MemberDataTuple(nameof(RadiusConversionValues))]

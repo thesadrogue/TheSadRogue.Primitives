@@ -10,12 +10,12 @@ namespace SadRogue.Primitives
     [Serializable]
     public class Palette : IEnumerable<Color>
     {
-        Color[] colors;
+        private readonly Color[] _colors;
 
         /// <summary>
         /// How many colors the palette has.
         /// </summary>
-        public int Length => colors.Length;
+        public int Length => _colors.Length;
 
         /// <summary>
         /// Gets or sets a color in the palette by index.
@@ -24,8 +24,8 @@ namespace SadRogue.Primitives
         /// <returns>A color.</returns>
         public Color this[int index]
         {
-            get => colors[index];
-            set => colors[index] = value;
+            get => _colors[index];
+            set => _colors[index] = value;
         }
 
         /// <summary>
@@ -34,29 +34,28 @@ namespace SadRogue.Primitives
         /// <param name="colors">The number of colors.</param>
         public Palette(int colors)
         {
-            this.colors = new Color[colors];
+            _colors = new Color[colors];
 
             for (int i = 0; i < colors; i++)
-                this.colors[i] = new Color();
+            {
+                _colors[i] = new Color();
+            }
         }
 
         /// <summary>
         /// Creates a new palette of colors from a list of existing colors.
         /// </summary>
         /// <param name="colors">The list of colors this palette is made from.</param>
-        public Palette(IEnumerable<Color> colors)
-        {
-            this.colors = new List<Color>(colors).ToArray();
-        }
+        public Palette(IEnumerable<Color> colors) => _colors = new List<Color>(colors).ToArray();
 
         /// <summary>
         /// Shifts the entire palette once to the left.
         /// </summary>
         public void ShiftLeft()
         {
-            Color lostColor = colors[0];
-            Array.Copy(colors, 1, colors, 0, colors.Length - 1);
-            colors[colors.Length - 1] = lostColor;
+            Color lostColor = _colors[0];
+            Array.Copy(_colors, 1, _colors, 0, _colors.Length - 1);
+            _colors[_colors.Length - 1] = lostColor;
         }
 
         /// <summary>
@@ -64,9 +63,9 @@ namespace SadRogue.Primitives
         /// </summary>
         public void ShiftRight()
         {
-            Color lostColor = colors[colors.Length - 1];
-            Array.Copy(colors, 0, colors, 1, colors.Length - 1);
-            colors[0] = lostColor;
+            Color lostColor = _colors[_colors.Length - 1];
+            Array.Copy(_colors, 0, _colors, 1, _colors.Length - 1);
+            _colors[0] = lostColor;
         }
 
         /// <summary>
@@ -76,9 +75,9 @@ namespace SadRogue.Primitives
         /// <param name="count">The amount of colors to shift from the starting index.</param>
         public void ShiftLeft(int startingIndex, int count)
         {
-            Color lostColor = colors[startingIndex];
-            Array.Copy(colors, startingIndex + 1, colors, startingIndex, count - 1);
-            colors[startingIndex + count - 1] = lostColor;
+            Color lostColor = _colors[startingIndex];
+            Array.Copy(_colors, startingIndex + 1, _colors, startingIndex, count - 1);
+            _colors[startingIndex + count - 1] = lostColor;
         }
 
         /// <summary>
@@ -88,9 +87,9 @@ namespace SadRogue.Primitives
         /// <param name="count">The amount of colors to shift from the starting index.</param>
         public void ShiftRight(int startingIndex, int count)
         {
-            Color lostColor = colors[startingIndex + count - 1];
-            Array.Copy(colors, startingIndex, colors, startingIndex + 1, count - 1);
-            colors[startingIndex] = lostColor;
+            Color lostColor = _colors[startingIndex + count - 1];
+            Array.Copy(_colors, startingIndex, _colors, startingIndex + 1, count - 1);
+            _colors[startingIndex] = lostColor;
         }
 
         /// <summary>
@@ -98,7 +97,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="color">The color to find.</param>
         /// <returns>The closest matching color.</returns>
-        public Color GetNearest(Color color) => colors[GetNearestIndex(color)];
+        public Color GetNearest(Color color) => _colors[GetNearestIndex(color)];
 
         /// <summary>
         /// Gets the index of the closest color in the palette to the provided color.
@@ -110,9 +109,9 @@ namespace SadRogue.Primitives
             int lowestDistanceIndex = -1;
             int lowestDistance = int.MaxValue;
             int currentDistance;
-            for (int i = 0; i < colors.Length; i++)
+            for (int i = 0; i < _colors.Length; i++)
             {
-                currentDistance = Math.Abs(colors[i].R - color.R) + Math.Abs(colors[i].G - color.G) + Math.Abs(colors[i].B - color.B);
+                currentDistance = Math.Abs(_colors[i].R - color.R) + Math.Abs(_colors[i].G - color.G) + Math.Abs(_colors[i].B - color.B);
 
                 if (currentDistance < lowestDistance)
                 {
@@ -127,18 +126,12 @@ namespace SadRogue.Primitives
         /// Gets the list of colors in the palette.
         /// </summary>
         /// <returns>The colors in the palette.</returns>
-        public IEnumerator<Color> GetEnumerator()
-        {
-            return ((IEnumerable<Color>)colors).GetEnumerator();
-        }
+        public IEnumerator<Color> GetEnumerator() => ((IEnumerable<Color>)_colors).GetEnumerator();
 
         /// <summary>
         /// Gets the list of colors in the palette.
         /// </summary>
         /// <returns>The colors in the palette.</returns>
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return colors.GetEnumerator();
-        }
+        IEnumerator IEnumerable.GetEnumerator() => _colors.GetEnumerator();
     }
 }

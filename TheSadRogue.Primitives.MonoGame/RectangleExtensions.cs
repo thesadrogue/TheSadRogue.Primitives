@@ -1,7 +1,7 @@
 ﻿using MonoRectangle = Microsoft.Xna.Framework.Rectangle;
 using SadRogueRectangle = SadRogue.Primitives.Rectangle;
 
-namespace System.Numerics.Grid
+namespace SadRogue.Primitives
 {
     public static class RectangleExtensions
     {

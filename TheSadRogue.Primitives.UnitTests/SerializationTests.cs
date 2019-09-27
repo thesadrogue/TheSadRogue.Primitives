@@ -1,25 +1,25 @@
-﻿using Xunit;
-using XUnit.ValueTuples;
-using SadRogue.Primitives;
+﻿using System;
 using System.Collections.Generic;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
-using System;
+using System.Runtime.Serialization.Formatters.Binary;
+using SadRogue.Primitives;
+using Xunit;
+using XUnit.ValueTuples;
 
 namespace TheSadRogue.Primitives.UnitTests
 {
     public class SerializationTests
     {
         public static IEnumerable<object> SerializeData = new object[] {
-            AdjacencyRule.CARDINALS, AdjacencyRule.EIGHT_WAY,
+            AdjacencyRule.Cardinals, AdjacencyRule.EightWay,
             CreateArea((1, 2), (3, 4), (5,6)),
             new BoundedRectangle(new Rectangle(1, 4, 10, 14), new Rectangle(-10, -9, 100, 101)),
             new Color(.5f, .6f, .7f), new Color(120, 121, 122, 100), Color.AliceBlue,
-            Direction.DOWN, Direction.UP_RIGHT,
-            Distance.CHEBYSHEV, Distance.MANHATTAN,
+            Direction.Down, Direction.UpRight,
+            Distance.Chebyshev, Distance.Manhattan,
             new GradientStop(new Color(100, 101, 102, 103), .5f),
             new Point(-1, -5), new Point(4, 9),
-            Radius.CIRCLE, Radius.DIAMOND,
+            Radius.Circle, Radius.Diamond,
             new Rectangle(1, 2, 3, 4), new Rectangle(-10, -4, 56, 68)
         };
 
@@ -36,11 +36,15 @@ namespace TheSadRogue.Primitives.UnitTests
 
             var formatter = new BinaryFormatter();
             using (var stream = new FileStream(name, FileMode.Create, FileAccess.Write))
+            {
                 formatter.Serialize(stream, objToSerialize);
+            }
 
             object reSerialized = default;
             using (var stream = new FileStream(name, FileMode.Open, FileAccess.Read))
+            {
                 reSerialized = formatter.Deserialize(stream);
+            }
 
             File.Delete(name);
             Assert.True(equality(objToSerialize, reSerialized));
@@ -62,10 +66,18 @@ namespace TheSadRogue.Primitives.UnitTests
             Gradient g1 = (Gradient)o1;
             Gradient g2 = (Gradient)o2;
 
-            if (g1.Stops.Length != g2.Stops.Length) return false;
+            if (g1.Stops.Length != g2.Stops.Length)
+            {
+                return false;
+            }
 
             for (int i = 0; i < g1.Stops.Length; i++)
-                if (g1.Stops[i] != g2.Stops[i]) return false;
+            {
+                if (g1.Stops[i] != g2.Stops[i])
+                {
+                    return false;
+                }
+            }
 
             return true;
         }
@@ -76,11 +88,17 @@ namespace TheSadRogue.Primitives.UnitTests
             Palette p2 = (Palette)o2;
 
             if (p1.Length != p2.Length)
+            {
                 return false;
+            }
 
             for (int i = 0; i < p1.Length; i++)
+            {
                 if (p1[i] != p2[i])
+                {
                     return false;
+                }
+            }
 
             return true;
         }

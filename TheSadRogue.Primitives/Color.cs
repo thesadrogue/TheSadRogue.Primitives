@@ -3,9 +3,9 @@
 // file 'LICENSE.txt', which is part of this source code package.
 
 using System;
-using System.Text;
-using System.Runtime.Serialization;
 using System.Diagnostics;
+using System.Runtime.Serialization;
+using System.Text;
 
 namespace SadRogue.Primitives
 {
@@ -175,10 +175,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="packedValue">The packed value.</param>
         [CLSCompliant(false)]
-        public Color(uint packedValue)
-        {
-            _packedValue = packedValue;
-        }
+        public Color(uint packedValue) => _packedValue = packedValue;
 
         /// <summary>
         /// Constructs an RGBA color from a <see cref="Color"/> and an alpha value.
@@ -189,7 +186,7 @@ namespace SadRogue.Primitives
         {
             if ((alpha & 0xFFFFFF00) != 0)
             {
-                var clampedA = (uint)MathHelpers.Clamp(alpha, Byte.MinValue, Byte.MaxValue);
+                uint clampedA = (uint)MathHelpers.Clamp(alpha, byte.MinValue, byte.MaxValue);
 
                 _packedValue = (color._packedValue & 0x00FFFFFF) | (clampedA << 24);
             }
@@ -244,9 +241,9 @@ namespace SadRogue.Primitives
 
             if (((r | g | b) & 0xFFFFFF00) != 0)
             {
-                var clampedR = (uint)MathHelpers.Clamp(r, Byte.MinValue, Byte.MaxValue);
-                var clampedG = (uint)MathHelpers.Clamp(g, Byte.MinValue, Byte.MaxValue);
-                var clampedB = (uint)MathHelpers.Clamp(b, Byte.MinValue, Byte.MaxValue);
+                uint clampedR = (uint)MathHelpers.Clamp(r, byte.MinValue, byte.MaxValue);
+                uint clampedG = (uint)MathHelpers.Clamp(g, byte.MinValue, byte.MaxValue);
+                uint clampedB = (uint)MathHelpers.Clamp(b, byte.MinValue, byte.MaxValue);
 
                 _packedValue |= (clampedB << 16) | (clampedG << 8) | (clampedR);
             }
@@ -267,10 +264,10 @@ namespace SadRogue.Primitives
         {
             if (((r | g | b | alpha) & 0xFFFFFF00) != 0)
             {
-                var clampedR = (uint)MathHelpers.Clamp(r, Byte.MinValue, Byte.MaxValue);
-                var clampedG = (uint)MathHelpers.Clamp(g, Byte.MinValue, Byte.MaxValue);
-                var clampedB = (uint)MathHelpers.Clamp(b, Byte.MinValue, Byte.MaxValue);
-                var clampedA = (uint)MathHelpers.Clamp(alpha, Byte.MinValue, Byte.MaxValue);
+                uint clampedR = (uint)MathHelpers.Clamp(r, byte.MinValue, byte.MaxValue);
+                uint clampedG = (uint)MathHelpers.Clamp(g, byte.MinValue, byte.MaxValue);
+                uint clampedB = (uint)MathHelpers.Clamp(b, byte.MinValue, byte.MaxValue);
+                uint clampedA = (uint)MathHelpers.Clamp(alpha, byte.MinValue, byte.MaxValue);
 
                 _packedValue = (clampedA << 24) | (clampedB << 16) | (clampedG << 8) | (clampedR);
             }
@@ -290,10 +287,7 @@ namespace SadRogue.Primitives
         /// <param name="g"></param>
         /// <param name="b"></param>
         /// <param name="alpha"></param>
-        public Color(byte r, byte g, byte b, byte alpha)
-        {
-            _packedValue = ((uint)alpha << 24) | ((uint)b << 16) | ((uint)g << 8) | (r);
-        }
+        public Color(byte r, byte g, byte b, byte alpha) => _packedValue = ((uint)alpha << 24) | ((uint)b << 16) | ((uint)g << 8) | (r);
 
         /// <summary>
         /// Gets or sets the blue component.
@@ -305,7 +299,7 @@ namespace SadRogue.Primitives
             {
                 unchecked
                 {
-                    return (byte)(this._packedValue >> 16);
+                    return (byte)(_packedValue >> 16);
                 }
             }
         }
@@ -320,7 +314,7 @@ namespace SadRogue.Primitives
             {
                 unchecked
                 {
-                    return (byte)(this._packedValue >> 8);
+                    return (byte)(_packedValue >> 8);
                 }
             }
         }
@@ -335,7 +329,7 @@ namespace SadRogue.Primitives
             {
                 unchecked
                 {
-                    return (byte)this._packedValue;
+                    return (byte)_packedValue;
                 }
             }
         }
@@ -350,7 +344,7 @@ namespace SadRogue.Primitives
             {
                 unchecked
                 {
-                    return (byte)(this._packedValue >> 24);
+                    return (byte)(_packedValue >> 24);
                 }
             }
         }
@@ -361,10 +355,7 @@ namespace SadRogue.Primitives
         /// <param name="a"><see cref="Color"/> instance on the left of the equal sign.</param>
         /// <param name="b"><see cref="Color"/> instance on the right of the equal sign.</param>
         /// <returns><c>true</c> if the instances are equal; <c>false</c> otherwise.</returns>
-        public static bool operator ==(Color a, Color b)
-        {
-            return (a._packedValue == b._packedValue);
-        }
+        public static bool operator ==(Color a, Color b) => (a._packedValue == b._packedValue);
 
         /// <summary>
         /// Compares whether two <see cref="Color"/> instances are not equal.
@@ -372,29 +363,20 @@ namespace SadRogue.Primitives
         /// <param name="a"><see cref="Color"/> instance on the left of the not equal sign.</param>
         /// <param name="b"><see cref="Color"/> instance on the right of the not equal sign.</param>
         /// <returns><c>true</c> if the instances are not equal; <c>false</c> otherwise.</returns>	
-        public static bool operator !=(Color a, Color b)
-        {
-            return (a._packedValue != b._packedValue);
-        }
+        public static bool operator !=(Color a, Color b) => (a._packedValue != b._packedValue);
 
         /// <summary>
         /// Gets the hash code of this <see cref="Color"/>.
         /// </summary>
         /// <returns>Hash code of this <see cref="Color"/>.</returns>
-        public override int GetHashCode()
-        {
-            return this._packedValue.GetHashCode();
-        }
+        public override int GetHashCode() => _packedValue.GetHashCode();
 
         /// <summary>
         /// Compares whether current instance is equal to specified object.
         /// </summary>
         /// <param name="obj">The <see cref="Color"/> to compare.</param>
         /// <returns><c>true</c> if the instances are equal; <c>false</c> otherwise.</returns>
-        public override bool Equals(object obj)
-        {
-            return ((obj is Color) && this.Equals((Color)obj));
-        }
+        public override bool Equals(object obj) => ((obj is Color) && Equals((Color)obj));
 
         #region Color Bank Ansi
         /// <summary>
@@ -1756,10 +1738,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="color">The color to calculate the luma from.</param>
         /// <returns>A value based on this code: (color.R + color.R + color.B + color.G + color.G + color.G) / 6f</returns>
-        public float GetLuma()
-        {
-            return (R + R + B + G + G + G) / 6f;
-        }
+        public float GetLuma() => (R + R + B + G + G + G) / 6f;
 
         /// <summary>
         /// Gets the brightness of a color.
@@ -1783,18 +1762,20 @@ namespace SadRogue.Primitives
         /// <remarks>Taken from the mono source code.</remarks>
         public float GetSaturation()
         {
-            byte minval = (byte)Math.Min(R, Math.Min(G, B));
-            byte maxval = (byte)Math.Max(R, Math.Max(G, B));
+            byte minval = Math.Min(R, Math.Min(G, B));
+            byte maxval = Math.Max(R, Math.Max(G, B));
 
 
             if (maxval == minval)
+            {
                 return 0.0f;
-
+            }
 
             int sum = maxval + minval;
             if (sum > 255)
+            {
                 sum = 510 - sum;
-
+            }
 
             return (float)(maxval - minval) / sum;
         }
@@ -1807,15 +1788,16 @@ namespace SadRogue.Primitives
         /// <remarks>Taken from the mono source code.</remarks>
         public float GetHue()
         {
-            byte minval = (byte)Math.Min(R, Math.Min(G, B));
-            byte maxval = (byte)Math.Max(R, Math.Max(G, B));
+            byte minval = Math.Min(R, Math.Min(G, B));
+            byte maxval = Math.Max(R, Math.Max(G, B));
 
 
             if (maxval == minval)
+            {
                 return 0.0f;
+            }
 
-
-            float diff = (float)(maxval - minval);
+            float diff = maxval - minval;
             float rnorm = (maxval - R) / diff;
             float gnorm = (maxval - G) / diff;
             float bnorm = (maxval - B) / diff;
@@ -1823,14 +1805,24 @@ namespace SadRogue.Primitives
 
             float hue = 0.0f;
             if (R == maxval)
+            {
                 hue = 60.0f * (6.0f + bnorm - gnorm);
-            if (G == maxval)
-                hue = 60.0f * (2.0f + rnorm - bnorm);
-            if (B == maxval)
-                hue = 60.0f * (4.0f + gnorm - rnorm);
-            if (hue > 360.0f)
-                hue -= 360.0f;
+            }
 
+            if (G == maxval)
+            {
+                hue = 60.0f * (2.0f + rnorm - bnorm);
+            }
+
+            if (B == maxval)
+            {
+                hue = 60.0f * (4.0f + gnorm - rnorm);
+            }
+
+            if (hue > 360.0f)
+            {
+                hue -= 360.0f;
+            }
 
             return hue;
         }
@@ -1842,7 +1834,7 @@ namespace SadRogue.Primitives
         /// <param name="value2">Destination <see cref="Color"/>.</param>
         /// <param name="amount">Interpolation factor.</param>
         /// <returns>Interpolated <see cref="Color"/>.</returns>
-        public static Color Lerp(Color value1, Color value2, Single amount)
+        public static Color Lerp(Color value1, Color value2, float amount)
         {
             amount = MathHelpers.Clamp(amount, 0, 1);
             return new Color(
@@ -1858,10 +1850,7 @@ namespace SadRogue.Primitives
         /// <param name="value">Source <see cref="Color"/>.</param>
         /// <param name="scale">Multiplicator.</param>
         /// <returns>Multiplication result.</returns>
-        public static Color Multiply(Color value, float scale)
-        {
-            return new Color((int)(value.R * scale), (int)(value.G * scale), (int)(value.B * scale), (int)(value.A * scale));
-        }
+        public static Color Multiply(Color value, float scale) => new Color((int)(value.R * scale), (int)(value.G * scale), (int)(value.B * scale), (int)(value.A * scale));
 
         /// <summary>
         /// Creates an array of colors that includes the <paramref name="startingColor"/> and <paramref name="endingColor"/> and <paramref name="steps"/> of colors between them.
@@ -1915,9 +1904,13 @@ namespace SadRogue.Primitives
                 float var_1;
 
                 if (l < 0.5)
+                {
                     var_2 = l * (1 + s);
+                }
                 else
+                {
                     var_2 = (l + s) - (s * l);
+                }
 
                 var_1 = 2 * l - var_2;
 
@@ -1931,11 +1924,31 @@ namespace SadRogue.Primitives
 
         private static float Hue_2_RGB(float v1, float v2, float vH)
         {
-            if (vH < 0) vH += 1;
-            if (vH > 1) vH -= 1;
-            if ((6 * vH) < 1) return (v1 + (v2 - v1) * 6 * vH);
-            if ((2 * vH) < 1) return (v2);
-            if ((3 * vH) < 2) return (v1 + (v2 - v1) * ((2 / 3) - vH) * 6);
+            if (vH < 0)
+            {
+                vH += 1;
+            }
+
+            if (vH > 1)
+            {
+                vH -= 1;
+            }
+
+            if ((6 * vH) < 1)
+            {
+                return (v1 + (v2 - v1) * 6 * vH);
+            }
+
+            if ((2 * vH) < 1)
+            {
+                return (v2);
+            }
+
+            if ((3 * vH) < 2)
+            {
+                return (v1 + (v2 - v1) * ((2 / 3) - vH) * 6);
+            }
+
             return (v1);
         }
 
@@ -1945,37 +1958,28 @@ namespace SadRogue.Primitives
         /// <param name="value">Source <see cref="Color"/>.</param>
         /// <param name="scale">Multiplicator.</param>
         /// <returns>Multiplication result.</returns>
-        public static Color operator *(Color value, float scale)
-        {
-            return new Color((int)(value.R * scale), (int)(value.G * scale), (int)(value.B * scale), (int)(value.A * scale));
-        }
+        public static Color operator *(Color value, float scale) => new Color((int)(value.R * scale), (int)(value.G * scale), (int)(value.B * scale), (int)(value.A * scale));
 
         /// <summary>
         /// Gets or sets packed value of this <see cref="Color"/>.
         /// </summary>
         [CLSCompliant(false)]
-        public UInt32 PackedValue => _packedValue;
+        public uint PackedValue => _packedValue;
 
 
-        internal string DebugDisplayString
-        {
-            get
-            {
-                return string.Concat(
-                    this.R.ToString(), "  ",
-                    this.G.ToString(), "  ",
-                    this.B.ToString(), "  ",
-                    this.A.ToString()
+        internal string DebugDisplayString => string.Concat(
+                    R.ToString(), "  ",
+                    G.ToString(), "  ",
+                    B.ToString(), "  ",
+                    A.ToString()
                 );
-            }
-        }
 
 
         /// <summary>
-        /// Returns a <see cref="String"/> representation of this <see cref="Color"/> in the format:
+        /// Returns a <see cref="string"/> representation of this <see cref="Color"/> in the format:
         /// {R:[red] G:[green] B:[blue] A:[alpha]}
         /// </summary>
-        /// <returns><see cref="String"/> representation of this <see cref="Color"/>.</returns>
+        /// <returns><see cref="string"/> representation of this <see cref="Color"/>.</returns>
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder(25);
@@ -1999,10 +2003,7 @@ namespace SadRogue.Primitives
         /// <param name="b">Blue component value.</param>
         /// <param name="a">Alpha component value.</param>
         /// <returns>A <see cref="Color"/> which contains premultiplied alpha data.</returns>
-        public static Color FromNonPremultiplied(int r, int g, int b, int a)
-        {
-            return new Color(r * a / 255, g * a / 255, b * a / 255, a);
-        }
+        public static Color FromNonPremultiplied(int r, int g, int b, int a) => new Color(r * a / 255, g * a / 255, b * a / 255, a);
 
         #region IEquatable<Color> Members
 
@@ -2011,10 +2012,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="other">The <see cref="Color"/> to compare.</param>
         /// <returns><c>true</c> if the instances are equal; <c>false</c> otherwise.</returns>
-        public bool Equals(Color other)
-        {
-            return this.PackedValue == other.PackedValue;
-        }
+        public bool Equals(Color other) => PackedValue == other.PackedValue;
 
         #endregion
 

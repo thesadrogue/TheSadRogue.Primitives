@@ -14,7 +14,7 @@ namespace SadRogue.Primitives
         /// The empty rectangle. Has origin of (0, 0) with 0 width and height.
         /// </summary>
         [NonSerialized]
-        public static readonly Rectangle EMPTY = new Rectangle(0, 0, 0, 0);
+        public static readonly Rectangle Empty = new Rectangle(0, 0, 0, 0);
 
         /// <summary>
         /// Constructor.
@@ -65,16 +65,13 @@ namespace SadRogue.Primitives
         /// <summary>
         /// Calculates the area of the rectangle.
         /// </summary>
-        public int Area { get => Width * Height; }
+        public int Area => Width * Height;
 
         /// <summary>
         /// The center coordinate of the rectangle, rounded up if the exact center is between two
         /// positions. The center of a rectangle with width/height 1 is its <see cref="Position"/>.
         /// </summary>
-        public Point Center
-        {
-            get => new Point(X + (Width / 2), Y + (Height / 2));
-        }
+        public Point Center => new Point(X + (Width / 2), Y + (Height / 2));
 
         /// <summary>
         /// The height of the rectangle.
@@ -84,65 +81,53 @@ namespace SadRogue.Primitives
         /// <summary>
         /// Whether or not this rectangle is empty (has width and height of 0).
         /// </summary>
-        public bool IsEmpty { get => (Width == 0 && Height == 0); }
+        public bool IsEmpty => (Width == 0 && Height == 0);
 
         /// <summary>
         /// The maximum X and Y coordinates that are included in the rectangle.
         /// </summary>
-        public Point MaxExtent
-        {
-            get => new Point(MaxExtentX, MaxExtentY);
-        }
+        public Point MaxExtent => new Point(MaxExtentX, MaxExtentY);
 
         /// <summary>
         /// The maximum X-coordinate that is included in the rectangle.
         /// </summary>
-        public int MaxExtentX
-        {
-            get => X + Width - 1;
-        }
+        public int MaxExtentX => X + Width - 1;
 
         /// <summary>
         /// The maximum Y-coordinate that is included in the rectangle.
         /// </summary>
-        public int MaxExtentY
-        {
-            get => Y + Height - 1;
-        }
+        public int MaxExtentY => Y + Height - 1;
 
         /// <summary>
         /// Minimum extent of the rectangle (minimum x and y values that are included within it).
         /// Identical to <see cref="Position"/> because we define the rectangle's position by its
         /// minimum extent.
         /// </summary>
-        public Point MinExtent { get => new Point(X, Y); }
+        public Point MinExtent => new Point(X, Y);
 
         /// <summary>
         /// X-value of the minimum extent of the rectangle (minimum x value that is included within
         /// it). Identical to the <see cref="X"/> value because we define the rectangle's position
         /// by its minimum extent.
         /// </summary>
-        public int MinExtentX { get => X; }
+        public int MinExtentX => X;
 
         /// <summary>
         /// Y-value of the minimum extent of the rectangle (minimum y value that is included within
         /// it). Identical to the <see cref="Y"/> value because we define the rectangle's position
         /// by its minimum extent.
         /// </summary>
-        public int MinExtentY { get => Y; }
+        public int MinExtentY => Y;
 
         /// <summary>
         /// Coord representing the position (min x- and y-values) of the rectangle.
         /// </summary>
-        public Point Position
-        {
-            get => new Point(X, Y);
-        }
+        public Point Position => new Point(X, Y);
 
         /// <summary>
         /// Returns a coordinate (Width, Height), which represents the size of the rectangle.
         /// </summary>
-        public Point Size { get => new Point(Width, Height); }
+        public Point Size => new Point(Width, Height);
 
         /// <summary>
         /// The width of the rectangle.
@@ -214,10 +199,12 @@ namespace SadRogue.Primitives
         {
             var retVal = new Area();
 
-            foreach (var pos in rect1.Positions())
+            foreach (Point pos in rect1.Positions())
             {
                 if (rect2.Contains(pos))
+                {
                     continue;
+                }
 
                 retVal.Add(pos);
             }
@@ -237,12 +224,20 @@ namespace SadRogue.Primitives
             var retVal = new Area();
 
             for (int x = r1.X; x <= r1.MaxExtentX; x++)
+            {
                 for (int y = r1.Y; y <= r1.MaxExtentY; y++)
+                {
                     retVal.Add(new Point(x, y));
+                }
+            }
 
             for (int x = r2.X; x <= r2.MaxExtentX; x++)
+            {
                 for (int y = r2.Y; y <= r2.MaxExtentY; y++)
+                {
                     retVal.Add(new Point(x, y));
+                }
+            }
 
             return retVal;
         }
@@ -270,7 +265,7 @@ namespace SadRogue.Primitives
                 return new Rectangle(minX, minY, exclusiveMaxX - minX, exclusiveMaxY - minY);
             }
 
-            return EMPTY;
+            return Empty;
         }
 
         /// <summary>
@@ -297,10 +292,7 @@ namespace SadRogue.Primitives
         /// <param name="r1"/>
         /// <param name="r2"/>
         /// <returns>true if the rectangles do NOT encompass the same area, false otherwise.</returns>
-        public static bool operator !=(Rectangle r1, Rectangle r2)
-        {
-            return !(r1 == r2);
-        }
+        public static bool operator !=(Rectangle r1, Rectangle r2) => !(r1 == r2);
 
         /// <summary>
         /// Returns whether or not the rectangles have the same position and extents.
@@ -310,10 +302,7 @@ namespace SadRogue.Primitives
         /// <returns>
         /// true if the area of the two rectangles encompass the exact same area, false otherwise.
         /// </returns>
-        public static bool operator ==(Rectangle r1, Rectangle r2)
-        {
-            return r1.X == r2.X && r1.Y == r2.Y && r1.Width == r2.Width && r1.Height == r2.Height;
-        }
+        public static bool operator ==(Rectangle r1, Rectangle r2) => r1.X == r2.X && r1.Y == r2.Y && r1.Width == r2.Width && r1.Height == r2.Height;
 
         /// <summary>
         /// Creates and returns a new rectangle that is the same size as the current one, but with
@@ -364,10 +353,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="position">The position to check.</param>
         /// <returns>Whether or not the specified point is considered within the rectangle.</returns>
-        public bool Contains(Point position)
-        {
-            return (position.X >= X && position.X < (X + Width) && position.Y >= Y && position.Y < (Y + Height));
-        }
+        public bool Contains(Point position) => (position.X >= X && position.X < (X + Width) && position.Y >= Y && position.Y < (Y + Height));
 
         /// <summary>
         /// Returns whether or not the specified rectangle is considered completely contained within
@@ -377,10 +363,7 @@ namespace SadRogue.Primitives
         /// <returns>
         /// True if the given rectangle is completely contained within the current one, false otherwise.
         /// </returns>
-        public bool Contains(Rectangle other)
-        {
-            return (X <= other.X && other.X + other.Width <= X + Width && Y <= other.Y && other.Y + other.Height <= Y + Height);
-        }
+        public bool Contains(Rectangle other) => (X <= other.X && other.X + other.Width <= X + Width && Y <= other.Y && other.Y + other.Height <= Y + Height);
 
         /// <summary>
         /// Compares based upon whether or not the areas contained within the rectangle are identical
@@ -390,10 +373,7 @@ namespace SadRogue.Primitives
         /// <returns>
         /// true if the area of the two rectangles encompass the exact same area, false otherwise.
         /// </returns>
-        public bool Equals(Rectangle other)
-        {
-            return (X == other.X && Y == other.Y && Width == other.Width && Height == other.Height);
-        }
+        public bool Equals(Rectangle other) => (X == other.X && Y == other.Y && Width == other.Width && Height == other.Height);
 
         /// <summary>
         /// Compares to an arbitrary object.
@@ -402,10 +382,7 @@ namespace SadRogue.Primitives
         /// <returns>
         /// true if the object specified is a rectangle instance and encompasses the same area, false otherwise.
         /// </returns>
-        public override bool Equals(Object obj)
-        {
-            return obj is Rectangle && this == (Rectangle)obj;
-        }
+        public override bool Equals(object obj) => obj is Rectangle && this == (Rectangle)obj;
 
         /// <summary>
         /// Returns a new rectangle, expanded to include the additional specified rows/columns.
@@ -424,20 +401,14 @@ namespace SadRogue.Primitives
         /// Simple hashing.
         /// </summary>
         /// <returns>Hash code for rectangle.</returns>
-        public override int GetHashCode()
-        {
-            return X.GetHashCode() ^ Y.GetHashCode() ^ Width.GetHashCode() ^ Height.GetHashCode();
-        }
+        public override int GetHashCode() => X.GetHashCode() ^ Y.GetHashCode() ^ Width.GetHashCode() ^ Height.GetHashCode();
 
         /// <summary>
         /// Returns whether or not the given rectangle intersects the current one.
         /// </summary>
         /// <param name="other">The rectangle to check.</param>
         /// <returns>True if the given rectangle intersects with the current one, false otherwise.</returns>
-        public bool Intersects(Rectangle other)
-        {
-            return (other.X < X + Width && X < other.X + other.Width && other.Y < Y + Height && Y < other.Y + other.Height);
-        }
+        public bool Intersects(Rectangle other) => (other.X < X + Width && X < other.X + other.Width && other.Y < Y + Height && Y < other.Y + other.Height);
 
         /// <summary>
         /// Creates and returns a new rectangle that has its <see cref="Position"/> moved to the given position.
@@ -454,7 +425,7 @@ namespace SadRogue.Primitives
         /// <returns>A new rectangle that has its position moved in the given direction.</returns>
         public Rectangle Translate(Direction direction)
         {
-            var newPos = Position + direction;
+            Point newPos = Position + direction;
             return new Rectangle(newPos.X, newPos.Y, Width, Height);
         }
 
@@ -479,8 +450,12 @@ namespace SadRogue.Primitives
         public IEnumerable<Point> Positions()
         {
             for (int y = Y; y <= MaxExtentY; y++)
+            {
                 for (int x = X; x <= MaxExtentX; x++)
+                {
                     yield return new Point(x, y);
+                }
+            }
         }
 
         /// <summary>
@@ -579,10 +554,7 @@ namespace SadRogue.Primitives
         /// (<see cref="X"/>, <see cref="Y"/>) -&gt; (<see cref="MaxExtentX"/>, <see cref="MaxExtentY"/>)
         /// </summary>
         /// <returns>String formatted as above.</returns>
-        public override string ToString()
-        {
-            return Position + " -> " + MaxExtent;
-        }
+        public override string ToString() => Position + " -> " + MaxExtent;
 
         /// <summary>
         /// Creates and returns a new rectangle whose position has been moved by the given
@@ -617,7 +589,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="rect" />
         /// <returns />
-        public static implicit operator (int x, int y, int width, int height) (Rectangle rect) => (rect.X, rect.Y, rect.Width, rect.Height);
+        public static implicit operator (int x, int y, int width, int height)(Rectangle rect) => (rect.X, rect.Y, rect.Width, rect.Height);
         /// <summary>
         /// Implicitly converts a tuple of 4 integers (x, y, width, height) to an equivalent GoRogue Rectangle.
         /// </summary>
@@ -646,10 +618,7 @@ namespace SadRogue.Primitives
         /// <param name="r1"></param>
         /// <param name="r2"></param>
         /// <returns>True if the two rectangles are equal, false if not.</returns>
-        public static bool operator ==(Rectangle r1, (int x, int y, int width, int height) r2)
-        {
-            return r1.X == r2.x && r1.Y == r2.y && r1.Width == r2.width && r1.Height == r2.height;
-        }
+        public static bool operator ==(Rectangle r1, (int x, int y, int width, int height) r2) => r1.X == r2.x && r1.Y == r2.y && r1.Width == r2.width && r1.Height == r2.height;
 
         /// <summary>
         /// True if any of the rectangles' x/y/width/height values are not equal.
@@ -667,10 +636,7 @@ namespace SadRogue.Primitives
         /// <param name="r1"></param>
         /// <param name="r2"></param>
         /// <returns>True if the two rectangles are equal, false if not.</returns>
-        public static bool operator ==((int x, int y, int width, int height) r1, Rectangle r2)
-        {
-            return r1.x == r2.X && r1.y == r2.Y && r1.width == r2.Width && r1.height == r2.Height;
-        }
+        public static bool operator ==((int x, int y, int width, int height) r1, Rectangle r2) => r1.x == r2.X && r1.y == r2.Y && r1.width == r2.Width && r1.height == r2.Height;
 
         /// <summary>
         /// True if any of the rectangles' x/y/width/height values are not equal.
@@ -698,16 +664,24 @@ namespace SadRogue.Primitives
         public IEnumerable<Point> PerimeterPositions()
         {
             for (int x = MinExtentX; x <= MaxExtentX; x++)
+            {
                 yield return new Point(x, MinExtentY); // Minimum y-side perimeter
+            }
 
             for (int y = MinExtentY + 1; y <= MaxExtentY; y++) // Start offset 1, since last loop returned the corner piece
+            {
                 yield return new Point(MaxExtentX, y);
+            }
 
             for (int x = MaxExtentX - 1; x >= MinExtentX; x--) // Again skip 1 because last loop returned the corner piece
+            {
                 yield return new Point(x, MaxExtentY);
+            }
 
             for (int y = MaxExtentY - 1; y >= MinExtentY + 1; y--) // Skip 1 on both ends, becuase last loop returned one corner, first loop returned the other
+            {
                 yield return new Point(MinExtentX, y);
+            }
         }
 
         /// <summary>
@@ -717,7 +691,9 @@ namespace SadRogue.Primitives
         public IEnumerable<Point> MinYPositions()
         {
             for (int x = MinExtentX; x <= MaxExtentX; x++)
+            {
                 yield return new Point(x, MinExtentY);
+            }
         }
 
         /// <summary>
@@ -727,7 +703,9 @@ namespace SadRogue.Primitives
         public IEnumerable<Point> MaxYPositions()
         {
             for (int x = MinExtentX; x <= MaxExtentX; x++)
+            {
                 yield return new Point(x, MaxExtentY);
+            }
         }
 
         /// <summary>
@@ -737,7 +715,9 @@ namespace SadRogue.Primitives
         public IEnumerable<Point> MinXPositions()
         {
             for (int y = MinExtentY; y <= MaxExtentY; y++)
+            {
                 yield return new Point(MinExtentX, y);
+            }
         }
 
         /// <summary>
@@ -747,7 +727,9 @@ namespace SadRogue.Primitives
         public IEnumerable<Point> MaxXPositions()
         {
             for (int y = MinExtentY; y <= MaxExtentY; y++)
+            {
                 yield return new Point(MaxExtentX, y);
+            }
         }
 
         /// <summary>
@@ -760,13 +742,13 @@ namespace SadRogue.Primitives
         {
             switch (side.Type)
             {
-                case Direction.Types.UP:
+                case Direction.Types.Up:
                     return (Direction.YIncreasesUpward) ? MaxYPositions() : MinYPositions();
-                case Direction.Types.RIGHT:
+                case Direction.Types.Right:
                     return MaxXPositions();
-                case Direction.Types.DOWN:
+                case Direction.Types.Down:
                     return (Direction.YIncreasesUpward) ? MinYPositions() : MaxYPositions();
-                case Direction.Types.LEFT:
+                case Direction.Types.Left:
                     return MinXPositions();
                 default:
                     throw new Exception("Cannot retrieve positions on a non-cardinal side of a rectangle.");

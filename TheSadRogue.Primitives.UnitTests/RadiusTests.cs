@@ -1,23 +1,23 @@
 ﻿using System.Linq;
+using SadRogue.Primitives;
 using Xunit;
 using XUnit.ValueTuples;
-using SadRogue.Primitives;
 
 namespace TheSadRogue.Primitives.UnitTests
 {
     public class RadiusTests
     {
         #region Testdata
-        public static Radius[] Radiuses => new Radius[] { Radius.SQUARE, Radius.CIRCLE, Radius.DIAMOND };
+        public static Radius[] Radiuses => new Radius[] { Radius.Square, Radius.Circle, Radius.Diamond };
 
         public static (Radius.Types, Radius)[] TypeRadiusConversion => new (Radius.Types, Radius)[]
-        { (Radius.Types.SQUARE, Radius.SQUARE), (Radius.Types.CIRCLE, Radius.CIRCLE), (Radius.Types.DIAMOND,Radius.DIAMOND) };
+        { (Radius.Types.Square, Radius.Square), (Radius.Types.Circle, Radius.Circle), (Radius.Types.Diamond,Radius.Diamond) };
 
         public static (Radius, AdjacencyRule)[] AdjacencyRuleConversionValues => new (Radius, AdjacencyRule)[]
-        { (Radius.SQUARE, AdjacencyRule.EIGHT_WAY), (Radius.CIRCLE, AdjacencyRule.EIGHT_WAY), (Radius.DIAMOND, AdjacencyRule.CARDINALS) };
+        { (Radius.Square, AdjacencyRule.EightWay), (Radius.Circle, AdjacencyRule.EightWay), (Radius.Diamond, AdjacencyRule.Cardinals) };
 
         public static (Radius, Distance)[] DistanceConversionValues => new (Radius, Distance)[]
-        { (Radius.SQUARE, Distance.CHEBYSHEV), (Radius.CIRCLE, Distance.EUCLIDEAN), (Radius.DIAMOND, Distance.MANHATTAN) };
+        { (Radius.Square, Distance.Chebyshev), (Radius.Circle, Distance.Euclidean), (Radius.Diamond, Distance.Manhattan) };
         #endregion
 
         #region Equality/Inequality
@@ -25,8 +25,8 @@ namespace TheSadRogue.Primitives.UnitTests
         [MemberDataEnumerable(nameof(Radiuses))]
         public void TestEquality(Radius rad)
         {
-            var compareTo = rad;
-            var allRads = Radiuses;
+            Radius compareTo = rad;
+            Radius[] allRads = Radiuses;
             Assert.True(rad == compareTo);
 
             Assert.Equal(1, allRads.Count(i => i == compareTo));
@@ -36,8 +36,8 @@ namespace TheSadRogue.Primitives.UnitTests
         [MemberDataEnumerable(nameof(Radiuses))]
         public void TestInequality(Radius rad)
         {
-            var compareTo = rad;
-            var allRads = Radiuses;
+            Radius compareTo = rad;
+            Radius[] allRads = Radiuses;
             Assert.False(rad != compareTo);
 
             Assert.Equal(allRads.Length - 1, allRads.Count(i => i != compareTo));
@@ -47,19 +47,21 @@ namespace TheSadRogue.Primitives.UnitTests
         [MemberDataEnumerable(nameof(Radiuses))]
         public void TestEqualityInqeualityOpposite(Radius compareRad)
         {
-            var rads = Radiuses;
+            Radius[] rads = Radiuses;
 
-            foreach (var rad in rads)
+            foreach (Radius rad in rads)
+            {
                 Assert.NotEqual(rad == compareRad, rad != compareRad);
+            }
         }
 
         [Theory]
         [MemberDataEnumerable(nameof(Radiuses))]
         public void TestEqualityEquivalence(Radius compareRad)
         {
-            var rads = Radiuses;
+            Radius[] rads = Radiuses;
 
-            foreach (var rad in rads)
+            foreach (Radius rad in rads)
             {
                 Assert.Equal(rad == compareRad, rad.Equals(compareRad));
                 Assert.Equal(rad == compareRad, rad.Equals((object)compareRad));
@@ -80,10 +82,7 @@ namespace TheSadRogue.Primitives.UnitTests
         #region DistanceImplicitConversions
         [Theory]
         [MemberDataTuple(nameof(AdjacencyRuleConversionValues))]
-        public void AdjacencyRuleConversion(Radius dist, AdjacencyRule expected)
-        {
-            Assert.Equal(expected, dist);
-        }
+        public void AdjacencyRuleConversion(Radius dist, AdjacencyRule expected) => Assert.Equal(expected, dist);
 
         [Theory]
         [MemberDataTuple(nameof(DistanceConversionValues))]

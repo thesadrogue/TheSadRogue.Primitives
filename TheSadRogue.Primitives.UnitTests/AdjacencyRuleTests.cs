@@ -1,9 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using SadRogue.Primitives;
 using Xunit;
 using XUnit.ValueTuples;
-using SadRogue.Primitives;
-using System.Collections.Generic;
 
 namespace TheSadRogue.Primitives.UnitTests
 {
@@ -12,38 +12,38 @@ namespace TheSadRogue.Primitives.UnitTests
         #region TestData
 
         public static AdjacencyRule[] AdjacencyRules
-            => new AdjacencyRule[] { AdjacencyRule.CARDINALS, AdjacencyRule.DIAGONALS, AdjacencyRule.EIGHT_WAY };
-        
+            => new AdjacencyRule[] { AdjacencyRule.Cardinals, AdjacencyRule.Diagonals, AdjacencyRule.EightWay };
+
         public static Direction[] EightWayDirectionsClockwise
-            => new[]{ Direction.UP, Direction.UP_RIGHT, Direction.RIGHT, Direction.DOWN_RIGHT, Direction.DOWN,
-                Direction.DOWN_LEFT, Direction.LEFT, Direction.UP_LEFT };
+            => new[]{ Direction.Up, Direction.UpRight, Direction.Right, Direction.DownRight, Direction.Down,
+                Direction.DownLeft, Direction.Left, Direction.UpLeft };
 
         public static Direction[] DiagonalDirectionsClockwise
-            => new[]{ Direction.UP_RIGHT,Direction.DOWN_RIGHT, Direction.DOWN_LEFT, Direction.UP_LEFT };
+            => new[] { Direction.UpRight, Direction.DownRight, Direction.DownLeft, Direction.UpLeft };
 
         public static Direction[] CardinalsDirectionsClockwise
-            => new[]{ Direction.UP, Direction.RIGHT, Direction.DOWN, Direction.LEFT };
+            => new[] { Direction.Up, Direction.Right, Direction.Down, Direction.Left };
 
         public static IEnumerable<(AdjacencyRule, Direction)> ClockwisePairs
-            => AdjacencyRule.EIGHT_WAY.ToEnumerable().Combinate(EightWayDirectionsClockwise)
-            .Concat(AdjacencyRule.CARDINALS.ToEnumerable().Combinate(CardinalsDirectionsClockwise))
-            .Concat(AdjacencyRule.DIAGONALS.ToEnumerable().Combinate(DiagonalDirectionsClockwise));
+            => AdjacencyRule.EightWay.ToEnumerable().Combinate(EightWayDirectionsClockwise)
+            .Concat(AdjacencyRule.Cardinals.ToEnumerable().Combinate(CardinalsDirectionsClockwise))
+            .Concat(AdjacencyRule.Diagonals.ToEnumerable().Combinate(DiagonalDirectionsClockwise));
 
         public static IEnumerable<(AdjacencyRule, Direction)> AdjacencyDefaultsClockwise
-            => TestUtils.Enumerable((AdjacencyRule.CARDINALS, Direction.UP), (AdjacencyRule.EIGHT_WAY, Direction.UP), (AdjacencyRule.DIAGONALS, Direction.UP_RIGHT));
+            => TestUtils.Enumerable((AdjacencyRule.Cardinals, Direction.Up), (AdjacencyRule.EightWay, Direction.Up), (AdjacencyRule.Diagonals, Direction.UpRight));
 
         public static IEnumerable<(AdjacencyRule, Direction)> AdjacencyDefaultsCounterClockwise
-            => TestUtils.Enumerable((AdjacencyRule.CARDINALS, Direction.UP), (AdjacencyRule.EIGHT_WAY, Direction.UP), (AdjacencyRule.DIAGONALS, Direction.UP_LEFT));
+            => TestUtils.Enumerable((AdjacencyRule.Cardinals, Direction.Up), (AdjacencyRule.EightWay, Direction.Up), (AdjacencyRule.Diagonals, Direction.UpLeft));
 
         public static IEnumerable<(AdjacencyRule, Direction)> RotatePairs =>
-            AdjacencyRule.CARDINALS.ToEnumerable().Combinate(DiagonalDirectionsClockwise)
-            .Concat(AdjacencyRule.DIAGONALS.ToEnumerable().Combinate(CardinalsDirectionsClockwise));
+            AdjacencyRule.Cardinals.ToEnumerable().Combinate(DiagonalDirectionsClockwise)
+            .Concat(AdjacencyRule.Diagonals.ToEnumerable().Combinate(CardinalsDirectionsClockwise));
 
         public static IEnumerable<(Point, AdjacencyRule)> PointAdjacencyPairs =>
             TestUtils.Enumerable<Point>((1, 2), (-1, -2), (0, 4), (3, 0)).Combinate(AdjacencyRules);
 
-        static public Direction[] ValidDirections = AdjacencyRule.EIGHT_WAY.DirectionsOfNeighborsClockwise().ToArray();
-        static public Direction[] AllDirections => ValidDirections.Append(Direction.NONE).ToArray();
+        public static Direction[] ValidDirections = AdjacencyRule.EightWay.DirectionsOfNeighborsClockwise().ToArray();
+        public static Direction[] AllDirections => ValidDirections.Append(Direction.None).ToArray();
 
         public static IEnumerable<(Point, AdjacencyRule, Direction)> PointClockwisePairs =>
             PointAdjacencyPairs.Combinate(AllDirections);
@@ -51,11 +51,11 @@ namespace TheSadRogue.Primitives.UnitTests
         public static (AdjacencyRule.Types, AdjacencyRule)[] TypeAdjacencyRuleConversion
             => new (AdjacencyRule.Types, AdjacencyRule)[]
             {
-                (AdjacencyRule.Types.CARDINALS, AdjacencyRule.CARDINALS),
-                (AdjacencyRule.Types.DIAGONALS, AdjacencyRule.DIAGONALS),
-                (AdjacencyRule.Types.EIGHT_WAY, AdjacencyRule.EIGHT_WAY)
+                (AdjacencyRule.Types.Cardinals, AdjacencyRule.Cardinals),
+                (AdjacencyRule.Types.Diagonals, AdjacencyRule.Diagonals),
+                (AdjacencyRule.Types.EightWay, AdjacencyRule.EightWay)
             };
-            
+
         #endregion
 
         #region ValidDirections
@@ -64,15 +64,15 @@ namespace TheSadRogue.Primitives.UnitTests
         public void ValidDirectionsClockwiseOrder(AdjacencyRule rule, Direction startingDir)
         {
             Direction[] dirs = null;
-            switch(rule.Type)
+            switch (rule.Type)
             {
-                case AdjacencyRule.Types.CARDINALS:
+                case AdjacencyRule.Types.Cardinals:
                     dirs = CardinalsDirectionsClockwise.ToArray();
                     break;
-                case AdjacencyRule.Types.DIAGONALS:
+                case AdjacencyRule.Types.Diagonals:
                     dirs = DiagonalDirectionsClockwise.ToArray();
                     break;
-                case AdjacencyRule.Types.EIGHT_WAY:
+                case AdjacencyRule.Types.EightWay:
                     dirs = EightWayDirectionsClockwise.ToArray();
                     break;
             }
@@ -85,7 +85,9 @@ namespace TheSadRogue.Primitives.UnitTests
             Assert.False(index == -1, "Direction found in result that shouldn't be there.");
 
             for (int i = 0; i < clockwiseDirs.Length; i++)
+            {
                 Assert.Equal(dirs[(index + i) % dirs.Length], clockwiseDirs[i]);
+            }
         }
 
         [Theory]
@@ -95,13 +97,13 @@ namespace TheSadRogue.Primitives.UnitTests
             Direction[] dirs = null;
             switch (rule.Type)
             {
-                case AdjacencyRule.Types.CARDINALS:
+                case AdjacencyRule.Types.Cardinals:
                     dirs = CardinalsDirectionsClockwise.Reverse().ToArray();
                     break;
-                case AdjacencyRule.Types.DIAGONALS:
+                case AdjacencyRule.Types.Diagonals:
                     dirs = DiagonalDirectionsClockwise.Reverse().ToArray();
                     break;
-                case AdjacencyRule.Types.EIGHT_WAY:
+                case AdjacencyRule.Types.EightWay:
                     dirs = EightWayDirectionsClockwise.Reverse().ToArray();
                     break;
             }
@@ -114,8 +116,9 @@ namespace TheSadRogue.Primitives.UnitTests
             Assert.False(index == -1, "Direction found in result that shouldn't be there.");
 
             for (int i = 0; i < counterclockwiseDirs.Length; i++)
-            Assert.Equal(dirs[(index + i) % dirs.Length], counterclockwiseDirs[i]);
-
+            {
+                Assert.Equal(dirs[(index + i) % dirs.Length], counterclockwiseDirs[i]);
+            }
         }
 
         #endregion
@@ -126,7 +129,7 @@ namespace TheSadRogue.Primitives.UnitTests
         public void NoneDirectionClockwise(AdjacencyRule rule, Direction defaultDir)
         {
             Direction[] defaultDirs = rule.DirectionsOfNeighborsClockwise(defaultDir).ToArray();
-            Direction[] noneDirs = rule.DirectionsOfNeighborsClockwise(Direction.NONE).ToArray();
+            Direction[] noneDirs = rule.DirectionsOfNeighborsClockwise(Direction.None).ToArray();
             Direction[] noDirs = rule.DirectionsOfNeighborsClockwise().ToArray();
 
             TestUtils.AssertElementEquals(defaultDirs, noneDirs, noDirs);
@@ -137,7 +140,7 @@ namespace TheSadRogue.Primitives.UnitTests
         public void NoneDirectionCounterClockwise(AdjacencyRule rule, Direction defaultDir)
         {
             Direction[] defaultDirs = rule.DirectionsOfNeighborsCounterClockwise(defaultDir).ToArray();
-            Direction[] noneDirs = rule.DirectionsOfNeighborsCounterClockwise(Direction.NONE).ToArray();
+            Direction[] noneDirs = rule.DirectionsOfNeighborsCounterClockwise(Direction.None).ToArray();
             Direction[] noDirs = rule.DirectionsOfNeighborsCounterClockwise().ToArray();
 
             TestUtils.AssertElementEquals(defaultDirs, noneDirs, noDirs);
@@ -181,15 +184,21 @@ namespace TheSadRogue.Primitives.UnitTests
 
             int index = Array.FindIndex(cardsFirst, i => !i.IsCardinal());
             if (index == -1)
+            {
                 Assert.Equal(4, cardsFirst.Length);
+            }
             else
             {
                 for (int i = 0; i < cardsFirst.Length; i++)
                 {
                     if (cardsFirst[i].IsCardinal())
+                    {
                         Assert.True(i < index);
+                    }
                     else
+                    {
                         Assert.True(i >= index);
+                    }
                 }
             }
         }
@@ -200,8 +209,8 @@ namespace TheSadRogue.Primitives.UnitTests
         [MemberDataTuple(nameof(PointClockwisePairs))]
         public void NeighborsClockwise(Point point, AdjacencyRule rule, Direction startDir)
         {
-            var result = rule.NeighborsClockwise(point, startDir).ToArray();
-            var expected = rule.DirectionsOfNeighborsClockwise(startDir).Select(i => point + i).ToArray();
+            Point[] result = rule.NeighborsClockwise(point, startDir).ToArray();
+            Point[] expected = rule.DirectionsOfNeighborsClockwise(startDir).Select(i => point + i).ToArray();
 
             TestUtils.AssertElementEquals(result, expected);
         }
@@ -222,8 +231,8 @@ namespace TheSadRogue.Primitives.UnitTests
         [MemberDataTuple(nameof(PointClockwisePairs))]
         public void NeighborsCounterClockwise(Point point, AdjacencyRule rule, Direction startDir)
         {
-            var result = rule.NeighborsCounterClockwise(point, startDir).ToArray();
-            var expected = rule.DirectionsOfNeighborsCounterClockwise(startDir).Select(i => point + i).ToArray();
+            Point[] result = rule.NeighborsCounterClockwise(point, startDir).ToArray();
+            Point[] expected = rule.DirectionsOfNeighborsCounterClockwise(startDir).Select(i => point + i).ToArray();
 
             TestUtils.AssertElementEquals(result, expected);
         }
@@ -244,8 +253,8 @@ namespace TheSadRogue.Primitives.UnitTests
         [MemberDataTuple(nameof(PointAdjacencyPairs))]
         public void NeighborsUnordered(Point point, AdjacencyRule rule)
         {
-            var result = rule.Neighbors(point).ToArray();
-            var expected = rule.DirectionsOfNeighbors().Select(i => point + i).ToArray();
+            Point[] result = rule.Neighbors(point).ToArray();
+            Point[] expected = rule.DirectionsOfNeighbors().Select(i => point + i).ToArray();
 
             TestUtils.AssertElementEquals(result, expected);
         }
@@ -266,8 +275,8 @@ namespace TheSadRogue.Primitives.UnitTests
         [MemberDataEnumerable(nameof(AdjacencyRules))]
         public void TestEquality(AdjacencyRule rule)
         {
-            var compareTo = rule;
-            var allRules = AdjacencyRules;
+            AdjacencyRule compareTo = rule;
+            AdjacencyRule[] allRules = AdjacencyRules;
             Assert.True(rule == compareTo);
 
             Assert.Equal(1, allRules.Count(i => i == compareTo));
@@ -277,8 +286,8 @@ namespace TheSadRogue.Primitives.UnitTests
         [MemberDataEnumerable(nameof(AdjacencyRules))]
         public void TestInequality(AdjacencyRule rule)
         {
-            var compareTo = rule;
-            var allRules = AdjacencyRules;
+            AdjacencyRule compareTo = rule;
+            AdjacencyRule[] allRules = AdjacencyRules;
             Assert.False(rule != compareTo);
 
             Assert.Equal(allRules.Length - 1, allRules.Count(i => i != compareTo));
@@ -288,19 +297,21 @@ namespace TheSadRogue.Primitives.UnitTests
         [MemberDataEnumerable(nameof(AdjacencyRules))]
         public void TestEqualityInqeualityOpposite(AdjacencyRule compareRule)
         {
-            var rules = AdjacencyRules;
+            AdjacencyRule[] rules = AdjacencyRules;
 
-            foreach (var rule in rules)
+            foreach (AdjacencyRule rule in rules)
+            {
                 Assert.NotEqual(rule == compareRule, rule != compareRule);
+            }
         }
 
         [Theory]
         [MemberDataEnumerable(nameof(AdjacencyRules))]
         public void TestEqualityEquivalence(AdjacencyRule compareRule)
         {
-            var rules = AdjacencyRules;
+            AdjacencyRule[] rules = AdjacencyRules;
 
-            foreach (var rule in rules)
+            foreach (AdjacencyRule rule in rules)
             {
                 Assert.Equal(rule == compareRule, rule.Equals(compareRule));
                 Assert.Equal(rule == compareRule, rule.Equals((object)compareRule));

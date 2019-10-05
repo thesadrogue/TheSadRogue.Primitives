@@ -16,30 +16,27 @@ namespace SadRogue.Primitives
         /// they are in a cardinal direction, eg. 4-way (manhattan-based) connectivity.
         /// </summary>
         [NonSerialized]
-        public static readonly AdjacencyRule CARDINALS = new AdjacencyRule(Types.CARDINALS);
+        public static readonly AdjacencyRule Cardinals = new AdjacencyRule(Types.Cardinals);
 
         /// <summary>
         /// Represents method of determining adjacency where neighbors are considered adjacent only
         /// if they are in a diagonal direction.
         /// </summary>
         [NonSerialized]
-        public static readonly AdjacencyRule DIAGONALS = new AdjacencyRule(Types.DIAGONALS);
+        public static readonly AdjacencyRule Diagonals = new AdjacencyRule(Types.Diagonals);
 
         /// <summary>
         /// Represents method of determining adjacency where all 8 possible neighbors are considered
         /// adjacent (eg. 8-way connectivity).
         /// </summary>
         [NonSerialized]
-        public static readonly AdjacencyRule EIGHT_WAY = new AdjacencyRule(Types.EIGHT_WAY);
+        public static readonly AdjacencyRule EightWay = new AdjacencyRule(Types.EightWay);
 
         [NonSerialized]
-        private static readonly string[] writeVals = Enum.GetNames(typeof(Types));
+        private static readonly string[] s_writeVals = Enum.GetNames(typeof(Types));
 
         // Constructor, takes type.
-        private AdjacencyRule(Types type)
-        {
-            Type = type;
-        }
+        private AdjacencyRule(Types type) => Type = type;
 
         /// <summary>
         /// Enum representing <see cref="AdjacencyRule"/> types. Each AdjacencyRule instance has a <see cref="Type"/> field
@@ -49,19 +46,19 @@ namespace SadRogue.Primitives
         public enum Types
         {
             /// <summary>
-            /// Type for <see cref="AdjacencyRule.CARDINALS"/>.
+            /// Type for <see cref="AdjacencyRule.Cardinals"/>.
             /// </summary>
-            CARDINALS,
+            Cardinals,
 
             /// <summary>
-            /// Type for <see cref="AdjacencyRule.DIAGONALS"/>.
+            /// Type for <see cref="AdjacencyRule.Diagonals"/>.
             /// </summary>
-            DIAGONALS,
+            Diagonals,
 
             /// <summary>
-            /// Type for <see cref="AdjacencyRule.EIGHT_WAY"/>.
+            /// Type for <see cref="AdjacencyRule.EightWay"/>.
             /// </summary>
-            EIGHT_WAY
+            EightWay
         }
 
         /// <summary>
@@ -79,14 +76,14 @@ namespace SadRogue.Primitives
         {
             switch (adjacencyRuleType)
             {
-                case Types.CARDINALS:
-                    return CARDINALS;
+                case Types.Cardinals:
+                    return Cardinals;
 
-                case Types.DIAGONALS:
-                    return DIAGONALS;
+                case Types.Diagonals:
+                    return Diagonals;
 
-                case Types.EIGHT_WAY:
-                    return EIGHT_WAY;
+                case Types.EightWay:
+                    return EightWay;
 
                 default:
                     throw new Exception($"Could not convert {nameof(Type)} type to {nameof(AdjacencyRule)} -- this is a bug!."); // Will not occur
@@ -102,29 +99,29 @@ namespace SadRogue.Primitives
         {
             switch (Type)
             {
-                case Types.CARDINALS:
-                    yield return Direction.UP;
-                    yield return Direction.DOWN;
-                    yield return Direction.LEFT;
-                    yield return Direction.RIGHT;
+                case Types.Cardinals:
+                    yield return Direction.Up;
+                    yield return Direction.Down;
+                    yield return Direction.Left;
+                    yield return Direction.Right;
                     break;
 
-                case Types.DIAGONALS:
-                    yield return Direction.UP_LEFT;
-                    yield return Direction.UP_RIGHT;
-                    yield return Direction.DOWN_LEFT;
-                    yield return Direction.DOWN_RIGHT;
+                case Types.Diagonals:
+                    yield return Direction.UpLeft;
+                    yield return Direction.UpRight;
+                    yield return Direction.DownLeft;
+                    yield return Direction.DownRight;
                     break;
 
-                case Types.EIGHT_WAY:
-                    yield return Direction.UP;
-                    yield return Direction.DOWN;
-                    yield return Direction.LEFT;
-                    yield return Direction.RIGHT;
-                    yield return Direction.UP_LEFT;
-                    yield return Direction.UP_RIGHT;
-                    yield return Direction.DOWN_LEFT;
-                    yield return Direction.DOWN_RIGHT;
+                case Types.EightWay:
+                    yield return Direction.Up;
+                    yield return Direction.Down;
+                    yield return Direction.Left;
+                    yield return Direction.Right;
+                    yield return Direction.UpLeft;
+                    yield return Direction.UpRight;
+                    yield return Direction.DownLeft;
+                    yield return Direction.DownRight;
                     break;
             }
         }
@@ -134,7 +131,7 @@ namespace SadRogue.Primitives
         /// method. Appropriate directions are returned in clockwise order from the given starting
         /// direction.
         /// </summary>
-        /// <param name="startingDirection">The direction to start with.  <see cref="Direction.NONE"/>
+        /// <param name="startingDirection">The direction to start with.  <see cref="Direction.None"/>
         /// causes the default starting direction to be used, which is UP for CARDINALS/EIGHT_WAY, and UP_RIGHT
         /// for diagonals.</param>
         /// <returns>Directions that lead to neighboring locations.</returns>
@@ -142,12 +139,16 @@ namespace SadRogue.Primitives
         {
             switch (Type)
             {
-                case Types.CARDINALS:
-                    if (startingDirection == Direction.NONE)
-                        startingDirection = Direction.UP;
+                case Types.Cardinals:
+                    if (startingDirection == Direction.None)
+                    {
+                        startingDirection = Direction.Up;
+                    }
 
                     if ((int)startingDirection.Type % 2 == 0)
+                    {
                         startingDirection++; // Make it a cardinal
+                    }
 
                     yield return startingDirection;
                     yield return startingDirection + 2;
@@ -155,12 +156,16 @@ namespace SadRogue.Primitives
                     yield return startingDirection + 6;
                     break;
 
-                case Types.DIAGONALS:
-                    if (startingDirection == Direction.NONE)
-                        startingDirection = Direction.UP_RIGHT;
+                case Types.Diagonals:
+                    if (startingDirection == Direction.None)
+                    {
+                        startingDirection = Direction.UpRight;
+                    }
 
                     if ((int)startingDirection.Type % 2 == 1)
+                    {
                         startingDirection++; // Make it a diagonal
+                    }
 
                     yield return startingDirection;
                     yield return startingDirection + 2;
@@ -168,9 +173,11 @@ namespace SadRogue.Primitives
                     yield return startingDirection + 6;
                     break;
 
-                case Types.EIGHT_WAY:
-                    if (startingDirection == Direction.NONE)
-                        startingDirection = Direction.UP;
+                case Types.EightWay:
+                    if (startingDirection == Direction.None)
+                    {
+                        startingDirection = Direction.Up;
+                    }
 
                     for (int i = 1; i <= 8; i++)
                     {
@@ -186,7 +193,7 @@ namespace SadRogue.Primitives
         /// method. Appropriate directions are returned in counter-clockwise order from the given
         /// starting direction.
         /// </summary>
-        /// <param name="startingDirection">The direction to start with.  null or <see cref="Direction.NONE"/>
+        /// <param name="startingDirection">The direction to start with.  null or <see cref="Direction.None"/>
         /// causes the default starting direction to be used, which is UP for CARDINALS/EIGHT_WAY, and UP_LEFT
         /// for diagonals.</param>
         /// <returns>Directions that lead to neighboring locations.</returns>
@@ -194,12 +201,16 @@ namespace SadRogue.Primitives
         {
             switch (Type)
             {
-                case Types.CARDINALS:
-                    if (startingDirection == Direction.NONE)
-                        startingDirection = Direction.UP;
+                case Types.Cardinals:
+                    if (startingDirection == Direction.None)
+                    {
+                        startingDirection = Direction.Up;
+                    }
 
                     if ((int)startingDirection.Type % 2 == 0)
+                    {
                         startingDirection--; // Make it a cardinal
+                    }
 
                     yield return startingDirection;
                     yield return startingDirection - 2;
@@ -207,12 +218,16 @@ namespace SadRogue.Primitives
                     yield return startingDirection - 6;
                     break;
 
-                case Types.DIAGONALS:
-                    if (startingDirection == null || startingDirection == Direction.NONE)
-                        startingDirection = Direction.UP_LEFT;
+                case Types.Diagonals:
+                    if (startingDirection == null || startingDirection == Direction.None)
+                    {
+                        startingDirection = Direction.UpLeft;
+                    }
 
                     if ((int)startingDirection.Type % 2 == 1)
+                    {
                         startingDirection--; // Make it a diagonal
+                    }
 
                     yield return startingDirection;
                     yield return startingDirection - 2;
@@ -220,9 +235,11 @@ namespace SadRogue.Primitives
                     yield return startingDirection - 6;
                     break;
 
-                case Types.EIGHT_WAY:
-                    if (startingDirection == null || startingDirection == Direction.NONE)
-                        startingDirection = Direction.UP;
+                case Types.EightWay:
+                    if (startingDirection == null || startingDirection == Direction.None)
+                    {
+                        startingDirection = Direction.Up;
+                    }
 
                     for (int i = 1; i <= 8; i++)
                     {
@@ -241,8 +258,10 @@ namespace SadRogue.Primitives
         /// <returns>All neighbors of the given location.</returns>
         public IEnumerable<Point> Neighbors(Point startingLocation)
         {
-            foreach (var dir in DirectionsOfNeighbors())
+            foreach (Direction dir in DirectionsOfNeighbors())
+            {
                 yield return startingLocation + dir;
+            }
         }
 
         /// <summary>
@@ -253,15 +272,17 @@ namespace SadRogue.Primitives
         /// <param name="startingLocation">Location to return neighbors for.</param>
         /// <param name="startingDirection">
         /// The neighbor in this direction will be returned first, proceeding clockwise.
-        /// If <see cref="Direction.NONE"/> is specified, the default starting direction
-        /// is used, which is <see cref="Direction.UP"/> for CARDINALS/EIGHT_WAY, and <see cref="Direction.UP_RIGHT"/>
+        /// If <see cref="Direction.None"/> is specified, the default starting direction
+        /// is used, which is <see cref="Direction.Up"/> for CARDINALS/EIGHT_WAY, and <see cref="Direction.UpRight"/>
         /// for DIAGONALS.
         /// </param>
         /// <returns>All neighbors of the given location.</returns>
         public IEnumerable<Point> NeighborsClockwise(Point startingLocation, Direction startingDirection = default)
         {
-            foreach (var dir in DirectionsOfNeighborsClockwise(startingDirection))
+            foreach (Direction dir in DirectionsOfNeighborsClockwise(startingDirection))
+            {
                 yield return startingLocation + dir;
+            }
         }
 
         /// <summary>
@@ -272,15 +293,17 @@ namespace SadRogue.Primitives
         /// <param name="startingLocation">Location to return neighbors for.</param>
         /// <param name="startingDirection">
         /// The neighbor in this direction will be returned first, proceeding counter-clockwise.
-        /// If <see cref="Direction.NONE"/> is specified, the default starting direction
-        /// is used, which is <see cref="Direction.UP"/> for CARDINALS/EIGHT_WAY, and
-        /// <see cref="Direction.UP_LEFT"/> for DIAGONALS.
+        /// If <see cref="Direction.None"/> is specified, the default starting direction
+        /// is used, which is <see cref="Direction.Up"/> for CARDINALS/EIGHT_WAY, and
+        /// <see cref="Direction.UpLeft"/> for DIAGONALS.
         /// </param>
         /// <returns>All neighbors of the given location.</returns>
         public IEnumerable<Point> NeighborsCounterClockwise(Point startingLocation, Direction startingDirection = default)
         {
-            foreach (var dir in DirectionsOfNeighborsCounterClockwise(startingDirection))
+            foreach (Direction dir in DirectionsOfNeighborsCounterClockwise(startingDirection))
+            {
                 yield return startingLocation + dir;
+            }
         }
 
         /// <summary>
@@ -327,6 +350,6 @@ namespace SadRogue.Primitives
         /// Returns a string representation of the <see cref="AdjacencyRule"/>.
         /// </summary>
         /// <returns>A string representation of the <see cref="AdjacencyRule"/>.</returns>
-        public override string ToString() => writeVals[(int)Type];
+        public override string ToString() => s_writeVals[(int)Type];
     }
 }

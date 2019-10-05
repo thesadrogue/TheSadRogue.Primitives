@@ -20,19 +20,19 @@ namespace SadRogue.Primitives
         /// Represents chebyshev distance (equivalent to 8-way movement with no extra cost for diagonals).
         /// </summary>
         [NonSerialized]
-        public static Distance CHEBYSHEV = new Distance(Types.CHEBYSHEV);
+        public static Distance Chebyshev = new Distance(Types.Chebyshev);
 
         /// <summary>
         /// Represents euclidean distance (equivalent to 8-way movement with ~1.41 movement cost for diagonals).
         /// </summary>
         [NonSerialized]
-        public static Distance EUCLIDEAN = new Distance(Types.EUCLIDEAN);
+        public static Distance Euclidean = new Distance(Types.Euclidean);
 
         /// <summary>
         /// Represents manhattan distance (equivalent to 4-way, cardinal-only movement).
         /// </summary>
         [NonSerialized]
-        public static Distance MANHATTAN = new Distance(Types.MANHATTAN);
+        public static Distance Manhattan = new Distance(Types.Manhattan);
 
         /// <summary>
         /// Enum value representing the method of calcuating distance -- useful for using
@@ -41,12 +41,9 @@ namespace SadRogue.Primitives
         public readonly Types Type;
 
         [NonSerialized]
-        private static readonly string[] writeVals = Enum.GetNames(typeof(Types));
+        private static readonly string[] s_writeVals = Enum.GetNames(typeof(Types));
 
-        private Distance(Types type)
-        {
-            Type = type;
-        }
+        private Distance(Types type) => Type = type;
 
         /// <summary>
         /// Enum representing Distance types. Each Distance instance has a <see cref="Type"/> field
@@ -56,19 +53,19 @@ namespace SadRogue.Primitives
         public enum Types
         {
             /// <summary>
-            /// Enum type for <see cref="Distance.MANHATTAN"/>.
+            /// Enum type for <see cref="Distance.Manhattan"/>.
             /// </summary>
-            MANHATTAN,
+            Manhattan,
 
             /// <summary>
-            /// Enum type for <see cref="Distance.EUCLIDEAN"/>.
+            /// Enum type for <see cref="Distance.Euclidean"/>.
             /// </summary>
-            EUCLIDEAN,
+            Euclidean,
 
             /// <summary>
-            /// Enum type for <see cref="Distance.CHEBYSHEV"/>.
+            /// Enum type for <see cref="Distance.Chebyshev"/>.
             /// </summary>
-            CHEBYSHEV
+            Chebyshev
         };
 
         /// <summary>
@@ -83,14 +80,14 @@ namespace SadRogue.Primitives
         {
             switch (distance.Type)
             {
-                case Types.MANHATTAN:
-                    return Radius.DIAMOND;
+                case Types.Manhattan:
+                    return Radius.Diamond;
 
-                case Types.EUCLIDEAN:
-                    return Radius.CIRCLE;
+                case Types.Euclidean:
+                    return Radius.Circle;
 
-                case Types.CHEBYSHEV:
-                    return Radius.SQUARE;
+                case Types.Chebyshev:
+                    return Radius.Square;
 
                 default:
                     throw new Exception($"Could not convert {nameof(Distance)} to {nameof(Radius)} -- this is a bug!"); // Will not occur
@@ -109,12 +106,12 @@ namespace SadRogue.Primitives
         {
             switch (distance.Type)
             {
-                case Types.MANHATTAN:
-                    return AdjacencyRule.CARDINALS;
+                case Types.Manhattan:
+                    return AdjacencyRule.Cardinals;
 
-                case Types.CHEBYSHEV:
-                case Types.EUCLIDEAN:
-                    return AdjacencyRule.EIGHT_WAY;
+                case Types.Chebyshev:
+                case Types.Euclidean:
+                    return AdjacencyRule.EightWay;
 
                 default:
                     throw new Exception($"Could not convert {nameof(Distance)} to {nameof(AdjacencyRule)} -- this is a bug!"); // Will not occur
@@ -130,14 +127,14 @@ namespace SadRogue.Primitives
         {
             switch (distanceType)
             {
-                case Types.MANHATTAN:
-                    return MANHATTAN;
+                case Types.Manhattan:
+                    return Manhattan;
 
-                case Types.EUCLIDEAN:
-                    return EUCLIDEAN;
+                case Types.Euclidean:
+                    return Euclidean;
 
-                case Types.CHEBYSHEV:
-                    return CHEBYSHEV;
+                case Types.Chebyshev:
+                    return Chebyshev;
 
                 default:
                     throw new Exception($"Could not convert {nameof(Types)} to {nameof(Distance)} -- this is a bug!"); // Will not occur
@@ -150,7 +147,7 @@ namespace SadRogue.Primitives
         /// <param name="start">Starting point.</param>
         /// <param name="end">Ending point.</param>
         /// <returns>The distance between the two points.</returns>
-        public double Calculate(Point start, Point end) => Calculate((double)start.X, (double)start.Y, (double)end.X, (double)end.Y);
+        public double Calculate(Point start, Point end) => Calculate(start.X, start.Y, end.X, end.Y);
 
         /// <summary>
         /// Returns the distance between the two (2D) points specified.
@@ -174,7 +171,7 @@ namespace SadRogue.Primitives
         /// <param name="deltaChange">The delta-x and delta-y between the two locations.</param>
         /// ///
         /// <returns>The distance between two locations withe the given delta-change values.</returns>
-        public double Calculate(Point deltaChange) => Calculate((double)deltaChange.X, (double)deltaChange.Y);
+        public double Calculate(Point deltaChange) => Calculate(deltaChange.X, deltaChange.Y);
 
         /// <summary>
         /// Returns the distance between two locations, given the change in X and change in Y value.
@@ -190,15 +187,15 @@ namespace SadRogue.Primitives
             double radius = 0;
             switch (Type)
             {
-                case Types.CHEBYSHEV:
+                case Types.Chebyshev:
                     radius = Math.Max(dx, dy); // Radius is the longest axial distance
                     break;
 
-                case Types.MANHATTAN:
+                case Types.Manhattan:
                     radius = dx + dy; // Simply manhattan distance
                     break;
 
-                case Types.EUCLIDEAN:
+                case Types.Euclidean:
                     radius = Math.Sqrt(dx * dx + dy * dy); // Spherical radius
                     break;
             }
@@ -249,6 +246,6 @@ namespace SadRogue.Primitives
         /// Returns a string representation of the distance calculation method represented.
         /// </summary>
         /// <returns>A string representation of the distance method represented.</returns>
-        public override string ToString() => writeVals[(int)Type];
+        public override string ToString() => s_writeVals[(int)Type];
     }
 }

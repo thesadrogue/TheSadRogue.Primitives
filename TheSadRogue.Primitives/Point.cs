@@ -26,7 +26,7 @@ namespace SadRogue.Primitives
         /// x/y values is not considered a valid coordinate by many functions.
         /// </remarks>
         [NonSerialized]
-        public static readonly Point NONE = new Point(int.MinValue, int.MinValue);
+        public static readonly Point None = new Point(int.MinValue, int.MinValue);
 
         /// <summary>
         /// X-value of the position.
@@ -50,7 +50,7 @@ namespace SadRogue.Primitives
         }
 
         /// <summary>
-        /// Calculates degree bearing of the line (start =&gt; end), where 0 points in the direction <see cref="Direction.UP"/>.
+        /// Calculates degree bearing of the line (start =&gt; end), where 0 points in the direction <see cref="Direction.Up"/>.
         /// </summary>
         /// <param name="start">Position of line starting point.</param>
         /// <param name="end">Position of line ending point.</param>
@@ -60,7 +60,7 @@ namespace SadRogue.Primitives
 
         /// <summary>
         /// Calculates the degree bearing of a line with the given delta-x and delta-y values, where
-        /// 0 degreees points in the direction <see cref="Direction.UP"/>.
+        /// 0 degreees points in the direction <see cref="Direction.Up"/>.
         /// </summary>
         /// <param name="deltaChange">
         /// Vector, where deltaChange.X is the change in x-values across the line, and deltaChange.Y
@@ -72,7 +72,7 @@ namespace SadRogue.Primitives
             int dx = deltaChange.X;
             int dy = deltaChange.Y;
 
-            dy *= Direction.yMult;
+            dy *= Direction.s_yMult;
             double angle = Math.Atan2(dy, dx);
             double degree = MathHelpers.ToDegree(angle);
             degree += 450; // Rotate to all positive such that 0 is up
@@ -353,7 +353,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="c" />
         /// <returns />
-        public static implicit operator (int x, int y) (Point c) => (c.X, c.Y);
+        public static implicit operator (int x, int y)(Point c) => (c.X, c.Y);
         /// <summary>
         /// Implicitly converts a tuple of two integers to an equivalent Point.
         /// </summary>
@@ -431,10 +431,7 @@ namespace SadRogue.Primitives
         /// <param name="c"></param>
         /// <param name="tuple"></param>
         /// <returns>True if the two positions are equal, false if not.</returns>
-        public static bool operator ==(Point c, (int x, int y) tuple)
-        {
-            return c.X == tuple.x && c.Y == tuple.y;
-        }
+        public static bool operator ==(Point c, (int x, int y) tuple) => c.X == tuple.x && c.Y == tuple.y;
 
         /// <summary>
         /// True if either the x-values or y-values are not equal.
@@ -452,10 +449,7 @@ namespace SadRogue.Primitives
         /// <param name="tuple"></param>
         /// <param name="c"></param>
         /// <returns>True if the two positions are equal, false if not.</returns>
-        public static bool operator ==((int x, int y) tuple, Point c)
-        {
-            return tuple.x == c.X && tuple.y == c.Y;
-        }
+        public static bool operator ==((int x, int y) tuple, Point c) => tuple.x == c.X && tuple.y == c.Y;
 
         /// <summary>
         /// True if either the x-values or y-values are not equal.

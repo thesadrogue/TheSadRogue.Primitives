@@ -12,7 +12,7 @@ namespace SadRogue.Primitives
         /// <summary>
         /// Result of 1/360; represents in decimal form a percent of a circle that a degree constitutes.
         /// </summary>
-        public const double DEGREE_PCT_OF_CIRCLE = 0.002777777777777778;
+        public const double DegreePctOfCircle = 0.002777777777777778;
 
         /// <summary>
         /// Converts given angle from radians to degrees.
@@ -38,8 +38,16 @@ namespace SadRogue.Primitives
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static int Clamp(int value, int min, int max)
         {
-            if (value < min) value = min;
-            if (value > max) value = max;
+            if (value < min)
+            {
+                value = min;
+            }
+
+            if (value > max)
+            {
+                value = max;
+            }
+
             return value;
         }
 
@@ -53,8 +61,16 @@ namespace SadRogue.Primitives
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static float Clamp(float value, float min, float max)
         {
-            if (value < min) value = min;
-            if (value > max) value = max;
+            if (value < min)
+            {
+                value = min;
+            }
+
+            if (value > max)
+            {
+                value = max;
+            }
+
             return value;
         }
 
@@ -68,8 +84,16 @@ namespace SadRogue.Primitives
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static double Clamp(double value, double min, double max)
         {
-            if (value < min) value = min;
-            if (value > max) value = max;
+            if (value < min)
+            {
+                value = min;
+            }
+
+            if (value > max)
+            {
+                value = max;
+            }
+
             return value;
         }
 
@@ -105,9 +129,13 @@ namespace SadRogue.Primitives
         public static float Wrap(float value, float min, float max)
         {
             if (value < min)
+            {
                 value = max - (min - value) % (max - min);
+            }
             else
+            {
                 value = min + (value - min) % (max - min);
+            }
 
             return value;
         }

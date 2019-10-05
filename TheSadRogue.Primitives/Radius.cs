@@ -22,14 +22,14 @@ namespace SadRogue.Primitives
         /// an 8-way movement scheme with a ~1.41 cost multiplier for diagonal movement.
         /// </summary>
         [NonSerialized]
-        public static readonly Radius CIRCLE = new Radius(Types.CIRCLE);
+        public static readonly Radius Circle = new Radius(Types.Circle);
 
         /// <summary>
         /// Radius is a diamond around the center point. DIAMOND would represent movement radius
         /// in a 4-way movement scheme.
         /// </summary>
         [NonSerialized]
-        public static readonly Radius DIAMOND = new Radius(Types.DIAMOND);
+        public static readonly Radius Diamond = new Radius(Types.Diamond);
 
         /// <summary>
         /// Radius is a square around the center point. SQUARE would represent movement radius in
@@ -37,7 +37,7 @@ namespace SadRogue.Primitives
         /// away.
         /// </summary>
         [NonSerialized]
-        public static readonly Radius SQUARE = new Radius(Types.SQUARE);
+        public static readonly Radius Square = new Radius(Types.Square);
 
         /// <summary>
         /// Enum value representing the radius shape -- useful for using Radius types in switch
@@ -46,12 +46,9 @@ namespace SadRogue.Primitives
         public readonly Types Type;
 
         [NonSerialized]
-        private static readonly string[] writeVals = Enum.GetNames(typeof(Types));
+        private static readonly string[] s_writeVals = Enum.GetNames(typeof(Types));
 
-        private Radius(Types type)
-        {
-            Type = type;
-        }
+        private Radius(Types type) => Type = type;
 
         /// <summary>
         /// Enum representing Radius types. Each Radius instance has a <see cref="Type"/> field
@@ -63,17 +60,17 @@ namespace SadRogue.Primitives
             /// <summary>
             /// Type for Radius.SQUARE.
             /// </summary>
-            SQUARE,
+            Square,
 
             /// <summary>
             /// Type for Radius.DIAMOND.
             /// </summary>
-            DIAMOND,
+            Diamond,
 
             /// <summary>
             /// Type for Radius.CIRCLE.
             /// </summary>
-            CIRCLE,
+            Circle,
         };
 
         /// <summary>
@@ -86,13 +83,13 @@ namespace SadRogue.Primitives
         /// 
         /// The positions returned are all guaranteed to be within the <paramref name="bounds"/> specified.  As well,
         /// they are guaranteed to be in order from least distance from center to most distance if either
-        /// <see cref="Radius.DIAMOND"/> or <see cref="Radius.SQUARE"/> is being used.
+        /// <see cref="Radius.Diamond"/> or <see cref="Radius.Square"/> is being used.
         /// </remarks>
         /// <param name="center">Center-point of the radius.</param>
         /// <param name="radius">Length of the radius.</param>
         /// <param name="bounds">Bounds to restrict the returned values by.</param>
         /// <returns>All points in the radius shape defined by the given parameters, in order from least distance to greatest
-        /// if <see cref="Radius.DIAMOND"/> or <see cref="Radius.SQUARE"/> is being used.</returns>
+        /// if <see cref="Radius.Diamond"/> or <see cref="Radius.Square"/> is being used.</returns>
         public IEnumerable<Point> PositionsInRadius(Point center, int radius, Rectangle bounds)
             => PositionsInRadius(new RadiusLocationContext(center, radius, bounds));
 
@@ -105,12 +102,12 @@ namespace SadRogue.Primitives
         /// <see cref="PositionsInRadius(RadiusLocationContext)"/>.
         /// 
         /// The positions returned are guaranteed to be in order from least distance from center to most distance if either
-        /// <see cref="Radius.DIAMOND"/> or <see cref="Radius.SQUARE"/> is being used.
+        /// <see cref="Radius.Diamond"/> or <see cref="Radius.Square"/> is being used.
         /// </remarks>
         /// <param name="center">Center-point of the radius.</param>
         /// <param name="radius">Length of the radius.</param>
         /// <returns>All points in the radius shape defined by the given parameters, in order from least distance to greatest
-        /// if <see cref="Radius.DIAMOND"/> or <see cref="Radius.SQUARE"/> is being used.</returns>
+        /// if <see cref="Radius.Diamond"/> or <see cref="Radius.Square"/> is being used.</returns>
         public IEnumerable<Point> PositionsInRadius(Point center, int radius)
             => PositionsInRadius(new RadiusLocationContext(center, radius));
 
@@ -124,17 +121,21 @@ namespace SadRogue.Primitives
         /// the bounds are unspecified, in which case no bound restriction results.
         /// 
         /// As well, they are guaranteed to be in order from least distance from center to most distance if either
-        /// <see cref="Radius.DIAMOND"/> or <see cref="Radius.SQUARE"/> is being used.
+        /// <see cref="Radius.Diamond"/> or <see cref="Radius.Square"/> is being used.
         /// </remarks>
         /// <param name="context">Context defining radius parameters.</param>
         /// <returns>All points in the radius shape defined by the given context, in order from least distance to greatest
-        /// if <see cref="Radius.DIAMOND"/> or <see cref="Radius.SQUARE"/> is being used.</returns>
+        /// if <see cref="Radius.Diamond"/> or <see cref="Radius.Square"/> is being used.</returns>
         public IEnumerable<Point> PositionsInRadius(RadiusLocationContext context)
         {
             if (context._newlyInitialized)
+            {
                 context._newlyInitialized = false;
+            }
             else
+            {
                 Array.Clear(context._inQueue, 0, context._inQueue.Length);
+            }
 
             int startArrayIndex = context._inQueue.GetLength(0) / 2;
             Point topLeft = context.Center - context.Radius;
@@ -154,14 +155,16 @@ namespace SadRogue.Primitives
                 yield return cur;
 
                 // Add neighbors
-                foreach (var neighbor in rule.Neighbors(cur))
+                foreach (Point neighbor in rule.Neighbors(cur))
                 {
                     localNeighbor = neighbor - topLeft;
 
                     if (context._inQueue[localNeighbor.X, localNeighbor.Y] ||
-                        context.Bounds != Rectangle.EMPTY && !context.Bounds.Contains(neighbor) ||
+                        context.Bounds != Rectangle.Empty && !context.Bounds.Contains(neighbor) ||
                         distCalc.Calculate(context.Center, neighbor) > context.Radius)
+                    {
                         continue;
+                    }
 
                     q.Enqueue(neighbor);
                     context._inQueue[localNeighbor.X, localNeighbor.Y] = true;
@@ -221,12 +224,12 @@ namespace SadRogue.Primitives
         {
             switch (radius.Type)
             {
-                case Types.CIRCLE:
-                case Types.SQUARE:
-                    return AdjacencyRule.EIGHT_WAY;
+                case Types.Circle:
+                case Types.Square:
+                    return AdjacencyRule.EightWay;
 
-                case Types.DIAMOND:
-                    return AdjacencyRule.CARDINALS;
+                case Types.Diamond:
+                    return AdjacencyRule.Cardinals;
 
                 default:
                     throw new Exception($"Could not convert {nameof(Distance)} to {nameof(Radius)} -- this is a bug!"); // Will not occur
@@ -245,14 +248,14 @@ namespace SadRogue.Primitives
         {
             switch (radius.Type)
             {
-                case Types.CIRCLE:
-                    return Distance.EUCLIDEAN;
+                case Types.Circle:
+                    return Distance.Euclidean;
 
-                case Types.DIAMOND:
-                    return Distance.MANHATTAN;
+                case Types.Diamond:
+                    return Distance.Manhattan;
 
-                case Types.SQUARE:
-                    return Distance.CHEBYSHEV;
+                case Types.Square:
+                    return Distance.Chebyshev;
 
                 default:
                     throw new Exception($"Could not convert {nameof(Radius)} to {nameof(Distance)} -- this is a bug!"); // Will not occur
@@ -268,14 +271,14 @@ namespace SadRogue.Primitives
         {
             switch (radiusType)
             {
-                case Types.CIRCLE:
-                    return CIRCLE;
+                case Types.Circle:
+                    return Circle;
 
-                case Types.DIAMOND:
-                    return DIAMOND;
+                case Types.Diamond:
+                    return Diamond;
 
-                case Types.SQUARE:
-                    return SQUARE;
+                case Types.Square:
+                    return Square;
 
                 default:
                     throw new Exception($"Could not convert {nameof(Types)} to {nameof(Radius)} -- this is a bug!"); // Will not occur
@@ -286,7 +289,7 @@ namespace SadRogue.Primitives
         /// Returns a string representation of the Radius.
         /// </summary>
         /// <returns>A string representation of the Radius.</returns>
-        public override string ToString() => writeVals[(int)Type];
+        public override string ToString() => s_writeVals[(int)Type];
     }
 
     /// <summary>
@@ -327,7 +330,7 @@ namespace SadRogue.Primitives
         /// <summary>
         /// Represents the bounds that restrict the valid positions that are considered
         /// inside the radius.  Any positions inside the radius but outside the bounds
-        /// will be ignored and considered outside the radius.Set to <see cref="Rectangle.EMPTY"/>
+        /// will be ignored and considered outside the radius.Set to <see cref="Rectangle.Empty"/>
         /// to indicate no bounds.
         /// </summary>
         public Rectangle Bounds;
@@ -356,6 +359,6 @@ namespace SadRogue.Primitives
         /// <param name="center">The starting center-point of the radius.</param>
         /// <param name="radius">The starting length of the radius.</param>
         public RadiusLocationContext(Point center, int radius)
-            : this(center, radius, Rectangle.EMPTY) { }
+            : this(center, radius, Rectangle.Empty) { }
     }
 }

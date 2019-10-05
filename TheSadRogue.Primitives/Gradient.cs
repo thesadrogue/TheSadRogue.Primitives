@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.Collections;
-using System;
+using System.Collections.Generic;
 
 namespace SadRogue.Primitives
 {
@@ -64,12 +64,16 @@ namespace SadRogue.Primitives
 
 
             if (colorList.Length != stopList.Length)
+            {
                 throw new global::System.Exception("Both colors and stops much match in array length.");
+            }
 
             Stops = new GradientStop[colorList.Length];
 
             for (int i = 0; i < colorList.Length; i++)
+            {
                 Stops[i] = new GradientStop(colorList[i], stopList[i]);
+            }
         }
 
         /// <summary>
@@ -89,7 +93,9 @@ namespace SadRogue.Primitives
         public Gradient(params Color[] colors)
         {
             if (colors.Length == 0)
+            {
                 throw new global::System.ArgumentException("At least one color must be provided on this constructor.");
+            }
 
             if (colors.Length == 1)
             {
@@ -105,7 +111,9 @@ namespace SadRogue.Primitives
                 float stopStrength = 1f / (colors.Length - 1);
 
                 for (int i = 0; i < colors.Length; i++)
+                {
                     Stops[i] = new GradientStop(colors[i], i * stopStrength);
+                }
             }
 
         }
@@ -114,19 +122,13 @@ namespace SadRogue.Primitives
         /// Gets an enumerator with all of the gradient stops.
         /// </summary>
         /// <returns>An enumerator</returns>
-        public IEnumerator<GradientStop> GetEnumerator()
-        {
-            return ((IEnumerable<GradientStop>)Stops).GetEnumerator();
-        }
+        public IEnumerator<GradientStop> GetEnumerator() => ((IEnumerable<GradientStop>)Stops).GetEnumerator();
 
         /// <summary>
         /// Gets an enumerator with all of the gradient stops.
         /// </summary>
         /// <returns>An enumerator.</returns>
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return Stops.GetEnumerator();
-        }
+        IEnumerator IEnumerable.GetEnumerator() => Stops.GetEnumerator();
 
         /// <summary>
         /// Gets an array of colors based from the gradient.
@@ -138,12 +140,15 @@ namespace SadRogue.Primitives
             Color[] returnArray = new Color[count];
 
             if (Stops.Length == 0)
+            {
                 throw new global::System.IndexOutOfRangeException("The ColorGradient object does not have any gradient stops defined.");
-
+            }
             else if (Stops.Length == 1)
             {
                 for (int i = 0; i < count; i++)
+                {
                     returnArray[i] = Stops[0].Color;
+                }
 
                 return returnArray;
             }
@@ -158,12 +163,15 @@ namespace SadRogue.Primitives
             {
                 lerpTotal += lerp;
                 int counter;
-                for (counter = 0; counter < Stops.Length && Stops[counter].Stop < lerpTotal; counter++) ;
+                for (counter = 0; counter < Stops.Length && Stops[counter].Stop < lerpTotal; counter++)
+                {
+                    ;
+                }
 
                 counter--;
-                counter = (int)MathHelpers.Clamp(counter, 0, Stops.Length - 2);
+                counter = MathHelpers.Clamp(counter, 0, Stops.Length - 2);
 
-                float newLerp = (Stops[counter].Stop - (float)lerpTotal) / (Stops[counter].Stop - Stops[counter + 1].Stop);
+                float newLerp = (Stops[counter].Stop - lerpTotal) / (Stops[counter].Stop - Stops[counter + 1].Stop);
 
                 returnArray[i] = Color.Lerp(Stops[counter].Color, Stops[counter + 1].Color, newLerp);
             }
@@ -179,32 +187,30 @@ namespace SadRogue.Primitives
         public Color Lerp(float amount)
         {
             if (Stops.Length == 0)
+            {
                 throw new System.IndexOutOfRangeException("The ColorGradient object does not have any gradient stops defined.");
-
+            }
             else if (Stops.Length == 1)
             {
                 return Stops[0].Color;
             }
 
             int counter;
-            for (counter = 0; counter < Stops.Length && Stops[counter].Stop < amount; counter++) ;
+            for (counter = 0; counter < Stops.Length && Stops[counter].Stop < amount; counter++)
+            {
+                ;
+            }
 
             counter--;
-            counter = (int)MathHelpers.Clamp(counter, 0, Stops.Length - 2);
+            counter = MathHelpers.Clamp(counter, 0, Stops.Length - 2);
 
-            float newLerp = (Stops[counter].Stop - (float)amount) / (Stops[counter].Stop - Stops[counter + 1].Stop);
+            float newLerp = (Stops[counter].Stop - amount) / (Stops[counter].Stop - Stops[counter + 1].Stop);
 
             return Color.Lerp(Stops[counter].Color, Stops[counter + 1].Color, newLerp);
         }
 
-        public static implicit operator Gradient(Color color)
-        {
-            return new Gradient(color, color);
-        }
+        public static implicit operator Gradient(Color color) => new Gradient(color, color);
 
-        public static implicit operator Color(Gradient gradient)
-        {
-            return gradient.Stops[0].Color;
-        }
+        public static implicit operator Color(Gradient gradient) => gradient.Stops[0].Color;
     }
 }

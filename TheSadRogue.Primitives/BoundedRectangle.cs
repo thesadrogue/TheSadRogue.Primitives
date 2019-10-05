@@ -8,10 +8,14 @@ namespace SadRogue.Primitives
 	/// keeping track of a camera's view area.
 	/// </summary>
     [Serializable]
-	public class BoundedRectangle : IEquatable<BoundedRectangle>
+    public class BoundedRectangle : IEquatable<BoundedRectangle>
     {
         private Rectangle _area;
+        // A bug in code cleanup will add the readonly modifier to this field even though it would break the BoundingBox property at compile-time,
+        // unless we disable the warning for this line
+#pragma warning disable IDE0044
         private Rectangle _boundingBox;
+#pragma warning restore IDE0044
 
         /// <summary>
         /// Constructor.
@@ -23,7 +27,7 @@ namespace SadRogue.Primitives
             _boundingBox = boundingBox;
             _area = area;
 
-            boundLock();
+            BoundLock();
         }
 
         /// <summary>
@@ -38,7 +42,9 @@ namespace SadRogue.Primitives
             {
                 _area = value;
                 if (!_boundingBox.Contains(_area))
-                    boundLock();
+                {
+                    BoundLock();
+                }
             }
         }
 
@@ -47,10 +53,7 @@ namespace SadRogue.Primitives
         /// property does not explicitly provide a set accessor, it is returning a reference so therefore
         /// the property may be assigned to.
         /// </summary>
-        public ref Rectangle BoundingBox
-        {
-            get => ref _boundingBox;
-        }
+        public ref Rectangle BoundingBox => ref _boundingBox;
 
         /// <summary>
         /// True if the given BoundedRectangle has the same Bounds and Area as the current one.
@@ -92,24 +95,39 @@ namespace SadRogue.Primitives
         /// </returns>
         public static bool operator !=(BoundedRectangle lhs, BoundedRectangle rhs) => !(lhs == rhs);
 
-        private void boundLock()
+        private void BoundLock()
         {
             int x = _area.X, y = _area.Y, width = _area.Width, height = _area.Height;
 
             if (width > _boundingBox.Width)
+            {
                 width = _boundingBox.Width;
+            }
+
             if (height > _boundingBox.Height)
+            {
                 height = _boundingBox.Height;
+            }
 
             if (x < _boundingBox.X)
+            {
                 x = _boundingBox.X;
+            }
+
             if (y < _boundingBox.Y)
+            {
                 y = _boundingBox.Y;
+            }
 
             if (x > _boundingBox.MaxExtentX - width + 1)
+            {
                 x = _boundingBox.MaxExtentX - width + 1;
+            }
+
             if (y > _boundingBox.MaxExtentY - height + 1)
+            {
                 y = _boundingBox.MaxExtentY - height + 1;
+            }
 
             _area = new Rectangle(x, y, width, height);
         }

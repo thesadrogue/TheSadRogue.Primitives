@@ -2045,5 +2045,34 @@ namespace SadRogue.Primitives
             b = B;
             a = A;
         }
+
+        /// <summary>
+        /// Deconstruction method for <see cref="Color"/>.
+        /// </summary>
+        /// <param name="r"></param>
+        /// <param name="g"></param>
+        /// <param name="b"></param>
+        /// <param name="a"></param>
+        public void Deconstruct(out byte r, out byte g, out byte b)
+        {
+            r = R;
+            g = G;
+            b = B;
+        }
+
+        /// <summary>
+        /// Deconstruction method for <see cref="Color"/> with Alpha.
+        /// </summary>
+        /// <param name="r"></param>
+        /// <param name="g"></param>
+        /// <param name="b"></param>
+        /// <param name="a"></param>
+        public void Deconstruct(out byte r, out byte g, out byte b, out byte a)
+        {
+            r = R;
+            g = G;
+            b = B;
+            a = A;
+        }
     }
 }

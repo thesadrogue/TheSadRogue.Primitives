@@ -6,7 +6,7 @@
     <SharedGUID>8c95fbf7-c9bf-44fd-8d9f-ea9836027ebd</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>TheSadRogue.Primitives.UnitTests</Import_RootNamespace>
+    <Import_RootNamespace>SadRogue.Primitives.UnitTests</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)TestUtils.cs" />

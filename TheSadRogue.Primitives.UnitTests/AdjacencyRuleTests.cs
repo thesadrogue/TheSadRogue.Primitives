@@ -5,7 +5,7 @@ using SadRogue.Primitives;
 using Xunit;
 using XUnit.ValueTuples;
 
-namespace TheSadRogue.Primitives.UnitTests
+namespace SadRogue.Primitives.UnitTests
 {
     public class AdjacencyRuleTests
     {

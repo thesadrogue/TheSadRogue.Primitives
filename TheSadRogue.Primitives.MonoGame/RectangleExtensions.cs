@@ -3,7 +3,7 @@ using SadRogueRectangle = SadRogue.Primitives.Rectangle;
 
 namespace SadRogue.Primitives
 {
-    public static class RectangleExtensions
+    public static class SadRogueRectangleExtensions
     {
         public static MonoRectangle ToMonoRectangle(this SadRogueRectangle self) => new MonoRectangle(self.X, self.Y, self.Width, self.Height);
 

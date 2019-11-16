@@ -5,7 +5,7 @@
 
     <IsPackable>false</IsPackable>
 
-    <RootNamespace>TheSadRogue.Primitives.UnitTests</RootNamespace>
+    <RootNamespace>SadRogue.Primitives.UnitTests</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

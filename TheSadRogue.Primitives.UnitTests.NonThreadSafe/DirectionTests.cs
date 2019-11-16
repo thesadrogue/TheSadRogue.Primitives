@@ -5,7 +5,7 @@ using SadRogue.Primitives;
 using Xunit;
 using XUnit.ValueTuples;
 
-namespace TheSadRogue.Primitives.UnitTests
+namespace SadRogue.Primitives.UnitTests
 {
     // We must do these sequentially (not in paralell), as some of the tests change YIncreasesUpwards, which can very much mess with other threads using any function
     // that relies on directions.  There is a feature of XUnit that should technically allow these to be in the same assembly, but it seems to only separate the collection

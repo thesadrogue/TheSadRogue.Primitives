@@ -2,7 +2,7 @@
 using System.Linq;
 using Xunit;
 
-namespace TheSadRogue.Primitives.UnitTests
+namespace SadRogue.Primitives.UnitTests
 {
     /// <summary>
     /// Static/extension methods to help with creating test variables/enumerables for XUnit

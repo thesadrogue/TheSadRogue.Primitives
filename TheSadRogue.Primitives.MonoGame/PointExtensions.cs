@@ -39,7 +39,8 @@ namespace Microsoft.Xna.Framework
         public static MonoPoint Divide(this MonoPoint self, SadRoguePoint other)
             => new MonoPoint((int)Math.Round(self.X / (double)other.X, MidpointRounding.AwayFromZero), (int)Math.Round(self.Y / (double)other.Y, MidpointRounding.AwayFromZero));
 
-        public static MonoPoint Divide(this MonoPoint self, double d) => new MonoPoint((int)Math.Round(self.X / d), (int)Math.Round(self.Y / d));
+        public static MonoPoint Divide(this MonoPoint self, double d)
+            => new MonoPoint((int)Math.Round(self.X / d, MidpointRounding.AwayFromZero), (int)Math.Round(self.Y / d, MidpointRounding.AwayFromZero));
 
         public static bool Equals(this MonoPoint self, SadRoguePoint other) => self.X == other.X && self.Y == other.Y;
     }

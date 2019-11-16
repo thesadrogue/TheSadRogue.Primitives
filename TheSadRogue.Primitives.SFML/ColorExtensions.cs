@@ -5,7 +5,7 @@ namespace SadRogue.Primitives
 {
     public static class SadRogueColorExtensions
     {
-        public static SFMLColor ToMonoColor(this SadRogueColor self) => new SFMLColor(self.R, self.G, self.B, self.A);
+        public static SFMLColor ToSFMLColor(this SadRogueColor self) => new SFMLColor(self.R, self.G, self.B, self.A);
         public static bool Equals(this SadRogueColor self, SFMLColor other)
             => self.R == other.R && self.G == other.G && self.B == other.B && self.A == other.A;
     }

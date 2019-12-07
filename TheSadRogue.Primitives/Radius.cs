@@ -117,7 +117,7 @@ namespace SadRogue.Primitives
         /// the positions for a radius of the same size multiple times, even if the shape/position are changing.
         /// </summary>
         /// <remarks>
-        /// The positions returned are all guaranteed to be within the <paramref name="bounds"/> specified in the context, unless
+        /// The positions returned are all guaranteed to be within the <see cref="RadiusLocationContext.Bounds"/> specified in the context, unless
         /// the bounds are unspecified, in which case no bound restriction results.
         /// 
         /// As well, they are guaranteed to be in order from least distance from center to most distance if either

@@ -583,7 +583,8 @@ namespace SadRogue.Primitives
         public Rectangle TranslateY(int dy)
             => new Rectangle(X, Y + dy, Width, Height);
 
-        #region Tuple Compability
+        #region Tuple Compatibility
+        #region (x, y, width, height)
         /// <summary>
         /// Implicitly converts a GoRogue Rectangle to an equivalent tuple of 4 integers (x, y, width, height).
         /// </summary>
@@ -654,8 +655,78 @@ namespace SadRogue.Primitives
         /// <param name="other">Point to compare.</param>
         /// <returns>True if the two positions are equal, false if not.</returns>
         public bool Equals((int x, int y, int width, int height) other)
-        => X == other.x && Y == other.y && Width == other.width && Height == other.height;
+            => X == other.x && Y == other.y && Width == other.width && Height == other.height;
         #endregion
+        #region (minExtent, maxExtent)
+        /// <summary>
+        /// Implicitly converts a GoRogue Rectangle to an equivalent tuple of 2 Points (minExtent, maxExtent).
+        /// </summary>
+        /// <param name="rect" />
+        /// <returns />
+        public static implicit operator (Point minExtent, Point maxExtent)(Rectangle rect) => (rect.MinExtent, rect.MaxExtent);
+        /// <summary>
+        /// Implicitly converts a tuple of 2 Points (minExtent, maxExtent) to an equivalent GoRogue Rectangle.
+        /// </summary>
+        /// <param name="tuple" />
+        /// <returns />
+        public static implicit operator Rectangle((Point minExtent, Point maxExtent) tuple) => new Rectangle(tuple.minExtent, tuple.maxExtent);
+
+        /// <summary>
+        /// Adds support for C# Deconstruction syntax.
+        /// </summary>
+        /// <param name="minExtent" />
+        /// <param name="maxExtent" />
+        public void Deconstruct(out Point minExtent, out Point maxExtent)
+        {
+            minExtent = MinExtent;
+            maxExtent = MaxExtent;
+        }
+
+        /// <summary>
+        /// True if the two rectangles represent the same area.
+        /// </summary>
+        /// <param name="r1"></param>
+        /// <param name="r2"></param>
+        /// <returns>True if the two rectangles are equal, false if not.</returns>
+        public static bool operator ==(Rectangle r1, (Point minExtent, Point maxExtent) r2) => r1.MinExtent == r2.minExtent && r1.MaxExtent == r2.maxExtent;
+
+        /// <summary>
+        /// True if any of the rectangles' x/y/width/height values are not equal.
+        /// </summary>
+        /// <param name="r1"></param>
+        /// <param name="r2"></param>
+        /// <returns>
+        /// True if any of the x/y/width/height values are not equal, false if they are all equal.
+        /// </returns>
+        public static bool operator !=(Rectangle r1, (Point minExtent, Point maxExtent) r2) => !(r1 == r2);
+
+        /// <summary>
+        /// True if the two rectangles represent the same area.
+        /// </summary>
+        /// <param name="r1"></param>
+        /// <param name="r2"></param>
+        /// <returns>True if the two rectangles are equal, false if not.</returns>
+        public static bool operator ==((Point minExtent, Point maxExtent) r1, Rectangle r2) => r1.minExtent == r2.MinExtent && r1.maxExtent == r2.MaxExtent;
+
+        /// <summary>
+        /// True if any of the rectangles' x/y/width/height values are not equal.
+        /// </summary>
+        /// <param name="r1"></param>
+        /// <param name="r2"></param>
+        /// <returns>
+        /// True if any of the x/y/width/height values are not equal, false if they are all equal.
+        /// </returns>
+        public static bool operator !=((Point minExtent, Point maxExtent) r1, Rectangle r2) => !(r1 == r2);
+
+        /// <summary>
+        /// True if the given position has equal x and y values to the current one.
+        /// </summary>
+        /// <param name="other">Point to compare.</param>
+        /// <returns>True if the two positions are equal, false if not.</returns>
+        public bool Equals((Point minExtent, Point maxExtent) other)
+            => MinExtent == other.minExtent && MaxExtent == other.maxExtent;
+        #endregion
+#endregion
 
         /// <summary>
         /// Gets all positions that reside on the inner perimeter of the rectangle.

@@ -1,16 +1,50 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <!-- Basic package info -->
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>SadRogue.Primitives</RootNamespace>
+	<Version>1.0.0-alpha1</Version>
+	<Version Condition="'$(Configuration)'=='Debug'">$(Version)-debug</Version>
+	<Authors>Chris3606;Thraka</Authors>
+	<Company>TheSadRogue</Company>
+	<Copyright>Copyright © 2019 TheSadRogue [Steve De George JR (Thraka) and Christopher Ridley (Chris3606)]</Copyright>
+	<Description>A collection of extension methods that allow TheSadRogue.Primitives types to easily interface with SFML's equivalents.</Description>
+	
+	<!-- More nuget package settings-->
+	<PackageId>TheSadRogue.Primitives.SFML</PackageId>
+	<PackageReleaseNotes>Initial alpha release.</PackageReleaseNotes>
+	<RepositoryUrl>https://https://github.com/thesadrogue/TheSadRogue.Primitives</RepositoryUrl>
+	<RepositoryType>git</RepositoryType>
+	<PublishRepositoryUrl>true</PublishRepositoryUrl>
+	<PackageLicenseExpression>MIT</PackageLicenseExpression>
+	<IncludeSymbols>true</IncludeSymbols>
+    <IncludeSource>true</IncludeSource>
+	<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+	<PackageTags>2d;grid;primitives;point;rectangle;game;development;standard;sfml;sadrogue;thesadrogue;extensions</PackageTags>
+	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\$(Configuration)\netstandard2.0\TheSadRogue.Primitives.SFML.xml</DocumentationFile>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="SFML.Graphics" Version="2.5.0" />
-  </ItemGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>bin\$(Configuration)\netstandard2.0\TheSadRogue.Primitives.SFML.xml</DocumentationFile>
+  </PropertyGroup>
 
+  <!-- Dependencies -->
   <ItemGroup>
-    <ProjectReference Include="..\TheSadRogue.Primitives\TheSadRogue.Primitives.csproj" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All"/>
+    <PackageReference Include="SFML.Graphics" Version="2.5.0" />
+    <PackageReference Include="TheSadRogue.Primitives" Version="1.0.0-alpha1" />
   </ItemGroup>
+  
+  <!-- When packing, copy the nuget files to the nuget output directory -->
+  <Target Name="CopyPackage" AfterTargets="Pack">
+    <Copy SourceFiles="$(OutputPath)..\$(PackageId).$(PackageVersion).nupkg" DestinationFolder="$(OutputPath)..\..\..\..\nuget" />
+    <Copy SourceFiles="$(OutputPath)..\$(PackageId).$(PackageVersion).snupkg" DestinationFolder="$(OutputPath)..\..\..\..\nuget" />
+  </Target>
 
 </Project>

@@ -8,7 +8,7 @@
 	<Version Condition="'$(Configuration)'=='Debug'">$(Version)-debug</Version>
 	<Authors>Chris3606;Thraka</Authors>
 	<Company>TheSadRogue</Company>
-	<Copyright>Copyright © 2019 Christopher Ridley (Chris3606)] and TheSadRogue [Steve De George JR (Thraka)</Copyright>
+	<Copyright>Copyright © 2019 [Christopher Ridley (Chris3606) and TheSadRogue Steve De George JR (Thraka)]</Copyright>
 	<Description>A collection of primitive data structures for working with a 2-dimensional grid.</Description>
 	
 	<!-- More nuget package settings-->

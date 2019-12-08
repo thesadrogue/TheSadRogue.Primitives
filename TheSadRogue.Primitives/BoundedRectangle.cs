@@ -31,29 +31,19 @@ namespace SadRogue.Primitives
         }
 
         /// <summary>
-        /// The rectangle that is guaranteed to be contained completely within <see cref="BoundingBox"/>,
-        /// and will be restricted as such when set to.
+        /// The rectangle that is guaranteed to be contained completely within <see cref="BoundingBox"/>.
+        /// Use <see cref="SetArea(Rectangle)"/> to set the area.
         /// </summary>
-        public Rectangle Area
+        public ref readonly Rectangle Area
         {
-            get => _area;
-
-            set
-            {
-                _area = value;
-                if (!_boundingBox.Contains(_area))
-                {
-                    BoundLock();
-                }
-            }
+            get => ref _area;
         }
 
         /// <summary>
-        /// The rectangle which <see cref="Area"/> is automatically bounded to be within.  Although this
-        /// property does not explicitly provide a set accessor, it is returning a reference so therefore
-        /// the property may be assigned to.
+        /// The rectangle which <see cref="Area"/> is automatically bounded to be within.  Use the
+        /// <see cref="SetBoundingBox(Rectangle)"/> property to set the bounding box.
         /// </summary>
-        public ref Rectangle BoundingBox => ref _boundingBox;
+        public ref readonly Rectangle BoundingBox => ref _boundingBox;
 
         /// <summary>
         /// True if the given BoundedRectangle has the same Bounds and Area as the current one.
@@ -94,6 +84,33 @@ namespace SadRogue.Primitives
         /// True if the types are not equal, false if they are both equal.
         /// </returns>
         public static bool operator !=(BoundedRectangle lhs, BoundedRectangle rhs) => !(lhs == rhs);
+
+        /// <summary>
+        /// Forces the area given to conform to the <see cref="BoundingBox"/> specified and sets it to <see cref="Area"/>.
+        /// </summary>
+        /// <param name="newArea">The new area to bound and set.</param>
+        public void SetArea(Rectangle newArea)
+        {
+            _area = newArea;
+            if (!_boundingBox.Contains(_area))
+            {
+                BoundLock();
+            }
+        }
+
+        /// <summary>
+        /// Sets the bounding box to the specified value, and forces the current area to fit within the bounding box
+        /// as needed.
+        /// </summary>
+        /// <param name="newBoundingBox">The new bounding box to apply.</param>
+        public void SetBoundingBox(Rectangle newBoundingBox)
+        {
+            _boundingBox = newBoundingBox;
+            if (!_boundingBox.Contains(_area))
+            {
+                BoundLock();
+            }
+        }
 
         private void BoundLock()
         {

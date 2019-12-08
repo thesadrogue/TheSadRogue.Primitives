@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class Radius
+    <title>Struct Radius
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class Radius
+    <meta name="title" content="Struct Radius
    ">
     <meta name="generator" content="docfx 2.41.0.0">
     
@@ -71,34 +71,24 @@
             <article class="content wrap" id="_content" data-uid="SadRogue.Primitives.Radius">
   
   
-  <h1 id="SadRogue_Primitives_Radius" data-uid="SadRogue.Primitives.Radius" class="text-break">Class Radius
+  <h1 id="SadRogue_Primitives_Radius" data-uid="SadRogue.Primitives.Radius" class="text-break">Struct Radius
   </h1>
-  <div class="markdown level0 summary"><p>Class representing different shapes that define the concept of a radius on a grid. You cannot
+  <div class="markdown level0 summary"><p>Structure representing different shapes that define the concept of a radius on a grid. You cannot
 create instances of this class using a constructor -- instead, this class contains static instances
 representing the various radius shapes.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
-  <div class="inheritance">
-    <h5>Inheritance</h5>
-    <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">Radius</span></div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><span class="xref">System.IEquatable</span>&lt;<a class="xref" href="SadRogue.Primitives.Radius.html">Radius</a>&gt;</div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
-      <span class="xref">System.Object.Equals(System.Object)</span>
-    </div>
-    <div>
       <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
     </div>
     <div>
-      <span class="xref">System.Object.GetHashCode()</span>
-    </div>
-    <div>
       <span class="xref">System.Object.GetType()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.MemberwiseClone()</span>
     </div>
     <div>
       <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
@@ -108,7 +98,8 @@ representing the various radius shapes.</p>
   <h6><strong>Assembly</strong>: TheSadRogue.Primitives.dll</h6>
   <h5 id="SadRogue_Primitives_Radius_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Radius</code></pre>
+    <pre><code class="lang-csharp hljs">[Serializable]
+public struct Radius : IEquatable&lt;Radius&gt;</code></pre>
   </div>
   <h5 id="SadRogue_Primitives_Radius_remarks"><strong>Remarks</strong></h5>
   <div class="markdown level0 remarks"><p>Contains utility functions to work with radius shapes.  Instances of Radius are also implicitly
@@ -120,19 +111,20 @@ shape).</p>
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Radius_CIRCLE.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Radius.CIRCLE%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Radius_Circle.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Radius.Circle%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Radius.cs/#L23">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Radius.cs/#L25">View Source</a>
   </span>
-  <h4 id="SadRogue_Primitives_Radius_CIRCLE" data-uid="SadRogue.Primitives.Radius.CIRCLE">CIRCLE</h4>
+  <h4 id="SadRogue_Primitives_Radius_Circle" data-uid="SadRogue.Primitives.Radius.Circle">Circle</h4>
   <div class="markdown level1 summary"><p>Radius is a circle around the center point. CIRCLE would represent movement radius in
 an 8-way movement scheme with a ~1.41 cost multiplier for diagonal movement.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static readonly Radius CIRCLE</code></pre>
+    <pre><code class="lang-csharp hljs">[NonSerialized]
+public static readonly Radius Circle</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -151,19 +143,20 @@ an 8-way movement scheme with a ~1.41 cost multiplier for diagonal movement.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Radius_DIAMOND.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Radius.DIAMOND%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Radius_Diamond.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Radius.Diamond%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Radius.cs/#L29">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Radius.cs/#L32">View Source</a>
   </span>
-  <h4 id="SadRogue_Primitives_Radius_DIAMOND" data-uid="SadRogue.Primitives.Radius.DIAMOND">DIAMOND</h4>
+  <h4 id="SadRogue_Primitives_Radius_Diamond" data-uid="SadRogue.Primitives.Radius.Diamond">Diamond</h4>
   <div class="markdown level1 summary"><p>Radius is a diamond around the center point. DIAMOND would represent movement radius
 in a 4-way movement scheme.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static readonly Radius DIAMOND</code></pre>
+    <pre><code class="lang-csharp hljs">[NonSerialized]
+public static readonly Radius Diamond</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -182,12 +175,12 @@ in a 4-way movement scheme.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Radius_SQUARE.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Radius.SQUARE%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Radius_Square.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Radius.Square%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Radius.cs/#L36">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Radius.cs/#L40">View Source</a>
   </span>
-  <h4 id="SadRogue_Primitives_Radius_SQUARE" data-uid="SadRogue.Primitives.Radius.SQUARE">SQUARE</h4>
+  <h4 id="SadRogue_Primitives_Radius_Square" data-uid="SadRogue.Primitives.Radius.Square">Square</h4>
   <div class="markdown level1 summary"><p>Radius is a square around the center point. SQUARE would represent movement radius in
 an 8-way movement scheme, where all 8 squares around an item are considered equal distance
 away.</p>
@@ -195,7 +188,8 @@ away.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static readonly Radius SQUARE</code></pre>
+    <pre><code class="lang-csharp hljs">[NonSerialized]
+public static readonly Radius Square</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -214,10 +208,10 @@ away.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Radius_Type.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Radius.Type%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Radius_Type.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Radius.Type%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Radius.cs/#L42">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Radius.cs/#L46">View Source</a>
   </span>
   <h4 id="SadRogue_Primitives_Radius_Type" data-uid="SadRogue.Primitives.Radius.Type">Type</h4>
   <div class="markdown level1 summary"><p>Enum value representing the radius shape -- useful for using Radius types in switch
@@ -247,10 +241,145 @@ statements.</p>
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Radius_PositionsInRadius_SadRogue_Primitives_Point_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Radius.PositionsInRadius(SadRogue.Primitives.Point%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Radius_Equals_SadRogue_Primitives_Radius_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Radius.Equals(SadRogue.Primitives.Radius)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Radius.cs/#L109">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Radius.cs/#L180">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Radius_Equals_" data-uid="SadRogue.Primitives.Radius.Equals*"></a>
+  <h4 id="SadRogue_Primitives_Radius_Equals_SadRogue_Primitives_Radius_" data-uid="SadRogue.Primitives.Radius.Equals(SadRogue.Primitives.Radius)">Equals(Radius)</h4>
+  <div class="markdown level1 summary"><p>True if the given Radius has the same Type the current one.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Equals(Radius other)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Radius.html">Radius</a></td>
+        <td><span class="parametername">other</span></td>
+        <td><p>Radius to compare.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>True if the two radius shapes are the same, false if not.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Radius_Equals_System_Object_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Radius.Equals(System.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Radius.cs/#L189">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Radius_Equals_" data-uid="SadRogue.Primitives.Radius.Equals*"></a>
+  <h4 id="SadRogue_Primitives_Radius_Equals_System_Object_" data-uid="SadRogue.Primitives.Radius.Equals(System.Object)">Equals(Object)</h4>
+  <div class="markdown level1 summary"><p>Same as operator == in this case; returns false if <code data-dev-comment-type="paramref" class="paramref">obj</code> is not a Radius.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool Equals(object obj)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">obj</span></td>
+        <td><p>The object to compare the current Radius to.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>True if <code data-dev-comment-type="paramref" class="paramref">obj</code> is a Radius, and the two radius shapes are equal, false otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">System.ValueType.Equals(System.Object)</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Radius_GetHashCode.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Radius.GetHashCode%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Radius.cs/#L195">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Radius_GetHashCode_" data-uid="SadRogue.Primitives.Radius.GetHashCode*"></a>
+  <h4 id="SadRogue_Primitives_Radius_GetHashCode" data-uid="SadRogue.Primitives.Radius.GetHashCode">GetHashCode()</h4>
+  <div class="markdown level1 summary"><p>Returns a hash-map value for the current object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">System.ValueType.GetHashCode()</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Radius_PositionsInRadius_SadRogue_Primitives_Point_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Radius.PositionsInRadius(SadRogue.Primitives.Point%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Radius.cs/#L111">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Radius_PositionsInRadius_" data-uid="SadRogue.Primitives.Radius.PositionsInRadius*"></a>
   <h4 id="SadRogue_Primitives_Radius_PositionsInRadius_SadRogue_Primitives_Point_System_Int32_" data-uid="SadRogue.Primitives.Radius.PositionsInRadius(SadRogue.Primitives.Point,System.Int32)">PositionsInRadius(Point, Int32)</h4>
@@ -297,7 +426,7 @@ statements.</p>
       <tr>
         <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<a class="xref" href="SadRogue.Primitives.Point.html">Point</a>&gt;</td>
         <td><p>All points in the radius shape defined by the given parameters, in order from least distance to greatest
-if <a class="xref" href="SadRogue.Primitives.Radius.html#SadRogue_Primitives_Radius_DIAMOND">DIAMOND</a> or <a class="xref" href="SadRogue.Primitives.Radius.html#SadRogue_Primitives_Radius_SQUARE">SQUARE</a> is being used.</p>
+if <a class="xref" href="SadRogue.Primitives.Radius.html#SadRogue_Primitives_Radius_Diamond">Diamond</a> or <a class="xref" href="SadRogue.Primitives.Radius.html#SadRogue_Primitives_Radius_Square">Square</a> is being used.</p>
 </td>
       </tr>
     </tbody>
@@ -307,14 +436,14 @@ if <a class="xref" href="SadRogue.Primitives.Radius.html#SadRogue_Primitives_Rad
 construct a <a class="xref" href="SadRogue.Primitives.RadiusLocationContext.html">RadiusLocationContext</a> to represent it, and pass that to
 <a class="xref" href="SadRogue.Primitives.Radius.html#SadRogue_Primitives_Radius_PositionsInRadius_SadRogue_Primitives_RadiusLocationContext_">PositionsInRadius(RadiusLocationContext)</a>.</p>
 <p>The positions returned are guaranteed to be in order from least distance from center to most distance if either
-<a class="xref" href="SadRogue.Primitives.Radius.html#SadRogue_Primitives_Radius_DIAMOND">DIAMOND</a> or <a class="xref" href="SadRogue.Primitives.Radius.html#SadRogue_Primitives_Radius_SQUARE">SQUARE</a> is being used.</p>
+<a class="xref" href="SadRogue.Primitives.Radius.html#SadRogue_Primitives_Radius_Diamond">Diamond</a> or <a class="xref" href="SadRogue.Primitives.Radius.html#SadRogue_Primitives_Radius_Square">Square</a> is being used.</p>
 </div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Radius_PositionsInRadius_SadRogue_Primitives_Point_System_Int32_SadRogue_Primitives_Rectangle_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Radius.PositionsInRadius(SadRogue.Primitives.Point%2CSystem.Int32%2CSadRogue.Primitives.Rectangle)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Radius_PositionsInRadius_SadRogue_Primitives_Point_System_Int32_SadRogue_Primitives_Rectangle_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Radius.PositionsInRadius(SadRogue.Primitives.Point%2CSystem.Int32%2CSadRogue.Primitives.Rectangle)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Radius.cs/#L91">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Radius.cs/#L93">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Radius_PositionsInRadius_" data-uid="SadRogue.Primitives.Radius.PositionsInRadius*"></a>
   <h4 id="SadRogue_Primitives_Radius_PositionsInRadius_SadRogue_Primitives_Point_System_Int32_SadRogue_Primitives_Rectangle_" data-uid="SadRogue.Primitives.Radius.PositionsInRadius(SadRogue.Primitives.Point,System.Int32,SadRogue.Primitives.Rectangle)">PositionsInRadius(Point, Int32, Rectangle)</h4>
@@ -367,7 +496,7 @@ construct a <a class="xref" href="SadRogue.Primitives.RadiusLocationContext.html
       <tr>
         <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<a class="xref" href="SadRogue.Primitives.Point.html">Point</a>&gt;</td>
         <td><p>All points in the radius shape defined by the given parameters, in order from least distance to greatest
-if <a class="xref" href="SadRogue.Primitives.Radius.html#SadRogue_Primitives_Radius_DIAMOND">DIAMOND</a> or <a class="xref" href="SadRogue.Primitives.Radius.html#SadRogue_Primitives_Radius_SQUARE">SQUARE</a> is being used.</p>
+if <a class="xref" href="SadRogue.Primitives.Radius.html#SadRogue_Primitives_Radius_Diamond">Diamond</a> or <a class="xref" href="SadRogue.Primitives.Radius.html#SadRogue_Primitives_Radius_Square">Square</a> is being used.</p>
 </td>
       </tr>
     </tbody>
@@ -378,14 +507,14 @@ construct a <a class="xref" href="SadRogue.Primitives.RadiusLocationContext.html
 <a class="xref" href="SadRogue.Primitives.Radius.html#SadRogue_Primitives_Radius_PositionsInRadius_SadRogue_Primitives_RadiusLocationContext_">PositionsInRadius(RadiusLocationContext)</a>.</p>
 <p>The positions returned are all guaranteed to be within the <code data-dev-comment-type="paramref" class="paramref">bounds</code> specified.  As well,
 they are guaranteed to be in order from least distance from center to most distance if either
-<a class="xref" href="SadRogue.Primitives.Radius.html#SadRogue_Primitives_Radius_DIAMOND">DIAMOND</a> or <a class="xref" href="SadRogue.Primitives.Radius.html#SadRogue_Primitives_Radius_SQUARE">SQUARE</a> is being used.</p>
+<a class="xref" href="SadRogue.Primitives.Radius.html#SadRogue_Primitives_Radius_Diamond">Diamond</a> or <a class="xref" href="SadRogue.Primitives.Radius.html#SadRogue_Primitives_Radius_Square">Square</a> is being used.</p>
 </div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Radius_PositionsInRadius_SadRogue_Primitives_RadiusLocationContext_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Radius.PositionsInRadius(SadRogue.Primitives.RadiusLocationContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Radius_PositionsInRadius_SadRogue_Primitives_RadiusLocationContext_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Radius.PositionsInRadius(SadRogue.Primitives.RadiusLocationContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Radius.cs/#L127">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Radius.cs/#L129">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Radius_PositionsInRadius_" data-uid="SadRogue.Primitives.Radius.PositionsInRadius*"></a>
   <h4 id="SadRogue_Primitives_Radius_PositionsInRadius_SadRogue_Primitives_RadiusLocationContext_" data-uid="SadRogue.Primitives.Radius.PositionsInRadius(SadRogue.Primitives.RadiusLocationContext)">PositionsInRadius(RadiusLocationContext)</h4>
@@ -428,23 +557,23 @@ the positions for a radius of the same size multiple times, even if the shape/po
       <tr>
         <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<a class="xref" href="SadRogue.Primitives.Point.html">Point</a>&gt;</td>
         <td><p>All points in the radius shape defined by the given context, in order from least distance to greatest
-if <a class="xref" href="SadRogue.Primitives.Radius.html#SadRogue_Primitives_Radius_DIAMOND">DIAMOND</a> or <a class="xref" href="SadRogue.Primitives.Radius.html#SadRogue_Primitives_Radius_SQUARE">SQUARE</a> is being used.</p>
+if <a class="xref" href="SadRogue.Primitives.Radius.html#SadRogue_Primitives_Radius_Diamond">Diamond</a> or <a class="xref" href="SadRogue.Primitives.Radius.html#SadRogue_Primitives_Radius_Square">Square</a> is being used.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 id="SadRogue_Primitives_Radius_PositionsInRadius_SadRogue_Primitives_RadiusLocationContext__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The positions returned are all guaranteed to be within the <code data-dev-comment-type="paramref" class="paramref">bounds</code> specified in the context, unless
+  <div class="markdown level1 remarks"><p>The positions returned are all guaranteed to be within the <a class="xref" href="SadRogue.Primitives.RadiusLocationContext.html#SadRogue_Primitives_RadiusLocationContext_Bounds">Bounds</a> specified in the context, unless
 the bounds are unspecified, in which case no bound restriction results.</p>
 <p>As well, they are guaranteed to be in order from least distance from center to most distance if either
-<a class="xref" href="SadRogue.Primitives.Radius.html#SadRogue_Primitives_Radius_DIAMOND">DIAMOND</a> or <a class="xref" href="SadRogue.Primitives.Radius.html#SadRogue_Primitives_Radius_SQUARE">SQUARE</a> is being used.</p>
+<a class="xref" href="SadRogue.Primitives.Radius.html#SadRogue_Primitives_Radius_Diamond">Diamond</a> or <a class="xref" href="SadRogue.Primitives.Radius.html#SadRogue_Primitives_Radius_Square">Square</a> is being used.</p>
 </div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Radius_ToRadius_SadRogue_Primitives_Radius_Types_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Radius.ToRadius(SadRogue.Primitives.Radius.Types)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Radius_ToRadius_SadRogue_Primitives_Radius_Types_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Radius.ToRadius(SadRogue.Primitives.Radius.Types)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Radius.cs/#L222">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Radius.cs/#L270">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Radius_ToRadius_" data-uid="SadRogue.Primitives.Radius.ToRadius*"></a>
   <h4 id="SadRogue_Primitives_Radius_ToRadius_SadRogue_Primitives_Radius_Types_" data-uid="SadRogue.Primitives.Radius.ToRadius(SadRogue.Primitives.Radius.Types)">ToRadius(Radius.Types)</h4>
@@ -491,10 +620,10 @@ the bounds are unspecified, in which case no bound restriction results.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Radius_ToString.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Radius.ToString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Radius_ToString.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Radius.ToString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Radius.cs/#L244">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Radius.cs/#L292">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Radius_ToString_" data-uid="SadRogue.Primitives.Radius.ToString*"></a>
   <h4 id="SadRogue_Primitives_Radius_ToString" data-uid="SadRogue.Primitives.Radius.ToString">ToString()</h4>
@@ -522,15 +651,69 @@ the bounds are unspecified, in which case no bound restriction results.</p>
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">System.Object.ToString()</span></div>
+  <div><span class="xref">System.ValueType.ToString()</span></div>
   <h3 id="operators">Operators
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Radius_op_Implicit_SadRogue_Primitives_Radius__SadRogue_Primitives_AdjacencyRule.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Radius.op_Implicit(SadRogue.Primitives.Radius)~SadRogue.Primitives.AdjacencyRule%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Radius_op_Equality_SadRogue_Primitives_Radius_SadRogue_Primitives_Radius_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Radius.op_Equality(SadRogue.Primitives.Radius%2CSadRogue.Primitives.Radius)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Radius.cs/#L175">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Radius.cs/#L203">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Radius_op_Equality_" data-uid="SadRogue.Primitives.Radius.op_Equality*"></a>
+  <h4 id="SadRogue_Primitives_Radius_op_Equality_SadRogue_Primitives_Radius_SadRogue_Primitives_Radius_" data-uid="SadRogue.Primitives.Radius.op_Equality(SadRogue.Primitives.Radius,SadRogue.Primitives.Radius)">Equality(Radius, Radius)</h4>
+  <div class="markdown level1 summary"><p>True if the two radius shapes have the same Type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator ==(Radius lhs, Radius rhs)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Radius.html">Radius</a></td>
+        <td><span class="parametername">lhs</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Radius.html">Radius</a></td>
+        <td><span class="parametername">rhs</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>True if the two radius shapes are equal, false if not.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Radius_op_Implicit_SadRogue_Primitives_Radius__SadRogue_Primitives_AdjacencyRule.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Radius.op_Implicit(SadRogue.Primitives.Radius)~SadRogue.Primitives.AdjacencyRule%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Radius.cs/#L223">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Radius_op_Implicit_" data-uid="SadRogue.Primitives.Radius.op_Implicit*"></a>
   <h4 id="SadRogue_Primitives_Radius_op_Implicit_SadRogue_Primitives_Radius__SadRogue_Primitives_AdjacencyRule" data-uid="SadRogue.Primitives.Radius.op_Implicit(SadRogue.Primitives.Radius)~SadRogue.Primitives.AdjacencyRule">Implicit(Radius to AdjacencyRule)</h4>
@@ -580,10 +763,10 @@ radius shape casted will be returned.</p>
 </div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Radius_op_Implicit_SadRogue_Primitives_Radius__SadRogue_Primitives_Distance.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Radius.op_Implicit(SadRogue.Primitives.Radius)~SadRogue.Primitives.Distance%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Radius_op_Implicit_SadRogue_Primitives_Radius__SadRogue_Primitives_Distance.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Radius.op_Implicit(SadRogue.Primitives.Radius)~SadRogue.Primitives.Distance%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Radius.cs/#L199">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Radius.cs/#L247">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Radius_op_Implicit_" data-uid="SadRogue.Primitives.Radius.op_Implicit*"></a>
   <h4 id="SadRogue_Primitives_Radius_op_Implicit_SadRogue_Primitives_Radius__SadRogue_Primitives_Distance" data-uid="SadRogue.Primitives.Radius.op_Implicit(SadRogue.Primitives.Radius)~SadRogue.Primitives.Distance">Implicit(Radius to Distance)</h4>
@@ -631,6 +814,64 @@ radius shape casted will be returned.</p>
   <div class="markdown level1 remarks"><p>The <a class="xref" href="SadRogue.Primitives.Distance.html">Distance</a> instance corresponding to the proper definition of
 distance that creates the radius shape casted will be returned.</p>
 </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Radius_op_Inequality_SadRogue_Primitives_Radius_SadRogue_Primitives_Radius_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Radius.op_Inequality(SadRogue.Primitives.Radius%2CSadRogue.Primitives.Radius)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Radius.cs/#L213">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Radius_op_Inequality_" data-uid="SadRogue.Primitives.Radius.op_Inequality*"></a>
+  <h4 id="SadRogue_Primitives_Radius_op_Inequality_SadRogue_Primitives_Radius_SadRogue_Primitives_Radius_" data-uid="SadRogue.Primitives.Radius.op_Inequality(SadRogue.Primitives.Radius,SadRogue.Primitives.Radius)">Inequality(Radius, Radius)</h4>
+  <div class="markdown level1 summary"><p>True if the types are not equal.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator !=(Radius lhs, Radius rhs)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Radius.html">Radius</a></td>
+        <td><span class="parametername">lhs</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Radius.html">Radius</a></td>
+        <td><span class="parametername">rhs</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>True if the types are not equal, false if they are both equal.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">System.IEquatable&lt;T&gt;</span>
+  </div>
 </article>
           </div>
           
@@ -639,10 +880,10 @@ distance that creates the radius shape casted will be returned.</p>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Radius.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Radius%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Radius.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Radius%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Radius.cs/#L17" class="contribution-link">View Source</a>
+                    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Radius.cs/#L17" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

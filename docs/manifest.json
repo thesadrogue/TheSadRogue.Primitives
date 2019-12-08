@@ -9,7 +9,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.AdjacencyRule.Types.html",
-          "hash": "K8AXyN/J2cC2kcMtSJ0pWA=="
+          "hash": "969i+l/aO13Nd/cKwsohUA=="
         }
       },
       "is_incremental": false,
@@ -21,7 +21,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.AdjacencyRule.html",
-          "hash": "cVrGa75EuKA9YUhPOjn3lg=="
+          "hash": "m3NESY6/jWndEAk5zZsosg=="
         }
       },
       "is_incremental": false,
@@ -33,7 +33,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.Area.html",
-          "hash": "1hKIbDUg4hlYxYGyFdYq8w=="
+          "hash": "5Un9CKhb/PDJ+0M/vlA3qw=="
         }
       },
       "is_incremental": false,
@@ -45,7 +45,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.BoundedRectangle.html",
-          "hash": "TeZHTJ+W7aebwQaCG/LCSw=="
+          "hash": "wFMWeB/GHO4JzazjIkAbPQ=="
         }
       },
       "is_incremental": false,
@@ -57,7 +57,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.Color.html",
-          "hash": "Ul2Xb1hiIkV6Tq2v9Nqp5g=="
+          "hash": "7d0sHNIXg4W5LN8vSohhsQ=="
         }
       },
       "is_incremental": false,
@@ -69,7 +69,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.Direction.Types.html",
-          "hash": "WEH9pZAMi9gnKnGuxH9T3A=="
+          "hash": "yrDrJA2ONDnN3th3RN600g=="
         }
       },
       "is_incremental": false,
@@ -81,7 +81,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.Direction.html",
-          "hash": "H1CN9zCBa+6T27v7f7V13A=="
+          "hash": "Xy9tS57QuDZbVh5YqqG2kA=="
         }
       },
       "is_incremental": false,
@@ -93,7 +93,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.Distance.Types.html",
-          "hash": "fmMfw4cP32HrgDJLmEx2Vg=="
+          "hash": "yeDST9hcw052qbtIkVH9WA=="
         }
       },
       "is_incremental": false,
@@ -105,7 +105,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.Distance.html",
-          "hash": "6ag1Cejfx/r6kJScBMsnyA=="
+          "hash": "/yugDlhiYZB6WF6vfz18ag=="
         }
       },
       "is_incremental": false,
@@ -117,7 +117,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.Gradient.html",
-          "hash": "QgPv6o2aD56dSsKjMACpFQ=="
+          "hash": "QFvzrw+aDls7QAhEUP6LUg=="
         }
       },
       "is_incremental": false,
@@ -129,7 +129,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.GradientStop.html",
-          "hash": "k+LNS/tiiAKuJ+RhhjRgOw=="
+          "hash": "z32PWcPAcwEA4+VzkhNTzw=="
         }
       },
       "is_incremental": false,
@@ -141,7 +141,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.IReadOnlyArea.html",
-          "hash": "2tsLdZBuAtLldUlhNoU96A=="
+          "hash": "eKCrrQDTiDvXXbSGQdWI/A=="
         }
       },
       "is_incremental": false,
@@ -153,7 +153,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.MathHelpers.html",
-          "hash": "DcQGBplyaabDtVneDmWkTg=="
+          "hash": "ikHc8BCk4HnnfqimN9cyVw=="
         }
       },
       "is_incremental": false,
@@ -165,7 +165,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.Palette.html",
-          "hash": "MnADQEfzRsqCSPqioWEA9g=="
+          "hash": "+FbhVFM/QJE/g/fMrIBUTA=="
         }
       },
       "is_incremental": false,
@@ -177,7 +177,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.Point.html",
-          "hash": "mUyobkx8sHChcDC70dwjzA=="
+          "hash": "fcooPzCsu8MNjRo0zijwdw=="
         }
       },
       "is_incremental": false,
@@ -189,7 +189,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.PointExtensions.html",
-          "hash": "MlN1W1BKiN394rvUe+hPlA=="
+          "hash": "JxI6i6Fkvu6LyaqzyDvM6Q=="
         }
       },
       "is_incremental": false,
@@ -201,7 +201,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.Radius.Types.html",
-          "hash": "mCzOX2eP3MgdO4OEeCjVTg=="
+          "hash": "jNsMfGTpBKv10VrSiKvgUg=="
         }
       },
       "is_incremental": false,
@@ -213,7 +213,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.Radius.html",
-          "hash": "YTEYH8M1iGl2N1r6g7sO5A=="
+          "hash": "4YSqzGPmwLAYzaqa0nzYEA=="
         }
       },
       "is_incremental": false,
@@ -225,7 +225,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.RadiusLocationContext.html",
-          "hash": "6CHpHdgTTV2vbHguvkB5Og=="
+          "hash": "kCfru6nI2V5otkPV1LfUbg=="
         }
       },
       "is_incremental": false,
@@ -237,7 +237,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.Rectangle.html",
-          "hash": "xYzt+YNQx9AMj2H9oQfJjg=="
+          "hash": "v7KVylij4SnC9x96C4GwXw=="
         }
       },
       "is_incremental": false,
@@ -249,7 +249,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.html",
-          "hash": "x7+tSMUy5dQ8oopDN3CiYA=="
+          "hash": "i9skFqSF6xsMlFTKGTkG0Q=="
         }
       },
       "is_incremental": false,
@@ -264,7 +264,7 @@
           "hash": "gSjIkQyQcJ4Y7DJMB5m96Q=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -344,17 +344,17 @@
           "total_file_count": 0,
           "skipped_file_count": 0
         },
-        "ManagedReferenceDocumentProcessor": {
-          "can_incremental": true,
-          "incrementalPhase": "build",
-          "total_file_count": 21,
-          "skipped_file_count": 18
-        },
         "ConceptualDocumentProcessor": {
           "can_incremental": true,
           "incrementalPhase": "build",
           "total_file_count": 3,
           "skipped_file_count": 3
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build",
+          "total_file_count": 21,
+          "skipped_file_count": 0
         }
       }
     },

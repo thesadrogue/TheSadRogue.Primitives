@@ -8,7 +8,7 @@
 	<Version Condition="'$(Configuration)'=='Debug'">$(Version)-debug</Version>
 	<Authors>Chris3606;Thraka</Authors>
 	<Company>TheSadRogue</Company>
-	<Copyright>Copyright © 2019 TheSadRogue [Steve De George JR (Thraka) and Christopher Ridley (Chris3606)]</Copyright>
+	<Copyright>Copyright © 2019 Christopher Ridley (Chris3606)] and TheSadRogue [Steve De George JR (Thraka)</Copyright>
 	<Description>A collection of extension methods that allow TheSadRogue.Primitives types to easily interface with MonoGame's equivalents.</Description>
 	
 	<!-- More nuget package settings-->

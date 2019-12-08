@@ -98,7 +98,8 @@ common grid/position-related math and operations.</p>
   <h6><strong>Assembly</strong>: TheSadRogue.Primitives.dll</h6>
   <h5 id="SadRogue_Primitives_Point_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public struct Point : IEquatable&lt;Point&gt;, IEquatable&lt;(int x, int y)&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">[Serializable]
+public struct Point : IEquatable&lt;Point&gt;, IEquatable&lt;(int x, int y)&gt;</code></pre>
   </div>
   <h5 id="SadRogue_Primitives_Point_remarks"><strong>Remarks</strong></h5>
   <div class="markdown level0 remarks"><p>Point instances can be created using the standard Point c = new Point(x, y) syntax.  In addition,
@@ -111,10 +112,10 @@ as well as interoperability with other grid-based classes like <a class="xref" h
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Point__ctor_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.%23ctor(System.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Point__ctor_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.%23ctor(System.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Point.cs/#L44">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Point.cs/#L46">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point__ctor_" data-uid="SadRogue.Primitives.Point.#ctor*"></a>
   <h4 id="SadRogue_Primitives_Point__ctor_System_Int32_System_Int32_" data-uid="SadRogue.Primitives.Point.#ctor(System.Int32,System.Int32)">Point(Int32, Int32)</h4>
@@ -153,19 +154,20 @@ as well as interoperability with other grid-based classes like <a class="xref" h
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Point_NONE.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.NONE%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Point_None.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.None%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Point.cs/#L27">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Point.cs/#L29">View Source</a>
   </span>
-  <h4 id="SadRogue_Primitives_Point_NONE" data-uid="SadRogue.Primitives.Point.NONE">NONE</h4>
+  <h4 id="SadRogue_Primitives_Point_None" data-uid="SadRogue.Primitives.Point.None">None</h4>
   <div class="markdown level1 summary"><p>Point value that represents None or no position (since Point is not a nullable type).
 Typically you would use this constant instead of null.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static readonly Point NONE</code></pre>
+    <pre><code class="lang-csharp hljs">[NonSerialized]
+public static readonly Point None</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -182,16 +184,16 @@ Typically you would use this constant instead of null.</p>
       </tr>
     </tbody>
   </table>
-  <h5 id="SadRogue_Primitives_Point_NONE_remarks">Remarks</h5>
+  <h5 id="SadRogue_Primitives_Point_None_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>This constant has (x, y) values (int.MinValue, int.MinValue), so a position with those
 x/y values is not considered a valid coordinate by many functions.</p>
 </div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Point_X.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.X%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Point_X.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.X%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Point.cs/#L32">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Point.cs/#L34">View Source</a>
   </span>
   <h4 id="SadRogue_Primitives_Point_X" data-uid="SadRogue.Primitives.Point.X">X</h4>
   <div class="markdown level1 summary"><p>X-value of the position.</p>
@@ -218,10 +220,10 @@ x/y values is not considered a valid coordinate by many functions.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Point_Y.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.Y%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Point_Y.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.Y%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Point.cs/#L37">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Point.cs/#L39">View Source</a>
   </span>
   <h4 id="SadRogue_Primitives_Point_Y" data-uid="SadRogue.Primitives.Point.Y">Y</h4>
   <div class="markdown level1 summary"><p>Y-value of the position.</p>
@@ -250,15 +252,15 @@ x/y values is not considered a valid coordinate by many functions.</p>
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Point_BearingOfLine_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.BearingOfLine(SadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Point_BearingOfLine_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.BearingOfLine(SadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Point.cs/#L68">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Point.cs/#L70">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_BearingOfLine_" data-uid="SadRogue.Primitives.Point.BearingOfLine*"></a>
   <h4 id="SadRogue_Primitives_Point_BearingOfLine_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Point.BearingOfLine(SadRogue.Primitives.Point)">BearingOfLine(Point)</h4>
   <div class="markdown level1 summary"><p>Calculates the degree bearing of a line with the given delta-x and delta-y values, where
-0 degreees points in the direction <a class="xref" href="SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_UP">UP</a>.</p>
+0 degreees points in the direction <a class="xref" href="SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_Up">Up</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -302,14 +304,14 @@ is the change in y-values across the line.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Point_BearingOfLine_SadRogue_Primitives_Point_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.BearingOfLine(SadRogue.Primitives.Point%2CSadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Point_BearingOfLine_SadRogue_Primitives_Point_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.BearingOfLine(SadRogue.Primitives.Point%2CSadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Point.cs/#L56">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Point.cs/#L58">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_BearingOfLine_" data-uid="SadRogue.Primitives.Point.BearingOfLine*"></a>
   <h4 id="SadRogue_Primitives_Point_BearingOfLine_SadRogue_Primitives_Point_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Point.BearingOfLine(SadRogue.Primitives.Point,SadRogue.Primitives.Point)">BearingOfLine(Point, Point)</h4>
-  <div class="markdown level1 summary"><p>Calculates degree bearing of the line (start =&gt; end), where 0 points in the direction <a class="xref" href="SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_UP">UP</a>.</p>
+  <div class="markdown level1 summary"><p>Calculates degree bearing of the line (start =&gt; end), where 0 points in the direction <a class="xref" href="SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_Up">Up</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -358,10 +360,10 @@ is the change in y-values across the line.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Point_Deconstruct_System_Int32__System_Int32__.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.Deconstruct(System.Int32%40%2CSystem.Int32%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Point_Deconstruct_System_Int32__System_Int32__.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.Deconstruct(System.Int32%40%2CSystem.Int32%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Point.cs/#L343">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Point.cs/#L345">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_Deconstruct_" data-uid="SadRogue.Primitives.Point.Deconstruct*"></a>
   <h4 id="SadRogue_Primitives_Point_Deconstruct_System_Int32__System_Int32__" data-uid="SadRogue.Primitives.Point.Deconstruct(System.Int32@,System.Int32@)">Deconstruct(out Int32, out Int32)</h4>
@@ -396,10 +398,10 @@ is the change in y-values across the line.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Point_Equals_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.Equals(SadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Point_Equals_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.Equals(SadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Point.cs/#L335">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Point.cs/#L337">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_Equals_" data-uid="SadRogue.Primitives.Point.Equals*"></a>
   <h4 id="SadRogue_Primitives_Point_Equals_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Point.Equals(SadRogue.Primitives.Point)">Equals(Point)</h4>
@@ -446,10 +448,10 @@ is the change in y-values across the line.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Point_Equals_System_Object_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.Equals(System.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Point_Equals_System_Object_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.Equals(System.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Point.cs/#L270">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Point.cs/#L272">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_Equals_" data-uid="SadRogue.Primitives.Point.Equals*"></a>
   <h4 id="SadRogue_Primitives_Point_Equals_System_Object_" data-uid="SadRogue.Primitives.Point.Equals(System.Object)">Equals(Object)</h4>
@@ -498,10 +500,10 @@ is the change in y-values across the line.</p>
   <div><span class="xref">System.ValueType.Equals(System.Object)</span></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Point_Equals_System_ValueTuple_System_Int32_System_Int32__.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.Equals(System.ValueTuple%7BSystem.Int32%2CSystem.Int32%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Point_Equals_System_ValueTuple_System_Int32_System_Int32__.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.Equals(System.ValueTuple%7BSystem.Int32%2CSystem.Int32%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Point.cs/#L473">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Point.cs/#L469">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_Equals_" data-uid="SadRogue.Primitives.Point.Equals*"></a>
   <h4 id="SadRogue_Primitives_Point_Equals_System_ValueTuple_System_Int32_System_Int32__" data-uid="SadRogue.Primitives.Point.Equals(System.ValueTuple{System.Int32,System.Int32})">Equals((Int32 x, Int32 y))</h4>
@@ -548,10 +550,10 @@ is the change in y-values across the line.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Point_EuclideanDistanceMagnitude_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.EuclideanDistanceMagnitude(SadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Point_EuclideanDistanceMagnitude_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.EuclideanDistanceMagnitude(SadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Point.cs/#L109">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Point.cs/#L111">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_EuclideanDistanceMagnitude_" data-uid="SadRogue.Primitives.Point.EuclideanDistanceMagnitude*"></a>
   <h4 id="SadRogue_Primitives_Point_EuclideanDistanceMagnitude_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Point.EuclideanDistanceMagnitude(SadRogue.Primitives.Point)">EuclideanDistanceMagnitude(Point)</h4>
@@ -605,10 +607,10 @@ values -- basically the distance formula without the square root.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Point_EuclideanDistanceMagnitude_SadRogue_Primitives_Point_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.EuclideanDistanceMagnitude(SadRogue.Primitives.Point%2CSadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Point_EuclideanDistanceMagnitude_SadRogue_Primitives_Point_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.EuclideanDistanceMagnitude(SadRogue.Primitives.Point%2CSadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Point.cs/#L93">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Point.cs/#L95">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_EuclideanDistanceMagnitude_" data-uid="SadRogue.Primitives.Point.EuclideanDistanceMagnitude*"></a>
   <h4 id="SadRogue_Primitives_Point_EuclideanDistanceMagnitude_SadRogue_Primitives_Point_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Point.EuclideanDistanceMagnitude(SadRogue.Primitives.Point,SadRogue.Primitives.Point)">EuclideanDistanceMagnitude(Point, Point)</h4>
@@ -665,10 +667,10 @@ distance formula without the square root.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Point_FromIndex_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.FromIndex(System.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Point_FromIndex_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.FromIndex(System.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Point.cs/#L236">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Point.cs/#L238">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_FromIndex_" data-uid="SadRogue.Primitives.Point.FromIndex*"></a>
   <h4 id="SadRogue_Primitives_Point_FromIndex_System_Int32_System_Int32_" data-uid="SadRogue.Primitives.Point.FromIndex(System.Int32,System.Int32)">FromIndex(Int32, Int32)</h4>
@@ -721,10 +723,10 @@ distance formula without the square root.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Point_GetHashCode.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.GetHashCode%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Point_GetHashCode.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.GetHashCode%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Point.cs/#L284">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Point.cs/#L286">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_GetHashCode_" data-uid="SadRogue.Primitives.Point.GetHashCode*"></a>
   <h4 id="SadRogue_Primitives_Point_GetHashCode" data-uid="SadRogue.Primitives.Point.GetHashCode">GetHashCode()</h4>
@@ -763,10 +765,10 @@ coordinates between (0, 0) and (255, 255), and remain relatively reasonable beyo
 </div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Point_Midpoint_SadRogue_Primitives_Point_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.Midpoint(SadRogue.Primitives.Point%2CSadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Point_Midpoint_SadRogue_Primitives_Point_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.Midpoint(SadRogue.Primitives.Point%2CSadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Point.cs/#L118">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Point.cs/#L120">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_Midpoint_" data-uid="SadRogue.Primitives.Point.Midpoint*"></a>
   <h4 id="SadRogue_Primitives_Point_Midpoint_SadRogue_Primitives_Point_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Point.Midpoint(SadRogue.Primitives.Point,SadRogue.Primitives.Point)">Midpoint(Point, Point)</h4>
@@ -819,10 +821,10 @@ coordinates between (0, 0) and (255, 255), and remain relatively reasonable beyo
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Point_ToIndex_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.ToIndex(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Point_ToIndex_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.ToIndex(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Point.cs/#L297">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Point.cs/#L299">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_ToIndex_" data-uid="SadRogue.Primitives.Point.ToIndex*"></a>
   <h4 id="SadRogue_Primitives_Point_ToIndex_System_Int32_" data-uid="SadRogue.Primitives.Point.ToIndex(System.Int32)">ToIndex(Int32)</h4>
@@ -870,10 +872,10 @@ used to do the math to calculate index.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Point_ToIndex_System_Int32_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.ToIndex(System.Int32%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Point_ToIndex_System_Int32_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.ToIndex(System.Int32%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Point.cs/#L245">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Point.cs/#L247">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_ToIndex_" data-uid="SadRogue.Primitives.Point.ToIndex*"></a>
   <h4 id="SadRogue_Primitives_Point_ToIndex_System_Int32_System_Int32_System_Int32_" data-uid="SadRogue.Primitives.Point.ToIndex(System.Int32,System.Int32,System.Int32)">ToIndex(Int32, Int32, Int32)</h4>
@@ -932,10 +934,10 @@ used to do the math to calculate index.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Point_ToString.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.ToString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Point_ToString.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.ToString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Point.cs/#L303">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Point.cs/#L305">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_ToString_" data-uid="SadRogue.Primitives.Point.ToString*"></a>
   <h4 id="SadRogue_Primitives_Point_ToString" data-uid="SadRogue.Primitives.Point.ToString">ToString()</h4>
@@ -966,10 +968,10 @@ used to do the math to calculate index.</p>
   <div><span class="xref">System.ValueType.ToString()</span></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Point_ToXValue_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.ToXValue(System.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Point_ToXValue_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.ToXValue(System.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Point.cs/#L253">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Point.cs/#L255">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_ToXValue_" data-uid="SadRogue.Primitives.Point.ToXValue*"></a>
   <h4 id="SadRogue_Primitives_Point_ToXValue_System_Int32_System_Int32_" data-uid="SadRogue.Primitives.Point.ToXValue(System.Int32,System.Int32)">ToXValue(Int32, Int32)</h4>
@@ -1022,10 +1024,10 @@ used to do the math to calculate index.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Point_ToYValue_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.ToYValue(System.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Point_ToYValue_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.ToYValue(System.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Point.cs/#L261">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Point.cs/#L263">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_ToYValue_" data-uid="SadRogue.Primitives.Point.ToYValue*"></a>
   <h4 id="SadRogue_Primitives_Point_ToYValue_System_Int32_System_Int32_" data-uid="SadRogue.Primitives.Point.ToYValue(System.Int32,System.Int32)">ToYValue(Int32, Int32)</h4>
@@ -1078,10 +1080,10 @@ used to do the math to calculate index.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Point_Translate_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.Translate(SadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Point_Translate_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.Translate(SadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Point.cs/#L314">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Point.cs/#L316">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_Translate_" data-uid="SadRogue.Primitives.Point.Translate*"></a>
   <h4 id="SadRogue_Primitives_Point_Translate_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Point.Translate(SadRogue.Primitives.Point)">Translate(Point)</h4>
@@ -1130,10 +1132,10 @@ delta-y value.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Point_WithX_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.WithX(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Point_WithX_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.WithX(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Point.cs/#L321">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Point.cs/#L323">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_WithX_" data-uid="SadRogue.Primitives.Point.WithX*"></a>
   <h4 id="SadRogue_Primitives_Point_WithX_System_Int32_" data-uid="SadRogue.Primitives.Point.WithX(System.Int32)">WithX(Int32)</h4>
@@ -1180,10 +1182,10 @@ delta-y value.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Point_WithY_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.WithY(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Point_WithY_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.WithY(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Point.cs/#L328">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Point.cs/#L330">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_WithY_" data-uid="SadRogue.Primitives.Point.WithY*"></a>
   <h4 id="SadRogue_Primitives_Point_WithY_System_Int32_" data-uid="SadRogue.Primitives.Point.WithY(System.Int32)">WithY(Int32)</h4>
@@ -1232,10 +1234,10 @@ delta-y value.</p>
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Point_op_Addition_SadRogue_Primitives_Point_SadRogue_Primitives_Direction_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Addition(SadRogue.Primitives.Point%2CSadRogue.Primitives.Direction)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Point_op_Addition_SadRogue_Primitives_Point_SadRogue_Primitives_Direction_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Addition(SadRogue.Primitives.Point%2CSadRogue.Primitives.Direction)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Point.cs/#L220">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Point.cs/#L222">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_op_Addition_" data-uid="SadRogue.Primitives.Point.op_Addition*"></a>
   <h4 id="SadRogue_Primitives_Point_op_Addition_SadRogue_Primitives_Point_SadRogue_Primitives_Direction_" data-uid="SadRogue.Primitives.Point.op_Addition(SadRogue.Primitives.Point,SadRogue.Primitives.Direction)">Addition(Point, Direction)</h4>
@@ -1286,10 +1288,10 @@ delta-y value.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Point_op_Addition_SadRogue_Primitives_Point_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Addition(SadRogue.Primitives.Point%2CSadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Point_op_Addition_SadRogue_Primitives_Point_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Addition(SadRogue.Primitives.Point%2CSadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Point.cs/#L202">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Point.cs/#L204">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_op_Addition_" data-uid="SadRogue.Primitives.Point.op_Addition*"></a>
   <h4 id="SadRogue_Primitives_Point_op_Addition_SadRogue_Primitives_Point_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Point.op_Addition(SadRogue.Primitives.Point,SadRogue.Primitives.Point)">Addition(Point, Point)</h4>
@@ -1340,10 +1342,10 @@ delta-y value.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Point_op_Addition_SadRogue_Primitives_Point_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Addition(SadRogue.Primitives.Point%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Point_op_Addition_SadRogue_Primitives_Point_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Addition(SadRogue.Primitives.Point%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Point.cs/#L210">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Point.cs/#L212">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_op_Addition_" data-uid="SadRogue.Primitives.Point.op_Addition*"></a>
   <h4 id="SadRogue_Primitives_Point_op_Addition_SadRogue_Primitives_Point_System_Int32_" data-uid="SadRogue.Primitives.Point.op_Addition(SadRogue.Primitives.Point,System.Int32)">Addition(Point, Int32)</h4>
@@ -1394,10 +1396,10 @@ delta-y value.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Point_op_Addition_SadRogue_Primitives_Point_System_ValueTuple_System_Int32_System_Int32__.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Addition(SadRogue.Primitives.Point%2CSystem.ValueTuple%7BSystem.Int32%2CSystem.Int32%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Point_op_Addition_SadRogue_Primitives_Point_System_ValueTuple_System_Int32_System_Int32__.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Addition(SadRogue.Primitives.Point%2CSystem.ValueTuple%7BSystem.Int32%2CSystem.Int32%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Point.cs/#L375">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Point.cs/#L377">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_op_Addition_" data-uid="SadRogue.Primitives.Point.op_Addition*"></a>
   <h4 id="SadRogue_Primitives_Point_op_Addition_SadRogue_Primitives_Point_System_ValueTuple_System_Int32_System_Int32__" data-uid="SadRogue.Primitives.Point.op_Addition(SadRogue.Primitives.Point,System.ValueTuple{System.Int32,System.Int32})">Addition(Point, (Int32 x, Int32 y))</h4>
@@ -1448,10 +1450,10 @@ delta-y value.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Point_op_Addition_System_ValueTuple_System_Int32_System_Int32__SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Addition(System.ValueTuple%7BSystem.Int32%2CSystem.Int32%7D%2CSadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Point_op_Addition_System_ValueTuple_System_Int32_System_Int32__SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Addition(System.ValueTuple%7BSystem.Int32%2CSystem.Int32%7D%2CSadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Point.cs/#L368">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Point.cs/#L370">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_op_Addition_" data-uid="SadRogue.Primitives.Point.op_Addition*"></a>
   <h4 id="SadRogue_Primitives_Point_op_Addition_System_ValueTuple_System_Int32_System_Int32__SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Point.op_Addition(System.ValueTuple{System.Int32,System.Int32},SadRogue.Primitives.Point)">Addition((Int32 x, Int32 y), Point)</h4>
@@ -1502,10 +1504,10 @@ delta-y value.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Point_op_Division_SadRogue_Primitives_Point_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Division(SadRogue.Primitives.Point%2CSadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Point_op_Division_SadRogue_Primitives_Point_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Division(SadRogue.Primitives.Point%2CSadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Point.cs/#L183">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Point.cs/#L185">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_op_Division_" data-uid="SadRogue.Primitives.Point.op_Division*"></a>
   <h4 id="SadRogue_Primitives_Point_op_Division_SadRogue_Primitives_Point_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Point.op_Division(SadRogue.Primitives.Point,SadRogue.Primitives.Point)">Division(Point, Point)</h4>
@@ -1557,10 +1559,10 @@ value to the nearest integer.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Point_op_Division_SadRogue_Primitives_Point_System_Double_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Division(SadRogue.Primitives.Point%2CSystem.Double)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Point_op_Division_SadRogue_Primitives_Point_System_Double_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Division(SadRogue.Primitives.Point%2CSystem.Double)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Point.cs/#L193">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Point.cs/#L195">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_op_Division_" data-uid="SadRogue.Primitives.Point.op_Division*"></a>
   <h4 id="SadRogue_Primitives_Point_op_Division_SadRogue_Primitives_Point_System_Double_" data-uid="SadRogue.Primitives.Point.op_Division(SadRogue.Primitives.Point,System.Double)">Division(Point, Double)</h4>
@@ -1612,10 +1614,10 @@ to the nearest integer.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Point_op_Division_SadRogue_Primitives_Point_System_ValueTuple_System_Int32_System_Int32__.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Division(SadRogue.Primitives.Point%2CSystem.ValueTuple%7BSystem.Int32%2CSystem.Int32%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Point_op_Division_SadRogue_Primitives_Point_System_ValueTuple_System_Int32_System_Int32__.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Division(SadRogue.Primitives.Point%2CSystem.ValueTuple%7BSystem.Int32%2CSystem.Int32%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Point.cs/#L423">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Point.cs/#L425">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_op_Division_" data-uid="SadRogue.Primitives.Point.op_Division*"></a>
   <h4 id="SadRogue_Primitives_Point_op_Division_SadRogue_Primitives_Point_System_ValueTuple_System_Int32_System_Int32__" data-uid="SadRogue.Primitives.Point.op_Division(SadRogue.Primitives.Point,System.ValueTuple{System.Int32,System.Int32})">Division(Point, (Int32 x, Int32 y))</h4>
@@ -1666,10 +1668,10 @@ to the nearest integer.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Point_op_Division_System_ValueTuple_System_Int32_System_Int32__SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Division(System.ValueTuple%7BSystem.Int32%2CSystem.Int32%7D%2CSadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Point_op_Division_System_ValueTuple_System_Int32_System_Int32__SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Division(System.ValueTuple%7BSystem.Int32%2CSystem.Int32%7D%2CSadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Point.cs/#L414">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Point.cs/#L416">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_op_Division_" data-uid="SadRogue.Primitives.Point.op_Division*"></a>
   <h4 id="SadRogue_Primitives_Point_op_Division_System_ValueTuple_System_Int32_System_Int32__SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Point.op_Division(System.ValueTuple{System.Int32,System.Int32},SadRogue.Primitives.Point)">Division((Int32 x, Int32 y), Point)</h4>
@@ -1720,10 +1722,10 @@ to the nearest integer.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Point_op_Equality_SadRogue_Primitives_Point_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Equality(SadRogue.Primitives.Point%2CSadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Point_op_Equality_SadRogue_Primitives_Point_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Equality(SadRogue.Primitives.Point%2CSadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Point.cs/#L228">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Point.cs/#L230">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_op_Equality_" data-uid="SadRogue.Primitives.Point.op_Equality*"></a>
   <h4 id="SadRogue_Primitives_Point_op_Equality_SadRogue_Primitives_Point_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Point.op_Equality(SadRogue.Primitives.Point,SadRogue.Primitives.Point)">Equality(Point, Point)</h4>
@@ -1774,10 +1776,10 @@ to the nearest integer.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Point_op_Equality_SadRogue_Primitives_Point_System_ValueTuple_System_Int32_System_Int32__.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Equality(SadRogue.Primitives.Point%2CSystem.ValueTuple%7BSystem.Int32%2CSystem.Int32%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Point_op_Equality_SadRogue_Primitives_Point_System_ValueTuple_System_Int32_System_Int32__.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Equality(SadRogue.Primitives.Point%2CSystem.ValueTuple%7BSystem.Int32%2CSystem.Int32%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Point.cs/#L432">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Point.cs/#L434">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_op_Equality_" data-uid="SadRogue.Primitives.Point.op_Equality*"></a>
   <h4 id="SadRogue_Primitives_Point_op_Equality_SadRogue_Primitives_Point_System_ValueTuple_System_Int32_System_Int32__" data-uid="SadRogue.Primitives.Point.op_Equality(SadRogue.Primitives.Point,System.ValueTuple{System.Int32,System.Int32})">Equality(Point, (Int32 x, Int32 y))</h4>
@@ -1828,10 +1830,10 @@ to the nearest integer.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Point_op_Equality_System_ValueTuple_System_Int32_System_Int32__SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Equality(System.ValueTuple%7BSystem.Int32%2CSystem.Int32%7D%2CSadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Point_op_Equality_System_ValueTuple_System_Int32_System_Int32__SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Equality(System.ValueTuple%7BSystem.Int32%2CSystem.Int32%7D%2CSadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Point.cs/#L453">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Point.cs/#L452">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_op_Equality_" data-uid="SadRogue.Primitives.Point.op_Equality*"></a>
   <h4 id="SadRogue_Primitives_Point_op_Equality_System_ValueTuple_System_Int32_System_Int32__SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Point.op_Equality(System.ValueTuple{System.Int32,System.Int32},SadRogue.Primitives.Point)">Equality((Int32 x, Int32 y), Point)</h4>
@@ -1882,10 +1884,10 @@ to the nearest integer.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Point_op_Implicit_SadRogue_Primitives_Point__System_ValueTuple_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Implicit(SadRogue.Primitives.Point)~System.ValueTuple%7BSystem.Int32%2CSystem.Int32%7D%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Point_op_Implicit_SadRogue_Primitives_Point__System_ValueTuple_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Implicit(SadRogue.Primitives.Point)~System.ValueTuple%7BSystem.Int32%2CSystem.Int32%7D%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Point.cs/#L354">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Point.cs/#L356">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_op_Implicit_" data-uid="SadRogue.Primitives.Point.op_Implicit*"></a>
   <h4 id="SadRogue_Primitives_Point_op_Implicit_SadRogue_Primitives_Point__System_ValueTuple_System_Int32_System_Int32_" data-uid="SadRogue.Primitives.Point.op_Implicit(SadRogue.Primitives.Point)~System.ValueTuple{System.Int32,System.Int32}">Implicit(Point to (Int32 x, Int32 y))</h4>
@@ -1930,10 +1932,10 @@ to the nearest integer.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Point_op_Implicit_System_ValueTuple_System_Int32_System_Int32___SadRogue_Primitives_Point.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Implicit(System.ValueTuple%7BSystem.Int32%2CSystem.Int32%7D)~SadRogue.Primitives.Point%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Point_op_Implicit_System_ValueTuple_System_Int32_System_Int32___SadRogue_Primitives_Point.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Implicit(System.ValueTuple%7BSystem.Int32%2CSystem.Int32%7D)~SadRogue.Primitives.Point%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Point.cs/#L360">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Point.cs/#L362">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_op_Implicit_" data-uid="SadRogue.Primitives.Point.op_Implicit*"></a>
   <h4 id="SadRogue_Primitives_Point_op_Implicit_System_ValueTuple_System_Int32_System_Int32___SadRogue_Primitives_Point" data-uid="SadRogue.Primitives.Point.op_Implicit(System.ValueTuple{System.Int32,System.Int32})~SadRogue.Primitives.Point">Implicit((Int32 x, Int32 y) to Point)</h4>
@@ -1978,10 +1980,10 @@ to the nearest integer.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Point_op_Inequality_SadRogue_Primitives_Point_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Inequality(SadRogue.Primitives.Point%2CSadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Point_op_Inequality_SadRogue_Primitives_Point_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Inequality(SadRogue.Primitives.Point%2CSadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Point.cs/#L145">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Point.cs/#L147">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_op_Inequality_" data-uid="SadRogue.Primitives.Point.op_Inequality*"></a>
   <h4 id="SadRogue_Primitives_Point_op_Inequality_SadRogue_Primitives_Point_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Point.op_Inequality(SadRogue.Primitives.Point,SadRogue.Primitives.Point)">Inequality(Point, Point)</h4>
@@ -2032,10 +2034,10 @@ to the nearest integer.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Point_op_Inequality_SadRogue_Primitives_Point_System_ValueTuple_System_Int32_System_Int32__.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Inequality(SadRogue.Primitives.Point%2CSystem.ValueTuple%7BSystem.Int32%2CSystem.Int32%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Point_op_Inequality_SadRogue_Primitives_Point_System_ValueTuple_System_Int32_System_Int32__.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Inequality(SadRogue.Primitives.Point%2CSystem.ValueTuple%7BSystem.Int32%2CSystem.Int32%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Point.cs/#L445">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Point.cs/#L444">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_op_Inequality_" data-uid="SadRogue.Primitives.Point.op_Inequality*"></a>
   <h4 id="SadRogue_Primitives_Point_op_Inequality_SadRogue_Primitives_Point_System_ValueTuple_System_Int32_System_Int32__" data-uid="SadRogue.Primitives.Point.op_Inequality(SadRogue.Primitives.Point,System.ValueTuple{System.Int32,System.Int32})">Inequality(Point, (Int32 x, Int32 y))</h4>
@@ -2086,10 +2088,10 @@ to the nearest integer.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Point_op_Inequality_System_ValueTuple_System_Int32_System_Int32__SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Inequality(System.ValueTuple%7BSystem.Int32%2CSystem.Int32%7D%2CSadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Point_op_Inequality_System_ValueTuple_System_Int32_System_Int32__SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Inequality(System.ValueTuple%7BSystem.Int32%2CSystem.Int32%7D%2CSadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Point.cs/#L466">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Point.cs/#L462">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_op_Inequality_" data-uid="SadRogue.Primitives.Point.op_Inequality*"></a>
   <h4 id="SadRogue_Primitives_Point_op_Inequality_System_ValueTuple_System_Int32_System_Int32__SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Point.op_Inequality(System.ValueTuple{System.Int32,System.Int32},SadRogue.Primitives.Point)">Inequality((Int32 x, Int32 y), Point)</h4>
@@ -2140,10 +2142,10 @@ to the nearest integer.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Point_op_Multiply_SadRogue_Primitives_Point_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Multiply(SadRogue.Primitives.Point%2CSadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Point_op_Multiply_SadRogue_Primitives_Point_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Multiply(SadRogue.Primitives.Point%2CSadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Point.cs/#L153">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Point.cs/#L155">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_op_Multiply_" data-uid="SadRogue.Primitives.Point.op_Multiply*"></a>
   <h4 id="SadRogue_Primitives_Point_op_Multiply_SadRogue_Primitives_Point_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Point.op_Multiply(SadRogue.Primitives.Point,SadRogue.Primitives.Point)">Multiply(Point, Point)</h4>
@@ -2194,10 +2196,10 @@ to the nearest integer.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Point_op_Multiply_SadRogue_Primitives_Point_System_Double_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Multiply(SadRogue.Primitives.Point%2CSystem.Double)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Point_op_Multiply_SadRogue_Primitives_Point_System_Double_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Multiply(SadRogue.Primitives.Point%2CSystem.Double)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Point.cs/#L173">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Point.cs/#L175">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_op_Multiply_" data-uid="SadRogue.Primitives.Point.op_Multiply*"></a>
   <h4 id="SadRogue_Primitives_Point_op_Multiply_SadRogue_Primitives_Point_System_Double_" data-uid="SadRogue.Primitives.Point.op_Multiply(SadRogue.Primitives.Point,System.Double)">Multiply(Point, Double)</h4>
@@ -2250,10 +2252,10 @@ rounded to nearest integer.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Point_op_Multiply_SadRogue_Primitives_Point_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Multiply(SadRogue.Primitives.Point%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Point_op_Multiply_SadRogue_Primitives_Point_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Multiply(SadRogue.Primitives.Point%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Point.cs/#L161">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Point.cs/#L163">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_op_Multiply_" data-uid="SadRogue.Primitives.Point.op_Multiply*"></a>
   <h4 id="SadRogue_Primitives_Point_op_Multiply_SadRogue_Primitives_Point_System_Int32_" data-uid="SadRogue.Primitives.Point.op_Multiply(SadRogue.Primitives.Point,System.Int32)">Multiply(Point, Int32)</h4>
@@ -2304,10 +2306,10 @@ rounded to nearest integer.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Point_op_Multiply_SadRogue_Primitives_Point_System_ValueTuple_System_Int32_System_Int32__.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Multiply(SadRogue.Primitives.Point%2CSystem.ValueTuple%7BSystem.Int32%2CSystem.Int32%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Point_op_Multiply_SadRogue_Primitives_Point_System_ValueTuple_System_Int32_System_Int32__.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Multiply(SadRogue.Primitives.Point%2CSystem.ValueTuple%7BSystem.Int32%2CSystem.Int32%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Point.cs/#L406">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Point.cs/#L408">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_op_Multiply_" data-uid="SadRogue.Primitives.Point.op_Multiply*"></a>
   <h4 id="SadRogue_Primitives_Point_op_Multiply_SadRogue_Primitives_Point_System_ValueTuple_System_Int32_System_Int32__" data-uid="SadRogue.Primitives.Point.op_Multiply(SadRogue.Primitives.Point,System.ValueTuple{System.Int32,System.Int32})">Multiply(Point, (Int32 x, Int32 y))</h4>
@@ -2358,10 +2360,10 @@ rounded to nearest integer.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Point_op_Multiply_System_ValueTuple_System_Int32_System_Int32__SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Multiply(System.ValueTuple%7BSystem.Int32%2CSystem.Int32%7D%2CSadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Point_op_Multiply_System_ValueTuple_System_Int32_System_Int32__SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Multiply(System.ValueTuple%7BSystem.Int32%2CSystem.Int32%7D%2CSadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Point.cs/#L398">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Point.cs/#L400">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_op_Multiply_" data-uid="SadRogue.Primitives.Point.op_Multiply*"></a>
   <h4 id="SadRogue_Primitives_Point_op_Multiply_System_ValueTuple_System_Int32_System_Int32__SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Point.op_Multiply(System.ValueTuple{System.Int32,System.Int32},SadRogue.Primitives.Point)">Multiply((Int32 x, Int32 y), Point)</h4>
@@ -2412,10 +2414,10 @@ rounded to nearest integer.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Point_op_Subtraction_SadRogue_Primitives_Point_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Subtraction(SadRogue.Primitives.Point%2CSadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Point_op_Subtraction_SadRogue_Primitives_Point_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Subtraction(SadRogue.Primitives.Point%2CSadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Point.cs/#L127">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Point.cs/#L129">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_op_Subtraction_" data-uid="SadRogue.Primitives.Point.op_Subtraction*"></a>
   <h4 id="SadRogue_Primitives_Point_op_Subtraction_SadRogue_Primitives_Point_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Point.op_Subtraction(SadRogue.Primitives.Point,SadRogue.Primitives.Point)">Subtraction(Point, Point)</h4>
@@ -2466,10 +2468,10 @@ rounded to nearest integer.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Point_op_Subtraction_SadRogue_Primitives_Point_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Subtraction(SadRogue.Primitives.Point%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Point_op_Subtraction_SadRogue_Primitives_Point_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Subtraction(SadRogue.Primitives.Point%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Point.cs/#L135">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Point.cs/#L137">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_op_Subtraction_" data-uid="SadRogue.Primitives.Point.op_Subtraction*"></a>
   <h4 id="SadRogue_Primitives_Point_op_Subtraction_SadRogue_Primitives_Point_System_Int32_" data-uid="SadRogue.Primitives.Point.op_Subtraction(SadRogue.Primitives.Point,System.Int32)">Subtraction(Point, Int32)</h4>
@@ -2520,10 +2522,10 @@ rounded to nearest integer.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Point_op_Subtraction_SadRogue_Primitives_Point_System_ValueTuple_System_Int32_System_Int32__.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Subtraction(SadRogue.Primitives.Point%2CSystem.ValueTuple%7BSystem.Int32%2CSystem.Int32%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Point_op_Subtraction_SadRogue_Primitives_Point_System_ValueTuple_System_Int32_System_Int32__.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Subtraction(SadRogue.Primitives.Point%2CSystem.ValueTuple%7BSystem.Int32%2CSystem.Int32%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Point.cs/#L390">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Point.cs/#L392">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_op_Subtraction_" data-uid="SadRogue.Primitives.Point.op_Subtraction*"></a>
   <h4 id="SadRogue_Primitives_Point_op_Subtraction_SadRogue_Primitives_Point_System_ValueTuple_System_Int32_System_Int32__" data-uid="SadRogue.Primitives.Point.op_Subtraction(SadRogue.Primitives.Point,System.ValueTuple{System.Int32,System.Int32})">Subtraction(Point, (Int32 x, Int32 y))</h4>
@@ -2574,10 +2576,10 @@ rounded to nearest integer.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Point_op_Subtraction_System_ValueTuple_System_Int32_System_Int32__SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Subtraction(System.ValueTuple%7BSystem.Int32%2CSystem.Int32%7D%2CSadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Point_op_Subtraction_System_ValueTuple_System_Int32_System_Int32__SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Subtraction(System.ValueTuple%7BSystem.Int32%2CSystem.Int32%7D%2CSadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Point.cs/#L383">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Point.cs/#L385">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_op_Subtraction_" data-uid="SadRogue.Primitives.Point.op_Subtraction*"></a>
   <h4 id="SadRogue_Primitives_Point_op_Subtraction_System_ValueTuple_System_Int32_System_Int32__SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Point.op_Subtraction(System.ValueTuple{System.Int32,System.Int32},SadRogue.Primitives.Point)">Subtraction((Int32 x, Int32 y), Point)</h4>
@@ -2675,10 +2677,10 @@ rounded to nearest integer.</p>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/master/apiSpec/new?filename=SadRogue_Primitives_Point.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/nuget_setup/apiSpec/new?filename=SadRogue_Primitives_Point.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/master/TheSadRogue.Primitives/Point.cs/#L17" class="contribution-link">View Source</a>
+                    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/nuget_setup/TheSadRogue.Primitives/Point.cs/#L17" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

@@ -1,16 +1,49 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <!-- Basic package info -->
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>SadRogue.Primitives</RootNamespace>
+	<Version>1.0.0-alpha1</Version>
+	<Version Condition="'$(Configuration)'=='Debug'">$(Version)-debug</Version>
+	<Authors>Chris3606;Thraka</Authors>
+	<Company>TheSadRogue</Company>
+	<Copyright>Copyright © 2019 Christopher Ridley (Chris3606)] and TheSadRogue [Steve De George JR (Thraka)</Copyright>
+	<Description>A collection of extension methods that allow TheSadRogue.Primitives types to easily interface with MonoGame's equivalents.</Description>
+	
+	<!-- More nuget package settings-->
+	<PackageId>TheSadRogue.Primitives.MonoGame</PackageId>
+	<PackageReleaseNotes>Initial alpha release.</PackageReleaseNotes>
+	<RepositoryUrl>https://https://github.com/thesadrogue/TheSadRogue.Primitives</RepositoryUrl>
+	<RepositoryType>git</RepositoryType>
+	<PublishRepositoryUrl>true</PublishRepositoryUrl>
+	<PackageLicenseExpression>MIT</PackageLicenseExpression>
+	<IncludeSymbols>true</IncludeSymbols>
+    <IncludeSource>true</IncludeSource>
+	<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+	<PackageTags>2d;grid;primitives;point;rectangle;game;development;standard;monogame;sadrogue;thesadrogue;extensions</PackageTags>
+	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\$(Configuration)\netstandard2.0\TheSadRogue.Primitives.MonoGame.xml</DocumentationFile>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>bin\$(Configuration)\netstandard2.0\TheSadRogue.Primitives.MonoGame.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <!-- Dependencies -->
   <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All"/>
     <PackageReference Include="MonoGame.Framework.DesktopGL.Core" Version="3.7.0.7" />
+    <PackageReference Include="TheSadRogue.Primitives" Version="1.0.0-alpha1" />
   </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\TheSadRogue.Primitives\TheSadRogue.Primitives.csproj" />
-  </ItemGroup>
-
+  
+  <!-- When packing, copy the nuget files to the nuget output directory -->
+  <Target Name="CopyPackage" AfterTargets="Pack">
+    <Copy SourceFiles="$(OutputPath)..\$(PackageId).$(PackageVersion).nupkg" DestinationFolder="$(OutputPath)..\..\..\..\nuget" />
+    <Copy SourceFiles="$(OutputPath)..\$(PackageId).$(PackageVersion).snupkg" DestinationFolder="$(OutputPath)..\..\..\..\nuget" />
+  </Target>
 </Project>

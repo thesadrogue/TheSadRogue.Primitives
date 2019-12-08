@@ -1736,14 +1736,12 @@ namespace SadRogue.Primitives
         /// <summary>
         /// Gets the luma of an existing color.
         /// </summary>
-        /// <param name="color">The color to calculate the luma from.</param>
         /// <returns>A value based on this code: (color.R + color.R + color.B + color.G + color.G + color.G) / 6f</returns>
         public float GetLuma() => (R + R + B + G + G + G) / 6f;
 
         /// <summary>
         /// Gets the brightness of a color.
         /// </summary>
-        /// <param name="color">The color to process.</param>
         /// <returns>The brightness value.</returns>
         /// <remarks>Taken from the mono source code.</remarks>
         public float GetBrightness()
@@ -1757,7 +1755,6 @@ namespace SadRogue.Primitives
         /// <summary>
         /// Gets the saturation of a color.
         /// </summary>
-        /// <param name="color">The color to process.</param>
         /// <returns>The saturation value.</returns>
         /// <remarks>Taken from the mono source code.</remarks>
         public float GetSaturation()
@@ -1783,7 +1780,6 @@ namespace SadRogue.Primitives
         /// <summary>
         /// Gets the hue of a color.
         /// </summary>
-        /// <param name="color">The color to process.</param>
         /// <returns>The hue value.</returns>
         /// <remarks>Taken from the mono source code.</remarks>
         public float GetHue()
@@ -1883,7 +1879,6 @@ namespace SadRogue.Primitives
         /// <summary>
         /// Sets the color values based on HSL instead of RGB.
         /// </summary>
-        /// <param name="color">The color to change.</param>
         /// <param name="h">The hue amount.</param>
         /// <param name="s">The saturation amount.</param>
         /// <param name="l">The luminance amount.</param>
@@ -2050,7 +2045,6 @@ namespace SadRogue.Primitives
         /// <param name="r"></param>
         /// <param name="g"></param>
         /// <param name="b"></param>
-        /// <param name="a"></param>
         public void Deconstruct(out byte r, out byte g, out byte b)
         {
             r = R;

@@ -13,18 +13,18 @@ references:
   commentId: T:SadRogue.Primitives.AdjacencyRule
   fullName: SadRogue.Primitives.AdjacencyRule
   nameWithType: AdjacencyRule
-- uid: SadRogue.Primitives.AdjacencyRule.CARDINALS
-  name: CARDINALS
-  href: api/SadRogue.Primitives.AdjacencyRule.html#SadRogue_Primitives_AdjacencyRule_CARDINALS
-  commentId: F:SadRogue.Primitives.AdjacencyRule.CARDINALS
-  fullName: SadRogue.Primitives.AdjacencyRule.CARDINALS
-  nameWithType: AdjacencyRule.CARDINALS
-- uid: SadRogue.Primitives.AdjacencyRule.DIAGONALS
-  name: DIAGONALS
-  href: api/SadRogue.Primitives.AdjacencyRule.html#SadRogue_Primitives_AdjacencyRule_DIAGONALS
-  commentId: F:SadRogue.Primitives.AdjacencyRule.DIAGONALS
-  fullName: SadRogue.Primitives.AdjacencyRule.DIAGONALS
-  nameWithType: AdjacencyRule.DIAGONALS
+- uid: SadRogue.Primitives.AdjacencyRule.Cardinals
+  name: Cardinals
+  href: api/SadRogue.Primitives.AdjacencyRule.html#SadRogue_Primitives_AdjacencyRule_Cardinals
+  commentId: F:SadRogue.Primitives.AdjacencyRule.Cardinals
+  fullName: SadRogue.Primitives.AdjacencyRule.Cardinals
+  nameWithType: AdjacencyRule.Cardinals
+- uid: SadRogue.Primitives.AdjacencyRule.Diagonals
+  name: Diagonals
+  href: api/SadRogue.Primitives.AdjacencyRule.html#SadRogue_Primitives_AdjacencyRule_Diagonals
+  commentId: F:SadRogue.Primitives.AdjacencyRule.Diagonals
+  fullName: SadRogue.Primitives.AdjacencyRule.Diagonals
+  nameWithType: AdjacencyRule.Diagonals
 - uid: SadRogue.Primitives.AdjacencyRule.DirectionsOfNeighbors
   name: DirectionsOfNeighbors()
   href: api/SadRogue.Primitives.AdjacencyRule.html#SadRogue_Primitives_AdjacencyRule_DirectionsOfNeighbors
@@ -64,12 +64,44 @@ references:
   isSpec: "True"
   fullName: SadRogue.Primitives.AdjacencyRule.DirectionsOfNeighborsCounterClockwise
   nameWithType: AdjacencyRule.DirectionsOfNeighborsCounterClockwise
-- uid: SadRogue.Primitives.AdjacencyRule.EIGHT_WAY
-  name: EIGHT_WAY
-  href: api/SadRogue.Primitives.AdjacencyRule.html#SadRogue_Primitives_AdjacencyRule_EIGHT_WAY
-  commentId: F:SadRogue.Primitives.AdjacencyRule.EIGHT_WAY
-  fullName: SadRogue.Primitives.AdjacencyRule.EIGHT_WAY
-  nameWithType: AdjacencyRule.EIGHT_WAY
+- uid: SadRogue.Primitives.AdjacencyRule.EightWay
+  name: EightWay
+  href: api/SadRogue.Primitives.AdjacencyRule.html#SadRogue_Primitives_AdjacencyRule_EightWay
+  commentId: F:SadRogue.Primitives.AdjacencyRule.EightWay
+  fullName: SadRogue.Primitives.AdjacencyRule.EightWay
+  nameWithType: AdjacencyRule.EightWay
+- uid: SadRogue.Primitives.AdjacencyRule.Equals(SadRogue.Primitives.AdjacencyRule)
+  name: Equals(AdjacencyRule)
+  href: api/SadRogue.Primitives.AdjacencyRule.html#SadRogue_Primitives_AdjacencyRule_Equals_SadRogue_Primitives_AdjacencyRule_
+  commentId: M:SadRogue.Primitives.AdjacencyRule.Equals(SadRogue.Primitives.AdjacencyRule)
+  fullName: SadRogue.Primitives.AdjacencyRule.Equals(SadRogue.Primitives.AdjacencyRule)
+  nameWithType: AdjacencyRule.Equals(AdjacencyRule)
+- uid: SadRogue.Primitives.AdjacencyRule.Equals(System.Object)
+  name: Equals(Object)
+  href: api/SadRogue.Primitives.AdjacencyRule.html#SadRogue_Primitives_AdjacencyRule_Equals_System_Object_
+  commentId: M:SadRogue.Primitives.AdjacencyRule.Equals(System.Object)
+  fullName: SadRogue.Primitives.AdjacencyRule.Equals(System.Object)
+  nameWithType: AdjacencyRule.Equals(Object)
+- uid: SadRogue.Primitives.AdjacencyRule.Equals*
+  name: Equals
+  href: api/SadRogue.Primitives.AdjacencyRule.html#SadRogue_Primitives_AdjacencyRule_Equals_
+  commentId: Overload:SadRogue.Primitives.AdjacencyRule.Equals
+  isSpec: "True"
+  fullName: SadRogue.Primitives.AdjacencyRule.Equals
+  nameWithType: AdjacencyRule.Equals
+- uid: SadRogue.Primitives.AdjacencyRule.GetHashCode
+  name: GetHashCode()
+  href: api/SadRogue.Primitives.AdjacencyRule.html#SadRogue_Primitives_AdjacencyRule_GetHashCode
+  commentId: M:SadRogue.Primitives.AdjacencyRule.GetHashCode
+  fullName: SadRogue.Primitives.AdjacencyRule.GetHashCode()
+  nameWithType: AdjacencyRule.GetHashCode()
+- uid: SadRogue.Primitives.AdjacencyRule.GetHashCode*
+  name: GetHashCode
+  href: api/SadRogue.Primitives.AdjacencyRule.html#SadRogue_Primitives_AdjacencyRule_GetHashCode_
+  commentId: Overload:SadRogue.Primitives.AdjacencyRule.GetHashCode
+  isSpec: "True"
+  fullName: SadRogue.Primitives.AdjacencyRule.GetHashCode
+  nameWithType: AdjacencyRule.GetHashCode
 - uid: SadRogue.Primitives.AdjacencyRule.Neighbors(SadRogue.Primitives.Point)
   name: Neighbors(Point)
   href: api/SadRogue.Primitives.AdjacencyRule.html#SadRogue_Primitives_AdjacencyRule_Neighbors_SadRogue_Primitives_Point_
@@ -109,6 +141,32 @@ references:
   isSpec: "True"
   fullName: SadRogue.Primitives.AdjacencyRule.NeighborsCounterClockwise
   nameWithType: AdjacencyRule.NeighborsCounterClockwise
+- uid: SadRogue.Primitives.AdjacencyRule.op_Equality(SadRogue.Primitives.AdjacencyRule,SadRogue.Primitives.AdjacencyRule)
+  name: Equality(AdjacencyRule, AdjacencyRule)
+  href: api/SadRogue.Primitives.AdjacencyRule.html#SadRogue_Primitives_AdjacencyRule_op_Equality_SadRogue_Primitives_AdjacencyRule_SadRogue_Primitives_AdjacencyRule_
+  commentId: M:SadRogue.Primitives.AdjacencyRule.op_Equality(SadRogue.Primitives.AdjacencyRule,SadRogue.Primitives.AdjacencyRule)
+  fullName: SadRogue.Primitives.AdjacencyRule.Equality(SadRogue.Primitives.AdjacencyRule, SadRogue.Primitives.AdjacencyRule)
+  nameWithType: AdjacencyRule.Equality(AdjacencyRule, AdjacencyRule)
+- uid: SadRogue.Primitives.AdjacencyRule.op_Equality*
+  name: Equality
+  href: api/SadRogue.Primitives.AdjacencyRule.html#SadRogue_Primitives_AdjacencyRule_op_Equality_
+  commentId: Overload:SadRogue.Primitives.AdjacencyRule.op_Equality
+  isSpec: "True"
+  fullName: SadRogue.Primitives.AdjacencyRule.Equality
+  nameWithType: AdjacencyRule.Equality
+- uid: SadRogue.Primitives.AdjacencyRule.op_Inequality(SadRogue.Primitives.AdjacencyRule,SadRogue.Primitives.AdjacencyRule)
+  name: Inequality(AdjacencyRule, AdjacencyRule)
+  href: api/SadRogue.Primitives.AdjacencyRule.html#SadRogue_Primitives_AdjacencyRule_op_Inequality_SadRogue_Primitives_AdjacencyRule_SadRogue_Primitives_AdjacencyRule_
+  commentId: M:SadRogue.Primitives.AdjacencyRule.op_Inequality(SadRogue.Primitives.AdjacencyRule,SadRogue.Primitives.AdjacencyRule)
+  fullName: SadRogue.Primitives.AdjacencyRule.Inequality(SadRogue.Primitives.AdjacencyRule, SadRogue.Primitives.AdjacencyRule)
+  nameWithType: AdjacencyRule.Inequality(AdjacencyRule, AdjacencyRule)
+- uid: SadRogue.Primitives.AdjacencyRule.op_Inequality*
+  name: Inequality
+  href: api/SadRogue.Primitives.AdjacencyRule.html#SadRogue_Primitives_AdjacencyRule_op_Inequality_
+  commentId: Overload:SadRogue.Primitives.AdjacencyRule.op_Inequality
+  isSpec: "True"
+  fullName: SadRogue.Primitives.AdjacencyRule.Inequality
+  nameWithType: AdjacencyRule.Inequality
 - uid: SadRogue.Primitives.AdjacencyRule.ToAdjacencyRule(SadRogue.Primitives.AdjacencyRule.Types)
   name: ToAdjacencyRule(AdjacencyRule.Types)
   href: api/SadRogue.Primitives.AdjacencyRule.html#SadRogue_Primitives_AdjacencyRule_ToAdjacencyRule_SadRogue_Primitives_AdjacencyRule_Types_
@@ -138,14 +196,7 @@ references:
 - uid: SadRogue.Primitives.AdjacencyRule.Type
   name: Type
   href: api/SadRogue.Primitives.AdjacencyRule.html#SadRogue_Primitives_AdjacencyRule_Type
-  commentId: P:SadRogue.Primitives.AdjacencyRule.Type
-  fullName: SadRogue.Primitives.AdjacencyRule.Type
-  nameWithType: AdjacencyRule.Type
-- uid: SadRogue.Primitives.AdjacencyRule.Type*
-  name: Type
-  href: api/SadRogue.Primitives.AdjacencyRule.html#SadRogue_Primitives_AdjacencyRule_Type_
-  commentId: Overload:SadRogue.Primitives.AdjacencyRule.Type
-  isSpec: "True"
+  commentId: F:SadRogue.Primitives.AdjacencyRule.Type
   fullName: SadRogue.Primitives.AdjacencyRule.Type
   nameWithType: AdjacencyRule.Type
 - uid: SadRogue.Primitives.AdjacencyRule.Types
@@ -154,24 +205,24 @@ references:
   commentId: T:SadRogue.Primitives.AdjacencyRule.Types
   fullName: SadRogue.Primitives.AdjacencyRule.Types
   nameWithType: AdjacencyRule.Types
-- uid: SadRogue.Primitives.AdjacencyRule.Types.CARDINALS
-  name: CARDINALS
-  href: api/SadRogue.Primitives.AdjacencyRule.Types.html#SadRogue_Primitives_AdjacencyRule_Types_CARDINALS
-  commentId: F:SadRogue.Primitives.AdjacencyRule.Types.CARDINALS
-  fullName: SadRogue.Primitives.AdjacencyRule.Types.CARDINALS
-  nameWithType: AdjacencyRule.Types.CARDINALS
-- uid: SadRogue.Primitives.AdjacencyRule.Types.DIAGONALS
-  name: DIAGONALS
-  href: api/SadRogue.Primitives.AdjacencyRule.Types.html#SadRogue_Primitives_AdjacencyRule_Types_DIAGONALS
-  commentId: F:SadRogue.Primitives.AdjacencyRule.Types.DIAGONALS
-  fullName: SadRogue.Primitives.AdjacencyRule.Types.DIAGONALS
-  nameWithType: AdjacencyRule.Types.DIAGONALS
-- uid: SadRogue.Primitives.AdjacencyRule.Types.EIGHT_WAY
-  name: EIGHT_WAY
-  href: api/SadRogue.Primitives.AdjacencyRule.Types.html#SadRogue_Primitives_AdjacencyRule_Types_EIGHT_WAY
-  commentId: F:SadRogue.Primitives.AdjacencyRule.Types.EIGHT_WAY
-  fullName: SadRogue.Primitives.AdjacencyRule.Types.EIGHT_WAY
-  nameWithType: AdjacencyRule.Types.EIGHT_WAY
+- uid: SadRogue.Primitives.AdjacencyRule.Types.Cardinals
+  name: Cardinals
+  href: api/SadRogue.Primitives.AdjacencyRule.Types.html#SadRogue_Primitives_AdjacencyRule_Types_Cardinals
+  commentId: F:SadRogue.Primitives.AdjacencyRule.Types.Cardinals
+  fullName: SadRogue.Primitives.AdjacencyRule.Types.Cardinals
+  nameWithType: AdjacencyRule.Types.Cardinals
+- uid: SadRogue.Primitives.AdjacencyRule.Types.Diagonals
+  name: Diagonals
+  href: api/SadRogue.Primitives.AdjacencyRule.Types.html#SadRogue_Primitives_AdjacencyRule_Types_Diagonals
+  commentId: F:SadRogue.Primitives.AdjacencyRule.Types.Diagonals
+  fullName: SadRogue.Primitives.AdjacencyRule.Types.Diagonals
+  nameWithType: AdjacencyRule.Types.Diagonals
+- uid: SadRogue.Primitives.AdjacencyRule.Types.EightWay
+  name: EightWay
+  href: api/SadRogue.Primitives.AdjacencyRule.Types.html#SadRogue_Primitives_AdjacencyRule_Types_EightWay
+  commentId: F:SadRogue.Primitives.AdjacencyRule.Types.EightWay
+  fullName: SadRogue.Primitives.AdjacencyRule.Types.EightWay
+  nameWithType: AdjacencyRule.Types.EightWay
 - uid: SadRogue.Primitives.Area
   name: Area
   href: api/SadRogue.Primitives.Area.html
@@ -510,6 +561,90 @@ references:
   isSpec: "True"
   fullName: SadRogue.Primitives.BoundedRectangle.BoundingBox
   nameWithType: BoundedRectangle.BoundingBox
+- uid: SadRogue.Primitives.BoundedRectangle.Equals(SadRogue.Primitives.BoundedRectangle)
+  name: Equals(BoundedRectangle)
+  href: api/SadRogue.Primitives.BoundedRectangle.html#SadRogue_Primitives_BoundedRectangle_Equals_SadRogue_Primitives_BoundedRectangle_
+  commentId: M:SadRogue.Primitives.BoundedRectangle.Equals(SadRogue.Primitives.BoundedRectangle)
+  fullName: SadRogue.Primitives.BoundedRectangle.Equals(SadRogue.Primitives.BoundedRectangle)
+  nameWithType: BoundedRectangle.Equals(BoundedRectangle)
+- uid: SadRogue.Primitives.BoundedRectangle.Equals(System.Object)
+  name: Equals(Object)
+  href: api/SadRogue.Primitives.BoundedRectangle.html#SadRogue_Primitives_BoundedRectangle_Equals_System_Object_
+  commentId: M:SadRogue.Primitives.BoundedRectangle.Equals(System.Object)
+  fullName: SadRogue.Primitives.BoundedRectangle.Equals(System.Object)
+  nameWithType: BoundedRectangle.Equals(Object)
+- uid: SadRogue.Primitives.BoundedRectangle.Equals*
+  name: Equals
+  href: api/SadRogue.Primitives.BoundedRectangle.html#SadRogue_Primitives_BoundedRectangle_Equals_
+  commentId: Overload:SadRogue.Primitives.BoundedRectangle.Equals
+  isSpec: "True"
+  fullName: SadRogue.Primitives.BoundedRectangle.Equals
+  nameWithType: BoundedRectangle.Equals
+- uid: SadRogue.Primitives.BoundedRectangle.GetHashCode
+  name: GetHashCode()
+  href: api/SadRogue.Primitives.BoundedRectangle.html#SadRogue_Primitives_BoundedRectangle_GetHashCode
+  commentId: M:SadRogue.Primitives.BoundedRectangle.GetHashCode
+  fullName: SadRogue.Primitives.BoundedRectangle.GetHashCode()
+  nameWithType: BoundedRectangle.GetHashCode()
+- uid: SadRogue.Primitives.BoundedRectangle.GetHashCode*
+  name: GetHashCode
+  href: api/SadRogue.Primitives.BoundedRectangle.html#SadRogue_Primitives_BoundedRectangle_GetHashCode_
+  commentId: Overload:SadRogue.Primitives.BoundedRectangle.GetHashCode
+  isSpec: "True"
+  fullName: SadRogue.Primitives.BoundedRectangle.GetHashCode
+  nameWithType: BoundedRectangle.GetHashCode
+- uid: SadRogue.Primitives.BoundedRectangle.op_Equality(SadRogue.Primitives.BoundedRectangle,SadRogue.Primitives.BoundedRectangle)
+  name: Equality(BoundedRectangle, BoundedRectangle)
+  href: api/SadRogue.Primitives.BoundedRectangle.html#SadRogue_Primitives_BoundedRectangle_op_Equality_SadRogue_Primitives_BoundedRectangle_SadRogue_Primitives_BoundedRectangle_
+  commentId: M:SadRogue.Primitives.BoundedRectangle.op_Equality(SadRogue.Primitives.BoundedRectangle,SadRogue.Primitives.BoundedRectangle)
+  fullName: SadRogue.Primitives.BoundedRectangle.Equality(SadRogue.Primitives.BoundedRectangle, SadRogue.Primitives.BoundedRectangle)
+  nameWithType: BoundedRectangle.Equality(BoundedRectangle, BoundedRectangle)
+- uid: SadRogue.Primitives.BoundedRectangle.op_Equality*
+  name: Equality
+  href: api/SadRogue.Primitives.BoundedRectangle.html#SadRogue_Primitives_BoundedRectangle_op_Equality_
+  commentId: Overload:SadRogue.Primitives.BoundedRectangle.op_Equality
+  isSpec: "True"
+  fullName: SadRogue.Primitives.BoundedRectangle.Equality
+  nameWithType: BoundedRectangle.Equality
+- uid: SadRogue.Primitives.BoundedRectangle.op_Inequality(SadRogue.Primitives.BoundedRectangle,SadRogue.Primitives.BoundedRectangle)
+  name: Inequality(BoundedRectangle, BoundedRectangle)
+  href: api/SadRogue.Primitives.BoundedRectangle.html#SadRogue_Primitives_BoundedRectangle_op_Inequality_SadRogue_Primitives_BoundedRectangle_SadRogue_Primitives_BoundedRectangle_
+  commentId: M:SadRogue.Primitives.BoundedRectangle.op_Inequality(SadRogue.Primitives.BoundedRectangle,SadRogue.Primitives.BoundedRectangle)
+  fullName: SadRogue.Primitives.BoundedRectangle.Inequality(SadRogue.Primitives.BoundedRectangle, SadRogue.Primitives.BoundedRectangle)
+  nameWithType: BoundedRectangle.Inequality(BoundedRectangle, BoundedRectangle)
+- uid: SadRogue.Primitives.BoundedRectangle.op_Inequality*
+  name: Inequality
+  href: api/SadRogue.Primitives.BoundedRectangle.html#SadRogue_Primitives_BoundedRectangle_op_Inequality_
+  commentId: Overload:SadRogue.Primitives.BoundedRectangle.op_Inequality
+  isSpec: "True"
+  fullName: SadRogue.Primitives.BoundedRectangle.Inequality
+  nameWithType: BoundedRectangle.Inequality
+- uid: SadRogue.Primitives.BoundedRectangle.SetArea(SadRogue.Primitives.Rectangle)
+  name: SetArea(Rectangle)
+  href: api/SadRogue.Primitives.BoundedRectangle.html#SadRogue_Primitives_BoundedRectangle_SetArea_SadRogue_Primitives_Rectangle_
+  commentId: M:SadRogue.Primitives.BoundedRectangle.SetArea(SadRogue.Primitives.Rectangle)
+  fullName: SadRogue.Primitives.BoundedRectangle.SetArea(SadRogue.Primitives.Rectangle)
+  nameWithType: BoundedRectangle.SetArea(Rectangle)
+- uid: SadRogue.Primitives.BoundedRectangle.SetArea*
+  name: SetArea
+  href: api/SadRogue.Primitives.BoundedRectangle.html#SadRogue_Primitives_BoundedRectangle_SetArea_
+  commentId: Overload:SadRogue.Primitives.BoundedRectangle.SetArea
+  isSpec: "True"
+  fullName: SadRogue.Primitives.BoundedRectangle.SetArea
+  nameWithType: BoundedRectangle.SetArea
+- uid: SadRogue.Primitives.BoundedRectangle.SetBoundingBox(SadRogue.Primitives.Rectangle)
+  name: SetBoundingBox(Rectangle)
+  href: api/SadRogue.Primitives.BoundedRectangle.html#SadRogue_Primitives_BoundedRectangle_SetBoundingBox_SadRogue_Primitives_Rectangle_
+  commentId: M:SadRogue.Primitives.BoundedRectangle.SetBoundingBox(SadRogue.Primitives.Rectangle)
+  fullName: SadRogue.Primitives.BoundedRectangle.SetBoundingBox(SadRogue.Primitives.Rectangle)
+  nameWithType: BoundedRectangle.SetBoundingBox(Rectangle)
+- uid: SadRogue.Primitives.BoundedRectangle.SetBoundingBox*
+  name: SetBoundingBox
+  href: api/SadRogue.Primitives.BoundedRectangle.html#SadRogue_Primitives_BoundedRectangle_SetBoundingBox_
+  commentId: Overload:SadRogue.Primitives.BoundedRectangle.SetBoundingBox
+  isSpec: "True"
+  fullName: SadRogue.Primitives.BoundedRectangle.SetBoundingBox
+  nameWithType: BoundedRectangle.SetBoundingBox
 - uid: SadRogue.Primitives.Color
   name: Color
   href: api/SadRogue.Primitives.Color.html
@@ -1187,6 +1322,24 @@ references:
   isSpec: "True"
   fullName: SadRogue.Primitives.Color.DarkViolet
   nameWithType: Color.DarkViolet
+- uid: SadRogue.Primitives.Color.Deconstruct(System.Byte@,System.Byte@,System.Byte@)
+  name: Deconstruct(out Byte, out Byte, out Byte)
+  href: api/SadRogue.Primitives.Color.html#SadRogue_Primitives_Color_Deconstruct_System_Byte__System_Byte__System_Byte__
+  commentId: M:SadRogue.Primitives.Color.Deconstruct(System.Byte@,System.Byte@,System.Byte@)
+  name.vb: Deconstruct(ByRef Byte, ByRef Byte, ByRef Byte)
+  fullName: SadRogue.Primitives.Color.Deconstruct(out System.Byte, out System.Byte, out System.Byte)
+  fullName.vb: SadRogue.Primitives.Color.Deconstruct(ByRef System.Byte, ByRef System.Byte, ByRef System.Byte)
+  nameWithType: Color.Deconstruct(out Byte, out Byte, out Byte)
+  nameWithType.vb: Color.Deconstruct(ByRef Byte, ByRef Byte, ByRef Byte)
+- uid: SadRogue.Primitives.Color.Deconstruct(System.Byte@,System.Byte@,System.Byte@,System.Byte@)
+  name: Deconstruct(out Byte, out Byte, out Byte, out Byte)
+  href: api/SadRogue.Primitives.Color.html#SadRogue_Primitives_Color_Deconstruct_System_Byte__System_Byte__System_Byte__System_Byte__
+  commentId: M:SadRogue.Primitives.Color.Deconstruct(System.Byte@,System.Byte@,System.Byte@,System.Byte@)
+  name.vb: Deconstruct(ByRef Byte, ByRef Byte, ByRef Byte, ByRef Byte)
+  fullName: SadRogue.Primitives.Color.Deconstruct(out System.Byte, out System.Byte, out System.Byte, out System.Byte)
+  fullName.vb: SadRogue.Primitives.Color.Deconstruct(ByRef System.Byte, ByRef System.Byte, ByRef System.Byte, ByRef System.Byte)
+  nameWithType: Color.Deconstruct(out Byte, out Byte, out Byte, out Byte)
+  nameWithType.vb: Color.Deconstruct(ByRef Byte, ByRef Byte, ByRef Byte, ByRef Byte)
 - uid: SadRogue.Primitives.Color.Deconstruct(System.Single@,System.Single@,System.Single@)
   name: Deconstruct(out Single, out Single, out Single)
   href: api/SadRogue.Primitives.Color.html#SadRogue_Primitives_Color_Deconstruct_System_Single__System_Single__System_Single__
@@ -2849,45 +3002,43 @@ references:
   isSpec: "True"
   fullName: SadRogue.Primitives.Direction.DeltaY
   nameWithType: Direction.DeltaY
-- uid: SadRogue.Primitives.Direction.DOWN
-  name: DOWN
-  href: api/SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_DOWN
-  commentId: P:SadRogue.Primitives.Direction.DOWN
-  fullName: SadRogue.Primitives.Direction.DOWN
-  nameWithType: Direction.DOWN
-- uid: SadRogue.Primitives.Direction.DOWN*
-  name: DOWN
-  href: api/SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_DOWN_
-  commentId: Overload:SadRogue.Primitives.Direction.DOWN
+- uid: SadRogue.Primitives.Direction.Down
+  name: Down
+  href: api/SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_Down
+  commentId: F:SadRogue.Primitives.Direction.Down
+  fullName: SadRogue.Primitives.Direction.Down
+  nameWithType: Direction.Down
+- uid: SadRogue.Primitives.Direction.DownLeft
+  name: DownLeft
+  href: api/SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_DownLeft
+  commentId: F:SadRogue.Primitives.Direction.DownLeft
+  fullName: SadRogue.Primitives.Direction.DownLeft
+  nameWithType: Direction.DownLeft
+- uid: SadRogue.Primitives.Direction.DownRight
+  name: DownRight
+  href: api/SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_DownRight
+  commentId: F:SadRogue.Primitives.Direction.DownRight
+  fullName: SadRogue.Primitives.Direction.DownRight
+  nameWithType: Direction.DownRight
+- uid: SadRogue.Primitives.Direction.Equals(SadRogue.Primitives.Direction)
+  name: Equals(Direction)
+  href: api/SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_Equals_SadRogue_Primitives_Direction_
+  commentId: M:SadRogue.Primitives.Direction.Equals(SadRogue.Primitives.Direction)
+  fullName: SadRogue.Primitives.Direction.Equals(SadRogue.Primitives.Direction)
+  nameWithType: Direction.Equals(Direction)
+- uid: SadRogue.Primitives.Direction.Equals(System.Object)
+  name: Equals(Object)
+  href: api/SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_Equals_System_Object_
+  commentId: M:SadRogue.Primitives.Direction.Equals(System.Object)
+  fullName: SadRogue.Primitives.Direction.Equals(System.Object)
+  nameWithType: Direction.Equals(Object)
+- uid: SadRogue.Primitives.Direction.Equals*
+  name: Equals
+  href: api/SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_Equals_
+  commentId: Overload:SadRogue.Primitives.Direction.Equals
   isSpec: "True"
-  fullName: SadRogue.Primitives.Direction.DOWN
-  nameWithType: Direction.DOWN
-- uid: SadRogue.Primitives.Direction.DOWN_LEFT
-  name: DOWN_LEFT
-  href: api/SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_DOWN_LEFT
-  commentId: P:SadRogue.Primitives.Direction.DOWN_LEFT
-  fullName: SadRogue.Primitives.Direction.DOWN_LEFT
-  nameWithType: Direction.DOWN_LEFT
-- uid: SadRogue.Primitives.Direction.DOWN_LEFT*
-  name: DOWN_LEFT
-  href: api/SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_DOWN_LEFT_
-  commentId: Overload:SadRogue.Primitives.Direction.DOWN_LEFT
-  isSpec: "True"
-  fullName: SadRogue.Primitives.Direction.DOWN_LEFT
-  nameWithType: Direction.DOWN_LEFT
-- uid: SadRogue.Primitives.Direction.DOWN_RIGHT
-  name: DOWN_RIGHT
-  href: api/SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_DOWN_RIGHT
-  commentId: P:SadRogue.Primitives.Direction.DOWN_RIGHT
-  fullName: SadRogue.Primitives.Direction.DOWN_RIGHT
-  nameWithType: Direction.DOWN_RIGHT
-- uid: SadRogue.Primitives.Direction.DOWN_RIGHT*
-  name: DOWN_RIGHT
-  href: api/SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_DOWN_RIGHT_
-  commentId: Overload:SadRogue.Primitives.Direction.DOWN_RIGHT
-  isSpec: "True"
-  fullName: SadRogue.Primitives.Direction.DOWN_RIGHT
-  nameWithType: Direction.DOWN_RIGHT
+  fullName: SadRogue.Primitives.Direction.Equals
+  nameWithType: Direction.Equals
 - uid: SadRogue.Primitives.Direction.GetCardinalDirection(SadRogue.Primitives.Point)
   name: GetCardinalDirection(Point)
   href: api/SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_GetCardinalDirection_SadRogue_Primitives_Point_
@@ -2926,32 +3077,44 @@ references:
   isSpec: "True"
   fullName: SadRogue.Primitives.Direction.GetDirection
   nameWithType: Direction.GetDirection
-- uid: SadRogue.Primitives.Direction.LEFT
-  name: LEFT
-  href: api/SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_LEFT
-  commentId: P:SadRogue.Primitives.Direction.LEFT
-  fullName: SadRogue.Primitives.Direction.LEFT
-  nameWithType: Direction.LEFT
-- uid: SadRogue.Primitives.Direction.LEFT*
-  name: LEFT
-  href: api/SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_LEFT_
-  commentId: Overload:SadRogue.Primitives.Direction.LEFT
+- uid: SadRogue.Primitives.Direction.GetHashCode
+  name: GetHashCode()
+  href: api/SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_GetHashCode
+  commentId: M:SadRogue.Primitives.Direction.GetHashCode
+  fullName: SadRogue.Primitives.Direction.GetHashCode()
+  nameWithType: Direction.GetHashCode()
+- uid: SadRogue.Primitives.Direction.GetHashCode*
+  name: GetHashCode
+  href: api/SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_GetHashCode_
+  commentId: Overload:SadRogue.Primitives.Direction.GetHashCode
   isSpec: "True"
-  fullName: SadRogue.Primitives.Direction.LEFT
-  nameWithType: Direction.LEFT
-- uid: SadRogue.Primitives.Direction.NONE
-  name: NONE
-  href: api/SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_NONE
-  commentId: P:SadRogue.Primitives.Direction.NONE
-  fullName: SadRogue.Primitives.Direction.NONE
-  nameWithType: Direction.NONE
-- uid: SadRogue.Primitives.Direction.NONE*
-  name: NONE
-  href: api/SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_NONE_
-  commentId: Overload:SadRogue.Primitives.Direction.NONE
+  fullName: SadRogue.Primitives.Direction.GetHashCode
+  nameWithType: Direction.GetHashCode
+- uid: SadRogue.Primitives.Direction.IsCardinal
+  name: IsCardinal()
+  href: api/SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_IsCardinal
+  commentId: M:SadRogue.Primitives.Direction.IsCardinal
+  fullName: SadRogue.Primitives.Direction.IsCardinal()
+  nameWithType: Direction.IsCardinal()
+- uid: SadRogue.Primitives.Direction.IsCardinal*
+  name: IsCardinal
+  href: api/SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_IsCardinal_
+  commentId: Overload:SadRogue.Primitives.Direction.IsCardinal
   isSpec: "True"
-  fullName: SadRogue.Primitives.Direction.NONE
-  nameWithType: Direction.NONE
+  fullName: SadRogue.Primitives.Direction.IsCardinal
+  nameWithType: Direction.IsCardinal
+- uid: SadRogue.Primitives.Direction.Left
+  name: Left
+  href: api/SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_Left
+  commentId: F:SadRogue.Primitives.Direction.Left
+  fullName: SadRogue.Primitives.Direction.Left
+  nameWithType: Direction.Left
+- uid: SadRogue.Primitives.Direction.None
+  name: None
+  href: api/SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_None
+  commentId: F:SadRogue.Primitives.Direction.None
+  fullName: SadRogue.Primitives.Direction.None
+  nameWithType: Direction.None
 - uid: SadRogue.Primitives.Direction.op_Addition(SadRogue.Primitives.Direction,System.Int32)
   name: Addition(Direction, Int32)
   href: api/SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_op_Addition_SadRogue_Primitives_Direction_System_Int32_
@@ -2987,6 +3150,19 @@ references:
   isSpec: "True"
   fullName: SadRogue.Primitives.Direction.Decrement
   nameWithType: Direction.Decrement
+- uid: SadRogue.Primitives.Direction.op_Equality(SadRogue.Primitives.Direction,SadRogue.Primitives.Direction)
+  name: Equality(Direction, Direction)
+  href: api/SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_op_Equality_SadRogue_Primitives_Direction_SadRogue_Primitives_Direction_
+  commentId: M:SadRogue.Primitives.Direction.op_Equality(SadRogue.Primitives.Direction,SadRogue.Primitives.Direction)
+  fullName: SadRogue.Primitives.Direction.Equality(SadRogue.Primitives.Direction, SadRogue.Primitives.Direction)
+  nameWithType: Direction.Equality(Direction, Direction)
+- uid: SadRogue.Primitives.Direction.op_Equality*
+  name: Equality
+  href: api/SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_op_Equality_
+  commentId: Overload:SadRogue.Primitives.Direction.op_Equality
+  isSpec: "True"
+  fullName: SadRogue.Primitives.Direction.Equality
+  nameWithType: Direction.Equality
 - uid: SadRogue.Primitives.Direction.op_Increment(SadRogue.Primitives.Direction)
   name: Increment(Direction)
   href: api/SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_op_Increment_SadRogue_Primitives_Direction_
@@ -3000,6 +3176,19 @@ references:
   isSpec: "True"
   fullName: SadRogue.Primitives.Direction.Increment
   nameWithType: Direction.Increment
+- uid: SadRogue.Primitives.Direction.op_Inequality(SadRogue.Primitives.Direction,SadRogue.Primitives.Direction)
+  name: Inequality(Direction, Direction)
+  href: api/SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_op_Inequality_SadRogue_Primitives_Direction_SadRogue_Primitives_Direction_
+  commentId: M:SadRogue.Primitives.Direction.op_Inequality(SadRogue.Primitives.Direction,SadRogue.Primitives.Direction)
+  fullName: SadRogue.Primitives.Direction.Inequality(SadRogue.Primitives.Direction, SadRogue.Primitives.Direction)
+  nameWithType: Direction.Inequality(Direction, Direction)
+- uid: SadRogue.Primitives.Direction.op_Inequality*
+  name: Inequality
+  href: api/SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_op_Inequality_
+  commentId: Overload:SadRogue.Primitives.Direction.op_Inequality
+  isSpec: "True"
+  fullName: SadRogue.Primitives.Direction.Inequality
+  nameWithType: Direction.Inequality
 - uid: SadRogue.Primitives.Direction.op_Subtraction(SadRogue.Primitives.Direction,System.Int32)
   name: Subtraction(Direction, Int32)
   href: api/SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_op_Subtraction_SadRogue_Primitives_Direction_System_Int32_
@@ -3013,19 +3202,25 @@ references:
   isSpec: "True"
   fullName: SadRogue.Primitives.Direction.Subtraction
   nameWithType: Direction.Subtraction
-- uid: SadRogue.Primitives.Direction.RIGHT
-  name: RIGHT
-  href: api/SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_RIGHT
-  commentId: P:SadRogue.Primitives.Direction.RIGHT
-  fullName: SadRogue.Primitives.Direction.RIGHT
-  nameWithType: Direction.RIGHT
-- uid: SadRogue.Primitives.Direction.RIGHT*
-  name: RIGHT
-  href: api/SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_RIGHT_
-  commentId: Overload:SadRogue.Primitives.Direction.RIGHT
+- uid: SadRogue.Primitives.Direction.Right
+  name: Right
+  href: api/SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_Right
+  commentId: F:SadRogue.Primitives.Direction.Right
+  fullName: SadRogue.Primitives.Direction.Right
+  nameWithType: Direction.Right
+- uid: SadRogue.Primitives.Direction.SetYIncreasesUpwardsUnsafe(System.Boolean)
+  name: SetYIncreasesUpwardsUnsafe(Boolean)
+  href: api/SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_SetYIncreasesUpwardsUnsafe_System_Boolean_
+  commentId: M:SadRogue.Primitives.Direction.SetYIncreasesUpwardsUnsafe(System.Boolean)
+  fullName: SadRogue.Primitives.Direction.SetYIncreasesUpwardsUnsafe(System.Boolean)
+  nameWithType: Direction.SetYIncreasesUpwardsUnsafe(Boolean)
+- uid: SadRogue.Primitives.Direction.SetYIncreasesUpwardsUnsafe*
+  name: SetYIncreasesUpwardsUnsafe
+  href: api/SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_SetYIncreasesUpwardsUnsafe_
+  commentId: Overload:SadRogue.Primitives.Direction.SetYIncreasesUpwardsUnsafe
   isSpec: "True"
-  fullName: SadRogue.Primitives.Direction.RIGHT
-  nameWithType: Direction.RIGHT
+  fullName: SadRogue.Primitives.Direction.SetYIncreasesUpwardsUnsafe
+  nameWithType: Direction.SetYIncreasesUpwardsUnsafe
 - uid: SadRogue.Primitives.Direction.ToDirection(SadRogue.Primitives.Direction.Types)
   name: ToDirection(Direction.Types)
   href: api/SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_ToDirection_SadRogue_Primitives_Direction_Types_
@@ -3055,14 +3250,7 @@ references:
 - uid: SadRogue.Primitives.Direction.Type
   name: Type
   href: api/SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_Type
-  commentId: P:SadRogue.Primitives.Direction.Type
-  fullName: SadRogue.Primitives.Direction.Type
-  nameWithType: Direction.Type
-- uid: SadRogue.Primitives.Direction.Type*
-  name: Type
-  href: api/SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_Type_
-  commentId: Overload:SadRogue.Primitives.Direction.Type
-  isSpec: "True"
+  commentId: F:SadRogue.Primitives.Direction.Type
   fullName: SadRogue.Primitives.Direction.Type
   nameWithType: Direction.Type
 - uid: SadRogue.Primitives.Direction.Types
@@ -3071,99 +3259,78 @@ references:
   commentId: T:SadRogue.Primitives.Direction.Types
   fullName: SadRogue.Primitives.Direction.Types
   nameWithType: Direction.Types
-- uid: SadRogue.Primitives.Direction.Types.DOWN
-  name: DOWN
-  href: api/SadRogue.Primitives.Direction.Types.html#SadRogue_Primitives_Direction_Types_DOWN
-  commentId: F:SadRogue.Primitives.Direction.Types.DOWN
-  fullName: SadRogue.Primitives.Direction.Types.DOWN
-  nameWithType: Direction.Types.DOWN
-- uid: SadRogue.Primitives.Direction.Types.DOWN_LEFT
-  name: DOWN_LEFT
-  href: api/SadRogue.Primitives.Direction.Types.html#SadRogue_Primitives_Direction_Types_DOWN_LEFT
-  commentId: F:SadRogue.Primitives.Direction.Types.DOWN_LEFT
-  fullName: SadRogue.Primitives.Direction.Types.DOWN_LEFT
-  nameWithType: Direction.Types.DOWN_LEFT
-- uid: SadRogue.Primitives.Direction.Types.DOWN_RIGHT
-  name: DOWN_RIGHT
-  href: api/SadRogue.Primitives.Direction.Types.html#SadRogue_Primitives_Direction_Types_DOWN_RIGHT
-  commentId: F:SadRogue.Primitives.Direction.Types.DOWN_RIGHT
-  fullName: SadRogue.Primitives.Direction.Types.DOWN_RIGHT
-  nameWithType: Direction.Types.DOWN_RIGHT
-- uid: SadRogue.Primitives.Direction.Types.LEFT
-  name: LEFT
-  href: api/SadRogue.Primitives.Direction.Types.html#SadRogue_Primitives_Direction_Types_LEFT
-  commentId: F:SadRogue.Primitives.Direction.Types.LEFT
-  fullName: SadRogue.Primitives.Direction.Types.LEFT
-  nameWithType: Direction.Types.LEFT
-- uid: SadRogue.Primitives.Direction.Types.NONE
-  name: NONE
-  href: api/SadRogue.Primitives.Direction.Types.html#SadRogue_Primitives_Direction_Types_NONE
-  commentId: F:SadRogue.Primitives.Direction.Types.NONE
-  fullName: SadRogue.Primitives.Direction.Types.NONE
-  nameWithType: Direction.Types.NONE
-- uid: SadRogue.Primitives.Direction.Types.RIGHT
-  name: RIGHT
-  href: api/SadRogue.Primitives.Direction.Types.html#SadRogue_Primitives_Direction_Types_RIGHT
-  commentId: F:SadRogue.Primitives.Direction.Types.RIGHT
-  fullName: SadRogue.Primitives.Direction.Types.RIGHT
-  nameWithType: Direction.Types.RIGHT
-- uid: SadRogue.Primitives.Direction.Types.UP
-  name: UP
-  href: api/SadRogue.Primitives.Direction.Types.html#SadRogue_Primitives_Direction_Types_UP
-  commentId: F:SadRogue.Primitives.Direction.Types.UP
-  fullName: SadRogue.Primitives.Direction.Types.UP
-  nameWithType: Direction.Types.UP
-- uid: SadRogue.Primitives.Direction.Types.UP_LEFT
-  name: UP_LEFT
-  href: api/SadRogue.Primitives.Direction.Types.html#SadRogue_Primitives_Direction_Types_UP_LEFT
-  commentId: F:SadRogue.Primitives.Direction.Types.UP_LEFT
-  fullName: SadRogue.Primitives.Direction.Types.UP_LEFT
-  nameWithType: Direction.Types.UP_LEFT
-- uid: SadRogue.Primitives.Direction.Types.UP_RIGHT
-  name: UP_RIGHT
-  href: api/SadRogue.Primitives.Direction.Types.html#SadRogue_Primitives_Direction_Types_UP_RIGHT
-  commentId: F:SadRogue.Primitives.Direction.Types.UP_RIGHT
-  fullName: SadRogue.Primitives.Direction.Types.UP_RIGHT
-  nameWithType: Direction.Types.UP_RIGHT
-- uid: SadRogue.Primitives.Direction.UP
-  name: UP
-  href: api/SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_UP
-  commentId: P:SadRogue.Primitives.Direction.UP
-  fullName: SadRogue.Primitives.Direction.UP
-  nameWithType: Direction.UP
-- uid: SadRogue.Primitives.Direction.UP*
-  name: UP
-  href: api/SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_UP_
-  commentId: Overload:SadRogue.Primitives.Direction.UP
-  isSpec: "True"
-  fullName: SadRogue.Primitives.Direction.UP
-  nameWithType: Direction.UP
-- uid: SadRogue.Primitives.Direction.UP_LEFT
-  name: UP_LEFT
-  href: api/SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_UP_LEFT
-  commentId: P:SadRogue.Primitives.Direction.UP_LEFT
-  fullName: SadRogue.Primitives.Direction.UP_LEFT
-  nameWithType: Direction.UP_LEFT
-- uid: SadRogue.Primitives.Direction.UP_LEFT*
-  name: UP_LEFT
-  href: api/SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_UP_LEFT_
-  commentId: Overload:SadRogue.Primitives.Direction.UP_LEFT
-  isSpec: "True"
-  fullName: SadRogue.Primitives.Direction.UP_LEFT
-  nameWithType: Direction.UP_LEFT
-- uid: SadRogue.Primitives.Direction.UP_RIGHT
-  name: UP_RIGHT
-  href: api/SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_UP_RIGHT
-  commentId: P:SadRogue.Primitives.Direction.UP_RIGHT
-  fullName: SadRogue.Primitives.Direction.UP_RIGHT
-  nameWithType: Direction.UP_RIGHT
-- uid: SadRogue.Primitives.Direction.UP_RIGHT*
-  name: UP_RIGHT
-  href: api/SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_UP_RIGHT_
-  commentId: Overload:SadRogue.Primitives.Direction.UP_RIGHT
-  isSpec: "True"
-  fullName: SadRogue.Primitives.Direction.UP_RIGHT
-  nameWithType: Direction.UP_RIGHT
+- uid: SadRogue.Primitives.Direction.Types.Down
+  name: Down
+  href: api/SadRogue.Primitives.Direction.Types.html#SadRogue_Primitives_Direction_Types_Down
+  commentId: F:SadRogue.Primitives.Direction.Types.Down
+  fullName: SadRogue.Primitives.Direction.Types.Down
+  nameWithType: Direction.Types.Down
+- uid: SadRogue.Primitives.Direction.Types.DownLeft
+  name: DownLeft
+  href: api/SadRogue.Primitives.Direction.Types.html#SadRogue_Primitives_Direction_Types_DownLeft
+  commentId: F:SadRogue.Primitives.Direction.Types.DownLeft
+  fullName: SadRogue.Primitives.Direction.Types.DownLeft
+  nameWithType: Direction.Types.DownLeft
+- uid: SadRogue.Primitives.Direction.Types.DownRight
+  name: DownRight
+  href: api/SadRogue.Primitives.Direction.Types.html#SadRogue_Primitives_Direction_Types_DownRight
+  commentId: F:SadRogue.Primitives.Direction.Types.DownRight
+  fullName: SadRogue.Primitives.Direction.Types.DownRight
+  nameWithType: Direction.Types.DownRight
+- uid: SadRogue.Primitives.Direction.Types.Left
+  name: Left
+  href: api/SadRogue.Primitives.Direction.Types.html#SadRogue_Primitives_Direction_Types_Left
+  commentId: F:SadRogue.Primitives.Direction.Types.Left
+  fullName: SadRogue.Primitives.Direction.Types.Left
+  nameWithType: Direction.Types.Left
+- uid: SadRogue.Primitives.Direction.Types.None
+  name: None
+  href: api/SadRogue.Primitives.Direction.Types.html#SadRogue_Primitives_Direction_Types_None
+  commentId: F:SadRogue.Primitives.Direction.Types.None
+  fullName: SadRogue.Primitives.Direction.Types.None
+  nameWithType: Direction.Types.None
+- uid: SadRogue.Primitives.Direction.Types.Right
+  name: Right
+  href: api/SadRogue.Primitives.Direction.Types.html#SadRogue_Primitives_Direction_Types_Right
+  commentId: F:SadRogue.Primitives.Direction.Types.Right
+  fullName: SadRogue.Primitives.Direction.Types.Right
+  nameWithType: Direction.Types.Right
+- uid: SadRogue.Primitives.Direction.Types.Up
+  name: Up
+  href: api/SadRogue.Primitives.Direction.Types.html#SadRogue_Primitives_Direction_Types_Up
+  commentId: F:SadRogue.Primitives.Direction.Types.Up
+  fullName: SadRogue.Primitives.Direction.Types.Up
+  nameWithType: Direction.Types.Up
+- uid: SadRogue.Primitives.Direction.Types.UpLeft
+  name: UpLeft
+  href: api/SadRogue.Primitives.Direction.Types.html#SadRogue_Primitives_Direction_Types_UpLeft
+  commentId: F:SadRogue.Primitives.Direction.Types.UpLeft
+  fullName: SadRogue.Primitives.Direction.Types.UpLeft
+  nameWithType: Direction.Types.UpLeft
+- uid: SadRogue.Primitives.Direction.Types.UpRight
+  name: UpRight
+  href: api/SadRogue.Primitives.Direction.Types.html#SadRogue_Primitives_Direction_Types_UpRight
+  commentId: F:SadRogue.Primitives.Direction.Types.UpRight
+  fullName: SadRogue.Primitives.Direction.Types.UpRight
+  nameWithType: Direction.Types.UpRight
+- uid: SadRogue.Primitives.Direction.Up
+  name: Up
+  href: api/SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_Up
+  commentId: F:SadRogue.Primitives.Direction.Up
+  fullName: SadRogue.Primitives.Direction.Up
+  nameWithType: Direction.Up
+- uid: SadRogue.Primitives.Direction.UpLeft
+  name: UpLeft
+  href: api/SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_UpLeft
+  commentId: F:SadRogue.Primitives.Direction.UpLeft
+  fullName: SadRogue.Primitives.Direction.UpLeft
+  nameWithType: Direction.UpLeft
+- uid: SadRogue.Primitives.Direction.UpRight
+  name: UpRight
+  href: api/SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_UpRight
+  commentId: F:SadRogue.Primitives.Direction.UpRight
+  fullName: SadRogue.Primitives.Direction.UpRight
+  nameWithType: Direction.UpRight
 - uid: SadRogue.Primitives.Direction.YIncreasesUpward
   name: YIncreasesUpward
   href: api/SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_YIncreasesUpward
@@ -3214,24 +3381,69 @@ references:
   isSpec: "True"
   fullName: SadRogue.Primitives.Distance.Calculate
   nameWithType: Distance.Calculate
-- uid: SadRogue.Primitives.Distance.CHEBYSHEV
-  name: CHEBYSHEV
-  href: api/SadRogue.Primitives.Distance.html#SadRogue_Primitives_Distance_CHEBYSHEV
-  commentId: F:SadRogue.Primitives.Distance.CHEBYSHEV
-  fullName: SadRogue.Primitives.Distance.CHEBYSHEV
-  nameWithType: Distance.CHEBYSHEV
-- uid: SadRogue.Primitives.Distance.EUCLIDEAN
-  name: EUCLIDEAN
-  href: api/SadRogue.Primitives.Distance.html#SadRogue_Primitives_Distance_EUCLIDEAN
-  commentId: F:SadRogue.Primitives.Distance.EUCLIDEAN
-  fullName: SadRogue.Primitives.Distance.EUCLIDEAN
-  nameWithType: Distance.EUCLIDEAN
-- uid: SadRogue.Primitives.Distance.MANHATTAN
-  name: MANHATTAN
-  href: api/SadRogue.Primitives.Distance.html#SadRogue_Primitives_Distance_MANHATTAN
-  commentId: F:SadRogue.Primitives.Distance.MANHATTAN
-  fullName: SadRogue.Primitives.Distance.MANHATTAN
-  nameWithType: Distance.MANHATTAN
+- uid: SadRogue.Primitives.Distance.Chebyshev
+  name: Chebyshev
+  href: api/SadRogue.Primitives.Distance.html#SadRogue_Primitives_Distance_Chebyshev
+  commentId: F:SadRogue.Primitives.Distance.Chebyshev
+  fullName: SadRogue.Primitives.Distance.Chebyshev
+  nameWithType: Distance.Chebyshev
+- uid: SadRogue.Primitives.Distance.Equals(SadRogue.Primitives.Distance)
+  name: Equals(Distance)
+  href: api/SadRogue.Primitives.Distance.html#SadRogue_Primitives_Distance_Equals_SadRogue_Primitives_Distance_
+  commentId: M:SadRogue.Primitives.Distance.Equals(SadRogue.Primitives.Distance)
+  fullName: SadRogue.Primitives.Distance.Equals(SadRogue.Primitives.Distance)
+  nameWithType: Distance.Equals(Distance)
+- uid: SadRogue.Primitives.Distance.Equals(System.Object)
+  name: Equals(Object)
+  href: api/SadRogue.Primitives.Distance.html#SadRogue_Primitives_Distance_Equals_System_Object_
+  commentId: M:SadRogue.Primitives.Distance.Equals(System.Object)
+  fullName: SadRogue.Primitives.Distance.Equals(System.Object)
+  nameWithType: Distance.Equals(Object)
+- uid: SadRogue.Primitives.Distance.Equals*
+  name: Equals
+  href: api/SadRogue.Primitives.Distance.html#SadRogue_Primitives_Distance_Equals_
+  commentId: Overload:SadRogue.Primitives.Distance.Equals
+  isSpec: "True"
+  fullName: SadRogue.Primitives.Distance.Equals
+  nameWithType: Distance.Equals
+- uid: SadRogue.Primitives.Distance.Euclidean
+  name: Euclidean
+  href: api/SadRogue.Primitives.Distance.html#SadRogue_Primitives_Distance_Euclidean
+  commentId: F:SadRogue.Primitives.Distance.Euclidean
+  fullName: SadRogue.Primitives.Distance.Euclidean
+  nameWithType: Distance.Euclidean
+- uid: SadRogue.Primitives.Distance.GetHashCode
+  name: GetHashCode()
+  href: api/SadRogue.Primitives.Distance.html#SadRogue_Primitives_Distance_GetHashCode
+  commentId: M:SadRogue.Primitives.Distance.GetHashCode
+  fullName: SadRogue.Primitives.Distance.GetHashCode()
+  nameWithType: Distance.GetHashCode()
+- uid: SadRogue.Primitives.Distance.GetHashCode*
+  name: GetHashCode
+  href: api/SadRogue.Primitives.Distance.html#SadRogue_Primitives_Distance_GetHashCode_
+  commentId: Overload:SadRogue.Primitives.Distance.GetHashCode
+  isSpec: "True"
+  fullName: SadRogue.Primitives.Distance.GetHashCode
+  nameWithType: Distance.GetHashCode
+- uid: SadRogue.Primitives.Distance.Manhattan
+  name: Manhattan
+  href: api/SadRogue.Primitives.Distance.html#SadRogue_Primitives_Distance_Manhattan
+  commentId: F:SadRogue.Primitives.Distance.Manhattan
+  fullName: SadRogue.Primitives.Distance.Manhattan
+  nameWithType: Distance.Manhattan
+- uid: SadRogue.Primitives.Distance.op_Equality(SadRogue.Primitives.Distance,SadRogue.Primitives.Distance)
+  name: Equality(Distance, Distance)
+  href: api/SadRogue.Primitives.Distance.html#SadRogue_Primitives_Distance_op_Equality_SadRogue_Primitives_Distance_SadRogue_Primitives_Distance_
+  commentId: M:SadRogue.Primitives.Distance.op_Equality(SadRogue.Primitives.Distance,SadRogue.Primitives.Distance)
+  fullName: SadRogue.Primitives.Distance.Equality(SadRogue.Primitives.Distance, SadRogue.Primitives.Distance)
+  nameWithType: Distance.Equality(Distance, Distance)
+- uid: SadRogue.Primitives.Distance.op_Equality*
+  name: Equality
+  href: api/SadRogue.Primitives.Distance.html#SadRogue_Primitives_Distance_op_Equality_
+  commentId: Overload:SadRogue.Primitives.Distance.op_Equality
+  isSpec: "True"
+  fullName: SadRogue.Primitives.Distance.Equality
+  nameWithType: Distance.Equality
 - uid: SadRogue.Primitives.Distance.op_Implicit(SadRogue.Primitives.Distance)~SadRogue.Primitives.AdjacencyRule
   name: Implicit(Distance to AdjacencyRule)
   href: api/SadRogue.Primitives.Distance.html#SadRogue_Primitives_Distance_op_Implicit_SadRogue_Primitives_Distance__SadRogue_Primitives_AdjacencyRule
@@ -3260,6 +3472,19 @@ references:
   fullName.vb: SadRogue.Primitives.Distance.Widening
   nameWithType: Distance.Implicit
   nameWithType.vb: Distance.Widening
+- uid: SadRogue.Primitives.Distance.op_Inequality(SadRogue.Primitives.Distance,SadRogue.Primitives.Distance)
+  name: Inequality(Distance, Distance)
+  href: api/SadRogue.Primitives.Distance.html#SadRogue_Primitives_Distance_op_Inequality_SadRogue_Primitives_Distance_SadRogue_Primitives_Distance_
+  commentId: M:SadRogue.Primitives.Distance.op_Inequality(SadRogue.Primitives.Distance,SadRogue.Primitives.Distance)
+  fullName: SadRogue.Primitives.Distance.Inequality(SadRogue.Primitives.Distance, SadRogue.Primitives.Distance)
+  nameWithType: Distance.Inequality(Distance, Distance)
+- uid: SadRogue.Primitives.Distance.op_Inequality*
+  name: Inequality
+  href: api/SadRogue.Primitives.Distance.html#SadRogue_Primitives_Distance_op_Inequality_
+  commentId: Overload:SadRogue.Primitives.Distance.op_Inequality
+  isSpec: "True"
+  fullName: SadRogue.Primitives.Distance.Inequality
+  nameWithType: Distance.Inequality
 - uid: SadRogue.Primitives.Distance.ToDistance(SadRogue.Primitives.Distance.Types)
   name: ToDistance(Distance.Types)
   href: api/SadRogue.Primitives.Distance.html#SadRogue_Primitives_Distance_ToDistance_SadRogue_Primitives_Distance_Types_
@@ -3298,24 +3523,24 @@ references:
   commentId: T:SadRogue.Primitives.Distance.Types
   fullName: SadRogue.Primitives.Distance.Types
   nameWithType: Distance.Types
-- uid: SadRogue.Primitives.Distance.Types.CHEBYSHEV
-  name: CHEBYSHEV
-  href: api/SadRogue.Primitives.Distance.Types.html#SadRogue_Primitives_Distance_Types_CHEBYSHEV
-  commentId: F:SadRogue.Primitives.Distance.Types.CHEBYSHEV
-  fullName: SadRogue.Primitives.Distance.Types.CHEBYSHEV
-  nameWithType: Distance.Types.CHEBYSHEV
-- uid: SadRogue.Primitives.Distance.Types.EUCLIDEAN
-  name: EUCLIDEAN
-  href: api/SadRogue.Primitives.Distance.Types.html#SadRogue_Primitives_Distance_Types_EUCLIDEAN
-  commentId: F:SadRogue.Primitives.Distance.Types.EUCLIDEAN
-  fullName: SadRogue.Primitives.Distance.Types.EUCLIDEAN
-  nameWithType: Distance.Types.EUCLIDEAN
-- uid: SadRogue.Primitives.Distance.Types.MANHATTAN
-  name: MANHATTAN
-  href: api/SadRogue.Primitives.Distance.Types.html#SadRogue_Primitives_Distance_Types_MANHATTAN
-  commentId: F:SadRogue.Primitives.Distance.Types.MANHATTAN
-  fullName: SadRogue.Primitives.Distance.Types.MANHATTAN
-  nameWithType: Distance.Types.MANHATTAN
+- uid: SadRogue.Primitives.Distance.Types.Chebyshev
+  name: Chebyshev
+  href: api/SadRogue.Primitives.Distance.Types.html#SadRogue_Primitives_Distance_Types_Chebyshev
+  commentId: F:SadRogue.Primitives.Distance.Types.Chebyshev
+  fullName: SadRogue.Primitives.Distance.Types.Chebyshev
+  nameWithType: Distance.Types.Chebyshev
+- uid: SadRogue.Primitives.Distance.Types.Euclidean
+  name: Euclidean
+  href: api/SadRogue.Primitives.Distance.Types.html#SadRogue_Primitives_Distance_Types_Euclidean
+  commentId: F:SadRogue.Primitives.Distance.Types.Euclidean
+  fullName: SadRogue.Primitives.Distance.Types.Euclidean
+  nameWithType: Distance.Types.Euclidean
+- uid: SadRogue.Primitives.Distance.Types.Manhattan
+  name: Manhattan
+  href: api/SadRogue.Primitives.Distance.Types.html#SadRogue_Primitives_Distance_Types_Manhattan
+  commentId: F:SadRogue.Primitives.Distance.Types.Manhattan
+  fullName: SadRogue.Primitives.Distance.Types.Manhattan
+  nameWithType: Distance.Types.Manhattan
 - uid: SadRogue.Primitives.Gradient
   name: Gradient
   href: api/SadRogue.Primitives.Gradient.html
@@ -3475,6 +3700,64 @@ references:
   commentId: F:SadRogue.Primitives.GradientStop.Color
   fullName: SadRogue.Primitives.GradientStop.Color
   nameWithType: GradientStop.Color
+- uid: SadRogue.Primitives.GradientStop.Equals(SadRogue.Primitives.GradientStop)
+  name: Equals(GradientStop)
+  href: api/SadRogue.Primitives.GradientStop.html#SadRogue_Primitives_GradientStop_Equals_SadRogue_Primitives_GradientStop_
+  commentId: M:SadRogue.Primitives.GradientStop.Equals(SadRogue.Primitives.GradientStop)
+  fullName: SadRogue.Primitives.GradientStop.Equals(SadRogue.Primitives.GradientStop)
+  nameWithType: GradientStop.Equals(GradientStop)
+- uid: SadRogue.Primitives.GradientStop.Equals(System.Object)
+  name: Equals(Object)
+  href: api/SadRogue.Primitives.GradientStop.html#SadRogue_Primitives_GradientStop_Equals_System_Object_
+  commentId: M:SadRogue.Primitives.GradientStop.Equals(System.Object)
+  fullName: SadRogue.Primitives.GradientStop.Equals(System.Object)
+  nameWithType: GradientStop.Equals(Object)
+- uid: SadRogue.Primitives.GradientStop.Equals*
+  name: Equals
+  href: api/SadRogue.Primitives.GradientStop.html#SadRogue_Primitives_GradientStop_Equals_
+  commentId: Overload:SadRogue.Primitives.GradientStop.Equals
+  isSpec: "True"
+  fullName: SadRogue.Primitives.GradientStop.Equals
+  nameWithType: GradientStop.Equals
+- uid: SadRogue.Primitives.GradientStop.GetHashCode
+  name: GetHashCode()
+  href: api/SadRogue.Primitives.GradientStop.html#SadRogue_Primitives_GradientStop_GetHashCode
+  commentId: M:SadRogue.Primitives.GradientStop.GetHashCode
+  fullName: SadRogue.Primitives.GradientStop.GetHashCode()
+  nameWithType: GradientStop.GetHashCode()
+- uid: SadRogue.Primitives.GradientStop.GetHashCode*
+  name: GetHashCode
+  href: api/SadRogue.Primitives.GradientStop.html#SadRogue_Primitives_GradientStop_GetHashCode_
+  commentId: Overload:SadRogue.Primitives.GradientStop.GetHashCode
+  isSpec: "True"
+  fullName: SadRogue.Primitives.GradientStop.GetHashCode
+  nameWithType: GradientStop.GetHashCode
+- uid: SadRogue.Primitives.GradientStop.op_Equality(SadRogue.Primitives.GradientStop,SadRogue.Primitives.GradientStop)
+  name: Equality(GradientStop, GradientStop)
+  href: api/SadRogue.Primitives.GradientStop.html#SadRogue_Primitives_GradientStop_op_Equality_SadRogue_Primitives_GradientStop_SadRogue_Primitives_GradientStop_
+  commentId: M:SadRogue.Primitives.GradientStop.op_Equality(SadRogue.Primitives.GradientStop,SadRogue.Primitives.GradientStop)
+  fullName: SadRogue.Primitives.GradientStop.Equality(SadRogue.Primitives.GradientStop, SadRogue.Primitives.GradientStop)
+  nameWithType: GradientStop.Equality(GradientStop, GradientStop)
+- uid: SadRogue.Primitives.GradientStop.op_Equality*
+  name: Equality
+  href: api/SadRogue.Primitives.GradientStop.html#SadRogue_Primitives_GradientStop_op_Equality_
+  commentId: Overload:SadRogue.Primitives.GradientStop.op_Equality
+  isSpec: "True"
+  fullName: SadRogue.Primitives.GradientStop.Equality
+  nameWithType: GradientStop.Equality
+- uid: SadRogue.Primitives.GradientStop.op_Inequality(SadRogue.Primitives.GradientStop,SadRogue.Primitives.GradientStop)
+  name: Inequality(GradientStop, GradientStop)
+  href: api/SadRogue.Primitives.GradientStop.html#SadRogue_Primitives_GradientStop_op_Inequality_SadRogue_Primitives_GradientStop_SadRogue_Primitives_GradientStop_
+  commentId: M:SadRogue.Primitives.GradientStop.op_Inequality(SadRogue.Primitives.GradientStop,SadRogue.Primitives.GradientStop)
+  fullName: SadRogue.Primitives.GradientStop.Inequality(SadRogue.Primitives.GradientStop, SadRogue.Primitives.GradientStop)
+  nameWithType: GradientStop.Inequality(GradientStop, GradientStop)
+- uid: SadRogue.Primitives.GradientStop.op_Inequality*
+  name: Inequality
+  href: api/SadRogue.Primitives.GradientStop.html#SadRogue_Primitives_GradientStop_op_Inequality_
+  commentId: Overload:SadRogue.Primitives.GradientStop.op_Inequality
+  isSpec: "True"
+  fullName: SadRogue.Primitives.GradientStop.Inequality
+  nameWithType: GradientStop.Inequality
 - uid: SadRogue.Primitives.GradientStop.Stop
   name: Stop
   href: api/SadRogue.Primitives.GradientStop.html#SadRogue_Primitives_GradientStop_Stop
@@ -3589,12 +3872,12 @@ references:
   isSpec: "True"
   fullName: SadRogue.Primitives.MathHelpers.Clamp
   nameWithType: MathHelpers.Clamp
-- uid: SadRogue.Primitives.MathHelpers.DEGREE_PCT_OF_CIRCLE
-  name: DEGREE_PCT_OF_CIRCLE
-  href: api/SadRogue.Primitives.MathHelpers.html#SadRogue_Primitives_MathHelpers_DEGREE_PCT_OF_CIRCLE
-  commentId: F:SadRogue.Primitives.MathHelpers.DEGREE_PCT_OF_CIRCLE
-  fullName: SadRogue.Primitives.MathHelpers.DEGREE_PCT_OF_CIRCLE
-  nameWithType: MathHelpers.DEGREE_PCT_OF_CIRCLE
+- uid: SadRogue.Primitives.MathHelpers.DegreePctOfCircle
+  name: DegreePctOfCircle
+  href: api/SadRogue.Primitives.MathHelpers.html#SadRogue_Primitives_MathHelpers_DegreePctOfCircle
+  commentId: F:SadRogue.Primitives.MathHelpers.DegreePctOfCircle
+  fullName: SadRogue.Primitives.MathHelpers.DegreePctOfCircle
+  nameWithType: MathHelpers.DegreePctOfCircle
 - uid: SadRogue.Primitives.MathHelpers.Lerp(System.Double,System.Double,System.Double)
   name: Lerp(Double, Double, Double)
   href: api/SadRogue.Primitives.MathHelpers.html#SadRogue_Primitives_MathHelpers_Lerp_System_Double_System_Double_System_Double_
@@ -3944,12 +4227,12 @@ references:
   isSpec: "True"
   fullName: SadRogue.Primitives.Point.Midpoint
   nameWithType: Point.Midpoint
-- uid: SadRogue.Primitives.Point.NONE
-  name: NONE
-  href: api/SadRogue.Primitives.Point.html#SadRogue_Primitives_Point_NONE
-  commentId: F:SadRogue.Primitives.Point.NONE
-  fullName: SadRogue.Primitives.Point.NONE
-  nameWithType: Point.NONE
+- uid: SadRogue.Primitives.Point.None
+  name: None
+  href: api/SadRogue.Primitives.Point.html#SadRogue_Primitives_Point_None
+  commentId: F:SadRogue.Primitives.Point.None
+  fullName: SadRogue.Primitives.Point.None
+  nameWithType: Point.None
 - uid: SadRogue.Primitives.Point.op_Addition(SadRogue.Primitives.Point,SadRogue.Primitives.Direction)
   name: Addition(Point, Direction)
   href: api/SadRogue.Primitives.Point.html#SadRogue_Primitives_Point_op_Addition_SadRogue_Primitives_Point_SadRogue_Primitives_Direction_
@@ -4415,18 +4698,63 @@ references:
   commentId: T:SadRogue.Primitives.Radius
   fullName: SadRogue.Primitives.Radius
   nameWithType: Radius
-- uid: SadRogue.Primitives.Radius.CIRCLE
-  name: CIRCLE
-  href: api/SadRogue.Primitives.Radius.html#SadRogue_Primitives_Radius_CIRCLE
-  commentId: F:SadRogue.Primitives.Radius.CIRCLE
-  fullName: SadRogue.Primitives.Radius.CIRCLE
-  nameWithType: Radius.CIRCLE
-- uid: SadRogue.Primitives.Radius.DIAMOND
-  name: DIAMOND
-  href: api/SadRogue.Primitives.Radius.html#SadRogue_Primitives_Radius_DIAMOND
-  commentId: F:SadRogue.Primitives.Radius.DIAMOND
-  fullName: SadRogue.Primitives.Radius.DIAMOND
-  nameWithType: Radius.DIAMOND
+- uid: SadRogue.Primitives.Radius.Circle
+  name: Circle
+  href: api/SadRogue.Primitives.Radius.html#SadRogue_Primitives_Radius_Circle
+  commentId: F:SadRogue.Primitives.Radius.Circle
+  fullName: SadRogue.Primitives.Radius.Circle
+  nameWithType: Radius.Circle
+- uid: SadRogue.Primitives.Radius.Diamond
+  name: Diamond
+  href: api/SadRogue.Primitives.Radius.html#SadRogue_Primitives_Radius_Diamond
+  commentId: F:SadRogue.Primitives.Radius.Diamond
+  fullName: SadRogue.Primitives.Radius.Diamond
+  nameWithType: Radius.Diamond
+- uid: SadRogue.Primitives.Radius.Equals(SadRogue.Primitives.Radius)
+  name: Equals(Radius)
+  href: api/SadRogue.Primitives.Radius.html#SadRogue_Primitives_Radius_Equals_SadRogue_Primitives_Radius_
+  commentId: M:SadRogue.Primitives.Radius.Equals(SadRogue.Primitives.Radius)
+  fullName: SadRogue.Primitives.Radius.Equals(SadRogue.Primitives.Radius)
+  nameWithType: Radius.Equals(Radius)
+- uid: SadRogue.Primitives.Radius.Equals(System.Object)
+  name: Equals(Object)
+  href: api/SadRogue.Primitives.Radius.html#SadRogue_Primitives_Radius_Equals_System_Object_
+  commentId: M:SadRogue.Primitives.Radius.Equals(System.Object)
+  fullName: SadRogue.Primitives.Radius.Equals(System.Object)
+  nameWithType: Radius.Equals(Object)
+- uid: SadRogue.Primitives.Radius.Equals*
+  name: Equals
+  href: api/SadRogue.Primitives.Radius.html#SadRogue_Primitives_Radius_Equals_
+  commentId: Overload:SadRogue.Primitives.Radius.Equals
+  isSpec: "True"
+  fullName: SadRogue.Primitives.Radius.Equals
+  nameWithType: Radius.Equals
+- uid: SadRogue.Primitives.Radius.GetHashCode
+  name: GetHashCode()
+  href: api/SadRogue.Primitives.Radius.html#SadRogue_Primitives_Radius_GetHashCode
+  commentId: M:SadRogue.Primitives.Radius.GetHashCode
+  fullName: SadRogue.Primitives.Radius.GetHashCode()
+  nameWithType: Radius.GetHashCode()
+- uid: SadRogue.Primitives.Radius.GetHashCode*
+  name: GetHashCode
+  href: api/SadRogue.Primitives.Radius.html#SadRogue_Primitives_Radius_GetHashCode_
+  commentId: Overload:SadRogue.Primitives.Radius.GetHashCode
+  isSpec: "True"
+  fullName: SadRogue.Primitives.Radius.GetHashCode
+  nameWithType: Radius.GetHashCode
+- uid: SadRogue.Primitives.Radius.op_Equality(SadRogue.Primitives.Radius,SadRogue.Primitives.Radius)
+  name: Equality(Radius, Radius)
+  href: api/SadRogue.Primitives.Radius.html#SadRogue_Primitives_Radius_op_Equality_SadRogue_Primitives_Radius_SadRogue_Primitives_Radius_
+  commentId: M:SadRogue.Primitives.Radius.op_Equality(SadRogue.Primitives.Radius,SadRogue.Primitives.Radius)
+  fullName: SadRogue.Primitives.Radius.Equality(SadRogue.Primitives.Radius, SadRogue.Primitives.Radius)
+  nameWithType: Radius.Equality(Radius, Radius)
+- uid: SadRogue.Primitives.Radius.op_Equality*
+  name: Equality
+  href: api/SadRogue.Primitives.Radius.html#SadRogue_Primitives_Radius_op_Equality_
+  commentId: Overload:SadRogue.Primitives.Radius.op_Equality
+  isSpec: "True"
+  fullName: SadRogue.Primitives.Radius.Equality
+  nameWithType: Radius.Equality
 - uid: SadRogue.Primitives.Radius.op_Implicit(SadRogue.Primitives.Radius)~SadRogue.Primitives.AdjacencyRule
   name: Implicit(Radius to AdjacencyRule)
   href: api/SadRogue.Primitives.Radius.html#SadRogue_Primitives_Radius_op_Implicit_SadRogue_Primitives_Radius__SadRogue_Primitives_AdjacencyRule
@@ -4455,6 +4783,19 @@ references:
   fullName.vb: SadRogue.Primitives.Radius.Widening
   nameWithType: Radius.Implicit
   nameWithType.vb: Radius.Widening
+- uid: SadRogue.Primitives.Radius.op_Inequality(SadRogue.Primitives.Radius,SadRogue.Primitives.Radius)
+  name: Inequality(Radius, Radius)
+  href: api/SadRogue.Primitives.Radius.html#SadRogue_Primitives_Radius_op_Inequality_SadRogue_Primitives_Radius_SadRogue_Primitives_Radius_
+  commentId: M:SadRogue.Primitives.Radius.op_Inequality(SadRogue.Primitives.Radius,SadRogue.Primitives.Radius)
+  fullName: SadRogue.Primitives.Radius.Inequality(SadRogue.Primitives.Radius, SadRogue.Primitives.Radius)
+  nameWithType: Radius.Inequality(Radius, Radius)
+- uid: SadRogue.Primitives.Radius.op_Inequality*
+  name: Inequality
+  href: api/SadRogue.Primitives.Radius.html#SadRogue_Primitives_Radius_op_Inequality_
+  commentId: Overload:SadRogue.Primitives.Radius.op_Inequality
+  isSpec: "True"
+  fullName: SadRogue.Primitives.Radius.Inequality
+  nameWithType: Radius.Inequality
 - uid: SadRogue.Primitives.Radius.PositionsInRadius(SadRogue.Primitives.Point,System.Int32)
   name: PositionsInRadius(Point, Int32)
   href: api/SadRogue.Primitives.Radius.html#SadRogue_Primitives_Radius_PositionsInRadius_SadRogue_Primitives_Point_System_Int32_
@@ -4480,12 +4821,12 @@ references:
   isSpec: "True"
   fullName: SadRogue.Primitives.Radius.PositionsInRadius
   nameWithType: Radius.PositionsInRadius
-- uid: SadRogue.Primitives.Radius.SQUARE
-  name: SQUARE
-  href: api/SadRogue.Primitives.Radius.html#SadRogue_Primitives_Radius_SQUARE
-  commentId: F:SadRogue.Primitives.Radius.SQUARE
-  fullName: SadRogue.Primitives.Radius.SQUARE
-  nameWithType: Radius.SQUARE
+- uid: SadRogue.Primitives.Radius.Square
+  name: Square
+  href: api/SadRogue.Primitives.Radius.html#SadRogue_Primitives_Radius_Square
+  commentId: F:SadRogue.Primitives.Radius.Square
+  fullName: SadRogue.Primitives.Radius.Square
+  nameWithType: Radius.Square
 - uid: SadRogue.Primitives.Radius.ToRadius(SadRogue.Primitives.Radius.Types)
   name: ToRadius(Radius.Types)
   href: api/SadRogue.Primitives.Radius.html#SadRogue_Primitives_Radius_ToRadius_SadRogue_Primitives_Radius_Types_
@@ -4524,24 +4865,24 @@ references:
   commentId: T:SadRogue.Primitives.Radius.Types
   fullName: SadRogue.Primitives.Radius.Types
   nameWithType: Radius.Types
-- uid: SadRogue.Primitives.Radius.Types.CIRCLE
-  name: CIRCLE
-  href: api/SadRogue.Primitives.Radius.Types.html#SadRogue_Primitives_Radius_Types_CIRCLE
-  commentId: F:SadRogue.Primitives.Radius.Types.CIRCLE
-  fullName: SadRogue.Primitives.Radius.Types.CIRCLE
-  nameWithType: Radius.Types.CIRCLE
-- uid: SadRogue.Primitives.Radius.Types.DIAMOND
-  name: DIAMOND
-  href: api/SadRogue.Primitives.Radius.Types.html#SadRogue_Primitives_Radius_Types_DIAMOND
-  commentId: F:SadRogue.Primitives.Radius.Types.DIAMOND
-  fullName: SadRogue.Primitives.Radius.Types.DIAMOND
-  nameWithType: Radius.Types.DIAMOND
-- uid: SadRogue.Primitives.Radius.Types.SQUARE
-  name: SQUARE
-  href: api/SadRogue.Primitives.Radius.Types.html#SadRogue_Primitives_Radius_Types_SQUARE
-  commentId: F:SadRogue.Primitives.Radius.Types.SQUARE
-  fullName: SadRogue.Primitives.Radius.Types.SQUARE
-  nameWithType: Radius.Types.SQUARE
+- uid: SadRogue.Primitives.Radius.Types.Circle
+  name: Circle
+  href: api/SadRogue.Primitives.Radius.Types.html#SadRogue_Primitives_Radius_Types_Circle
+  commentId: F:SadRogue.Primitives.Radius.Types.Circle
+  fullName: SadRogue.Primitives.Radius.Types.Circle
+  nameWithType: Radius.Types.Circle
+- uid: SadRogue.Primitives.Radius.Types.Diamond
+  name: Diamond
+  href: api/SadRogue.Primitives.Radius.Types.html#SadRogue_Primitives_Radius_Types_Diamond
+  commentId: F:SadRogue.Primitives.Radius.Types.Diamond
+  fullName: SadRogue.Primitives.Radius.Types.Diamond
+  nameWithType: Radius.Types.Diamond
+- uid: SadRogue.Primitives.Radius.Types.Square
+  name: Square
+  href: api/SadRogue.Primitives.Radius.Types.html#SadRogue_Primitives_Radius_Types_Square
+  commentId: F:SadRogue.Primitives.Radius.Types.Square
+  fullName: SadRogue.Primitives.Radius.Types.Square
+  nameWithType: Radius.Types.Square
 - uid: SadRogue.Primitives.RadiusLocationContext
   name: RadiusLocationContext
   href: api/SadRogue.Primitives.RadiusLocationContext.html
@@ -4714,6 +5055,15 @@ references:
   isSpec: "True"
   fullName: SadRogue.Primitives.Rectangle.Contains
   nameWithType: Rectangle.Contains
+- uid: SadRogue.Primitives.Rectangle.Deconstruct(SadRogue.Primitives.Point@,SadRogue.Primitives.Point@)
+  name: Deconstruct(out Point, out Point)
+  href: api/SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_Deconstruct_SadRogue_Primitives_Point__SadRogue_Primitives_Point__
+  commentId: M:SadRogue.Primitives.Rectangle.Deconstruct(SadRogue.Primitives.Point@,SadRogue.Primitives.Point@)
+  name.vb: Deconstruct(ByRef Point, ByRef Point)
+  fullName: SadRogue.Primitives.Rectangle.Deconstruct(out SadRogue.Primitives.Point, out SadRogue.Primitives.Point)
+  fullName.vb: SadRogue.Primitives.Rectangle.Deconstruct(ByRef SadRogue.Primitives.Point, ByRef SadRogue.Primitives.Point)
+  nameWithType: Rectangle.Deconstruct(out Point, out Point)
+  nameWithType.vb: Rectangle.Deconstruct(ByRef Point, ByRef Point)
 - uid: SadRogue.Primitives.Rectangle.Deconstruct(System.Int32@,System.Int32@,System.Int32@,System.Int32@)
   name: Deconstruct(out Int32, out Int32, out Int32, out Int32)
   href: api/SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_Deconstruct_System_Int32__System_Int32__System_Int32__System_Int32__
@@ -4730,12 +5080,12 @@ references:
   isSpec: "True"
   fullName: SadRogue.Primitives.Rectangle.Deconstruct
   nameWithType: Rectangle.Deconstruct
-- uid: SadRogue.Primitives.Rectangle.EMPTY
-  name: EMPTY
-  href: api/SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_EMPTY
-  commentId: F:SadRogue.Primitives.Rectangle.EMPTY
-  fullName: SadRogue.Primitives.Rectangle.EMPTY
-  nameWithType: Rectangle.EMPTY
+- uid: SadRogue.Primitives.Rectangle.Empty
+  name: Empty
+  href: api/SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_Empty
+  commentId: F:SadRogue.Primitives.Rectangle.Empty
+  fullName: SadRogue.Primitives.Rectangle.Empty
+  nameWithType: Rectangle.Empty
 - uid: SadRogue.Primitives.Rectangle.Equals(SadRogue.Primitives.Rectangle)
   name: Equals(Rectangle)
   href: api/SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_Equals_SadRogue_Primitives_Rectangle_
@@ -4748,6 +5098,15 @@ references:
   commentId: M:SadRogue.Primitives.Rectangle.Equals(System.Object)
   fullName: SadRogue.Primitives.Rectangle.Equals(System.Object)
   nameWithType: Rectangle.Equals(Object)
+- uid: SadRogue.Primitives.Rectangle.Equals(System.ValueTuple{SadRogue.Primitives.Point,SadRogue.Primitives.Point})
+  name: Equals((Point minExtent, Point maxExtent))
+  href: api/SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_Equals_System_ValueTuple_SadRogue_Primitives_Point_SadRogue_Primitives_Point__
+  commentId: M:SadRogue.Primitives.Rectangle.Equals(System.ValueTuple{SadRogue.Primitives.Point,SadRogue.Primitives.Point})
+  name.vb: Equals((minExtent As Point, maxExtent As Point))
+  fullName: SadRogue.Primitives.Rectangle.Equals(System.ValueTuple<SadRogue.Primitives.Point, SadRogue.Primitives.Point>)
+  fullName.vb: SadRogue.Primitives.Rectangle.Equals(System.ValueTuple(Of SadRogue.Primitives.Point, SadRogue.Primitives.Point))
+  nameWithType: Rectangle.Equals((Point minExtent, Point maxExtent))
+  nameWithType.vb: Rectangle.Equals((minExtent As Point, maxExtent As Point))
 - uid: SadRogue.Primitives.Rectangle.Equals(System.ValueTuple{System.Int32,System.Int32,System.Int32,System.Int32})
   name: Equals((Int32 x, Int32 y, Int32 width, Int32 height))
   href: api/SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_Equals_System_ValueTuple_System_Int32_System_Int32_System_Int32_System_Int32__
@@ -5010,6 +5369,15 @@ references:
   commentId: M:SadRogue.Primitives.Rectangle.op_Equality(SadRogue.Primitives.Rectangle,SadRogue.Primitives.Rectangle)
   fullName: SadRogue.Primitives.Rectangle.Equality(SadRogue.Primitives.Rectangle, SadRogue.Primitives.Rectangle)
   nameWithType: Rectangle.Equality(Rectangle, Rectangle)
+- uid: SadRogue.Primitives.Rectangle.op_Equality(SadRogue.Primitives.Rectangle,System.ValueTuple{SadRogue.Primitives.Point,SadRogue.Primitives.Point})
+  name: Equality(Rectangle, (Point minExtent, Point maxExtent))
+  href: api/SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_op_Equality_SadRogue_Primitives_Rectangle_System_ValueTuple_SadRogue_Primitives_Point_SadRogue_Primitives_Point__
+  commentId: M:SadRogue.Primitives.Rectangle.op_Equality(SadRogue.Primitives.Rectangle,System.ValueTuple{SadRogue.Primitives.Point,SadRogue.Primitives.Point})
+  name.vb: Equality(Rectangle, (minExtent As Point, maxExtent As Point))
+  fullName: SadRogue.Primitives.Rectangle.Equality(SadRogue.Primitives.Rectangle, System.ValueTuple<SadRogue.Primitives.Point, SadRogue.Primitives.Point>)
+  fullName.vb: SadRogue.Primitives.Rectangle.Equality(SadRogue.Primitives.Rectangle, System.ValueTuple(Of SadRogue.Primitives.Point, SadRogue.Primitives.Point))
+  nameWithType: Rectangle.Equality(Rectangle, (Point minExtent, Point maxExtent))
+  nameWithType.vb: Rectangle.Equality(Rectangle, (minExtent As Point, maxExtent As Point))
 - uid: SadRogue.Primitives.Rectangle.op_Equality(SadRogue.Primitives.Rectangle,System.ValueTuple{System.Int32,System.Int32,System.Int32,System.Int32})
   name: Equality(Rectangle, (Int32 x, Int32 y, Int32 width, Int32 height))
   href: api/SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_op_Equality_SadRogue_Primitives_Rectangle_System_ValueTuple_System_Int32_System_Int32_System_Int32_System_Int32__
@@ -5019,6 +5387,15 @@ references:
   fullName.vb: SadRogue.Primitives.Rectangle.Equality(SadRogue.Primitives.Rectangle, System.ValueTuple(Of System.Int32, System.Int32, System.Int32, System.Int32))
   nameWithType: Rectangle.Equality(Rectangle, (Int32 x, Int32 y, Int32 width, Int32 height))
   nameWithType.vb: Rectangle.Equality(Rectangle, (x As Int32, y As Int32, width As Int32, height As Int32))
+- uid: SadRogue.Primitives.Rectangle.op_Equality(System.ValueTuple{SadRogue.Primitives.Point,SadRogue.Primitives.Point},SadRogue.Primitives.Rectangle)
+  name: Equality((Point minExtent, Point maxExtent), Rectangle)
+  href: api/SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_op_Equality_System_ValueTuple_SadRogue_Primitives_Point_SadRogue_Primitives_Point__SadRogue_Primitives_Rectangle_
+  commentId: M:SadRogue.Primitives.Rectangle.op_Equality(System.ValueTuple{SadRogue.Primitives.Point,SadRogue.Primitives.Point},SadRogue.Primitives.Rectangle)
+  name.vb: Equality((minExtent As Point, maxExtent As Point), Rectangle)
+  fullName: SadRogue.Primitives.Rectangle.Equality(System.ValueTuple<SadRogue.Primitives.Point, SadRogue.Primitives.Point>, SadRogue.Primitives.Rectangle)
+  fullName.vb: SadRogue.Primitives.Rectangle.Equality(System.ValueTuple(Of SadRogue.Primitives.Point, SadRogue.Primitives.Point), SadRogue.Primitives.Rectangle)
+  nameWithType: Rectangle.Equality((Point minExtent, Point maxExtent), Rectangle)
+  nameWithType.vb: Rectangle.Equality((minExtent As Point, maxExtent As Point), Rectangle)
 - uid: SadRogue.Primitives.Rectangle.op_Equality(System.ValueTuple{System.Int32,System.Int32,System.Int32,System.Int32},SadRogue.Primitives.Rectangle)
   name: Equality((Int32 x, Int32 y, Int32 width, Int32 height), Rectangle)
   href: api/SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_op_Equality_System_ValueTuple_System_Int32_System_Int32_System_Int32_System_Int32__SadRogue_Primitives_Rectangle_
@@ -5035,6 +5412,15 @@ references:
   isSpec: "True"
   fullName: SadRogue.Primitives.Rectangle.Equality
   nameWithType: Rectangle.Equality
+- uid: SadRogue.Primitives.Rectangle.op_Implicit(SadRogue.Primitives.Rectangle)~System.ValueTuple{SadRogue.Primitives.Point,SadRogue.Primitives.Point}
+  name: Implicit(Rectangle to (Point minExtent, Point maxExtent))
+  href: api/SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_op_Implicit_SadRogue_Primitives_Rectangle__System_ValueTuple_SadRogue_Primitives_Point_SadRogue_Primitives_Point_
+  commentId: M:SadRogue.Primitives.Rectangle.op_Implicit(SadRogue.Primitives.Rectangle)~System.ValueTuple{SadRogue.Primitives.Point,SadRogue.Primitives.Point}
+  name.vb: Widening(Rectangle to (minExtent As Point, maxExtent As Point))
+  fullName: SadRogue.Primitives.Rectangle.Implicit(SadRogue.Primitives.Rectangle to System.ValueTuple<SadRogue.Primitives.Point, SadRogue.Primitives.Point>)
+  fullName.vb: SadRogue.Primitives.Rectangle.Widening(SadRogue.Primitives.Rectangle to System.ValueTuple(Of SadRogue.Primitives.Point, SadRogue.Primitives.Point))
+  nameWithType: Rectangle.Implicit(Rectangle to (Point minExtent, Point maxExtent))
+  nameWithType.vb: Rectangle.Widening(Rectangle to (minExtent As Point, maxExtent As Point))
 - uid: SadRogue.Primitives.Rectangle.op_Implicit(SadRogue.Primitives.Rectangle)~System.ValueTuple{System.Int32,System.Int32,System.Int32,System.Int32}
   name: Implicit(Rectangle to (Int32 x, Int32 y, Int32 width, Int32 height))
   href: api/SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_op_Implicit_SadRogue_Primitives_Rectangle__System_ValueTuple_System_Int32_System_Int32_System_Int32_System_Int32_
@@ -5044,6 +5430,15 @@ references:
   fullName.vb: SadRogue.Primitives.Rectangle.Widening(SadRogue.Primitives.Rectangle to System.ValueTuple(Of System.Int32, System.Int32, System.Int32, System.Int32))
   nameWithType: Rectangle.Implicit(Rectangle to (Int32 x, Int32 y, Int32 width, Int32 height))
   nameWithType.vb: Rectangle.Widening(Rectangle to (x As Int32, y As Int32, width As Int32, height As Int32))
+- uid: SadRogue.Primitives.Rectangle.op_Implicit(System.ValueTuple{SadRogue.Primitives.Point,SadRogue.Primitives.Point})~SadRogue.Primitives.Rectangle
+  name: Implicit((Point minExtent, Point maxExtent) to Rectangle)
+  href: api/SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_op_Implicit_System_ValueTuple_SadRogue_Primitives_Point_SadRogue_Primitives_Point___SadRogue_Primitives_Rectangle
+  commentId: M:SadRogue.Primitives.Rectangle.op_Implicit(System.ValueTuple{SadRogue.Primitives.Point,SadRogue.Primitives.Point})~SadRogue.Primitives.Rectangle
+  name.vb: Widening((minExtent As Point, maxExtent As Point) to Rectangle)
+  fullName: SadRogue.Primitives.Rectangle.Implicit(System.ValueTuple<SadRogue.Primitives.Point, SadRogue.Primitives.Point> to SadRogue.Primitives.Rectangle)
+  fullName.vb: SadRogue.Primitives.Rectangle.Widening(System.ValueTuple(Of SadRogue.Primitives.Point, SadRogue.Primitives.Point) to SadRogue.Primitives.Rectangle)
+  nameWithType: Rectangle.Implicit((Point minExtent, Point maxExtent) to Rectangle)
+  nameWithType.vb: Rectangle.Widening((minExtent As Point, maxExtent As Point) to Rectangle)
 - uid: SadRogue.Primitives.Rectangle.op_Implicit(System.ValueTuple{System.Int32,System.Int32,System.Int32,System.Int32})~SadRogue.Primitives.Rectangle
   name: Implicit((Int32 x, Int32 y, Int32 width, Int32 height) to Rectangle)
   href: api/SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_op_Implicit_System_ValueTuple_System_Int32_System_Int32_System_Int32_System_Int32___SadRogue_Primitives_Rectangle
@@ -5069,6 +5464,15 @@ references:
   commentId: M:SadRogue.Primitives.Rectangle.op_Inequality(SadRogue.Primitives.Rectangle,SadRogue.Primitives.Rectangle)
   fullName: SadRogue.Primitives.Rectangle.Inequality(SadRogue.Primitives.Rectangle, SadRogue.Primitives.Rectangle)
   nameWithType: Rectangle.Inequality(Rectangle, Rectangle)
+- uid: SadRogue.Primitives.Rectangle.op_Inequality(SadRogue.Primitives.Rectangle,System.ValueTuple{SadRogue.Primitives.Point,SadRogue.Primitives.Point})
+  name: Inequality(Rectangle, (Point minExtent, Point maxExtent))
+  href: api/SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_op_Inequality_SadRogue_Primitives_Rectangle_System_ValueTuple_SadRogue_Primitives_Point_SadRogue_Primitives_Point__
+  commentId: M:SadRogue.Primitives.Rectangle.op_Inequality(SadRogue.Primitives.Rectangle,System.ValueTuple{SadRogue.Primitives.Point,SadRogue.Primitives.Point})
+  name.vb: Inequality(Rectangle, (minExtent As Point, maxExtent As Point))
+  fullName: SadRogue.Primitives.Rectangle.Inequality(SadRogue.Primitives.Rectangle, System.ValueTuple<SadRogue.Primitives.Point, SadRogue.Primitives.Point>)
+  fullName.vb: SadRogue.Primitives.Rectangle.Inequality(SadRogue.Primitives.Rectangle, System.ValueTuple(Of SadRogue.Primitives.Point, SadRogue.Primitives.Point))
+  nameWithType: Rectangle.Inequality(Rectangle, (Point minExtent, Point maxExtent))
+  nameWithType.vb: Rectangle.Inequality(Rectangle, (minExtent As Point, maxExtent As Point))
 - uid: SadRogue.Primitives.Rectangle.op_Inequality(SadRogue.Primitives.Rectangle,System.ValueTuple{System.Int32,System.Int32,System.Int32,System.Int32})
   name: Inequality(Rectangle, (Int32 x, Int32 y, Int32 width, Int32 height))
   href: api/SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_op_Inequality_SadRogue_Primitives_Rectangle_System_ValueTuple_System_Int32_System_Int32_System_Int32_System_Int32__
@@ -5078,6 +5482,15 @@ references:
   fullName.vb: SadRogue.Primitives.Rectangle.Inequality(SadRogue.Primitives.Rectangle, System.ValueTuple(Of System.Int32, System.Int32, System.Int32, System.Int32))
   nameWithType: Rectangle.Inequality(Rectangle, (Int32 x, Int32 y, Int32 width, Int32 height))
   nameWithType.vb: Rectangle.Inequality(Rectangle, (x As Int32, y As Int32, width As Int32, height As Int32))
+- uid: SadRogue.Primitives.Rectangle.op_Inequality(System.ValueTuple{SadRogue.Primitives.Point,SadRogue.Primitives.Point},SadRogue.Primitives.Rectangle)
+  name: Inequality((Point minExtent, Point maxExtent), Rectangle)
+  href: api/SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_op_Inequality_System_ValueTuple_SadRogue_Primitives_Point_SadRogue_Primitives_Point__SadRogue_Primitives_Rectangle_
+  commentId: M:SadRogue.Primitives.Rectangle.op_Inequality(System.ValueTuple{SadRogue.Primitives.Point,SadRogue.Primitives.Point},SadRogue.Primitives.Rectangle)
+  name.vb: Inequality((minExtent As Point, maxExtent As Point), Rectangle)
+  fullName: SadRogue.Primitives.Rectangle.Inequality(System.ValueTuple<SadRogue.Primitives.Point, SadRogue.Primitives.Point>, SadRogue.Primitives.Rectangle)
+  fullName.vb: SadRogue.Primitives.Rectangle.Inequality(System.ValueTuple(Of SadRogue.Primitives.Point, SadRogue.Primitives.Point), SadRogue.Primitives.Rectangle)
+  nameWithType: Rectangle.Inequality((Point minExtent, Point maxExtent), Rectangle)
+  nameWithType.vb: Rectangle.Inequality((minExtent As Point, maxExtent As Point), Rectangle)
 - uid: SadRogue.Primitives.Rectangle.op_Inequality(System.ValueTuple{System.Int32,System.Int32,System.Int32,System.Int32},SadRogue.Primitives.Rectangle)
   name: Inequality((Int32 x, Int32 y, Int32 width, Int32 height), Rectangle)
   href: api/SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_op_Inequality_System_ValueTuple_System_Int32_System_Int32_System_Int32_System_Int32__SadRogue_Primitives_Rectangle_

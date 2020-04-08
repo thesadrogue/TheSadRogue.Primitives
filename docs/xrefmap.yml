@@ -5766,6 +5766,12 @@ references:
   isSpec: "True"
   fullName: SadRogue.Primitives.Rectangle.WithPosition
   nameWithType: Rectangle.WithPosition
+- uid: SadRogue.Primitives.Rectangle.WithPositionAndSize(SadRogue.Primitives.Point,SadRogue.Primitives.Point)
+  name: WithPositionAndSize(Point, Point)
+  href: api/SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_WithPositionAndSize_SadRogue_Primitives_Point_SadRogue_Primitives_Point_
+  commentId: M:SadRogue.Primitives.Rectangle.WithPositionAndSize(SadRogue.Primitives.Point,SadRogue.Primitives.Point)
+  fullName: SadRogue.Primitives.Rectangle.WithPositionAndSize(SadRogue.Primitives.Point, SadRogue.Primitives.Point)
+  nameWithType: Rectangle.WithPositionAndSize(Point, Point)
 - uid: SadRogue.Primitives.Rectangle.WithPositionAndSize(SadRogue.Primitives.Point,System.Int32,System.Int32)
   name: WithPositionAndSize(Point, Int32, Int32)
   href: api/SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_WithPositionAndSize_SadRogue_Primitives_Point_System_Int32_System_Int32_
@@ -5779,19 +5785,6 @@ references:
   isSpec: "True"
   fullName: SadRogue.Primitives.Rectangle.WithPositionAndSize
   nameWithType: Rectangle.WithPositionAndSize
-- uid: SadRogue.Primitives.Rectangle.WithPostionAndSize(SadRogue.Primitives.Point,SadRogue.Primitives.Point)
-  name: WithPostionAndSize(Point, Point)
-  href: api/SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_WithPostionAndSize_SadRogue_Primitives_Point_SadRogue_Primitives_Point_
-  commentId: M:SadRogue.Primitives.Rectangle.WithPostionAndSize(SadRogue.Primitives.Point,SadRogue.Primitives.Point)
-  fullName: SadRogue.Primitives.Rectangle.WithPostionAndSize(SadRogue.Primitives.Point, SadRogue.Primitives.Point)
-  nameWithType: Rectangle.WithPostionAndSize(Point, Point)
-- uid: SadRogue.Primitives.Rectangle.WithPostionAndSize*
-  name: WithPostionAndSize
-  href: api/SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_WithPostionAndSize_
-  commentId: Overload:SadRogue.Primitives.Rectangle.WithPostionAndSize
-  isSpec: "True"
-  fullName: SadRogue.Primitives.Rectangle.WithPostionAndSize
-  nameWithType: Rectangle.WithPostionAndSize
 - uid: SadRogue.Primitives.Rectangle.WithRadius(SadRogue.Primitives.Point,System.Int32,System.Int32)
   name: WithRadius(Point, Int32, Int32)
   href: api/SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_WithRadius_SadRogue_Primitives_Point_System_Int32_System_Int32_

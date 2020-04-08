@@ -18,11 +18,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheSadRogue.Primitives.Unit
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "TheSadRogue.Primitives.UnitTests.Shared", "TheSadRogue.Primitives.UnitTests.Shared\TheSadRogue.Primitives.UnitTests.Shared.shproj", "{8C95FBF7-C9BF-44FD-8D9F-EA9836027EBD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheSadRogue.Primitives.SFML", "TheSadRogue.Primitives.SFML\TheSadRogue.Primitives.SFML.csproj", "{F44C9E24-0CFD-49F1-A704-25E5AEDA9D55}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheSadRogue.Primitives.SFML", "TheSadRogue.Primitives.SFML\TheSadRogue.Primitives.SFML.csproj", "{F44C9E24-0CFD-49F1-A704-25E5AEDA9D55}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		TheSadRogue.Primitives.UnitTests.Shared\TheSadRogue.Primitives.UnitTests.Shared.projitems*{1921edde-6ff1-42c9-ac69-a09074b1cfaa}*SharedItemsImports = 5
 		TheSadRogue.Primitives.UnitTests.Shared\TheSadRogue.Primitives.UnitTests.Shared.projitems*{8c95fbf7-c9bf-44fd-8d9f-ea9836027ebd}*SharedItemsImports = 13
+		TheSadRogue.Primitives.UnitTests.Shared\TheSadRogue.Primitives.UnitTests.Shared.projitems*{e2f9db89-66ed-479f-813a-472c9f1f0d31}*SharedItemsImports = 5
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

@@ -65,12 +65,14 @@ namespace SadRogue.Primitives
         /// <summary>
         /// Calculates the area of the rectangle.
         /// </summary>
+        [field:NonSerialized]
         public int Area => Width * Height;
 
         /// <summary>
         /// The center coordinate of the rectangle, rounded up if the exact center is between two
         /// positions. The center of a rectangle with width/height 1 is its <see cref="Position"/>.
         /// </summary>
+        [field:NonSerialized]
         public Point Center => new Point(X + (Width / 2), Y + (Height / 2));
 
         /// <summary>
@@ -81,21 +83,25 @@ namespace SadRogue.Primitives
         /// <summary>
         /// Whether or not this rectangle is empty (has width and height of 0).
         /// </summary>
+        [field: NonSerialized]
         public bool IsEmpty => (Width == 0 && Height == 0);
 
         /// <summary>
         /// The maximum X and Y coordinates that are included in the rectangle.
         /// </summary>
+        [field: NonSerialized]
         public Point MaxExtent => new Point(MaxExtentX, MaxExtentY);
 
         /// <summary>
         /// The maximum X-coordinate that is included in the rectangle.
         /// </summary>
+        [field: NonSerialized]
         public int MaxExtentX => X + Width - 1;
 
         /// <summary>
         /// The maximum Y-coordinate that is included in the rectangle.
         /// </summary>
+        [field: NonSerialized]
         public int MaxExtentY => Y + Height - 1;
 
         /// <summary>
@@ -103,6 +109,7 @@ namespace SadRogue.Primitives
         /// Identical to <see cref="Position"/> because we define the rectangle's position by its
         /// minimum extent.
         /// </summary>
+        [field: NonSerialized]
         public Point MinExtent => new Point(X, Y);
 
         /// <summary>
@@ -110,6 +117,7 @@ namespace SadRogue.Primitives
         /// it). Identical to the <see cref="X"/> value because we define the rectangle's position
         /// by its minimum extent.
         /// </summary>
+        [field: NonSerialized]
         public int MinExtentX => X;
 
         /// <summary>
@@ -117,16 +125,19 @@ namespace SadRogue.Primitives
         /// it). Identical to the <see cref="Y"/> value because we define the rectangle's position
         /// by its minimum extent.
         /// </summary>
+        [field: NonSerialized]
         public int MinExtentY => Y;
 
         /// <summary>
         /// Coord representing the position (min x- and y-values) of the rectangle.
         /// </summary>
+        [field: NonSerialized]
         public Point Position => new Point(X, Y);
 
         /// <summary>
         /// Returns a coordinate (Width, Height), which represents the size of the rectangle.
         /// </summary>
+        [field: NonSerialized]
         public Point Size => new Point(Width, Height);
 
         /// <summary>

@@ -9,7 +9,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.AdjacencyRule.Types.html",
-          "hash": "969i+l/aO13Nd/cKwsohUA=="
+          "hash": "10OOMrFE39ds2TPpxHCpug=="
         }
       },
       "is_incremental": false,
@@ -21,7 +21,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.AdjacencyRule.html",
-          "hash": "m3NESY6/jWndEAk5zZsosg=="
+          "hash": "3jVesqNfyNSGLYta2Hm0Rw=="
         }
       },
       "is_incremental": false,
@@ -33,7 +33,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.Area.html",
-          "hash": "5Un9CKhb/PDJ+0M/vlA3qw=="
+          "hash": "u4QiDdaRHi/uaesncEgNZA=="
         }
       },
       "is_incremental": false,
@@ -45,7 +45,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.BoundedRectangle.html",
-          "hash": "wFMWeB/GHO4JzazjIkAbPQ=="
+          "hash": "nYflyniJN+mbWDLKPkqZZg=="
         }
       },
       "is_incremental": false,
@@ -57,7 +57,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.Color.html",
-          "hash": "7d0sHNIXg4W5LN8vSohhsQ=="
+          "hash": "+CZdWrFgprpSy1pIkAtTRg=="
         }
       },
       "is_incremental": false,
@@ -69,7 +69,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.Direction.Types.html",
-          "hash": "yrDrJA2ONDnN3th3RN600g=="
+          "hash": "5E3z4iWQiEk25Pda90ue9Q=="
         }
       },
       "is_incremental": false,
@@ -81,7 +81,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.Direction.html",
-          "hash": "Xy9tS57QuDZbVh5YqqG2kA=="
+          "hash": "U2TnlMBWZiUqMEuInWIaXA=="
         }
       },
       "is_incremental": false,
@@ -93,7 +93,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.Distance.Types.html",
-          "hash": "yeDST9hcw052qbtIkVH9WA=="
+          "hash": "4qMot1dAqQem8Xo6pVPbbw=="
         }
       },
       "is_incremental": false,
@@ -105,7 +105,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.Distance.html",
-          "hash": "/yugDlhiYZB6WF6vfz18ag=="
+          "hash": "+wQ5BHGNODJBJU8dLMSWMA=="
         }
       },
       "is_incremental": false,
@@ -117,7 +117,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.Gradient.html",
-          "hash": "QFvzrw+aDls7QAhEUP6LUg=="
+          "hash": "B5Nb7bOJQh5uoR4LyDuFfw=="
         }
       },
       "is_incremental": false,
@@ -129,7 +129,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.GradientStop.html",
-          "hash": "z32PWcPAcwEA4+VzkhNTzw=="
+          "hash": "tCAU5LeQgN+esbNZVdytQA=="
         }
       },
       "is_incremental": false,
@@ -141,7 +141,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.IReadOnlyArea.html",
-          "hash": "eKCrrQDTiDvXXbSGQdWI/A=="
+          "hash": "rWLcZPRvBdJSDSZEicQBhQ=="
         }
       },
       "is_incremental": false,
@@ -153,10 +153,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.MathHelpers.html",
-          "hash": "ikHc8BCk4HnnfqimN9cyVw=="
+          "hash": "ADYuCI9xRXOY/+GVyOsyZw=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -165,7 +165,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.Palette.html",
-          "hash": "+FbhVFM/QJE/g/fMrIBUTA=="
+          "hash": "JSZ5/abU8B8z9BEKRk3JtA=="
         }
       },
       "is_incremental": false,
@@ -177,7 +177,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.Point.html",
-          "hash": "fcooPzCsu8MNjRo0zijwdw=="
+          "hash": "64R23ETrSzi3UsrWjwi8aA=="
         }
       },
       "is_incremental": false,
@@ -189,7 +189,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.PointExtensions.html",
-          "hash": "JxI6i6Fkvu6LyaqzyDvM6Q=="
+          "hash": "k1IddKdkULl9jfcWZOOJ0Q=="
         }
       },
       "is_incremental": false,
@@ -201,7 +201,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.Radius.Types.html",
-          "hash": "jNsMfGTpBKv10VrSiKvgUg=="
+          "hash": "aIlJ6Rufyz/AtSEzKkmsyQ=="
         }
       },
       "is_incremental": false,
@@ -213,7 +213,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.Radius.html",
-          "hash": "4YSqzGPmwLAYzaqa0nzYEA=="
+          "hash": "tIQ1u2VFPDecMLu4OMQjrg=="
         }
       },
       "is_incremental": false,
@@ -225,7 +225,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.RadiusLocationContext.html",
-          "hash": "kCfru6nI2V5otkPV1LfUbg=="
+          "hash": "3W+R5hODMljf5XyPhWixiw=="
         }
       },
       "is_incremental": false,
@@ -237,7 +237,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.Rectangle.html",
-          "hash": "v7KVylij4SnC9x96C4GwXw=="
+          "hash": "citcDedbDIbbNhcBVCgemA=="
         }
       },
       "is_incremental": false,
@@ -337,12 +337,11 @@
         "skipped_file_count": 0
       },
       "processors": {
-        "TocDocumentProcessor": {
-          "can_incremental": false,
-          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": true,
           "incrementalPhase": "build",
-          "total_file_count": 0,
-          "skipped_file_count": 0
+          "total_file_count": 21,
+          "skipped_file_count": 9
         },
         "ConceptualDocumentProcessor": {
           "can_incremental": true,
@@ -350,10 +349,11 @@
           "total_file_count": 3,
           "skipped_file_count": 3
         },
-        "ManagedReferenceDocumentProcessor": {
-          "can_incremental": true,
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build",
-          "total_file_count": 21,
+          "total_file_count": 0,
           "skipped_file_count": 0
         }
       }

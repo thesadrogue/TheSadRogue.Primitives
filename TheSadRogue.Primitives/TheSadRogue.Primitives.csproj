@@ -4,7 +4,7 @@
 	<!-- Basic package info -->
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>SadRogue.Primitives</RootNamespace>
-	<Version>1.0.0-alpha1</Version>
+	<Version>1.0.0-alpha2</Version>
 	<Version Condition="'$(Configuration)'=='Debug'">$(Version)-debug</Version>
 	<Authors>Chris3606;Thraka</Authors>
 	<Company>TheSadRogue</Company>
@@ -13,7 +13,7 @@
 	
 	<!-- More nuget package settings-->
 	<PackageId>TheSadRogue.Primitives</PackageId>
-	<PackageReleaseNotes>Initial alpha release.</PackageReleaseNotes>
+	<PackageReleaseNotes>Fixed typo in Rectangle.WithSizeAndPosition function name.</PackageReleaseNotes>
 	<RepositoryUrl>https://https://github.com/thesadrogue/TheSadRogue.Primitives</RepositoryUrl>
 	<RepositoryType>git</RepositoryType>
 	<PublishRepositoryUrl>true</PublishRepositoryUrl>

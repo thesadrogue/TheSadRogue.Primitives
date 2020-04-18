@@ -185,7 +185,7 @@ namespace SadRogue.Primitives
         /// <param name="position">Minimum (x, y) values that are inside the resulting rectangle.</param>
         /// <param name="size">The size of the rectangle, in form (width, height).</param>
         /// <returns>A new rectangle at the given position with the given size.</returns>
-        public static Rectangle WithPostionAndSize(Point position, Point size) => new Rectangle(position.X, position.Y, size.X, size.Y);
+        public static Rectangle WithPositionAndSize(Point position, Point size) => new Rectangle(position.X, position.Y, size.X, size.Y);
 
         /// <summary>
         /// Gets an <see cref="Primitives.Area"/> representing every location in <paramref name="rect1"/> that

@@ -4446,6 +4446,12 @@ references:
   isSpec: "True"
   fullName: SadRogue.Primitives.Point.Multiply
   nameWithType: Point.Multiply
+- uid: SadRogue.Primitives.Point.op_Subtraction(SadRogue.Primitives.Point,SadRogue.Primitives.Direction)
+  name: Subtraction(Point, Direction)
+  href: api/SadRogue.Primitives.Point.html#SadRogue_Primitives_Point_op_Subtraction_SadRogue_Primitives_Point_SadRogue_Primitives_Direction_
+  commentId: M:SadRogue.Primitives.Point.op_Subtraction(SadRogue.Primitives.Point,SadRogue.Primitives.Direction)
+  fullName: SadRogue.Primitives.Point.Subtraction(SadRogue.Primitives.Point, SadRogue.Primitives.Direction)
+  nameWithType: Point.Subtraction(Point, Direction)
 - uid: SadRogue.Primitives.Point.op_Subtraction(SadRogue.Primitives.Point,SadRogue.Primitives.Point)
   name: Subtraction(Point, Point)
   href: api/SadRogue.Primitives.Point.html#SadRogue_Primitives_Point_op_Subtraction_SadRogue_Primitives_Point_SadRogue_Primitives_Point_
@@ -4984,6 +4990,19 @@ references:
   isSpec: "True"
   fullName: SadRogue.Primitives.Rectangle.Area
   nameWithType: Rectangle.Area
+- uid: SadRogue.Primitives.Rectangle.BottomEdgePositions
+  name: BottomEdgePositions()
+  href: api/SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_BottomEdgePositions
+  commentId: M:SadRogue.Primitives.Rectangle.BottomEdgePositions
+  fullName: SadRogue.Primitives.Rectangle.BottomEdgePositions()
+  nameWithType: Rectangle.BottomEdgePositions()
+- uid: SadRogue.Primitives.Rectangle.BottomEdgePositions*
+  name: BottomEdgePositions
+  href: api/SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_BottomEdgePositions_
+  commentId: Overload:SadRogue.Primitives.Rectangle.BottomEdgePositions
+  isSpec: "True"
+  fullName: SadRogue.Primitives.Rectangle.BottomEdgePositions
+  nameWithType: Rectangle.BottomEdgePositions
 - uid: SadRogue.Primitives.Rectangle.Center
   name: Center
   href: api/SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_Center
@@ -5233,6 +5252,71 @@ references:
   isSpec: "True"
   fullName: SadRogue.Primitives.Rectangle.IsEmpty
   nameWithType: Rectangle.IsEmpty
+- uid: SadRogue.Primitives.Rectangle.IsOnBottomEdge(SadRogue.Primitives.Point)
+  name: IsOnBottomEdge(Point)
+  href: api/SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_IsOnBottomEdge_SadRogue_Primitives_Point_
+  commentId: M:SadRogue.Primitives.Rectangle.IsOnBottomEdge(SadRogue.Primitives.Point)
+  fullName: SadRogue.Primitives.Rectangle.IsOnBottomEdge(SadRogue.Primitives.Point)
+  nameWithType: Rectangle.IsOnBottomEdge(Point)
+- uid: SadRogue.Primitives.Rectangle.IsOnBottomEdge*
+  name: IsOnBottomEdge
+  href: api/SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_IsOnBottomEdge_
+  commentId: Overload:SadRogue.Primitives.Rectangle.IsOnBottomEdge
+  isSpec: "True"
+  fullName: SadRogue.Primitives.Rectangle.IsOnBottomEdge
+  nameWithType: Rectangle.IsOnBottomEdge
+- uid: SadRogue.Primitives.Rectangle.IsOnLeftEdge(SadRogue.Primitives.Point)
+  name: IsOnLeftEdge(Point)
+  href: api/SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_IsOnLeftEdge_SadRogue_Primitives_Point_
+  commentId: M:SadRogue.Primitives.Rectangle.IsOnLeftEdge(SadRogue.Primitives.Point)
+  fullName: SadRogue.Primitives.Rectangle.IsOnLeftEdge(SadRogue.Primitives.Point)
+  nameWithType: Rectangle.IsOnLeftEdge(Point)
+- uid: SadRogue.Primitives.Rectangle.IsOnLeftEdge*
+  name: IsOnLeftEdge
+  href: api/SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_IsOnLeftEdge_
+  commentId: Overload:SadRogue.Primitives.Rectangle.IsOnLeftEdge
+  isSpec: "True"
+  fullName: SadRogue.Primitives.Rectangle.IsOnLeftEdge
+  nameWithType: Rectangle.IsOnLeftEdge
+- uid: SadRogue.Primitives.Rectangle.IsOnRightEdge(SadRogue.Primitives.Point)
+  name: IsOnRightEdge(Point)
+  href: api/SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_IsOnRightEdge_SadRogue_Primitives_Point_
+  commentId: M:SadRogue.Primitives.Rectangle.IsOnRightEdge(SadRogue.Primitives.Point)
+  fullName: SadRogue.Primitives.Rectangle.IsOnRightEdge(SadRogue.Primitives.Point)
+  nameWithType: Rectangle.IsOnRightEdge(Point)
+- uid: SadRogue.Primitives.Rectangle.IsOnRightEdge*
+  name: IsOnRightEdge
+  href: api/SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_IsOnRightEdge_
+  commentId: Overload:SadRogue.Primitives.Rectangle.IsOnRightEdge
+  isSpec: "True"
+  fullName: SadRogue.Primitives.Rectangle.IsOnRightEdge
+  nameWithType: Rectangle.IsOnRightEdge
+- uid: SadRogue.Primitives.Rectangle.IsOnTopEdge(SadRogue.Primitives.Point)
+  name: IsOnTopEdge(Point)
+  href: api/SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_IsOnTopEdge_SadRogue_Primitives_Point_
+  commentId: M:SadRogue.Primitives.Rectangle.IsOnTopEdge(SadRogue.Primitives.Point)
+  fullName: SadRogue.Primitives.Rectangle.IsOnTopEdge(SadRogue.Primitives.Point)
+  nameWithType: Rectangle.IsOnTopEdge(Point)
+- uid: SadRogue.Primitives.Rectangle.IsOnTopEdge*
+  name: IsOnTopEdge
+  href: api/SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_IsOnTopEdge_
+  commentId: Overload:SadRogue.Primitives.Rectangle.IsOnTopEdge
+  isSpec: "True"
+  fullName: SadRogue.Primitives.Rectangle.IsOnTopEdge
+  nameWithType: Rectangle.IsOnTopEdge
+- uid: SadRogue.Primitives.Rectangle.LeftEdgePositions
+  name: LeftEdgePositions()
+  href: api/SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_LeftEdgePositions
+  commentId: M:SadRogue.Primitives.Rectangle.LeftEdgePositions
+  fullName: SadRogue.Primitives.Rectangle.LeftEdgePositions()
+  nameWithType: Rectangle.LeftEdgePositions()
+- uid: SadRogue.Primitives.Rectangle.LeftEdgePositions*
+  name: LeftEdgePositions
+  href: api/SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_LeftEdgePositions_
+  commentId: Overload:SadRogue.Primitives.Rectangle.LeftEdgePositions
+  isSpec: "True"
+  fullName: SadRogue.Primitives.Rectangle.LeftEdgePositions
+  nameWithType: Rectangle.LeftEdgePositions
 - uid: SadRogue.Primitives.Rectangle.MaxExtent
   name: MaxExtent
   href: api/SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_MaxExtent
@@ -5559,6 +5643,19 @@ references:
   isSpec: "True"
   fullName: SadRogue.Primitives.Rectangle.PositionsOnSide
   nameWithType: Rectangle.PositionsOnSide
+- uid: SadRogue.Primitives.Rectangle.RightEdgePositions
+  name: RightEdgePositions()
+  href: api/SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_RightEdgePositions
+  commentId: M:SadRogue.Primitives.Rectangle.RightEdgePositions
+  fullName: SadRogue.Primitives.Rectangle.RightEdgePositions()
+  nameWithType: Rectangle.RightEdgePositions()
+- uid: SadRogue.Primitives.Rectangle.RightEdgePositions*
+  name: RightEdgePositions
+  href: api/SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_RightEdgePositions_
+  commentId: Overload:SadRogue.Primitives.Rectangle.RightEdgePositions
+  isSpec: "True"
+  fullName: SadRogue.Primitives.Rectangle.RightEdgePositions
+  nameWithType: Rectangle.RightEdgePositions
 - uid: SadRogue.Primitives.Rectangle.Size
   name: Size
   href: api/SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_Size
@@ -5572,6 +5669,19 @@ references:
   isSpec: "True"
   fullName: SadRogue.Primitives.Rectangle.Size
   nameWithType: Rectangle.Size
+- uid: SadRogue.Primitives.Rectangle.TopEdgePositions
+  name: TopEdgePositions()
+  href: api/SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_TopEdgePositions
+  commentId: M:SadRogue.Primitives.Rectangle.TopEdgePositions
+  fullName: SadRogue.Primitives.Rectangle.TopEdgePositions()
+  nameWithType: Rectangle.TopEdgePositions()
+- uid: SadRogue.Primitives.Rectangle.TopEdgePositions*
+  name: TopEdgePositions
+  href: api/SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_TopEdgePositions_
+  commentId: Overload:SadRogue.Primitives.Rectangle.TopEdgePositions
+  isSpec: "True"
+  fullName: SadRogue.Primitives.Rectangle.TopEdgePositions
+  nameWithType: Rectangle.TopEdgePositions
 - uid: SadRogue.Primitives.Rectangle.ToString
   name: ToString()
   href: api/SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_ToString

@@ -210,6 +210,15 @@ namespace SadRogue.Primitives.UnitTests
         }
 
         [Theory]
+        [MemberDataTuple(nameof(CoordDirPairs))]
+        public void SubFromPoint(Point start, Direction dir)
+        {
+            Point res = start - dir;
+            Assert.Equal(start.X - dir.DeltaX, res.X);
+            Assert.Equal(start.Y - dir.DeltaY, res.Y);
+        }
+
+        [Theory]
         [MemberDataEnumerable(nameof(ValidDirections))]
         public void IncrementValidDirection(Direction startingDir)
         {
@@ -309,20 +318,20 @@ namespace SadRogue.Primitives.UnitTests
             Assert.False(Direction.YIncreasesUpward, "Direction.YIncreasesUpwards is expected to be false as default.");
             (Point p1, Point p2, Direction expectedDir)[] testCases = GetDirectionPairs.ToArray();
 
-            foreach ((Point p1, Point p2, Direction expectedDir) testCase in testCases)
+            foreach ((Point p1, Point p2, Direction expectedDir) in testCases)
             {
-                Direction dir = Direction.GetDirection(testCase.p1, testCase.p2);
-                Assert.Equal(testCase.expectedDir, dir);
+                Direction dir = Direction.GetDirection(p1, p2);
+                Assert.Equal(expectedDir, dir);
             }
 
             // The test cases create the second point by adding a direction, so if we re-grab the enumerable after flipping
             // the YIncreasesUpwards flag, everything should still match up if we're accounting for the y-deltas properly.
             Direction.SetYIncreasesUpwardsUnsafe(true);
             testCases = GetDirectionPairs.ToArray();
-            foreach ((Point p1, Point p2, Direction expectedDir) testCase in testCases)
+            foreach ((Point p1, Point p2, Direction expectedDir) in testCases)
             {
-                Direction dir = Direction.GetDirection(testCase.p1, testCase.p2);
-                Assert.Equal(testCase.expectedDir, dir);
+                Direction dir = Direction.GetDirection(p1, p2);
+                Assert.Equal(expectedDir, dir);
             }
 
             Direction.SetYIncreasesUpwardsUnsafe(false);
@@ -334,11 +343,11 @@ namespace SadRogue.Primitives.UnitTests
             Assert.False(Direction.YIncreasesUpward, "Direction.YIncreasesUpwards is expected to be false as default.");
             (Point p1, Point p2, Direction expectedDir)[] testCases = GetDirectionPairs.ToArray();
 
-            foreach ((Point p1, Point p2, Direction expectedDir) testCase in testCases)
+            foreach ((Point p1, Point p2, Direction expectedDir) in testCases)
             {
-                Point delta = testCase.p2 - testCase.p1;
+                Point delta = p2 - p1;
                 Direction dir = Direction.GetDirection(delta);
-                Assert.Equal(testCase.expectedDir, dir);
+                Assert.Equal(expectedDir, dir);
             }
         }
 
@@ -348,20 +357,20 @@ namespace SadRogue.Primitives.UnitTests
             Assert.False(Direction.YIncreasesUpward, "Direction.YIncreasesUpwards is expected to be false as default.");
             (Point p1, Point p2, Direction expectedDir)[] testCases = GetCardinalDirectionPairs.ToArray();
 
-            foreach ((Point p1, Point p2, Direction expectedDir) testCase in testCases)
+            foreach ((Point p1, Point p2, Direction expectedDir) in testCases)
             {
-                Direction dir = Direction.GetCardinalDirection(testCase.p1, testCase.p2);
-                Assert.Equal(testCase.expectedDir, dir);
+                Direction dir = Direction.GetCardinalDirection(p1, p2);
+                Assert.Equal(expectedDir, dir);
             }
 
             // The test cases create the second point by adding a direction, so if we re-grab the enumerable after flipping
             // the YIncreasesUpwards flag, everything should still match up if we're accounting for the y-deltas properly.
             Direction.SetYIncreasesUpwardsUnsafe(true);
             testCases = GetCardinalDirectionPairs.ToArray();
-            foreach ((Point p1, Point p2, Direction expectedDir) testCase in testCases)
+            foreach ((Point p1, Point p2, Direction expectedDir) in testCases)
             {
-                Direction dir = Direction.GetCardinalDirection(testCase.p1, testCase.p2);
-                Assert.Equal(testCase.expectedDir, dir);
+                Direction dir = Direction.GetCardinalDirection(p1, p2);
+                Assert.Equal(expectedDir, dir);
             }
 
             Direction.SetYIncreasesUpwardsUnsafe(false);
@@ -373,11 +382,11 @@ namespace SadRogue.Primitives.UnitTests
             Assert.False(Direction.YIncreasesUpward, "Direction.YIncreasesUpwards is expected to be false as default.");
             (Point p1, Point p2, Direction expectedDir)[] testCases = GetCardinalDirectionPairs.ToArray();
 
-            foreach ((Point p1, Point p2, Direction expectedDir) testCase in testCases)
+            foreach ((Point p1, Point p2, Direction expectedDir) in testCases)
             {
-                Point delta = testCase.p2 - testCase.p1;
+                Point delta = p2 - p1;
                 Direction dir = Direction.GetCardinalDirection(delta);
-                Assert.Equal(testCase.expectedDir, dir);
+                Assert.Equal(expectedDir, dir);
             }
         }
         #endregion

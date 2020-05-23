@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using SadRogue.Primitives;
 using Xunit;
 using XUnit.ValueTuples;
 
@@ -172,9 +171,23 @@ namespace SadRogue.Primitives.UnitTests
         [MemberDataTuple(nameof(CoordDirPairs))]
         public void AddToPoint(Point start, Direction dir)
         {
+            // Should be false to start with
+            Assert.False(Direction.YIncreasesUpward);
+
             Point res = start + dir;
             Assert.Equal(start.X + dir.DeltaX, res.X);
             Assert.Equal(start.Y + dir.DeltaY, res.Y);
+
+            // Set to true
+            Direction.SetYIncreasesUpwardsUnsafe(true);
+
+            // Retest
+            res = start + dir;
+            Assert.Equal(start.X + dir.DeltaX, res.X);
+            Assert.Equal(start.Y + dir.DeltaY, res.Y);
+
+            // Reset for next test
+            Direction.SetYIncreasesUpwardsUnsafe(false);
         }
 
         [Theory]
@@ -213,9 +226,23 @@ namespace SadRogue.Primitives.UnitTests
         [MemberDataTuple(nameof(CoordDirPairs))]
         public void SubFromPoint(Point start, Direction dir)
         {
+            // Should be false to start with
+            Assert.False(Direction.YIncreasesUpward);
+
             Point res = start - dir;
             Assert.Equal(start.X - dir.DeltaX, res.X);
             Assert.Equal(start.Y - dir.DeltaY, res.Y);
+
+            // Set to true
+            Direction.SetYIncreasesUpwardsUnsafe(true);
+
+            // Retest
+            res = start - dir;
+            Assert.Equal(start.X - dir.DeltaX, res.X);
+            Assert.Equal(start.Y - dir.DeltaY, res.Y);
+
+            // Reset for next test
+            Direction.SetYIncreasesUpwardsUnsafe(false);
         }
 
         [Theory]

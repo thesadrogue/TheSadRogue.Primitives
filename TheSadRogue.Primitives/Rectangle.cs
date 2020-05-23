@@ -756,6 +756,88 @@ namespace SadRogue.Primitives
         }
 
         /// <summary>
+        /// Returns all positions on the top edge of the rectangle.
+        /// </summary>
+        /// <returns>All positions on the top edge of the rectangle.</returns>
+        public IEnumerable<Point> TopEdgePositions()
+        {
+            int topY = (Direction.YIncreasesUpward) ? MaxExtentY : MinExtentY;
+
+            for (int i = MinExtentX; i <= MaxExtentX; i++)
+                yield return new Point(i, topY);
+        }
+
+        /// <summary>
+        /// Returns all positions on the right edge of the rectangle.
+        /// </summary>
+        /// <returns>All positions on the right edge of the rectangle.</returns>
+        public IEnumerable<Point> RightEdgePositions()
+        {
+            for (int i = MinExtentY; i <= MaxExtentY; i++)
+                yield return new Point(MaxExtentX, i);
+        }
+
+        /// <summary>
+        /// Returns all positions on the bottom edge of the rectangle.
+        /// </summary>
+        /// <returns>All positions on the bottom edge of the rectangle.</returns>
+        public IEnumerable<Point> BottomEdgePositions()
+        {
+            int botY = (Direction.YIncreasesUpward) ? MinExtentY : MaxExtentY;
+
+            for (int i = MinExtentX; i <= MaxExtentX; i++)
+                yield return new Point(i, botY);
+        }
+
+        /// <summary>
+        /// Returns all positions on the left edge of the rectangle.
+        /// </summary>
+        /// <returns>All positions on the left edge of the rectangle.</returns>
+        public IEnumerable<Point> LeftEdgePositions()
+        {
+            for (int i = MinExtentY; i <= MaxExtentY; i++)
+                yield return new Point(MinExtentX, i);
+        }
+
+        /// <summary>
+        /// Returns whether or not the given position lies on the top edge of the rectangle.
+        /// </summary>
+        /// <param name="point"/>
+        /// <returns>True if the given position lies along the top edge of the rectangle, false otherwise.</returns>
+        public bool IsOnTopEdge(Point point)
+        {
+            int topY = (Direction.YIncreasesUpward) ? MaxExtentY : MinExtentY;
+            return (point.X >= MinExtentX && point.X <= MaxExtentX && point.Y == topY);
+        }
+
+        /// <summary>
+        /// Returns whether or not the given position lies on the right edge of the rectangle.
+        /// </summary>
+        /// <param name="point"/>
+        /// <returns>True if the given position lies along the right edge of the rectangle, false otherwise.</returns>
+        public bool IsOnRightEdge(Point point) => point.Y >= MinExtentY && point.Y <= MaxExtentY && point.X == MaxExtentX;
+
+        /// <summary>
+        /// Returns whether or not the given position lies on the bottom edge of the rectangle.
+        /// </summary>
+        /// <param name="point"/>
+        /// <returns>True if the given position lies along the bottom edge of the rectangle, false otherwise.</returns>
+        public bool IsOnBottomEdge(Point point)
+        {
+            int topY = (Direction.YIncreasesUpward) ? MinExtentY : MaxExtentY;
+            return (point.X >= MinExtentX && point.X <= MaxExtentX && point.Y == topY);
+        }
+
+        /// <summary>
+        /// Returns whether or not the given position lies on the left edge of the rectangle.
+        /// </summary>
+        /// <param name="point"/>
+        /// <returns>True if the given position lies along the left edge of the rectangle, false otherwise.</returns>
+        public bool IsOnLeftEdge(Point point) => point.Y >= MinExtentY && point.Y <= MaxExtentY && point.X == MinExtentX;
+
+
+
+        /// <summary>
         /// Gets all positions that reside on the min-y line of the rectangle.
         /// </summary>
         /// <returns>IEnumerable of all positions that lie on the min-y line of the rectangle.</returns>

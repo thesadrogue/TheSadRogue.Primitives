@@ -17,6 +17,10 @@
     </PackageReference>
     <PackageReference Include="XUnit.ValueTuples" Version="1.0.1" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <Content Include="xunit.runner.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\TheSadRogue.Primitives\TheSadRogue.Primitives.csproj" />

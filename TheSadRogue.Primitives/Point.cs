@@ -121,7 +121,7 @@ namespace SadRogue.Primitives
             new Point((int)Math.Round((c1.X + c2.X) / 2.0f, MidpointRounding.AwayFromZero), (int)Math.Round((c1.Y + c2.Y) / 2.0f, MidpointRounding.AwayFromZero));
 
         /// <summary>
-        /// Returns the coordinate (c1.X - c2.X, c1.Y - c2.Y)
+        /// Returns the coordinate (c1.X - c2.X, c1.Y - c2.Y).
         /// </summary>
         /// <param name="c1"></param>
         /// <param name="c2"></param>
@@ -129,11 +129,19 @@ namespace SadRogue.Primitives
         public static Point operator -(Point c1, Point c2) => new Point(c1.X - c2.X, c1.Y - c2.Y);
 
         /// <summary>
+        /// Returns the coordinate (point.X - direction.DeltaX, point.Y - direction.DeltaY).
+        /// </summary>
+        /// <param name="point"/>
+        /// <param name="direction"/>
+        /// <returns>The coordinate (point.X - direction.DeltaX, point.Y - direction.DeltaY).</returns>
+        public static Point operator -(Point point, Direction direction) => new Point(point.X - direction.DeltaX, point.Y - direction.DeltaY);
+
+        /// <summary>
         /// Subtracts scalar <paramref name="i"/> from the x and y values of <paramref name="c"/>.
         /// </summary>
         /// <param name="c"></param>
         /// <param name="i"></param>
-        /// <returns>The coordinate (c.X - <paramref name="i"/>, c.Y - <paramref name="i"/>)</returns>
+        /// <returns>The coordinate (c.X - <paramref name="i"/>, c.Y - <paramref name="i"/>).</returns>
         public static Point operator -(Point c, int i) => new Point(c.X - i, c.Y - i);
 
         /// <summary>

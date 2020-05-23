@@ -4,16 +4,16 @@
 	<!-- Basic package info -->
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>SadRogue.Primitives</RootNamespace>
-	<Version>1.0.0-alpha2</Version>
+	<Version>1.0.0-alpha3</Version>
 	<Version Condition="'$(Configuration)'=='Debug'">$(Version)-debug</Version>
 	<Authors>Chris3606;Thraka</Authors>
 	<Company>TheSadRogue</Company>
-	<Copyright>Copyright © 2019 [Christopher Ridley (Chris3606) and TheSadRogue Steve De George JR (Thraka)]</Copyright>
+	<Copyright>Copyright © 2020 [Christopher Ridley (Chris3606) and TheSadRogue Steve De George JR (Thraka)]</Copyright>
 	<Description>A collection of primitive data structures for working with a 2-dimensional grid.</Description>
 	
 	<!-- More nuget package settings-->
 	<PackageId>TheSadRogue.Primitives</PackageId>
-	<PackageReleaseNotes>Fixed typo in Rectangle.WithSizeAndPosition function name.</PackageReleaseNotes>
+	<PackageReleaseNotes>Added helper functions to Rectangle for determining if points are on the perimeter.  Added Point - Direction operator.  Fixed nuget package tags.</PackageReleaseNotes>
 	<RepositoryUrl>https://https://github.com/thesadrogue/TheSadRogue.Primitives</RepositoryUrl>
 	<RepositoryType>git</RepositoryType>
 	<PublishRepositoryUrl>true</PublishRepositoryUrl>
@@ -21,7 +21,7 @@
 	<IncludeSymbols>true</IncludeSymbols>
     <IncludeSource>true</IncludeSource>
 	<SymbolPackageFormat>snupkg</SymbolPackageFormat>
-	<PackageTags>2d;grid;primitives;point;rectangle;game;development;standard</PackageTags>
+	<PackageTags>2d;grid;primitives;point;rectangle;game;development;standard;sadrogue;thesadrogue</PackageTags>
 	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 

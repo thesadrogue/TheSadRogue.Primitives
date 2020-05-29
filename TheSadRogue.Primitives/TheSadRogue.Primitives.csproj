@@ -4,7 +4,7 @@
 	<!-- Basic package info -->
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>SadRogue.Primitives</RootNamespace>
-	<Version>1.0.0-alpha3</Version>
+	<Version>1.0.0-alpha4</Version>
 	<Version Condition="'$(Configuration)'=='Debug'">$(Version)-debug</Version>
 	<Authors>Chris3606;Thraka</Authors>
 	<Company>TheSadRogue</Company>
@@ -13,7 +13,7 @@
 	
 	<!-- More nuget package settings-->
 	<PackageId>TheSadRogue.Primitives</PackageId>
-	<PackageReleaseNotes>Added helper functions to Rectangle for determining if points are on the perimeter.  Added Point - Direction operator.  Fixed nuget package tags.</PackageReleaseNotes>
+	<PackageReleaseNotes>Added Pure attributes to appropriate struct functions.</PackageReleaseNotes>
 	<RepositoryUrl>https://https://github.com/thesadrogue/TheSadRogue.Primitives</RepositoryUrl>
 	<RepositoryType>git</RepositoryType>
 	<PublishRepositoryUrl>true</PublishRepositoryUrl>

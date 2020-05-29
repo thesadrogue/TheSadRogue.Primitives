@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.Contracts;
 
 namespace SadRogue.Primitives
 {
@@ -76,6 +77,7 @@ namespace SadRogue.Primitives
         /// casted will be returned.
         /// </remarks>
         /// <param name="distance"/>
+        [Pure]
         public static implicit operator Radius(Distance distance)
         {
             switch (distance.Type)
@@ -102,6 +104,7 @@ namespace SadRogue.Primitives
         /// distance calculation casted will be returned.
         /// </remarks>
         /// <param name="distance"/>
+        [Pure]
         public static implicit operator AdjacencyRule(Distance distance)
         {
             switch (distance.Type)
@@ -123,6 +126,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="distanceType">The enum value for the distance calculation method.</param>
         /// <returns>The Distance class representing the given distance calculation.</returns>
+        [Pure]
         public static Distance ToDistance(Types distanceType)
         {
             switch (distanceType)
@@ -147,6 +151,7 @@ namespace SadRogue.Primitives
         /// <param name="start">Starting point.</param>
         /// <param name="end">Ending point.</param>
         /// <returns>The distance between the two points.</returns>
+        [Pure]
         public double Calculate(Point start, Point end) => Calculate(start.X, start.Y, end.X, end.Y);
 
         /// <summary>
@@ -157,6 +162,7 @@ namespace SadRogue.Primitives
         /// <param name="endX">X-Coordinate of the ending point.</param>
         /// <param name="endY">Y-Coordinate of the ending point.</param>
         /// <returns>The distance between the two points.</returns>
+        [Pure]
         public double Calculate(double startX, double startY, double endX, double endY)
         {
             double dx = startX - endX;
@@ -169,8 +175,8 @@ namespace SadRogue.Primitives
         /// (specified by the X and Y values of the given vector).
         /// </summary>
         /// <param name="deltaChange">The delta-x and delta-y between the two locations.</param>
-        /// ///
         /// <returns>The distance between two locations withe the given delta-change values.</returns>
+        [Pure]
         public double Calculate(Point deltaChange) => Calculate(deltaChange.X, deltaChange.Y);
 
         /// <summary>
@@ -179,6 +185,7 @@ namespace SadRogue.Primitives
         /// <param name="dx">The delta-x between the two locations.</param>
         /// <param name="dy">The delta-y between the two locations.</param>
         /// <returns>The distance between two locations with the given delta-change values.</returns>
+        [Pure]
         public double Calculate(double dx, double dy)
         {
             dx = Math.Abs(dx);
@@ -207,6 +214,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="other">Distance to compare.</param>
         /// <returns>True if the two distance calculation methods are the same, false if not.</returns>
+        [Pure]
         public bool Equals(Distance other) => Type == other.Type;
 
         /// <summary>
@@ -216,12 +224,14 @@ namespace SadRogue.Primitives
         /// <returns>
         /// True if <paramref name="obj"/> is a Distance, and the two distance calculations are equal, false otherwise.
         /// </returns>
+        [Pure]
         public override bool Equals(object obj) => obj is Distance c && Equals(c);
 
         /// <summary>
         /// Returns a hash-map value for the current object.
         /// </summary>
         /// <returns/>
+        [Pure]
         public override int GetHashCode() => Type.GetHashCode();
 
         /// <summary>
@@ -230,6 +240,7 @@ namespace SadRogue.Primitives
         /// <param name="lhs"/>
         /// <param name="rhs"/>
         /// <returns>True if the two distance calculations are equal, false if not.</returns>
+        [Pure]
         public static bool operator ==(Distance lhs, Distance rhs) => lhs.Type == rhs.Type;
 
         /// <summary>
@@ -240,12 +251,14 @@ namespace SadRogue.Primitives
         /// <returns>
         /// True if the types are not equal, false if they are both equal.
         /// </returns>
+        [Pure]
         public static bool operator !=(Distance lhs, Distance rhs) => !(lhs == rhs);
 
         /// <summary>
         /// Returns a string representation of the distance calculation method represented.
         /// </summary>
         /// <returns>A string representation of the distance method represented.</returns>
+        [Pure]
         public override string ToString() => s_writeVals[(int)Type];
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace SadRogue.Primitives
+﻿using System.Diagnostics.Contracts;
+
+namespace SadRogue.Primitives
 {
     /// <summary>
     /// Contains set of operators that match ones defined by other packages for interoperability,
@@ -12,6 +14,7 @@
         /// <param name="self"/>
         /// <param name="other"/>
         /// <returns>Position (self.X + other.X, self.Y + other.Y).</returns>
+        [Pure]
         public static Point Add(this Point self, Point other) => self + other;
 
         /// <summary>
@@ -20,6 +23,7 @@
         /// <param name="self"/>
         /// <param name="i"/>
         /// <returns>Position (self.X + i, self.Y + i).</returns>
+        [Pure]
         public static Point Add(this Point self, int i) => self + i;
 
         /// <summary>
@@ -28,6 +32,7 @@
         /// <param name="self"/>
         /// <param name="dir"/>
         /// <returns>Position (c.X + d.DeltaX, c.Y + d.DeltaY)</returns>
+        [Pure]
         public static Point Add(this Point self, Direction dir) => self + dir;
 
         /// <summary>
@@ -36,6 +41,7 @@
         /// <param name="self"/>
         /// <param name="other"/>
         /// <returns>Position (self.X - other.X, self.Y - other.Y).</returns>
+        [Pure]
         public static Point Subtract(this Point self, Point other) => self - other;
 
         /// <summary>
@@ -44,6 +50,7 @@
         /// <param name="self"/>
         /// <param name="i"/>
         /// <returns>Position (self.X - i, self.Y - i).</returns>
+        [Pure]
         public static Point Subtract(this Point self, int i) => self - i;
 
         /// <summary>
@@ -52,6 +59,7 @@
         /// <param name="self"/>
         /// <param name="other"/>
         /// <returns>Position (self.X * other.X, self.Y * other.Y).</returns>
+        [Pure]
         public static Point Multiply(this Point self, Point other) => self * other;
 
         /// <summary>
@@ -60,6 +68,7 @@
         /// <param name="self"/>
         /// <param name="i"/>
         /// <returns>Position (self.X * i, self.Y * i).</returns>
+        [Pure]
         public static Point Multiply(this Point self, int i) => self * i;
 
         /// <summary>
@@ -68,6 +77,7 @@
         /// <param name="self"/>
         /// <param name="d"/>
         /// <returns>Position (self.X * d, self.Y * d), with each value rounded to the nearest integer.</returns>
+        [Pure]
         public static Point Multiply(this Point self, double d) => self * d;
 
         /// <summary>
@@ -76,6 +86,7 @@
         /// <param name="self"/>
         /// <param name="other"/>
         /// <returns>Position (self.X / other.X, self.Y / other.Y), with each value rounded to the nearest integer.</returns>
+        [Pure]
         public static Point Divide(this Point self, Point other) => self / other;
 
         /// <summary>
@@ -84,6 +95,7 @@
         /// <param name="self"/>
         /// <param name="i"/>
         /// <returns>Position(self.X / i, self.Y / i), with each value rounded to the nearest integer.</returns>
+        [Pure]
         public static Point Divide(this Point self, int i) => self / i;
 
         /// <summary>
@@ -92,6 +104,7 @@
         /// <param name="self"/>
         /// <param name="d"/>
         /// <returns>Position(self.X / d, self.Y / d), with each value rounded to the nearest integer.</returns>
+        [Pure]
         public static Point Divide(this Point self, double d) => self / d;
     }
 }

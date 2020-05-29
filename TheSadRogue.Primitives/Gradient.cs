@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 
 namespace SadRogue.Primitives
 {
@@ -31,13 +32,19 @@ namespace SadRogue.Primitives
             Stop = stop;
         }
 
+        [Pure]
         public static bool operator ==(GradientStop lhs, GradientStop rhs) => lhs.Color == rhs.Color && lhs.Stop == rhs.Stop;
+
+        [Pure]
         public static bool operator !=(GradientStop lhs, GradientStop rhs) => !(lhs == rhs);
 
+        [Pure]
         public override int GetHashCode() => Color.GetHashCode() ^ Stop.GetHashCode();
 
+        [Pure]
         public override bool Equals(object obj) => obj is GradientStop g && this == g;
 
+        [Pure]
         public bool Equals(GradientStop g) => Color == g.Color && Stop == g.Stop;
     }
 

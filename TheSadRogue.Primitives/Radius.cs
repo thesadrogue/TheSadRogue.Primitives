@@ -16,7 +16,7 @@ namespace SadRogue.Primitives
     /// shape).
     /// </remarks>
     [Serializable]
-    public struct Radius : IEquatable<Radius>
+    public readonly struct Radius : IEquatable<Radius>
     {
         /// <summary>
         /// Radius is a circle around the center point. CIRCLE would represent movement radius in

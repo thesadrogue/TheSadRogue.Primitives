@@ -22,7 +22,7 @@ namespace SadRogue.Primitives
     /// coordinate plane defined by Unity and other game engines.
     /// </remarks>
     [Serializable]
-    public struct Direction : IEquatable<Direction>
+    public readonly struct Direction : IEquatable<Direction>
     {
         [NonSerialized]
         private static readonly string[] s_writeVals = Enum.GetNames(typeof(Types));

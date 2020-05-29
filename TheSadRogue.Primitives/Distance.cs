@@ -15,7 +15,7 @@ namespace SadRogue.Primitives
     /// locations and a radius shape are implied by a distance calculation).
     /// </remarks>
     [Serializable]
-    public struct Distance : IEquatable<Distance>
+    public readonly struct Distance : IEquatable<Distance>
     {
         /// <summary>
         /// Represents chebyshev distance (equivalent to 8-way movement with no extra cost for diagonals).

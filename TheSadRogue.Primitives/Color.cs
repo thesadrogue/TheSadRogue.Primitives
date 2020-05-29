@@ -16,7 +16,7 @@ namespace SadRogue.Primitives
     [DataContract]
     [DebuggerDisplay("{DebugDisplayString,nq}")]
     [Serializable]
-    public struct Color : IEquatable<Color>
+    public readonly struct Color : IEquatable<Color>
     {
         static Color()
         {

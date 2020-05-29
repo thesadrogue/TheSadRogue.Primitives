@@ -9,7 +9,7 @@ namespace SadRogue.Primitives
     /// A gradient stop. Defines a color and where it is located within the gradient.
     /// </summary>
     [Serializable]
-    public struct GradientStop : IEquatable<GradientStop>
+    public readonly struct GradientStop : IEquatable<GradientStop>
     {
         /// <summary>
         /// The color.

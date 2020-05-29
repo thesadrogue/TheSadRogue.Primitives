@@ -10,7 +10,7 @@ namespace SadRogue.Primitives
     /// static instances are provided.
     /// </summary>
     [Serializable]
-    public struct AdjacencyRule : IEquatable<AdjacencyRule>
+    public readonly struct AdjacencyRule : IEquatable<AdjacencyRule>
     {
         /// <summary>
         /// Represents method of determining adjacency where neighbors are considered adjacent if

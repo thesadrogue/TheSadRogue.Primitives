@@ -9,7 +9,7 @@ namespace SadRogue.Primitives
     /// involving rectangles.
     /// </summary>
     [Serializable]
-    public struct Rectangle : IEquatable<Rectangle>, IEquatable<(int x, int y, int width, int height)>
+    public readonly struct Rectangle : IEquatable<Rectangle>, IEquatable<(int x, int y, int width, int height)>
     {
         /// <summary>
         /// The empty rectangle. Has origin of (0, 0) with 0 width and height.

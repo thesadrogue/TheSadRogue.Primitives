@@ -16,7 +16,7 @@ namespace SadRogue.Primitives
     /// as well as interoperability with other grid-based classes like <see cref="Direction"/>.
     /// </remarks>
     [Serializable]
-    public struct Point : IEquatable<Point>, IEquatable<(int x, int y)>
+    public readonly struct Point : IEquatable<Point>, IEquatable<(int x, int y)>
     {
         /// <summary>
         /// Point value that represents None or no position (since Point is not a nullable type).

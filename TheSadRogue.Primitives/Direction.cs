@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.Contracts;
 using System.Linq;
 
 namespace SadRogue.Primitives
@@ -21,7 +22,7 @@ namespace SadRogue.Primitives
     /// coordinate plane defined by Unity and other game engines.
     /// </remarks>
     [Serializable]
-    public struct Direction : IEquatable<Direction>
+    public readonly struct Direction : IEquatable<Direction>
     {
         [NonSerialized]
         private static readonly string[] s_writeVals = Enum.GetNames(typeof(Types));
@@ -203,6 +204,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="other">Direction to compare.</param>
         /// <returns>True if the two directions are the same, false if not.</returns>
+        [Pure]
         public bool Equals(Direction other) => Type == other.Type;
 
         /// <summary>
@@ -212,12 +214,14 @@ namespace SadRogue.Primitives
         /// <returns>
         /// True if <paramref name="obj"/> is a Direction, and the two directions are equal, false otherwise.
         /// </returns>
+        [Pure]
         public override bool Equals(object obj) => obj is Direction c && Equals(c);
 
         /// <summary>
         /// Returns a hash-map value for the current object.
         /// </summary>
         /// <returns/>
+        [Pure]
         public override int GetHashCode() => Type.GetHashCode();
 
         /// <summary>
@@ -226,6 +230,7 @@ namespace SadRogue.Primitives
         /// <param name="lhs"/>
         /// <param name="rhs"/>
         /// <returns>True if the two directions are equal, false if not.</returns>
+        [Pure]
         public static bool operator ==(Direction lhs, Direction rhs) => lhs.Type == rhs.Type;
 
         /// <summary>
@@ -236,6 +241,7 @@ namespace SadRogue.Primitives
         /// <returns>
         /// True if the types are not equal, false if they are both equal.
         /// </returns>
+        [Pure]
         public static bool operator !=(Direction lhs, Direction rhs) => !(lhs == rhs);
 
         // Do not change manually outside of YIncreasesUpwards functionality
@@ -274,6 +280,7 @@ namespace SadRogue.Primitives
         /// <returns>
         /// The cardinal direction that most closely matches the heading indicated by the given line.
         /// </returns>
+        [Pure]
         public static Direction GetCardinalDirection(Point start, Point end) => GetCardinalDirection(new Point(end.X - start.X, end.Y - start.Y));
 
         /// <summary>
@@ -288,6 +295,7 @@ namespace SadRogue.Primitives
         /// <returns>
         /// The cardinal direction that most closely matches the degree heading of the given line.
         /// </returns>
+        [Pure]
         public static Direction GetCardinalDirection(Point deltaChange)
         {
             int dx = deltaChange.X;
@@ -337,6 +345,7 @@ namespace SadRogue.Primitives
         /// <returns>
         /// The direction that most closely matches the heading indicated by the given line.
         /// </returns>
+        [Pure]
         public static Direction GetDirection(Point start, Point end) => GetDirection(new Point(end.X - start.X, end.Y - start.Y));
 
 
@@ -351,6 +360,7 @@ namespace SadRogue.Primitives
         /// <returns>
         /// The direction that most closely matches the heading indicated by the given input.
         /// </returns>
+        [Pure]
         public static Direction GetDirection(Point deltaChange)
         {
             int dx = deltaChange.X;
@@ -419,6 +429,7 @@ namespace SadRogue.Primitives
         /// <returns>
         /// The given direction moved counter-clockwise <paramref name="i"/> times.
         /// </returns>
+        [Pure]
         public static Direction operator -(Direction d, int i) => (d == None) ? None : ToDirection(s_validTypes[WrapAround((int)d.Type - i - 1, 8)]);
 
         /// <summary>
@@ -426,6 +437,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="d"/>
         /// <returns>The direction one unit counterclockwise of <paramref name="d"/>.</returns>
+        [Pure]
         public static Direction operator --(Direction d) => (d == None) ? None : ToDirection(s_validTypes[WrapAround((int)d.Type - 2, 8)]);
 
         /// <summary>
@@ -436,6 +448,7 @@ namespace SadRogue.Primitives
         /// <returns>
         /// The given direction moved clockwise <paramref name="i"/> times.
         /// </returns>
+        [Pure]
         public static Direction operator +(Direction d, int i) => (d == None) ? None : ToDirection(s_validTypes[WrapAround((int)d.Type + i - 1, 8)]);
 
         /// <summary>
@@ -443,6 +456,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="d"/>
         /// <returns>The direction one unit clockwise of <paramref name="d"/>.</returns>
+        [Pure]
         public static Direction operator ++(Direction d) => (d == None) ? None : ToDirection(s_validTypes[WrapAround((int)d.Type, 8)]);
 
         /// <summary>
@@ -450,6 +464,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="directionType">The enum value for the direction.</param>
         /// <returns>The direction class representing the given direction.</returns>
+        [Pure]
         public static Direction ToDirection(Types directionType)
         {
             switch (directionType)
@@ -490,12 +505,14 @@ namespace SadRogue.Primitives
         /// Returns true if the current direction is a cardinal direction.
         /// </summary>
         /// <returns>True if the current direction is a cardinal direction, false otherwise.</returns>
+        [Pure]
         public bool IsCardinal() => this != None && (DeltaX == 0 || DeltaY == 0);
 
         /// <summary>
         /// Writes the string (eg. "UP", "UP_RIGHT", etc.) for the direction.
         /// </summary>
         /// <returns>String representation of the direction.</returns>
+        [Pure]
         public override string ToString() => s_writeVals[(int)Type];
 
         #region Tuple Compatibility
@@ -507,6 +524,7 @@ namespace SadRogue.Primitives
         /// <returns>
         /// Tuple (tuple.y + d.DeltaX, tuple.y + d.DeltaY).
         /// </returns>
+        [Pure]
         public static (int x, int y) operator +((int x, int y) tuple, Direction d) => (tuple.x + d.DeltaX, tuple.y + d.DeltaY);
         #endregion
 

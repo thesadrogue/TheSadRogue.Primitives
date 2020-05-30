@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 
 namespace SadRogue.Primitives
 {
@@ -15,7 +16,7 @@ namespace SadRogue.Primitives
     /// shape).
     /// </remarks>
     [Serializable]
-    public struct Radius : IEquatable<Radius>
+    public readonly struct Radius : IEquatable<Radius>
     {
         /// <summary>
         /// Radius is a circle around the center point. CIRCLE would represent movement radius in
@@ -90,6 +91,7 @@ namespace SadRogue.Primitives
         /// <param name="bounds">Bounds to restrict the returned values by.</param>
         /// <returns>All points in the radius shape defined by the given parameters, in order from least distance to greatest
         /// if <see cref="Radius.Diamond"/> or <see cref="Radius.Square"/> is being used.</returns>
+        [Pure]
         public IEnumerable<Point> PositionsInRadius(Point center, int radius, Rectangle bounds)
             => PositionsInRadius(new RadiusLocationContext(center, radius, bounds));
 
@@ -108,6 +110,7 @@ namespace SadRogue.Primitives
         /// <param name="radius">Length of the radius.</param>
         /// <returns>All points in the radius shape defined by the given parameters, in order from least distance to greatest
         /// if <see cref="Radius.Diamond"/> or <see cref="Radius.Square"/> is being used.</returns>
+        [Pure]
         public IEnumerable<Point> PositionsInRadius(Point center, int radius)
             => PositionsInRadius(new RadiusLocationContext(center, radius));
 
@@ -126,6 +129,7 @@ namespace SadRogue.Primitives
         /// <param name="context">Context defining radius parameters.</param>
         /// <returns>All points in the radius shape defined by the given context, in order from least distance to greatest
         /// if <see cref="Radius.Diamond"/> or <see cref="Radius.Square"/> is being used.</returns>
+        [Pure]
         public IEnumerable<Point> PositionsInRadius(RadiusLocationContext context)
         {
             if (context._newlyInitialized)
@@ -177,6 +181,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="other">Radius to compare.</param>
         /// <returns>True if the two radius shapes are the same, false if not.</returns>
+        [Pure]
         public bool Equals(Radius other) => Type == other.Type;
 
         /// <summary>
@@ -186,12 +191,14 @@ namespace SadRogue.Primitives
         /// <returns>
         /// True if <paramref name="obj"/> is a Radius, and the two radius shapes are equal, false otherwise.
         /// </returns>
+        [Pure]
         public override bool Equals(object obj) => obj is Radius c && Equals(c);
 
         /// <summary>
         /// Returns a hash-map value for the current object.
         /// </summary>
         /// <returns/>
+        [Pure]
         public override int GetHashCode() => Type.GetHashCode();
 
         /// <summary>
@@ -200,6 +207,7 @@ namespace SadRogue.Primitives
         /// <param name="lhs"/>
         /// <param name="rhs"/>
         /// <returns>True if the two radius shapes are equal, false if not.</returns>
+        [Pure]
         public static bool operator ==(Radius lhs, Radius rhs) => lhs.Type == rhs.Type;
 
         /// <summary>
@@ -210,6 +218,7 @@ namespace SadRogue.Primitives
         /// <returns>
         /// True if the types are not equal, false if they are both equal.
         /// </returns>
+        [Pure]
         public static bool operator !=(Radius lhs, Radius rhs) => !(lhs == rhs);
 
         /// <summary>
@@ -220,6 +229,7 @@ namespace SadRogue.Primitives
         /// radius shape casted will be returned.
         /// </remarks>
         /// <param name="radius">Radius type being casted.</param>
+        [Pure]
         public static implicit operator AdjacencyRule(Radius radius)
         {
             switch (radius.Type)
@@ -244,6 +254,7 @@ namespace SadRogue.Primitives
         /// distance that creates the radius shape casted will be returned.
         /// </remarks>
         /// <param name="radius">Radius type being casted.</param>
+        [Pure]
         public static implicit operator Distance(Radius radius)
         {
             switch (radius.Type)
@@ -267,6 +278,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="radiusType">The enum value for the radius shape.</param>
         /// <returns>The radius class representing the given radius shape.</returns>
+        [Pure]
         public static Radius ToRadius(Types radiusType)
         {
             switch (radiusType)
@@ -323,7 +335,7 @@ namespace SadRogue.Primitives
         }
 
         /// <summary>
-        /// The centr-point of the radius represented.
+        /// The center-point of the radius represented.
         /// </summary>
         public Point Center { get; set; }
 

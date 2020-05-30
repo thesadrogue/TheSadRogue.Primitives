@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.Contracts;
 
 namespace SadRogue.Primitives
 {
@@ -15,7 +16,7 @@ namespace SadRogue.Primitives
     /// as well as interoperability with other grid-based classes like <see cref="Direction"/>.
     /// </remarks>
     [Serializable]
-    public struct Point : IEquatable<Point>, IEquatable<(int x, int y)>
+    public readonly struct Point : IEquatable<Point>, IEquatable<(int x, int y)>
     {
         /// <summary>
         /// Point value that represents None or no position (since Point is not a nullable type).
@@ -55,18 +56,20 @@ namespace SadRogue.Primitives
         /// <param name="start">Position of line starting point.</param>
         /// <param name="end">Position of line ending point.</param>
         /// <returns>The degree bearing of the line specified by the two given points.</returns>
+        [Pure]
         public static double BearingOfLine(Point start, Point end) => BearingOfLine(start - end);
 
 
         /// <summary>
         /// Calculates the degree bearing of a line with the given delta-x and delta-y values, where
-        /// 0 degreees points in the direction <see cref="Direction.Up"/>.
+        /// 0 degrees points in the direction <see cref="Direction.Up"/>.
         /// </summary>
         /// <param name="deltaChange">
         /// Vector, where deltaChange.X is the change in x-values across the line, and deltaChange.Y
         /// is the change in y-values across the line.
         /// </param>
         /// <returns>The degree bearing of the line with the given dx and dy values.</returns>
+        [Pure]
         public static double BearingOfLine(Point deltaChange)
         {
             int dx = deltaChange.X;
@@ -92,6 +95,7 @@ namespace SadRogue.Primitives
         /// The "magnitude" of the euclidean distance between the two points -- basically the
         /// distance formula without the square root.
         /// </returns>
+        [Pure]
         public static double EuclideanDistanceMagnitude(Point c1, Point c2) => EuclideanDistanceMagnitude(c2 - c1);
 
         /// <summary>
@@ -108,6 +112,7 @@ namespace SadRogue.Primitives
         /// The "magnitude" of the euclidean distance of two locations with the given dx and dy
         /// values -- basically the distance formula without the square root.
         /// </returns>
+        [Pure]
         public static double EuclideanDistanceMagnitude(Point deltaChange) => deltaChange.X * deltaChange.X + deltaChange.Y * deltaChange.Y;
 
 
@@ -117,6 +122,7 @@ namespace SadRogue.Primitives
         /// <param name="c1">The first point.</param>
         /// <param name="c2">The second point.</param>
         /// <returns>The midpoint between <paramref name="c1"/> and <paramref name="c2"/>.</returns>
+        [Pure]
         public static Point Midpoint(Point c1, Point c2) =>
             new Point((int)Math.Round((c1.X + c2.X) / 2.0f, MidpointRounding.AwayFromZero), (int)Math.Round((c1.Y + c2.Y) / 2.0f, MidpointRounding.AwayFromZero));
 
@@ -126,6 +132,7 @@ namespace SadRogue.Primitives
         /// <param name="c1"></param>
         /// <param name="c2"></param>
         /// <returns>The coordinate(<paramref name="c1"/> - <paramref name="c2"/>).</returns>
+        [Pure]
         public static Point operator -(Point c1, Point c2) => new Point(c1.X - c2.X, c1.Y - c2.Y);
 
         /// <summary>
@@ -134,6 +141,7 @@ namespace SadRogue.Primitives
         /// <param name="point"/>
         /// <param name="direction"/>
         /// <returns>The coordinate (point.X - direction.DeltaX, point.Y - direction.DeltaY).</returns>
+        [Pure]
         public static Point operator -(Point point, Direction direction) => new Point(point.X - direction.DeltaX, point.Y - direction.DeltaY);
 
         /// <summary>
@@ -142,6 +150,7 @@ namespace SadRogue.Primitives
         /// <param name="c"></param>
         /// <param name="i"></param>
         /// <returns>The coordinate (c.X - <paramref name="i"/>, c.Y - <paramref name="i"/>).</returns>
+        [Pure]
         public static Point operator -(Point c, int i) => new Point(c.X - i, c.Y - i);
 
         /// <summary>
@@ -152,6 +161,7 @@ namespace SadRogue.Primitives
         /// <returns>
         /// True if either the x-values or y-values are not equal, false if they are both equal.
         /// </returns>
+        [Pure]
         public static bool operator !=(Point c1, Point c2) => !(c1 == c2);
 
         /// <summary>
@@ -160,6 +170,7 @@ namespace SadRogue.Primitives
         /// <param name="c1"/>
         /// <param name="c2"/>
         /// <returns>Position (c1.X * c2.X, c1.Y * c2.Y)</returns>
+        [Pure]
         public static Point operator *(Point c1, Point c2) => new Point(c1.X * c2.X, c1.Y * c2.Y);
 
         /// <summary>
@@ -168,6 +179,7 @@ namespace SadRogue.Primitives
         /// <param name="c"></param>
         /// <param name="i"></param>
         /// <returns>Coordinate (c.X * <paramref name="i"/>, c.Y * <paramref name="i"/>)</returns>
+        [Pure]
         public static Point operator *(Point c, int i) => new Point(c.X * i, c.Y * i);
 
         /// <summary>
@@ -180,6 +192,7 @@ namespace SadRogue.Primitives
         /// Position (c.X * <paramref name="i"/>, c.Y * <paramref name="i"/>), with the resulting values
         /// rounded to nearest integer.
         /// </returns>
+        [Pure]
         public static Point operator *(Point c, double i) =>
             new Point((int)Math.Round(c.X * i, MidpointRounding.AwayFromZero), (int)Math.Round(c.Y * i, MidpointRounding.AwayFromZero));
 
@@ -190,6 +203,7 @@ namespace SadRogue.Primitives
         /// <param name="c1"/>
         /// <param name="c2"/>
         /// <returns>Position (c1.X / c2.X, c1.Y / c2.Y), with each value rounded to the nearest integer.</returns>
+        [Pure]
         public static Point operator /(Point c1, Point c2) =>
             new Point((int)Math.Round(c1.X / (double)c2.X, MidpointRounding.AwayFromZero), (int)Math.Round(c1.Y / (double)c2.Y, MidpointRounding.AwayFromZero));
 
@@ -200,6 +214,7 @@ namespace SadRogue.Primitives
         /// <param name="c"></param>
         /// <param name="i"></param>
         /// <returns>(c.X / <paramref name="i"/>, c.Y / <paramref name="i"/>), with the resulting values rounded to the nearest integer.</returns>
+        [Pure]
         public static Point operator /(Point c, double i) =>
             new Point((int)Math.Round(c.X / i, MidpointRounding.AwayFromZero), (int)Math.Round(c.Y / i, MidpointRounding.AwayFromZero));
 
@@ -209,6 +224,7 @@ namespace SadRogue.Primitives
         /// <param name="c1"></param>
         /// <param name="c2"></param>
         /// <returns>The position (c1.X + c2.X, c1.Y + c2.Y)</returns>
+        [Pure]
         public static Point operator +(Point c1, Point c2) => new Point(c1.X + c2.X, c1.Y + c2.Y);
 
         /// <summary>
@@ -217,6 +233,7 @@ namespace SadRogue.Primitives
         /// <param name="c"></param>
         /// <param name="i"></param>
         /// <returns>Position (c.X + <paramref name="i"/>, c.Y + <paramref name="i"/>.</returns>
+        [Pure]
         public static Point operator +(Point c, int i) => new Point(c.X + i, c.Y + i);
 
         /// <summary>
@@ -227,6 +244,7 @@ namespace SadRogue.Primitives
         /// <returns>
         /// Position (c.X + d.DeltaX, c.Y + d.DeltaY)
         /// </returns>
+        [Pure]
         public static Point operator +(Point c, Direction d) => new Point(c.X + d.DeltaX, c.Y + d.DeltaY);
 
         /// <summary>
@@ -235,6 +253,7 @@ namespace SadRogue.Primitives
         /// <param name="c1"></param>
         /// <param name="c2"></param>
         /// <returns>True if the two positions are equal, false if not.</returns>
+        [Pure]
         public static bool operator ==(Point c1, Point c2) => c1.X == c2.X && c1.Y == c2.Y;
 
         /// <summary>
@@ -243,6 +262,7 @@ namespace SadRogue.Primitives
         /// <param name="index">The index in 1D form.</param>
         /// <param name="width">The width of the 2D array.</param>
         /// <returns>The position represented by the 1D index given.</returns>
+        [Pure]
         public static Point FromIndex(int index, int width) => new Point(index % width, index / width);
 
         /// <summary>
@@ -252,6 +272,7 @@ namespace SadRogue.Primitives
         /// <param name="y">Y-value of the coordinate.</param>
         /// <param name="width">The width of the 2D array, used to do the math to calculate index.</param>
         /// <returns>The 1D index of the position specified.</returns>
+        [Pure]
         public static int ToIndex(int x, int y, int width) => y * width + x;
 
         /// <summary>
@@ -260,6 +281,7 @@ namespace SadRogue.Primitives
         /// <param name="index">The index in 1D form.</param>
         /// <param name="width">The width of the 2D array.</param>
         /// <returns>The X-value for the location represented by the given index.</returns>
+        [Pure]
         public static int ToXValue(int index, int width) => index % width;
 
         /// <summary>
@@ -268,6 +290,7 @@ namespace SadRogue.Primitives
         /// <param name="index">The index in 1D form.</param>
         /// <param name="width">The width of the 2D array.</param>
         /// <returns>The Y-value for the location represented by the given index.</returns>
+        [Pure]
         public static int ToYValue(int index, int width) => index / width;
 
         /// <summary>
@@ -277,6 +300,7 @@ namespace SadRogue.Primitives
         /// <returns>
         /// True if <paramref name="obj"/> is a Coord instance, and the two positions are equal, false otherwise.
         /// </returns>
+        [Pure]
         public override bool Equals(object obj) => obj is Point c && Equals(c);
 
         /// <summary>
@@ -284,13 +308,14 @@ namespace SadRogue.Primitives
         /// does not collide often.
         /// </summary>
         /// <remarks>
-        /// This hashing algorithm uses a seperate bit-mixing algorithm for <see cref="X"/> and
-        /// <see cref="Y"/>, with X and Y each multiplied by a differet large integer, then xors
+        /// This hashing algorithm uses a separate bit-mixing algorithm for <see cref="X"/> and
+        /// <see cref="Y"/>, with X and Y each multiplied by a different large integer, then xors
         /// the mixed values, does a right shift, and finally multiplies by an overflowing prime
         /// number.  This hashing algorithm should produce an exceptionally low collision rate for
         /// coordinates between (0, 0) and (255, 255), and remain relatively reasonable beyond that.
         /// </remarks>
         /// <returns>The hash-code for the Point.</returns>
+        [Pure]
         public override int GetHashCode()
         {
             // Intentional overflow on both of these, part of hash-code generation
@@ -304,12 +329,14 @@ namespace SadRogue.Primitives
         /// <param name="width">The width of the 2D map/array this location is referring to --
         /// used to do the math to calculate index.</param>
         /// <returns>The 1D index of this Point.</returns>
+        [Pure]
         public int ToIndex(int width) => Y * width + X;
 
         /// <summary>
         /// Returns representation (X, Y).
         /// </summary>
         /// <returns>String (X, Y)</returns>
+        [Pure]
         public override string ToString() => $"({X},{Y})";
 
         /// <summary>
@@ -321,6 +348,7 @@ namespace SadRogue.Primitives
         /// delta-y value.
         /// </param>
         /// <returns>The position (<see cref="X"/> + deltaChange.X, <see cref="Y"/> + deltaChange.Y)</returns>
+        [Pure]
         public Point Translate(Point deltaChange) => new Point(X + deltaChange.X, Y + deltaChange.Y);
 
         /// <summary>
@@ -328,6 +356,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="x">X-value for the new Point.</param>
         /// <returns>A new Point, with its X value changed to the given one.</returns>
+        [Pure]
         public Point WithX(int x) => new Point(x, Y);
 
         /// <summary>
@@ -335,6 +364,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="y">Y-value for the new Point.</param>
         /// <returns>A new Point, with its Y value changed to the given one.</returns>
+        [Pure]
         public Point WithY(int y) => new Point(X, y);
 
         /// <summary>
@@ -342,6 +372,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="other">Position to compare.</param>
         /// <returns>True if the two positions are equal, false if not.</returns>
+        [Pure]
         public bool Equals(Point other) => X == other.X && Y == other.Y;
 
         #region TupleCompatibility
@@ -350,6 +381,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="x" />
         /// <param name="y" />
+        [Pure]
         public void Deconstruct(out int x, out int y)
         {
             x = X;
@@ -361,12 +393,14 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="c" />
         /// <returns />
+        [Pure]
         public static implicit operator (int x, int y)(Point c) => (c.X, c.Y);
         /// <summary>
         /// Implicitly converts a tuple of two integers to an equivalent Point.
         /// </summary>
         /// <param name="tuple" />
         /// <returns />
+        [Pure]
         public static implicit operator Point((int x, int y) tuple) => new Point(tuple.x, tuple.y);
 
         /// <summary>
@@ -375,6 +409,7 @@ namespace SadRogue.Primitives
         /// <param name="tuple" />
         /// <param name="c" />
         /// <returns>A tuple (tuple.x + c.X, tuple.y + c.Y).</returns>
+        [Pure]
         public static (int x, int y) operator +((int x, int y) tuple, Point c) => (tuple.x + c.X, tuple.y + c.Y);
         /// <summary>
         /// Adds the x and y values of a tuple of two integers to a Point.
@@ -382,6 +417,7 @@ namespace SadRogue.Primitives
         /// <param name="c" />
         /// <param name="tuple" />
         /// <returns>Position (c.X + tuple.x, c.Y + tuple.y).</returns>
+        [Pure]
         public static Point operator +(Point c, (int x, int y) tuple) => new Point(c.X + tuple.x, c.Y + tuple.y);
 
         /// <summary>
@@ -390,6 +426,7 @@ namespace SadRogue.Primitives
         /// <param name="tuple" />
         /// <param name="c" />
         /// <returns>A tuple (tuple.x - c.X, tuple.y - c.Y).</returns>
+        [Pure]
         public static (int x, int y) operator -((int x, int y) tuple, Point c) => (tuple.x - c.X, tuple.y - c.Y);
         /// <summary>
         /// Subtracts the x and y values of a tuple of two integers from a Point.
@@ -397,6 +434,7 @@ namespace SadRogue.Primitives
         /// <param name="c" />
         /// <param name="tuple" />
         /// <returns>Position (c.X - tuple.x, c.Y - tuple.y).</returns>
+        [Pure]
         public static Point operator -(Point c, (int x, int y) tuple) => new Point(c.X - tuple.x, c.Y - tuple.y);
 
         /// <summary>
@@ -405,6 +443,7 @@ namespace SadRogue.Primitives
         /// <param name="tuple"/>
         /// <param name="c"/>
         /// <returns>Position (tuple.x * c.X, tuple.y * c.Y).</returns>
+        [Pure]
         public static (int x, int y) operator *((int x, int y) tuple, Point c) => (tuple.x * c.X, tuple.y * c.Y);
 
         /// <summary>
@@ -413,6 +452,7 @@ namespace SadRogue.Primitives
         /// <param name="c"/>
         /// <param name="tuple"/>
         /// <returns>Position (c.X * tuple.x, c.Y * tuple.y).</returns>
+        [Pure]
         public static Point operator *(Point c, (int x, int y) tuple) => new Point(c.X * tuple.x, c.Y * tuple.y);
 
         /// <summary>
@@ -421,6 +461,7 @@ namespace SadRogue.Primitives
         /// <param name="tuple"/>
         /// <param name="c"/>
         /// <returns>Position (tuple.x / c.X, tuple.y / c.Y), with each value rounded to the nearest integer.</returns>
+        [Pure]
         public static (int x, int y) operator /((int x, int y) tuple, Point c)
             => new Point((int)Math.Round(tuple.x / (double)c.X, MidpointRounding.AwayFromZero), (int)Math.Round(tuple.y / (double)c.Y, MidpointRounding.AwayFromZero));
 
@@ -430,6 +471,7 @@ namespace SadRogue.Primitives
         /// <param name="tuple"/>
         /// <param name="c"/>
         /// <returns>Position (c.X / tuple.x, c.Y / tuple.y), with each value rounded to the nearest integer.</returns>
+        [Pure]
         public static (int x, int y) operator /(Point c, (int x, int y) tuple)
             => new Point((int)Math.Round(c.X / (double)tuple.x, MidpointRounding.AwayFromZero), (int)Math.Round(c.Y / (double)tuple.y, MidpointRounding.AwayFromZero));
 
@@ -439,6 +481,7 @@ namespace SadRogue.Primitives
         /// <param name="c"></param>
         /// <param name="tuple"></param>
         /// <returns>True if the two positions are equal, false if not.</returns>
+        [Pure]
         public static bool operator ==(Point c, (int x, int y) tuple) => c.X == tuple.x && c.Y == tuple.y;
 
         /// <summary>
@@ -449,6 +492,7 @@ namespace SadRogue.Primitives
         /// <returns>
         /// True if either the x-values or y-values are not equal, false if they are both equal.
         /// </returns>
+        [Pure]
         public static bool operator !=(Point c, (int x, int y) tuple) => !(c == tuple);
 
         /// <summary>
@@ -457,6 +501,7 @@ namespace SadRogue.Primitives
         /// <param name="tuple"></param>
         /// <param name="c"></param>
         /// <returns>True if the two positions are equal, false if not.</returns>
+        [Pure]
         public static bool operator ==((int x, int y) tuple, Point c) => tuple.x == c.X && tuple.y == c.Y;
 
         /// <summary>
@@ -467,6 +512,7 @@ namespace SadRogue.Primitives
         /// <returns>
         /// True if either the x-values or y-values are not equal, false if they are both equal.
         /// </returns>
+        [Pure]
         public static bool operator !=((int x, int y) tuple, Point c) => !(tuple == c);
 
         /// <summary>
@@ -474,6 +520,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="other">Point to compare.</param>
         /// <returns>True if the two positions are equal, false if not.</returns>
+        [Pure]
         public bool Equals((int x, int y) other) => X == other.x && Y == other.y;
         #endregion
     }

@@ -13,7 +13,7 @@
 	
 	<!-- More nuget package settings-->
 	<PackageId>TheSadRogue.Primitives</PackageId>
-	<PackageReleaseNotes>Added Pure attributes to appropriate struct functions.  Marked appropriate structs as readonly.</PackageReleaseNotes>
+	<PackageReleaseNotes>Added Pure attributes to appropriate struct functions.  Marked appropriate structs as readonly.  Fixed bug in PositionsInRadius.</PackageReleaseNotes>
 	<RepositoryUrl>https://https://github.com/thesadrogue/TheSadRogue.Primitives</RepositoryUrl>
 	<RepositoryType>git</RepositoryType>
 	<PublishRepositoryUrl>true</PublishRepositoryUrl>

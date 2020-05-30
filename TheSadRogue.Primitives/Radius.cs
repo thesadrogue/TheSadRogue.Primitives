@@ -163,9 +163,9 @@ namespace SadRogue.Primitives
                 {
                     localNeighbor = neighbor - topLeft;
 
-                    if (context._inQueue[localNeighbor.X, localNeighbor.Y] ||
-                        context.Bounds != Rectangle.Empty && !context.Bounds.Contains(neighbor) ||
-                        distCalc.Calculate(context.Center, neighbor) > context.Radius)
+                    if (distCalc.Calculate(context.Center, neighbor) > context.Radius ||
+                        context._inQueue[localNeighbor.X, localNeighbor.Y] ||
+                        context.Bounds != Rectangle.Empty && !context.Bounds.Contains(neighbor))
                     {
                         continue;
                     }

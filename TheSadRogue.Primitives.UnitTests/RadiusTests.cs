@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using SadRogue.Primitives;
 using Xunit;
 using XUnit.ValueTuples;
 
@@ -8,16 +7,17 @@ namespace SadRogue.Primitives.UnitTests
     public class RadiusTests
     {
         #region Testdata
-        public static Radius[] Radiuses => new Radius[] { Radius.Square, Radius.Circle, Radius.Diamond };
+        public static Radius[] Radiuses => new[] { Radius.Square, Radius.Circle, Radius.Diamond };
 
-        public static (Radius.Types, Radius)[] TypeRadiusConversion => new (Radius.Types, Radius)[]
+        public static (Radius.Types, Radius)[] TypeRadiusConversion => new[]
         { (Radius.Types.Square, Radius.Square), (Radius.Types.Circle, Radius.Circle), (Radius.Types.Diamond,Radius.Diamond) };
 
-        public static (Radius, AdjacencyRule)[] AdjacencyRuleConversionValues => new (Radius, AdjacencyRule)[]
+        public static (Radius, AdjacencyRule)[] AdjacencyRuleConversionValues => new[]
         { (Radius.Square, AdjacencyRule.EightWay), (Radius.Circle, AdjacencyRule.EightWay), (Radius.Diamond, AdjacencyRule.Cardinals) };
 
-        public static (Radius, Distance)[] DistanceConversionValues => new (Radius, Distance)[]
+        public static (Radius, Distance)[] DistanceConversionValues => new[]
         { (Radius.Square, Distance.Chebyshev), (Radius.Circle, Distance.Euclidean), (Radius.Diamond, Distance.Manhattan) };
+
         #endregion
 
         #region Equality/Inequality
@@ -94,7 +94,58 @@ namespace SadRogue.Primitives.UnitTests
         #endregion
 
         #region PositionsInRadius
-        // TODO: Test PositionsInRadius functions.
+
+        [Theory]
+        [MemberDataEnumerable(nameof(Radiuses))]
+        public void TestRadiusUnbounded(Radius shape)
+        {
+            Rectangle area = (1, 2, 55, 43);
+            Point center = (25, 20);
+            int radius = 10;
+
+            var dist = (Distance)shape;
+
+            var positions = shape.PositionsInRadius(center, radius).ToList();
+            var positionsHash = positions.ToHashSet();
+
+            // No duplicates
+            Assert.Equal(positionsHash.Count, positions.Count);
+
+            // Sanity check; positions should be within the original area we're comparing against to ensure we check all points
+            // by iterating over area
+            Assert.All(positions, pos => Assert.True(area.Contains(pos)));
+
+            // Positions returned should be exactly the ones within the radius
+            var positionsHashExpected = area.Positions().Where(pos => dist.Calculate(pos, center) <= radius).ToHashSet();
+            Assert.Equal(positionsHashExpected, positionsHash);
+        }
+
+        [Theory]
+        [MemberDataEnumerable(nameof(Radiuses))]
+        public void TestRadiusBounded(Radius shape)
+        {
+            Rectangle bounds = (1, 2, 55, 43);
+            // From here to bounds is < radius in terms of distance
+            Point center = (5, 7);
+            int radius = 10;
+
+            var dist = (Distance)shape;
+
+            var positions = shape.PositionsInRadius(center, radius, bounds).ToList();
+            var positionsHash = positions.ToHashSet();
+
+            // No duplicates
+            Assert.Equal(positionsHash.Count, positions.Count);
+
+            // Sanity check; positions should be within the original area we're comparing against since that was the bounds
+            Assert.All(positions, pos => Assert.True(bounds.Contains(pos)));
+
+            // Positions returned should be exactly the ones within the radius
+            var positionsHashExpected = bounds.Positions().Where(pos => dist.Calculate(pos, center) <= radius).ToHashSet();
+            Assert.Equal(positionsHashExpected, positionsHash);
+        }
+
+        // TODO: Test PositionsInRadius w/context functions.
         #endregion
     }
 }

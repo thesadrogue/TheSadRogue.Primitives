@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics.Contracts;
+using System.Runtime.Serialization;
 
 namespace SadRogue.Primitives
 {
@@ -14,34 +15,31 @@ namespace SadRogue.Primitives
     /// <see cref="Radius"/> and <see cref="AdjacencyRule"/> (since both a method of determining adjacent
     /// locations and a radius shape are implied by a distance calculation).
     /// </remarks>
-    [Serializable]
+    [DataContract]
     public readonly struct Distance : IEquatable<Distance>
     {
         /// <summary>
         /// Represents chebyshev distance (equivalent to 8-way movement with no extra cost for diagonals).
         /// </summary>
-        [NonSerialized]
         public static Distance Chebyshev = new Distance(Types.Chebyshev);
 
         /// <summary>
         /// Represents euclidean distance (equivalent to 8-way movement with ~1.41 movement cost for diagonals).
         /// </summary>
-        [NonSerialized]
         public static Distance Euclidean = new Distance(Types.Euclidean);
 
         /// <summary>
         /// Represents manhattan distance (equivalent to 4-way, cardinal-only movement).
         /// </summary>
-        [NonSerialized]
         public static Distance Manhattan = new Distance(Types.Manhattan);
 
         /// <summary>
         /// Enum value representing the method of calcuating distance -- useful for using
         /// Distance types in switch statements.
         /// </summary>
+        [DataMember]
         public readonly Types Type;
 
-        [NonSerialized]
         private static readonly string[] s_writeVals = Enum.GetNames(typeof(Types));
 
         private Distance(Types type) => Type = type;
@@ -122,14 +120,20 @@ namespace SadRogue.Primitives
         }
 
         /// <summary>
-        /// Gets the Distance class instance representing the distance type specified.
+        /// Implicitly converts a Distance to its corresponding <see cref="Type"/>.
         /// </summary>
-        /// <param name="distanceType">The enum value for the distance calculation method.</param>
-        /// <returns>The Distance class representing the given distance calculation.</returns>
+        /// <param name="distance"/>
         [Pure]
-        public static Distance ToDistance(Types distanceType)
+        public static implicit operator Types(Distance distance) => distance.Type;
+
+        /// <summary>
+        /// Implicitly converts an <see cref="Types"/> enum value to its corresponding Distance.
+        /// </summary>
+        /// <param name="type"/>
+        [Pure]
+        public static implicit operator Distance(Types type)
         {
-            switch (distanceType)
+            switch (type)
             {
                 case Types.Manhattan:
                     return Manhattan;

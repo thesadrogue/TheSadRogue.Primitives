@@ -1,19 +1,22 @@
 ﻿using System;
+using System.Runtime.Serialization;
 
 namespace SadRogue.Primitives
 {
     /// <summary>
-	/// This class defines a 2D rectanglar area, whose area is automatically "locked" to
+	/// This class defines a 2D rectangular area, whose area is automatically "locked" to
 	/// being inside a rectangular bounding box as it is changed. A typical use might be
 	/// keeping track of a camera's view area.
 	/// </summary>
-    [Serializable]
+    [DataContract]
     public class BoundedRectangle : IEquatable<BoundedRectangle>
     {
+        [DataMember]
         private Rectangle _area;
         // A bug in code cleanup will add the readonly modifier to this field even though it would break the BoundingBox property at compile-time,
         // unless we disable the warning for this line
 #pragma warning disable IDE0044
+        [DataMember]
         private Rectangle _boundingBox;
 #pragma warning restore IDE0044
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
+using System.Runtime.Serialization;
 
 namespace SadRogue.Primitives
 {
@@ -9,31 +10,27 @@ namespace SadRogue.Primitives
     /// coordinate, and which directions those neighbors are in. Cannot be instantiated -- pre-made
     /// static instances are provided.
     /// </summary>
-    [Serializable]
+    [DataContract]
     public readonly struct AdjacencyRule : IEquatable<AdjacencyRule>
     {
         /// <summary>
         /// Represents method of determining adjacency where neighbors are considered adjacent if
         /// they are in a cardinal direction, eg. 4-way (manhattan-based) connectivity.
         /// </summary>
-        [NonSerialized]
         public static readonly AdjacencyRule Cardinals = new AdjacencyRule(Types.Cardinals);
 
         /// <summary>
         /// Represents method of determining adjacency where neighbors are considered adjacent only
         /// if they are in a diagonal direction.
         /// </summary>
-        [NonSerialized]
         public static readonly AdjacencyRule Diagonals = new AdjacencyRule(Types.Diagonals);
 
         /// <summary>
         /// Represents method of determining adjacency where all 8 possible neighbors are considered
         /// adjacent (eg. 8-way connectivity).
         /// </summary>
-        [NonSerialized]
         public static readonly AdjacencyRule EightWay = new AdjacencyRule(Types.EightWay);
 
-        [NonSerialized]
         private static readonly string[] s_writeValues = Enum.GetNames(typeof(Types));
 
         // Constructor, takes type.
@@ -66,31 +63,8 @@ namespace SadRogue.Primitives
         /// Enum value representing the method of determining adjacency -- useful for using
         /// <see cref="AdjacencyRule"/> types in switch statements.
         /// </summary>
+        [DataMember]
         public readonly Types Type;
-
-        /// <summary>
-        /// Gets the <see cref="AdjacencyRule"/> class instance representing the adjacency type specified.
-        /// </summary>
-        /// <param name="adjacencyRuleType">The enum value for the adjacency method.</param>
-        /// <returns>The <see cref="AdjacencyRule"/> class representing the given adjacency method type.</returns>
-        [Pure]
-        public static AdjacencyRule ToAdjacencyRule(Types adjacencyRuleType)
-        {
-            switch (adjacencyRuleType)
-            {
-                case Types.Cardinals:
-                    return Cardinals;
-
-                case Types.Diagonals:
-                    return Diagonals;
-
-                case Types.EightWay:
-                    return EightWay;
-
-                default:
-                    throw new Exception($"Could not convert {nameof(Type)} type to {nameof(AdjacencyRule)} -- this is a bug!."); // Will not occur
-            }
-        }
 
         /// <summary>
         /// Gets directions leading to neighboring locations, according to the current adjacency
@@ -360,10 +334,40 @@ namespace SadRogue.Primitives
         public static bool operator !=(AdjacencyRule lhs, AdjacencyRule rhs) => !(lhs == rhs);
 
         /// <summary>
-        /// Returns a string representation of the <see cref="AdjacencyRule"/>.
+        /// Implicitly converts an AdjacencyRule to its corresponding <see cref="Type"/>.
         /// </summary>
-        /// <returns>A string representation of the <see cref="AdjacencyRule"/>.</returns>
+        /// <param name="rule"/>
         [Pure]
+        public static implicit operator Types(AdjacencyRule rule) => rule.Type;
+
+        /// <summary>
+        /// Implicitly converts an <see cref="Types"/> enum value to its corresponding AdjacencyRule.
+        /// </summary>
+        /// <param name="type"/>
+        [Pure]
+        public static implicit operator AdjacencyRule(Types type)
+        {
+            switch (type)
+            {
+                case Types.Cardinals:
+                    return Cardinals;
+
+                case Types.Diagonals:
+                    return Diagonals;
+
+                case Types.EightWay:
+                    return EightWay;
+
+                default:
+                    throw new Exception($"Could not convert {nameof(Type)} type to {nameof(AdjacencyRule)} -- this is a bug!."); // Will not occur
+            }
+        }
+
+        /// <summary>
+    /// Returns a string representation of the <see cref="AdjacencyRule"/>.
+    /// </summary>
+    /// <returns>A string representation of the <see cref="AdjacencyRule"/>.</returns>
+    [Pure]
         public override string ToString() => s_writeValues[(int)Type];
     }
 }

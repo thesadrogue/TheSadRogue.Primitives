@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
+using System.Runtime.Serialization;
 
 namespace SadRogue.Primitives
 {
@@ -15,21 +16,19 @@ namespace SadRogue.Primitives
     /// of determining adjacent locations and a method of calculating distance are implied by a radius
     /// shape).
     /// </remarks>
-    [Serializable]
+    [DataContract]
     public readonly struct Radius : IEquatable<Radius>
     {
         /// <summary>
         /// Radius is a circle around the center point. CIRCLE would represent movement radius in
         /// an 8-way movement scheme with a ~1.41 cost multiplier for diagonal movement.
         /// </summary>
-        [NonSerialized]
         public static readonly Radius Circle = new Radius(Types.Circle);
 
         /// <summary>
         /// Radius is a diamond around the center point. DIAMOND would represent movement radius
         /// in a 4-way movement scheme.
         /// </summary>
-        [NonSerialized]
         public static readonly Radius Diamond = new Radius(Types.Diamond);
 
         /// <summary>
@@ -37,16 +36,15 @@ namespace SadRogue.Primitives
         /// an 8-way movement scheme, where all 8 squares around an item are considered equal distance
         /// away.
         /// </summary>
-        [NonSerialized]
         public static readonly Radius Square = new Radius(Types.Square);
 
         /// <summary>
         /// Enum value representing the radius shape -- useful for using Radius types in switch
         /// statements.
         /// </summary>
+        [DataMember]
         public readonly Types Type;
 
-        [NonSerialized]
         private static readonly string[] s_writeVals = Enum.GetNames(typeof(Types));
 
         private Radius(Types type) => Type = type;
@@ -274,14 +272,20 @@ namespace SadRogue.Primitives
         }
 
         /// <summary>
-        /// Gets the Radius class instance representing the radius type specified.
+        /// Implicitly converts a Radius to its corresponding <see cref="Type"/>.
         /// </summary>
-        /// <param name="radiusType">The enum value for the radius shape.</param>
-        /// <returns>The radius class representing the given radius shape.</returns>
+        /// <param name="radius"/>
         [Pure]
-        public static Radius ToRadius(Types radiusType)
+        public static implicit operator Types(Radius radius) => radius.Type;
+
+        /// <summary>
+        /// Implicitly converts an <see cref="Types"/> enum value to its corresponding Radius.
+        /// </summary>
+        /// <param name="type"/>
+        [Pure]
+        public static implicit operator Radius(Types type)
         {
-            switch (radiusType)
+            switch (type)
             {
                 case Types.Circle:
                     return Circle;

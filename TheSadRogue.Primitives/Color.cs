@@ -15,7 +15,6 @@ namespace SadRogue.Primitives
     /// </summary>
     [DataContract]
     [DebuggerDisplay("{DebugDisplayString,nq}")]
-    [Serializable]
     public readonly struct Color : IEquatable<Color>
     {
         static Color()
@@ -168,6 +167,7 @@ namespace SadRogue.Primitives
         // Stored as RGBA with R in the least significant octet:
         // |-------|-------|-------|-------
         // A       B       G       R
+        [DataMember]
         private readonly uint _packedValue;
 
         /// <summary>
@@ -293,7 +293,6 @@ namespace SadRogue.Primitives
         /// <summary>
         /// Gets or sets the blue component.
         /// </summary>
-        [DataMember]
         public byte B
         {
             get
@@ -308,7 +307,6 @@ namespace SadRogue.Primitives
         /// <summary>
         /// Gets or sets the green component.
         /// </summary>
-        [DataMember]
         public byte G
         {
             get
@@ -323,7 +321,6 @@ namespace SadRogue.Primitives
         /// <summary>
         /// Gets or sets the red component.
         /// </summary>
-        [DataMember]
         public byte R
         {
             get
@@ -338,7 +335,6 @@ namespace SadRogue.Primitives
         /// <summary>
         /// Gets or sets the alpha component.
         /// </summary>
-        [DataMember]
         public byte A
         {
             get

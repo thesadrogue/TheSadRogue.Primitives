@@ -2,23 +2,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
+using System.Runtime.Serialization;
 
 namespace SadRogue.Primitives
 {
     /// <summary>
     /// A gradient stop. Defines a color and where it is located within the gradient.
     /// </summary>
-    [Serializable]
+    [DataContract]
     public readonly struct GradientStop : IEquatable<GradientStop>
     {
         /// <summary>
         /// The color.
         /// </summary>
+        [DataMember]
         public readonly Color Color;
 
         /// <summary>
         /// The color stop in the gradiant this applies to.
         /// </summary>
+        [DataMember]
         public readonly float Stop;
 
         /// <summary>
@@ -51,12 +54,13 @@ namespace SadRogue.Primitives
     /// <summary>
     /// Represents a gradient with multiple color stops.
     /// </summary>
-    [Serializable]
+    [DataContract]
     public class Gradient : IEnumerable<GradientStop>
     {
         /// <summary>
         /// The color stops that define the gradient.
         /// </summary>
+        [DataMember]
         public GradientStop[] Stops { get; set; }
 
         /// <summary>

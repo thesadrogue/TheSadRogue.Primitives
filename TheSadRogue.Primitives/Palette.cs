@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace SadRogue.Primitives
 {
     /// <summary>
     /// A palette of colors.
     /// </summary>
-    [Serializable]
+    [DataContract]
     public class Palette : IEnumerable<Color>
     {
+        [DataMember]
         private readonly Color[] _colors;
 
         /// <summary>

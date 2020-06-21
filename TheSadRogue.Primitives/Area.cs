@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace SadRogue.Primitives
@@ -9,12 +10,16 @@ namespace SadRogue.Primitives
     /// Represents an arbitrarily-shaped 2D area. Stores and provides access to a list of each
     /// unique position in the area.
     /// </summary>
-    [Serializable]
+    [DataContract]
     public class Area : IReadOnlyArea
     {
+        [DataMember]
         private readonly HashSet<Point> positionsSet;
+
+        [DataMember]
         private readonly List<Point> _positions;
 
+        [DataMember]
         private int left, top, bottom, right;
 
         /// <summary>

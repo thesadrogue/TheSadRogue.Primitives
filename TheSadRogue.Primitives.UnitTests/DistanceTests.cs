@@ -74,7 +74,7 @@ namespace SadRogue.Primitives.UnitTests
         [MemberDataTuple(nameof(TypeDistanceConversion))]
         public void DistanceTypeConversion(Distance.Types type, Distance expectedDist)
         {
-            Distance dir = Distance.ToDistance(type);
+            Distance dir = type;
             Assert.Equal(expectedDist, dir);
         }
         #endregion

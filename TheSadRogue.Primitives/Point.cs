@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics.Contracts;
+using System.Runtime.Serialization;
 
 namespace SadRogue.Primitives
 {
@@ -15,7 +16,7 @@ namespace SadRogue.Primitives
     /// Point also provides operators and static helper functions that perform common grid math/operations,
     /// as well as interoperability with other grid-based classes like <see cref="Direction"/>.
     /// </remarks>
-    [Serializable]
+    [DataContract]
     public readonly struct Point : IEquatable<Point>, IEquatable<(int x, int y)>
     {
         /// <summary>
@@ -26,17 +27,18 @@ namespace SadRogue.Primitives
         /// This constant has (x, y) values (int.MinValue, int.MinValue), so a position with those
         /// x/y values is not considered a valid coordinate by many functions.
         /// </remarks>
-        [NonSerialized]
         public static readonly Point None = new Point(int.MinValue, int.MinValue);
 
         /// <summary>
         /// X-value of the position.
         /// </summary>
+        [DataMember]
         public readonly int X;
 
         /// <summary>
         /// Y-value of the position.
         /// </summary>
+        [DataMember]
         public readonly int Y;
 
         /// <summary>

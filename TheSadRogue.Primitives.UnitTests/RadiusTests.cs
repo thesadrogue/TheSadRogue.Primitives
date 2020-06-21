@@ -74,7 +74,7 @@ namespace SadRogue.Primitives.UnitTests
         [MemberDataTuple(nameof(TypeRadiusConversion))]
         public void RadiusTypeConversion(Radius.Types type, Radius expectedRad)
         {
-            Radius rad = Radius.ToRadius(type);
+            Radius rad = type;
             Assert.Equal(expectedRad, rad);
         }
         #endregion

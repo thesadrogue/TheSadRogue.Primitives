@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
+using System.Linq;
 using System.Runtime.Serialization;
 
 namespace SadRogue.Primitives
@@ -19,7 +20,7 @@ namespace SadRogue.Primitives
         public readonly Color Color;
 
         /// <summary>
-        /// The color stop in the gradiant this applies to.
+        /// The color stop in the gradient this applies to.
         /// </summary>
         [DataMember]
         public readonly float Stop;
@@ -61,7 +62,7 @@ namespace SadRogue.Primitives
         /// The color stops that define the gradient.
         /// </summary>
         [DataMember]
-        public GradientStop[] Stops { get; set; }
+        public readonly GradientStop[] Stops;
 
         /// <summary>
         /// Creates a new color gradient with the defined colors and stops.
@@ -70,21 +71,17 @@ namespace SadRogue.Primitives
         /// <param name="stops">The gradient stops where the colors are used.</param>
         public Gradient(IEnumerable<Color> colors, IEnumerable<float> stops)
         {
-            Color[] colorList = (Color[])colors;
-            float[] stopList = (float[])stops;
+            Color[] colorList = colors.ToArray();
+            float[] stopList = stops.ToArray();
 
 
             if (colorList.Length != stopList.Length)
-            {
-                throw new global::System.Exception("Both colors and stops much match in array length.");
-            }
+                throw new Exception("Both colors and stops much match in array length.");
 
             Stops = new GradientStop[colorList.Length];
 
             for (int i = 0; i < colorList.Length; i++)
-            {
                 Stops[i] = new GradientStop(colorList[i], stopList[i]);
-            }
         }
 
         /// <summary>
@@ -92,10 +89,8 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="startingColor">The starting color of the gradient.</param>
         /// <param name="endingColor">The ending color of the gradient.</param>
-        public Gradient(Color startingColor, Color endingColor) : this(new Color[] { startingColor, endingColor }, new float[] { 0f, 1f })
-        {
-
-        }
+        public Gradient(Color startingColor, Color endingColor) : this(new[] { startingColor, endingColor }, new[] { 0f, 1f })
+        { }
 
         /// <summary>
         /// Creates a new color gradient, evenly spacing them out. At least one color must be provided.
@@ -103,30 +98,37 @@ namespace SadRogue.Primitives
         /// <param name="colors">The colors to create a gradient from.</param>
         public Gradient(params Color[] colors)
         {
-            if (colors.Length == 0)
+            switch (colors.Length)
             {
-                throw new global::System.ArgumentException("At least one color must be provided on this constructor.");
-            }
-
-            if (colors.Length == 1)
-            {
-                Color color = colors[0];
-                colors = new Color[2];
-                colors[0] = color;
-                colors[1] = color;
-            }
-
-            if (colors.Length >= 2)
-            {
-                Stops = new GradientStop[colors.Length];
-                float stopStrength = 1f / (colors.Length - 1);
-
-                for (int i = 0; i < colors.Length; i++)
+                case 0:
+                    throw new ArgumentException("At least one color must be provided on this constructor.");
+                case 1:
                 {
-                    Stops[i] = new GradientStop(colors[i], i * stopStrength);
+                    Color color = colors[0];
+                    colors = new Color[2];
+                    colors[0] = color;
+                    colors[1] = color;
+                    break;
+                }
+                default:
+                {
+                    Stops = new GradientStop[colors.Length];
+                    float stopStrength = 1f / (colors.Length - 1);
+
+                    for (int i = 0; i < colors.Length; i++)
+                        Stops[i] = new GradientStop(colors[i], i * stopStrength);
+                    break;
                 }
             }
+        }
 
+        /// <summary>
+        /// Creates a new color gradient with the given colors/stops.
+        /// </summary>
+        /// <param name="gradientStops">Stops to include in the gradient.</param>
+        public Gradient(IEnumerable<GradientStop> gradientStops)
+        {
+            Stops = gradientStops.ToArray();
         }
 
         /// <summary>
@@ -150,18 +152,17 @@ namespace SadRogue.Primitives
         {
             Color[] returnArray = new Color[count];
 
-            if (Stops.Length == 0)
+            switch (Stops.Length)
             {
-                throw new global::System.IndexOutOfRangeException("The ColorGradient object does not have any gradient stops defined.");
-            }
-            else if (Stops.Length == 1)
-            {
-                for (int i = 0; i < count; i++)
+                case 0:
+                    throw new IndexOutOfRangeException("The ColorGradient object does not have any gradient stops defined.");
+                case 1:
                 {
-                    returnArray[i] = Stops[0].Color;
-                }
+                    for (int i = 0; i < count; i++)
+                        returnArray[i] = Stops[0].Color;
 
-                return returnArray;
+                    return returnArray;
+                }
             }
 
             float lerp = 1f / (count - 1);
@@ -173,11 +174,9 @@ namespace SadRogue.Primitives
             for (int i = 1; i < count - 1; i++)
             {
                 lerpTotal += lerp;
-                int counter;
-                for (counter = 0; counter < Stops.Length && Stops[counter].Stop < lerpTotal; counter++)
-                {
-                    ;
-                }
+                int counter = 0;
+                while (counter < Stops.Length && Stops[counter].Stop < lerpTotal)
+                    counter++;
 
                 counter--;
                 counter = MathHelpers.Clamp(counter, 0, Stops.Length - 2);
@@ -197,20 +196,17 @@ namespace SadRogue.Primitives
         /// <returns>A color.</returns>
         public Color Lerp(float amount)
         {
-            if (Stops.Length == 0)
+            switch (Stops.Length)
             {
-                throw new System.IndexOutOfRangeException("The ColorGradient object does not have any gradient stops defined.");
-            }
-            else if (Stops.Length == 1)
-            {
-                return Stops[0].Color;
+                case 0:
+                    throw new System.IndexOutOfRangeException("The ColorGradient object does not have any gradient stops defined.");
+                case 1:
+                    return Stops[0].Color;
             }
 
-            int counter;
-            for (counter = 0; counter < Stops.Length && Stops[counter].Stop < amount; counter++)
-            {
-                ;
-            }
+            int counter = 0;
+            while (counter < Stops.Length && Stops[counter].Stop < amount)
+                counter++;
 
             counter--;
             counter = MathHelpers.Clamp(counter, 0, Stops.Length - 2);

@@ -16,31 +16,58 @@ namespace SadRogue.Primitives.UnitTests
         // Types that serialize to JSON objects via JSON .NET, so we can check which fields are serialized.
         public static IEnumerable<object> SerializableValuesJsonObjects = new object[]
         {
+            // AdjacencyRules
             AdjacencyRule.Cardinals, AdjacencyRule.EightWay,
+            // AreaSerialized
+            (AreaSerialized)CreateArea((1, 2), (3, 4), (5,6)),
+            // BoundedRectangle
             new BoundedRectangle(new Rectangle(1, 4, 10, 14), new Rectangle(-10, -9, 100, 101)),
+            // BoundedRectangleSerialized
             (BoundedRectangleSerialized)new BoundedRectangle(new Rectangle(1, 4, 10, 14), new Rectangle(-10, -9, 100, 101)),
+            // Colors
             new Color(.5f, .6f, .7f), new Color(120, 121, 122, 100), Color.AliceBlue,
+            // ColorSerialized
             (ColorSerialized)new Color(.5f, .6f, .7f), (ColorSerialized)new Color(120, 121, 122, 100), (ColorSerialized)Color.AliceBlue,
+            // Directions
             Direction.Down, Direction.UpRight,
+            // Distances
             Distance.Chebyshev, Distance.Manhattan,
+            // GradientStop
             new GradientStop(new Color(100, 101, 102, 103), .5f),
+            // GradientStopSerialized
             (GradientStopSerialized)new GradientStop(new Color(100, 101, 102, 103), .5f),
+            // GradientSerialized
+            (GradientSerialized)new Gradient(new Color(100, 101, 102, 103), new Color(200, 201, 202, 203)),
+            // PaletteSerialized
+            (PaletteSerialized)new Palette(new[] {new Color(100, 101, 102, 103), new Color(150, 151, 152, 149)}),
+            // Point
             new Point(-1, -5), new Point(4, 9),
+            // PointSerialized
             (PointSerialized)new Point(-1, -5), (PointSerialized)new Point(4, 9),
+            // Radiuses
             Radius.Circle, Radius.Diamond,
+            // Rectangles
             new Rectangle(1, 2, 3, 4), new Rectangle(-10, -4, 56, 68),
+            // RectangleSerialized
             (RectangleSerialized)new Rectangle(1, 2, 3, 4), (RectangleSerialized)new Rectangle(-10, -4, 56, 68)
         };
 
         // Types that serialize to non-JSON objects (for example, JSON arrays), so we do NOT check for specific fields.
         public static IEnumerable<object> SerializableValuesNonJsonObjects = new object[]
         {
+            // AdjacencyRule.Types
             AdjacencyRule.Types.Cardinals, AdjacencyRule.Types.Diagonals,
+            // Area
             CreateArea((1, 2), (3, 4), (5,6)),
+            // Direction.Types
             Direction.Types.Down, Direction.Types.Right,
+            // Distance.Types
             Distance.Types.Chebyshev, Distance.Types.Euclidean,
+            // Gradient
             new Gradient(new Color(100, 101, 102, 103), new Color(200, 201, 202, 203)),
+            // Palette
             new Palette(new[] {new Color(100, 101, 102, 103), new Color(150, 151, 152, 149)}),
+            // Radius.Types
             Radius.Types.Square, Radius.Types.Circle
         };
 
@@ -53,6 +80,7 @@ namespace SadRogue.Primitives.UnitTests
         private static Dictionary<Type, string[]> typeSerializedFields = new Dictionary<Type, string[]>
         {
             { typeof(AdjacencyRule),              new [] { "Type" } },
+            { typeof(AreaSerialized),             new [] { "Positions" } },
             { typeof(BoundedRectangle),           new [] { "_area", "_boundingBox" } },
             { typeof(BoundedRectangleSerialized), new [] { "Area", "Bounds"} },
             { typeof(Color),                      new [] { "_packedValue" } },
@@ -61,6 +89,8 @@ namespace SadRogue.Primitives.UnitTests
             { typeof(Distance),                   new [] { "Type" } },
             { typeof(GradientStop),               new [] { "Color", "Stop" } },
             { typeof(GradientStopSerialized),     new [] { "Color", "Stop" } },
+            { typeof(GradientSerialized),         new [] { "Stops" } },
+            { typeof(PaletteSerialized),          new [] { "Colors" } },
             { typeof(Point),                      new [] { "X", "Y" } },
             { typeof(PointSerialized),            new [] { "X", "Y" } },
             { typeof(Radius),                     new [] { "Type" } },
@@ -71,8 +101,11 @@ namespace SadRogue.Primitives.UnitTests
         // Dictionary of object types mapping them to custom methods to use in order to determine equality.
         private static Dictionary<Type, Func<object, object, bool>> equalityMethods = new Dictionary<Type, Func<object, object, bool>>()
         {
+            { typeof(AreaSerialized), AreaSerializedCompare },
             { typeof(Gradient), GradientCompare },
-            { typeof(Palette), PaletteCompare }
+            { typeof(Palette), PaletteCompare },
+            { typeof(GradientSerialized), GradientSerializedCompare },
+            { typeof(PaletteSerialized), PaletteSerializedCompare }
         };
         #endregion
 
@@ -137,7 +170,7 @@ namespace SadRogue.Primitives.UnitTests
             Assert.Equal(expectedFields, fields);
         }
 
-        // Creates an area.
+        // Creates an area
         private static Area CreateArea(params Point[] points)
         {
             var area = new Area();
@@ -145,27 +178,13 @@ namespace SadRogue.Primitives.UnitTests
             return area;
         }
 
+        // Compares to AreaSerialized instances
+        private static bool AreaSerializedCompare(object o1, object o2)
+            => ElementWiseEquality(((AreaSerialized)o1).Positions, ((AreaSerialized)o2).Positions);
+
         // Compares two gradients
         private static bool GradientCompare(object o1, object o2)
-        {
-            Gradient g1 = (Gradient)o1;
-            Gradient g2 = (Gradient)o2;
-
-            if (g1.Stops.Length != g2.Stops.Length)
-            {
-                return false;
-            }
-
-            for (int i = 0; i < g1.Stops.Length; i++)
-            {
-                if (g1.Stops[i] != g2.Stops[i])
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }
+            => ElementWiseEquality(((Gradient)o1).Stops, ((Gradient)o2).Stops);
 
         // Compares two palettes
         private static bool PaletteCompare(object o1, object o2)
@@ -174,17 +193,36 @@ namespace SadRogue.Primitives.UnitTests
             Palette p2 = (Palette)o2;
 
             if (p1.Length != p2.Length)
-            {
                 return false;
-            }
 
             for (int i = 0; i < p1.Length; i++)
             {
                 if (p1[i] != p2[i])
-                {
                     return false;
-                }
             }
+
+            return true;
+        }
+
+        private static bool PaletteSerializedCompare(object o1, object o2)
+            => ElementWiseEquality(((PaletteSerialized)o1).Colors, ((PaletteSerialized)o2).Colors);
+
+        private static bool GradientSerializedCompare(object o1, object o2)
+            => ElementWiseEquality(((GradientSerialized)o1).Stops, ((GradientSerialized)o2).Stops);
+
+        private static bool ElementWiseEquality<T>(IEnumerable<T> e1, IEnumerable<T> e2, Func<T, T, bool> compareFunc = null)
+        {
+            compareFunc ??= (o1, o2) => o1.Equals(o2);
+
+            var l1 = e1.ToList();
+            var l2 = e2.ToList();
+
+            if (l1.Count != l2.Count)
+                return false;
+
+            for (int i = 0; i < l1.Count; i++)
+                if (!compareFunc(l1[i], l2[i]))
+                    return false;
 
             return true;
         }

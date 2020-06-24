@@ -39,7 +39,7 @@ namespace SadRogue.Primitives.SerializedTypes
         public static implicit operator GradientSerialized(Gradient gradient)
             => new GradientSerialized()
             {
-                Stops = new List<GradientStopSerialized>(gradient.Stops.Cast<GradientStopSerialized>())
+                Stops = gradient.Stops.Select(stop => (GradientStopSerialized)stop).ToList()
             };
     }
 }

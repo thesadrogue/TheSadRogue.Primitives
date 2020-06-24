@@ -15,7 +15,7 @@ namespace SadRogue.Primitives.SerializedTypes
         public static implicit operator Palette(PaletteSerialized serialized) => new Palette(serialized.Colors.Cast<Color>());
 
         public static implicit operator PaletteSerialized(Palette palette) =>
-            new PaletteSerialized() { Colors = palette.Cast<ColorSerialized>().ToList() };
+            new PaletteSerialized() { Colors = palette.Select(color => (ColorSerialized)color).ToList() };
     }
 
 

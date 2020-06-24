@@ -13,16 +13,9 @@ namespace SadRogue.Primitives.SerializedTypes
         public List<PointSerialized> Positions;
 
         public static implicit operator Area(AreaSerialized serialized)
-        {
-            var area = new Area();
-
-            foreach (var pos in serialized.Positions)
-                area.Add(pos);
-
-            return area;
-        }
+            => new Area(serialized.Positions.Select(pos => (Point)pos));
 
         public static implicit operator AreaSerialized(Area area)
-            => new AreaSerialized() { Positions = new List<PointSerialized>(area.Positions.Cast<PointSerialized>()) };
+            => new AreaSerialized() { Positions = area.Positions.Select(p => (PointSerialized)p).ToList() };
     }
 }

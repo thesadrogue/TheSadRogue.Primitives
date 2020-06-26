@@ -12,7 +12,7 @@ namespace SadRogue.Primitives.SerializedTypes
     {
         public List<ColorSerialized> Colors;
 
-        public static implicit operator Palette(PaletteSerialized serialized) => new Palette(serialized.Colors.Cast<Color>());
+        public static implicit operator Palette(PaletteSerialized serialized) => new Palette(serialized.Colors.Select(colorSerialized => (Color)colorSerialized));
 
         public static implicit operator PaletteSerialized(Palette palette) =>
             new PaletteSerialized() { Colors = palette.Select(color => (ColorSerialized)color).ToList() };

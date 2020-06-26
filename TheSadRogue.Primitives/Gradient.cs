@@ -16,14 +16,12 @@ namespace SadRogue.Primitives
         /// <summary>
         /// The color.
         /// </summary>
-        [DataMember]
-        public readonly Color Color;
+        [DataMember] public readonly Color Color;
 
         /// <summary>
         /// The color stop in the gradient this applies to.
         /// </summary>
-        [DataMember]
-        public readonly float Stop;
+        [DataMember] public readonly float Stop;
 
         /// <summary>
         /// Creates a new gradient stop.
@@ -37,7 +35,8 @@ namespace SadRogue.Primitives
         }
 
         [Pure]
-        public static bool operator ==(GradientStop lhs, GradientStop rhs) => lhs.Color == rhs.Color && lhs.Stop == rhs.Stop;
+        public static bool operator ==(GradientStop lhs, GradientStop rhs)
+            => lhs.Color == rhs.Color && lhs.Stop == rhs.Stop;
 
         [Pure]
         public static bool operator !=(GradientStop lhs, GradientStop rhs) => !(lhs == rhs);
@@ -61,8 +60,7 @@ namespace SadRogue.Primitives
         /// <summary>
         /// The color stops that define the gradient.
         /// </summary>
-        [DataMember]
-        public readonly GradientStop[] Stops;
+        [DataMember] public readonly GradientStop[] Stops;
 
         /// <summary>
         /// Creates a new color gradient with the defined colors and stops.
@@ -89,7 +87,8 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="startingColor">The starting color of the gradient.</param>
         /// <param name="endingColor">The ending color of the gradient.</param>
-        public Gradient(Color startingColor, Color endingColor) : this(new[] { startingColor, endingColor }, new[] { 0f, 1f })
+        public Gradient(Color startingColor, Color endingColor)
+            : this(new[] { startingColor, endingColor }, new[] { 0f, 1f })
         { }
 
         /// <summary>
@@ -117,6 +116,7 @@ namespace SadRogue.Primitives
 
                     for (int i = 0; i < colors.Length; i++)
                         Stops[i] = new GradientStop(colors[i], i * stopStrength);
+
                     break;
                 }
             }
@@ -126,10 +126,7 @@ namespace SadRogue.Primitives
         /// Creates a new color gradient with the given colors/stops.
         /// </summary>
         /// <param name="gradientStops">Stops to include in the gradient.</param>
-        public Gradient(IEnumerable<GradientStop> gradientStops)
-        {
-            Stops = gradientStops.ToArray();
-        }
+        public Gradient(IEnumerable<GradientStop> gradientStops) => Stops = gradientStops.ToArray();
 
         /// <summary>
         /// Gets an enumerator with all of the gradient stops.
@@ -155,7 +152,8 @@ namespace SadRogue.Primitives
             switch (Stops.Length)
             {
                 case 0:
-                    throw new IndexOutOfRangeException("The ColorGradient object does not have any gradient stops defined.");
+                    throw new IndexOutOfRangeException(
+                        "The ColorGradient object does not have any gradient stops defined.");
                 case 1:
                 {
                     for (int i = 0; i < count; i++)
@@ -199,7 +197,8 @@ namespace SadRogue.Primitives
             switch (Stops.Length)
             {
                 case 0:
-                    throw new System.IndexOutOfRangeException("The ColorGradient object does not have any gradient stops defined.");
+                    throw new IndexOutOfRangeException(
+                        "The ColorGradient object does not have any gradient stops defined.");
                 case 1:
                     return Stops[0].Color;
             }
@@ -216,8 +215,55 @@ namespace SadRogue.Primitives
             return Color.Lerp(Stops[counter].Color, Stops[counter + 1].Color, newLerp);
         }
 
+        /// <summary>
+        /// Converts a color to a gradient.
+        /// </summary>
+        /// <param name="color" />
         public static implicit operator Gradient(Color color) => new Gradient(color, color);
 
-        public static implicit operator Color(Gradient gradient) => gradient.Stops[0].Color;
+        /// <summary>
+        /// Returns true if the object is a gradient that contains precisely the same stops.
+        /// </summary>
+        /// <param name="obj"/>
+        /// <returns>True if the object is a gradient that contains precisely the same stops; false otherwise</returns>
+        public override bool Equals(object obj) => obj is Gradient gradient && this == gradient;
+
+        /// <summary>
+        /// Returns a hash code based on the gradient's stops.
+        /// </summary>
+        /// <returns>A hash code based on the gradient's stops.</returns>
+        public override int GetHashCode() => Stops.GetHashCode();
+
+        /// <summary>
+        /// Returns true if the given gradients contain precisely the same stops.
+        /// </summary>
+        /// <param name="g1"/>
+        /// <param name="g2"/>
+        /// <returns>True if the given gradients contain precisely the same stops; false otherwise.</returns>
+        public static bool operator ==(Gradient g1, Gradient g2)
+        {
+            if (ReferenceEquals(g1, g2))
+                return true;
+
+            if (g1 is null || g2 is null)
+                return false;
+
+            if (g1.Stops.Length != g2.Stops.Length)
+                return false;
+
+            for (int i = 0; i < g1.Stops.Length; i++)
+                if (g1.Stops[i] != g2.Stops[i])
+                    return false;
+
+            return true;
+        }
+
+        /// <summary>
+        /// Returns true if the gradients have a different sequence of stops.
+        /// </summary>
+        /// <param name="g1"/>
+        /// <param name="g2"/>
+        /// <returns>True if the gradients have a different sequence of stops; false otherwise.</returns>
+        public static bool operator !=(Gradient g1, Gradient g2) => !(g1 == g2);
     }
 }

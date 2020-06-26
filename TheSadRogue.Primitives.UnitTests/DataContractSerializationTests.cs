@@ -19,7 +19,7 @@ namespace SadRogue.Primitives.UnitTests
             // AdjacencyRules
             AdjacencyRule.Cardinals, AdjacencyRule.EightWay,
             // AreaSerialized
-            (AreaSerialized)CreateArea((1, 2), (3, 4), (5,6)),
+            (AreaSerialized)new Area((1, 2), (3, 4), (5,6)),
             // BoundedRectangle
             new BoundedRectangle(new Rectangle(1, 4, 10, 14), new Rectangle(-10, -9, 100, 101)),
             // BoundedRectangleSerialized
@@ -58,7 +58,7 @@ namespace SadRogue.Primitives.UnitTests
             // AdjacencyRule.Types
             AdjacencyRule.Types.Cardinals, AdjacencyRule.Types.Diagonals,
             // Area
-            CreateArea((1, 2), (3, 4), (5,6)),
+            new Area((1, 2), (3, 4), (5,6)),
             // Direction.Types
             Direction.Types.Down, Direction.Types.Right,
             // Distance.Types
@@ -102,8 +102,6 @@ namespace SadRogue.Primitives.UnitTests
         private static Dictionary<Type, Func<object, object, bool>> equalityMethods = new Dictionary<Type, Func<object, object, bool>>()
         {
             { typeof(AreaSerialized), AreaSerializedCompare },
-            { typeof(Gradient), GradientCompare },
-            { typeof(Palette), PaletteCompare },
             { typeof(GradientSerialized), GradientSerializedCompare },
             { typeof(PaletteSerialized), PaletteSerializedCompare }
         };
@@ -170,39 +168,9 @@ namespace SadRogue.Primitives.UnitTests
             Assert.Equal(expectedFields, fields);
         }
 
-        // Creates an area
-        private static Area CreateArea(params Point[] points)
-        {
-            var area = new Area();
-            area.Add(points);
-            return area;
-        }
-
         // Compares to AreaSerialized instances
         private static bool AreaSerializedCompare(object o1, object o2)
             => ElementWiseEquality(((AreaSerialized)o1).Positions, ((AreaSerialized)o2).Positions);
-
-        // Compares two gradients
-        private static bool GradientCompare(object o1, object o2)
-            => ElementWiseEquality(((Gradient)o1).Stops, ((Gradient)o2).Stops);
-
-        // Compares two palettes
-        private static bool PaletteCompare(object o1, object o2)
-        {
-            Palette p1 = (Palette)o1;
-            Palette p2 = (Palette)o2;
-
-            if (p1.Length != p2.Length)
-                return false;
-
-            for (int i = 0; i < p1.Length; i++)
-            {
-                if (p1[i] != p2[i])
-                    return false;
-            }
-
-            return true;
-        }
 
         private static bool PaletteSerializedCompare(object o1, object o2)
             => ElementWiseEquality(((PaletteSerialized)o1).Colors, ((PaletteSerialized)o2).Colors);

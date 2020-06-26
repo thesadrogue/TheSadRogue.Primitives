@@ -8,9 +8,9 @@ using Xunit;
 using Xunit.Abstractions;
 using XUnit.ValueTuples;
 
-namespace SadRogue.Primitives.UnitTests
+namespace SadRogue.Primitives.UnitTests.Serialization
 {
-    public class DataContractSerializationTests
+    public class DataContractTests
     {
         #region Test Data
         // Types that serialize to JSON objects via JSON .NET, so we can check which fields are serialized.
@@ -97,20 +97,12 @@ namespace SadRogue.Primitives.UnitTests
             { typeof(Rectangle),                  new [] { "X", "Y", "Width", "Height" } },
             { typeof(RectangleSerialized),        new [] { "X", "Y", "Width", "Height" } }
         };
-
-        // Dictionary of object types mapping them to custom methods to use in order to determine equality.
-        private static Dictionary<Type, Func<object, object, bool>> equalityMethods = new Dictionary<Type, Func<object, object, bool>>()
-        {
-            { typeof(AreaSerialized), AreaSerializedCompare },
-            { typeof(GradientSerialized), GradientSerializedCompare },
-            { typeof(PaletteSerialized), PaletteSerializedCompare }
-        };
         #endregion
 
         // Useful for viewing output
         private readonly ITestOutputHelper output;
 
-        public DataContractSerializationTests(ITestOutputHelper output)
+        public DataContractTests(ITestOutputHelper output)
         {
             this.output = output;
         }
@@ -130,8 +122,7 @@ namespace SadRogue.Primitives.UnitTests
             output.WriteLine($"Type is: {objType.Name}");
 
             // Set equality to custom comparer if we have one, otherwise default to .Equals
-            Func<object, object, bool> equality =
-                equalityMethods.GetValueOrDefault(objType, (o1, o2) => o1.Equals(o2));
+            Func<object, object, bool> equality = Comparisons.GetComparisonFunc(objToSerialize);
 
             // Serialize to JSON string
             string json = JsonConvert.SerializeObject(objToSerialize);
@@ -166,33 +157,6 @@ namespace SadRogue.Primitives.UnitTests
 
             // Ensure expected fields are what we got (in arbitrary order)
             Assert.Equal(expectedFields, fields);
-        }
-
-        // Compares to AreaSerialized instances
-        private static bool AreaSerializedCompare(object o1, object o2)
-            => ElementWiseEquality(((AreaSerialized)o1).Positions, ((AreaSerialized)o2).Positions);
-
-        private static bool PaletteSerializedCompare(object o1, object o2)
-            => ElementWiseEquality(((PaletteSerialized)o1).Colors, ((PaletteSerialized)o2).Colors);
-
-        private static bool GradientSerializedCompare(object o1, object o2)
-            => ElementWiseEquality(((GradientSerialized)o1).Stops, ((GradientSerialized)o2).Stops);
-
-        private static bool ElementWiseEquality<T>(IEnumerable<T> e1, IEnumerable<T> e2, Func<T, T, bool> compareFunc = null)
-        {
-            compareFunc ??= (o1, o2) => o1.Equals(o2);
-
-            var l1 = e1.ToList();
-            var l2 = e2.ToList();
-
-            if (l1.Count != l2.Count)
-                return false;
-
-            for (int i = 0; i < l1.Count; i++)
-                if (!compareFunc(l1[i], l2[i]))
-                    return false;
-
-            return true;
         }
     }
 }

@@ -1,9 +1,9 @@
 ﻿using SadRogue.Primitives.SerializedTypes;
 using Xunit;
 
-namespace SadRogue.Primitives.UnitTests
+namespace SadRogue.Primitives.UnitTests.Serialization
 {
-    public class SerializationImplicitConversionTests
+    public class ImplicitConversionTests
     {
         [Fact]
         public void AreaToAreaSerialized()

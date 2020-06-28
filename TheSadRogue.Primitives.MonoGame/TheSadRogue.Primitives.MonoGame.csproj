@@ -13,7 +13,7 @@
 	
 	<!-- More nuget package settings-->
 	<PackageId>TheSadRogue.Primitives.MonoGame</PackageId>
-	<PackageReleaseNotes>Added Pure attribute to appropriate struct functions.</PackageReleaseNotes>
+	<PackageReleaseNotes>Added Pure attribute to appropriate struct functions.  Updated SadRogue.Primitives version.</PackageReleaseNotes>
 	<RepositoryUrl>https://https://github.com/thesadrogue/TheSadRogue.Primitives</RepositoryUrl>
 	<RepositoryType>git</RepositoryType>
 	<PublishRepositoryUrl>true</PublishRepositoryUrl>

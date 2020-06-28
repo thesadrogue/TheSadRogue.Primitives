@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
+using System.Runtime.Serialization;
 
 namespace SadRogue.Primitives
 {
@@ -8,13 +9,12 @@ namespace SadRogue.Primitives
     /// Represents a 2D rectangle. Provides numerous static functions that enable creation and common operations
     /// involving rectangles.
     /// </summary>
-    [Serializable]
+    [DataContract]
     public readonly struct Rectangle : IEquatable<Rectangle>, IEquatable<(int x, int y, int width, int height)>
     {
         /// <summary>
         /// The empty rectangle. Has origin of (0, 0) with 0 width and height.
         /// </summary>
-        [NonSerialized]
         public static readonly Rectangle Empty = new Rectangle(0, 0, 0, 0);
 
         /// <summary>
@@ -77,6 +77,7 @@ namespace SadRogue.Primitives
         /// <summary>
         /// The height of the rectangle.
         /// </summary>
+        [DataMember]
         public readonly int Height;
 
         /// <summary>
@@ -133,16 +134,19 @@ namespace SadRogue.Primitives
         /// <summary>
         /// The width of the rectangle.
         /// </summary>
+        [DataMember]
         public readonly int Width;
 
         /// <summary>
         /// X-coordinate of position of the rectangle.
         /// </summary>
+        [DataMember]
         public readonly int X;
 
         /// <summary>
         /// Y-coordinate of position of the rectangle.
         /// </summary>
+        [DataMember]
         public readonly int Y;
 
         /// <summary>

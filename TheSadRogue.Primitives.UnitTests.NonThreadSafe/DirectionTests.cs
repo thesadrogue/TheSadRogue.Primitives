@@ -293,8 +293,7 @@ namespace SadRogue.Primitives.UnitTests
         [MemberDataTuple(nameof(TypeDirectionConversion))]
         public void DirectionTypeConversion(Direction.Types type, Direction expectedDir)
         {
-            Direction dir = Direction.ToDirection(type);
-            Assert.Equal(expectedDir, dir);
+            Assert.Equal(expectedDir, (Direction)type);
         }
         #endregion
 
@@ -322,19 +321,19 @@ namespace SadRogue.Primitives.UnitTests
         public void YIncreaseUpwardEquality(Direction dir)
         {
             Assert.False(Direction.YIncreasesUpward, "Direction.YIncreasesUpwards is expected to be false as default.");
-            Assert.True(dir == Direction.ToDirection(dir.Type));
-            Assert.True(dir.Equals(Direction.ToDirection(dir.Type)));
-            Assert.True(dir.Equals((object)Direction.ToDirection(dir.Type)));
+            Assert.True(dir == (Direction)dir.Type);
+            Assert.True(dir.Equals((Direction)dir.Type));
+            Assert.True(dir.Equals((object)((Direction)(dir.Type))));
 
             Direction.SetYIncreasesUpwardsUnsafe(true);
-            Assert.True(dir == Direction.ToDirection(dir.Type));
-            Assert.True(dir.Equals(Direction.ToDirection(dir.Type)));
-            Assert.True(dir.Equals((object)Direction.ToDirection(dir.Type)));
+            Assert.True(dir == (Direction)dir.Type);
+            Assert.True(dir.Equals((Direction)dir.Type));
+            Assert.True(dir.Equals((object)((Direction)(dir.Type))));
 
             Direction.SetYIncreasesUpwardsUnsafe(false);
-            Assert.True(dir == Direction.ToDirection(dir.Type));
-            Assert.True(dir.Equals(Direction.ToDirection(dir.Type)));
-            Assert.True(dir.Equals((object)Direction.ToDirection(dir.Type)));
+            Assert.True(dir == (Direction)dir.Type);
+            Assert.True(dir.Equals((Direction)dir.Type));
+            Assert.True(dir.Equals((object)((Direction)(dir.Type))));
         }
         #endregion
 

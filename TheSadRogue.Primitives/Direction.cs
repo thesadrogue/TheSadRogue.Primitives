@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics.Contracts;
 using System.Linq;
+using System.Runtime.Serialization;
 
 namespace SadRogue.Primitives
 {
@@ -18,25 +19,21 @@ namespace SadRogue.Primitives
     /// the top left corner.  This default setting matches the typical console/computer graphic definition of the
     /// coordinate plane.  Setting the flag to true inverts this, so that the y-value of positions INCREASES
     /// as you proceed in the direction defined by <see cref="Direction.Up"/>.  This places the origin in the bottom
-    /// left corner, and matches a typical mathmatical definition of a euclidean coordinate plane, as well as the scene
+    /// left corner, and matches a typical mathematical definition of a euclidean coordinate plane, as well as the scene
     /// coordinate plane defined by Unity and other game engines.
     /// </remarks>
-    [Serializable]
+    [DataContract]
     public readonly struct Direction : IEquatable<Direction>
     {
-        [NonSerialized]
         private static readonly string[] s_writeVals = Enum.GetNames(typeof(Types));
 
         // All directions that aren't NONE.
-        [NonSerialized]
         private static readonly Types[] s_validTypes = Enum.GetValues(typeof(Types)).Cast<Types>().Skip(1).ToArray();
-        [NonSerialized]
+
         private static readonly (int dx, int dy)[] s_deltaVals;
 
-        [NonSerialized]
         private static bool s_yIncreasesUpward;
 
-        [NonSerialized]
         private static bool s_initYInc;
 
         static Direction()
@@ -122,55 +119,46 @@ namespace SadRogue.Primitives
         /// <summary>
         /// Down direction.
         /// </summary>
-        [NonSerialized]
         public static readonly Direction Down;
 
         /// <summary>
         /// Down-left direction.
         /// </summary>
-        [NonSerialized]
         public static readonly Direction DownLeft;
 
         /// <summary>
         /// Down-right direction.
         /// </summary>
-        [NonSerialized]
         public static readonly Direction DownRight;
 
         /// <summary>
         /// Left direction.
         /// </summary>
-        [NonSerialized]
         public static readonly Direction Left;
 
         /// <summary>
         /// No direction.
         /// </summary>
-        [NonSerialized]
         public static readonly Direction None;
 
         /// <summary>
         /// Right direction.
         /// </summary>
-        [NonSerialized]
         public static readonly Direction Right;
 
         /// <summary>
         /// Up direction.
         /// </summary>
-        [NonSerialized]
         public static readonly Direction Up;
 
         /// <summary>
         /// Up-left direction.
         /// </summary>
-        [NonSerialized]
         public static readonly Direction UpLeft;
 
         /// <summary>
         /// Up-right direction.
         /// </summary>
-        [NonSerialized]
         public static readonly Direction UpRight;
 
         /// <summary>
@@ -197,6 +185,7 @@ namespace SadRogue.Primitives
         /// <summary>
         /// Enum type corresponding to direction being represented.
         /// </summary>
+        [DataMember]
         public readonly Types Type;
 
         /// <summary>
@@ -244,8 +233,55 @@ namespace SadRogue.Primitives
         [Pure]
         public static bool operator !=(Direction lhs, Direction rhs) => !(lhs == rhs);
 
+        /// <summary>
+        /// Implicitly converts a Direction to its corresponding <see cref="Type"/>.
+        /// </summary>
+        /// <param name="direction"/>
+        [Pure]
+        public static implicit operator Types(Direction direction) => direction.Type;
+
+        /// <summary>
+        /// Implicitly converts an <see cref="Types"/> enum value to its corresponding Direction.
+        /// </summary>
+        /// <param name="type"/>
+        [Pure]
+        public static implicit operator Direction(Types type)
+        {
+            switch (type)
+            {
+                case Types.Up:
+                    return Up;
+
+                case Types.UpRight:
+                    return UpRight;
+
+                case Types.Right:
+                    return Right;
+
+                case Types.DownRight:
+                    return DownRight;
+
+                case Types.Down:
+                    return Down;
+
+                case Types.DownLeft:
+                    return DownLeft;
+
+                case Types.Left:
+                    return Left;
+
+                case Types.UpLeft:
+                    return UpLeft;
+
+                case Types.None:
+                    return None;
+
+                default:
+                    throw new Exception($"Could not convert {nameof(Type)} instance to {nameof(Direction)} -- this is a bug!."); // Will not occur
+            }
+        }
+
         // Do not change manually outside of YIncreasesUpwards functionality
-        [NonSerialized]
         internal static int s_yMult;
 
         /// <summary>
@@ -430,7 +466,7 @@ namespace SadRogue.Primitives
         /// The given direction moved counter-clockwise <paramref name="i"/> times.
         /// </returns>
         [Pure]
-        public static Direction operator -(Direction d, int i) => (d == None) ? None : ToDirection(s_validTypes[WrapAround((int)d.Type - i - 1, 8)]);
+        public static Direction operator -(Direction d, int i) => (d == None) ? None : (Direction)s_validTypes[WrapAround((int)d.Type - i - 1, 8)];
 
         /// <summary>
         /// Moves the direction counter-clockwise by one.
@@ -438,7 +474,7 @@ namespace SadRogue.Primitives
         /// <param name="d"/>
         /// <returns>The direction one unit counterclockwise of <paramref name="d"/>.</returns>
         [Pure]
-        public static Direction operator --(Direction d) => (d == None) ? None : ToDirection(s_validTypes[WrapAround((int)d.Type - 2, 8)]);
+        public static Direction operator --(Direction d) => (d == None) ? None : (Direction)s_validTypes[WrapAround((int)d.Type - 2, 8)];
 
         /// <summary>
         /// Moves the direction clockwise <paramref name="i"/> times.
@@ -449,7 +485,7 @@ namespace SadRogue.Primitives
         /// The given direction moved clockwise <paramref name="i"/> times.
         /// </returns>
         [Pure]
-        public static Direction operator +(Direction d, int i) => (d == None) ? None : ToDirection(s_validTypes[WrapAround((int)d.Type + i - 1, 8)]);
+        public static Direction operator +(Direction d, int i) => (d == None) ? None : (Direction)s_validTypes[WrapAround((int)d.Type + i - 1, 8)];
 
         /// <summary>
         /// Moves the direction clockwise by one.
@@ -457,49 +493,7 @@ namespace SadRogue.Primitives
         /// <param name="d"/>
         /// <returns>The direction one unit clockwise of <paramref name="d"/>.</returns>
         [Pure]
-        public static Direction operator ++(Direction d) => (d == None) ? None : ToDirection(s_validTypes[WrapAround((int)d.Type, 8)]);
-
-        /// <summary>
-        /// Gets the Direction class instance representing the direction type specified.
-        /// </summary>
-        /// <param name="directionType">The enum value for the direction.</param>
-        /// <returns>The direction class representing the given direction.</returns>
-        [Pure]
-        public static Direction ToDirection(Types directionType)
-        {
-            switch (directionType)
-            {
-                case Types.Up:
-                    return Up;
-
-                case Types.UpRight:
-                    return UpRight;
-
-                case Types.Right:
-                    return Right;
-
-                case Types.DownRight:
-                    return DownRight;
-
-                case Types.Down:
-                    return Down;
-
-                case Types.DownLeft:
-                    return DownLeft;
-
-                case Types.Left:
-                    return Left;
-
-                case Types.UpLeft:
-                    return UpLeft;
-
-                case Types.None:
-                    return None;
-
-                default:
-                    throw new Exception($"Could not convert {nameof(Type)} instance to {nameof(Direction)} -- this is a bug!."); // Will not occur
-            }
-        }
+        public static Direction operator ++(Direction d) => (d == None) ? None : (Direction)s_validTypes[WrapAround((int)d.Type, 8)];
 
         /// <summary>
         /// Returns true if the current direction is a cardinal direction.

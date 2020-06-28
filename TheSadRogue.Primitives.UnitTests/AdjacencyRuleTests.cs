@@ -265,7 +265,7 @@ namespace SadRogue.Primitives.UnitTests
         [MemberDataTuple(nameof(TypeAdjacencyRuleConversion))]
         public void AdjacencyRuleTypeConversion(AdjacencyRule.Types type, AdjacencyRule expectedRule)
         {
-            AdjacencyRule dir = AdjacencyRule.ToAdjacencyRule(type);
+            AdjacencyRule dir = type;
             Assert.Equal(expectedRule, dir);
         }
         #endregion

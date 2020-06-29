@@ -405,7 +405,7 @@ namespace SadRogue.Primitives
         /// true if the object specified is a rectangle instance and encompasses the same area, false otherwise.
         /// </returns>
         [Pure]
-        public override bool Equals(object obj) => obj is Rectangle && this == (Rectangle)obj;
+        public override bool Equals(object? obj) => obj is Rectangle && this == (Rectangle)obj;
 
         /// <summary>
         /// Returns a new rectangle, expanded to include the additional specified rows/columns.

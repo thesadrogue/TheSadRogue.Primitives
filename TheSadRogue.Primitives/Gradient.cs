@@ -34,21 +34,47 @@ namespace SadRogue.Primitives
             Stop = stop;
         }
 
+        /// <summary>
+        /// Compares two gradient stops based on their color and stop value.
+        /// </summary>
+        /// <param name="lhs"/>
+        /// <param name="rhs"/>
+        /// <returns>True if the gradients have the same color and stop; false otherwise.</returns>
         [Pure]
         public static bool operator ==(GradientStop lhs, GradientStop rhs)
-            => lhs.Color == rhs.Color && lhs.Stop == rhs.Stop;
+            => lhs.Color == rhs.Color && Math.Abs(lhs.Stop - rhs.Stop) < 0.0000000001;
 
+        /// <summary>
+        /// Compares two gradient stops based on their color and stop value.
+        /// </summary>
+        /// <param name="lhs"/>
+        /// <param name="rhs"/>
+        /// <returns>True if the gradients have different color or stop values, false otherwise.</returns>
         [Pure]
         public static bool operator !=(GradientStop lhs, GradientStop rhs) => !(lhs == rhs);
 
+        /// <summary>
+        /// Gets a hash code based upon the stop's color and stop values.
+        /// </summary>
+        /// <returns>A hash code based upon the stop's color and stop values.</returns>
         [Pure]
         public override int GetHashCode() => Color.GetHashCode() ^ Stop.GetHashCode();
 
+        /// <summary>
+        /// Returns true if <paramref name="obj"/> is a gradient stop with the same color and stop value.
+        /// </summary>
+        /// <param name="obj"/>
+        /// <returns>True if <paramref name="obj"/> is a gradient stop with the same color and stop value.</returns>
         [Pure]
-        public override bool Equals(object obj) => obj is GradientStop g && this == g;
+        public override bool Equals(object? obj) => obj is GradientStop g && this == g;
 
+        /// <summary>
+        /// Compares this gradient stop to the one given.
+        /// </summary>
+        /// <param name="g"/>
+        /// <returns>True if this gradient stop and the specified one have the same color and stop values; false otherwise.</returns>
         [Pure]
-        public bool Equals(GradientStop g) => Color == g.Color && Stop == g.Stop;
+        public bool Equals(GradientStop g) => Color == g.Color && Math.Abs(Stop - g.Stop) < 0.0000000001;
     }
 
     /// <summary>
@@ -103,10 +129,9 @@ namespace SadRogue.Primitives
                     throw new ArgumentException("At least one color must be provided on this constructor.");
                 case 1:
                 {
-                    Color color = colors[0];
-                    colors = new Color[2];
-                    colors[0] = color;
-                    colors[1] = color;
+                    Stops = new GradientStop[2];
+                    Stops[0] = new GradientStop(colors[0], 0f);
+                    Stops[1] = new GradientStop(colors[0], 1f);
                     break;
                 }
                 default:
@@ -226,7 +251,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="obj"/>
         /// <returns>True if the object is a gradient that contains precisely the same stops; false otherwise</returns>
-        public override bool Equals(object obj) => obj is Gradient gradient && this == gradient;
+        public override bool Equals(object? obj) => obj is Gradient gradient && this == gradient;
 
         /// <summary>
         /// Returns a hash code based on the gradient's stops.

@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using SadRogue.Primitives;
 using Xunit;
 using XUnit.ValueTuples;
 
@@ -8,15 +7,15 @@ namespace SadRogue.Primitives.UnitTests
     public class DistanceTests
     {
         #region Testdata
-        public static Distance[] Distances => new Distance[] { Distance.Manhattan, Distance.Chebyshev, Distance.Euclidean };
+        public static Distance[] Distances => new[] { Distance.Manhattan, Distance.Chebyshev, Distance.Euclidean };
 
-        public static (Distance.Types, Distance)[] TypeDistanceConversion => new (Distance.Types, Distance)[]
+        public static (Distance.Types, Distance)[] TypeDistanceConversion => new[]
         { (Distance.Types.Chebyshev, Distance.Chebyshev), (Distance.Types.Euclidean, Distance.Euclidean), (Distance.Types.Manhattan, Distance.Manhattan) };
 
-        public static (Distance, AdjacencyRule)[] AdjacencyRuleConversionValues => new (Distance, AdjacencyRule)[]
+        public static (Distance, AdjacencyRule)[] AdjacencyRuleConversionValues => new[]
         { (Distance.Chebyshev, AdjacencyRule.EightWay), (Distance.Euclidean, AdjacencyRule.EightWay), (Distance.Manhattan, AdjacencyRule.Cardinals) };
 
-        public static (Distance, Radius)[] RadiusConversionValues => new (Distance, Radius)[]
+        public static (Distance, Radius)[] RadiusConversionValues => new[]
         { (Distance.Chebyshev, Radius.Square), (Distance.Euclidean, Radius.Circle), (Distance.Manhattan, Radius.Diamond) };
         #endregion
 

@@ -2,8 +2,10 @@
 
   <PropertyGroup>
 	<!-- Basic package info -->
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>SadRogue.Primitives</RootNamespace>
+  <TargetFrameworks>netstandard2.1;netcoreapp3.1</TargetFrameworks>
+  <RootNamespace>SadRogue.Primitives</RootNamespace>
+  <LangVersion>8.0</LangVersion>
+  <Nullable>enable</Nullable>
 	<Version>1.0.0-alpha4</Version>
 	<Version Condition="'$(Configuration)'=='Debug'">$(Version)-debug</Version>
 	<Authors>Chris3606;Thraka</Authors>
@@ -41,8 +43,8 @@
   
   <!-- When packing, copy the nuget files to the nuget output directory -->
   <Target Name="CopyPackage" AfterTargets="Pack">
-    <Copy SourceFiles="$(OutputPath)..\$(PackageId).$(PackageVersion).nupkg" DestinationFolder="$(OutputPath)..\..\..\..\nuget" />
-    <Copy SourceFiles="$(OutputPath)..\$(PackageId).$(PackageVersion).snupkg" DestinationFolder="$(OutputPath)..\..\..\..\nuget" />
+    <Copy SourceFiles="$(OutputPath)\$(PackageId).$(PackageVersion).nupkg" DestinationFolder="$(OutputPath)..\..\..\..\nuget" />
+    <Copy SourceFiles="$(OutputPath)\$(PackageId).$(PackageVersion).snupkg" DestinationFolder="$(OutputPath)..\..\..\..\nuget" />
   </Target>
   
   <!-- Run InheritDoc on the final builds. -->

@@ -79,7 +79,7 @@ namespace SadRogue.Primitives
         /// If you are getting postions for a radius of the same size frequently, it may be more performant to instead
         /// construct a <see cref="RadiusLocationContext"/> to represent it, and pass that to
         /// <see cref="PositionsInRadius(RadiusLocationContext)"/>.
-        /// 
+        ///
         /// The positions returned are all guaranteed to be within the <paramref name="bounds"/> specified.  As well,
         /// they are guaranteed to be in order from least distance from center to most distance if either
         /// <see cref="Radius.Diamond"/> or <see cref="Radius.Square"/> is being used.
@@ -100,7 +100,7 @@ namespace SadRogue.Primitives
         /// If you are getting postions for a radius of the same size frequently, it may be more performant to instead
         /// construct a <see cref="RadiusLocationContext"/> to represent it, and pass that to
         /// <see cref="PositionsInRadius(RadiusLocationContext)"/>.
-        /// 
+        ///
         /// The positions returned are guaranteed to be in order from least distance from center to most distance if either
         /// <see cref="Radius.Diamond"/> or <see cref="Radius.Square"/> is being used.
         /// </remarks>
@@ -120,7 +120,7 @@ namespace SadRogue.Primitives
         /// <remarks>
         /// The positions returned are all guaranteed to be within the <see cref="RadiusLocationContext.Bounds"/> specified in the context, unless
         /// the bounds are unspecified, in which case no bound restriction results.
-        /// 
+        ///
         /// As well, they are guaranteed to be in order from least distance from center to most distance if either
         /// <see cref="Radius.Diamond"/> or <see cref="Radius.Square"/> is being used.
         /// </remarks>
@@ -190,7 +190,7 @@ namespace SadRogue.Primitives
         /// True if <paramref name="obj"/> is a Radius, and the two radius shapes are equal, false otherwise.
         /// </returns>
         [Pure]
-        public override bool Equals(object obj) => obj is Radius c && Equals(c);
+        public override bool Equals(object? obj) => obj is Radius c && Equals(c);
 
         /// <summary>
         /// Returns a hash-map value for the current object.
@@ -310,7 +310,7 @@ namespace SadRogue.Primitives
 
     /// <summary>
     /// A context representing information necessary to get all the positions in a radius via functions like
-    /// <see cref="Radius.PositionsInRadius(RadiusLocationContext)"/>.  Storing a context and re-using it may be
+    /// <see cref="SadRogue.Primitives.Radius.PositionsInRadius(RadiusLocationContext)"/>.  Storing a context and re-using it may be
     /// more performant in cases where you're getting the positions in a radius of the same size many times,
     /// even if the location center point or shape of the radius is changing.
     /// </summary>

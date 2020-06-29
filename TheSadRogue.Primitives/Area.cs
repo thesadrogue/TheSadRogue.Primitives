@@ -308,7 +308,7 @@ namespace SadRogue.Primitives
         /// <returns>
         /// True if the object given is a area and contains exactly the same points, false otherwise.
         /// </returns>
-        public override bool Equals(object obj) => obj is Area area && this == area;
+        public override bool Equals(object? obj) => obj is Area area && this == area;
 
         /// <summary>
         /// Returns hash of the underlying set

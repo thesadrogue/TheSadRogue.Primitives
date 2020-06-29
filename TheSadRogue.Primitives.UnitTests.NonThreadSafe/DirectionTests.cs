@@ -6,7 +6,7 @@ using XUnit.ValueTuples;
 
 namespace SadRogue.Primitives.UnitTests
 {
-    // We must do these sequentially (not in paralell), as some of the tests change YIncreasesUpwards, which can very much mess with other threads using any function
+    // We must do these sequentially (not in parallel), as some of the tests change YIncreasesUpwards, which can very much mess with other threads using any function
     // that relies on directions.  There is a feature of XUnit that should technically allow these to be in the same assembly, but it seems to only separate the collection
     // from itself, and attempting to extrapolate which functions view directions is time consuming and the frequent switching of that flag is not something that should be done
     // in production anyway.  Thus anything that manipulates shared state will be in this assembly.
@@ -16,7 +16,7 @@ namespace SadRogue.Primitives.UnitTests
         public static Direction[] ValidDirections = AdjacencyRule.EightWay.DirectionsOfNeighborsClockwise().ToArray();
         public static Direction[] AllDirections => ValidDirections.Append(Direction.None).ToArray();
         public static Point[] TestPoints => new[] { new Point(1, 2), new Point(0, 0), new Point(-2, -5) };
-        public static IEnumerable<(Point, Direction)> CoordDirPairs => TestPoints.Combinate(AllDirections);
+        public static IEnumerable<(Point, Direction)> PointDirPairs => TestPoints.Combinate(AllDirections);
 
         public static IEnumerable<(Direction, int)> AddSubDirPairs => ValidDirections.Combinate(Enumerable.Range(0, 11));
 
@@ -33,7 +33,7 @@ namespace SadRogue.Primitives.UnitTests
             ((0, 0), (0, 0) + Direction.UpLeft, Direction.UpLeft)
         };
 
-        public static IEnumerable<(Point, Point, Direction)> GetCardinalDirectionBasePairs =>
+        private static IEnumerable<(Point, Point, Direction)> GetCardinalDirectionBasePairs =>
             new (Point p1, Point p2, Direction d)[] {
             ((0, 0), (0, 0), Direction.None),
             ((0, 0), (0, 0) + Direction.Up, Direction.Up),
@@ -143,7 +143,7 @@ namespace SadRogue.Primitives.UnitTests
 
         [Theory]
         [MemberDataEnumerable(nameof(AllDirections))]
-        public void TestEqualityInqeualityOpposite(Direction compareDir)
+        public void TestEqualityInequalityOpposite(Direction compareDir)
         {
             Direction[] dirs = AllDirections;
 
@@ -168,7 +168,7 @@ namespace SadRogue.Primitives.UnitTests
 
         #region Addition/Subtraction
         [Theory]
-        [MemberDataTuple(nameof(CoordDirPairs))]
+        [MemberDataTuple(nameof(PointDirPairs))]
         public void AddToPoint(Point start, Direction dir)
         {
             // Should be false to start with
@@ -223,7 +223,7 @@ namespace SadRogue.Primitives.UnitTests
         }
 
         [Theory]
-        [MemberDataTuple(nameof(CoordDirPairs))]
+        [MemberDataTuple(nameof(PointDirPairs))]
         public void SubFromPoint(Point start, Direction dir)
         {
             // Should be false to start with
@@ -321,18 +321,18 @@ namespace SadRogue.Primitives.UnitTests
         public void YIncreaseUpwardEquality(Direction dir)
         {
             Assert.False(Direction.YIncreasesUpward, "Direction.YIncreasesUpwards is expected to be false as default.");
-            Assert.True(dir == (Direction)dir.Type);
-            Assert.True(dir.Equals((Direction)dir.Type));
+            Assert.True(dir == dir.Type);
+            Assert.True(dir.Equals(dir.Type));
             Assert.True(dir.Equals((object)((Direction)(dir.Type))));
 
             Direction.SetYIncreasesUpwardsUnsafe(true);
-            Assert.True(dir == (Direction)dir.Type);
-            Assert.True(dir.Equals((Direction)dir.Type));
+            Assert.True(dir == dir.Type);
+            Assert.True(dir.Equals(dir.Type));
             Assert.True(dir.Equals((object)((Direction)(dir.Type))));
 
             Direction.SetYIncreasesUpwardsUnsafe(false);
-            Assert.True(dir == (Direction)dir.Type);
-            Assert.True(dir.Equals((Direction)dir.Type));
+            Assert.True(dir == dir.Type);
+            Assert.True(dir.Equals(dir.Type));
             Assert.True(dir.Equals((object)((Direction)(dir.Type))));
         }
         #endregion

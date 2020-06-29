@@ -204,7 +204,7 @@ namespace SadRogue.Primitives
         /// True if <paramref name="obj"/> is a Direction, and the two directions are equal, false otherwise.
         /// </returns>
         [Pure]
-        public override bool Equals(object obj) => obj is Direction c && Equals(c);
+        public override bool Equals(object? obj) => obj is Direction c && Equals(c);
 
         /// <summary>
         /// Returns a hash-map value for the current object.

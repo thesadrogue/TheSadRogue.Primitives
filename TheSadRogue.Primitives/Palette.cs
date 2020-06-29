@@ -141,7 +141,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="obj"/>
         /// <returns>True if the given object is a Palette and its colors are identical and in the same order; false otherwise.</returns>
-        public override bool Equals(object obj) => obj is Palette palette && this == palette;
+        public override bool Equals(object? obj) => obj is Palette palette && this == palette;
 
         /// <summary>
         /// Returns hash code based on the colors.

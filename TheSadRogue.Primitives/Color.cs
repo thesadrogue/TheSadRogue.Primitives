@@ -175,7 +175,6 @@ namespace SadRogue.Primitives
         /// The value is a 32-bit unsigned integer, with R in the least significant octet.
         /// </summary>
         /// <param name="packedValue">The packed value.</param>
-        [CLSCompliant(false)]
         public Color(uint packedValue) => _packedValue = packedValue;
 
         /// <summary>
@@ -377,7 +376,7 @@ namespace SadRogue.Primitives
         /// <param name="obj">The <see cref="Color"/> to compare.</param>
         /// <returns><c>true</c> if the instances are equal; <c>false</c> otherwise.</returns>
         [Pure]
-        public override bool Equals(object obj) => (obj is Color color) && Equals(color);
+        public override bool Equals(object? obj) => (obj is Color color) && Equals(color);
 
         #region Color Bank Ansi
         /// <summary>
@@ -1894,7 +1893,7 @@ namespace SadRogue.Primitives
         [Pure]
         public static Color FromHSL(float h, float s, float l)
         {
-            if (s == 0f)
+            if (Math.Abs(s) < 0.0000000001)
             {
                 return new Color(
                     (byte)(l * 255),
@@ -1919,9 +1918,9 @@ namespace SadRogue.Primitives
                 var_1 = 2 * l - var_2;
 
                 return new Color(
-                    (byte)(255 * Hue_2_RGB(var_1, var_2, h + (1 / 3))),
+                    (byte)(255 * Hue_2_RGB(var_1, var_2, h + (1f / 3))),
                     (byte)(255 * Hue_2_RGB(var_1, var_2, h)),
-                    (byte)(255 * Hue_2_RGB(var_1, var_2, h - (1 / 3)))
+                    (byte)(255 * Hue_2_RGB(var_1, var_2, h - (1f / 3)))
                     );
             }
         }
@@ -1950,7 +1949,7 @@ namespace SadRogue.Primitives
 
             if ((3 * vH) < 2)
             {
-                return (v1 + (v2 - v1) * ((2 / 3) - vH) * 6);
+                return (v1 + (v2 - v1) * ((2f / 3) - vH) * 6);
             }
 
             return (v1);
@@ -1968,7 +1967,6 @@ namespace SadRogue.Primitives
         /// <summary>
         /// Gets or sets packed value of this <see cref="Color"/>.
         /// </summary>
-        [CLSCompliant(false)]
         public uint PackedValue => _packedValue;
 
 

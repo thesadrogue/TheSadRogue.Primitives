@@ -303,7 +303,7 @@ namespace SadRogue.Primitives
         /// True if <paramref name="obj"/> is a Coord instance, and the two positions are equal, false otherwise.
         /// </returns>
         [Pure]
-        public override bool Equals(object obj) => obj is Point c && Equals(c);
+        public override bool Equals(object? obj) => obj is Point c && Equals(c);
 
         /// <summary>
         /// Returns a hash code for the Point. The important parts: it should be fairly fast and it

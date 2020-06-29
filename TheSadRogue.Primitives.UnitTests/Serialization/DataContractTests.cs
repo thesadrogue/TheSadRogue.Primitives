@@ -76,7 +76,7 @@ namespace SadRogue.Primitives.UnitTests.Serialization
             SerializableValuesJsonObjects.Concat(SerializableValuesNonJsonObjects);
 
         // Dictionary of object types to an unordered but complete list of fields that each object type should have serialized
-        // in its JSON object form.  
+        // in its JSON object form.
         private static Dictionary<Type, string[]> typeSerializedFields = new Dictionary<Type, string[]>
         {
             { typeof(AdjacencyRule),              new [] { "Type" } },
@@ -109,9 +109,8 @@ namespace SadRogue.Primitives.UnitTests.Serialization
 
         /// <summary>
         /// Tests that if we serialize an object to JSON, then deserialize it back to an object,
-        /// that the deserialized object is equal to the one that we serialized.  If a custom equality method
-        /// has been specified in <see cref="equalityMethods"/>, that method is used to determine equality.
-        /// Otherwise, the object's <see cref="object.Equals(object?)"/> method is used.
+        /// that the deserialized object is equal to the one that we serialized.  Equality is compared
+        /// via <see cref="Comparisons.GetComparisonFunc"/>.
         /// </summary>
         /// <param name="objToSerialize"/>
         [Theory]

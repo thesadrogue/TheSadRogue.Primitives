@@ -95,7 +95,7 @@ namespace SadRogue.Primitives
         }
 
         /// <summary>
-        /// Allows implicit casting to the <see cref="AdjacencyRule"/> type. 
+        /// Allows implicit casting to the <see cref="AdjacencyRule"/> type.
         /// </summary>
         /// <remarks>
         /// The adjacency rule corresponding to the definition of a adjacency according to the
@@ -229,7 +229,7 @@ namespace SadRogue.Primitives
         /// True if <paramref name="obj"/> is a Distance, and the two distance calculations are equal, false otherwise.
         /// </returns>
         [Pure]
-        public override bool Equals(object obj) => obj is Distance c && Equals(c);
+        public override bool Equals(object? obj) => obj is Distance c && Equals(c);
 
         /// <summary>
         /// Returns a hash-map value for the current object.

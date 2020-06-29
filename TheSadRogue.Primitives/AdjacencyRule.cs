@@ -304,7 +304,7 @@ namespace SadRogue.Primitives
         /// True if <paramref name="obj"/> is an AdjacencyRule, and the two adjacency rules are equal, false otherwise.
         /// </returns>
         [Pure]
-        public override bool Equals(object obj) => obj is AdjacencyRule c && Equals(c);
+        public override bool Equals(object? obj) => obj is AdjacencyRule c && Equals(c);
 
         /// <summary>
         /// Returns a hash-map value for the current object.

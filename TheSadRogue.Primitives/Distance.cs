@@ -78,20 +78,13 @@ namespace SadRogue.Primitives
         [Pure]
         public static implicit operator Radius(Distance distance)
         {
-            switch (distance.Type)
+            return distance.Type switch
             {
-                case Types.Manhattan:
-                    return Radius.Diamond;
-
-                case Types.Euclidean:
-                    return Radius.Circle;
-
-                case Types.Chebyshev:
-                    return Radius.Square;
-
-                default:
-                    throw new Exception($"Could not convert {nameof(Distance)} to {nameof(Radius)} -- this is a bug!"); // Will not occur
-            }
+                Types.Manhattan => Radius.Diamond,
+                Types.Euclidean => Radius.Circle,
+                Types.Chebyshev => Radius.Square,
+                _ => throw new Exception($"Could not convert {nameof(Distance)} to {nameof(Radius)} -- this is a bug!")
+            };
         }
 
         /// <summary>
@@ -105,18 +98,14 @@ namespace SadRogue.Primitives
         [Pure]
         public static implicit operator AdjacencyRule(Distance distance)
         {
-            switch (distance.Type)
+            return distance.Type switch
             {
-                case Types.Manhattan:
-                    return AdjacencyRule.Cardinals;
-
-                case Types.Chebyshev:
-                case Types.Euclidean:
-                    return AdjacencyRule.EightWay;
-
-                default:
-                    throw new Exception($"Could not convert {nameof(Distance)} to {nameof(AdjacencyRule)} -- this is a bug!"); // Will not occur
-            }
+                Types.Manhattan => AdjacencyRule.Cardinals,
+                Types.Chebyshev => AdjacencyRule.EightWay,
+                Types.Euclidean => AdjacencyRule.EightWay,
+                _ => throw new Exception(
+                    $"Could not convert {nameof(Distance)} to {nameof(AdjacencyRule)} -- this is a bug!")
+            };
         }
 
         /// <summary>
@@ -133,20 +122,13 @@ namespace SadRogue.Primitives
         [Pure]
         public static implicit operator Distance(Types type)
         {
-            switch (type)
+            return type switch
             {
-                case Types.Manhattan:
-                    return Manhattan;
-
-                case Types.Euclidean:
-                    return Euclidean;
-
-                case Types.Chebyshev:
-                    return Chebyshev;
-
-                default:
-                    throw new Exception($"Could not convert {nameof(Types)} to {nameof(Distance)} -- this is a bug!"); // Will not occur
-            }
+                Types.Manhattan => Manhattan,
+                Types.Euclidean => Euclidean,
+                Types.Chebyshev => Chebyshev,
+                _ => throw new Exception($"Could not convert {nameof(Types)} to {nameof(Distance)} -- this is a bug!")
+            };
         }
 
         /// <summary>
@@ -195,22 +177,14 @@ namespace SadRogue.Primitives
             dx = Math.Abs(dx);
             dy = Math.Abs(dy);
 
-            double radius = 0;
-            switch (Type)
+            return Type switch
             {
-                case Types.Chebyshev:
-                    radius = Math.Max(dx, dy); // Radius is the longest axial distance
-                    break;
-
-                case Types.Manhattan:
-                    radius = dx + dy; // Simply manhattan distance
-                    break;
-
-                case Types.Euclidean:
-                    radius = Math.Sqrt(dx * dx + dy * dy); // Spherical radius
-                    break;
-            }
-            return radius;
+                Types.Chebyshev => Math.Max(dx, dy), // Radius is the longest axial distance
+                Types.Manhattan => dx + dy, // Simply manhattan distance
+                Types.Euclidean => Math.Sqrt(dx * dx + dy * dy), // Spherical radius
+                _ => throw new NotSupportedException(
+                    $"{nameof(Calculate)} does not support distance calculation {this}: this is a bug!")
+            };
         }
 
         /// <summary>

@@ -247,38 +247,20 @@ namespace SadRogue.Primitives
         [Pure]
         public static implicit operator Direction(Types type)
         {
-            switch (type)
+            return type switch
             {
-                case Types.Up:
-                    return Up;
-
-                case Types.UpRight:
-                    return UpRight;
-
-                case Types.Right:
-                    return Right;
-
-                case Types.DownRight:
-                    return DownRight;
-
-                case Types.Down:
-                    return Down;
-
-                case Types.DownLeft:
-                    return DownLeft;
-
-                case Types.Left:
-                    return Left;
-
-                case Types.UpLeft:
-                    return UpLeft;
-
-                case Types.None:
-                    return None;
-
-                default:
-                    throw new Exception($"Could not convert {nameof(Type)} instance to {nameof(Direction)} -- this is a bug!."); // Will not occur
-            }
+                Types.Up => Up,
+                Types.UpRight => UpRight,
+                Types.Right => Right,
+                Types.DownRight => DownRight,
+                Types.Down => Down,
+                Types.DownLeft => DownLeft,
+                Types.Left => Left,
+                Types.UpLeft => UpLeft,
+                Types.None => None,
+                _ => throw new Exception(
+                    $"Could not convert {nameof(Type)} instance to {nameof(Direction)} -- this is a bug!.")
+            };
         }
 
         // Do not change manually outside of YIncreasesUpwards functionality

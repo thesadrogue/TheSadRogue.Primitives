@@ -57,7 +57,7 @@ namespace SadRogue.Primitives
         {
             Color lostColor = _colors[0];
             Array.Copy(_colors, 1, _colors, 0, _colors.Length - 1);
-            _colors[_colors.Length - 1] = lostColor;
+            _colors[^1] = lostColor;
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace SadRogue.Primitives
         /// </summary>
         public void ShiftRight()
         {
-            Color lostColor = _colors[_colors.Length - 1];
+            Color lostColor = _colors[^1];
             Array.Copy(_colors, 0, _colors, 1, _colors.Length - 1);
             _colors[0] = lostColor;
         }

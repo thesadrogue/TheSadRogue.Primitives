@@ -222,23 +222,23 @@ namespace SadRogue.Primitives
         /// <param name="position">The position to add.</param>
         public void Add(Point position)
         {
-            if (_positionsSet.Add(position))
-            {
-                _positions.Add(position);
+            if (!_positionsSet.Add(position))
+                return;
 
-                // Update bounds
-                if (position.X > _right)
-                    _right = position.X;
+            _positions.Add(position);
 
-                if (position.X < _left)
-                    _left = position.X;
+            // Update bounds
+            if (position.X > _right)
+                _right = position.X;
 
-                if (position.Y > _bottom)
-                    _bottom = position.Y;
+            if (position.X < _left)
+                _left = position.X;
 
-                if (position.Y < _top)
-                    _top = position.Y;
-            }
+            if (position.Y > _bottom)
+                _bottom = position.Y;
+
+            if (position.Y < _top)
+                _top = position.Y;
         }
 
         /// <summary>
@@ -355,7 +355,7 @@ namespace SadRogue.Primitives
         /// remove operations, it would be best to group them into 1 using <see cref="Remove(IEnumerable{Point})"/>.
         /// </summary>
         /// <param name="position">The position to remove.</param>
-        public void Remove(Point position) => Remove(YieldCoord(position));
+        public void Remove(Point position) => Remove(YieldPoint(position));
 
         /// <summary>
         /// Removes positions for which the given predicate returns true from the area.
@@ -468,19 +468,19 @@ namespace SadRogue.Primitives
             int rightLocal = int.MinValue, bottomLocal = int.MinValue;
 
             // Find new bounds
-            foreach (Point pos in _positions)
+            foreach ((int x, int y) in _positions)
             {
-                if (pos.X > rightLocal)
-                    rightLocal = pos.X;
+                if (x > rightLocal)
+                    rightLocal = x;
 
-                if (pos.X < leftLocal)
-                    leftLocal = pos.X;
+                if (x < leftLocal)
+                    leftLocal = x;
 
-                if (pos.Y > bottomLocal)
-                    bottomLocal = pos.Y;
+                if (y > bottomLocal)
+                    bottomLocal = y;
 
-                if (pos.Y < topLocal)
-                    topLocal = pos.Y;
+                if (y < topLocal)
+                    topLocal = y;
             }
 
             _left = leftLocal;
@@ -496,7 +496,7 @@ namespace SadRogue.Primitives
             rhs = temp;
         }
 
-        private static IEnumerable<Point> YieldCoord(Point item)
+        private static IEnumerable<Point> YieldPoint(Point item)
         {
             yield return item;
         }

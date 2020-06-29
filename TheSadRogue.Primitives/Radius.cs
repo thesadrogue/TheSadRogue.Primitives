@@ -230,18 +230,13 @@ namespace SadRogue.Primitives
         [Pure]
         public static implicit operator AdjacencyRule(Radius radius)
         {
-            switch (radius.Type)
+            return radius.Type switch
             {
-                case Types.Circle:
-                case Types.Square:
-                    return AdjacencyRule.EightWay;
-
-                case Types.Diamond:
-                    return AdjacencyRule.Cardinals;
-
-                default:
-                    throw new Exception($"Could not convert {nameof(Distance)} to {nameof(Radius)} -- this is a bug!"); // Will not occur
-            }
+                Types.Circle => AdjacencyRule.EightWay,
+                Types.Square => AdjacencyRule.EightWay,
+                Types.Diamond => AdjacencyRule.Cardinals,
+                _ => throw new Exception($"Could not convert {nameof(Distance)} to {nameof(Radius)} -- this is a bug!")
+            };
         }
 
         /// <summary>
@@ -255,20 +250,13 @@ namespace SadRogue.Primitives
         [Pure]
         public static implicit operator Distance(Radius radius)
         {
-            switch (radius.Type)
+            return radius.Type switch
             {
-                case Types.Circle:
-                    return Distance.Euclidean;
-
-                case Types.Diamond:
-                    return Distance.Manhattan;
-
-                case Types.Square:
-                    return Distance.Chebyshev;
-
-                default:
-                    throw new Exception($"Could not convert {nameof(Radius)} to {nameof(Distance)} -- this is a bug!"); // Will not occur
-            }
+                Types.Circle => Distance.Euclidean,
+                Types.Diamond => Distance.Manhattan,
+                Types.Square => Distance.Chebyshev,
+                _ => throw new Exception($"Could not convert {nameof(Radius)} to {nameof(Distance)} -- this is a bug!")
+            };
         }
 
         /// <summary>
@@ -285,20 +273,13 @@ namespace SadRogue.Primitives
         [Pure]
         public static implicit operator Radius(Types type)
         {
-            switch (type)
+            return type switch
             {
-                case Types.Circle:
-                    return Circle;
-
-                case Types.Diamond:
-                    return Diamond;
-
-                case Types.Square:
-                    return Square;
-
-                default:
-                    throw new Exception($"Could not convert {nameof(Types)} to {nameof(Radius)} -- this is a bug!"); // Will not occur
-            }
+                Types.Circle => Circle,
+                Types.Diamond => Diamond,
+                Types.Square => Square,
+                _ => throw new Exception($"Could not convert {nameof(Types)} to {nameof(Radius)} -- this is a bug!")
+            };
         }
 
         /// <summary>

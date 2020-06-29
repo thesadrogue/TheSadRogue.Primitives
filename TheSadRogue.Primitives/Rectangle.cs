@@ -968,19 +968,14 @@ namespace SadRogue.Primitives
         [Pure]
         public IEnumerable<Point> PositionsOnSide(Direction side)
         {
-            switch (side.Type)
+            return side.Type switch
             {
-                case Direction.Types.Up:
-                    return (Direction.YIncreasesUpward) ? MaxYPositions() : MinYPositions();
-                case Direction.Types.Right:
-                    return MaxXPositions();
-                case Direction.Types.Down:
-                    return (Direction.YIncreasesUpward) ? MinYPositions() : MaxYPositions();
-                case Direction.Types.Left:
-                    return MinXPositions();
-                default:
-                    throw new Exception("Cannot retrieve positions on a non-cardinal side of a rectangle.");
-            }
+                Direction.Types.Up => (Direction.YIncreasesUpward) ? MaxYPositions() : MinYPositions(),
+                Direction.Types.Right => MaxXPositions(),
+                Direction.Types.Down => (Direction.YIncreasesUpward) ? MinYPositions() : MaxYPositions(),
+                Direction.Types.Left => MinXPositions(),
+                _ => throw new Exception("Cannot retrieve positions on a non-cardinal side of a rectangle.")
+            };
         }
     }
 }

@@ -192,7 +192,7 @@ namespace SadRogue.Primitives
             float lerpTotal = 0f;
 
             returnArray[0] = Stops[0].Color;
-            returnArray[count - 1] = Stops[Stops.Length - 1].Color;
+            returnArray[count - 1] = Stops[^1].Color;
 
             for (int i = 1; i < count - 1; i++)
             {

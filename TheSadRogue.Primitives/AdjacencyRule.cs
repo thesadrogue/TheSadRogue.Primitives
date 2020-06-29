@@ -100,6 +100,8 @@ namespace SadRogue.Primitives
                     yield return Direction.DownLeft;
                     yield return Direction.DownRight;
                     break;
+                default:
+                    throw new NotSupportedException($"{nameof(DirectionsOfNeighbors)} does not support AdjacencyRule type {Type} -- this is a bug!");
             }
         }
 
@@ -163,6 +165,8 @@ namespace SadRogue.Primitives
                         startingDirection++;
                     }
                     break;
+                default:
+                    throw new NotSupportedException($"{nameof(DirectionsOfNeighborsClockwise)} does not support AdjacencyRule type {Type} -- this is a bug!");
             }
         }
 
@@ -226,6 +230,8 @@ namespace SadRogue.Primitives
                         startingDirection--;
                     }
                     break;
+                default:
+                    throw new NotSupportedException($"{nameof(DirectionsOfNeighborsCounterClockwise)} does not support AdjacencyRule type {Type} -- this is a bug!");
             }
         }
 
@@ -347,20 +353,14 @@ namespace SadRogue.Primitives
         [Pure]
         public static implicit operator AdjacencyRule(Types type)
         {
-            switch (type)
+            return type switch
             {
-                case Types.Cardinals:
-                    return Cardinals;
-
-                case Types.Diagonals:
-                    return Diagonals;
-
-                case Types.EightWay:
-                    return EightWay;
-
-                default:
-                    throw new Exception($"Could not convert {nameof(Type)} type to {nameof(AdjacencyRule)} -- this is a bug!."); // Will not occur
-            }
+                Types.Cardinals => Cardinals,
+                Types.Diagonals => Diagonals,
+                Types.EightWay => EightWay,
+                _ => throw new NotSupportedException(
+                    $"Could not convert type {type} to {nameof(AdjacencyRule)} -- this is a bug!.")
+            };
         }
 
         /// <summary>

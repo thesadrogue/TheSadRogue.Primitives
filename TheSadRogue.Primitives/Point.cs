@@ -125,8 +125,8 @@ namespace SadRogue.Primitives
         /// <param name="c2">The second point.</param>
         /// <returns>The midpoint between <paramref name="c1"/> and <paramref name="c2"/>.</returns>
         [Pure]
-        public static Point Midpoint(Point c1, Point c2) =>
-            new Point((int)Math.Round((c1.X + c2.X) / 2.0f, MidpointRounding.AwayFromZero), (int)Math.Round((c1.Y + c2.Y) / 2.0f, MidpointRounding.AwayFromZero));
+        public static Point Midpoint(Point c1, Point c2)
+            => new Point((int)Math.Round((c1.X + c2.X) / 2.0f, MidpointRounding.AwayFromZero), (int)Math.Round((c1.Y + c2.Y) / 2.0f, MidpointRounding.AwayFromZero));
 
         /// <summary>
         /// Returns the coordinate (c1.X - c2.X, c1.Y - c2.Y).

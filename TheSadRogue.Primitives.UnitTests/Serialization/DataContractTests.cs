@@ -129,10 +129,11 @@ namespace SadRogue.Primitives.UnitTests.Serialization
             output.WriteLine($"Json: {json}");
 
             // Deserialize to object
-            object deSerialized = JsonConvert.DeserializeObject(json, objType);
+            object? deSerialized = JsonConvert.DeserializeObject(json, objType);
+            Assert.NotNull(deSerialized);
 
             // Make sure the deserialized object is equivalent to the one we serialized
-            Assert.True(equality(objToSerialize, deSerialized));
+            Assert.True(equality(objToSerialize, deSerialized!));
 
         }
 

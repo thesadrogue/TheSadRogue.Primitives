@@ -2,10 +2,10 @@
 
   <PropertyGroup>
 	<!-- Basic package info -->
-  <TargetFrameworks>netstandard2.1;netcoreapp3.1</TargetFrameworks>
-  <RootNamespace>SadRogue.Primitives</RootNamespace>
-  <LangVersion>8.0</LangVersion>
-  <Nullable>enable</Nullable>
+    <TargetFrameworks>netstandard2.1;netcoreapp3.1</TargetFrameworks>
+    <RootNamespace>SadRogue.Primitives</RootNamespace>
+    <LangVersion>8.0</LangVersion>
+    <Nullable>enable</Nullable>
 	<Version>1.0.0-alpha4</Version>
 	<Version Condition="'$(Configuration)'=='Debug'">$(Version)-debug</Version>
 	<Authors>Chris3606;Thraka</Authors>

@@ -16,7 +16,8 @@ namespace SadRogue.Primitives
         /// <param name="self"/>
         /// <returns/>
         [Pure]
-        public static MonoRectangle ToMonoRectangle(this SadRogueRectangle self) => new MonoRectangle(self.X, self.Y, self.Width, self.Height);
+        public static MonoRectangle ToMonoRectangle(this SadRogueRectangle self)
+            => new MonoRectangle(self.X, self.Y, self.Width, self.Height);
 
         /// <summary>
         /// Compares a <see cref="SadRogue.Primitives.Rectangle"/> to a <see cref="Microsoft.Xna.Framework.Rectangle"/>.
@@ -44,7 +45,8 @@ namespace Microsoft.Xna.Framework
         /// <param name="self"/>
         /// <returns/>
         [Pure]
-        public static SadRogueRectangle ToRectangle(this MonoRectangle self) => new SadRogueRectangle(self.X, self.Y, self.Width, self.Height);
+        public static SadRogueRectangle ToRectangle(this MonoRectangle self)
+            => new SadRogueRectangle(self.X, self.Y, self.Width, self.Height);
 
         /// <summary>
         /// Compares a <see cref="Microsoft.Xna.Framework.Rectangle"/> to a <see cref="SadRogue.Primitives.Rectangle"/>.

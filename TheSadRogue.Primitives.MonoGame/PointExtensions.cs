@@ -27,7 +27,9 @@ namespace SadRogue.Primitives
         /// <param name="other"/>
         /// <returns/>
         [Pure]
-        public static SadRoguePoint Add(this SadRoguePoint self, MonoPoint other) => new SadRoguePoint(self.X + other.X, self.Y + other.Y);
+        public static SadRoguePoint Add(this SadRoguePoint self, MonoPoint other)
+            => new SadRoguePoint(self.X + other.X, self.Y + other.Y);
+
         /// <summary>
         /// Subtracts a <see cref="Microsoft.Xna.Framework.Point"/> from a <see cref="SadRogue.Primitives.Point"/>.
         /// </summary>
@@ -35,7 +37,8 @@ namespace SadRogue.Primitives
         /// <param name="other"/>
         /// <returns/>
         [Pure]
-        public static SadRoguePoint Subtract(this SadRoguePoint self, MonoPoint other) => new SadRoguePoint(self.X - other.X, self.Y - other.Y);
+        public static SadRoguePoint Subtract(this SadRoguePoint self, MonoPoint other)
+            => new SadRoguePoint(self.X - other.X, self.Y - other.Y);
 
         /// <summary>
         /// Multiplies a <see cref="SadRogue.Primitives.Point"/> by a <see cref="Microsoft.Xna.Framework.Point"/>.
@@ -44,7 +47,8 @@ namespace SadRogue.Primitives
         /// <param name="other"/>
         /// <returns/>
         [Pure]
-        public static SadRoguePoint Multiply(this SadRoguePoint self, MonoPoint other) => new SadRoguePoint(self.X * other.X, self.Y * other.Y);
+        public static SadRoguePoint Multiply(this SadRoguePoint self, MonoPoint other)
+            => new SadRoguePoint(self.X * other.X, self.Y * other.Y);
 
         /// <summary>
         /// Divides a <see cref="SadRogue.Primitives.Point"/> by a <see cref="Microsoft.Xna.Framework.Point"/>, and
@@ -55,7 +59,8 @@ namespace SadRogue.Primitives
         /// <returns/>
         [Pure]
         public static SadRoguePoint Divide(this SadRoguePoint self, MonoPoint other)
-            => new SadRoguePoint((int)Math.Round(self.X / (double)other.X, MidpointRounding.AwayFromZero), (int)Math.Round(self.Y / (double)other.Y, MidpointRounding.AwayFromZero));
+            => new SadRoguePoint((int)Math.Round(self.X / (double)other.X, MidpointRounding.AwayFromZero),
+                (int)Math.Round(self.Y / (double)other.Y, MidpointRounding.AwayFromZero));
 
         /// <summary>
         /// Compares a <see cref="SadRogue.Primitives.Point"/> to a <see cref="Microsoft.Xna.Framework.Point"/>.
@@ -91,7 +96,8 @@ namespace Microsoft.Xna.Framework
         /// <param name="other"/>
         /// <returns/>
         [Pure]
-        public static MonoPoint Add(this MonoPoint self, SadRoguePoint other) => new MonoPoint(self.X + other.X, self.Y + other.Y);
+        public static MonoPoint Add(this MonoPoint self, SadRoguePoint other)
+            => new MonoPoint(self.X + other.X, self.Y + other.Y);
 
         /// <summary>
         /// Adds an integer to both the X and Y values of a <see cref="Microsoft.Xna.Framework.Point"/>.
@@ -109,7 +115,8 @@ namespace Microsoft.Xna.Framework
         /// <param name="dir"/>
         /// <returns/>
         [Pure]
-        public static MonoPoint Add(this MonoPoint self, Direction dir) => new MonoPoint(self.X + dir.DeltaX, self.Y + dir.DeltaY);
+        public static MonoPoint Add(this MonoPoint self, Direction dir)
+            => new MonoPoint(self.X + dir.DeltaX, self.Y + dir.DeltaY);
 
         /// <summary>
         /// Subtracts a <see cref="SadRogue.Primitives.Point"/> from a <see cref="Microsoft.Xna.Framework.Point"/>.
@@ -118,7 +125,8 @@ namespace Microsoft.Xna.Framework
         /// <param name="other"/>
         /// <returns/>
         [Pure]
-        public static MonoPoint Subtract(this MonoPoint self, SadRoguePoint other) => new MonoPoint(self.X - other.X, self.Y - other.Y);
+        public static MonoPoint Subtract(this MonoPoint self, SadRoguePoint other)
+            => new MonoPoint(self.X - other.X, self.Y - other.Y);
 
         /// <summary>
         /// Subtracts an integer from both the X and Y values of a <see cref="Microsoft.Xna.Framework.Point"/>.
@@ -145,7 +153,8 @@ namespace Microsoft.Xna.Framework
         /// <param name="other"/>
         /// <returns/>
         [Pure]
-        public static MonoPoint Multiply(this MonoPoint self, SadRoguePoint other) => new MonoPoint(self.X * other.X, self.Y * other.Y);
+        public static MonoPoint Multiply(this MonoPoint self, SadRoguePoint other)
+            => new MonoPoint(self.X * other.X, self.Y * other.Y);
 
         /// <summary>
         /// Multiplies the X and Y values of a <see cref="Microsoft.Xna.Framework.Point"/> by an integer.
@@ -165,7 +174,8 @@ namespace Microsoft.Xna.Framework
         /// <returns/>
         [Pure]
         public static MonoPoint Multiply(this MonoPoint self, double d)
-            => new MonoPoint((int)Math.Round(self.X * d, MidpointRounding.AwayFromZero), (int)Math.Round(self.Y * d, MidpointRounding.AwayFromZero));
+            => new MonoPoint((int)Math.Round(self.X * d, MidpointRounding.AwayFromZero),
+                (int)Math.Round(self.Y * d, MidpointRounding.AwayFromZero));
 
         /// <summary>
         /// Divides a <see cref="Microsoft.Xna.Framework.Point"/> by a <see cref="SadRogue.Primitives.Point"/>, and
@@ -176,7 +186,8 @@ namespace Microsoft.Xna.Framework
         /// <returns/>
         [Pure]
         public static MonoPoint Divide(this MonoPoint self, SadRoguePoint other)
-            => new MonoPoint((int)Math.Round(self.X / (double)other.X, MidpointRounding.AwayFromZero), (int)Math.Round(self.Y / (double)other.Y, MidpointRounding.AwayFromZero));
+            => new MonoPoint((int)Math.Round(self.X / (double)other.X, MidpointRounding.AwayFromZero),
+                (int)Math.Round(self.Y / (double)other.Y, MidpointRounding.AwayFromZero));
 
         /// <summary>
         /// Divides the X and Y values of a <see cref="Microsoft.Xna.Framework.Point"/> by a double, then rounds the
@@ -187,7 +198,8 @@ namespace Microsoft.Xna.Framework
         /// <returns/>
         [Pure]
         public static MonoPoint Divide(this MonoPoint self, double d)
-            => new MonoPoint((int)Math.Round(self.X / d, MidpointRounding.AwayFromZero), (int)Math.Round(self.Y / d, MidpointRounding.AwayFromZero));
+            => new MonoPoint((int)Math.Round(self.X / d, MidpointRounding.AwayFromZero),
+                (int)Math.Round(self.Y / d, MidpointRounding.AwayFromZero));
 
         /// <summary>
         /// Compares a <see cref="Microsoft.Xna.Framework.Point"/> to a <see cref="SadRogue.Primitives.Point"/>.

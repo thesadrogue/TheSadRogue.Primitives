@@ -8,12 +8,16 @@ namespace SadRogue.Primitives.UnitTests
     public class RectangleTests
     {
         #region Test Data
+
         public static Rectangle[] TestRectangles = new Rectangle[] { (0, 0, 10, 20), (1, 2, 15, 17), (5, 2, 18, 6) };
 
-        public static (Rectangle rect, bool yIncreaseUpwards)[] TestRectanglesWithYIncreasesUpwards = TestRectangles.Combinate(TestUtils.Enumerable(true, false)).ToArray();
+        public static (Rectangle rect, bool yIncreaseUpwards)[] TestRectanglesWithYIncreasesUpwards =
+            TestRectangles.Combinate(TestUtils.Enumerable(true, false)).ToArray();
+
         #endregion
 
         #region Test Side Points
+
         [Theory]
         [MemberDataTuple(nameof(TestRectanglesWithYIncreasesUpwards))]
         public void TopEdgePositions(Rectangle rect, bool yIncreaseUpwards)
@@ -97,9 +101,11 @@ namespace SadRogue.Primitives.UnitTests
 
             Direction.SetYIncreasesUpwardsUnsafe(false); // Ensure we reset to false for next test
         }
+
         #endregion
 
         #region Test Side Identification
+
         [Theory]
         [MemberDataTuple(nameof(TestRectanglesWithYIncreasesUpwards))]
         public void IsOnTopEdge(Rectangle rect, bool yIncreasesUpwards)
@@ -111,7 +117,7 @@ namespace SadRogue.Primitives.UnitTests
             var expectedPoints = rect.PositionsOnSide(Direction.Up).ToHashSet();
 
             // Check that all points return the proper value
-            foreach (var point in rect.Positions())
+            foreach (Point point in rect.Positions())
                 Assert.Equal(expectedPoints.Contains(point), rect.IsOnSide(point, Direction.Up));
 
             // Reset to false for next test
@@ -129,7 +135,7 @@ namespace SadRogue.Primitives.UnitTests
             var expectedPoints = rect.PositionsOnSide(Direction.Right).ToHashSet();
 
             // Check that all points return the proper value
-            foreach (var point in rect.Positions())
+            foreach (Point point in rect.Positions())
                 Assert.Equal(expectedPoints.Contains(point), rect.IsOnSide(point, Direction.Right));
 
             // Reset to false for next test
@@ -147,7 +153,7 @@ namespace SadRogue.Primitives.UnitTests
             var expectedPoints = rect.PositionsOnSide(Direction.Down).ToHashSet();
 
             // Check that all points return the proper value
-            foreach (var point in rect.Positions())
+            foreach (Point point in rect.Positions())
                 Assert.Equal(expectedPoints.Contains(point), rect.IsOnSide(point, Direction.Down));
 
             // Reset to false for next test
@@ -165,12 +171,13 @@ namespace SadRogue.Primitives.UnitTests
             var expectedPoints = rect.PositionsOnSide(Direction.Left).ToHashSet();
 
             // Check that all points return the proper value
-            foreach (var point in rect.Positions())
+            foreach (Point point in rect.Positions())
                 Assert.Equal(expectedPoints.Contains(point), rect.IsOnSide(point, Direction.Left));
 
             // Reset to false for next test
             Direction.SetYIncreasesUpwardsUnsafe(false);
         }
+
         #endregion
     }
 }

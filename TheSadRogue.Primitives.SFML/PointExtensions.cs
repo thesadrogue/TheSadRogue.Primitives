@@ -43,7 +43,8 @@ namespace SadRogue.Primitives
         /// <param name="other"/>
         /// <returns/>
         [Pure]
-        public static SadRoguePoint Add(this SadRoguePoint self, Vector2i other) => new SadRoguePoint(self.X + other.X, self.Y + other.Y);
+        public static SadRoguePoint Add(this SadRoguePoint self, Vector2i other)
+            => new SadRoguePoint(self.X + other.X, self.Y + other.Y);
 
         /// <summary>
         /// Adds a <see cref="SFML.System.Vector2u"/> to a <see cref="SadRogue.Primitives.Point"/>.
@@ -52,7 +53,8 @@ namespace SadRogue.Primitives
         /// <param name="other"/>
         /// <returns/>
         [Pure]
-        public static SadRoguePoint Add(this SadRoguePoint self, Vector2u other) => new SadRoguePoint(self.X + (int)other.X, self.Y + (int)other.Y);
+        public static SadRoguePoint Add(this SadRoguePoint self, Vector2u other)
+            => new SadRoguePoint(self.X + (int)other.X, self.Y + (int)other.Y);
 
         /// <summary>
         /// Adds a <see cref="SFML.System.Vector2f"/> to a <see cref="SadRogue.Primitives.Point"/>, and rounds the X
@@ -63,7 +65,8 @@ namespace SadRogue.Primitives
         /// <returns/>
         [Pure]
         public static SadRoguePoint Add(this SadRoguePoint self, Vector2f other)
-            => new SadRoguePoint((int)Math.Round(self.X + other.X, MidpointRounding.AwayFromZero), (int)Math.Round(self.Y + other.Y, MidpointRounding.AwayFromZero));
+            => new SadRoguePoint((int)Math.Round(self.X + other.X, MidpointRounding.AwayFromZero),
+                (int)Math.Round(self.Y + other.Y, MidpointRounding.AwayFromZero));
 
         /// <summary>
         /// Subtracts a <see cref="SFML.System.Vector2i"/> from a <see cref="SadRogue.Primitives.Point"/>.
@@ -72,7 +75,8 @@ namespace SadRogue.Primitives
         /// <param name="other"/>
         /// <returns/>
         [Pure]
-        public static SadRoguePoint Subtract(this SadRoguePoint self, Vector2i other) => new SadRoguePoint(self.X - other.X, self.Y - other.Y);
+        public static SadRoguePoint Subtract(this SadRoguePoint self, Vector2i other)
+            => new SadRoguePoint(self.X - other.X, self.Y - other.Y);
 
         /// <summary>
         /// Subtracts a <see cref="SFML.System.Vector2u"/> from a <see cref="SadRogue.Primitives.Point"/>.
@@ -81,7 +85,8 @@ namespace SadRogue.Primitives
         /// <param name="other"/>
         /// <returns/>
         [Pure]
-        public static SadRoguePoint Subtract(this SadRoguePoint self, Vector2u other) => new SadRoguePoint(self.X - (int)other.X, self.Y - (int)other.Y);
+        public static SadRoguePoint Subtract(this SadRoguePoint self, Vector2u other)
+            => new SadRoguePoint(self.X - (int)other.X, self.Y - (int)other.Y);
 
         /// <summary>
         /// Subtracts a <see cref="SFML.System.Vector2f"/> from a <see cref="SadRogue.Primitives.Point"/>, and rounds
@@ -92,7 +97,8 @@ namespace SadRogue.Primitives
         /// <returns/>
         [Pure]
         public static SadRoguePoint Subtract(this SadRoguePoint self, Vector2f other)
-            => new SadRoguePoint((int)Math.Round(self.X - other.X, MidpointRounding.AwayFromZero), (int)Math.Round(self.Y - other.Y, MidpointRounding.AwayFromZero));
+            => new SadRoguePoint((int)Math.Round(self.X - other.X, MidpointRounding.AwayFromZero),
+                (int)Math.Round(self.Y - other.Y, MidpointRounding.AwayFromZero));
 
         /// <summary>
         /// Multiplies a <see cref="SadRogue.Primitives.Point"/> by a <see cref="SFML.System.Vector2i"/>.
@@ -101,7 +107,8 @@ namespace SadRogue.Primitives
         /// <param name="other"/>
         /// <returns/>
         [Pure]
-        public static SadRoguePoint Multiply(this SadRoguePoint self, Vector2i other) => new SadRoguePoint(self.X * other.X, self.Y * other.Y);
+        public static SadRoguePoint Multiply(this SadRoguePoint self, Vector2i other)
+            => new SadRoguePoint(self.X * other.X, self.Y * other.Y);
 
         /// <summary>
         /// Multiplies a <see cref="SadRogue.Primitives.Point"/> by a <see cref="SFML.System.Vector2u"/>.
@@ -110,7 +117,8 @@ namespace SadRogue.Primitives
         /// <param name="other"/>
         /// <returns/>
         [Pure]
-        public static SadRoguePoint Multiply(this SadRoguePoint self, Vector2u other) => new SadRoguePoint(self.X * (int)other.X, self.Y * (int)other.Y);
+        public static SadRoguePoint Multiply(this SadRoguePoint self, Vector2u other)
+            => new SadRoguePoint(self.X * (int)other.X, self.Y * (int)other.Y);
 
         /// <summary>
         /// Multiplies a <see cref="SadRogue.Primitives.Point"/> by a <see cref="SFML.System.Vector2f"/>, and rounds
@@ -121,7 +129,8 @@ namespace SadRogue.Primitives
         /// <returns/>
         [Pure]
         public static SadRoguePoint Multiply(this SadRoguePoint self, Vector2f other)
-            => new SadRoguePoint((int)Math.Round(self.X * other.X, MidpointRounding.AwayFromZero), (int)Math.Round(self.Y * other.Y, MidpointRounding.AwayFromZero));
+            => new SadRoguePoint((int)Math.Round(self.X * other.X, MidpointRounding.AwayFromZero),
+                (int)Math.Round(self.Y * other.Y, MidpointRounding.AwayFromZero));
 
         /// <summary>
         /// Divides a <see cref="SadRogue.Primitives.Point"/> by a <see cref="SFML.System.Vector2i"/>, and rounds the
@@ -132,7 +141,8 @@ namespace SadRogue.Primitives
         /// <returns/>
         [Pure]
         public static SadRoguePoint Divide(this SadRoguePoint self, Vector2i other)
-            => new SadRoguePoint((int)Math.Round(self.X / (double)other.X, MidpointRounding.AwayFromZero), (int)Math.Round(self.Y / (double)other.Y, MidpointRounding.AwayFromZero));
+            => new SadRoguePoint((int)Math.Round(self.X / (double)other.X, MidpointRounding.AwayFromZero),
+                (int)Math.Round(self.Y / (double)other.Y, MidpointRounding.AwayFromZero));
 
         /// <summary>
         /// Divides a <see cref="SadRogue.Primitives.Point"/> by a <see cref="SFML.System.Vector2u"/>, and rounds the
@@ -143,7 +153,8 @@ namespace SadRogue.Primitives
         /// <returns/>
         [Pure]
         public static SadRoguePoint Divide(this SadRoguePoint self, Vector2u other)
-            => new SadRoguePoint((int)Math.Round(self.X / (double)other.X, MidpointRounding.AwayFromZero), (int)Math.Round(self.Y / (double)other.Y, MidpointRounding.AwayFromZero));
+            => new SadRoguePoint((int)Math.Round(self.X / (double)other.X, MidpointRounding.AwayFromZero),
+                (int)Math.Round(self.Y / (double)other.Y, MidpointRounding.AwayFromZero));
 
         /// <summary>
         /// Divides a <see cref="SadRogue.Primitives.Point"/> by a <see cref="SFML.System.Vector2f"/>, and rounds the
@@ -154,7 +165,8 @@ namespace SadRogue.Primitives
         /// <returns/>
         [Pure]
         public static SadRoguePoint Divide(this SadRoguePoint self, Vector2f other)
-            => new SadRoguePoint((int)Math.Round(self.X / other.X, MidpointRounding.AwayFromZero), (int)Math.Round(self.Y / other.Y, MidpointRounding.AwayFromZero));
+            => new SadRoguePoint((int)Math.Round(self.X / other.X, MidpointRounding.AwayFromZero),
+                (int)Math.Round(self.Y / other.Y, MidpointRounding.AwayFromZero));
 
         /// <summary>
         /// Compares a <see cref="SadRogue.Primitives.Point"/> to a <see cref="SFML.System.Vector2i"/>.
@@ -181,7 +193,8 @@ namespace SadRogue.Primitives
         /// <param name="other"/>
         /// <returns/>
         [Pure]
-        public static bool Equals(this SadRoguePoint self, Vector2f other) => Math.Abs(self.X - other.X) < 0.0000000001 && Math.Abs(self.Y - other.Y) < 0.0000000001;
+        public static bool Equals(this SadRoguePoint self, Vector2f other)
+            => Math.Abs(self.X - other.X) < 0.0000000001 && Math.Abs(self.Y - other.Y) < 0.0000000001;
     }
 }
 
@@ -208,7 +221,8 @@ namespace SFML.System
         /// <param name="other"/>
         /// <returns/>
         [Pure]
-        public static Vector2i Add(this Vector2i self, SadRoguePoint other) => new Vector2i(self.X + other.X, self.Y + other.Y);
+        public static Vector2i Add(this Vector2i self, SadRoguePoint other)
+            => new Vector2i(self.X + other.X, self.Y + other.Y);
 
         /// <summary>
         /// Adds an integer to both the X and Y values of a <see cref="SFML.System.Vector2i"/>.
@@ -226,7 +240,8 @@ namespace SFML.System
         /// <param name="dir"/>
         /// <returns/>
         [Pure]
-        public static Vector2i Add(this Vector2i self, Direction dir) => new Vector2i(self.X + dir.DeltaX, self.Y + dir.DeltaY);
+        public static Vector2i Add(this Vector2i self, Direction dir)
+            => new Vector2i(self.X + dir.DeltaX, self.Y + dir.DeltaY);
 
         /// <summary>
         /// Subtracts a <see cref="SadRogue.Primitives.Point"/> from a <see cref="SFML.System.Vector2i"/>.
@@ -235,7 +250,8 @@ namespace SFML.System
         /// <param name="other"/>
         /// <returns/>
         [Pure]
-        public static Vector2i Subtract(this Vector2i self, SadRoguePoint other) => new Vector2i(self.X - other.X, self.Y - other.Y);
+        public static Vector2i Subtract(this Vector2i self, SadRoguePoint other)
+            => new Vector2i(self.X - other.X, self.Y - other.Y);
 
         /// <summary>
         /// Subtracts an integer from both the X and Y values of a <see cref="SFML.System.Vector2i"/>.
@@ -262,7 +278,8 @@ namespace SFML.System
         /// <param name="other"/>
         /// <returns/>
         [Pure]
-        public static Vector2i Multiply(this Vector2i self, SadRoguePoint other) => new Vector2i(self.X * other.X, self.Y * other.Y);
+        public static Vector2i Multiply(this Vector2i self, SadRoguePoint other)
+            => new Vector2i(self.X * other.X, self.Y * other.Y);
 
         /// <summary>
         /// Multiplies the X and Y values of a <see cref="SFML.System.Vector2i"/> by an integer.
@@ -282,7 +299,8 @@ namespace SFML.System
         /// <returns/>
         [Pure]
         public static Vector2i Multiply(this Vector2i self, double d)
-            => new Vector2i((int)Math.Round(self.X * d, MidpointRounding.AwayFromZero), (int)Math.Round(self.Y * d, MidpointRounding.AwayFromZero));
+            => new Vector2i((int)Math.Round(self.X * d, MidpointRounding.AwayFromZero),
+                (int)Math.Round(self.Y * d, MidpointRounding.AwayFromZero));
 
         /// <summary>
         /// Divides a <see cref="SFML.System.Vector2i"/> by a <see cref="SadRogue.Primitives.Point"/>, and rounds the
@@ -293,7 +311,8 @@ namespace SFML.System
         /// <returns/>
         [Pure]
         public static Vector2i Divide(this Vector2i self, SadRoguePoint other)
-            => new Vector2i((int)Math.Round(self.X / (double)other.X, MidpointRounding.AwayFromZero), (int)Math.Round(self.Y / (double)other.Y, MidpointRounding.AwayFromZero));
+            => new Vector2i((int)Math.Round(self.X / (double)other.X, MidpointRounding.AwayFromZero),
+                (int)Math.Round(self.Y / (double)other.Y, MidpointRounding.AwayFromZero));
 
         /// <summary>
         /// Divides the X and Y values of a <see cref="SFML.System.Vector2i"/> by a double, then rounds the
@@ -304,7 +323,8 @@ namespace SFML.System
         /// <returns/>
         [Pure]
         public static Vector2i Divide(this Vector2i self, double d)
-            => new Vector2i((int)Math.Round(self.X / d, MidpointRounding.AwayFromZero), (int)Math.Round(self.Y / d, MidpointRounding.AwayFromZero));
+            => new Vector2i((int)Math.Round(self.X / d, MidpointRounding.AwayFromZero),
+                (int)Math.Round(self.Y / d, MidpointRounding.AwayFromZero));
 
         /// <summary>
         /// Compares a <see cref="SFML.System.Vector2i"/> to a <see cref="SadRogue.Primitives.Point"/>.
@@ -337,7 +357,8 @@ namespace SFML.System
         /// <param name="other"/>
         /// <returns/>
         [Pure]
-        public static Vector2u Add(this Vector2u self, SadRoguePoint other) => new Vector2u(self.X + (uint)other.X, self.Y + (uint)other.Y);
+        public static Vector2u Add(this Vector2u self, SadRoguePoint other)
+            => new Vector2u(self.X + (uint)other.X, self.Y + (uint)other.Y);
 
         /// <summary>
         /// Adds an integer to both the X and Y values of a <see cref="SFML.System.Vector2u"/>.
@@ -355,7 +376,8 @@ namespace SFML.System
         /// <param name="dir"/>
         /// <returns/>
         [Pure]
-        public static Vector2u Add(this Vector2u self, Direction dir) => new Vector2u((uint)(self.X + dir.DeltaX), (uint)(self.Y + dir.DeltaY));
+        public static Vector2u Add(this Vector2u self, Direction dir)
+            => new Vector2u((uint)(self.X + dir.DeltaX), (uint)(self.Y + dir.DeltaY));
 
         /// <summary>
         /// Subtracts a <see cref="SadRogue.Primitives.Point"/> from a <see cref="SFML.System.Vector2u"/>.
@@ -364,7 +386,8 @@ namespace SFML.System
         /// <param name="other"/>
         /// <returns/>
         [Pure]
-        public static Vector2u Subtract(this Vector2u self, SadRoguePoint other) => new Vector2u((uint)(self.X - other.X), (uint)(self.Y - other.Y));
+        public static Vector2u Subtract(this Vector2u self, SadRoguePoint other)
+            => new Vector2u((uint)(self.X - other.X), (uint)(self.Y - other.Y));
 
         /// <summary>
         /// Subtracts an integer from both the X and Y values of a <see cref="SFML.System.Vector2u"/>.
@@ -373,7 +396,8 @@ namespace SFML.System
         /// <param name="i"/>
         /// <returns/>
         [Pure]
-        public static Vector2u Subtract(this Vector2u self, int i) => new Vector2u((uint)(self.X - i), (uint)(self.Y - i));
+        public static Vector2u Subtract(this Vector2u self, int i)
+            => new Vector2u((uint)(self.X - i), (uint)(self.Y - i));
 
         /// <summary>
         /// Subtracts a <see cref="SadRogue.Primitives.Direction"/> from a <see cref="SFML.System.Vector2u"/>.
@@ -391,7 +415,8 @@ namespace SFML.System
         /// <param name="other"/>
         /// <returns/>
         [Pure]
-        public static Vector2u Multiply(this Vector2u self, SadRoguePoint other) => new Vector2u((uint)(self.X * other.X), (uint)(self.Y * other.Y));
+        public static Vector2u Multiply(this Vector2u self, SadRoguePoint other)
+            => new Vector2u((uint)(self.X * other.X), (uint)(self.Y * other.Y));
 
         /// <summary>
         /// Multiplies the X and Y values of a <see cref="SFML.System.Vector2u"/> by an integer.
@@ -400,7 +425,8 @@ namespace SFML.System
         /// <param name="i"/>
         /// <returns/>
         [Pure]
-        public static Vector2u Multiply(this Vector2u self, int i) => new Vector2u((uint)(self.X * i), (uint)(self.Y * i));
+        public static Vector2u Multiply(this Vector2u self, int i)
+            => new Vector2u((uint)(self.X * i), (uint)(self.Y * i));
 
         /// <summary>
         /// Multiplies the X and Y values of a <see cref="SFML.System.Vector2u"/> by a double, then rounds the
@@ -411,7 +437,8 @@ namespace SFML.System
         /// <returns/>
         [Pure]
         public static Vector2u Multiply(this Vector2u self, double d)
-            => new Vector2u((uint)Math.Round(self.X * d, MidpointRounding.AwayFromZero), (uint)Math.Round(self.Y * d, MidpointRounding.AwayFromZero));
+            => new Vector2u((uint)Math.Round(self.X * d, MidpointRounding.AwayFromZero),
+                (uint)Math.Round(self.Y * d, MidpointRounding.AwayFromZero));
 
         /// <summary>
         /// Divides a <see cref="SFML.System.Vector2u"/> by a <see cref="SadRogue.Primitives.Point"/>, and rounds the
@@ -422,7 +449,8 @@ namespace SFML.System
         /// <returns/>
         [Pure]
         public static Vector2u Divide(this Vector2u self, SadRoguePoint other)
-            => new Vector2u((uint)Math.Round(self.X / (double)other.X, MidpointRounding.AwayFromZero), (uint)Math.Round(self.Y / (double)other.Y, MidpointRounding.AwayFromZero));
+            => new Vector2u((uint)Math.Round(self.X / (double)other.X, MidpointRounding.AwayFromZero),
+                (uint)Math.Round(self.Y / (double)other.Y, MidpointRounding.AwayFromZero));
 
         /// <summary>
         /// Divides the X and Y values of a <see cref="SFML.System.Vector2u"/> by a double, then rounds the
@@ -433,7 +461,8 @@ namespace SFML.System
         /// <returns/>
         [Pure]
         public static Vector2u Divide(this Vector2u self, double d)
-            => new Vector2u((uint)Math.Round(self.X / d, MidpointRounding.AwayFromZero), (uint)Math.Round(self.Y / d, MidpointRounding.AwayFromZero));
+            => new Vector2u((uint)Math.Round(self.X / d, MidpointRounding.AwayFromZero),
+                (uint)Math.Round(self.Y / d, MidpointRounding.AwayFromZero));
 
         /// <summary>
         /// Compares a <see cref="SFML.System.Vector2u"/> to a <see cref="SadRogue.Primitives.Point"/>.
@@ -459,7 +488,8 @@ namespace SFML.System
         /// <returns/>
         [Pure]
         public static SadRoguePoint ToPoint(this Vector2f self)
-            => new SadRoguePoint((int)Math.Round(self.X, MidpointRounding.AwayFromZero), (int)Math.Round(self.Y, MidpointRounding.AwayFromZero));
+            => new SadRoguePoint((int)Math.Round(self.X, MidpointRounding.AwayFromZero),
+                (int)Math.Round(self.Y, MidpointRounding.AwayFromZero));
 
         /// <summary>
         /// Adds a <see cref="SadRogue.Primitives.Point"/> to a <see cref="SFML.System.Vector2f"/>.
@@ -468,7 +498,8 @@ namespace SFML.System
         /// <param name="other"/>
         /// <returns/>
         [Pure]
-        public static Vector2f Add(this Vector2f self, SadRoguePoint other) => new Vector2f(self.X + other.X, self.Y + other.Y);
+        public static Vector2f Add(this Vector2f self, SadRoguePoint other)
+            => new Vector2f(self.X + other.X, self.Y + other.Y);
 
         /// <summary>
         /// Adds an integer to both the X and Y values of a <see cref="SFML.System.Vector2f"/>.
@@ -486,7 +517,8 @@ namespace SFML.System
         /// <param name="dir"/>
         /// <returns/>
         [Pure]
-        public static Vector2f Add(this Vector2f self, Direction dir) => new Vector2f(self.X + dir.DeltaX, self.Y + dir.DeltaY);
+        public static Vector2f Add(this Vector2f self, Direction dir)
+            => new Vector2f(self.X + dir.DeltaX, self.Y + dir.DeltaY);
 
         /// <summary>
         /// Subtracts a <see cref="SadRogue.Primitives.Point"/> from a <see cref="SFML.System.Vector2f"/>.
@@ -495,7 +527,8 @@ namespace SFML.System
         /// <param name="other"/>
         /// <returns/>
         [Pure]
-        public static Vector2f Subtract(this Vector2f self, SadRoguePoint other) => new Vector2f(self.X - other.X, self.Y - other.Y);
+        public static Vector2f Subtract(this Vector2f self, SadRoguePoint other)
+            => new Vector2f(self.X - other.X, self.Y - other.Y);
 
         /// <summary>
         /// Subtracts an integer from both the X and Y values of a <see cref="SFML.System.Vector2f"/>.
@@ -522,7 +555,8 @@ namespace SFML.System
         /// <param name="other"/>
         /// <returns/>
         [Pure]
-        public static Vector2f Multiply(this Vector2f self, SadRoguePoint other) => new Vector2f(self.X * other.X, self.Y * other.Y);
+        public static Vector2f Multiply(this Vector2f self, SadRoguePoint other)
+            => new Vector2f(self.X * other.X, self.Y * other.Y);
 
         /// <summary>
         /// Multiplies the X and Y values of a <see cref="SFML.System.Vector2i"/> by an integer.
@@ -540,7 +574,8 @@ namespace SFML.System
         /// <param name="d"/>
         /// <returns/>
         [Pure]
-        public static Vector2f Multiply(this Vector2f self, double d) => new Vector2f(self.X * (float)d, self.Y * (float)d);
+        public static Vector2f Multiply(this Vector2f self, double d)
+            => new Vector2f(self.X * (float)d, self.Y * (float)d);
 
         /// <summary>
         /// Divides a <see cref="SFML.System.Vector2f"/> by a <see cref="SadRogue.Primitives.Point"/>.
@@ -549,7 +584,8 @@ namespace SFML.System
         /// <param name="other"/>
         /// <returns/>
         [Pure]
-        public static Vector2f Divide(this Vector2f self, SadRoguePoint other) => new Vector2f(self.X / other.X, self.Y / other.Y);
+        public static Vector2f Divide(this Vector2f self, SadRoguePoint other)
+            => new Vector2f(self.X / other.X, self.Y / other.Y);
 
         /// <summary>
         /// Divides the X and Y values of a <see cref="SFML.System.Vector2f"/> by a double.
@@ -558,7 +594,8 @@ namespace SFML.System
         /// <param name="d"/>
         /// <returns/>
         [Pure]
-        public static Vector2f Divide(this Vector2f self, double d) => new Vector2f(self.X / (float)d, self.Y / (float)d);
+        public static Vector2f Divide(this Vector2f self, double d)
+            => new Vector2f(self.X / (float)d, self.Y / (float)d);
 
         /// <summary>
         /// Compares a <see cref="SadRogue.Primitives.Point"/> to a <see cref="SFML.System.Vector2f"/>.
@@ -567,6 +604,7 @@ namespace SFML.System
         /// <param name="other"/>
         /// <returns/>
         [Pure]
-        public static bool Equals(this Vector2f self, SadRoguePoint other) => Math.Abs(self.X - other.X) < 0.0000000001 && Math.Abs(self.Y - other.Y) < 0.0000000001;
+        public static bool Equals(this Vector2f self, SadRoguePoint other)
+            => Math.Abs(self.X - other.X) < 0.0000000001 && Math.Abs(self.Y - other.Y) < 0.0000000001;
     }
 }

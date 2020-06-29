@@ -9,7 +9,7 @@ namespace SadRogue.Primitives.UnitTests.Serialization
         public void AreaToAreaSerialized()
         {
             var original = new Area(TestUtils.Enumerable<Point>((1, 2), (3, 4), (5, 6)));
-            var expressive = (AreaSerialized)original;
+            AreaSerialized expressive = (AreaSerialized)original;
             var converted = (Area)expressive;
 
             Assert.Equal(original, converted);
@@ -19,7 +19,7 @@ namespace SadRogue.Primitives.UnitTests.Serialization
         public void BoundedRectangleToBoundedRectangleSerialized()
         {
             var original = new BoundedRectangle((1, 2, 9, 11), (-1, -2, 100, 101));
-            var expressive = (BoundedRectangleSerialized)original;
+            BoundedRectangleSerialized expressive = (BoundedRectangleSerialized)original;
             var converted = (BoundedRectangle)expressive;
 
             Assert.Equal(original, converted);
@@ -28,9 +28,9 @@ namespace SadRogue.Primitives.UnitTests.Serialization
         [Fact]
         public void ColorToColorSerialized()
         {
-            var original = new Color(23, 25, 27, 67);
-            var expressive = (ColorSerialized)original;
-            var converted = (Color)expressive;
+            Color original = new Color(23, 25, 27, 67);
+            ColorSerialized expressive = (ColorSerialized)original;
+            Color converted = (Color)expressive;
 
             Assert.Equal(original, converted);
         }
@@ -39,8 +39,8 @@ namespace SadRogue.Primitives.UnitTests.Serialization
         public void GradientToGradientSerialized()
         {
             var original = new Gradient(TestUtils.Enumerable(Color.AliceBlue, Color.Black, Color.Red),
-                                         TestUtils.Enumerable(0.0f, 0.5f, 1.0f));
-            var expressive = (GradientSerialized)original;
+                TestUtils.Enumerable(0.0f, 0.5f, 1.0f));
+            GradientSerialized expressive = (GradientSerialized)original;
             var converted = (Gradient)expressive;
 
             Assert.Equal(original, converted);
@@ -50,7 +50,7 @@ namespace SadRogue.Primitives.UnitTests.Serialization
         public void PaletteToPaletteSerialized()
         {
             var original = new Palette(TestUtils.Enumerable(Color.AliceBlue, Color.Red, Color.Black, Color.Yellow));
-            var expressive = (PaletteSerialized)original;
+            PaletteSerialized expressive = (PaletteSerialized)original;
             var converted = (Palette)expressive;
 
             Assert.Equal(original, converted);
@@ -59,9 +59,9 @@ namespace SadRogue.Primitives.UnitTests.Serialization
         [Fact]
         public void PointToPointSerialized()
         {
-            var original = new Point(1, 2);
-            var expressive = (PointSerialized)original;
-            var converted = (Point)expressive;
+            Point original = new Point(1, 2);
+            PointSerialized expressive = (PointSerialized)original;
+            Point converted = (Point)expressive;
 
             Assert.Equal(original, converted);
         }
@@ -69,9 +69,9 @@ namespace SadRogue.Primitives.UnitTests.Serialization
         [Fact]
         public void RectangleToRectangleSerialized()
         {
-            var original = new Rectangle(1, 2, 34, 20);
-            var expressive = (RectangleSerialized)original;
-            var converted = (Rectangle)expressive;
+            Rectangle original = new Rectangle(1, 2, 34, 20);
+            RectangleSerialized expressive = (RectangleSerialized)original;
+            Rectangle converted = (Rectangle)expressive;
 
             Assert.Equal(original, converted);
         }
@@ -79,9 +79,9 @@ namespace SadRogue.Primitives.UnitTests.Serialization
         [Fact]
         public void AdjacencyRuleToType()
         {
-            var original = AdjacencyRule.Diagonals;
-            var expressive = (AdjacencyRule.Types)original;
-            var converted = (AdjacencyRule)expressive;
+            AdjacencyRule original = AdjacencyRule.Diagonals;
+            AdjacencyRule.Types expressive = (AdjacencyRule.Types)original;
+            AdjacencyRule converted = (AdjacencyRule)expressive;
 
             Assert.Equal(original, converted);
         }
@@ -89,9 +89,9 @@ namespace SadRogue.Primitives.UnitTests.Serialization
         [Fact]
         public void DirectionToType()
         {
-            var original = Direction.None;
-            var expressive = (Direction.Types)original;
-            var converted = (Direction)expressive;
+            Direction original = Direction.None;
+            Direction.Types expressive = (Direction.Types)original;
+            Direction converted = (Direction)expressive;
 
             Assert.Equal(original, converted);
         }
@@ -99,9 +99,9 @@ namespace SadRogue.Primitives.UnitTests.Serialization
         [Fact]
         public void DistanceToType()
         {
-            var original = Distance.Euclidean;
-            var expressive = (Distance.Types)original;
-            var converted = (Distance)expressive;
+            Distance original = Distance.Euclidean;
+            Distance.Types expressive = (Distance.Types)original;
+            Distance converted = (Distance)expressive;
 
             Assert.Equal(original, converted);
         }
@@ -109,9 +109,9 @@ namespace SadRogue.Primitives.UnitTests.Serialization
         [Fact]
         public void RadiusToType()
         {
-            var original = Radius.Circle;
-            var expressive = (Radius.Types)original;
-            var converted = (Radius)expressive;
+            Radius original = Radius.Circle;
+            Radius.Types expressive = (Radius.Types)original;
+            Radius converted = (Radius)expressive;
 
             Assert.Equal(original, converted);
         }

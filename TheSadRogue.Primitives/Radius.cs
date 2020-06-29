@@ -42,8 +42,7 @@ namespace SadRogue.Primitives
         /// Enum value representing the radius shape -- useful for using Radius types in switch
         /// statements.
         /// </summary>
-        [DataMember]
-        public readonly Types Type;
+        [DataMember] public readonly Types Type;
 
         private static readonly string[] s_writeVals = Enum.GetNames(typeof(Types));
 
@@ -69,7 +68,7 @@ namespace SadRogue.Primitives
             /// <summary>
             /// Type for Radius.CIRCLE.
             /// </summary>
-            Circle,
+            Circle
         };
 
         /// <summary>
@@ -131,13 +130,9 @@ namespace SadRogue.Primitives
         public IEnumerable<Point> PositionsInRadius(RadiusLocationContext context)
         {
             if (context._newlyInitialized)
-            {
                 context._newlyInitialized = false;
-            }
             else
-            {
                 Array.Clear(context._inQueue, 0, context._inQueue.Length);
-            }
 
             int startArrayIndex = context._inQueue.GetLength(0) / 2;
             Point topLeft = context.Center - context.Radius;
@@ -164,9 +159,7 @@ namespace SadRogue.Primitives
                     if (distCalc.Calculate(context.Center, neighbor) > context.Radius ||
                         context._inQueue[localNeighbor.X, localNeighbor.Y] ||
                         context.Bounds != Rectangle.Empty && !context.Bounds.Contains(neighbor))
-                    {
                         continue;
-                    }
 
                     q.Enqueue(neighbor);
                     context._inQueue[localNeighbor.X, localNeighbor.Y] = true;
@@ -228,16 +221,13 @@ namespace SadRogue.Primitives
         /// </remarks>
         /// <param name="radius">Radius type being casted.</param>
         [Pure]
-        public static implicit operator AdjacencyRule(Radius radius)
+        public static implicit operator AdjacencyRule(Radius radius) => radius.Type switch
         {
-            return radius.Type switch
-            {
-                Types.Circle => AdjacencyRule.EightWay,
-                Types.Square => AdjacencyRule.EightWay,
-                Types.Diamond => AdjacencyRule.Cardinals,
-                _ => throw new Exception($"Could not convert {nameof(Distance)} to {nameof(Radius)} -- this is a bug!")
-            };
-        }
+            Types.Circle => AdjacencyRule.EightWay,
+            Types.Square => AdjacencyRule.EightWay,
+            Types.Diamond => AdjacencyRule.Cardinals,
+            _ => throw new Exception($"Could not convert {nameof(Distance)} to {nameof(Radius)} -- this is a bug!")
+        };
 
         /// <summary>
         /// Allows implicit casting to the <see cref="Distance"/> type.
@@ -248,16 +238,13 @@ namespace SadRogue.Primitives
         /// </remarks>
         /// <param name="radius">Radius type being casted.</param>
         [Pure]
-        public static implicit operator Distance(Radius radius)
+        public static implicit operator Distance(Radius radius) => radius.Type switch
         {
-            return radius.Type switch
-            {
-                Types.Circle => Distance.Euclidean,
-                Types.Diamond => Distance.Manhattan,
-                Types.Square => Distance.Chebyshev,
-                _ => throw new Exception($"Could not convert {nameof(Radius)} to {nameof(Distance)} -- this is a bug!")
-            };
-        }
+            Types.Circle => Distance.Euclidean,
+            Types.Diamond => Distance.Manhattan,
+            Types.Square => Distance.Chebyshev,
+            _ => throw new Exception($"Could not convert {nameof(Radius)} to {nameof(Distance)} -- this is a bug!")
+        };
 
         /// <summary>
         /// Implicitly converts a Radius to its corresponding <see cref="Type"/>.
@@ -271,16 +258,13 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="type"/>
         [Pure]
-        public static implicit operator Radius(Types type)
+        public static implicit operator Radius(Types type) => type switch
         {
-            return type switch
-            {
-                Types.Circle => Circle,
-                Types.Diamond => Diamond,
-                Types.Square => Square,
-                _ => throw new Exception($"Could not convert {nameof(Types)} to {nameof(Radius)} -- this is a bug!")
-            };
-        }
+            Types.Circle => Circle,
+            Types.Diamond => Diamond,
+            Types.Square => Square,
+            _ => throw new Exception($"Could not convert {nameof(Types)} to {nameof(Radius)} -- this is a bug!")
+        };
 
         /// <summary>
         /// Returns a string representation of the Radius.
@@ -356,6 +340,7 @@ namespace SadRogue.Primitives
         /// <param name="center">The starting center-point of the radius.</param>
         /// <param name="radius">The starting length of the radius.</param>
         public RadiusLocationContext(Point center, int radius)
-            : this(center, radius, Rectangle.Empty) { }
+            : this(center, radius, Rectangle.Empty)
+        { }
     }
 }

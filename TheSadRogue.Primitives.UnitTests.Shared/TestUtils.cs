@@ -9,10 +9,7 @@ namespace SadRogue.Primitives.UnitTests
     /// </summary>
     public static class TestUtils
     {
-        public static void Fail(string message)
-        {
-            Assert.True(false, message);
-        }
+        public static void Fail(string message) => Assert.True(false, message);
 
         public static IEnumerable<T> ToEnumerable<T>(this T obj)
         {
@@ -22,8 +19,9 @@ namespace SadRogue.Primitives.UnitTests
         public static IEnumerable<(T1, T2)> Combinate<T1, T2>(this IEnumerable<T1> l1, IEnumerable<T2> l2)
             => from x in l1 from y in l2 select (x, y);
 
-        public static IEnumerable<(T1, T2, T3)> Combinate<T1, T2, T3>(this IEnumerable<(T1 i1, T2 i2)> tuples, IEnumerable<T3> l2)
-            => from tuple in tuples from z in l2 select(tuple.i1, tuple.i2, z);
+        public static IEnumerable<(T1, T2, T3)> Combinate<T1, T2, T3>(this IEnumerable<(T1 i1, T2 i2)> tuples,
+                                                                      IEnumerable<T3> l2)
+            => from tuple in tuples from z in l2 select (tuple.i1, tuple.i2, z);
 
         public static void AssertElementEquals<T>(params IReadOnlyList<T>[] lists)
         {

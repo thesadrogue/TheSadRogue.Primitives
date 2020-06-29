@@ -11,8 +11,7 @@ namespace SadRogue.Primitives
     [DataContract]
     public class Palette : IEnumerable<Color>
     {
-        [DataMember]
-        private readonly Color[] _colors;
+        [DataMember] private readonly Color[] _colors;
 
         /// <summary>
         /// How many colors the palette has.
@@ -39,9 +38,7 @@ namespace SadRogue.Primitives
             _colors = new Color[colors];
 
             for (int i = 0; i < colors; i++)
-            {
                 _colors[i] = new Color();
-            }
         }
 
         /// <summary>
@@ -113,7 +110,8 @@ namespace SadRogue.Primitives
             int currentDistance;
             for (int i = 0; i < _colors.Length; i++)
             {
-                currentDistance = Math.Abs(_colors[i].R - color.R) + Math.Abs(_colors[i].G - color.G) + Math.Abs(_colors[i].B - color.B);
+                currentDistance = Math.Abs(_colors[i].R - color.R) + Math.Abs(_colors[i].G - color.G) +
+                                  Math.Abs(_colors[i].B - color.B);
 
                 if (currentDistance < lowestDistance)
                 {
@@ -121,6 +119,7 @@ namespace SadRogue.Primitives
                     lowestDistanceIndex = i;
                 }
             }
+
             return lowestDistanceIndex;
         }
 
@@ -155,7 +154,7 @@ namespace SadRogue.Primitives
         /// <param name="p1"/>
         /// <param name="p2"/>
         /// <returns>True if the two palettes hold identical colors in the same order; false otherwise.</returns>
-        public static bool operator==(Palette p1, Palette p2)
+        public static bool operator ==(Palette p1, Palette p2)
         {
             if (ReferenceEquals(p1, p2))
                 return true;

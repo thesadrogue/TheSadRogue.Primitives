@@ -24,11 +24,7 @@ namespace SadRogue.Primitives.SerializedTypes
         /// <param name="rect"/>
         /// <returns/>
         public static implicit operator BoundedRectangleSerialized(BoundedRectangle rect) =>
-            new BoundedRectangleSerialized()
-        {
-            Area = rect.Area,
-            Bounds = rect.BoundingBox
-        };
+            new BoundedRectangleSerialized() { Area = rect.Area, Bounds = rect.BoundingBox };
 
         /// <summary>
         /// Converts <see cref="BoundedRectangleSerialized"/> to <see cref="BoundedRectangle"/>.

@@ -12,14 +12,17 @@ namespace SadRogue.Primitives.SerializedTypes
         /// X-coordinate of the minimum extent of the rectangle.
         /// </summary>
         public int X;
+
         /// <summary>
         /// Y-coordinate of the minimum extent of the rectangle.
         /// </summary>
         public int Y;
+
         /// <summary>
         /// Width of the rectangle.
         /// </summary>
         public int Width;
+
         /// <summary>
         /// Height of the rectangle.
         /// </summary>
@@ -32,10 +35,7 @@ namespace SadRogue.Primitives.SerializedTypes
         /// <returns/>
         public static implicit operator RectangleSerialized(Rectangle rect) => new RectangleSerialized()
         {
-            X = rect.X,
-            Y = rect.Y,
-            Width = rect.Width,
-            Height = rect.Height
+            X = rect.X, Y = rect.Y, Width = rect.Width, Height = rect.Height
         };
 
         /// <summary>

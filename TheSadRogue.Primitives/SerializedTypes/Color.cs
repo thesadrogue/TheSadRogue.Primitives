@@ -12,14 +12,17 @@ namespace SadRogue.Primitives.SerializedTypes
         /// "R" value for the color.
         /// </summary>
         public byte R;
+
         /// <summary>
         /// "G" value for the color.
         /// </summary>
         public byte G;
+
         /// <summary>
         /// "B" value for the color.
         /// </summary>
         public byte B;
+
         /// <summary>
         /// Alpha-value for the color.
         /// </summary>
@@ -30,7 +33,8 @@ namespace SadRogue.Primitives.SerializedTypes
         /// </summary>
         /// <param name="color"/>
         /// <returns/>
-        public static implicit operator ColorSerialized(Color color) => new ColorSerialized() { R = color.R, G = color.G, B = color.B, A = color.A };
+        public static implicit operator ColorSerialized(Color color)
+            => new ColorSerialized() { R = color.R, G = color.G, B = color.B, A = color.A };
 
         /// <summary>
         /// Converts <see cref="ColorSerialized"/> to <see cref="Color"/>.

@@ -44,7 +44,8 @@ namespace Microsoft.Xna.Framework
         /// <param name="self"/>
         /// <returns/>
         [Pure]
-        public static SadRogueColor ToSadRogueColor(this MonoColor self) => new SadRogueColor(self.R, self.G, self.B, self.A);
+        public static SadRogueColor ToSadRogueColor(this MonoColor self)
+            => new SadRogueColor(self.R, self.G, self.B, self.A);
 
         /// <summary>
         /// Compares a <see cref="Microsoft.Xna.Framework.Color"/> to a <see cref="SadRogue.Primitives.Color"/>.

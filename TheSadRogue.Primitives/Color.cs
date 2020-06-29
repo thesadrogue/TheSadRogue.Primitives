@@ -167,8 +167,7 @@ namespace SadRogue.Primitives
         // Stored as RGBA with R in the least significant octet:
         // |-------|-------|-------|-------
         // A       B       G       R
-        [DataMember]
-        private readonly uint _packedValue;
+        [DataMember] private readonly uint _packedValue;
 
         /// <summary>
         /// Constructs an RGBA color from a packed value.
@@ -191,9 +190,7 @@ namespace SadRogue.Primitives
                 _packedValue = (color._packedValue & 0x00FFFFFF) | (clampedA << 24);
             }
             else
-            {
                 _packedValue = (color._packedValue & 0x00FFFFFF) | ((uint)alpha << 24);
-            }
         }
 
         /// <summary>
@@ -201,10 +198,10 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="color">A <see cref="Color"/> for RGB values of new <see cref="Color"/> instance.</param>
         /// <param name="alpha">Alpha component value from 0.0f to 1.0f.</param>
-        public Color(Color color, float alpha) :
+        public Color(Color color, float alpha)
+            :
             this(color, (int)(alpha * 255))
-        {
-        }
+        { }
 
         /// <summary>
         /// Constructs an RGBA color from scalars representing red, green and blue values. Alpha value will be opaque.
@@ -214,8 +211,7 @@ namespace SadRogue.Primitives
         /// <param name="b">Blue component value from 0.0f to 1.0f.</param>
         public Color(float r, float g, float b)
             : this((int)(r * 255), (int)(g * 255), (int)(b * 255))
-        {
-        }
+        { }
 
         /// <summary>
         /// Constructs an RGBA color from scalars representing red, green, blue and alpha values.
@@ -226,8 +222,7 @@ namespace SadRogue.Primitives
         /// <param name="alpha">Alpha component value from 0.0f to 1.0f.</param>
         public Color(float r, float g, float b, float alpha)
             : this((int)(r * 255), (int)(g * 255), (int)(b * 255), (int)(alpha * 255))
-        {
-        }
+        { }
 
         /// <summary>
         /// Constructs an RGBA color from scalars representing red, green and blue values. Alpha value will be opaque.
@@ -245,12 +240,10 @@ namespace SadRogue.Primitives
                 uint clampedG = (uint)MathHelpers.Clamp(g, byte.MinValue, byte.MaxValue);
                 uint clampedB = (uint)MathHelpers.Clamp(b, byte.MinValue, byte.MaxValue);
 
-                _packedValue |= (clampedB << 16) | (clampedG << 8) | (clampedR);
+                _packedValue |= (clampedB << 16) | (clampedG << 8) | clampedR;
             }
             else
-            {
-                _packedValue |= ((uint)b << 16) | ((uint)g << 8) | ((uint)r);
-            }
+                _packedValue |= ((uint)b << 16) | ((uint)g << 8) | (uint)r;
         }
 
         /// <summary>
@@ -269,12 +262,10 @@ namespace SadRogue.Primitives
                 uint clampedB = (uint)MathHelpers.Clamp(b, byte.MinValue, byte.MaxValue);
                 uint clampedA = (uint)MathHelpers.Clamp(alpha, byte.MinValue, byte.MaxValue);
 
-                _packedValue = (clampedA << 24) | (clampedB << 16) | (clampedG << 8) | (clampedR);
+                _packedValue = (clampedA << 24) | (clampedB << 16) | (clampedG << 8) | clampedR;
             }
             else
-            {
-                _packedValue = ((uint)alpha << 24) | ((uint)b << 16) | ((uint)g << 8) | ((uint)r);
-            }
+                _packedValue = ((uint)alpha << 24) | ((uint)b << 16) | ((uint)g << 8) | (uint)r;
         }
 
         /// <summary>
@@ -287,7 +278,8 @@ namespace SadRogue.Primitives
         /// <param name="g"></param>
         /// <param name="b"></param>
         /// <param name="alpha"></param>
-        public Color(byte r, byte g, byte b, byte alpha) => _packedValue = ((uint)alpha << 24) | ((uint)b << 16) | ((uint)g << 8) | (r);
+        public Color(byte r, byte g, byte b, byte alpha)
+            => _packedValue = ((uint)alpha << 24) | ((uint)b << 16) | ((uint)g << 8) | r;
 
         /// <summary>
         /// Gets or sets the blue component.
@@ -352,7 +344,7 @@ namespace SadRogue.Primitives
         /// <param name="b"><see cref="Color"/> instance on the right of the equal sign.</param>
         /// <returns><c>true</c> if the instances are equal; <c>false</c> otherwise.</returns>
         [Pure]
-        public static bool operator ==(Color a, Color b) => (a._packedValue == b._packedValue);
+        public static bool operator ==(Color a, Color b) => a._packedValue == b._packedValue;
 
         /// <summary>
         /// Compares whether two <see cref="Color"/> instances are not equal.
@@ -361,7 +353,7 @@ namespace SadRogue.Primitives
         /// <param name="b"><see cref="Color"/> instance on the right of the not equal sign.</param>
         /// <returns><c>true</c> if the instances are not equal; <c>false</c> otherwise.</returns>
         [Pure]
-        public static bool operator !=(Color a, Color b) => (a._packedValue != b._packedValue);
+        public static bool operator !=(Color a, Color b) => a._packedValue != b._packedValue;
 
         /// <summary>
         /// Gets the hash code of this <see cref="Color"/>.
@@ -376,37 +368,45 @@ namespace SadRogue.Primitives
         /// <param name="obj">The <see cref="Color"/> to compare.</param>
         /// <returns><c>true</c> if the instances are equal; <c>false</c> otherwise.</returns>
         [Pure]
-        public override bool Equals(object? obj) => (obj is Color color) && Equals(color);
+        public override bool Equals(object? obj) => obj is Color color && Equals(color);
 
         #region Color Bank Ansi
+
         /// <summary>
         /// The black ansi color (0, 0, 0).
         /// </summary>
         public static Color AnsiBlack = new Color(0, 0, 0);
+
         /// <summary>
         /// The Red ansi color (170, 0, 0).
         /// </summary>
         public static Color AnsiRed = new Color(170, 0, 0);
+
         /// <summary>
         /// The Green ansi color 0, 170, 0).
         /// </summary>
         public static Color AnsiGreen = new Color(0, 170, 0);
+
         /// <summary>
         /// The Yellow ansi color (170, 85, 0).
         /// </summary>
         public static Color AnsiYellow = new Color(170, 85, 0);
+
         /// <summary>
         /// The Blue ansi color (0, 0, 170).
         /// </summary>
         public static Color AnsiBlue = new Color(0, 0, 170);
+
         /// <summary>
         /// The Magenta ansi color (170, 0, 170).
         /// </summary>
         public static Color AnsiMagenta = new Color(170, 0, 170);
+
         /// <summary>
         /// The Cyan ansi color (0, 170, 170).
         /// </summary>
         public static Color AnsiCyan = new Color(0, 170, 170);
+
         /// <summary>
         /// The White ansi color (170, 170, 170).
         /// </summary>
@@ -416,34 +416,42 @@ namespace SadRogue.Primitives
         /// The BlackBright ansi color (85, 85, 85).
         /// </summary>
         public static Color AnsiBlackBright = new Color(85, 85, 85);
+
         /// <summary>
         /// The RedBright ansi color (255, 85, 85).
         /// </summary>
         public static Color AnsiRedBright = new Color(255, 85, 85);
+
         /// <summary>
         /// The GreenBright ansi color (85, 255, 85).
         /// </summary>
         public static Color AnsiGreenBright = new Color(85, 255, 85);
+
         /// <summary>
         /// The YellowBright ansi color (255, 255, 85).
         /// </summary>
         public static Color AnsiYellowBright = new Color(255, 255, 85);
+
         /// <summary>
         /// The BlueBright ansi color (85, 85, 255).
         /// </summary>
         public static Color AnsiBlueBright = new Color(85, 85, 255);
+
         /// <summary>
         /// The MagentaBright ansi color (255, 85, 255).
         /// </summary>
         public static Color AnsiMagentaBright = new Color(255, 85, 255);
+
         /// <summary>
         /// The CyanBright ansi color (85, 255, 255).
         /// </summary>
         public static Color AnsiCyanBright = new Color(85, 255, 255);
+
         /// <summary>
         /// The WhiteBright ansi color (255, 255, 255).
         /// </summary>
         public static Color AnsiWhiteBright = new Color(255, 255, 255);
+
         #endregion
 
         #region Color Bank
@@ -1163,7 +1171,8 @@ namespace SadRogue.Primitives
         /// YellowGreen color (R:154,G:205,B:50,A:255).
         /// </summary>
         public static readonly Color YellowGreen;
-            #endregion
+
+        #endregion
 
         /// <summary>
         /// Gets the luma of an existing color.
@@ -1199,15 +1208,11 @@ namespace SadRogue.Primitives
 
 
             if (maxval == minval)
-            {
                 return 0.0f;
-            }
 
             int sum = maxval + minval;
             if (sum > 255)
-            {
                 sum = 510 - sum;
-            }
 
             return (float)(maxval - minval) / sum;
         }
@@ -1225,9 +1230,7 @@ namespace SadRogue.Primitives
 
 
             if (maxval == minval)
-            {
                 return 0.0f;
-            }
 
             float diff = maxval - minval;
             float rnorm = (maxval - R) / diff;
@@ -1237,24 +1240,16 @@ namespace SadRogue.Primitives
 
             float hue = 0.0f;
             if (R == maxval)
-            {
                 hue = 60.0f * (6.0f + bnorm - gnorm);
-            }
 
             if (G == maxval)
-            {
                 hue = 60.0f * (2.0f + rnorm - bnorm);
-            }
 
             if (B == maxval)
-            {
                 hue = 60.0f * (4.0f + gnorm - rnorm);
-            }
 
             if (hue > 360.0f)
-            {
                 hue -= 360.0f;
-            }
 
             return hue;
         }
@@ -1284,7 +1279,8 @@ namespace SadRogue.Primitives
         /// <param name="scale">Multiplicator.</param>
         /// <returns>Multiplication result.</returns>
         [Pure]
-        public static Color Multiply(Color value, float scale) => new Color((int)(value.R * scale), (int)(value.G * scale), (int)(value.B * scale), (int)(value.A * scale));
+        public static Color Multiply(Color value, float scale) => new Color((int)(value.R * scale),
+            (int)(value.G * scale), (int)(value.B * scale), (int)(value.A * scale));
 
         /// <summary>
         /// Creates an array of colors that includes the <paramref name="startingColor"/> and <paramref name="endingColor"/> and <paramref name="steps"/> of colors between them.
@@ -1326,65 +1322,49 @@ namespace SadRogue.Primitives
         public static Color FromHSL(float h, float s, float l)
         {
             if (Math.Abs(s) < 0.0000000001)
-            {
                 return new Color(
                     (byte)(l * 255),
                     (byte)(l * 255),
                     (byte)(l * 255)
-                    );
-            }
+                );
             else
             {
                 float var_2;
                 float var_1;
 
                 if (l < 0.5)
-                {
                     var_2 = l * (1 + s);
-                }
                 else
-                {
-                    var_2 = (l + s) - (s * l);
-                }
+                    var_2 = l + s - s * l;
 
                 var_1 = 2 * l - var_2;
 
                 return new Color(
-                    (byte)(255 * Hue_2_RGB(var_1, var_2, h + (1f / 3))),
+                    (byte)(255 * Hue_2_RGB(var_1, var_2, h + 1f / 3)),
                     (byte)(255 * Hue_2_RGB(var_1, var_2, h)),
-                    (byte)(255 * Hue_2_RGB(var_1, var_2, h - (1f / 3)))
-                    );
+                    (byte)(255 * Hue_2_RGB(var_1, var_2, h - 1f / 3))
+                );
             }
         }
 
         private static float Hue_2_RGB(float v1, float v2, float vH)
         {
             if (vH < 0)
-            {
                 vH += 1;
-            }
 
             if (vH > 1)
-            {
                 vH -= 1;
-            }
 
-            if ((6 * vH) < 1)
-            {
-                return (v1 + (v2 - v1) * 6 * vH);
-            }
+            if (6 * vH < 1)
+                return v1 + (v2 - v1) * 6 * vH;
 
-            if ((2 * vH) < 1)
-            {
-                return (v2);
-            }
+            if (2 * vH < 1)
+                return v2;
 
-            if ((3 * vH) < 2)
-            {
-                return (v1 + (v2 - v1) * ((2f / 3) - vH) * 6);
-            }
+            if (3 * vH < 2)
+                return v1 + (v2 - v1) * (2f / 3 - vH) * 6;
 
-            return (v1);
+            return v1;
         }
 
         /// <summary>
@@ -1394,7 +1374,8 @@ namespace SadRogue.Primitives
         /// <param name="scale">Multiplicator.</param>
         /// <returns>Multiplication result.</returns>
         [Pure]
-        public static Color operator *(Color value, float scale) => new Color((int)(value.R * scale), (int)(value.G * scale), (int)(value.B * scale), (int)(value.A * scale));
+        public static Color operator *(Color value, float scale) => new Color((int)(value.R * scale),
+            (int)(value.G * scale), (int)(value.B * scale), (int)(value.A * scale));
 
         /// <summary>
         /// Gets the packed value of this <see cref="Color"/>.
@@ -1403,11 +1384,11 @@ namespace SadRogue.Primitives
 
 
         internal string DebugDisplayString => string.Concat(
-                    R.ToString(), "  ",
-                    G.ToString(), "  ",
-                    B.ToString(), "  ",
-                    A.ToString()
-                );
+            R.ToString(), "  ",
+            G.ToString(), "  ",
+            B.ToString(), "  ",
+            A.ToString()
+        );
 
 
         /// <summary>
@@ -1440,7 +1421,8 @@ namespace SadRogue.Primitives
         /// <param name="a">Alpha component value.</param>
         /// <returns>A <see cref="Color"/> which contains premultiplied alpha data.</returns>
         [Pure]
-        public static Color FromNonPremultiplied(int r, int g, int b, int a) => new Color(r * a / 255, g * a / 255, b * a / 255, a);
+        public static Color FromNonPremultiplied(int r, int g, int b, int a)
+            => new Color(r * a / 255, g * a / 255, b * a / 255, a);
 
         #region IEquatable<Color> Members
 

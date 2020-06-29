@@ -16,7 +16,8 @@ namespace SadRogue.Primitives
         /// <param name="self"/>
         /// <returns/>
         [Pure]
-        public static IntRect ToIntRect(this SadRogueRectangle self) => new IntRect(self.X, self.Y, self.X + self.Width, self.Y + self.Height);
+        public static IntRect ToIntRect(this SadRogueRectangle self)
+            => new IntRect(self.X, self.Y, self.X + self.Width, self.Y + self.Height);
 
         /// <summary>
         /// Compares a <see cref="SadRogue.Primitives.Rectangle"/> to a <see cref="SFML.Graphics.IntRect"/>.
@@ -44,7 +45,8 @@ namespace SFML.Graphics
         /// <param name="self"/>
         /// <returns/>
         [Pure]
-        public static SadRogueRectangle ToRectangle(this IntRect self) => new SadRogueRectangle(self.Left, self.Top, self.Width - self.Left, self.Height - self.Top);
+        public static SadRogueRectangle ToRectangle(this IntRect self)
+            => new SadRogueRectangle(self.Left, self.Top, self.Width - self.Left, self.Height - self.Top);
 
         /// <summary>
         /// Compares a <see cref="SFML.Graphics.IntRect"/> to a <see cref="SadRogue.Primitives.Rectangle"/>.

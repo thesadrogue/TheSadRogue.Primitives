@@ -44,7 +44,8 @@ namespace SFML.Graphics
         /// <param name="self"/>
         /// <returns/>
         [Pure]
-        public static SadRogueColor ToSadRogueColor(this SFMLColor self) => new SadRogueColor(self.R, self.G, self.B, self.A);
+        public static SadRogueColor ToSadRogueColor(this SFMLColor self)
+            => new SadRogueColor(self.R, self.G, self.B, self.A);
 
         /// <summary>
         /// Compares a <see cref="SFML.Graphics.Color"/> to a  <see cref="SadRogue.Primitives.Color"/>.

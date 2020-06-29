@@ -14,6 +14,7 @@ namespace SadRogue.Primitives.SerializedTypes
         /// Color of the stop.
         /// </summary>
         public ColorSerialized Color;
+
         /// <summary>
         /// Location where the stop is used.
         /// </summary>
@@ -24,7 +25,8 @@ namespace SadRogue.Primitives.SerializedTypes
         /// </summary>
         /// <param name="serialized"/>
         /// <returns/>
-        public static implicit operator GradientStop(GradientStopSerialized serialized) => new GradientStop(serialized.Color, serialized.Stop);
+        public static implicit operator GradientStop(GradientStopSerialized serialized)
+            => new GradientStop(serialized.Color, serialized.Stop);
 
         /// <summary>
         /// Converts from <see cref="GradientStop"/> to <see cref="GradientStopSerialized"/>.
@@ -32,7 +34,7 @@ namespace SadRogue.Primitives.SerializedTypes
         /// <param name="stop"/>
         /// <returns/>
         public static implicit operator GradientStopSerialized(GradientStop stop) =>
-            new GradientStopSerialized() {Color = stop.Color, Stop = stop.Stop};
+            new GradientStopSerialized() { Color = stop.Color, Stop = stop.Stop };
     }
 
     /// <summary>
@@ -53,7 +55,6 @@ namespace SadRogue.Primitives.SerializedTypes
         /// <returns/>
         public static implicit operator Gradient(GradientSerialized serialized)
         {
-
             var colors = serialized.Stops.Select(stop => (Color)stop.Color).ToArray();
             var stops = serialized.Stops.Select(stop => stop.Stop);
 

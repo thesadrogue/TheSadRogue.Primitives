@@ -20,7 +20,8 @@ namespace SadRogue.Primitives.SerializedTypes
         /// </summary>
         /// <param name="serialized"/>
         /// <returns/>
-        public static implicit operator Palette(PaletteSerialized serialized) => new Palette(serialized.Colors.Select(colorSerialized => (Color)colorSerialized));
+        public static implicit operator Palette(PaletteSerialized serialized)
+            => new Palette(serialized.Colors.Select(colorSerialized => (Color)colorSerialized));
 
         /// <summary>
         /// Converts from <see cref="Palette"/> to <see cref="PaletteSerialized"/>.
@@ -30,6 +31,4 @@ namespace SadRogue.Primitives.SerializedTypes
         public static implicit operator PaletteSerialized(Palette palette) =>
             new PaletteSerialized() { Colors = palette.Select(color => (ColorSerialized)color).ToList() };
     }
-
-
 }

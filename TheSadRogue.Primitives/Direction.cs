@@ -75,6 +75,7 @@ namespace SadRogue.Primitives
             /// Type for <see cref="Direction.None"/>.
             /// </summary>
             None,
+
             /// <summary>
             /// Type for <see cref="Direction.Up"/>.
             /// </summary>
@@ -185,8 +186,7 @@ namespace SadRogue.Primitives
         /// <summary>
         /// Enum type corresponding to direction being represented.
         /// </summary>
-        [DataMember]
-        public readonly Types Type;
+        [DataMember] public readonly Types Type;
 
         /// <summary>
         /// True if the given direction has the same Type the current one.
@@ -245,23 +245,20 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="type"/>
         [Pure]
-        public static implicit operator Direction(Types type)
+        public static implicit operator Direction(Types type) => type switch
         {
-            return type switch
-            {
-                Types.Up => Up,
-                Types.UpRight => UpRight,
-                Types.Right => Right,
-                Types.DownRight => DownRight,
-                Types.Down => Down,
-                Types.DownLeft => DownLeft,
-                Types.Left => Left,
-                Types.UpLeft => UpLeft,
-                Types.None => None,
-                _ => throw new Exception(
-                    $"Could not convert {nameof(Type)} instance to {nameof(Direction)} -- this is a bug!.")
-            };
-        }
+            Types.Up => Up,
+            Types.UpRight => UpRight,
+            Types.Right => Right,
+            Types.DownRight => DownRight,
+            Types.Down => Down,
+            Types.DownLeft => DownLeft,
+            Types.Left => Left,
+            Types.UpLeft => UpLeft,
+            Types.None => None,
+            _ => throw new Exception(
+                $"Could not convert {nameof(Type)} instance to {nameof(Direction)} -- this is a bug!.")
+        };
 
         // Do not change manually outside of YIncreasesUpwards functionality
         internal static int s_yMult;
@@ -277,7 +274,7 @@ namespace SadRogue.Primitives
             {
                 s_initYInc = true;
                 s_yIncreasesUpward = newValue;
-                s_yMult = (s_yIncreasesUpward) ? -1 : 1;
+                s_yMult = s_yIncreasesUpward ? -1 : 1;
 
                 s_deltaVals[(int)Types.Up] = (0, -1 * s_yMult);
                 s_deltaVals[(int)Types.Down] = (0, 1 * s_yMult);
@@ -299,7 +296,8 @@ namespace SadRogue.Primitives
         /// The cardinal direction that most closely matches the heading indicated by the given line.
         /// </returns>
         [Pure]
-        public static Direction GetCardinalDirection(Point start, Point end) => GetCardinalDirection(new Point(end.X - start.X, end.Y - start.Y));
+        public static Direction GetCardinalDirection(Point start, Point end)
+            => GetCardinalDirection(new Point(end.X - start.X, end.Y - start.Y));
 
         /// <summary>
         /// Returns the cardinal direction that most closely matches the degree heading of a line
@@ -320,9 +318,7 @@ namespace SadRogue.Primitives
             int dy = deltaChange.Y;
 
             if (dx == 0 && dy == 0)
-            {
                 return None;
-            }
 
             dy *= s_yMult;
 
@@ -332,24 +328,16 @@ namespace SadRogue.Primitives
             degree %= 360; // Normalize angle to 0-360
 
             if (degree < 45.0)
-            {
                 return Up;
-            }
 
             if (degree < 135.0)
-            {
                 return Right;
-            }
 
             if (degree < 225.0)
-            {
                 return Down;
-            }
 
             if (degree < 315.0)
-            {
                 return Left;
-            }
 
             return Up;
         }
@@ -364,7 +352,8 @@ namespace SadRogue.Primitives
         /// The direction that most closely matches the heading indicated by the given line.
         /// </returns>
         [Pure]
-        public static Direction GetDirection(Point start, Point end) => GetDirection(new Point(end.X - start.X, end.Y - start.Y));
+        public static Direction GetDirection(Point start, Point end)
+            => GetDirection(new Point(end.X - start.X, end.Y - start.Y));
 
 
         /// <summary>
@@ -385,9 +374,7 @@ namespace SadRogue.Primitives
             int dy = deltaChange.Y;
 
             if (dx == 0 && dy == 0)
-            {
                 return None;
-            }
 
             dy *= s_yMult;
 
@@ -397,44 +384,28 @@ namespace SadRogue.Primitives
             degree %= 360; // Normalize angle to 0-360
 
             if (degree < 22.5)
-            {
                 return Up;
-            }
 
             if (degree < 67.5)
-            {
                 return UpRight;
-            }
 
             if (degree < 112.5)
-            {
                 return Right;
-            }
 
             if (degree < 157.5)
-            {
                 return DownRight;
-            }
 
             if (degree < 202.5)
-            {
                 return Down;
-            }
 
             if (degree < 247.5)
-            {
                 return DownLeft;
-            }
 
             if (degree < 292.5)
-            {
                 return Left;
-            }
 
             if (degree < 337.5)
-            {
                 return UpLeft;
-            }
 
             return Up;
         }
@@ -448,7 +419,8 @@ namespace SadRogue.Primitives
         /// The given direction moved counter-clockwise <paramref name="i"/> times.
         /// </returns>
         [Pure]
-        public static Direction operator -(Direction d, int i) => (d == None) ? None : (Direction)s_validTypes[WrapAround((int)d.Type - i - 1, 8)];
+        public static Direction operator -(Direction d, int i)
+            => d == None ? None : (Direction)s_validTypes[WrapAround((int)d.Type - i - 1, 8)];
 
         /// <summary>
         /// Moves the direction counter-clockwise by one.
@@ -456,7 +428,8 @@ namespace SadRogue.Primitives
         /// <param name="d"/>
         /// <returns>The direction one unit counterclockwise of <paramref name="d"/>.</returns>
         [Pure]
-        public static Direction operator --(Direction d) => (d == None) ? None : (Direction)s_validTypes[WrapAround((int)d.Type - 2, 8)];
+        public static Direction operator --(Direction d)
+            => d == None ? None : (Direction)s_validTypes[WrapAround((int)d.Type - 2, 8)];
 
         /// <summary>
         /// Moves the direction clockwise <paramref name="i"/> times.
@@ -467,7 +440,8 @@ namespace SadRogue.Primitives
         /// The given direction moved clockwise <paramref name="i"/> times.
         /// </returns>
         [Pure]
-        public static Direction operator +(Direction d, int i) => (d == None) ? None : (Direction)s_validTypes[WrapAround((int)d.Type + i - 1, 8)];
+        public static Direction operator +(Direction d, int i)
+            => d == None ? None : (Direction)s_validTypes[WrapAround((int)d.Type + i - 1, 8)];
 
         /// <summary>
         /// Moves the direction clockwise by one.
@@ -475,7 +449,8 @@ namespace SadRogue.Primitives
         /// <param name="d"/>
         /// <returns>The direction one unit clockwise of <paramref name="d"/>.</returns>
         [Pure]
-        public static Direction operator ++(Direction d) => (d == None) ? None : (Direction)s_validTypes[WrapAround((int)d.Type, 8)];
+        public static Direction operator ++(Direction d)
+            => d == None ? None : (Direction)s_validTypes[WrapAround((int)d.Type, 8)];
 
         /// <summary>
         /// Returns true if the current direction is a cardinal direction.
@@ -492,6 +467,7 @@ namespace SadRogue.Primitives
         public override string ToString() => s_writeVals[(int)Type];
 
         #region Tuple Compatibility
+
         /// <summary>
         /// Translates the given position by one unit in the given direction.
         /// </summary>
@@ -501,7 +477,9 @@ namespace SadRogue.Primitives
         /// Tuple (tuple.y + d.DeltaX, tuple.y + d.DeltaY).
         /// </returns>
         [Pure]
-        public static (int x, int y) operator +((int x, int y) tuple, Direction d) => (tuple.x + d.DeltaX, tuple.y + d.DeltaY);
+        public static (int x, int y) operator +((int x, int y) tuple, Direction d)
+            => (tuple.x + d.DeltaX, tuple.y + d.DeltaY);
+
         #endregion
 
         private static int WrapAround(int num, int wrapTo) => (num % wrapTo + wrapTo) % wrapTo;

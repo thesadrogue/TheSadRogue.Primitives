@@ -23,7 +23,7 @@ namespace SadRogue.Primitives.UnitTests
             // Determine "top"
             int yToCheck = yIncreaseUpwards ? rect.MaxExtentY : rect.MinExtentY;
             // Get edge points
-            Point[] edgePoints = rect.TopEdgePositions().ToArray();
+            Point[] edgePoints = rect.PositionsOnSide(Direction.Up).ToArray();
             HashSet<Point> hashSet = new HashSet<Point>(edgePoints);
 
             // Verify no duplicates
@@ -43,7 +43,7 @@ namespace SadRogue.Primitives.UnitTests
             Direction.SetYIncreasesUpwardsUnsafe(yIncreaseUpwards);
 
             // Get edge points
-            Point[] edgePoints = rect.RightEdgePositions().ToArray();
+            Point[] edgePoints = rect.PositionsOnSide(Direction.Right).ToArray();
             HashSet<Point> hashSet = new HashSet<Point>(edgePoints);
 
             // Verify no duplicates
@@ -65,7 +65,7 @@ namespace SadRogue.Primitives.UnitTests
             // Determine "bottom"
             int yToCheck = yIncreaseUpwards ? rect.MinExtentY : rect.MaxExtentY;
             // Get edge points
-            Point[] edgePoints = rect.BottomEdgePositions().ToArray();
+            Point[] edgePoints = rect.PositionsOnSide(Direction.Down).ToArray();
             HashSet<Point> hashSet = new HashSet<Point>(edgePoints);
 
             // Verify no duplicates
@@ -85,7 +85,7 @@ namespace SadRogue.Primitives.UnitTests
             Direction.SetYIncreasesUpwardsUnsafe(yIncreaseUpwards);
 
             // Get edge points
-            Point[] edgePoints = rect.LeftEdgePositions().ToArray();
+            Point[] edgePoints = rect.PositionsOnSide(Direction.Left).ToArray();
             HashSet<Point> hashSet = new HashSet<Point>(edgePoints);
 
             // Verify no duplicates
@@ -108,11 +108,11 @@ namespace SadRogue.Primitives.UnitTests
             Direction.SetYIncreasesUpwardsUnsafe(yIncreasesUpwards);
 
             // Get expected points that should return true
-            var expectedPoints = rect.TopEdgePositions().ToHashSet();
+            var expectedPoints = rect.PositionsOnSide(Direction.Up).ToHashSet();
 
             // Check that all points return the proper value
             foreach (var point in rect.Positions())
-                Assert.Equal(expectedPoints.Contains(point), rect.IsOnTopEdge(point));
+                Assert.Equal(expectedPoints.Contains(point), rect.IsOnSide(point, Direction.Up));
 
             // Reset to false for next test
             Direction.SetYIncreasesUpwardsUnsafe(false);
@@ -126,11 +126,11 @@ namespace SadRogue.Primitives.UnitTests
             Direction.SetYIncreasesUpwardsUnsafe(yIncreasesUpwards);
 
             // Get expected points that should return true
-            var expectedPoints = rect.RightEdgePositions().ToHashSet();
+            var expectedPoints = rect.PositionsOnSide(Direction.Right).ToHashSet();
 
             // Check that all points return the proper value
             foreach (var point in rect.Positions())
-                Assert.Equal(expectedPoints.Contains(point), rect.IsOnRightEdge(point));
+                Assert.Equal(expectedPoints.Contains(point), rect.IsOnSide(point, Direction.Right));
 
             // Reset to false for next test
             Direction.SetYIncreasesUpwardsUnsafe(false);
@@ -144,11 +144,11 @@ namespace SadRogue.Primitives.UnitTests
             Direction.SetYIncreasesUpwardsUnsafe(yIncreasesUpwards);
 
             // Get expected points that should return true
-            var expectedPoints = rect.BottomEdgePositions().ToHashSet();
+            var expectedPoints = rect.PositionsOnSide(Direction.Down).ToHashSet();
 
             // Check that all points return the proper value
             foreach (var point in rect.Positions())
-                Assert.Equal(expectedPoints.Contains(point), rect.IsOnBottomEdge(point));
+                Assert.Equal(expectedPoints.Contains(point), rect.IsOnSide(point, Direction.Down));
 
             // Reset to false for next test
             Direction.SetYIncreasesUpwardsUnsafe(false);
@@ -162,11 +162,11 @@ namespace SadRogue.Primitives.UnitTests
             Direction.SetYIncreasesUpwardsUnsafe(yIncreasesUpwards);
 
             // Get expected points that should return true
-            var expectedPoints = rect.LeftEdgePositions().ToHashSet();
+            var expectedPoints = rect.PositionsOnSide(Direction.Left).ToHashSet();
 
             // Check that all points return the proper value
             foreach (var point in rect.Positions())
-                Assert.Equal(expectedPoints.Contains(point), rect.IsOnLeftEdge(point));
+                Assert.Equal(expectedPoints.Contains(point), rect.IsOnSide(point, Direction.Left));
 
             // Reset to false for next test
             Direction.SetYIncreasesUpwardsUnsafe(false);

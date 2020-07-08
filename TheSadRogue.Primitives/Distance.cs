@@ -37,8 +37,7 @@ namespace SadRogue.Primitives
         /// Enum value representing the method of calcuating distance -- useful for using
         /// Distance types in switch statements.
         /// </summary>
-        [DataMember]
-        public readonly Types Type;
+        [DataMember] public readonly Types Type;
 
         private static readonly string[] s_writeVals = Enum.GetNames(typeof(Types));
 
@@ -76,26 +75,16 @@ namespace SadRogue.Primitives
         /// </remarks>
         /// <param name="distance"/>
         [Pure]
-        public static implicit operator Radius(Distance distance)
+        public static implicit operator Radius(Distance distance) => distance.Type switch
         {
-            switch (distance.Type)
-            {
-                case Types.Manhattan:
-                    return Radius.Diamond;
-
-                case Types.Euclidean:
-                    return Radius.Circle;
-
-                case Types.Chebyshev:
-                    return Radius.Square;
-
-                default:
-                    throw new Exception($"Could not convert {nameof(Distance)} to {nameof(Radius)} -- this is a bug!"); // Will not occur
-            }
-        }
+            Types.Manhattan => Radius.Diamond,
+            Types.Euclidean => Radius.Circle,
+            Types.Chebyshev => Radius.Square,
+            _ => throw new Exception($"Could not convert {nameof(Distance)} to {nameof(Radius)} -- this is a bug!")
+        };
 
         /// <summary>
-        /// Allows implicit casting to the <see cref="AdjacencyRule"/> type. 
+        /// Allows implicit casting to the <see cref="AdjacencyRule"/> type.
         /// </summary>
         /// <remarks>
         /// The adjacency rule corresponding to the definition of a adjacency according to the
@@ -103,21 +92,14 @@ namespace SadRogue.Primitives
         /// </remarks>
         /// <param name="distance"/>
         [Pure]
-        public static implicit operator AdjacencyRule(Distance distance)
+        public static implicit operator AdjacencyRule(Distance distance) => distance.Type switch
         {
-            switch (distance.Type)
-            {
-                case Types.Manhattan:
-                    return AdjacencyRule.Cardinals;
-
-                case Types.Chebyshev:
-                case Types.Euclidean:
-                    return AdjacencyRule.EightWay;
-
-                default:
-                    throw new Exception($"Could not convert {nameof(Distance)} to {nameof(AdjacencyRule)} -- this is a bug!"); // Will not occur
-            }
-        }
+            Types.Manhattan => AdjacencyRule.Cardinals,
+            Types.Chebyshev => AdjacencyRule.EightWay,
+            Types.Euclidean => AdjacencyRule.EightWay,
+            _ => throw new Exception(
+                $"Could not convert {nameof(Distance)} to {nameof(AdjacencyRule)} -- this is a bug!")
+        };
 
         /// <summary>
         /// Implicitly converts a Distance to its corresponding <see cref="Type"/>.
@@ -131,23 +113,13 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="type"/>
         [Pure]
-        public static implicit operator Distance(Types type)
+        public static implicit operator Distance(Types type) => type switch
         {
-            switch (type)
-            {
-                case Types.Manhattan:
-                    return Manhattan;
-
-                case Types.Euclidean:
-                    return Euclidean;
-
-                case Types.Chebyshev:
-                    return Chebyshev;
-
-                default:
-                    throw new Exception($"Could not convert {nameof(Types)} to {nameof(Distance)} -- this is a bug!"); // Will not occur
-            }
-        }
+            Types.Manhattan => Manhattan,
+            Types.Euclidean => Euclidean,
+            Types.Chebyshev => Chebyshev,
+            _ => throw new Exception($"Could not convert {nameof(Types)} to {nameof(Distance)} -- this is a bug!")
+        };
 
         /// <summary>
         /// Returns the distance between the two (2D) points specified.
@@ -195,22 +167,14 @@ namespace SadRogue.Primitives
             dx = Math.Abs(dx);
             dy = Math.Abs(dy);
 
-            double radius = 0;
-            switch (Type)
+            return Type switch
             {
-                case Types.Chebyshev:
-                    radius = Math.Max(dx, dy); // Radius is the longest axial distance
-                    break;
-
-                case Types.Manhattan:
-                    radius = dx + dy; // Simply manhattan distance
-                    break;
-
-                case Types.Euclidean:
-                    radius = Math.Sqrt(dx * dx + dy * dy); // Spherical radius
-                    break;
-            }
-            return radius;
+                Types.Chebyshev => Math.Max(dx, dy), // Radius is the longest axial distance
+                Types.Manhattan => dx + dy, // Simply manhattan distance
+                Types.Euclidean => Math.Sqrt(dx * dx + dy * dy), // Spherical radius
+                _ => throw new NotSupportedException(
+                    $"{nameof(Calculate)} does not support distance calculation {this}: this is a bug!")
+            };
         }
 
         /// <summary>
@@ -229,7 +193,7 @@ namespace SadRogue.Primitives
         /// True if <paramref name="obj"/> is a Distance, and the two distance calculations are equal, false otherwise.
         /// </returns>
         [Pure]
-        public override bool Equals(object obj) => obj is Distance c && Equals(c);
+        public override bool Equals(object? obj) => obj is Distance c && Equals(c);
 
         /// <summary>
         /// Returns a hash-map value for the current object.

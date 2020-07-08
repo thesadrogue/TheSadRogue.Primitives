@@ -31,7 +31,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="self"/>
         /// <param name="dir"/>
-        /// <returns>Position (c.X + d.DeltaX, c.Y + d.DeltaY)</returns>
+        /// <returns>Position (self.X + dir.DeltaX, self.Y + dir.DeltaY)</returns>
         [Pure]
         public static Point Add(this Point self, Direction dir) => self + dir;
 
@@ -52,6 +52,15 @@ namespace SadRogue.Primitives
         /// <returns>Position (self.X - i, self.Y - i).</returns>
         [Pure]
         public static Point Subtract(this Point self, int i) => self - i;
+
+        /// <summary>
+        /// Translates the current position by one unit in the opposite of the given direction.
+        /// </summary>
+        /// <param name="self"/>
+        /// <param name="dir"/>
+        /// <returns>Position (self.X - dir.DeltaX, self.Y - dir.DeltaY)</returns>
+        [Pure]
+        public static Point Subtract(this Point self, Direction dir) => self - dir;
 
         /// <summary>
         /// Multiplies the current Point's x/y values by the given Point's x/y values.

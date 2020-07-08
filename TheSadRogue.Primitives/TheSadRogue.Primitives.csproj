@@ -2,9 +2,11 @@
 
   <PropertyGroup>
 	<!-- Basic package info -->
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.1;netcoreapp3.1</TargetFrameworks>
     <RootNamespace>SadRogue.Primitives</RootNamespace>
-	<Version>1.0.0-alpha4</Version>
+    <LangVersion>8.0</LangVersion>
+    <Nullable>enable</Nullable>
+	<Version>1.0.0-alpha5</Version>
 	<Version Condition="'$(Configuration)'=='Debug'">$(Version)-debug</Version>
 	<Authors>Chris3606;Thraka</Authors>
 	<Company>TheSadRogue</Company>
@@ -13,7 +15,7 @@
 	
 	<!-- More nuget package settings-->
 	<PackageId>TheSadRogue.Primitives</PackageId>
-	<PackageReleaseNotes>Added Pure attributes to appropriate struct functions.  Marked appropriate structs as readonly.  Fixed bug in PositionsInRadius.  Fixed serialization.</PackageReleaseNotes>
+	<PackageReleaseNotes>Updated to C# 8 and .NET Standard 2.1.  Multi-targeted to .NET Core 3.1.  Added missing docstrings.  Removed duplicate XEdgePositions functions, and refactored IsOnXEdge functions to match API.</PackageReleaseNotes>
 	<RepositoryUrl>https://https://github.com/thesadrogue/TheSadRogue.Primitives</RepositoryUrl>
 	<RepositoryType>git</RepositoryType>
 	<PublishRepositoryUrl>true</PublishRepositoryUrl>
@@ -41,8 +43,8 @@
   
   <!-- When packing, copy the nuget files to the nuget output directory -->
   <Target Name="CopyPackage" AfterTargets="Pack">
-    <Copy SourceFiles="$(OutputPath)..\$(PackageId).$(PackageVersion).nupkg" DestinationFolder="$(OutputPath)..\..\..\..\nuget" />
-    <Copy SourceFiles="$(OutputPath)..\$(PackageId).$(PackageVersion).snupkg" DestinationFolder="$(OutputPath)..\..\..\..\nuget" />
+    <Copy SourceFiles="$(OutputPath)\$(PackageId).$(PackageVersion).nupkg" DestinationFolder="$(OutputPath)..\..\..\..\nuget" />
+    <Copy SourceFiles="$(OutputPath)\$(PackageId).$(PackageVersion).snupkg" DestinationFolder="$(OutputPath)..\..\..\..\nuget" />
   </Target>
   
   <!-- Run InheritDoc on the final builds. -->

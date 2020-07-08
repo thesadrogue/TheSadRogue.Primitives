@@ -13,21 +13,24 @@ namespace SadRogue.Primitives.UnitTests.Serialization
     public class DataContractTests
     {
         #region Test Data
+
         // Types that serialize to JSON objects via JSON .NET, so we can check which fields are serialized.
         public static IEnumerable<object> SerializableValuesJsonObjects = new object[]
         {
             // AdjacencyRules
             AdjacencyRule.Cardinals, AdjacencyRule.EightWay,
             // AreaSerialized
-            (AreaSerialized)new Area((1, 2), (3, 4), (5,6)),
+            (AreaSerialized)new Area((1, 2), (3, 4), (5, 6)),
             // BoundedRectangle
             new BoundedRectangle(new Rectangle(1, 4, 10, 14), new Rectangle(-10, -9, 100, 101)),
             // BoundedRectangleSerialized
-            (BoundedRectangleSerialized)new BoundedRectangle(new Rectangle(1, 4, 10, 14), new Rectangle(-10, -9, 100, 101)),
+            (BoundedRectangleSerialized)new BoundedRectangle(new Rectangle(1, 4, 10, 14),
+                new Rectangle(-10, -9, 100, 101)),
             // Colors
             new Color(.5f, .6f, .7f), new Color(120, 121, 122, 100), Color.AliceBlue,
             // ColorSerialized
-            (ColorSerialized)new Color(.5f, .6f, .7f), (ColorSerialized)new Color(120, 121, 122, 100), (ColorSerialized)Color.AliceBlue,
+            (ColorSerialized)new Color(.5f, .6f, .7f), (ColorSerialized)new Color(120, 121, 122, 100),
+            (ColorSerialized)Color.AliceBlue,
             // Directions
             Direction.Down, Direction.UpRight,
             // Distances
@@ -39,7 +42,7 @@ namespace SadRogue.Primitives.UnitTests.Serialization
             // GradientSerialized
             (GradientSerialized)new Gradient(new Color(100, 101, 102, 103), new Color(200, 201, 202, 203)),
             // PaletteSerialized
-            (PaletteSerialized)new Palette(new[] {new Color(100, 101, 102, 103), new Color(150, 151, 152, 149)}),
+            (PaletteSerialized)new Palette(new[] { new Color(100, 101, 102, 103), new Color(150, 151, 152, 149) }),
             // Point
             new Point(-1, -5), new Point(4, 9),
             // PointSerialized
@@ -58,7 +61,7 @@ namespace SadRogue.Primitives.UnitTests.Serialization
             // AdjacencyRule.Types
             AdjacencyRule.Types.Cardinals, AdjacencyRule.Types.Diagonals,
             // Area
-            new Area((1, 2), (3, 4), (5,6)),
+            new Area((1, 2), (3, 4), (5, 6)),
             // Direction.Types
             Direction.Types.Down, Direction.Types.Right,
             // Distance.Types
@@ -66,7 +69,7 @@ namespace SadRogue.Primitives.UnitTests.Serialization
             // Gradient
             new Gradient(new Color(100, 101, 102, 103), new Color(200, 201, 202, 203)),
             // Palette
-            new Palette(new[] {new Color(100, 101, 102, 103), new Color(150, 151, 152, 149)}),
+            new Palette(new[] { new Color(100, 101, 102, 103), new Color(150, 151, 152, 149) }),
             // Radius.Types
             Radius.Types.Square, Radius.Types.Circle
         };
@@ -76,42 +79,39 @@ namespace SadRogue.Primitives.UnitTests.Serialization
             SerializableValuesJsonObjects.Concat(SerializableValuesNonJsonObjects);
 
         // Dictionary of object types to an unordered but complete list of fields that each object type should have serialized
-        // in its JSON object form.  
+        // in its JSON object form.
         private static Dictionary<Type, string[]> typeSerializedFields = new Dictionary<Type, string[]>
         {
-            { typeof(AdjacencyRule),              new [] { "Type" } },
-            { typeof(AreaSerialized),             new [] { "Positions" } },
-            { typeof(BoundedRectangle),           new [] { "_area", "_boundingBox" } },
-            { typeof(BoundedRectangleSerialized), new [] { "Area", "Bounds"} },
-            { typeof(Color),                      new [] { "_packedValue" } },
-            { typeof(ColorSerialized),            new [] {"R", "G", "B", "A" } },
-            { typeof(Direction),                  new [] { "Type" } },
-            { typeof(Distance),                   new [] { "Type" } },
-            { typeof(GradientStop),               new [] { "Color", "Stop" } },
-            { typeof(GradientStopSerialized),     new [] { "Color", "Stop" } },
-            { typeof(GradientSerialized),         new [] { "Stops" } },
-            { typeof(PaletteSerialized),          new [] { "Colors" } },
-            { typeof(Point),                      new [] { "X", "Y" } },
-            { typeof(PointSerialized),            new [] { "X", "Y" } },
-            { typeof(Radius),                     new [] { "Type" } },
-            { typeof(Rectangle),                  new [] { "X", "Y", "Width", "Height" } },
-            { typeof(RectangleSerialized),        new [] { "X", "Y", "Width", "Height" } }
+            { typeof(AdjacencyRule), new[] { "Type" } },
+            { typeof(AreaSerialized), new[] { "Positions" } },
+            { typeof(BoundedRectangle), new[] { "_area", "_boundingBox" } },
+            { typeof(BoundedRectangleSerialized), new[] { "Area", "Bounds" } },
+            { typeof(Color), new[] { "_packedValue" } },
+            { typeof(ColorSerialized), new[] { "R", "G", "B", "A" } },
+            { typeof(Direction), new[] { "Type" } },
+            { typeof(Distance), new[] { "Type" } },
+            { typeof(GradientStop), new[] { "Color", "Stop" } },
+            { typeof(GradientStopSerialized), new[] { "Color", "Stop" } },
+            { typeof(GradientSerialized), new[] { "Stops" } },
+            { typeof(PaletteSerialized), new[] { "Colors" } },
+            { typeof(Point), new[] { "X", "Y" } },
+            { typeof(PointSerialized), new[] { "X", "Y" } },
+            { typeof(Radius), new[] { "Type" } },
+            { typeof(Rectangle), new[] { "X", "Y", "Width", "Height" } },
+            { typeof(RectangleSerialized), new[] { "X", "Y", "Width", "Height" } }
         };
+
         #endregion
 
         // Useful for viewing output
         private readonly ITestOutputHelper output;
 
-        public DataContractTests(ITestOutputHelper output)
-        {
-            this.output = output;
-        }
+        public DataContractTests(ITestOutputHelper output) => this.output = output;
 
         /// <summary>
         /// Tests that if we serialize an object to JSON, then deserialize it back to an object,
-        /// that the deserialized object is equal to the one that we serialized.  If a custom equality method
-        /// has been specified in <see cref="equalityMethods"/>, that method is used to determine equality.
-        /// Otherwise, the object's <see cref="object.Equals(object?)"/> method is used.
+        /// that the deserialized object is equal to the one that we serialized.  Equality is compared
+        /// via <see cref="Comparisons.GetComparisonFunc"/>.
         /// </summary>
         /// <param name="objToSerialize"/>
         [Theory]
@@ -130,11 +130,11 @@ namespace SadRogue.Primitives.UnitTests.Serialization
             output.WriteLine($"Json: {json}");
 
             // Deserialize to object
-            object deSerialized = JsonConvert.DeserializeObject(json, objType);
+            object? deSerialized = JsonConvert.DeserializeObject(json, objType);
+            Assert.NotNull(deSerialized);
 
             // Make sure the deserialized object is equivalent to the one we serialized
-            Assert.True(equality(objToSerialize, deSerialized));
-
+            Assert.True(equality(objToSerialize, deSerialized!));
         }
 
         /// <summary>

@@ -16,8 +16,7 @@ namespace SadRogue.Primitives
     {
         private readonly HashSet<Point> _positionsSet;
 
-        [DataMember]
-        private readonly List<Point> _positions;
+        [DataMember] private readonly List<Point> _positions;
 
         private int _left, _top, _bottom, _right;
 
@@ -42,9 +41,7 @@ namespace SadRogue.Primitives
         /// <param name="initialPoints">Initial points to add to the area.</param>
         public Area(IEnumerable<Point> initialPoints)
             : this()
-        {
-            Add(initialPoints);
-        }
+            => Add(initialPoints);
 
         /// <summary>
         /// Constructor that takes initial points to add to the area.
@@ -62,9 +59,7 @@ namespace SadRogue.Primitives
             get
             {
                 if (_right < _left)
-                {
                     return Rectangle.Empty;
-                }
 
                 return new Rectangle(_left, _top, _right - _left + 1, _bottom - _top + 1);
             }
@@ -90,14 +85,12 @@ namespace SadRogue.Primitives
         /// <paramref name="area2"/>.</returns>
         public static Area GetDifference(IReadOnlyArea area1, IReadOnlyArea area2)
         {
-            var retVal = new Area();
+            Area retVal = new Area();
 
             foreach (Point pos in area1.Positions)
             {
                 if (area2.Contains(pos))
-                {
                     continue;
-                }
 
                 retVal.Add(pos);
             }
@@ -113,25 +106,17 @@ namespace SadRogue.Primitives
         /// <returns>An area containing exactly those positions contained in both of the given areas.</returns>
         public static Area GetIntersection(IReadOnlyArea area1, IReadOnlyArea area2)
         {
-            var retVal = new Area();
+            Area retVal = new Area();
 
             if (!area1.Bounds.Intersects(area2.Bounds))
-            {
                 return retVal;
-            }
 
             if (area1.Count > area2.Count)
-            {
                 Swap(ref area1, ref area2);
-            }
 
             foreach (Point pos in area1.Positions)
-            {
                 if (area2.Contains(pos))
-                {
                     retVal.Add(pos);
-                }
-            }
 
             return retVal;
         }
@@ -144,7 +129,7 @@ namespace SadRogue.Primitives
         /// <returns>An area containing only those positions in one or both of the given areas.</returns>
         public static Area GetUnion(IReadOnlyArea area1, IReadOnlyArea area2)
         {
-            var retVal = new Area();
+            Area retVal = new Area();
 
             retVal.Add(area1);
             retVal.Add(area2);
@@ -170,12 +155,10 @@ namespace SadRogue.Primitives
         /// </returns>
         public static Area operator +(Area lhs, Point rhs)
         {
-            var retVal = new Area();
+            Area retVal = new Area();
 
             foreach (Point pos in lhs.Positions)
-            {
                 retVal.Add(pos + rhs);
-            }
 
             return retVal;
         }
@@ -203,10 +186,8 @@ namespace SadRogue.Primitives
                 return false;
 
             foreach (Point pos in lhs.Positions)
-            {
                 if (!rhs.Contains(pos))
                     return false;
-            }
 
             return true;
         }
@@ -222,23 +203,23 @@ namespace SadRogue.Primitives
         /// <param name="position">The position to add.</param>
         public void Add(Point position)
         {
-            if (_positionsSet.Add(position))
-            {
-                _positions.Add(position);
+            if (!_positionsSet.Add(position))
+                return;
 
-                // Update bounds
-                if (position.X > _right)
-                    _right = position.X;
+            _positions.Add(position);
 
-                if (position.X < _left)
-                    _left = position.X;
+            // Update bounds
+            if (position.X > _right)
+                _right = position.X;
 
-                if (position.Y > _bottom)
-                    _bottom = position.Y;
+            if (position.X < _left)
+                _left = position.X;
 
-                if (position.Y < _top)
-                    _top = position.Y;
-            }
+            if (position.Y > _bottom)
+                _bottom = position.Y;
+
+            if (position.Y < _top)
+                _top = position.Y;
         }
 
         /// <summary>
@@ -292,10 +273,8 @@ namespace SadRogue.Primitives
                 return false;
 
             foreach (Point pos in area.Positions)
-            {
                 if (!Contains(pos))
                     return false;
-            }
 
             return true;
         }
@@ -308,7 +287,7 @@ namespace SadRogue.Primitives
         /// <returns>
         /// True if the object given is a area and contains exactly the same points, false otherwise.
         /// </returns>
-        public override bool Equals(object obj) => obj is Area area && this == area;
+        public override bool Equals(object? obj) => obj is Area area && this == area;
 
         /// <summary>
         /// Returns hash of the underlying set
@@ -332,19 +311,15 @@ namespace SadRogue.Primitives
             if (Count <= area.Count)
             {
                 foreach (Point pos in Positions)
-                {
                     if (area.Contains(pos))
                         return true;
-                }
 
                 return false;
             }
 
             foreach (Point pos in area.Positions)
-            {
                 if (Contains(pos))
                     return true;
-            }
 
             return false;
         }
@@ -355,7 +330,7 @@ namespace SadRogue.Primitives
         /// remove operations, it would be best to group them into 1 using <see cref="Remove(IEnumerable{Point})"/>.
         /// </summary>
         /// <param name="position">The position to remove.</param>
-        public void Remove(Point position) => Remove(YieldCoord(position));
+        public void Remove(Point position) => Remove(YieldPoint(position));
 
         /// <summary>
         /// Removes positions for which the given predicate returns true from the area.
@@ -366,13 +341,9 @@ namespace SadRogue.Primitives
             bool recalculateBounds = false;
 
             foreach (Point pos in _positions.Where(predicate))
-            {
                 if (_positionsSet.Remove(pos))
-                {
                     if (pos.X == _left || pos.X == _right || pos.Y == _top || pos.Y == _bottom)
                         recalculateBounds = true;
-                }
-            }
 
             _positions.RemoveAll(c => predicate(c));
 
@@ -389,13 +360,9 @@ namespace SadRogue.Primitives
         {
             bool recalculateBounds = false;
             foreach (Point pos in positions)
-            {
                 if (_positionsSet.Remove(pos))
-                {
                     if (pos.X == _left || pos.X == _right || pos.Y == _top || pos.Y == _bottom)
                         recalculateBounds = true;
-                }
-            }
 
             _positions.RemoveAll(positions.Contains);
 
@@ -434,7 +401,7 @@ namespace SadRogue.Primitives
         /// <returns>A string representation of those coordinates in the area.</returns>
         public override string ToString()
         {
-            var result = new StringBuilder("[");
+            StringBuilder result = new StringBuilder("[");
             bool first = true;
             foreach (Point item in _positions)
             {
@@ -445,6 +412,7 @@ namespace SadRogue.Primitives
 
                 result.Append(item.ToString());
             }
+
             result.Append("]");
 
             return result.ToString();
@@ -468,19 +436,19 @@ namespace SadRogue.Primitives
             int rightLocal = int.MinValue, bottomLocal = int.MinValue;
 
             // Find new bounds
-            foreach (Point pos in _positions)
+            foreach ((int x, int y) in _positions)
             {
-                if (pos.X > rightLocal)
-                    rightLocal = pos.X;
+                if (x > rightLocal)
+                    rightLocal = x;
 
-                if (pos.X < leftLocal)
-                    leftLocal = pos.X;
+                if (x < leftLocal)
+                    leftLocal = x;
 
-                if (pos.Y > bottomLocal)
-                    bottomLocal = pos.Y;
+                if (y > bottomLocal)
+                    bottomLocal = y;
 
-                if (pos.Y < topLocal)
-                    topLocal = pos.Y;
+                if (y < topLocal)
+                    topLocal = y;
             }
 
             _left = leftLocal;
@@ -496,7 +464,7 @@ namespace SadRogue.Primitives
             rhs = temp;
         }
 
-        private static IEnumerable<Point> YieldCoord(Point item)
+        private static IEnumerable<Point> YieldPoint(Point item)
         {
             yield return item;
         }

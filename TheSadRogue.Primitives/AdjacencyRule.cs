@@ -63,8 +63,7 @@ namespace SadRogue.Primitives
         /// Enum value representing the method of determining adjacency -- useful for using
         /// <see cref="AdjacencyRule"/> types in switch statements.
         /// </summary>
-        [DataMember]
-        public readonly Types Type;
+        [DataMember] public readonly Types Type;
 
         /// <summary>
         /// Gets directions leading to neighboring locations, according to the current adjacency
@@ -100,6 +99,9 @@ namespace SadRogue.Primitives
                     yield return Direction.DownLeft;
                     yield return Direction.DownRight;
                     break;
+                default:
+                    throw new NotSupportedException(
+                        $"{nameof(DirectionsOfNeighbors)} does not support AdjacencyRule type {Type} -- this is a bug!");
             }
         }
 
@@ -119,14 +121,10 @@ namespace SadRogue.Primitives
             {
                 case Types.Cardinals:
                     if (startingDirection == Direction.None)
-                    {
                         startingDirection = Direction.Up;
-                    }
 
                     if ((int)startingDirection.Type % 2 == 0)
-                    {
                         startingDirection++; // Make it a cardinal
-                    }
 
                     yield return startingDirection;
                     yield return startingDirection + 2;
@@ -136,14 +134,10 @@ namespace SadRogue.Primitives
 
                 case Types.Diagonals:
                     if (startingDirection == Direction.None)
-                    {
                         startingDirection = Direction.UpRight;
-                    }
 
                     if ((int)startingDirection.Type % 2 == 1)
-                    {
                         startingDirection++; // Make it a diagonal
-                    }
 
                     yield return startingDirection;
                     yield return startingDirection + 2;
@@ -153,16 +147,18 @@ namespace SadRogue.Primitives
 
                 case Types.EightWay:
                     if (startingDirection == Direction.None)
-                    {
                         startingDirection = Direction.Up;
-                    }
 
                     for (int i = 1; i <= 8; i++)
                     {
                         yield return startingDirection;
                         startingDirection++;
                     }
+
                     break;
+                default:
+                    throw new NotSupportedException(
+                        $"{nameof(DirectionsOfNeighborsClockwise)} does not support AdjacencyRule type {Type} -- this is a bug!");
             }
         }
 
@@ -182,14 +178,10 @@ namespace SadRogue.Primitives
             {
                 case Types.Cardinals:
                     if (startingDirection == Direction.None)
-                    {
                         startingDirection = Direction.Up;
-                    }
 
                     if ((int)startingDirection.Type % 2 == 0)
-                    {
                         startingDirection--; // Make it a cardinal
-                    }
 
                     yield return startingDirection;
                     yield return startingDirection - 2;
@@ -199,14 +191,10 @@ namespace SadRogue.Primitives
 
                 case Types.Diagonals:
                     if (startingDirection == Direction.None)
-                    {
                         startingDirection = Direction.UpLeft;
-                    }
 
                     if ((int)startingDirection.Type % 2 == 1)
-                    {
                         startingDirection--; // Make it a diagonal
-                    }
 
                     yield return startingDirection;
                     yield return startingDirection - 2;
@@ -216,16 +204,18 @@ namespace SadRogue.Primitives
 
                 case Types.EightWay:
                     if (startingDirection == Direction.None)
-                    {
                         startingDirection = Direction.Up;
-                    }
 
                     for (int i = 1; i <= 8; i++)
                     {
                         yield return startingDirection;
                         startingDirection--;
                     }
+
                     break;
+                default:
+                    throw new NotSupportedException(
+                        $"{nameof(DirectionsOfNeighborsCounterClockwise)} does not support AdjacencyRule type {Type} -- this is a bug!");
             }
         }
 
@@ -239,9 +229,7 @@ namespace SadRogue.Primitives
         public IEnumerable<Point> Neighbors(Point startingLocation)
         {
             foreach (Direction dir in DirectionsOfNeighbors())
-            {
                 yield return startingLocation + dir;
-            }
         }
 
         /// <summary>
@@ -261,9 +249,7 @@ namespace SadRogue.Primitives
         public IEnumerable<Point> NeighborsClockwise(Point startingLocation, Direction startingDirection = default)
         {
             foreach (Direction dir in DirectionsOfNeighborsClockwise(startingDirection))
-            {
                 yield return startingLocation + dir;
-            }
         }
 
         /// <summary>
@@ -280,12 +266,11 @@ namespace SadRogue.Primitives
         /// </param>
         /// <returns>All neighbors of the given location.</returns>
         [Pure]
-        public IEnumerable<Point> NeighborsCounterClockwise(Point startingLocation, Direction startingDirection = default)
+        public IEnumerable<Point> NeighborsCounterClockwise(Point startingLocation,
+                                                            Direction startingDirection = default)
         {
             foreach (Direction dir in DirectionsOfNeighborsCounterClockwise(startingDirection))
-            {
                 yield return startingLocation + dir;
-            }
         }
 
         /// <summary>
@@ -304,7 +289,7 @@ namespace SadRogue.Primitives
         /// True if <paramref name="obj"/> is an AdjacencyRule, and the two adjacency rules are equal, false otherwise.
         /// </returns>
         [Pure]
-        public override bool Equals(object obj) => obj is AdjacencyRule c && Equals(c);
+        public override bool Equals(object? obj) => obj is AdjacencyRule c && Equals(c);
 
         /// <summary>
         /// Returns a hash-map value for the current object.
@@ -345,29 +330,20 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="type"/>
         [Pure]
-        public static implicit operator AdjacencyRule(Types type)
+        public static implicit operator AdjacencyRule(Types type) => type switch
         {
-            switch (type)
-            {
-                case Types.Cardinals:
-                    return Cardinals;
-
-                case Types.Diagonals:
-                    return Diagonals;
-
-                case Types.EightWay:
-                    return EightWay;
-
-                default:
-                    throw new Exception($"Could not convert {nameof(Type)} type to {nameof(AdjacencyRule)} -- this is a bug!."); // Will not occur
-            }
-        }
+            Types.Cardinals => Cardinals,
+            Types.Diagonals => Diagonals,
+            Types.EightWay => EightWay,
+            _ => throw new NotSupportedException(
+                $"Could not convert type {type} to {nameof(AdjacencyRule)} -- this is a bug!.")
+        };
 
         /// <summary>
-    /// Returns a string representation of the <see cref="AdjacencyRule"/>.
-    /// </summary>
-    /// <returns>A string representation of the <see cref="AdjacencyRule"/>.</returns>
-    [Pure]
+        /// Returns a string representation of the <see cref="AdjacencyRule"/>.
+        /// </summary>
+        /// <returns>A string representation of the <see cref="AdjacencyRule"/>.</returns>
+        [Pure]
         public override string ToString() => s_writeValues[(int)Type];
     }
 }

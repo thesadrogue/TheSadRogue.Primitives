@@ -7,20 +7,31 @@ namespace SadRogue.Primitives.UnitTests
     public class RadiusTests
     {
         #region Testdata
+
         public static Radius[] Radiuses => new[] { Radius.Square, Radius.Circle, Radius.Diamond };
 
         public static (Radius.Types, Radius)[] TypeRadiusConversion => new[]
-        { (Radius.Types.Square, Radius.Square), (Radius.Types.Circle, Radius.Circle), (Radius.Types.Diamond,Radius.Diamond) };
+        {
+            (Radius.Types.Square, Radius.Square), (Radius.Types.Circle, Radius.Circle),
+            (Radius.Types.Diamond, Radius.Diamond)
+        };
 
         public static (Radius, AdjacencyRule)[] AdjacencyRuleConversionValues => new[]
-        { (Radius.Square, AdjacencyRule.EightWay), (Radius.Circle, AdjacencyRule.EightWay), (Radius.Diamond, AdjacencyRule.Cardinals) };
+        {
+            (Radius.Square, AdjacencyRule.EightWay), (Radius.Circle, AdjacencyRule.EightWay),
+            (Radius.Diamond, AdjacencyRule.Cardinals)
+        };
 
         public static (Radius, Distance)[] DistanceConversionValues => new[]
-        { (Radius.Square, Distance.Chebyshev), (Radius.Circle, Distance.Euclidean), (Radius.Diamond, Distance.Manhattan) };
+        {
+            (Radius.Square, Distance.Chebyshev), (Radius.Circle, Distance.Euclidean),
+            (Radius.Diamond, Distance.Manhattan)
+        };
 
         #endregion
 
         #region Equality/Inequality
+
         [Theory]
         [MemberDataEnumerable(nameof(Radiuses))]
         public void TestEquality(Radius rad)
@@ -50,9 +61,7 @@ namespace SadRogue.Primitives.UnitTests
             Radius[] rads = Radiuses;
 
             foreach (Radius rad in rads)
-            {
                 Assert.NotEqual(rad == compareRad, rad != compareRad);
-            }
         }
 
         [Theory]
@@ -67,9 +76,11 @@ namespace SadRogue.Primitives.UnitTests
                 Assert.Equal(rad == compareRad, rad.Equals((object)compareRad));
             }
         }
+
         #endregion
 
         #region DistanceTypeToDistanceConversion
+
         [Theory]
         [MemberDataTuple(nameof(TypeRadiusConversion))]
         public void RadiusTypeConversion(Radius.Types type, Radius expectedRad)
@@ -77,9 +88,11 @@ namespace SadRogue.Primitives.UnitTests
             Radius rad = type;
             Assert.Equal(expectedRad, rad);
         }
+
         #endregion
 
         #region DistanceImplicitConversions
+
         [Theory]
         [MemberDataTuple(nameof(AdjacencyRuleConversionValues))]
         public void AdjacencyRuleConversion(Radius dist, AdjacencyRule expected) => Assert.Equal(expected, dist);
@@ -91,6 +104,7 @@ namespace SadRogue.Primitives.UnitTests
             Distance r = rad;
             Assert.Equal(expected, r);
         }
+
         #endregion
 
         #region PositionsInRadius
@@ -103,7 +117,7 @@ namespace SadRogue.Primitives.UnitTests
             Point center = (25, 20);
             int radius = 10;
 
-            var dist = (Distance)shape;
+            Distance dist = (Distance)shape;
 
             var positions = shape.PositionsInRadius(center, radius).ToList();
             var positionsHash = positions.ToHashSet();
@@ -116,7 +130,8 @@ namespace SadRogue.Primitives.UnitTests
             Assert.All(positions, pos => Assert.True(area.Contains(pos)));
 
             // Positions returned should be exactly the ones within the radius
-            var positionsHashExpected = area.Positions().Where(pos => dist.Calculate(pos, center) <= radius).ToHashSet();
+            var positionsHashExpected =
+                area.Positions().Where(pos => dist.Calculate(pos, center) <= radius).ToHashSet();
             Assert.Equal(positionsHashExpected, positionsHash);
         }
 
@@ -129,7 +144,7 @@ namespace SadRogue.Primitives.UnitTests
             Point center = (5, 7);
             int radius = 10;
 
-            var dist = (Distance)shape;
+            Distance dist = (Distance)shape;
 
             var positions = shape.PositionsInRadius(center, radius, bounds).ToList();
             var positionsHash = positions.ToHashSet();
@@ -141,11 +156,13 @@ namespace SadRogue.Primitives.UnitTests
             Assert.All(positions, pos => Assert.True(bounds.Contains(pos)));
 
             // Positions returned should be exactly the ones within the radius
-            var positionsHashExpected = bounds.Positions().Where(pos => dist.Calculate(pos, center) <= radius).ToHashSet();
+            var positionsHashExpected =
+                bounds.Positions().Where(pos => dist.Calculate(pos, center) <= radius).ToHashSet();
             Assert.Equal(positionsHashExpected, positionsHash);
         }
 
         // TODO: Test PositionsInRadius w/context functions.
+
         #endregion
     }
 }

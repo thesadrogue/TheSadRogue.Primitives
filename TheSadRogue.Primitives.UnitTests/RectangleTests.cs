@@ -8,33 +8,33 @@ namespace SadRogue.Primitives.UnitTests
     public class RectangleTests
     {
         #region Test Data
+
         public static Rectangle[] EqualRectangles = new Rectangle[]
         {
-            new Rectangle(1, 2, 11, 17),
-            new Rectangle(new Point(1, 2), new Point(11, 18)),
+            new Rectangle(1, 2, 11, 17), new Rectangle(new Point(1, 2), new Point(11, 18)),
             new Rectangle(new Point(6, 10), 5, 8)
         };
 
         public static Rectangle[] DifferentRectangles = new Rectangle[]
         {
-            new Rectangle(1, 2, 10, 16),
-            new Rectangle(2, 3, 10, 16),
-            new Rectangle(new Point(0, 0), 5, 6)
+            new Rectangle(1, 2, 10, 16), new Rectangle(2, 3, 10, 16), new Rectangle(new Point(0, 0), 5, 6)
         };
 
-        public static IEnumerable<(Rectangle, Rectangle)> PairwiseEqualRects = EqualRectangles.Combinate(EqualRectangles);
+        public static IEnumerable<(Rectangle, Rectangle)> PairwiseEqualRects =
+            EqualRectangles.Combinate(EqualRectangles);
+
         #endregion
 
         #region Constructor Equivalence
+
         [Theory]
         [MemberDataTuple(nameof(PairwiseEqualRects))]
-        public void TestConstructorEquivalence(Rectangle r1, Rectangle r2)
-        {
-            Assert.Equal(r1, r2);
-        }
+        public void TestConstructorEquivalence(Rectangle r1, Rectangle r2) => Assert.Equal(r1, r2);
+
         #endregion
 
         #region Equality/Inequality
+
         [Theory]
         [MemberDataEnumerable(nameof(DifferentRectangles))]
         public void TestEquality(Rectangle rad)
@@ -65,13 +65,13 @@ namespace SadRogue.Primitives.UnitTests
             Rectangle[] rects = DifferentRectangles;
 
             foreach (Rectangle rect in rects)
-            {
                 Assert.NotEqual(rect == compareRect, rect != compareRect);
-            }
         }
+
         #endregion
 
         #region Tuple Conversions
+
         [Theory]
         [MemberDataEnumerable(nameof(DifferentRectangles))]
         public void TestTupleConversions(Rectangle rect)
@@ -84,9 +84,11 @@ namespace SadRogue.Primitives.UnitTests
             Assert.Equal(rect, rect1);
             Assert.Equal(rect1, rect2);
         }
+
         #endregion
 
         #region Tuple Equality
+
         [Theory]
         [MemberDataEnumerable(nameof(DifferentRectangles))]
         public void TestTupleEquality(Rectangle rect)
@@ -101,6 +103,7 @@ namespace SadRogue.Primitives.UnitTests
             Assert.True(rect.Equals(t1));
             Assert.True(rect.Equals(t2));
         }
+
         #endregion
     }
 }

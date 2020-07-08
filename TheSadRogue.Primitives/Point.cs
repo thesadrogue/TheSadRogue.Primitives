@@ -32,14 +32,12 @@ namespace SadRogue.Primitives
         /// <summary>
         /// X-value of the position.
         /// </summary>
-        [DataMember]
-        public readonly int X;
+        [DataMember] public readonly int X;
 
         /// <summary>
         /// Y-value of the position.
         /// </summary>
-        [DataMember]
-        public readonly int Y;
+        [DataMember] public readonly int Y;
 
         /// <summary>
         /// Constructor.
@@ -115,7 +113,8 @@ namespace SadRogue.Primitives
         /// values -- basically the distance formula without the square root.
         /// </returns>
         [Pure]
-        public static double EuclideanDistanceMagnitude(Point deltaChange) => deltaChange.X * deltaChange.X + deltaChange.Y * deltaChange.Y;
+        public static double EuclideanDistanceMagnitude(Point deltaChange)
+            => deltaChange.X * deltaChange.X + deltaChange.Y * deltaChange.Y;
 
 
         /// <summary>
@@ -125,8 +124,9 @@ namespace SadRogue.Primitives
         /// <param name="c2">The second point.</param>
         /// <returns>The midpoint between <paramref name="c1"/> and <paramref name="c2"/>.</returns>
         [Pure]
-        public static Point Midpoint(Point c1, Point c2) =>
-            new Point((int)Math.Round((c1.X + c2.X) / 2.0f, MidpointRounding.AwayFromZero), (int)Math.Round((c1.Y + c2.Y) / 2.0f, MidpointRounding.AwayFromZero));
+        public static Point Midpoint(Point c1, Point c2)
+            => new Point((int)Math.Round((c1.X + c2.X) / 2.0f, MidpointRounding.AwayFromZero),
+                (int)Math.Round((c1.Y + c2.Y) / 2.0f, MidpointRounding.AwayFromZero));
 
         /// <summary>
         /// Returns the coordinate (c1.X - c2.X, c1.Y - c2.Y).
@@ -144,7 +144,8 @@ namespace SadRogue.Primitives
         /// <param name="direction"/>
         /// <returns>The coordinate (point.X - direction.DeltaX, point.Y - direction.DeltaY).</returns>
         [Pure]
-        public static Point operator -(Point point, Direction direction) => new Point(point.X - direction.DeltaX, point.Y - direction.DeltaY);
+        public static Point operator -(Point point, Direction direction)
+            => new Point(point.X - direction.DeltaX, point.Y - direction.DeltaY);
 
         /// <summary>
         /// Subtracts scalar <paramref name="i"/> from the x and y values of <paramref name="c"/>.
@@ -196,7 +197,8 @@ namespace SadRogue.Primitives
         /// </returns>
         [Pure]
         public static Point operator *(Point c, double i) =>
-            new Point((int)Math.Round(c.X * i, MidpointRounding.AwayFromZero), (int)Math.Round(c.Y * i, MidpointRounding.AwayFromZero));
+            new Point((int)Math.Round(c.X * i, MidpointRounding.AwayFromZero),
+                (int)Math.Round(c.Y * i, MidpointRounding.AwayFromZero));
 
         /// <summary>
         /// Divides the x/y components of <paramref name="c1"/> by the x/y components of <paramref name="c2"/>, rounding each resulting
@@ -207,7 +209,8 @@ namespace SadRogue.Primitives
         /// <returns>Position (c1.X / c2.X, c1.Y / c2.Y), with each value rounded to the nearest integer.</returns>
         [Pure]
         public static Point operator /(Point c1, Point c2) =>
-            new Point((int)Math.Round(c1.X / (double)c2.X, MidpointRounding.AwayFromZero), (int)Math.Round(c1.Y / (double)c2.Y, MidpointRounding.AwayFromZero));
+            new Point((int)Math.Round(c1.X / (double)c2.X, MidpointRounding.AwayFromZero),
+                (int)Math.Round(c1.Y / (double)c2.Y, MidpointRounding.AwayFromZero));
 
         /// <summary>
         /// Divides the x and y of <paramref name="c"/> by <paramref name="i"/>, rounding resulting values
@@ -218,7 +221,8 @@ namespace SadRogue.Primitives
         /// <returns>(c.X / <paramref name="i"/>, c.Y / <paramref name="i"/>), with the resulting values rounded to the nearest integer.</returns>
         [Pure]
         public static Point operator /(Point c, double i) =>
-            new Point((int)Math.Round(c.X / i, MidpointRounding.AwayFromZero), (int)Math.Round(c.Y / i, MidpointRounding.AwayFromZero));
+            new Point((int)Math.Round(c.X / i, MidpointRounding.AwayFromZero),
+                (int)Math.Round(c.Y / i, MidpointRounding.AwayFromZero));
 
         /// <summary>
         /// Returns the position (c1.X + c2.X, c1.Y + c2.Y).
@@ -303,7 +307,7 @@ namespace SadRogue.Primitives
         /// True if <paramref name="obj"/> is a Coord instance, and the two positions are equal, false otherwise.
         /// </returns>
         [Pure]
-        public override bool Equals(object obj) => obj is Point c && Equals(c);
+        public override bool Equals(object? obj) => obj is Point c && Equals(c);
 
         /// <summary>
         /// Returns a hash code for the Point. The important parts: it should be fairly fast and it
@@ -378,6 +382,7 @@ namespace SadRogue.Primitives
         public bool Equals(Point other) => X == other.X && Y == other.Y;
 
         #region TupleCompatibility
+
         /// <summary>
         /// Adds support for C# Deconstruction syntax.
         /// </summary>
@@ -397,6 +402,7 @@ namespace SadRogue.Primitives
         /// <returns />
         [Pure]
         public static implicit operator (int x, int y)(Point c) => (c.X, c.Y);
+
         /// <summary>
         /// Implicitly converts a tuple of two integers to an equivalent Point.
         /// </summary>
@@ -413,6 +419,7 @@ namespace SadRogue.Primitives
         /// <returns>A tuple (tuple.x + c.X, tuple.y + c.Y).</returns>
         [Pure]
         public static (int x, int y) operator +((int x, int y) tuple, Point c) => (tuple.x + c.X, tuple.y + c.Y);
+
         /// <summary>
         /// Adds the x and y values of a tuple of two integers to a Point.
         /// </summary>
@@ -430,6 +437,7 @@ namespace SadRogue.Primitives
         /// <returns>A tuple (tuple.x - c.X, tuple.y - c.Y).</returns>
         [Pure]
         public static (int x, int y) operator -((int x, int y) tuple, Point c) => (tuple.x - c.X, tuple.y - c.Y);
+
         /// <summary>
         /// Subtracts the x and y values of a tuple of two integers from a Point.
         /// </summary>
@@ -465,7 +473,8 @@ namespace SadRogue.Primitives
         /// <returns>Position (tuple.x / c.X, tuple.y / c.Y), with each value rounded to the nearest integer.</returns>
         [Pure]
         public static (int x, int y) operator /((int x, int y) tuple, Point c)
-            => new Point((int)Math.Round(tuple.x / (double)c.X, MidpointRounding.AwayFromZero), (int)Math.Round(tuple.y / (double)c.Y, MidpointRounding.AwayFromZero));
+            => new Point((int)Math.Round(tuple.x / (double)c.X, MidpointRounding.AwayFromZero),
+                (int)Math.Round(tuple.y / (double)c.Y, MidpointRounding.AwayFromZero));
 
         /// <summary>
         /// Divides the x/y values of a Point by the x/y values of a tuple of two integers, rounding to the nearest integer.
@@ -475,7 +484,8 @@ namespace SadRogue.Primitives
         /// <returns>Position (c.X / tuple.x, c.Y / tuple.y), with each value rounded to the nearest integer.</returns>
         [Pure]
         public static (int x, int y) operator /(Point c, (int x, int y) tuple)
-            => new Point((int)Math.Round(c.X / (double)tuple.x, MidpointRounding.AwayFromZero), (int)Math.Round(c.Y / (double)tuple.y, MidpointRounding.AwayFromZero));
+            => new Point((int)Math.Round(c.X / (double)tuple.x, MidpointRounding.AwayFromZero),
+                (int)Math.Round(c.Y / (double)tuple.y, MidpointRounding.AwayFromZero));
 
         /// <summary>
         /// True if the two point's x and y values are equal.
@@ -524,7 +534,7 @@ namespace SadRogue.Primitives
         /// <returns>True if the two positions are equal, false if not.</returns>
         [Pure]
         public bool Equals((int x, int y) other) => X == other.x && Y == other.y;
+
         #endregion
     }
 }
-

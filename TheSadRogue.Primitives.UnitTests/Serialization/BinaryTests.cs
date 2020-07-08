@@ -29,8 +29,7 @@ namespace SadRogue.Primitives.UnitTests.Serialization
             new ColorSerialized() { R = 12, G = 16, B = 45, A = 255 },
             new GradientStopSerialized()
             {
-                Color = new ColorSerialized() { R = 10, G = 20, B = 30, A = 40 },
-                Stop = 0.5f
+                Color = new ColorSerialized() { R = 10, G = 20, B = 30, A = 40 }, Stop = 0.5f
             },
             new GradientSerialized()
             {
@@ -38,13 +37,11 @@ namespace SadRogue.Primitives.UnitTests.Serialization
                 {
                     new GradientStopSerialized()
                     {
-                        Stop = 0f,
-                        Color = new ColorSerialized() { R = 156, G = 24, B = 97, A = 250 }
+                        Stop = 0f, Color = new ColorSerialized() { R = 156, G = 24, B = 97, A = 250 }
                     },
                     new GradientStopSerialized()
                     {
-                        Stop = 1f,
-                        Color = new ColorSerialized() { R = 100, G = 200, B = 50, A = 25 }
+                        Stop = 1f, Color = new ColorSerialized() { R = 100, G = 200, B = 50, A = 25 }
                     }
                 }
             },
@@ -57,10 +54,9 @@ namespace SadRogue.Primitives.UnitTests.Serialization
                 }
             },
             new PointSerialized() { X = 42, Y = 24 },
-            new RectangleSerialized() { X = 42, Y = 24, Width = 50, Height =  100 },
-            AdjacencyRule.Types.Cardinals, AdjacencyRule.Types.Diagonals, AdjacencyRule.Types.EightWay,
-            Direction.Types.Up, Direction.Types.Left, Direction.Types.DownRight,
-            Distance.Types.Euclidean, Distance.Types.Chebyshev, Distance.Types.Manhattan,
+            new RectangleSerialized() { X = 42, Y = 24, Width = 50, Height = 100 }, AdjacencyRule.Types.Cardinals,
+            AdjacencyRule.Types.Diagonals, AdjacencyRule.Types.EightWay, Direction.Types.Up, Direction.Types.Left,
+            Direction.Types.DownRight, Distance.Types.Euclidean, Distance.Types.Chebyshev, Distance.Types.Manhattan,
             Radius.Types.Square, Radius.Types.Circle, Radius.Types.Diamond
         };
 
@@ -74,9 +70,7 @@ namespace SadRogue.Primitives.UnitTests.Serialization
 
             var formatter = new BinaryFormatter();
             using (var stream = new FileStream(name, FileMode.Create, FileAccess.Write))
-            {
                 formatter.Serialize(stream, objToSerialize);
-            }
 
             object reSerialized;
             using (var stream = new FileStream(name, FileMode.Open, FileAccess.Read))

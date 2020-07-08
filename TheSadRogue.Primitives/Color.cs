@@ -167,15 +167,13 @@ namespace SadRogue.Primitives
         // Stored as RGBA with R in the least significant octet:
         // |-------|-------|-------|-------
         // A       B       G       R
-        [DataMember]
-        private readonly uint _packedValue;
+        [DataMember] private readonly uint _packedValue;
 
         /// <summary>
         /// Constructs an RGBA color from a packed value.
         /// The value is a 32-bit unsigned integer, with R in the least significant octet.
         /// </summary>
         /// <param name="packedValue">The packed value.</param>
-        [CLSCompliant(false)]
         public Color(uint packedValue) => _packedValue = packedValue;
 
         /// <summary>
@@ -192,9 +190,7 @@ namespace SadRogue.Primitives
                 _packedValue = (color._packedValue & 0x00FFFFFF) | (clampedA << 24);
             }
             else
-            {
                 _packedValue = (color._packedValue & 0x00FFFFFF) | ((uint)alpha << 24);
-            }
         }
 
         /// <summary>
@@ -202,10 +198,10 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="color">A <see cref="Color"/> for RGB values of new <see cref="Color"/> instance.</param>
         /// <param name="alpha">Alpha component value from 0.0f to 1.0f.</param>
-        public Color(Color color, float alpha) :
+        public Color(Color color, float alpha)
+            :
             this(color, (int)(alpha * 255))
-        {
-        }
+        { }
 
         /// <summary>
         /// Constructs an RGBA color from scalars representing red, green and blue values. Alpha value will be opaque.
@@ -215,8 +211,7 @@ namespace SadRogue.Primitives
         /// <param name="b">Blue component value from 0.0f to 1.0f.</param>
         public Color(float r, float g, float b)
             : this((int)(r * 255), (int)(g * 255), (int)(b * 255))
-        {
-        }
+        { }
 
         /// <summary>
         /// Constructs an RGBA color from scalars representing red, green, blue and alpha values.
@@ -227,8 +222,7 @@ namespace SadRogue.Primitives
         /// <param name="alpha">Alpha component value from 0.0f to 1.0f.</param>
         public Color(float r, float g, float b, float alpha)
             : this((int)(r * 255), (int)(g * 255), (int)(b * 255), (int)(alpha * 255))
-        {
-        }
+        { }
 
         /// <summary>
         /// Constructs an RGBA color from scalars representing red, green and blue values. Alpha value will be opaque.
@@ -246,12 +240,10 @@ namespace SadRogue.Primitives
                 uint clampedG = (uint)MathHelpers.Clamp(g, byte.MinValue, byte.MaxValue);
                 uint clampedB = (uint)MathHelpers.Clamp(b, byte.MinValue, byte.MaxValue);
 
-                _packedValue |= (clampedB << 16) | (clampedG << 8) | (clampedR);
+                _packedValue |= (clampedB << 16) | (clampedG << 8) | clampedR;
             }
             else
-            {
-                _packedValue |= ((uint)b << 16) | ((uint)g << 8) | ((uint)r);
-            }
+                _packedValue |= ((uint)b << 16) | ((uint)g << 8) | (uint)r;
         }
 
         /// <summary>
@@ -270,12 +262,10 @@ namespace SadRogue.Primitives
                 uint clampedB = (uint)MathHelpers.Clamp(b, byte.MinValue, byte.MaxValue);
                 uint clampedA = (uint)MathHelpers.Clamp(alpha, byte.MinValue, byte.MaxValue);
 
-                _packedValue = (clampedA << 24) | (clampedB << 16) | (clampedG << 8) | (clampedR);
+                _packedValue = (clampedA << 24) | (clampedB << 16) | (clampedG << 8) | clampedR;
             }
             else
-            {
-                _packedValue = ((uint)alpha << 24) | ((uint)b << 16) | ((uint)g << 8) | ((uint)r);
-            }
+                _packedValue = ((uint)alpha << 24) | ((uint)b << 16) | ((uint)g << 8) | (uint)r;
         }
 
         /// <summary>
@@ -288,7 +278,8 @@ namespace SadRogue.Primitives
         /// <param name="g"></param>
         /// <param name="b"></param>
         /// <param name="alpha"></param>
-        public Color(byte r, byte g, byte b, byte alpha) => _packedValue = ((uint)alpha << 24) | ((uint)b << 16) | ((uint)g << 8) | (r);
+        public Color(byte r, byte g, byte b, byte alpha)
+            => _packedValue = ((uint)alpha << 24) | ((uint)b << 16) | ((uint)g << 8) | r;
 
         /// <summary>
         /// Gets or sets the blue component.
@@ -353,7 +344,7 @@ namespace SadRogue.Primitives
         /// <param name="b"><see cref="Color"/> instance on the right of the equal sign.</param>
         /// <returns><c>true</c> if the instances are equal; <c>false</c> otherwise.</returns>
         [Pure]
-        public static bool operator ==(Color a, Color b) => (a._packedValue == b._packedValue);
+        public static bool operator ==(Color a, Color b) => a._packedValue == b._packedValue;
 
         /// <summary>
         /// Compares whether two <see cref="Color"/> instances are not equal.
@@ -362,7 +353,7 @@ namespace SadRogue.Primitives
         /// <param name="b"><see cref="Color"/> instance on the right of the not equal sign.</param>
         /// <returns><c>true</c> if the instances are not equal; <c>false</c> otherwise.</returns>
         [Pure]
-        public static bool operator !=(Color a, Color b) => (a._packedValue != b._packedValue);
+        public static bool operator !=(Color a, Color b) => a._packedValue != b._packedValue;
 
         /// <summary>
         /// Gets the hash code of this <see cref="Color"/>.
@@ -377,37 +368,45 @@ namespace SadRogue.Primitives
         /// <param name="obj">The <see cref="Color"/> to compare.</param>
         /// <returns><c>true</c> if the instances are equal; <c>false</c> otherwise.</returns>
         [Pure]
-        public override bool Equals(object obj) => (obj is Color color) && Equals(color);
+        public override bool Equals(object? obj) => obj is Color color && Equals(color);
 
         #region Color Bank Ansi
+
         /// <summary>
         /// The black ansi color (0, 0, 0).
         /// </summary>
         public static Color AnsiBlack = new Color(0, 0, 0);
+
         /// <summary>
         /// The Red ansi color (170, 0, 0).
         /// </summary>
         public static Color AnsiRed = new Color(170, 0, 0);
+
         /// <summary>
         /// The Green ansi color 0, 170, 0).
         /// </summary>
         public static Color AnsiGreen = new Color(0, 170, 0);
+
         /// <summary>
         /// The Yellow ansi color (170, 85, 0).
         /// </summary>
         public static Color AnsiYellow = new Color(170, 85, 0);
+
         /// <summary>
         /// The Blue ansi color (0, 0, 170).
         /// </summary>
         public static Color AnsiBlue = new Color(0, 0, 170);
+
         /// <summary>
         /// The Magenta ansi color (170, 0, 170).
         /// </summary>
         public static Color AnsiMagenta = new Color(170, 0, 170);
+
         /// <summary>
         /// The Cyan ansi color (0, 170, 170).
         /// </summary>
         public static Color AnsiCyan = new Color(0, 170, 170);
+
         /// <summary>
         /// The White ansi color (170, 170, 170).
         /// </summary>
@@ -417,1321 +416,762 @@ namespace SadRogue.Primitives
         /// The BlackBright ansi color (85, 85, 85).
         /// </summary>
         public static Color AnsiBlackBright = new Color(85, 85, 85);
+
         /// <summary>
         /// The RedBright ansi color (255, 85, 85).
         /// </summary>
         public static Color AnsiRedBright = new Color(255, 85, 85);
+
         /// <summary>
         /// The GreenBright ansi color (85, 255, 85).
         /// </summary>
         public static Color AnsiGreenBright = new Color(85, 255, 85);
+
         /// <summary>
         /// The YellowBright ansi color (255, 255, 85).
         /// </summary>
         public static Color AnsiYellowBright = new Color(255, 255, 85);
+
         /// <summary>
         /// The BlueBright ansi color (85, 85, 255).
         /// </summary>
         public static Color AnsiBlueBright = new Color(85, 85, 255);
+
         /// <summary>
         /// The MagentaBright ansi color (255, 85, 255).
         /// </summary>
         public static Color AnsiMagentaBright = new Color(255, 85, 255);
+
         /// <summary>
         /// The CyanBright ansi color (85, 255, 255).
         /// </summary>
         public static Color AnsiCyanBright = new Color(85, 255, 255);
+
         /// <summary>
         /// The WhiteBright ansi color (255, 255, 255).
         /// </summary>
         public static Color AnsiWhiteBright = new Color(255, 255, 255);
+
         #endregion
 
         #region Color Bank
+
         /// <summary>
         /// TransparentBlack color (R:0,G:0,B:0,A:0).
         /// </summary>
-        public static Color TransparentBlack
-        {
-            get;
-            private set;
-        }
+        public static readonly Color TransparentBlack;
 
         /// <summary>
         /// Transparent color (R:0,G:0,B:0,A:0).
         /// </summary>
-        public static Color Transparent
-        {
-            get;
-            private set;
-        }
+        public static readonly Color Transparent;
 
         /// <summary>
         /// AliceBlue color (R:240,G:248,B:255,A:255).
         /// </summary>
-        public static Color AliceBlue
-        {
-            get;
-            private set;
-        }
+        public static readonly Color AliceBlue;
 
         /// <summary>
         /// AntiqueWhite color (R:250,G:235,B:215,A:255).
         /// </summary>
-        public static Color AntiqueWhite
-        {
-            get;
-            private set;
-        }
+        public static readonly Color AntiqueWhite;
 
         /// <summary>
         /// Aqua color (R:0,G:255,B:255,A:255).
         /// </summary>
-        public static Color Aqua
-        {
-            get;
-            private set;
-        }
+        public static readonly Color Aqua;
 
         /// <summary>
         /// Aquamarine color (R:127,G:255,B:212,A:255).
         /// </summary>
-        public static Color Aquamarine
-        {
-            get;
-            private set;
-        }
+        public static readonly Color Aquamarine;
 
         /// <summary>
         /// Azure color (R:240,G:255,B:255,A:255).
         /// </summary>
-        public static Color Azure
-        {
-            get;
-            private set;
-        }
+        public static readonly Color Azure;
 
         /// <summary>
         /// Beige color (R:245,G:245,B:220,A:255).
         /// </summary>
-        public static Color Beige
-        {
-            get;
-            private set;
-        }
+        public static readonly Color Beige;
 
         /// <summary>
         /// Bisque color (R:255,G:228,B:196,A:255).
         /// </summary>
-        public static Color Bisque
-        {
-            get;
-            private set;
-        }
+        public static readonly Color Bisque;
 
         /// <summary>
         /// Black color (R:0,G:0,B:0,A:255).
         /// </summary>
-        public static Color Black
-        {
-            get;
-            private set;
-        }
+        public static readonly Color Black;
 
         /// <summary>
         /// BlanchedAlmond color (R:255,G:235,B:205,A:255).
         /// </summary>
-        public static Color BlanchedAlmond
-        {
-            get;
-            private set;
-        }
+        public static readonly Color BlanchedAlmond;
 
         /// <summary>
         /// Blue color (R:0,G:0,B:255,A:255).
         /// </summary>
-        public static Color Blue
-        {
-            get;
-            private set;
-        }
+        public static readonly Color Blue;
 
         /// <summary>
         /// BlueViolet color (R:138,G:43,B:226,A:255).
         /// </summary>
-        public static Color BlueViolet
-        {
-            get;
-            private set;
-        }
+        public static readonly Color BlueViolet;
 
         /// <summary>
         /// Brown color (R:165,G:42,B:42,A:255).
         /// </summary>
-        public static Color Brown
-        {
-            get;
-            private set;
-        }
+        public static readonly Color Brown;
 
         /// <summary>
         /// BurlyWood color (R:222,G:184,B:135,A:255).
         /// </summary>
-        public static Color BurlyWood
-        {
-            get;
-            private set;
-        }
+        public static readonly Color BurlyWood;
 
         /// <summary>
         /// CadetBlue color (R:95,G:158,B:160,A:255).
         /// </summary>
-        public static Color CadetBlue
-        {
-            get;
-            private set;
-        }
+        public static readonly Color CadetBlue;
 
         /// <summary>
         /// Chartreuse color (R:127,G:255,B:0,A:255).
         /// </summary>
-        public static Color Chartreuse
-        {
-            get;
-            private set;
-        }
+        public static readonly Color Chartreuse;
 
         /// <summary>
         /// Chocolate color (R:210,G:105,B:30,A:255).
         /// </summary>
-        public static Color Chocolate
-        {
-            get;
-            private set;
-        }
+        public static readonly Color Chocolate;
 
         /// <summary>
         /// Coral color (R:255,G:127,B:80,A:255).
         /// </summary>
-        public static Color Coral
-        {
-            get;
-            private set;
-        }
+        public static readonly Color Coral;
 
         /// <summary>
         /// CornflowerBlue color (R:100,G:149,B:237,A:255).
         /// </summary>
-        public static Color CornflowerBlue
-        {
-            get;
-            private set;
-        }
+        public static readonly Color CornflowerBlue;
 
         /// <summary>
         /// Cornsilk color (R:255,G:248,B:220,A:255).
         /// </summary>
-        public static Color Cornsilk
-        {
-            get;
-            private set;
-        }
+        public static readonly Color Cornsilk;
 
         /// <summary>
         /// Crimson color (R:220,G:20,B:60,A:255).
         /// </summary>
-        public static Color Crimson
-        {
-            get;
-            private set;
-        }
+        public static readonly Color Crimson;
 
         /// <summary>
         /// Cyan color (R:0,G:255,B:255,A:255).
         /// </summary>
-        public static Color Cyan
-        {
-            get;
-            private set;
-        }
+        public static readonly Color Cyan;
 
         /// <summary>
         /// DarkBlue color (R:0,G:0,B:139,A:255).
         /// </summary>
-        public static Color DarkBlue
-        {
-            get;
-            private set;
-        }
+        public static readonly Color DarkBlue;
 
         /// <summary>
         /// DarkCyan color (R:0,G:139,B:139,A:255).
         /// </summary>
-        public static Color DarkCyan
-        {
-            get;
-            private set;
-        }
+        public static readonly Color DarkCyan;
 
         /// <summary>
         /// DarkGoldenrod color (R:184,G:134,B:11,A:255).
         /// </summary>
-        public static Color DarkGoldenrod
-        {
-            get;
-            private set;
-        }
+        public static readonly Color DarkGoldenrod;
 
         /// <summary>
         /// DarkGray color (R:169,G:169,B:169,A:255).
         /// </summary>
-        public static Color DarkGray
-        {
-            get;
-            private set;
-        }
+        public static readonly Color DarkGray;
 
         /// <summary>
         /// DarkGreen color (R:0,G:100,B:0,A:255).
         /// </summary>
-        public static Color DarkGreen
-        {
-            get;
-            private set;
-        }
+        public static readonly Color DarkGreen;
 
         /// <summary>
         /// DarkKhaki color (R:189,G:183,B:107,A:255).
         /// </summary>
-        public static Color DarkKhaki
-        {
-            get;
-            private set;
-        }
+        public static readonly Color DarkKhaki;
 
         /// <summary>
         /// DarkMagenta color (R:139,G:0,B:139,A:255).
         /// </summary>
-        public static Color DarkMagenta
-        {
-            get;
-            private set;
-        }
+        public static readonly Color DarkMagenta;
 
         /// <summary>
         /// DarkOliveGreen color (R:85,G:107,B:47,A:255).
         /// </summary>
-        public static Color DarkOliveGreen
-        {
-            get;
-            private set;
-        }
+        public static readonly Color DarkOliveGreen;
 
         /// <summary>
         /// DarkOrange color (R:255,G:140,B:0,A:255).
         /// </summary>
-        public static Color DarkOrange
-        {
-            get;
-            private set;
-        }
+        public static readonly Color DarkOrange;
 
         /// <summary>
         /// DarkOrchid color (R:153,G:50,B:204,A:255).
         /// </summary>
-        public static Color DarkOrchid
-        {
-            get;
-            private set;
-        }
+        public static readonly Color DarkOrchid;
 
         /// <summary>
         /// DarkRed color (R:139,G:0,B:0,A:255).
         /// </summary>
-        public static Color DarkRed
-        {
-            get;
-            private set;
-        }
+        public static readonly Color DarkRed;
 
         /// <summary>
         /// DarkSalmon color (R:233,G:150,B:122,A:255).
         /// </summary>
-        public static Color DarkSalmon
-        {
-            get;
-            private set;
-        }
+        public static readonly Color DarkSalmon;
 
         /// <summary>
         /// DarkSeaGreen color (R:143,G:188,B:139,A:255).
         /// </summary>
-        public static Color DarkSeaGreen
-        {
-            get;
-            private set;
-        }
+        public static readonly Color DarkSeaGreen;
 
         /// <summary>
         /// DarkSlateBlue color (R:72,G:61,B:139,A:255).
         /// </summary>
-        public static Color DarkSlateBlue
-        {
-            get;
-            private set;
-        }
+        public static readonly Color DarkSlateBlue;
 
         /// <summary>
         /// DarkSlateGray color (R:47,G:79,B:79,A:255).
         /// </summary>
-        public static Color DarkSlateGray
-        {
-            get;
-            private set;
-        }
+        public static readonly Color DarkSlateGray;
 
         /// <summary>
         /// DarkTurquoise color (R:0,G:206,B:209,A:255).
         /// </summary>
-        public static Color DarkTurquoise
-        {
-            get;
-            private set;
-        }
+        public static readonly Color DarkTurquoise;
 
         /// <summary>
         /// DarkViolet color (R:148,G:0,B:211,A:255).
         /// </summary>
-        public static Color DarkViolet
-        {
-            get;
-            private set;
-        }
+        public static readonly Color DarkViolet;
 
         /// <summary>
         /// DeepPink color (R:255,G:20,B:147,A:255).
         /// </summary>
-        public static Color DeepPink
-        {
-            get;
-            private set;
-        }
+        public static readonly Color DeepPink;
 
         /// <summary>
         /// DeepSkyBlue color (R:0,G:191,B:255,A:255).
         /// </summary>
-        public static Color DeepSkyBlue
-        {
-            get;
-            private set;
-        }
+        public static readonly Color DeepSkyBlue;
 
         /// <summary>
         /// DimGray color (R:105,G:105,B:105,A:255).
         /// </summary>
-        public static Color DimGray
-        {
-            get;
-            private set;
-        }
+        public static readonly Color DimGray;
 
         /// <summary>
         /// DodgerBlue color (R:30,G:144,B:255,A:255).
         /// </summary>
-        public static Color DodgerBlue
-        {
-            get;
-            private set;
-        }
+        public static readonly Color DodgerBlue;
 
         /// <summary>
         /// Firebrick color (R:178,G:34,B:34,A:255).
         /// </summary>
-        public static Color Firebrick
-        {
-            get;
-            private set;
-        }
+        public static readonly Color Firebrick;
 
         /// <summary>
         /// FloralWhite color (R:255,G:250,B:240,A:255).
         /// </summary>
-        public static Color FloralWhite
-        {
-            get;
-            private set;
-        }
+        public static readonly Color FloralWhite;
 
         /// <summary>
         /// ForestGreen color (R:34,G:139,B:34,A:255).
         /// </summary>
-        public static Color ForestGreen
-        {
-            get;
-            private set;
-        }
+        public static readonly Color ForestGreen;
 
         /// <summary>
         /// Fuchsia color (R:255,G:0,B:255,A:255).
         /// </summary>
-        public static Color Fuchsia
-        {
-            get;
-            private set;
-        }
+        public static readonly Color Fuchsia;
 
         /// <summary>
         /// Gainsboro color (R:220,G:220,B:220,A:255).
         /// </summary>
-        public static Color Gainsboro
-        {
-            get;
-            private set;
-        }
+        public static readonly Color Gainsboro;
 
         /// <summary>
         /// GhostWhite color (R:248,G:248,B:255,A:255).
         /// </summary>
-        public static Color GhostWhite
-        {
-            get;
-            private set;
-        }
+        public static readonly Color GhostWhite;
+
         /// <summary>
         /// Gold color (R:255,G:215,B:0,A:255).
         /// </summary>
-        public static Color Gold
-        {
-            get;
-            private set;
-        }
+        public static readonly Color Gold;
 
         /// <summary>
         /// Goldenrod color (R:218,G:165,B:32,A:255).
         /// </summary>
-        public static Color Goldenrod
-        {
-            get;
-            private set;
-        }
+        public static readonly Color Goldenrod;
 
         /// <summary>
         /// Gray color (R:128,G:128,B:128,A:255).
         /// </summary>
-        public static Color Gray
-        {
-            get;
-            private set;
-        }
+        public static readonly Color Gray;
 
         /// <summary>
         /// Green color (R:0,G:128,B:0,A:255).
         /// </summary>
-        public static Color Green
-        {
-            get;
-            private set;
-        }
+        public static readonly Color Green;
 
         /// <summary>
         /// GreenYellow color (R:173,G:255,B:47,A:255).
         /// </summary>
-        public static Color GreenYellow
-        {
-            get;
-            private set;
-        }
+        public static readonly Color GreenYellow;
 
         /// <summary>
         /// Honeydew color (R:240,G:255,B:240,A:255).
         /// </summary>
-        public static Color Honeydew
-        {
-            get;
-            private set;
-        }
+        public static readonly Color Honeydew;
 
         /// <summary>
         /// HotPink color (R:255,G:105,B:180,A:255).
         /// </summary>
-        public static Color HotPink
-        {
-            get;
-            private set;
-        }
+        public static readonly Color HotPink;
 
         /// <summary>
         /// IndianRed color (R:205,G:92,B:92,A:255).
         /// </summary>
-        public static Color IndianRed
-        {
-            get;
-            private set;
-        }
+        public static readonly Color IndianRed;
 
         /// <summary>
         /// Indigo color (R:75,G:0,B:130,A:255).
         /// </summary>
-        public static Color Indigo
-        {
-            get;
-            private set;
-        }
+        public static readonly Color Indigo;
 
         /// <summary>
         /// Ivory color (R:255,G:255,B:240,A:255).
         /// </summary>
-        public static Color Ivory
-        {
-            get;
-            private set;
-        }
+        public static readonly Color Ivory;
 
         /// <summary>
         /// Khaki color (R:240,G:230,B:140,A:255).
         /// </summary>
-        public static Color Khaki
-        {
-            get;
-            private set;
-        }
+        public static readonly Color Khaki;
 
         /// <summary>
         /// Lavender color (R:230,G:230,B:250,A:255).
         /// </summary>
-        public static Color Lavender
-        {
-            get;
-            private set;
-        }
+        public static readonly Color Lavender;
 
         /// <summary>
         /// LavenderBlush color (R:255,G:240,B:245,A:255).
         /// </summary>
-        public static Color LavenderBlush
-        {
-            get;
-            private set;
-        }
+        public static readonly Color LavenderBlush;
 
         /// <summary>
         /// LawnGreen color (R:124,G:252,B:0,A:255).
         /// </summary>
-        public static Color LawnGreen
-        {
-            get;
-            private set;
-        }
+        public static readonly Color LawnGreen;
 
         /// <summary>
         /// LemonChiffon color (R:255,G:250,B:205,A:255).
         /// </summary>
-        public static Color LemonChiffon
-        {
-            get;
-            private set;
-        }
+        public static readonly Color LemonChiffon;
 
         /// <summary>
         /// LightBlue color (R:173,G:216,B:230,A:255).
         /// </summary>
-        public static Color LightBlue
-        {
-            get;
-            private set;
-        }
+        public static readonly Color LightBlue;
 
         /// <summary>
         /// LightCoral color (R:240,G:128,B:128,A:255).
         /// </summary>
-        public static Color LightCoral
-        {
-            get;
-            private set;
-        }
+        public static readonly Color LightCoral;
 
         /// <summary>
         /// LightCyan color (R:224,G:255,B:255,A:255).
         /// </summary>
-        public static Color LightCyan
-        {
-            get;
-            private set;
-        }
+        public static readonly Color LightCyan;
 
         /// <summary>
         /// LightGoldenrodYellow color (R:250,G:250,B:210,A:255).
         /// </summary>
-        public static Color LightGoldenrodYellow
-        {
-            get;
-            private set;
-        }
+        public static readonly Color LightGoldenrodYellow;
 
         /// <summary>
         /// LightGray color (R:211,G:211,B:211,A:255).
         /// </summary>
-        public static Color LightGray
-        {
-            get;
-            private set;
-        }
+        public static readonly Color LightGray;
 
         /// <summary>
         /// LightGreen color (R:144,G:238,B:144,A:255).
         /// </summary>
-        public static Color LightGreen
-        {
-            get;
-            private set;
-        }
+        public static readonly Color LightGreen;
 
         /// <summary>
         /// LightPink color (R:255,G:182,B:193,A:255).
         /// </summary>
-        public static Color LightPink
-        {
-            get;
-            private set;
-        }
+        public static readonly Color LightPink;
 
         /// <summary>
         /// LightSalmon color (R:255,G:160,B:122,A:255).
         /// </summary>
-        public static Color LightSalmon
-        {
-            get;
-            private set;
-        }
+        public static readonly Color LightSalmon;
 
         /// <summary>
         /// LightSeaGreen color (R:32,G:178,B:170,A:255).
         /// </summary>
-        public static Color LightSeaGreen
-        {
-            get;
-            private set;
-        }
+        public static readonly Color LightSeaGreen;
 
         /// <summary>
         /// LightSkyBlue color (R:135,G:206,B:250,A:255).
         /// </summary>
-        public static Color LightSkyBlue
-        {
-            get;
-            private set;
-        }
+        public static readonly Color LightSkyBlue;
 
         /// <summary>
         /// LightSlateGray color (R:119,G:136,B:153,A:255).
         /// </summary>
-        public static Color LightSlateGray
-        {
-            get;
-            private set;
-        }
+        public static readonly Color LightSlateGray;
 
         /// <summary>
         /// LightSteelBlue color (R:176,G:196,B:222,A:255).
         /// </summary>
-        public static Color LightSteelBlue
-        {
-            get;
-            private set;
-        }
+        public static readonly Color LightSteelBlue;
 
         /// <summary>
         /// LightYellow color (R:255,G:255,B:224,A:255).
         /// </summary>
-        public static Color LightYellow
-        {
-            get;
-            private set;
-        }
+        public static readonly Color LightYellow;
 
         /// <summary>
         /// Lime color (R:0,G:255,B:0,A:255).
         /// </summary>
-        public static Color Lime
-        {
-            get;
-            private set;
-        }
+        public static readonly Color Lime;
 
         /// <summary>
         /// LimeGreen color (R:50,G:205,B:50,A:255).
         /// </summary>
-        public static Color LimeGreen
-        {
-            get;
-            private set;
-        }
+        public static readonly Color LimeGreen;
 
         /// <summary>
         /// Linen color (R:250,G:240,B:230,A:255).
         /// </summary>
-        public static Color Linen
-        {
-            get;
-            private set;
-        }
+        public static readonly Color Linen;
 
         /// <summary>
         /// Magenta color (R:255,G:0,B:255,A:255).
         /// </summary>
-        public static Color Magenta
-        {
-            get;
-            private set;
-        }
+        public static readonly Color Magenta;
 
         /// <summary>
         /// Maroon color (R:128,G:0,B:0,A:255).
         /// </summary>
-        public static Color Maroon
-        {
-            get;
-            private set;
-        }
+        public static readonly Color Maroon;
 
         /// <summary>
         /// MediumAquamarine color (R:102,G:205,B:170,A:255).
         /// </summary>
-        public static Color MediumAquamarine
-        {
-            get;
-            private set;
-        }
+        public static readonly Color MediumAquamarine;
+
 
         /// <summary>
         /// MediumBlue color (R:0,G:0,B:205,A:255).
         /// </summary>
-        public static Color MediumBlue
-        {
-            get;
-            private set;
-        }
+        public static readonly Color MediumBlue;
 
         /// <summary>
         /// MediumOrchid color (R:186,G:85,B:211,A:255).
         /// </summary>
-        public static Color MediumOrchid
-        {
-            get;
-            private set;
-        }
+        public static readonly Color MediumOrchid;
 
         /// <summary>
         /// MediumPurple color (R:147,G:112,B:219,A:255).
         /// </summary>
-        public static Color MediumPurple
-        {
-            get;
-            private set;
-        }
+        public static readonly Color MediumPurple;
 
         /// <summary>
         /// MediumSeaGreen color (R:60,G:179,B:113,A:255).
         /// </summary>
-        public static Color MediumSeaGreen
-        {
-            get;
-            private set;
-        }
+        public static readonly Color MediumSeaGreen;
 
         /// <summary>
         /// MediumSlateBlue color (R:123,G:104,B:238,A:255).
         /// </summary>
-        public static Color MediumSlateBlue
-        {
-            get;
-            private set;
-        }
+        public static readonly Color MediumSlateBlue;
 
         /// <summary>
         /// MediumSpringGreen color (R:0,G:250,B:154,A:255).
         /// </summary>
-        public static Color MediumSpringGreen
-        {
-            get;
-            private set;
-        }
+        public static readonly Color MediumSpringGreen;
 
         /// <summary>
         /// MediumTurquoise color (R:72,G:209,B:204,A:255).
         /// </summary>
-        public static Color MediumTurquoise
-        {
-            get;
-            private set;
-        }
+        public static readonly Color MediumTurquoise;
 
         /// <summary>
         /// MediumVioletRed color (R:199,G:21,B:133,A:255).
         /// </summary>
-        public static Color MediumVioletRed
-        {
-            get;
-            private set;
-        }
+        public static readonly Color MediumVioletRed;
 
         /// <summary>
         /// MidnightBlue color (R:25,G:25,B:112,A:255).
         /// </summary>
-        public static Color MidnightBlue
-        {
-            get;
-            private set;
-        }
+        public static readonly Color MidnightBlue;
 
         /// <summary>
         /// MintCream color (R:245,G:255,B:250,A:255).
         /// </summary>
-        public static Color MintCream
-        {
-            get;
-            private set;
-        }
+        public static readonly Color MintCream;
 
         /// <summary>
         /// MistyRose color (R:255,G:228,B:225,A:255).
         /// </summary>
-        public static Color MistyRose
-        {
-            get;
-            private set;
-        }
+        public static readonly Color MistyRose;
 
         /// <summary>
         /// Moccasin color (R:255,G:228,B:181,A:255).
         /// </summary>
-        public static Color Moccasin
-        {
-            get;
-            private set;
-        }
+        public static readonly Color Moccasin;
 
         /// <summary>
         /// MonoGame orange theme color (R:231,G:60,B:0,A:255).
         /// </summary>
-        public static Color MonoGameOrange
-        {
-            get;
-            private set;
-        }
+        public static readonly Color MonoGameOrange;
 
         /// <summary>
         /// NavajoWhite color (R:255,G:222,B:173,A:255).
         /// </summary>
-        public static Color NavajoWhite
-        {
-            get;
-            private set;
-        }
+        public static readonly Color NavajoWhite;
 
         /// <summary>
         /// Navy color (R:0,G:0,B:128,A:255).
         /// </summary>
-        public static Color Navy
-        {
-            get;
-            private set;
-        }
+        public static readonly Color Navy;
 
         /// <summary>
         /// OldLace color (R:253,G:245,B:230,A:255).
         /// </summary>
-        public static Color OldLace
-        {
-            get;
-            private set;
-        }
+        public static readonly Color OldLace;
 
         /// <summary>
         /// Olive color (R:128,G:128,B:0,A:255).
         /// </summary>
-        public static Color Olive
-        {
-            get;
-            private set;
-        }
+        public static readonly Color Olive;
 
         /// <summary>
         /// OliveDrab color (R:107,G:142,B:35,A:255).
         /// </summary>
-        public static Color OliveDrab
-        {
-            get;
-            private set;
-        }
+        public static readonly Color OliveDrab;
 
         /// <summary>
         /// Orange color (R:255,G:165,B:0,A:255).
         /// </summary>
-        public static Color Orange
-        {
-            get;
-            private set;
-        }
+        public static readonly Color Orange;
 
         /// <summary>
         /// OrangeRed color (R:255,G:69,B:0,A:255).
         /// </summary>
-        public static Color OrangeRed
-        {
-            get;
-            private set;
-        }
+        public static readonly Color OrangeRed;
 
         /// <summary>
         /// Orchid color (R:218,G:112,B:214,A:255).
         /// </summary>
-        public static Color Orchid
-        {
-            get;
-            private set;
-        }
+        public static readonly Color Orchid;
 
         /// <summary>
         /// PaleGoldenrod color (R:238,G:232,B:170,A:255).
         /// </summary>
-        public static Color PaleGoldenrod
-        {
-            get;
-            private set;
-        }
+        public static readonly Color PaleGoldenrod;
 
         /// <summary>
         /// PaleGreen color (R:152,G:251,B:152,A:255).
         /// </summary>
-        public static Color PaleGreen
-        {
-            get;
-            private set;
-        }
+        public static readonly Color PaleGreen;
 
         /// <summary>
         /// PaleTurquoise color (R:175,G:238,B:238,A:255).
         /// </summary>
-        public static Color PaleTurquoise
-        {
-            get;
-            private set;
-        }
+        public static readonly Color PaleTurquoise;
+
         /// <summary>
         /// PaleVioletRed color (R:219,G:112,B:147,A:255).
         /// </summary>
-        public static Color PaleVioletRed
-        {
-            get;
-            private set;
-        }
+        public static readonly Color PaleVioletRed;
 
         /// <summary>
         /// PapayaWhip color (R:255,G:239,B:213,A:255).
         /// </summary>
-        public static Color PapayaWhip
-        {
-            get;
-            private set;
-        }
+        public static readonly Color PapayaWhip;
 
         /// <summary>
         /// PeachPuff color (R:255,G:218,B:185,A:255).
         /// </summary>
-        public static Color PeachPuff
-        {
-            get;
-            private set;
-        }
+        public static readonly Color PeachPuff;
 
         /// <summary>
         /// Peru color (R:205,G:133,B:63,A:255).
         /// </summary>
-        public static Color Peru
-        {
-            get;
-            private set;
-        }
+        public static readonly Color Peru;
 
         /// <summary>
         /// Pink color (R:255,G:192,B:203,A:255).
         /// </summary>
-        public static Color Pink
-        {
-            get;
-            private set;
-        }
+        public static readonly Color Pink;
 
         /// <summary>
         /// Plum color (R:221,G:160,B:221,A:255).
         /// </summary>
-        public static Color Plum
-        {
-            get;
-            private set;
-        }
+        public static readonly Color Plum;
 
         /// <summary>
         /// PowderBlue color (R:176,G:224,B:230,A:255).
         /// </summary>
-        public static Color PowderBlue
-        {
-            get;
-            private set;
-        }
+        public static readonly Color PowderBlue;
 
         /// <summary>
         ///  Purple color (R:128,G:0,B:128,A:255).
         /// </summary>
-        public static Color Purple
-        {
-            get;
-            private set;
-        }
+        public static readonly Color Purple;
 
         /// <summary>
         /// Red color (R:255,G:0,B:0,A:255).
         /// </summary>
-        public static Color Red
-        {
-            get;
-            private set;
-        }
+        public static readonly Color Red;
 
         /// <summary>
         /// RosyBrown color (R:188,G:143,B:143,A:255).
         /// </summary>
-        public static Color RosyBrown
-        {
-            get;
-            private set;
-        }
+        public static readonly Color RosyBrown;
 
         /// <summary>
         /// RoyalBlue color (R:65,G:105,B:225,A:255).
         /// </summary>
-        public static Color RoyalBlue
-        {
-            get;
-            private set;
-        }
+        public static readonly Color RoyalBlue;
 
         /// <summary>
         /// SaddleBrown color (R:139,G:69,B:19,A:255).
         /// </summary>
-        public static Color SaddleBrown
-        {
-            get;
-            private set;
-        }
+        public static readonly Color SaddleBrown;
 
         /// <summary>
         /// Salmon color (R:250,G:128,B:114,A:255).
         /// </summary>
-        public static Color Salmon
-        {
-            get;
-            private set;
-        }
+        public static readonly Color Salmon;
 
         /// <summary>
         /// SandyBrown color (R:244,G:164,B:96,A:255).
         /// </summary>
-        public static Color SandyBrown
-        {
-            get;
-            private set;
-        }
+        public static readonly Color SandyBrown;
 
         /// <summary>
         /// SeaGreen color (R:46,G:139,B:87,A:255).
         /// </summary>
-        public static Color SeaGreen
-        {
-            get;
-            private set;
-        }
+        public static readonly Color SeaGreen;
 
         /// <summary>
         /// SeaShell color (R:255,G:245,B:238,A:255).
         /// </summary>
-        public static Color SeaShell
-        {
-            get;
-            private set;
-        }
+        public static readonly Color SeaShell;
 
         /// <summary>
         /// Sienna color (R:160,G:82,B:45,A:255).
         /// </summary>
-        public static Color Sienna
-        {
-            get;
-            private set;
-        }
+        public static readonly Color Sienna;
 
         /// <summary>
         /// Silver color (R:192,G:192,B:192,A:255).
         /// </summary>
-        public static Color Silver
-        {
-            get;
-            private set;
-        }
+        public static readonly Color Silver;
 
         /// <summary>
         /// SkyBlue color (R:135,G:206,B:235,A:255).
         /// </summary>
-        public static Color SkyBlue
-        {
-            get;
-            private set;
-        }
+        public static readonly Color SkyBlue;
 
         /// <summary>
         /// SlateBlue color (R:106,G:90,B:205,A:255).
         /// </summary>
-        public static Color SlateBlue
-        {
-            get;
-            private set;
-        }
+        public static readonly Color SlateBlue;
 
         /// <summary>
         /// SlateGray color (R:112,G:128,B:144,A:255).
         /// </summary>
-        public static Color SlateGray
-        {
-            get;
-            private set;
-        }
+        public static readonly Color SlateGray;
 
         /// <summary>
         /// Snow color (R:255,G:250,B:250,A:255).
         /// </summary>
-        public static Color Snow
-        {
-            get;
-            private set;
-        }
+        public static readonly Color Snow;
 
         /// <summary>
         /// SpringGreen color (R:0,G:255,B:127,A:255).
         /// </summary>
-        public static Color SpringGreen
-        {
-            get;
-            private set;
-        }
+        public static readonly Color SpringGreen;
 
         /// <summary>
         /// SteelBlue color (R:70,G:130,B:180,A:255).
         /// </summary>
-        public static Color SteelBlue
-        {
-            get;
-            private set;
-        }
+        public static readonly Color SteelBlue;
 
         /// <summary>
         /// Tan color (R:210,G:180,B:140,A:255).
         /// </summary>
-        public static Color Tan
-        {
-            get;
-            private set;
-        }
+        public static readonly Color Tan;
 
         /// <summary>
         /// Teal color (R:0,G:128,B:128,A:255).
         /// </summary>
-        public static Color Teal
-        {
-            get;
-            private set;
-        }
+        public static readonly Color Teal;
 
         /// <summary>
         /// Thistle color (R:216,G:191,B:216,A:255).
         /// </summary>
-        public static Color Thistle
-        {
-            get;
-            private set;
-        }
+        public static readonly Color Thistle;
 
         /// <summary>
         /// Tomato color (R:255,G:99,B:71,A:255).
         /// </summary>
-        public static Color Tomato
-        {
-            get;
-            private set;
-        }
+        public static readonly Color Tomato;
 
         /// <summary>
         /// Turquoise color (R:64,G:224,B:208,A:255).
         /// </summary>
-        public static Color Turquoise
-        {
-            get;
-            private set;
-        }
+        public static readonly Color Turquoise;
 
         /// <summary>
         /// Violet color (R:238,G:130,B:238,A:255).
         /// </summary>
-        public static Color Violet
-        {
-            get;
-            private set;
-        }
+        public static readonly Color Violet;
 
         /// <summary>
         /// Wheat color (R:245,G:222,B:179,A:255).
         /// </summary>
-        public static Color Wheat
-        {
-            get;
-            private set;
-        }
+        public static readonly Color Wheat;
 
         /// <summary>
         /// White color (R:255,G:255,B:255,A:255).
         /// </summary>
-        public static Color White
-        {
-            get;
-            private set;
-        }
+        public static readonly Color White;
 
         /// <summary>
         /// WhiteSmoke color (R:245,G:245,B:245,A:255).
         /// </summary>
-        public static Color WhiteSmoke
-        {
-            get;
-            private set;
-        }
+        public static readonly Color WhiteSmoke;
 
         /// <summary>
         /// Yellow color (R:255,G:255,B:0,A:255).
         /// </summary>
-        public static Color Yellow
-        {
-            get;
-            private set;
-        }
+        public static readonly Color Yellow;
 
         /// <summary>
         /// YellowGreen color (R:154,G:205,B:50,A:255).
         /// </summary>
-        public static Color YellowGreen
-        {
-            get;
-            private set;
-        }
+        public static readonly Color YellowGreen;
+
         #endregion
 
         /// <summary>
@@ -1768,15 +1208,11 @@ namespace SadRogue.Primitives
 
 
             if (maxval == minval)
-            {
                 return 0.0f;
-            }
 
             int sum = maxval + minval;
             if (sum > 255)
-            {
                 sum = 510 - sum;
-            }
 
             return (float)(maxval - minval) / sum;
         }
@@ -1794,9 +1230,7 @@ namespace SadRogue.Primitives
 
 
             if (maxval == minval)
-            {
                 return 0.0f;
-            }
 
             float diff = maxval - minval;
             float rnorm = (maxval - R) / diff;
@@ -1806,24 +1240,16 @@ namespace SadRogue.Primitives
 
             float hue = 0.0f;
             if (R == maxval)
-            {
                 hue = 60.0f * (6.0f + bnorm - gnorm);
-            }
 
             if (G == maxval)
-            {
                 hue = 60.0f * (2.0f + rnorm - bnorm);
-            }
 
             if (B == maxval)
-            {
                 hue = 60.0f * (4.0f + gnorm - rnorm);
-            }
 
             if (hue > 360.0f)
-            {
                 hue -= 360.0f;
-            }
 
             return hue;
         }
@@ -1853,7 +1279,8 @@ namespace SadRogue.Primitives
         /// <param name="scale">Multiplicator.</param>
         /// <returns>Multiplication result.</returns>
         [Pure]
-        public static Color Multiply(Color value, float scale) => new Color((int)(value.R * scale), (int)(value.G * scale), (int)(value.B * scale), (int)(value.A * scale));
+        public static Color Multiply(Color value, float scale) => new Color((int)(value.R * scale),
+            (int)(value.G * scale), (int)(value.B * scale), (int)(value.A * scale));
 
         /// <summary>
         /// Creates an array of colors that includes the <paramref name="startingColor"/> and <paramref name="endingColor"/> and <paramref name="steps"/> of colors between them.
@@ -1894,66 +1321,50 @@ namespace SadRogue.Primitives
         [Pure]
         public static Color FromHSL(float h, float s, float l)
         {
-            if (s == 0f)
-            {
+            if (Math.Abs(s) < 0.0000000001)
                 return new Color(
                     (byte)(l * 255),
                     (byte)(l * 255),
                     (byte)(l * 255)
-                    );
-            }
+                );
             else
             {
                 float var_2;
                 float var_1;
 
                 if (l < 0.5)
-                {
                     var_2 = l * (1 + s);
-                }
                 else
-                {
-                    var_2 = (l + s) - (s * l);
-                }
+                    var_2 = l + s - s * l;
 
                 var_1 = 2 * l - var_2;
 
                 return new Color(
-                    (byte)(255 * Hue_2_RGB(var_1, var_2, h + (1 / 3))),
+                    (byte)(255 * Hue_2_RGB(var_1, var_2, h + 1f / 3)),
                     (byte)(255 * Hue_2_RGB(var_1, var_2, h)),
-                    (byte)(255 * Hue_2_RGB(var_1, var_2, h - (1 / 3)))
-                    );
+                    (byte)(255 * Hue_2_RGB(var_1, var_2, h - 1f / 3))
+                );
             }
         }
 
         private static float Hue_2_RGB(float v1, float v2, float vH)
         {
             if (vH < 0)
-            {
                 vH += 1;
-            }
 
             if (vH > 1)
-            {
                 vH -= 1;
-            }
 
-            if ((6 * vH) < 1)
-            {
-                return (v1 + (v2 - v1) * 6 * vH);
-            }
+            if (6 * vH < 1)
+                return v1 + (v2 - v1) * 6 * vH;
 
-            if ((2 * vH) < 1)
-            {
-                return (v2);
-            }
+            if (2 * vH < 1)
+                return v2;
 
-            if ((3 * vH) < 2)
-            {
-                return (v1 + (v2 - v1) * ((2 / 3) - vH) * 6);
-            }
+            if (3 * vH < 2)
+                return v1 + (v2 - v1) * (2f / 3 - vH) * 6;
 
-            return (v1);
+            return v1;
         }
 
         /// <summary>
@@ -1963,21 +1374,21 @@ namespace SadRogue.Primitives
         /// <param name="scale">Multiplicator.</param>
         /// <returns>Multiplication result.</returns>
         [Pure]
-        public static Color operator *(Color value, float scale) => new Color((int)(value.R * scale), (int)(value.G * scale), (int)(value.B * scale), (int)(value.A * scale));
+        public static Color operator *(Color value, float scale) => new Color((int)(value.R * scale),
+            (int)(value.G * scale), (int)(value.B * scale), (int)(value.A * scale));
 
         /// <summary>
-        /// Gets or sets packed value of this <see cref="Color"/>.
+        /// Gets the packed value of this <see cref="Color"/>.
         /// </summary>
-        [CLSCompliant(false)]
         public uint PackedValue => _packedValue;
 
 
         internal string DebugDisplayString => string.Concat(
-                    R.ToString(), "  ",
-                    G.ToString(), "  ",
-                    B.ToString(), "  ",
-                    A.ToString()
-                );
+            R.ToString(), "  ",
+            G.ToString(), "  ",
+            B.ToString(), "  ",
+            A.ToString()
+        );
 
 
         /// <summary>
@@ -2010,7 +1421,8 @@ namespace SadRogue.Primitives
         /// <param name="a">Alpha component value.</param>
         /// <returns>A <see cref="Color"/> which contains premultiplied alpha data.</returns>
         [Pure]
-        public static Color FromNonPremultiplied(int r, int g, int b, int a) => new Color(r * a / 255, g * a / 255, b * a / 255, a);
+        public static Color FromNonPremultiplied(int r, int g, int b, int a)
+            => new Color(r * a / 255, g * a / 255, b * a / 255, a);
 
         #region IEquatable<Color> Members
 

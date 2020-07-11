@@ -527,6 +527,10 @@ namespace SadRogue.Primitives
         #endregion
 
         #region polar coordinates
+        /// <summary>
+        /// Returns a Polar Coordinate that is equivalent to this (Cartesian) Coordinate
+        /// </summary>
+        /// <returns>The Equivalent Polar Coordinate</returns>
         public PolarCoordinate ToPolarCoordinate()
         {
             return PolarCoordinate.FromCartesian(this);

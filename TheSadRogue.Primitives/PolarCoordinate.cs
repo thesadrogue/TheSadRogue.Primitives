@@ -35,20 +35,23 @@ namespace SadRogue.Primitives
         }
 
         /// <summary>
+        /// Ovverride ToString to help you debug
+        /// </summary>
+        /// <returns>A short representation of the Polar Coordinate</returns>
+        public override string ToString()
+        {
+            return "(Radius = " + Math.Round(Radius, 5) + ", Theta = " + Math.Round(Theta, 5) + ")";
+        }
+
+        /// <summary>
         /// Compares two polar Coordinates
         /// </summary>
         /// <param name="left">The first polar coordinate to analyze</param>
         /// <param name="right">The Second polar coordinate to analyze</param>
         /// <returns>Whether or not these two Polar Coodinates are similar enough to be considered "Equal"</returns>
         [Pure]
-        public static bool operator ==(PolarCoordinate left, PolarCoordinate right)
-        {
-            if (left.Theta > right.Theta - 0.05 && left.Theta < right.Theta + 0.05)
-                if (left.Radius > right.Radius - 0.05 && left.Radius < right.Radius + 0.05)
-                    return true;
-
-            return false;
-        }
+        public static bool operator ==(PolarCoordinate left, PolarCoordinate right) =>
+            Math.Round(left.Theta - right.Theta, 5) == 0.0 && Math.Round(left.Radius - right.Radius, 5) == 0.0;
 
         /// <summary>
         /// Compares two PolarCoordinates
@@ -56,16 +59,13 @@ namespace SadRogue.Primitives
         /// <param name="left">The first polar coordinate to analyze</param>
         /// <param name="right">The second PolarCoordinate to analyze</param>
         /// <returns>Whether these polar coordinates are dissimilar enough to not be equal</returns>
-        public static bool operator !=(PolarCoordinate left, PolarCoordinate right)
-        {
-            return !(left == right);
-        }
+        public static bool operator !=(PolarCoordinate left, PolarCoordinate right) => !(left == right);
 
-        public override int GetHashCode()
-        {
-            double code = Radius * Theta;
-            return base.GetHashCode();
-        }
+        /// <summary>
+        /// Gets the Object's Hash Code
+        /// </summary>
+        /// <returns>A Hash code.</returns>
+        public override int GetHashCode() => Math.Round(Radius, 5).GetHashCode() ^ Math.Round(Theta, 5).GetHashCode();
 
         /// <summary>
         /// Performs  comparison between this PolarCoordinate and an other
@@ -73,7 +73,13 @@ namespace SadRogue.Primitives
         /// <param name="other">The other Polar Coordinate to analyze</param>
         /// <returns>Whether these two PolarCoordinates are equal</returns>
         [Pure]
-        public bool Equals(PolarCoordinate other) => Equals((object) other);
+        public bool Equals(PolarCoordinate other) => this == other;
+
+        /// <summary>
+        /// Compares the equality of this Polar Coordinate to another object
+        /// </summary>
+        /// <param name="obj">The object against which to compare</param>
+        /// <returns>Whether or not these objects are equal</returns>
         [Pure]
         public override bool Equals(object obj)
         {
@@ -87,43 +93,17 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <returns>A Cartesian Coordinate that points at the same spot on the map as the Polar Coord</returns>
         [Pure]
-        public Point ToCartesian() => PolarToCartesian(Radius, Theta);
-
-        /// <summary>
-        /// Returns the Cartesian Equivalent of this Polar Coordinate
-        /// </summary>
-        /// <returns>A Cartesian Coordinate that points at the same spot on the map as the Polar Coord</returns>
-        [Pure]
-        public static Point PolarToCartesian(double radius, double theta)
-        {
-            double x = radius * Math.Cos(theta);
-            double y = radius * Math.Sin(theta);
-            return new Point((int)Math.Round(x, 0), (int)Math.Round(y, 0));
-        }
-
-
-        /// <summary>
-        /// Returns the Polar Equivalent of this Cartesian Coordinate
-        /// </summary>
-        /// <returns>A Polar Coordinate that points at the same spot on the map as this Cartesian Coord</returns>
-        public static Point PolarToCartesian(PolarCoordinate pc)
-        {
-            return pc.ToCartesian();
-        }
+        public Point ToCartesian() => new Point((int)Math.Round(Radius * Math.Cos(Theta), 0), (int)Math.Round(Radius * Math.Sin(Theta), 0));
 
         /// <summary>
         /// Returns a new PolarCoordinate that is equivalent to the Cartesian point provided.
         /// </summary>
-        /// <param name="c">The cartesian point to analyze</param>
+        /// <param name="cartesian">The cartesian point to analyze</param>
         /// <returns>An Equivalent Polar Coordinate</returns>
-        public static PolarCoordinate FromCartesian(Point c)
+        public static PolarCoordinate FromCartesian(Point cartesian)
         {
-            double radius = c.X * c.X + c.Y * c.Y;
-            radius = Math.Sqrt(radius);
-
-            //tan(theta) = c.y / c.x
-            //theta = tan^-1(c.y / c.x)
-            double theta = c.X == 0 ? Math.PI : Math.Atan(c.Y / c.X);
+            double radius = Math.Sqrt(cartesian.X * cartesian.X + cartesian.Y * cartesian.Y);
+            double theta = Math.Atan2(cartesian.Y, cartesian.X);
             return new PolarCoordinate(radius, theta);
         }
 
@@ -141,10 +121,10 @@ namespace SadRogue.Primitives
         /// You've been warned.
         /// </remarks>
         [Pure]
-        public static Dictionary<string, Func<double, Point>> PolarFunctions => new Dictionary<string, Func<double, Point>>()
+        public static Dictionary<string, Func<double, Point>> Functions => new Dictionary<string, Func<double, Point>>()
         {
             {
-                "simple spirograph",
+                "small spirograph",
                 (theta) =>
                 {
                     //a spirograph is a polar coordinate with an outer radius,
@@ -157,13 +137,58 @@ namespace SadRogue.Primitives
                     return outerPoint.ToCartesian() + innerPoint.ToCartesian();
                 }
             },
+            {
+                "lopsided spirograph", (theta) =>
+                {
+                    //these two thetas will sync up occasionally, causing the spirograph to be "lopsided"
+                    double outerRadius = 27 + (5 * Math.Sin(theta * 10));
+                    double innerRadius = 8 + (5 * Math.Cos(theta / 10));
 
+                    PolarCoordinate parent = new PolarCoordinate(outerRadius, theta);
+                    PolarCoordinate child = new PolarCoordinate(innerRadius, theta * 10);
+                    return parent.ToCartesian() + child.ToCartesian();
+                }
+            },
+            {
+                "medium spirograph", (theta) =>
+                {
+                    double outerRadius = 27;
+                    double innerRadius = 20 * Math.Sin(0.333 * theta);
+                    PolarCoordinate parent = new PolarCoordinate(outerRadius, theta);
+                    PolarCoordinate child = new PolarCoordinate(innerRadius, theta * 10);
+                    return parent.ToCartesian() + child.ToCartesian();
+                }
+            },
+            {
+                "large spirograph",
+                (theta) =>
+                {
+                    double outerRadius = 35 + (8 * Math.Sin(theta / 7));
+                    double innerRadius = 10 + (7 * Math.Cos(theta * 3));
+
+                    PolarCoordinate parent = new PolarCoordinate(outerRadius, theta);
+                    PolarCoordinate child = new PolarCoordinate(innerRadius, theta * 10);
+                    return parent.ToCartesian() + child.ToCartesian();
+                }
+            },
+            {
+                "oblique spirograph",
+                (theta) =>
+                {
+                    double outerRadius = 30 + (7 * Math.Sin(theta / 7));
+                    double innerRadius = 7 + (3 * Math.Cos(theta * 7));
+
+                    PolarCoordinate parent = new PolarCoordinate(outerRadius, theta);
+                    PolarCoordinate child = new PolarCoordinate(innerRadius, theta * 10);
+                    return parent.ToCartesian() + child.ToCartesian();
+                }
+            },
             {
                 "simple spiral",
                 (theta) =>
                 {
                     double radius = theta * theta;
-                    return PolarToCartesian(new PolarCoordinate(radius, theta));
+                    return new PolarCoordinate(radius, Math.Abs(theta)).ToCartesian();
                 }
             },
             {

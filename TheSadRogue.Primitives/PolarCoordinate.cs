@@ -63,6 +63,7 @@ namespace SadRogue.Primitives
 
         public override int GetHashCode()
         {
+            double code = Radius * Theta;
             return base.GetHashCode();
         }
 
@@ -117,12 +118,12 @@ namespace SadRogue.Primitives
         /// <returns>An Equivalent Polar Coordinate</returns>
         public static PolarCoordinate FromCartesian(Point c)
         {
-            float radius = c.X * c.X + c.Y * c.Y;
-            radius = (float)Math.Sqrt(radius);
+            double radius = c.X * c.X + c.Y * c.Y;
+            radius = Math.Sqrt(radius);
 
             //tan(theta) = c.y / c.x
             //theta = tan^-1(c.y / c.x)
-            float theta = c.X == 0 ? (float)Math.PI : (float)Math.Atan(c.Y / c.X);
+            double theta = c.X == 0 ? Math.PI : Math.Atan(c.Y / c.X);
             return new PolarCoordinate(radius, theta);
         }
 

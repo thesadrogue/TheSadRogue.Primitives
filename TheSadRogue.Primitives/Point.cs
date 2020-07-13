@@ -536,5 +536,16 @@ namespace SadRogue.Primitives
         public bool Equals((int x, int y) other) => X == other.x && Y == other.y;
 
         #endregion
+
+        #region polar coordinates
+        /// <summary>
+        /// Returns a Polar Coordinate that is equivalent to this (Cartesian) Coordinate
+        /// </summary>
+        /// <returns>The Equivalent Polar Coordinate</returns>
+        public PolarCoordinate ToPolarCoordinate()
+        {
+            return PolarCoordinate.FromCartesian(this);
+        }
+        #endregion
     }
 }

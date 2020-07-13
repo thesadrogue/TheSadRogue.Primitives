@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 using Xunit.Abstractions;
@@ -9,8 +8,8 @@ namespace SadRogue.Primitives.UnitTests
 {
     public class PolarCoordinateTests
     {
-        private ITestOutputHelper _output;
-        public static (string, Func<double, Point>)[] PolarFuncts = PolarCoordinate.Functions.Select(pair => (pair.Key, pair.Value)).ToArray();
+        private readonly ITestOutputHelper _output;
+        public static readonly (string, Func<double, Point>)[] PolarFuncts = PolarCoordinate.Functions.Select(pair => (pair.Key, pair.Value)).ToArray();
 
         public static (Point, PolarCoordinate)[] TestData =
         {
@@ -40,7 +39,7 @@ namespace SadRogue.Primitives.UnitTests
             foreach ((string, Func<double, Point>) pfunc in PolarFuncts)
             {
                 bool[,] map = new bool[size, size];
-                for (double x = -size / 2; x < size / 2; x += resolution)
+                for (double x = -size / 2.0; x < size / 2.0; x += resolution)
                 {
                     Point here = pfunc.Item2(x) + size / 2;
                     if (here.X < size && here.X >= 0 && here.Y < size && here.Y >= 0)

@@ -48,7 +48,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="left">The first polar coordinate to analyze</param>
         /// <param name="right">The Second polar coordinate to analyze</param>
-        /// <returns>Whether or not these two Polar Coodinates are similar enough to be considered "Equal"</returns>
+        /// <returns>Whether or not these two Polar Coordinates are similar enough to be considered "Equal"</returns>
         [Pure]
         public static bool operator ==(PolarCoordinate left, PolarCoordinate right) =>
             Math.Round(left.Theta - right.Theta, 5) == 0.0 && Math.Round(left.Radius - right.Radius, 5) == 0.0;
@@ -81,7 +81,7 @@ namespace SadRogue.Primitives
         /// <param name="obj">The object against which to compare</param>
         /// <returns>Whether or not these objects are equal</returns>
         [Pure]
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (obj is PolarCoordinate polar)
                 return this == polar;

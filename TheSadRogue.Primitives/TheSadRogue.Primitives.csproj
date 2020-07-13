@@ -15,7 +15,7 @@
 	
 	<!-- More nuget package settings-->
 	<PackageId>TheSadRogue.Primitives</PackageId>
-	<PackageReleaseNotes>Updated to C# 8 and .NET Standard 2.1.  Multi-targeted to .NET Core 3.1.  Added missing docstrings.  Removed duplicate XEdgePositions functions, and refactored IsOnXEdge functions to match API.</PackageReleaseNotes>
+	<PackageReleaseNotes>Updated to C# 8 and .NET Standard 2.1.  Multi-targeted to .NET Core 3.1.  Added missing docstrings.  Removed duplicate XEdgePositions functions, and refactored IsOnXEdge functions to match API.  Added polar coordinates.</PackageReleaseNotes>
 	<RepositoryUrl>https://https://github.com/thesadrogue/TheSadRogue.Primitives</RepositoryUrl>
 	<RepositoryType>git</RepositoryType>
 	<PublishRepositoryUrl>true</PublishRepositoryUrl>

@@ -28,12 +28,12 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\$(Configuration)\netstandard2.0\TheSadRogue.Primitives.xml</DocumentationFile>
+    <DocumentationFile>bin\$(Configuration)\netstandard2.1\TheSadRogue.Primitives.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>TRACE</DefineConstants>
-    <DocumentationFile>bin\$(Configuration)\netstandard2.0\TheSadRogue.Primitives.xml</DocumentationFile>
+    <DocumentationFile>bin\$(Configuration)\netstandard2.1\TheSadRogue.Primitives.xml</DocumentationFile>
   </PropertyGroup>
   
   <!-- Dependencies -->

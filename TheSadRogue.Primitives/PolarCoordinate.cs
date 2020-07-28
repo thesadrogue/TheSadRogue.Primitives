@@ -11,7 +11,7 @@ namespace SadRogue.Primitives
     /// See wikipedia: https://en.wikipedia.org/wiki/Polar_coordinate_system
     /// Polar Coordinates are very, very slow and should not be used often
     /// </remarks>
-    public struct PolarCoordinate : IEquatable<PolarCoordinate>
+    public readonly struct PolarCoordinate : IEquatable<PolarCoordinate>
     {
         /// <summary>
         /// The distance away from the Origin (0,0) of this Polar Coord

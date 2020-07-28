@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
+using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 
 namespace SadRogue.Primitives
@@ -89,6 +90,7 @@ namespace SadRogue.Primitives
         /// <returns>All points in the radius shape defined by the given parameters, in order from least distance to greatest
         /// if <see cref="Radius.Diamond"/> or <see cref="Radius.Square"/> is being used.</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public IEnumerable<Point> PositionsInRadius(Point center, int radius, Rectangle bounds)
             => PositionsInRadius(new RadiusLocationContext(center, radius, bounds));
 
@@ -108,6 +110,7 @@ namespace SadRogue.Primitives
         /// <returns>All points in the radius shape defined by the given parameters, in order from least distance to greatest
         /// if <see cref="Radius.Diamond"/> or <see cref="Radius.Square"/> is being used.</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public IEnumerable<Point> PositionsInRadius(Point center, int radius)
             => PositionsInRadius(new RadiusLocationContext(center, radius));
 

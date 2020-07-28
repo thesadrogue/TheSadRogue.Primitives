@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics.Contracts;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 
 namespace SadRogue.Primitives
@@ -296,6 +297,7 @@ namespace SadRogue.Primitives
         /// The cardinal direction that most closely matches the heading indicated by the given line.
         /// </returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Direction GetCardinalDirection(Point start, Point end)
             => GetCardinalDirection(new Point(end.X - start.X, end.Y - start.Y));
 
@@ -352,6 +354,7 @@ namespace SadRogue.Primitives
         /// The direction that most closely matches the heading indicated by the given line.
         /// </returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Direction GetDirection(Point start, Point end)
             => GetDirection(new Point(end.X - start.X, end.Y - start.Y));
 
@@ -457,6 +460,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <returns>True if the current direction is a cardinal direction, false otherwise.</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool IsCardinal() => this != None && (DeltaX == 0 || DeltaY == 0);
 
         /// <summary>
@@ -482,6 +486,7 @@ namespace SadRogue.Primitives
 
         #endregion
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static int WrapAround(int num, int wrapTo) => (num % wrapTo + wrapTo) % wrapTo;
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using System.Text;
 
@@ -258,6 +259,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="position">The position to check.</param>
         /// <returns>True if the specified position is within the area, false otherwise.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool Contains(Point position) => _positionsSet.Contains(position);
 
         /// <summary>
@@ -330,6 +332,7 @@ namespace SadRogue.Primitives
         /// remove operations, it would be best to group them into 1 using <see cref="Remove(IEnumerable{Point})"/>.
         /// </summary>
         /// <param name="position">The position to remove.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void Remove(Point position) => Remove(YieldPoint(position));
 
         /// <summary>
@@ -374,6 +377,7 @@ namespace SadRogue.Primitives
         /// Removes the given positions from the specified area.
         /// </summary>
         /// <param name="positions">Positions to remove.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void Remove(IEnumerable<Point> positions)
         {
             if (positions is HashSet<Point> set)
@@ -386,12 +390,14 @@ namespace SadRogue.Primitives
         /// Removes all positions in the given map area from this one.
         /// </summary>
         /// <param name="area">Area containing positions to remove.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void Remove(IReadOnlyArea area) => Remove(area.Positions);
 
         /// <summary>
         /// Removes all positions in the given rectangle from this area.
         /// </summary>
         /// <param name="rectangle">Rectangle containing positions to remove.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void Remove(Rectangle rectangle) => Remove(rectangle.Positions());
 
         /// <summary>
@@ -457,6 +463,7 @@ namespace SadRogue.Primitives
             _bottom = bottomLocal;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static void Swap(ref IReadOnlyArea lhs, ref IReadOnlyArea rhs)
         {
             IReadOnlyArea temp = lhs;

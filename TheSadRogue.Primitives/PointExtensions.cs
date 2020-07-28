@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.Contracts;
+using System.Runtime.CompilerServices;
 
 namespace SadRogue.Primitives
 {
@@ -15,6 +16,7 @@ namespace SadRogue.Primitives
         /// <param name="other"/>
         /// <returns>Position (self.X + other.X, self.Y + other.Y).</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Point Add(this Point self, Point other) => self + other;
 
         /// <summary>
@@ -24,6 +26,7 @@ namespace SadRogue.Primitives
         /// <param name="i"/>
         /// <returns>Position (self.X + i, self.Y + i).</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Point Add(this Point self, int i) => self + i;
 
         /// <summary>
@@ -33,6 +36,7 @@ namespace SadRogue.Primitives
         /// <param name="dir"/>
         /// <returns>Position (self.X + dir.DeltaX, self.Y + dir.DeltaY)</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Point Add(this Point self, Direction dir) => self + dir;
 
         /// <summary>
@@ -42,6 +46,7 @@ namespace SadRogue.Primitives
         /// <param name="other"/>
         /// <returns>Position (self.X - other.X, self.Y - other.Y).</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Point Subtract(this Point self, Point other) => self - other;
 
         /// <summary>
@@ -51,6 +56,7 @@ namespace SadRogue.Primitives
         /// <param name="i"/>
         /// <returns>Position (self.X - i, self.Y - i).</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Point Subtract(this Point self, int i) => self - i;
 
         /// <summary>
@@ -60,6 +66,7 @@ namespace SadRogue.Primitives
         /// <param name="dir"/>
         /// <returns>Position (self.X - dir.DeltaX, self.Y - dir.DeltaY)</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Point Subtract(this Point self, Direction dir) => self - dir;
 
         /// <summary>
@@ -69,6 +76,7 @@ namespace SadRogue.Primitives
         /// <param name="other"/>
         /// <returns>Position (self.X * other.X, self.Y * other.Y).</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Point Multiply(this Point self, Point other) => self * other;
 
         /// <summary>
@@ -78,6 +86,7 @@ namespace SadRogue.Primitives
         /// <param name="i"/>
         /// <returns>Position (self.X * i, self.Y * i).</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Point Multiply(this Point self, int i) => self * i;
 
         /// <summary>
@@ -87,6 +96,7 @@ namespace SadRogue.Primitives
         /// <param name="d"/>
         /// <returns>Position (self.X * d, self.Y * d), with each value rounded to the nearest integer.</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Point Multiply(this Point self, double d) => self * d;
 
         /// <summary>
@@ -96,6 +106,7 @@ namespace SadRogue.Primitives
         /// <param name="other"/>
         /// <returns>Position (self.X / other.X, self.Y / other.Y), with each value rounded to the nearest integer.</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Point Divide(this Point self, Point other) => self / other;
 
         /// <summary>
@@ -105,6 +116,7 @@ namespace SadRogue.Primitives
         /// <param name="i"/>
         /// <returns>Position(self.X / i, self.Y / i), with each value rounded to the nearest integer.</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Point Divide(this Point self, int i) => self / i;
 
         /// <summary>
@@ -114,6 +126,7 @@ namespace SadRogue.Primitives
         /// <param name="d"/>
         /// <returns>Position(self.X / d, self.Y / d), with each value rounded to the nearest integer.</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Point Divide(this Point self, double d) => self / d;
     }
 }

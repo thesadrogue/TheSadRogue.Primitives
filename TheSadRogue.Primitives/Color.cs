@@ -5,6 +5,7 @@
 using System;
 using System.Diagnostics;
 using System.Diagnostics.Contracts;
+using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using System.Text;
 
@@ -1179,6 +1180,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <returns>A value based on this code: (color.R + color.R + color.B + color.G + color.G + color.G) / 6f</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public float GetLuma() => (R + R + B + G + G + G) / 6f;
 
         /// <summary>
@@ -1279,6 +1281,7 @@ namespace SadRogue.Primitives
         /// <param name="scale">Multiplicator.</param>
         /// <returns>Multiplication result.</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Color Multiply(Color value, float scale) => new Color((int)(value.R * scale),
             (int)(value.G * scale), (int)(value.B * scale), (int)(value.A * scale));
 
@@ -1421,6 +1424,7 @@ namespace SadRogue.Primitives
         /// <param name="a">Alpha component value.</param>
         /// <returns>A <see cref="Color"/> which contains premultiplied alpha data.</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Color FromNonPremultiplied(int r, int g, int b, int a)
             => new Color(r * a / 255, g * a / 255, b * a / 255, a);
 

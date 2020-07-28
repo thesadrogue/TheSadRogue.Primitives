@@ -29,6 +29,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="radAngle">Angle in radians.</param>
         /// <returns>The given angle in degrees.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static double ToDegree(double radAngle) => radAngle * RadiansToDegreesConstant;
 
         /// <summary>
@@ -36,6 +37,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="degAngle">Angle in degrees.</param>
         /// <returns>The given angle in radians.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static double ToRadian(double degAngle) => degAngle * DegreesToRadiansConstant;
 
         /// <summary>
@@ -124,6 +126,7 @@ namespace SadRogue.Primitives
         /// <param name="min">The minimum value before it transforms into the maximum.</param>
         /// <param name="max">The maximum value before it transforms into the minimum.</param>
         /// <returns>A new value if it falls outside the min/max range otherwise, the same value.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static float Wrap(float value, float min, float max)
         {
             if (value < min)

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 
 namespace SadRogue.Primitives
@@ -96,6 +97,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="color">The color to find.</param>
         /// <returns>The closest matching color.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Color GetNearest(Color color) => _colors[GetNearestIndex(color)];
 
         /// <summary>

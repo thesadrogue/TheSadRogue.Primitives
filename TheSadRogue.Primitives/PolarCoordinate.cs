@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
+using System.Runtime.CompilerServices;
 
 namespace SadRogue.Primitives
 {
@@ -89,11 +90,21 @@ namespace SadRogue.Primitives
         }
 
         /// <summary>
+        /// Implicitly converts the polar coordinate to its cartesian plane equivalent.
+        /// </summary>
+        /// <param name="pos">Polar coordinate to convert.</param>
+        /// <returns>The equivalent cartesian coordinate.</returns>
+        public static implicit operator Point(PolarCoordinate pos)
+            => pos.ToCartesian();
+
+        /// <summary>
         /// Returns the Cartesian Equivalent of this Polar Coordinate
         /// </summary>
         /// <returns>A Cartesian Coordinate that points at the same spot on the map as the Polar Coord</returns>
         [Pure]
-        public Point ToCartesian() => new Point((int)Math.Round(Radius * Math.Cos(Theta), 0), (int)Math.Round(Radius * Math.Sin(Theta), 0));
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Point ToCartesian()
+            => new Point((int)Math.Round(Radius * Math.Cos(Theta), 0), (int)Math.Round(Radius * Math.Sin(Theta), 0));
 
         /// <summary>
         /// Returns a new PolarCoordinate that is equivalent to the Cartesian point provided.

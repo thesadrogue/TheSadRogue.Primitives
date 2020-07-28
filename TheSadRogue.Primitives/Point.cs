@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics.Contracts;
+using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 
 namespace SadRogue.Primitives
@@ -57,6 +58,7 @@ namespace SadRogue.Primitives
         /// <param name="end">Position of line ending point.</param>
         /// <returns>The degree bearing of the line specified by the two given points.</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static double BearingOfLine(Point start, Point end) => BearingOfLine(start - end);
 
 
@@ -96,6 +98,7 @@ namespace SadRogue.Primitives
         /// distance formula without the square root.
         /// </returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static double EuclideanDistanceMagnitude(Point c1, Point c2) => EuclideanDistanceMagnitude(c2 - c1);
 
         /// <summary>
@@ -124,6 +127,7 @@ namespace SadRogue.Primitives
         /// <param name="c2">The second point.</param>
         /// <returns>The midpoint between <paramref name="c1"/> and <paramref name="c2"/>.</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Point Midpoint(Point c1, Point c2)
             => new Point((int)Math.Round((c1.X + c2.X) / 2.0f, MidpointRounding.AwayFromZero),
                 (int)Math.Round((c1.Y + c2.Y) / 2.0f, MidpointRounding.AwayFromZero));
@@ -269,6 +273,7 @@ namespace SadRogue.Primitives
         /// <param name="width">The width of the 2D array.</param>
         /// <returns>The position represented by the 1D index given.</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Point FromIndex(int index, int width) => new Point(index % width, index / width);
 
         /// <summary>
@@ -279,6 +284,7 @@ namespace SadRogue.Primitives
         /// <param name="width">The width of the 2D array, used to do the math to calculate index.</param>
         /// <returns>The 1D index of the position specified.</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static int ToIndex(int x, int y, int width) => y * width + x;
 
         /// <summary>
@@ -288,6 +294,7 @@ namespace SadRogue.Primitives
         /// <param name="width">The width of the 2D array.</param>
         /// <returns>The X-value for the location represented by the given index.</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static int ToXValue(int index, int width) => index % width;
 
         /// <summary>
@@ -297,6 +304,7 @@ namespace SadRogue.Primitives
         /// <param name="width">The width of the 2D array.</param>
         /// <returns>The Y-value for the location represented by the given index.</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static int ToYValue(int index, int width) => index / width;
 
         /// <summary>
@@ -336,6 +344,7 @@ namespace SadRogue.Primitives
         /// used to do the math to calculate index.</param>
         /// <returns>The 1D index of this Point.</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public int ToIndex(int width) => Y * width + X;
 
         /// <summary>
@@ -355,6 +364,7 @@ namespace SadRogue.Primitives
         /// </param>
         /// <returns>The position (<see cref="X"/> + deltaChange.X, <see cref="Y"/> + deltaChange.Y)</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Point Translate(Point deltaChange) => new Point(X + deltaChange.X, Y + deltaChange.Y);
 
         /// <summary>
@@ -363,6 +373,7 @@ namespace SadRogue.Primitives
         /// <param name="x">X-value for the new Point.</param>
         /// <returns>A new Point, with its X value changed to the given one.</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Point WithX(int x) => new Point(x, Y);
 
         /// <summary>
@@ -371,6 +382,7 @@ namespace SadRogue.Primitives
         /// <param name="y">Y-value for the new Point.</param>
         /// <returns>A new Point, with its Y value changed to the given one.</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Point WithY(int y) => new Point(X, y);
 
         /// <summary>
@@ -537,11 +549,21 @@ namespace SadRogue.Primitives
 
         #endregion
 
-        #region circles
+        #region Circles
+
+        /// <summary>
+        /// Implicitly converts a Point to its equivalent polar coordinate.
+        /// </summary>
+        /// <param name="pos">Point to convert.</param>
+        /// <returns>A <see cref="PolarCoordinate"/> equivalent to this cartesian point.</returns>
+        public static implicit operator PolarCoordinate(Point pos) => PolarCoordinate.FromCartesian(pos);
+
         /// <summary>
         /// Returns a Polar Coordinate that is equivalent to this (Cartesian) Coordinate
         /// </summary>
         /// <returns>The Equivalent Polar Coordinate</returns>
+        [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public PolarCoordinate ToPolarCoordinate() => PolarCoordinate.FromCartesian(this);
 
         /// <summary>

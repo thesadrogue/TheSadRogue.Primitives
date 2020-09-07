@@ -537,7 +537,7 @@ namespace SadRogue.Primitives
 
         #endregion
 
-        #region polar coordinates
+        #region circules
         /// <summary>
         /// Returns a Polar Coordinate that is equivalent to this (Cartesian) Coordinate
         /// </summary>
@@ -545,6 +545,34 @@ namespace SadRogue.Primitives
         public PolarCoordinate ToPolarCoordinate()
         {
             return PolarCoordinate.FromCartesian(this);
+        }
+
+        /// <summary>
+        /// Rotates a single point around the origin (0, 0).
+        /// </summary>
+        /// <param name="degrees">The amount of Degrees to rotate this point clockwise</param>
+        /// <returns>The equivalent point after a rotation</returns>
+        public  Point Rotate(in double degrees)
+        {
+            double radians = MathHelpers.DegreesToRadiansConstant * degrees;
+            int x = (int)Math.Round(X * Math.Cos(radians) - Y * Math.Sin(radians));
+            int y = (int)Math.Round(X * Math.Sin(radians) + Y * Math.Cos(radians));
+            return new Point(x, y);
+        }
+
+        /// <summary>
+        /// Rotates a single point around the origin point.
+        /// </summary>
+        /// <param name="origin">The Point around which to rotate</param>
+        /// <param name="degrees">The amount of Degrees to rotate this point</param>
+        /// <returns>The equivalent point after a rotation</returns>
+        public Point Rotate(Point origin, in double degrees)
+        {
+            Point rotatingPoint = (X,Y) - origin;
+            double radians = MathHelpers.DegreesToRadiansConstant * degrees;
+            int x = (int)Math.Round(rotatingPoint.X * Math.Cos(radians) - rotatingPoint.Y * Math.Sin(radians));
+            int y = (int)Math.Round(rotatingPoint.X * Math.Sin(radians) + rotatingPoint.Y * Math.Cos(radians));
+            return origin + (x, y);
         }
         #endregion
     }

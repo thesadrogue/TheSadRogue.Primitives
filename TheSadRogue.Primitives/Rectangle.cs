@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
+using System.Linq;
 using System.Runtime.Serialization;
 
 namespace SadRogue.Primitives
@@ -903,5 +904,86 @@ namespace SadRogue.Primitives
             Direction.Types.Left => MinXPositions(),
             _ => throw new Exception("Cannot retrieve positions on a non-cardinal side of a rectangle.")
         };
+
+        #region division
+        /// <summary>
+        /// Recursively divides a rectangle in half until the small rectangles are between minimumDimension and 2 * minimumDimenson.
+        /// </summary>
+        /// <param name="minimumDimension">The smallest allowable dimension for a rectangle to be.</param>
+        /// <returns>A list of all rectangles that add up to the original rectangle</returns>
+        public IEnumerable<Rectangle> Divide(int minimumDimension)
+        {
+            List<Rectangle> ogChildren = DivideInHalf().ToList();
+            List<Rectangle> children = new List<Rectangle>(); //so that we can modify children during the loop
+            foreach (Rectangle child in ogChildren)
+            {
+                if (child.Width < minimumDimension * 2 && child.Height < minimumDimension * 2)
+                {
+                    children.Add(child);
+                }
+                else
+                {
+                    children.AddRange(child.Divide(minimumDimension));
+                }
+            }
+
+            return children;
+        }
+
+        /// <summary>
+        /// Divides the rectangle into two halves.
+        /// </summary>
+        /// <returns>Either top & bottom rectangles, or left & right rectangles, respectively, along the longest axis of the rectangle</returns>
+        public IEnumerable<Rectangle> DivideInHalf()
+        {
+            if (Width > Height)
+                return DivideVertically();
+
+            else if (Width < Height)
+                return DivideHorizontally();
+
+            else
+                return DivideHorizontally();
+        }
+
+        /// <summary>
+        /// Divides the rectrangle into top and bottom halves
+        /// </summary>
+        /// <returns>Top & Bottom Rectangles</returns>
+        public IEnumerable<Rectangle> DivideHorizontally()
+        {
+            int startX = MinExtentX;
+            int stopY = MaxExtentY;
+            int startY = MinExtentY;
+            int stopX = MaxExtentX;
+            int bisection = (startY + stopY) / 2;
+
+            var answer = new[]
+            {
+                new Rectangle(new Point(startX, startY), new Point(stopX, bisection)),
+                new Rectangle(new Point(startX, bisection + 1), new Point(stopX, stopY))
+            };
+            return answer;
+        }
+
+        /// <summary>
+        /// Divides the restangle into a left and right half.
+        /// </summary>
+        /// <returns>Left & Right rectangles</returns>
+        public IEnumerable<Rectangle> DivideVertically()
+        {
+            int startY = MinExtentY;
+            int stopY = MaxExtentY;
+            int startX = MinExtentX;
+            int stopX = MaxExtentX;
+            int bisection = (startX + stopX) / 2;
+            var answer = new[]
+            {
+                new Rectangle(new Point(startX, startY), new Point(bisection, stopY)),
+                new Rectangle(new Point(bisection + 1, startY), new Point(stopX, stopY))
+            };
+            return answer;
+        }
+        #endregion
     }
 }

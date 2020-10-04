@@ -156,7 +156,7 @@ namespace SadRogue.Primitives
         /// <param name="p1"/>
         /// <param name="p2"/>
         /// <returns>True if the two palettes hold identical colors in the same order; false otherwise.</returns>
-        public static bool operator ==(Palette p1, Palette p2)
+        public static bool operator ==(Palette? p1, Palette? p2)
         {
             if (ReferenceEquals(p1, p2))
                 return true;

@@ -170,7 +170,7 @@ namespace SadRogue.Primitives
         /// <param name="lhs"/>
         /// <param name="rhs"/>
         /// <returns>True if the areas contain exactly the same points, false otherwise.</returns>
-        public static bool operator ==(Area lhs, Area rhs)
+        public static bool operator ==(Area? lhs, Area? rhs)
         {
             if (ReferenceEquals(lhs, rhs))
                 return true;

@@ -1,5 +1,4 @@
-﻿using System;
-using Xunit;
+﻿using Xunit;
 using XUnit.ValueTuples;
 using System.Linq;
 using System.Collections.Generic;
@@ -235,9 +234,9 @@ namespace SadRogue.Primitives.UnitTests
             int expectedRows = dividend.Height / divisor.Height;
             int expectedRectangles = expectedRows * expectedColumns;
 
-            var answer = dividend.Divide(divisor);
+            var answer = dividend.Divide(divisor).ToList();
 
-            Assert.Equal(expectedRectangles, answer.Count());
+            Assert.Equal(expectedRectangles, answer.Count);
 
             List<int> xLocations = new List<int>();
             List<int> yLocations = new List<int>();

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
+using System.Linq;
 using System.Runtime.Serialization;
 
 namespace SadRogue.Primitives
@@ -903,5 +904,115 @@ namespace SadRogue.Primitives
             Direction.Types.Left => MinXPositions(),
             _ => throw new Exception("Cannot retrieve positions on a non-cardinal side of a rectangle.")
         };
+
+        #region Division & Bisection
+        /// <summary>
+        /// Recursively divides this rectangle in half until the small rectangles are between minimumDimension and 2 * minimumDimenson.
+        /// </summary>
+        /// <param name="minimumDimension">The smallest allowable dimension for a rectangle to be.</param>
+        /// <returns>A list of all rectangles that add up to the original rectangle</returns>
+        public IEnumerable<Rectangle> BisectRecursive(int minimumDimension)
+        {
+            foreach (Rectangle child in Bisect())
+            {
+                if (child.Width < minimumDimension * 2 && child.Height < minimumDimension * 2)
+                    yield return child;
+
+                else
+                    foreach (var grandChild in child.BisectRecursive(minimumDimension))
+                        yield return grandChild;
+
+            }
+        }
+
+        /// <summary>
+        /// Bisects the rectangle into two halves along its longest axis.
+        /// </summary>
+        /// <returns>
+        /// An IEnumerable of either Top and Bottom halves, or Left and Right halves,
+        /// at indexes 0 and 1 respectively.
+        /// </returns>
+        /// <remarks>
+        /// Cuts the rectangle by reducing it's longest dimension by half. For example, a
+        /// rectangle that extends from (3, 3) to (18, 7) that calls DivideInHalf will
+        /// return an IEnumerable with two rectangles. The rectangle at index 0
+        /// starts at (3, 3) and extends to (9, 7), and the rectangle at index 1 extends from
+        /// (10, 3) to (18, 7)
+        /// </remarks>
+        public IEnumerable<Rectangle> Bisect()
+        {
+            if (Width > Height)
+                return BisectVertically();
+
+            else if (Width < Height)
+                return BisectHorizontally();
+
+            else
+                return BisectHorizontally();
+        }
+
+        /// <summary>
+        /// Bisects the rectangle into top and bottom halves
+        /// </summary>
+        /// <returns>An IEnumerable with Top and Bottom Rectangles in indexes 0 and 1, respectively</returns>
+        public IEnumerable<Rectangle> BisectHorizontally()
+        {
+            int startX = MinExtentX;
+            int stopY = MaxExtentY;
+            int startY = MinExtentY;
+            int stopX = MaxExtentX;
+            int bisection = (startY + stopY) / 2;
+
+            yield return new Rectangle(new Point(startX, startY), new Point(stopX, bisection));
+            yield return new Rectangle(new Point(startX, bisection + 1), new Point(stopX, stopY));
+        }
+
+        /// <summary>
+        /// Divides the rectangle into a left and right half.
+        /// </summary>
+        /// <returns>
+        /// An IEnumerable with the Left and Right rectangles in index 0 and 1 respectively.
+        /// </returns>
+        public IEnumerable<Rectangle> BisectVertically()
+        {
+            int startY = MinExtentY;
+            int stopY = MaxExtentY;
+            int startX = MinExtentX;
+            int stopX = MaxExtentX;
+            int bisection = (startX + stopX) / 2;
+
+            yield return new Rectangle(new Point(startX, startY), new Point(bisection, stopY));
+            yield return new Rectangle(new Point(bisection + 1, startY), new Point(stopX, stopY));
+        }
+
+        /// <summary>
+        /// Divides this rectangle by another, and returns an IEnumerable of divisor-sized rectangles that fit
+        /// within the dividend.
+        /// </summary>
+        /// <param name="divisor">The rectangle by which to divide</param>
+        /// <returns>
+        /// IEnumerable of Rectangles the size of divisor, that fit within this rectangle.
+        /// </returns>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when the width or height of the divisor is 0 or less</exception>
+        public IEnumerable<Rectangle> Divide(Rectangle divisor)
+        {
+            if(divisor.Width <= 0 || divisor.Height <= 0)
+                throw new ArgumentOutOfRangeException(nameof(divisor), "Divisor cannot have a width or height of 0.");
+
+            int columns = this.Width / divisor.Width;
+            int rows = this.Height / divisor.Height;
+            Point origin = (this.MinExtentX, this.MinExtentY);
+            Point size = new Point(divisor.Width, divisor.Height) - 1;
+
+            for (int x = 0; x < columns; x++)
+            {
+                for (int y = 0; y < rows; y++)
+                {
+                    Point start = origin + (divisor.Width * x, divisor.Height * y);
+                    yield return new Rectangle(start, start + size);
+                }
+            }
+        }
+        #endregion
     }
 }

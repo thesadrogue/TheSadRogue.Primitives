@@ -913,8 +913,7 @@ namespace SadRogue.Primitives
         /// <returns>A list of all rectangles that add up to the original rectangle</returns>
         public IEnumerable<Rectangle> BisectRecursive(int minimumDimension)
         {
-            List<Rectangle> ogChildren = Bisect().ToList();
-            foreach (Rectangle child in ogChildren)
+            foreach (Rectangle child in Bisect())
             {
                 if (child.Width < minimumDimension * 2 && child.Height < minimumDimension * 2)
                     yield return child;
@@ -984,20 +983,6 @@ namespace SadRogue.Primitives
 
             yield return new Rectangle(new Point(startX, startY), new Point(bisection, stopY));
             yield return new Rectangle(new Point(bisection + 1, startY), new Point(stopX, stopY));
-        }
-
-        /// <summary>
-        /// Divides one rectangle by another, and returns an IEnumerable of rectangles the size of divisor that fit
-        /// within the dividend rectangle.
-        /// </summary>
-        /// <param name="dividend">The rectangle being divided</param>
-        /// <param name="divisor">The rectangle by which to divide</param>
-        /// <returns>
-        /// IEnumerable of Rectangles the size of divisor, that fit within the dividend.
-        /// </returns>
-        public static IEnumerable<Rectangle> operator /(Rectangle dividend, Rectangle divisor)
-        {
-            return dividend.Divide(divisor);
         }
 
         /// <summary>

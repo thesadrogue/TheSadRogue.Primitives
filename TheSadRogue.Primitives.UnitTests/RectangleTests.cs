@@ -229,13 +229,13 @@ namespace SadRogue.Primitives.UnitTests
         #region Division
         [Theory]
         [MemberDataTuple(nameof(DivisionTestData))]
-        public void DivisionOperatorTest(Rectangle dividend, Rectangle divisor)
+        public void DivisionTest(Rectangle dividend, Rectangle divisor)
         {
             int expectedColumns = dividend.Width / divisor.Width;
             int expectedRows = dividend.Height / divisor.Height;
             int expectedRectangles = expectedRows * expectedColumns;
 
-            var answer = dividend / divisor;
+            var answer = dividend.Divide(divisor);
 
             Assert.Equal(expectedRectangles, answer.Count());
 

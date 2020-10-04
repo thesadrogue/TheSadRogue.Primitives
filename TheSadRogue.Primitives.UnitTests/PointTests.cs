@@ -45,7 +45,7 @@ namespace SadRogue.Primitives.UnitTests
         [MemberData(nameof(AroundOtherData))]
         public void RotateAroundOtherPointTest(Point original, Point axis, double degrees, Point expected)
         {
-            Point answer = original.Rotate(axis, degrees);
+            Point answer = original.Rotate(degrees, axis);
             Assert.Equal(expected, answer);
             AssertEquidistant(expected, answer, axis);
         }

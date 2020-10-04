@@ -36,7 +36,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="degAngle">Angle in degrees.</param>
         /// <returns>The given angle in radians.</returns>
-        public static double ToRadian(double degAngle) => Math.PI * DegreesToRadiansConstant;
+        public static double ToRadian(double degAngle) => degAngle * DegreesToRadiansConstant;
 
         /// <summary>
         /// Restricts a value to a specified range.

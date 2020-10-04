@@ -15,18 +15,28 @@ namespace SadRogue.Primitives
         public const double DegreePctOfCircle = 0.002777777777777778;
 
         /// <summary>
+        /// Pi / 180. Used to speed up calculations related to circles.
+        /// </summary>
+        public const double DegreesToRadiansConstant = Math.PI / 180;
+
+        /// <summary>
+        /// 180 / Pi. Used to speed up calculations related to circles.
+        /// </summary>
+        public const double RadiansToDegreesConstant = 180 / Math.PI;
+
+        /// <summary>
         /// Converts given angle from radians to degrees.
         /// </summary>
         /// <param name="radAngle">Angle in radians.</param>
         /// <returns>The given angle in degrees.</returns>
-        public static double ToDegree(double radAngle) => radAngle * (180.0 / Math.PI);
+        public static double ToDegree(double radAngle) => radAngle * RadiansToDegreesConstant;
 
         /// <summary>
         /// Converts given angle from degrees to radians.
         /// </summary>
         /// <param name="degAngle">Angle in degrees.</param>
         /// <returns>The given angle in radians.</returns>
-        public static double ToRadian(double degAngle) => Math.PI * degAngle / 180.0;
+        public static double ToRadian(double degAngle) => degAngle * DegreesToRadiansConstant;
 
         /// <summary>
         /// Restricts a value to a specified range.

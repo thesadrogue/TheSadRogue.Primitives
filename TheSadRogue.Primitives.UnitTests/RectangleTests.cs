@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using System;
+using Xunit;
 using XUnit.ValueTuples;
 using System.Linq;
 using System.Collections.Generic;
@@ -22,6 +23,21 @@ namespace SadRogue.Primitives.UnitTests
 
         public static IEnumerable<(Rectangle, Rectangle)> PairwiseEqualRects =
             EqualRectangles.Combinate(EqualRectangles);
+
+        public static Rectangle[] Dividends = new Rectangle[]
+        {
+            new Rectangle((0,0), (21,21)),
+            new Rectangle((20,20), (45,45)),
+            new Rectangle((0,15), (51, 85))
+        };
+        public static Rectangle[] Divisors = new Rectangle[]
+        {
+            new Rectangle((0,0), (3,3)),
+            new Rectangle((0,0), (3, 11)),
+            new Rectangle((-1,-1), (14, 6)),
+        };
+        public static IEnumerable<(Rectangle, Rectangle)> DivisionTestData =
+            Dividends.Combinate(Divisors);
 
         #endregion
 
@@ -106,13 +122,12 @@ namespace SadRogue.Primitives.UnitTests
 
         #endregion
 
-        #region division
-
+        #region Bisection
         [Fact]
-        public void RecursiveDivisionTest()
+        public void RecursiveBisectionTest()
         {
             Rectangle rectangle = new Rectangle(0, 0, 30, 30);
-            List<Rectangle> rectangles = rectangle.Divide(5).ToList();
+            List<Rectangle> rectangles = rectangle.BisectRecursive(5).ToList();
             Assert.Equal(16, rectangles.Count());
             for (int i = 0; i < 30; i++)
             {
@@ -125,10 +140,10 @@ namespace SadRogue.Primitives.UnitTests
         }
 
         [Fact]
-        public void DivideInHalfTest()
+        public void BisectInHalfTest()
         {
             Rectangle rectangle = new Rectangle(0, 0, 5, 13);
-            List<Rectangle> rectangles = rectangle.DivideInHalf().ToList();
+            List<Rectangle> rectangles = rectangle.Bisect().ToList();
             foreach (Point c in rectangles[0].Positions())
             {
                 Assert.True(rectangle.Contains(c));
@@ -149,7 +164,7 @@ namespace SadRogue.Primitives.UnitTests
             Assert.Equal(5, rectangles[1].Width);
 
             rectangle = new Rectangle(0, 0, 13, 5);
-            rectangles.AddRange(rectangle.DivideInHalf().ToList());
+            rectangles.AddRange(rectangle.Bisect().ToList());
             foreach (Point c in rectangles[2].Positions())
             {
                 Assert.True(rectangle.Contains(c));
@@ -171,10 +186,10 @@ namespace SadRogue.Primitives.UnitTests
         }
 
         [Fact]
-        public void DivideHorizontallyTest()
+        public void BisectHorizontallyTest()
         {
             Rectangle rectangle = new Rectangle(0, 0, 5, 13);
-            List<Rectangle> rectangles = rectangle.DivideHorizontally().ToList();
+            List<Rectangle> rectangles = rectangle.BisectHorizontally().ToList();
             foreach (Point c in rectangles[0].Positions())
             {
                 Assert.True(rectangle.Contains(c));
@@ -191,10 +206,10 @@ namespace SadRogue.Primitives.UnitTests
         }
 
         [Fact]
-        public void DivideVerticallyTest()
+        public void BisectVerticallyTest()
         {
             Rectangle rectangle = new Rectangle(0, 0, 13, 5);
-            List<Rectangle> rectangles = rectangle.DivideVertically().ToList();
+            List<Rectangle> rectangles = rectangle.BisectVertically().ToList();
             foreach (Point c in rectangles[0].Positions())
             {
                 Assert.True(rectangle.Contains(c));
@@ -209,6 +224,36 @@ namespace SadRogue.Primitives.UnitTests
             Assert.Equal(5, rectangles[1].Height);
         }
 
+        #endregion
+
+        #region Division
+        [Theory]
+        [MemberDataTuple(nameof(DivisionTestData))]
+        public void DivisionOperatorTest(Rectangle dividend, Rectangle divisor)
+        {
+            int expectedColumns = dividend.Width / divisor.Width;
+            int expectedRows = dividend.Height / divisor.Height;
+            int expectedRectangles = expectedRows * expectedColumns;
+
+            var answer = dividend / divisor;
+
+            Assert.Equal(expectedRectangles, answer.Count());
+
+            List<int> xLocations = new List<int>();
+            List<int> yLocations = new List<int>();
+            foreach (Rectangle actual in answer)
+            {
+                Assert.Equal(divisor.Width, actual.Width);
+                Assert.Equal(divisor.Height, actual.Height);
+                xLocations.Add(actual.MinExtentX);
+                xLocations.Add(actual.MaxExtentX);
+                yLocations.Add(actual.MinExtentY);
+                yLocations.Add(actual.MaxExtentY);
+            }
+
+            Assert.Empty(xLocations.Where(location => location < dividend.MinExtentX || location > dividend.MaxExtentX ));
+            Assert.Empty(yLocations.Where(location => location < dividend.MinExtentY || location > dividend.MaxExtentY ));
+        }
         #endregion
     }
 }

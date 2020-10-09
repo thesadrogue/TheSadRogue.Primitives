@@ -265,7 +265,7 @@ namespace SadRogue.Primitives
         /// <param name="g1"/>
         /// <param name="g2"/>
         /// <returns>True if the given gradients contain precisely the same stops; false otherwise.</returns>
-        public static bool operator ==(Gradient g1, Gradient g2)
+        public static bool operator ==(Gradient? g1, Gradient? g2)
         {
             if (ReferenceEquals(g1, g2))
                 return true;

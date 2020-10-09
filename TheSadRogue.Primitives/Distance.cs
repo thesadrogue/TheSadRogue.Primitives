@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics.Contracts;
+using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 
 namespace SadRogue.Primitives
@@ -128,6 +129,7 @@ namespace SadRogue.Primitives
         /// <param name="end">Ending point.</param>
         /// <returns>The distance between the two points.</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public double Calculate(Point start, Point end) => Calculate(start.X, start.Y, end.X, end.Y);
 
         /// <summary>
@@ -139,6 +141,7 @@ namespace SadRogue.Primitives
         /// <param name="endY">Y-Coordinate of the ending point.</param>
         /// <returns>The distance between the two points.</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public double Calculate(double startX, double startY, double endX, double endY)
         {
             double dx = startX - endX;
@@ -153,6 +156,7 @@ namespace SadRogue.Primitives
         /// <param name="deltaChange">The delta-x and delta-y between the two locations.</param>
         /// <returns>The distance between two locations withe the given delta-change values.</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public double Calculate(Point deltaChange) => Calculate(deltaChange.X, deltaChange.Y);
 
         /// <summary>

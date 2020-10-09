@@ -5,6 +5,7 @@
 using System;
 using System.Diagnostics;
 using System.Diagnostics.Contracts;
+using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using System.Text;
 
@@ -375,82 +376,82 @@ namespace SadRogue.Primitives
         /// <summary>
         /// The black ansi color (0, 0, 0).
         /// </summary>
-        public static Color AnsiBlack = new Color(0, 0, 0);
+        public static readonly Color AnsiBlack = new Color(0, 0, 0);
 
         /// <summary>
         /// The Red ansi color (170, 0, 0).
         /// </summary>
-        public static Color AnsiRed = new Color(170, 0, 0);
+        public static readonly Color AnsiRed = new Color(170, 0, 0);
 
         /// <summary>
         /// The Green ansi color 0, 170, 0).
         /// </summary>
-        public static Color AnsiGreen = new Color(0, 170, 0);
+        public static readonly Color AnsiGreen = new Color(0, 170, 0);
 
         /// <summary>
         /// The Yellow ansi color (170, 85, 0).
         /// </summary>
-        public static Color AnsiYellow = new Color(170, 85, 0);
+        public static readonly Color AnsiYellow = new Color(170, 85, 0);
 
         /// <summary>
         /// The Blue ansi color (0, 0, 170).
         /// </summary>
-        public static Color AnsiBlue = new Color(0, 0, 170);
+        public static readonly Color AnsiBlue = new Color(0, 0, 170);
 
         /// <summary>
         /// The Magenta ansi color (170, 0, 170).
         /// </summary>
-        public static Color AnsiMagenta = new Color(170, 0, 170);
+        public static readonly Color AnsiMagenta = new Color(170, 0, 170);
 
         /// <summary>
         /// The Cyan ansi color (0, 170, 170).
         /// </summary>
-        public static Color AnsiCyan = new Color(0, 170, 170);
+        public static readonly Color AnsiCyan = new Color(0, 170, 170);
 
         /// <summary>
         /// The White ansi color (170, 170, 170).
         /// </summary>
-        public static Color AnsiWhite = new Color(170, 170, 170);
+        public static readonly Color AnsiWhite = new Color(170, 170, 170);
 
         /// <summary>
         /// The BlackBright ansi color (85, 85, 85).
         /// </summary>
-        public static Color AnsiBlackBright = new Color(85, 85, 85);
+        public static readonly Color AnsiBlackBright = new Color(85, 85, 85);
 
         /// <summary>
         /// The RedBright ansi color (255, 85, 85).
         /// </summary>
-        public static Color AnsiRedBright = new Color(255, 85, 85);
+        public static readonly Color AnsiRedBright = new Color(255, 85, 85);
 
         /// <summary>
         /// The GreenBright ansi color (85, 255, 85).
         /// </summary>
-        public static Color AnsiGreenBright = new Color(85, 255, 85);
+        public static readonly Color AnsiGreenBright = new Color(85, 255, 85);
 
         /// <summary>
         /// The YellowBright ansi color (255, 255, 85).
         /// </summary>
-        public static Color AnsiYellowBright = new Color(255, 255, 85);
+        public static readonly Color AnsiYellowBright = new Color(255, 255, 85);
 
         /// <summary>
         /// The BlueBright ansi color (85, 85, 255).
         /// </summary>
-        public static Color AnsiBlueBright = new Color(85, 85, 255);
+        public static readonly Color AnsiBlueBright = new Color(85, 85, 255);
 
         /// <summary>
         /// The MagentaBright ansi color (255, 85, 255).
         /// </summary>
-        public static Color AnsiMagentaBright = new Color(255, 85, 255);
+        public static readonly Color AnsiMagentaBright = new Color(255, 85, 255);
 
         /// <summary>
         /// The CyanBright ansi color (85, 255, 255).
         /// </summary>
-        public static Color AnsiCyanBright = new Color(85, 255, 255);
+        public static readonly Color AnsiCyanBright = new Color(85, 255, 255);
 
         /// <summary>
         /// The WhiteBright ansi color (255, 255, 255).
         /// </summary>
-        public static Color AnsiWhiteBright = new Color(255, 255, 255);
+        public static readonly Color AnsiWhiteBright = new Color(255, 255, 255);
 
         #endregion
 
@@ -1179,6 +1180,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <returns>A value based on this code: (color.R + color.R + color.B + color.G + color.G + color.G) / 6f</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public float GetLuma() => (R + R + B + G + G + G) / 6f;
 
         /// <summary>
@@ -1279,6 +1281,7 @@ namespace SadRogue.Primitives
         /// <param name="scale">Multiplicator.</param>
         /// <returns>Multiplication result.</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Color Multiply(Color value, float scale) => new Color((int)(value.R * scale),
             (int)(value.G * scale), (int)(value.B * scale), (int)(value.A * scale));
 
@@ -1421,6 +1424,7 @@ namespace SadRogue.Primitives
         /// <param name="a">Alpha component value.</param>
         /// <returns>A <see cref="Color"/> which contains premultiplied alpha data.</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Color FromNonPremultiplied(int r, int g, int b, int a)
             => new Color(r * a / 255, g * a / 255, b * a / 255, a);
 

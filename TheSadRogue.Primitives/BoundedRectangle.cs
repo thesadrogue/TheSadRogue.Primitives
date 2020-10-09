@@ -78,7 +78,7 @@ namespace SadRogue.Primitives
         /// <param name="lhs" />
         /// <param name="rhs" />
         /// <returns>True if the two BoundedRectangle objects are equivalent, false if not.</returns>
-        public static bool operator ==(BoundedRectangle lhs, BoundedRectangle rhs) => lhs?.Equals(rhs) ?? rhs is null;
+        public static bool operator ==(BoundedRectangle? lhs, BoundedRectangle? rhs) => lhs?.Equals(rhs) ?? rhs is null;
 
         /// <summary>
         /// True if the types are not equal.

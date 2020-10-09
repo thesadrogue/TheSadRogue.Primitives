@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.Contracts;
+using System.Runtime.CompilerServices;
 using SFMLColor = SFML.Graphics.Color;
 using SadRogueColor = SadRogue.Primitives.Color;
 
@@ -16,6 +17,7 @@ namespace SadRogue.Primitives
         /// <param name="self"/>
         /// <returns/>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static SFMLColor ToSFMLColor(this SadRogueColor self) => new SFMLColor(self.R, self.G, self.B, self.A);
 
         /// <summary>
@@ -25,6 +27,7 @@ namespace SadRogue.Primitives
         /// <param name="other"/>
         /// <returns/>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool Equals(this SadRogueColor self, SFMLColor other)
             => self.R == other.R && self.G == other.G && self.B == other.B && self.A == other.A;
     }
@@ -44,6 +47,7 @@ namespace SFML.Graphics
         /// <param name="self"/>
         /// <returns/>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static SadRogueColor ToSadRogueColor(this SFMLColor self)
             => new SadRogueColor(self.R, self.G, self.B, self.A);
 
@@ -54,6 +58,7 @@ namespace SFML.Graphics
         /// <param name="other"/>
         /// <returns/>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool Equals(this SFMLColor self, SadRogueColor other)
             => self.R == other.R && self.G == other.G && self.B == other.B && self.A == other.A;
     }

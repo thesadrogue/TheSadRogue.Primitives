@@ -300,21 +300,21 @@ namespace SadRogue.Primitives.UnitTests
 
         [Theory]
         [MemberDataTuple(nameof(YIncreasesDeltaValues))]
-        public void YIncreasesUpwardDeltaToggle(Direction dir, (int dx, int dy) expectedPreDeltas,
-                                                (int dx, int dy) expectedPostDeltas)
+        public void YIncreasesUpwardDeltaToggle(Direction dir, Point expectedPreDeltas,
+                                                Point expectedPostDeltas)
         {
             Assert.False(Direction.YIncreasesUpward, "Direction.YIncreasesUpwards is expected to be false as default.");
 
-            Assert.Equal(expectedPreDeltas.dx, dir.DeltaX);
-            Assert.Equal(expectedPreDeltas.dy, dir.DeltaY);
+            Assert.Equal(expectedPreDeltas.X, dir.DeltaX);
+            Assert.Equal(expectedPreDeltas.Y, dir.DeltaY);
 
             Direction.SetYIncreasesUpwardsUnsafe(true);
-            Assert.Equal(expectedPostDeltas.dx, dir.DeltaX);
-            Assert.Equal(expectedPostDeltas.dy, dir.DeltaY);
+            Assert.Equal(expectedPostDeltas.X, dir.DeltaX);
+            Assert.Equal(expectedPostDeltas.Y, dir.DeltaY);
 
             Direction.SetYIncreasesUpwardsUnsafe(false);
-            Assert.Equal(expectedPreDeltas.dx, dir.DeltaX);
-            Assert.Equal(expectedPreDeltas.dy, dir.DeltaY);
+            Assert.Equal(expectedPreDeltas.X, dir.DeltaX);
+            Assert.Equal(expectedPreDeltas.Y, dir.DeltaY);
         }
 
         [Theory]

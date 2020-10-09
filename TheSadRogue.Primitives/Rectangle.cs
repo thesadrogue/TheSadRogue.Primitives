@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
-using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 
 namespace SadRogue.Primitives
@@ -154,6 +154,7 @@ namespace SadRogue.Primitives
         /// <param name="maxExtent">Maximum (x, y) coordinates that are inside the rectangle.</param>
         /// <returns>A new Rectangle with the given minimum and maximum extents.</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Rectangle WithExtents(Point minExtent, Point maxExtent) => new Rectangle(minExtent, maxExtent);
 
         /// <summary>
@@ -170,6 +171,7 @@ namespace SadRogue.Primitives
         /// </param>
         /// <returns>A new rectangle with the given center point and radius values.</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Rectangle WithRadius(Point center, int horizontalRadius, int verticalRadius)
             => new Rectangle(center, horizontalRadius, verticalRadius);
 
@@ -182,6 +184,7 @@ namespace SadRogue.Primitives
         /// <param name="height">Height of the rectangle.</param>
         /// <returns>A new rectangle at the given position with the given width and height.</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Rectangle WithPositionAndSize(Point position, int width, int height)
             => new Rectangle(position.X, position.Y, width, height);
 
@@ -193,6 +196,7 @@ namespace SadRogue.Primitives
         /// <param name="size">The size of the rectangle, in form (width, height).</param>
         /// <returns>A new rectangle at the given position with the given size.</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Rectangle WithPositionAndSize(Point position, Point size)
             => new Rectangle(position.X, position.Y, size.X, size.Y);
 
@@ -233,12 +237,12 @@ namespace SadRogue.Primitives
             var retVal = new Area();
 
             for (int x = r1.X; x <= r1.MaxExtentX; x++)
-            for (int y = r1.Y; y <= r1.MaxExtentY; y++)
-                retVal.Add(new Point(x, y));
+                for (int y = r1.Y; y <= r1.MaxExtentY; y++)
+                    retVal.Add(new Point(x, y));
 
             for (int x = r2.X; x <= r2.MaxExtentX; x++)
-            for (int y = r2.Y; y <= r2.MaxExtentY; y++)
-                retVal.Add(new Point(x, y));
+                for (int y = r2.Y; y <= r2.MaxExtentY; y++)
+                    retVal.Add(new Point(x, y));
 
             return retVal;
         }
@@ -321,6 +325,7 @@ namespace SadRogue.Primitives
         /// the given location.
         /// </returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Rectangle WithCenter(Point center)
             => new Rectangle(center.X - Width / 2, center.Y - Height / 2, Width, Height);
 
@@ -331,6 +336,7 @@ namespace SadRogue.Primitives
         /// <param name="deltaHeight">Delta-change for the height of the new rectangle.</param>
         /// <returns>A new rectangle whose height is modified by the given delta-change value.</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Rectangle ChangeHeight(int deltaHeight)
             => new Rectangle(X, Y, Width, Height + deltaHeight);
 
@@ -346,6 +352,7 @@ namespace SadRogue.Primitives
         /// A new rectangle whose width/height are modified by the given delta-change values.
         /// </returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Rectangle ChangeSize(Point deltaChange)
             => new Rectangle(X, Y, Width + deltaChange.X, Height + deltaChange.Y);
 
@@ -356,6 +363,7 @@ namespace SadRogue.Primitives
         /// <param name="deltaWidth">Delta-change for the width of the new rectangle.</param>
         /// <returns>A new rectangle whose width is modified by the given delta-change value.</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Rectangle ChangeWidth(int deltaWidth)
             => new Rectangle(X, Y, Width + deltaWidth, Height);
 
@@ -365,6 +373,7 @@ namespace SadRogue.Primitives
         /// <param name="position">The position to check.</param>
         /// <returns>Whether or not the specified point is considered within the rectangle.</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool Contains(Point position)
             => position.X >= X && position.X < X + Width && position.Y >= Y && position.Y < Y + Height;
 
@@ -377,6 +386,7 @@ namespace SadRogue.Primitives
         /// True if the given rectangle is completely contained within the current one, false otherwise.
         /// </returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool Contains(Rectangle other) => X <= other.X && other.X + other.Width <= X + Width && Y <= other.Y &&
                                                  other.Y + other.Height <= Y + Height;
 
@@ -413,6 +423,7 @@ namespace SadRogue.Primitives
         /// </param>
         /// <returns>A new rectangle, expanded appropriately.</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Rectangle Expand(int horizontalChange, int verticalChange)
             => new Rectangle(X - horizontalChange, Y - verticalChange, Width + 2 * horizontalChange,
                 Height + 2 * verticalChange);
@@ -431,6 +442,7 @@ namespace SadRogue.Primitives
         /// <param name="other">The rectangle to check.</param>
         /// <returns>True if the given rectangle intersects with the current one, false otherwise.</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool Intersects(Rectangle other) => other.X < X + Width && X < other.X + other.Width &&
                                                    other.Y < Y + Height && Y < other.Y + other.Height;
 
@@ -440,6 +452,7 @@ namespace SadRogue.Primitives
         /// <param name="position">The position for the new rectangle.</param>
         /// <returns>A new rectangle that has its position changed to the given value.</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Rectangle WithPosition(Point position)
             => new Rectangle(position.X, position.Y, Width, Height);
 
@@ -449,6 +462,7 @@ namespace SadRogue.Primitives
         /// <param name="direction">The direction to move the new rectangle in.</param>
         /// <returns>A new rectangle that has its position moved in the given direction.</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Rectangle Translate(Direction direction)
         {
             Point newPos = Position + direction;
@@ -461,6 +475,7 @@ namespace SadRogue.Primitives
         /// <param name="x">The X value for the new rectangle.</param>
         /// <returns>A new rectangle with X changed to the given value.</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Rectangle WithX(int x) => new Rectangle(x, Y, Width, Height);
 
         /// <summary>
@@ -469,6 +484,7 @@ namespace SadRogue.Primitives
         /// <param name="y">The Y value for the new rectangle.</param>
         /// <returns>A new rectangle with Y changed to the given value.</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Rectangle WithY(int y) => new Rectangle(X, y, Width, Height);
 
         /// <summary>
@@ -476,11 +492,12 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <returns>All positions in the rectangle.</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public IEnumerable<Point> Positions()
         {
             for (int y = Y; y <= MaxExtentY; y++)
-            for (int x = X; x <= MaxExtentX; x++)
-                yield return new Point(x, y);
+                for (int x = X; x <= MaxExtentX; x++)
+                    yield return new Point(x, y);
         }
 
         /// <summary>
@@ -490,6 +507,7 @@ namespace SadRogue.Primitives
         /// <param name="height">The height for the new rectangle.</param>
         /// <returns>A new rectangle with its height changed to the given value.</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Rectangle WithHeight(int height)
             => new Rectangle(X, Y, Width, height);
 
@@ -500,6 +518,7 @@ namespace SadRogue.Primitives
         /// <param name="maxExtent">The maximum extent of the new rectangle.</param>
         /// <returns>A new rectangle that has its maximum extent adjusted to the specified value.</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Rectangle WithMaxExtent(Point maxExtent)
             => new Rectangle(MinExtent, maxExtent);
 
@@ -510,6 +529,7 @@ namespace SadRogue.Primitives
         /// <param name="x">The x-coordinate for the maximum extent of the new rectangle.</param>
         /// <returns>A new rectangle, with its <see cref="MaxExtentX"/> adjusted to the specified value.</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Rectangle WithMaxExtentX(int x)
             => new Rectangle(MinExtent, new Point(x, MaxExtentY));
 
@@ -520,6 +540,7 @@ namespace SadRogue.Primitives
         /// <param name="y">The y-coordinate for the maximum extent of the new rectangle.</param>
         /// <returns>A new rectangle, with its <see cref="MaxExtentY"/> adjusted to the specified value.</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Rectangle WithMaxExtentY(int y)
             => new Rectangle(MinExtent, new Point(MaxExtentX, y));
 
@@ -530,6 +551,7 @@ namespace SadRogue.Primitives
         /// <param name="minExtent">The minimum extent of the new rectangle.</param>
         /// <returns>A new rectangle that has its minimum extent adjusted to the specified value.</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Rectangle WithMinExtent(Point minExtent)
             => new Rectangle(minExtent, MaxExtent);
 
@@ -540,6 +562,7 @@ namespace SadRogue.Primitives
         /// <param name="x">The x-coordinate for the minimum extent of the new rectangle.</param>
         /// <returns>A new rectangle, with its <see cref="MinExtentX"/> adjusted to the specified value.</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Rectangle WithMinExtentX(int x)
             => new Rectangle(new Point(x, MinExtentY), MaxExtent);
 
@@ -551,6 +574,7 @@ namespace SadRogue.Primitives
         /// <returns>A new rectangle, with its <see cref="MinExtentY"/> adjusted to the specified value.</returns>
         /// &gt;
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Rectangle WithMinExtentY(int y)
             => new Rectangle(new Point(MinExtentX, y), MaxExtent);
 
@@ -562,6 +586,7 @@ namespace SadRogue.Primitives
         /// <param name="height">The height for the new rectangle.</param>
         /// <returns>A new rectangle with the given width and height.</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Rectangle WithSize(int width, int height)
             => new Rectangle(X, Y, width, height);
 
@@ -572,6 +597,7 @@ namespace SadRogue.Primitives
         /// <param name="size">Vector (width, height) specifying the width/height of the new rectangle.</param>
         /// <returns>A new rectangle with the given width and height.</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Rectangle WithSize(Point size)
             => new Rectangle(X, Y, size.X, size.Y);
 
@@ -582,6 +608,7 @@ namespace SadRogue.Primitives
         /// <param name="width">The width for the new rectangle.</param>
         /// <returns>A new rectangle with its <see cref="Width"/> changed to the given value.</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Rectangle WithWidth(int width) => new Rectangle(X, Y, width, Height);
 
         /// <summary>
@@ -601,6 +628,7 @@ namespace SadRogue.Primitives
         /// A new rectangle, whose position has been moved by the given delta-change values.
         /// </returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Rectangle Translate(Point deltaChange)
             => new Rectangle(X + deltaChange.X, Y + deltaChange.Y, Width, Height);
 
@@ -610,6 +638,7 @@ namespace SadRogue.Primitives
         /// <param name="dx">Value by which to move the new rectangle's x-position.</param>
         /// <returns>A new rectangle, whose x-position has been moved by the given delta-x value.</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Rectangle TranslateX(int dx)
             => new Rectangle(X + dx, Y, Width, Height);
 
@@ -619,6 +648,7 @@ namespace SadRogue.Primitives
         /// <param name="dy">Value by which to move the new rectangle's y-position.</param>
         /// <returns>A new rectangle, whose y-position has been moved by the given delta-y value.</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Rectangle TranslateY(int dy)
             => new Rectangle(X, Y + dy, Width, Height);
 
@@ -833,6 +863,7 @@ namespace SadRogue.Primitives
         /// <param name="side"/>
         /// <returns>True if the given position lies along the given edge of the rectangle, false otherwise.</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool IsOnSide(Point point, Direction side) => side.Type switch
         {
             Direction.Types.Up => point.X >= MinExtentX && point.X <= MaxExtentX && point.Y ==
@@ -896,6 +927,7 @@ namespace SadRogue.Primitives
         /// <param name="side">Side to get positions for.</param>
         /// <returns>IEnumerable of all positions that line on the inner perimeter of the rectangle on the given side.</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public IEnumerable<Point> PositionsOnSide(Direction side) => side.Type switch
         {
             Direction.Types.Up => Direction.YIncreasesUpward ? MaxYPositions() : MinYPositions(),

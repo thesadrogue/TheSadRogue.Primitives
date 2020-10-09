@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.Contracts;
+using System.Runtime.CompilerServices;
 using MonoRectangle = Microsoft.Xna.Framework.Rectangle;
 using SadRogueRectangle = SadRogue.Primitives.Rectangle;
 
@@ -16,6 +17,7 @@ namespace SadRogue.Primitives
         /// <param name="self"/>
         /// <returns/>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static MonoRectangle ToMonoRectangle(this SadRogueRectangle self)
             => new MonoRectangle(self.X, self.Y, self.Width, self.Height);
 
@@ -26,6 +28,7 @@ namespace SadRogue.Primitives
         /// <param name="other"/>
         /// <returns/>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool Equals(this SadRogueRectangle self, MonoRectangle other)
             => self.X == other.X && self.Y == other.Y && self.Width == other.Width && self.Height == other.Height;
     }
@@ -45,6 +48,7 @@ namespace Microsoft.Xna.Framework
         /// <param name="self"/>
         /// <returns/>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static SadRogueRectangle ToRectangle(this MonoRectangle self)
             => new SadRogueRectangle(self.X, self.Y, self.Width, self.Height);
 
@@ -55,6 +59,7 @@ namespace Microsoft.Xna.Framework
         /// <param name="other"/>
         /// <returns/>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool Equals(this MonoRectangle self, SadRogueRectangle other)
             => self.X == other.X && self.Y == other.Y && self.Width == other.Width && self.Height == other.Height;
     }

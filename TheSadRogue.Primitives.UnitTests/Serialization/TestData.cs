@@ -67,6 +67,8 @@ namespace SadRogue.Primitives.UnitTests.Serialization
             },
             // PointSerialized
             new PointSerialized { X = 10, Y = 20 },
+            // PolarCoordinateSerialized
+            new PolarCoordinateSerialized { Radius = 5.0, Theta = 3 * Math.PI / 2.0 },
             // RectangleSerialized
             new RectangleSerialized { X = 10, Y = 20, Width = 100, Height = 200 }
         };

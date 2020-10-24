@@ -29,7 +29,7 @@ namespace SadRogue.Primitives
         /// <returns/>
         [Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool Equals(this SadRogueRectangle self, MonoRectangle other)
+        public static bool Matches(this SadRogueRectangle self, MonoRectangle other)
             => self.X == other.X && self.Y == other.Y && self.Width == other.Width && self.Height == other.Height;
     }
 }
@@ -60,7 +60,7 @@ namespace Microsoft.Xna.Framework
         /// <returns/>
         [Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool Equals(this MonoRectangle self, SadRogueRectangle other)
+        public static bool Matches(this MonoRectangle self, SadRogueRectangle other)
             => self.X == other.X && self.Y == other.Y && self.Width == other.Width && self.Height == other.Height;
     }
 }

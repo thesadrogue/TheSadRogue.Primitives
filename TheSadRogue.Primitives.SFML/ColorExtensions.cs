@@ -28,7 +28,7 @@ namespace SadRogue.Primitives
         /// <returns/>
         [Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool Equals(this SadRogueColor self, SFMLColor other)
+        public static bool Matches(this SadRogueColor self, SFMLColor other)
             => self.R == other.R && self.G == other.G && self.B == other.B && self.A == other.A;
     }
 }
@@ -59,7 +59,7 @@ namespace SFML.Graphics
         /// <returns/>
         [Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool Equals(this SFMLColor self, SadRogueColor other)
+        public static bool Matches(this SFMLColor self, SadRogueColor other)
             => self.R == other.R && self.G == other.G && self.B == other.B && self.A == other.A;
     }
 }

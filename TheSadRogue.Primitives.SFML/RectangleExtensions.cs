@@ -29,7 +29,7 @@ namespace SadRogue.Primitives
         /// <returns/>
         [Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool Equals(this SadRogueRectangle self, IntRect other)
+        public static bool Matches(this SadRogueRectangle self, IntRect other)
             => self.X == other.Left && self.Y == other.Top && self.Width == other.Width && self.Height == other.Height;
     }
 }
@@ -60,7 +60,7 @@ namespace SFML.Graphics
         /// <returns/>
         [Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool Equals(this IntRect self, SadRogueRectangle other)
+        public static bool Matches(this IntRect self, SadRogueRectangle other)
             => self.Left == other.X && self.Top == other.Y && self.Width == other.Width && self.Height == other.Height;
     }
 }

@@ -192,7 +192,7 @@ namespace SadRogue.Primitives
         /// <returns/>
         [Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool Equals(this SadRoguePoint self, Vector2i other) => self.X == other.X && self.Y == other.Y;
+        public static bool Matches(this SadRoguePoint self, Vector2i other) => self.X == other.X && self.Y == other.Y;
 
         /// <summary>
         /// Compares a <see cref="SadRogue.Primitives.Point"/> to a <see cref="SFML.System.Vector2u"/>.
@@ -202,7 +202,7 @@ namespace SadRogue.Primitives
         /// <returns/>
         [Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool Equals(this SadRoguePoint self, Vector2u other) => self.X == other.X && self.Y == other.Y;
+        public static bool Matches(this SadRoguePoint self, Vector2u other) => self.X == other.X && self.Y == other.Y;
 
         /// <summary>
         /// Compares a <see cref="SadRogue.Primitives.Point"/> to a <see cref="SFML.System.Vector2f"/>.
@@ -212,7 +212,7 @@ namespace SadRogue.Primitives
         /// <returns/>
         [Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool Equals(this SadRoguePoint self, Vector2f other)
+        public static bool Matches(this SadRoguePoint self, Vector2f other)
             => Math.Abs(self.X - other.X) < 0.0000000001 && Math.Abs(self.Y - other.Y) < 0.0000000001;
     }
 }
@@ -366,7 +366,7 @@ namespace SFML.System
         /// <returns/>
         [Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool Equals(this Vector2i self, SadRoguePoint other) => self.X == other.X && self.Y == other.Y;
+        public static bool Matches(this Vector2i self, SadRoguePoint other) => self.X == other.X && self.Y == other.Y;
     }
 
     /// <summary>
@@ -518,7 +518,7 @@ namespace SFML.System
         /// <returns/>
         [Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool Equals(this Vector2u self, SadRoguePoint other) => self.X == other.X && self.Y == other.Y;
+        public static bool Matches(this Vector2u self, SadRoguePoint other) => self.X == other.X && self.Y == other.Y;
     }
 
     /// <summary>
@@ -665,7 +665,7 @@ namespace SFML.System
         /// <returns/>
         [Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool Equals(this Vector2f self, SadRoguePoint other)
+        public static bool Matches(this Vector2f self, SadRoguePoint other)
             => Math.Abs(self.X - other.X) < 0.0000000001 && Math.Abs(self.Y - other.Y) < 0.0000000001;
     }
 }

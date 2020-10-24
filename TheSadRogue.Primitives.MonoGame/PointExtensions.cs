@@ -76,7 +76,7 @@ namespace SadRogue.Primitives
         /// <returns/>
         [Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool Equals(this SadRoguePoint self, MonoPoint other) => self.X == other.X && self.Y == other.Y;
+        public static bool Matches(this SadRoguePoint self, MonoPoint other) => self.X == other.X && self.Y == other.Y;
     }
 }
 
@@ -229,6 +229,6 @@ namespace Microsoft.Xna.Framework
         /// <returns/>
         [Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool Equals(this MonoPoint self, SadRoguePoint other) => self.X == other.X && self.Y == other.Y;
+        public static bool Matches(this MonoPoint self, SadRoguePoint other) => self.X == other.X && self.Y == other.Y;
     }
 }

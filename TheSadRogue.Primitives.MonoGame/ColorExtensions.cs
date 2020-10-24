@@ -28,7 +28,7 @@ namespace SadRogue.Primitives
         /// <returns/>
         [Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool Equals(this SadRogueColor self, MonoColor other)
+        public static bool Matches(this SadRogueColor self, MonoColor other)
             => self.R == other.R && self.G == other.G && self.B == other.B && self.A == other.A;
     }
 }
@@ -59,7 +59,7 @@ namespace Microsoft.Xna.Framework
         /// <returns/>
         [Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool Equals(this MonoColor self, SadRogueColor other)
+        public static bool Matches(this MonoColor self, SadRogueColor other)
             => self.R == other.R && self.G == other.G && self.B == other.B && self.A == other.A;
     }
 }

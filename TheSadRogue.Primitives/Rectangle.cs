@@ -11,7 +11,9 @@ namespace SadRogue.Primitives
     /// involving rectangles.
     /// </summary>
     [DataContract]
-    public readonly struct Rectangle : IEquatable<Rectangle>, IEquatable<(int x, int y, int width, int height)>
+    public readonly struct Rectangle : IEquatable<Rectangle>, IEquatable<(int x, int y, int width, int height)>,
+                                       IMatchable<Rectangle>, IMatchable<(int x, int y, int width, int height)>,
+                                       IEquatable<(Point minExtent, Point maxExtent)>, IMatchable<(Point minExtent, Point maxExtent)>
     {
         /// <summary>
         /// The empty rectangle. Has origin of (0, 0) with 0 width and height.
@@ -447,6 +449,17 @@ namespace SadRogue.Primitives
                                                    other.Y < Y + Height && Y < other.Y + other.Height;
 
         /// <summary>
+        /// Compares based upon whether or not the areas contained within the rectangle are identical
+        /// in both position and extents.
+        /// </summary>
+        /// <param name="other"/>
+        /// <returns>
+        /// true if the area of the two rectangles encompass the exact same area, false otherwise.
+        /// </returns>
+        [Pure]
+        public bool Matches(Rectangle other) => Equals(other);
+
+        /// <summary>
         /// Creates and returns a new rectangle that has its <see cref="Position"/> moved to the given position.
         /// </summary>
         /// <param name="position">The position for the new rectangle.</param>
@@ -741,6 +754,14 @@ namespace SadRogue.Primitives
         public bool Equals((int x, int y, int width, int height) other)
             => X == other.x && Y == other.y && Width == other.width && Height == other.height;
 
+        /// <summary>
+        /// True if the given position has equal x and y values to the current one.
+        /// </summary>
+        /// <param name="other">Point to compare.</param>
+        /// <returns>True if the two positions are equal, false if not.</returns>
+        [Pure]
+        public bool Matches((int x, int y, int width, int height) other) => Equals(other);
+
         #endregion
 
         #region (minExtent, maxExtent)
@@ -825,6 +846,14 @@ namespace SadRogue.Primitives
         [Pure]
         public bool Equals((Point minExtent, Point maxExtent) other)
             => MinExtent == other.minExtent && MaxExtent == other.maxExtent;
+
+        /// <summary>
+        /// True if the given position has equal x and y values to the current one.
+        /// </summary>
+        /// <param name="other">Point to compare.</param>
+        /// <returns>True if the two positions are equal, false if not.</returns>
+        [Pure]
+        public bool Matches((Point minExtent, Point maxExtent) other) => Equals(other);
 
         #endregion
 

@@ -18,7 +18,7 @@ namespace SadRogue.Primitives
     /// shape).
     /// </remarks>
     [DataContract]
-    public readonly struct Radius : IEquatable<Radius>
+    public readonly struct Radius : IEquatable<Radius>, IMatchable<Radius>
     {
         /// <summary>
         /// Radius is a circle around the center point. CIRCLE would represent movement radius in
@@ -194,6 +194,13 @@ namespace SadRogue.Primitives
         /// <returns/>
         [Pure]
         public override int GetHashCode() => Type.GetHashCode();
+
+        /// <summary>
+        /// True if the given Radius has the same Type the current one.
+        /// </summary>
+        /// <param name="other">Radius to compare.</param>
+        /// <returns>True if the two radius shapes are the same, false if not.</returns>
+        public bool Matches(Radius other) => Equals(other);
 
         /// <summary>
         /// True if the two radius shapes have the same Type.

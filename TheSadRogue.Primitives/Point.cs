@@ -12,13 +12,14 @@ namespace SadRogue.Primitives
     /// <remarks>
     /// Point instances can be created using the standard Point c = new Point(x, y) syntax.  In addition,
     /// you may create a coord from a c# 7 tuple, like Point c = (x, y);.  As well, Point supports C#
-    /// Deconstrution syntax.
+    /// Deconstruction syntax.
     ///
     /// Point also provides operators and static helper functions that perform common grid math/operations,
     /// as well as interoperability with other grid-based classes like <see cref="Direction"/>.
     /// </remarks>
     [DataContract]
-    public readonly struct Point : IEquatable<Point>, IEquatable<(int x, int y)>
+    public readonly struct Point : IEquatable<Point>, IEquatable<(int x, int y)>, IMatchable<Point>,
+                                   IMatchable<(int x, int y)>
     {
         /// <summary>
         /// Point value that represents None or no position (since Point is not a nullable type).
@@ -119,6 +120,13 @@ namespace SadRogue.Primitives
         public static double EuclideanDistanceMagnitude(Point deltaChange)
             => deltaChange.X * deltaChange.X + deltaChange.Y * deltaChange.Y;
 
+        /// <summary>
+        /// True if the given coordinate has equal x and y values to the current one.
+        /// </summary>
+        /// <param name="other">Position to compare.</param>
+        /// <returns>True if the two positions are equal, false if not.</returns>
+        [Pure]
+        public bool Matches(Point other) => Equals(other);
 
         /// <summary>
         /// Returns the midpoint between the two points.
@@ -542,11 +550,18 @@ namespace SadRogue.Primitives
         /// <summary>
         /// True if the given position has equal x and y values to the current one.
         /// </summary>
-        /// <param name="other">Point to compare.</param>
+        /// <param name="other">Tuple to compare.</param>
         /// <returns>True if the two positions are equal, false if not.</returns>
         [Pure]
         public bool Equals((int x, int y) other) => X == other.x && Y == other.y;
 
+        /// <summary>
+        /// True if the given position has equal x and y values to the current one.
+        /// </summary>
+        /// <param name="other">Point to compare.</param>
+        /// <returns>True if the two positions are equal, false if not.</returns>
+        [Pure]
+        public bool Matches((int x, int y) other) => Equals(other);
         #endregion
 
         #region Circles

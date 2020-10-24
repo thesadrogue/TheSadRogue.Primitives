@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Runtime.Serialization;
 
 namespace SadRogue.Primitives
 {
@@ -47,7 +48,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="other">BoundedRectangle to compare.</param>
         /// <returns>True if the two BoundedRectangles are the same, false if not.</returns>
-        public bool Matches(BoundedRectangle? other)
+        public bool Matches([AllowNull]BoundedRectangle other)
             => !ReferenceEquals(other, null) && _area == other._area && _boundingBox == other._boundingBox;
 
         /// <summary>

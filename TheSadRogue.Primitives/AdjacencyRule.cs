@@ -11,7 +11,7 @@ namespace SadRogue.Primitives
     /// static instances are provided.
     /// </summary>
     [DataContract]
-    public readonly struct AdjacencyRule : IEquatable<AdjacencyRule>
+    public readonly struct AdjacencyRule : IEquatable<AdjacencyRule>, IMatchable<AdjacencyRule>
     {
         /// <summary>
         /// Represents method of determining adjacency where neighbors are considered adjacent if
@@ -218,6 +218,14 @@ namespace SadRogue.Primitives
                         $"{nameof(DirectionsOfNeighborsCounterClockwise)} does not support AdjacencyRule type {Type} -- this is a bug!");
             }
         }
+
+        /// <summary>
+        /// True if the given AdjacencyRule has the same Type the current one.
+        /// </summary>
+        /// <param name="other">AdjacencyRule to compare.</param>
+        /// <returns>True if the two directions are the same, false if not.</returns>
+        [Pure]
+        public bool Matches(AdjacencyRule other) => Equals(other);
 
         /// <summary>
         /// Gets all neighbors of the specified location, based on the current adjacency method.

@@ -11,7 +11,7 @@ namespace SadRogue.Primitives
     /// A gradient stop. Defines a color and where it is located within the gradient.
     /// </summary>
     [DataContract]
-    public readonly struct GradientStop : IEquatable<GradientStop>
+    public readonly struct GradientStop : IEquatable<GradientStop>, IMatchable<GradientStop>
     {
         /// <summary>
         /// The color.
@@ -75,6 +75,14 @@ namespace SadRogue.Primitives
         /// <returns>True if this gradient stop and the specified one have the same color and stop values; false otherwise.</returns>
         [Pure]
         public bool Equals(GradientStop g) => Color == g.Color && Math.Abs(Stop - g.Stop) < 0.0000000001;
+
+        /// <summary>
+        /// Compares this gradient stop to the one given.
+        /// </summary>
+        /// <param name="other"/>
+        /// <returns>True if this gradient stop and the specified one have the same color and stop values; false otherwise.</returns>
+        [Pure]
+        public bool Matches(GradientStop other) => Equals(other);
     }
 
     /// <summary>

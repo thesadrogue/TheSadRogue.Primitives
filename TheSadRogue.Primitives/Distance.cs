@@ -17,7 +17,7 @@ namespace SadRogue.Primitives
     /// locations and a radius shape are implied by a distance calculation).
     /// </remarks>
     [DataContract]
-    public readonly struct Distance : IEquatable<Distance>
+    public readonly struct Distance : IEquatable<Distance>, IMatchable<Distance>
     {
         /// <summary>
         /// Represents chebyshev distance (equivalent to 8-way movement with no extra cost for diagonals).
@@ -205,6 +205,14 @@ namespace SadRogue.Primitives
         /// <returns/>
         [Pure]
         public override int GetHashCode() => Type.GetHashCode();
+
+        /// <summary>
+        /// True if the given Distance has the same Type the current one.
+        /// </summary>
+        /// <param name="other">Distance to compare.</param>
+        /// <returns>True if the two distance calculation methods are the same, false if not.</returns>
+        [Pure]
+        public bool Matches(Distance other) => Equals(other);
 
         /// <summary>
         /// True if the two Distances have the same Type.

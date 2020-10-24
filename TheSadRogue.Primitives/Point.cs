@@ -586,7 +586,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="degrees">The amount of Degrees to rotate this point clockwise</param>
         /// <returns>The equivalent point after a rotation</returns>
-        public  Point Rotate(in double degrees)
+        public  Point Rotate(double degrees)
         {
             double radians = MathHelpers.ToRadian(degrees);
             int x = (int)Math.Round(X * Math.Cos(radians) - Y * Math.Sin(radians));
@@ -600,9 +600,9 @@ namespace SadRogue.Primitives
         /// <param name="degrees">The amount of Degrees to rotate this point</param>
         /// <param name="origin">The Point around which to rotate</param>
         /// <returns>The equivalent point after a rotation</returns>
-        public Point Rotate(in double degrees, Point origin)
+        public Point Rotate(double degrees, Point origin)
         {
-            Point rotatingPoint = (X,Y) - origin;
+            Point rotatingPoint = this - origin;
             double radians = MathHelpers.ToRadian(degrees);
             int x = (int)Math.Round(rotatingPoint.X * Math.Cos(radians) - rotatingPoint.Y * Math.Sin(radians));
             int y = (int)Math.Round(rotatingPoint.X * Math.Sin(radians) + rotatingPoint.Y * Math.Cos(radians));

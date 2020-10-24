@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Xunit;
 
@@ -48,5 +50,13 @@ namespace SadRogue.Primitives.UnitTests
         }
 
         public static IEnumerable<T> Enumerable<T>(params T[] objs) => objs;
+
+        public static void NotNull([NotNull]object? obj)
+        {
+            Assert.NotNull(obj);
+            if (obj == null)
+                throw new Exception("Can't happen, prevents compiler from complaining.");
+
+        }
     }
 }

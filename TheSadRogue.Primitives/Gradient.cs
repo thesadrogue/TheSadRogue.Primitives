@@ -81,7 +81,7 @@ namespace SadRogue.Primitives
     /// Represents a gradient with multiple color stops.
     /// </summary>
     [DataContract]
-    public class Gradient : IEnumerable<GradientStop>
+    public class Gradient : IEnumerable<GradientStop>, IMatchable<Gradient>
     {
         /// <summary>
         /// The color stops that define the gradient.
@@ -247,48 +247,26 @@ namespace SadRogue.Primitives
         public static implicit operator Gradient(Color color) => new Gradient(color, color);
 
         /// <summary>
-        /// Returns true if the object is a gradient that contains precisely the same stops.
-        /// </summary>
-        /// <param name="obj"/>
-        /// <returns>True if the object is a gradient that contains precisely the same stops; false otherwise</returns>
-        public override bool Equals(object? obj) => obj is Gradient gradient && this == gradient;
-
-        /// <summary>
-        /// Returns a hash code based on the gradient's stops.
-        /// </summary>
-        /// <returns>A hash code based on the gradient's stops.</returns>
-        public override int GetHashCode() => Stops.GetHashCode();
-
-        /// <summary>
         /// Returns true if the given gradients contain precisely the same stops.
         /// </summary>
-        /// <param name="g1"/>
-        /// <param name="g2"/>
+        /// <param name="other"/>
         /// <returns>True if the given gradients contain precisely the same stops; false otherwise.</returns>
-        public static bool operator ==(Gradient? g1, Gradient? g2)
+        public bool Matches(Gradient? other)
         {
-            if (ReferenceEquals(g1, g2))
+            if (other is null)
+                return false;
+
+            if (ReferenceEquals(this, other))
                 return true;
 
-            if (g1 is null || g2 is null)
+            if (Stops.Length != other.Stops.Length)
                 return false;
 
-            if (g1.Stops.Length != g2.Stops.Length)
-                return false;
-
-            for (int i = 0; i < g1.Stops.Length; i++)
-                if (g1.Stops[i] != g2.Stops[i])
+            for (int i = 0; i < Stops.Length; i++)
+                if (Stops[i] != other.Stops[i])
                     return false;
 
             return true;
         }
-
-        /// <summary>
-        /// Returns true if the gradients have a different sequence of stops.
-        /// </summary>
-        /// <param name="g1"/>
-        /// <param name="g2"/>
-        /// <returns>True if the gradients have a different sequence of stops; false otherwise.</returns>
-        public static bool operator !=(Gradient g1, Gradient g2) => !(g1 == g2);
     }
 }

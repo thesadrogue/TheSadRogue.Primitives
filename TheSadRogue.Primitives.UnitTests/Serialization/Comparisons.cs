@@ -11,8 +11,12 @@ namespace SadRogue.Primitives.UnitTests.Serialization
         private static readonly Dictionary<Type, Func<object, object, bool>> _equalityMethods =
             new Dictionary<Type, Func<object, object, bool>>()
             {
+                { typeof(Area), MatchableCompare<IReadOnlyArea> },
                 { typeof(AreaSerialized), AreaSerializedCompare },
+                { typeof(BoundedRectangle), MatchableCompare<BoundedRectangle> },
+                { typeof(Gradient), MatchableCompare<Gradient> },
                 { typeof(GradientSerialized), GradientSerializedCompare },
+                { typeof(Palette), MatchableCompare<Palette> },
                 { typeof(PaletteSerialized), PaletteSerializedCompare }
             };
 
@@ -29,6 +33,9 @@ namespace SadRogue.Primitives.UnitTests.Serialization
         private static bool GradientSerializedCompare(object o1, object o2)
             => ElementWiseEquality(((GradientSerialized)o1).Stops, ((GradientSerialized)o2).Stops);
 
+        private static bool MatchableCompare<T>(object o1, object o2)
+            where T : class, IMatchable<T>
+            => ((T)o1).Matches((T?)o2);
         private static bool ElementWiseEquality<T>(IEnumerable<T> e1, IEnumerable<T> e2,
                                                    Func<T, T, bool>? compareFunc = null)
         {

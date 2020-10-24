@@ -1,5 +1,4 @@
-﻿using System;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 
 namespace SadRogue.Primitives
 {
@@ -9,7 +8,7 @@ namespace SadRogue.Primitives
     /// keeping track of a camera's view area.
     /// </summary>
     [DataContract]
-    public class BoundedRectangle : IEquatable<BoundedRectangle>
+    public class BoundedRectangle : IMatchable<BoundedRectangle>
     {
         [DataMember] private Rectangle _area;
         // A bug in code cleanup will add the readonly modifier to this field even though it would break the BoundingBox property at compile-time,
@@ -48,47 +47,8 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="other">BoundedRectangle to compare.</param>
         /// <returns>True if the two BoundedRectangles are the same, false if not.</returns>
-        public bool Equals(BoundedRectangle? other)
+        public bool Matches(BoundedRectangle? other)
             => !ReferenceEquals(other, null) && _area == other._area && _boundingBox == other._boundingBox;
-
-        /// <summary>
-        /// Same as operator == in this case; returns false if <paramref name="obj" /> is not a BoundedRectangle.
-        /// </summary>
-        /// <param name="obj">The object to compare the current BoundedRectangle to.</param>
-        /// <returns>
-        /// True if <paramref name="obj" /> is a BoundedRectangle, and the two BoundedRectangles are the same, false otherwise.
-        /// </returns>
-        public override bool Equals(object? obj) => obj is BoundedRectangle c && Equals(c);
-
-        /// <summary>
-        /// Returns a hash-map value for the current object based on <see cref="Area"/> and <see cref="BoundingBox"/>.
-        /// If instances are being used in a hash table or dictionary, you MUST NOT change either of those properties
-        /// once it has been added to the collection.
-        /// </summary>
-        /// <returns />
-        public override int GetHashCode()
-            // ReSharper disable once NonReadonlyMemberInGetHashCode
-            => _area.GetHashCode() ^
-               // ReSharper disable once NonReadonlyMemberInGetHashCode
-               _boundingBox.GetHashCode();
-
-        /// <summary>
-        /// True if the two BoundedRectangle objects are equivalent.
-        /// </summary>
-        /// <param name="lhs" />
-        /// <param name="rhs" />
-        /// <returns>True if the two BoundedRectangle objects are equivalent, false if not.</returns>
-        public static bool operator ==(BoundedRectangle? lhs, BoundedRectangle? rhs) => lhs?.Equals(rhs) ?? rhs is null;
-
-        /// <summary>
-        /// True if the types are not equal.
-        /// </summary>
-        /// <param name="lhs" />
-        /// <param name="rhs" />
-        /// <returns>
-        /// True if the types are not equal, false if they are both equal.
-        /// </returns>
-        public static bool operator !=(BoundedRectangle lhs, BoundedRectangle rhs) => !(lhs == rhs);
 
         /// <summary>
         /// Forces the area given to conform to the <see cref="BoundingBox" /> specified and sets it to <see cref="Area" />.

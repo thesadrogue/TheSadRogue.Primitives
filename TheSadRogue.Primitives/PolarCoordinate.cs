@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
+using System.Runtime.Serialization;
 
 namespace SadRogue.Primitives
 {
@@ -12,20 +13,21 @@ namespace SadRogue.Primitives
     /// See wikipedia: https://en.wikipedia.org/wiki/Polar_coordinate_system
     /// Polar Coordinates are very, very slow and should not be used often
     /// </remarks>
+    [DataContract]
     public readonly struct PolarCoordinate : IEquatable<PolarCoordinate>
     {
         /// <summary>
         /// The distance away from the Origin (0,0) of this Polar Coord
         /// </summary>
-        public readonly double Radius;
+        [DataMember] public readonly double Radius;
 
         /// <summary>
         /// The angle of rotation, clockwise, in radians
         /// </summary>
-        public readonly double Theta; //in degrees clockwise
+        [DataMember] public readonly double Theta; //in degrees clockwise
 
         /// <summary>
-        /// Creates a new Polaar Coordinate with the given Radius and Theta
+        /// Creates a new Polar Coordinate with the given Radius and Theta
         /// </summary>
         /// <param name="radius">Radius of the Polar Coord</param>
         /// <param name="theta">Degree of rotation (clockwise) of the Polar Coord</param>

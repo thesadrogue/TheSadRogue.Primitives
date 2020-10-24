@@ -139,14 +139,6 @@ namespace SadRogue.Primitives
         }
 
         /// <summary>
-        /// Inequality comparison -- true if the two areas do NOT contain exactly the same points.
-        /// </summary>
-        /// <param name="lhs"/>
-        /// <param name="rhs"/>
-        /// <returns>True if the areas do NOT contain exactly the same points, false otherwise.</returns>
-        public static bool operator !=(Area lhs, Area rhs) => !(lhs == rhs);
-
-        /// <summary>
         /// Creates an area with the positions all shifted by the given vector.
         /// </summary>
         /// <param name="lhs"/>
@@ -167,27 +159,25 @@ namespace SadRogue.Primitives
         /// <summary>
         /// Compares for equality. Returns true if the two areas contain exactly the same points.
         /// </summary>
-        /// <param name="lhs"/>
-        /// <param name="rhs"/>
+        /// <param name="other"/>
         /// <returns>True if the areas contain exactly the same points, false otherwise.</returns>
-        public static bool operator ==(Area? lhs, Area? rhs)
+        public bool Matches(IReadOnlyArea? other)
         {
-            if (ReferenceEquals(lhs, rhs))
+            if (other is null)
+                return false;
+
+            if (ReferenceEquals(this, other))
                 return true;
 
-            // If one side is null (can't both be null or above would have returned)
-            if (lhs is null || rhs is null)
-                return false;
-
             // Quick checks that can short-circuit a function that would otherwise require looping over all points
-            if (lhs.Count != rhs.Count)
+            if (Count != other.Count)
                 return false;
 
-            if (lhs.Bounds != rhs.Bounds)
+            if (Bounds != other.Bounds)
                 return false;
 
-            foreach (Point pos in lhs.Positions)
-                if (!rhs.Contains(pos))
+            foreach (Point pos in Positions)
+                if (!other.Contains(pos))
                     return false;
 
             return true;
@@ -280,22 +270,6 @@ namespace SadRogue.Primitives
 
             return true;
         }
-
-        /// <summary>
-        /// Returns true if the given object is an Area and the two areas contain exactly the same points,
-        /// false otherwise.
-        /// </summary>
-        /// <param name="obj">Object to compare</param>
-        /// <returns>
-        /// True if the object given is a area and contains exactly the same points, false otherwise.
-        /// </returns>
-        public override bool Equals(object? obj) => obj is Area area && this == area;
-
-        /// <summary>
-        /// Returns hash of the underlying set
-        /// </summary>
-        /// <returns>Hash code for the underlying set.</returns>
-        public override int GetHashCode() => _positionsSet.GetHashCode();
 
         /// <summary>
         /// Returns whether or not the given map area intersects the current one. If you intend to

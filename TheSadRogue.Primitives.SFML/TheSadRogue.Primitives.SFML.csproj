@@ -6,7 +6,7 @@
     <RootNamespace>SadRogue.Primitives</RootNamespace>
     <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
-	<Version>1.0.0-alpha3</Version>
+	<Version>1.0.0-alpha4</Version>
 	<Version Condition="'$(Configuration)'=='Debug'">$(Version)-debug</Version>
 	<Authors>Chris3606;Thraka</Authors>
 	<Company>TheSadRogue</Company>
@@ -15,7 +15,7 @@
 	
 	<!-- More nuget package settings-->
 	<PackageId>TheSadRogue.Primitives.SFML</PackageId>
-	<PackageReleaseNotes>Upgraded/multi-targeted to .NET Standard 2.1/.NET Core 3.1.  Updated SadRogue.Primitives version.</PackageReleaseNotes>
+	<PackageReleaseNotes>Updated SadRogue.Primitives version.  Modified extension methods for equality to be named Matches to avoid ambiguitiy in calls.</PackageReleaseNotes>
 	<RepositoryUrl>https://https://github.com/thesadrogue/TheSadRogue.Primitives</RepositoryUrl>
 	<RepositoryType>git</RepositoryType>
 	<PublishRepositoryUrl>true</PublishRepositoryUrl>
@@ -40,7 +40,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All"/>
     <PackageReference Include="SFML.Graphics" Version="2.5.0" />
-    <PackageReference Include="TheSadRogue.Primitives" Version="1.0.0-alpha5" />
+    <PackageReference Include="TheSadRogue.Primitives" Version="1.0.0-alpha6" />
   </ItemGroup>
   
   <!-- When packing, copy the nuget files to the nuget output directory -->

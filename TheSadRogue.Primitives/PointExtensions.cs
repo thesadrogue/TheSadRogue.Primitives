@@ -128,5 +128,15 @@ namespace SadRogue.Primitives
         [Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Point Divide(this Point self, double d) => self / d;
+
+        /// <summary>
+        /// Compares the two points for equality; equivalent to <see cref="Point.Equals(Point)"/>.
+        /// </summary>
+        /// <param name="self"/>
+        /// <param name="other"/>
+        /// <returns>True if the two points are equal; false otherwise.</returns>
+        [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool Matches(this Point self, Point other) => self.Equals(other);
     }
 }

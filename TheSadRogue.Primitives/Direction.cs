@@ -24,7 +24,7 @@ namespace SadRogue.Primitives
     /// coordinate plane defined by Unity and other game engines.
     /// </remarks>
     [DataContract]
-    public readonly struct Direction : IEquatable<Direction>
+    public readonly struct Direction : IEquatable<Direction>, IMatchable<Direction>
     {
         private static readonly string[] s_writeVals = Enum.GetNames(typeof(Types));
 
@@ -213,6 +213,14 @@ namespace SadRogue.Primitives
         /// <returns/>
         [Pure]
         public override int GetHashCode() => Type.GetHashCode();
+
+        /// <summary>
+        /// True if the given direction has the same Type the current one.
+        /// </summary>
+        /// <param name="other">Direction to compare.</param>
+        /// <returns>True if the two directions are the same, false if not.</returns>
+        [Pure]
+        public bool Matches(Direction other) => Equals(other);
 
         /// <summary>
         /// True if the two directions have the same Type.

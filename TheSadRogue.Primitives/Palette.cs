@@ -10,7 +10,7 @@ namespace SadRogue.Primitives
     /// A palette of colors.
     /// </summary>
     [DataContract]
-    public class Palette : IEnumerable<Color>
+    public class Palette : IEnumerable<Color>, IMatchable<Palette>
     {
         [DataMember] private readonly Color[] _colors;
 
@@ -138,48 +138,26 @@ namespace SadRogue.Primitives
         IEnumerator IEnumerable.GetEnumerator() => _colors.GetEnumerator();
 
         /// <summary>
-        /// True if the given object is a Palette and its colors are identical and in the same order.
-        /// </summary>
-        /// <param name="obj"/>
-        /// <returns>True if the given object is a Palette and its colors are identical and in the same order; false otherwise.</returns>
-        public override bool Equals(object? obj) => obj is Palette palette && this == palette;
-
-        /// <summary>
-        /// Returns hash code based on the colors.
-        /// </summary>
-        /// <returns>Hash code for the object based on the colors.</returns>
-        public override int GetHashCode() => _colors.GetHashCode();
-
-        /// <summary>
         /// Returns true if the two palettes hold identical colors in the same order.
         /// </summary>
-        /// <param name="p1"/>
-        /// <param name="p2"/>
+        /// <param name="other"/>
         /// <returns>True if the two palettes hold identical colors in the same order; false otherwise.</returns>
-        public static bool operator ==(Palette? p1, Palette? p2)
+        public bool Matches(Palette? other)
         {
-            if (ReferenceEquals(p1, p2))
+            if (other is null)
+                return false;
+
+            if (ReferenceEquals(this, other))
                 return true;
 
-            if (p1 is null || p2 is null)
+            if (Length != other.Length)
                 return false;
 
-            if (p1.Length != p2.Length)
-                return false;
-
-            for (int i = 0; i < p1.Length; i++)
-                if (p1[i] != p2[i])
+            for (int i = 0; i < Length; i++)
+                if (this[i] != other[i])
                     return false;
 
             return true;
         }
-
-        /// <summary>
-        /// Returns true if the two palettes have different colors or the same colors in a different order.
-        /// </summary>
-        /// <param name="p1"/>
-        /// <param name="p2"/>
-        /// <returns>True if the two palettes have different colors or the same colors in a different order; false otherwise.</returns>
-        public static bool operator !=(Palette p1, Palette p2) => !(p1 == p2);
     }
 }

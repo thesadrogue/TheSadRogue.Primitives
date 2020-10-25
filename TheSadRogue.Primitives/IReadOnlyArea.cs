@@ -5,7 +5,7 @@ namespace SadRogue.Primitives
     /// <summary>
     /// Read-only interface for an arbitrary 2D area.
     /// </summary>
-    public interface IReadOnlyArea
+    public interface IReadOnlyArea : IMatchable<IReadOnlyArea>
     {
         /// <summary>
         /// Smallest possible rectangle that encompasses every position in the area.

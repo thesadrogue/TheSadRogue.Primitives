@@ -6,16 +6,16 @@
     <RootNamespace>SadRogue.Primitives</RootNamespace>
     <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
-	<Version>1.0.0-alpha5</Version>
+	<Version>1.0.0-alpha6</Version>
 	<Version Condition="'$(Configuration)'=='Debug'">$(Version)-debug</Version>
 	<Authors>Chris3606;Thraka</Authors>
 	<Company>TheSadRogue</Company>
 	<Copyright>Copyright © 2020 [Christopher Ridley (Chris3606) and TheSadRogue Steve De George JR (Thraka)]</Copyright>
 	<Description>A collection of primitive data structures for working with a 2-dimensional grid.</Description>
-	
+
 	<!-- More nuget package settings-->
 	<PackageId>TheSadRogue.Primitives</PackageId>
-	<PackageReleaseNotes>Updated to C# 8 and .NET Standard 2.1.  Multi-targeted to .NET Core 3.1.  Added missing docstrings.  Removed duplicate XEdgePositions functions, and refactored IsOnXEdge functions to match API.  Added polar coordinates.</PackageReleaseNotes>
+	<PackageReleaseNotes>Added rotation method to points.  Added functions for bisection/division to Rectangle.  Changed ANSI colors to be readonly.  Small optimizations to PolarCoordinate.  Added AggressiveInline attribute to appropriate methods.  Corrected nullability of equality operations.  Removed equality operations from mutable types, and replaced with IMatchable implementations.</PackageReleaseNotes>
 	<RepositoryUrl>https://https://github.com/thesadrogue/TheSadRogue.Primitives</RepositoryUrl>
 	<RepositoryType>git</RepositoryType>
 	<PublishRepositoryUrl>true</PublishRepositoryUrl>
@@ -35,18 +35,18 @@
     <DefineConstants>TRACE</DefineConstants>
     <DocumentationFile>bin\$(Configuration)\netstandard2.1\TheSadRogue.Primitives.xml</DocumentationFile>
   </PropertyGroup>
-  
+
   <!-- Dependencies -->
   <ItemGroup>
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
   </ItemGroup>
-  
+
   <!-- When packing, copy the nuget files to the nuget output directory -->
   <Target Name="CopyPackage" AfterTargets="Pack">
     <Copy SourceFiles="$(OutputPath)\$(PackageId).$(PackageVersion).nupkg" DestinationFolder="$(OutputPath)..\..\..\nuget" />
     <Copy SourceFiles="$(OutputPath)\$(PackageId).$(PackageVersion).snupkg" DestinationFolder="$(OutputPath)..\..\..\nuget" />
   </Target>
-  
+
   <!-- Run InheritDoc on the final builds. -->
   <Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(OS)' == 'Windows_NT'">
 	<Exec Command="dotnet tool restore" />

@@ -16,7 +16,7 @@ namespace SadRogue.Primitives
     /// </summary>
     [DataContract]
     [DebuggerDisplay("{DebugDisplayString,nq}")]
-    public readonly struct Color : IEquatable<Color>
+    public readonly struct Color : IEquatable<Color>, IMatchable<Color>
     {
         static Color()
         {
@@ -1273,6 +1273,14 @@ namespace SadRogue.Primitives
                 (int)MathHelpers.Lerp(value1.B, value2.B, amount),
                 (int)MathHelpers.Lerp(value1.A, value2.A, amount));
         }
+
+        /// <summary>
+        /// Returns true if the colors represent the same color values.
+        /// </summary>
+        /// <param name="other"/>
+        /// <returns/>
+        [Pure]
+        public bool Matches(Color other) => Equals(other);
 
         /// <summary>
         /// Multiply <see cref="Color"/> by value.

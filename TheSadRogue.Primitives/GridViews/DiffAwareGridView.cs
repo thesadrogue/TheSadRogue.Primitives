@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 
 namespace SadRogue.Primitives.GridViews
 {
@@ -8,23 +9,24 @@ namespace SadRogue.Primitives.GridViews
     /// Records a value change in a diff as recorded by a <see cref="DiffAwareGridView{T}"/>.
     /// </summary>
     /// <typeparam name="T">Type of value being changed.</typeparam>
-    public readonly struct ValueChange<T> : IEquatable<ValueChange<T>>
+    [DataContract]
+    public readonly struct ValueChange<T> : IEquatable<ValueChange<T>>, IMatchable<ValueChange<T>>
         where T : struct
     {
         /// <summary>
         /// Position whose value was changed.
         /// </summary>
-        public readonly Point Position;
+        [DataMember] public readonly Point Position;
 
         /// <summary>
         /// Original value that was changed.
         /// </summary>
-        public readonly T OldValue;
+        [DataMember] public readonly T OldValue;
 
         /// <summary>
         /// New value that was set.
         /// </summary>
-        public readonly T NewValue;
+        [DataMember] public readonly T NewValue;
 
         /// <summary>
         /// Creates a new value change record.
@@ -42,6 +44,13 @@ namespace SadRogue.Primitives.GridViews
         /// <inheritdoc />
         public bool Equals(ValueChange<T> other)
             => Position.Equals(other.Position) && OldValue.Equals(other.OldValue) && NewValue.Equals(other.NewValue);
+
+        /// <summary>
+        /// Compares the two changes according to their positions and values.
+        /// </summary>
+        /// <param name="other"/>
+        /// <returns>True if the two value changes represent the same change, false otherwise.</returns>
+        public bool Matches(ValueChange<T> other) => Equals(other);
 
         /// <inheritdoc />
         public override bool Equals(object? obj) => obj is ValueChange<T> other && Equals(other);

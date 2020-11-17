@@ -13,7 +13,7 @@ namespace SadRogue.Primitives.GridViews
     /// If you need a 1D array instead of 2D, then you should use <see cref="ArrayView{T}" /> instead.
     /// </remarks>
     /// <typeparam name="T">The type of value being stored.</typeparam>
-    public sealed class ArrayView2D<T> : SettableGridViewBase<T>, ICloneable, IEquatable<ArrayView2D<T>>
+    public sealed class ArrayView2D<T> : SettableGridViewBase<T>, ICloneable, IMatchable<ArrayView2D<T>>
     {
         private readonly T[,] _array;
 
@@ -52,7 +52,7 @@ namespace SadRogue.Primitives.GridViews
         /// </summary>
         /// <param name="other" />
         /// <returns>True if the given ArrayView2D&lt;T&gt; with a reference to the same underlying array, false otherwise.</returns>
-        public bool Equals(ArrayView2D<T>? other) => !(other is null) && _array == other._array;
+        public bool Matches(ArrayView2D<T>? other) => !(other is null) && _array == other._array;
 
         /// <inheritdoc />
         public override int Height => _array.GetLength(1);
@@ -87,50 +87,6 @@ namespace SadRogue.Primitives.GridViews
         /// Sets each element in the ArrayView to the default for type T.
         /// </summary>
         public void Clear() => Array.Clear(_array, 0, _array.Length);
-
-        /// <summary>
-        /// Compares the current ArrayView2D to the object given.
-        /// </summary>
-        /// <param name="obj" />
-        /// <returns>
-        /// True if the given object is an ArrayView2D&lt;T&gt; with a reference to the same underlying array, false
-        /// otherwise.
-        /// </returns>
-        public override bool Equals(object? obj)
-        {
-            if (obj is ArrayView2D<T> e)
-                return Equals(e);
-
-            return false;
-        }
-
-        /// <summary>
-        /// Returns a hash-value for this object.
-        /// </summary>
-        /// <returns />
-        public override int GetHashCode() => _array.GetHashCode();
-
-        /// <summary>
-        /// Compares the two ArrayView2D instances.
-        /// </summary>
-        /// <param name="lhs" />
-        /// <param name="rhs" />
-        /// <returns>
-        /// True if the two given ArrayView2D&lt;T&gt; instances have a reference to the same underlying array, false
-        /// otherwise.
-        /// </returns>
-        public static bool operator ==(ArrayView2D<T>? lhs, ArrayView2D<T>? rhs) => lhs?.Equals(rhs) ?? rhs is null;
-
-        /// <summary>
-        /// Compares the two ArrayView2D instances.
-        /// </summary>
-        /// <param name="lhs" />
-        /// <param name="rhs" />
-        /// <returns>
-        /// True if the two given ArrayView2D&lt;T&gt; instances do NOT have a reference to the same underlying array,
-        /// false otherwise.
-        /// </returns>
-        public static bool operator !=(ArrayView2D<T>? lhs, ArrayView2D<T>? rhs) => !(lhs == rhs);
 
         /// <summary>
         /// Returns a string representation of the grid values.

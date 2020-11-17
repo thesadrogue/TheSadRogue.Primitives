@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using SadRogue.Primitives.GridViews;
 using SadRogue.Primitives.SerializedTypes;
 
 namespace SadRogue.Primitives.UnitTests.Serialization
@@ -10,7 +11,8 @@ namespace SadRogue.Primitives.UnitTests.Serialization
         #region Original Data
         /// <summary>
         /// List of expressive versions of types.  The assumptions here are:
-        ///     1. All types in this list are serializable via generic data contract serialization
+        ///     1. All types in this list are serializable via generic data contract serialization and binary
+        ///        serialization.
         ///     2. All types in this list serialize to JSON objects (JObject) when using Newtonsoft.Json
         /// </summary>
         private static readonly IEnumerable<object> _expressiveTypes = new object[]
@@ -70,7 +72,9 @@ namespace SadRogue.Primitives.UnitTests.Serialization
             // PolarCoordinateSerialized
             new PolarCoordinateSerialized { Radius = 5.0, Theta = 3 * Math.PI / 2.0 },
             // RectangleSerialized
-            new RectangleSerialized { X = 10, Y = 20, Width = 100, Height = 200 }
+            new RectangleSerialized { X = 10, Y = 20, Width = 100, Height = 200 },
+            // ValueChangeSerialized
+            new ValueChangeSerialized<int> { Position = new PointSerialized {X = 1, Y = 2}, OldValue = 1, NewValue = 2 }
         };
 
         /// <summary>
@@ -114,6 +118,8 @@ namespace SadRogue.Primitives.UnitTests.Serialization
             Radius.Circle, Radius.Diamond,
             // Rectangles
             new Rectangle(1, 2, 3, 4), new Rectangle(-10, -4, 56, 68),
+            // ValueChange
+            new ValueChange<int>((1, 2), 1, 2)
         };
 
         /// <summary>
@@ -140,7 +146,9 @@ namespace SadRogue.Primitives.UnitTests.Serialization
             { typeof(PolarCoordinateSerialized), new[] { "Radius", "Theta" } },
             { typeof(Radius), new[] { "Type" } },
             { typeof(Rectangle), new[] { "X", "Y", "Width", "Height" } },
-            { typeof(RectangleSerialized), new[] { "X", "Y", "Width", "Height" } }
+            { typeof(RectangleSerialized), new[] { "X", "Y", "Width", "Height" } },
+            { typeof(ValueChange<int>), new[] { "Position", "OldValue", "NewValue" } },
+            { typeof(ValueChangeSerialized<int>), new[] { "Position", "OldValue", "NewValue" } }
         };
 
         /// <summary>
@@ -175,7 +183,8 @@ namespace SadRogue.Primitives.UnitTests.Serialization
             [typeof(Point)] = typeof(PointSerialized),
             [typeof(PolarCoordinate)] = typeof(PolarCoordinateSerialized),
             [typeof(Radius)] = typeof(Radius.Types),
-            [typeof(Rectangle)] = typeof(RectangleSerialized)
+            [typeof(Rectangle)] = typeof(RectangleSerialized),
+            [typeof(ValueChange<int>)] = typeof(ValueChangeSerialized<int>)
         };
 
 

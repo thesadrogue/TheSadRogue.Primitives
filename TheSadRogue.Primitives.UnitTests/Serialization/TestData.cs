@@ -18,6 +18,12 @@ namespace SadRogue.Primitives.UnitTests.Serialization
         /// </summary>
         private static readonly IEnumerable<object> _expressiveTypes = new object[]
         {
+            // ArrayViewSerialized
+            new ArrayViewSerialized<int>
+            {
+                Width = 2,
+                Data = new []{ 1, 2, 3, 4 }
+            },
             // AreaSerialized
             new AreaSerialized
             {
@@ -130,6 +136,7 @@ namespace SadRogue.Primitives.UnitTests.Serialization
         public static readonly Dictionary<Type, string[]> TypeSerializedFields = new Dictionary<Type, string[]>
         {
             { typeof(AdjacencyRule), new[] { "Type" } },
+            { typeof(ArrayViewSerialized<int>), new[] { "Width", "Data" } },
             { typeof(AreaSerialized), new[] { "Positions" } },
             { typeof(BoundedRectangle), new[] { "_area", "_boundingBox" } },
             { typeof(BoundedRectangleSerialized), new[] { "Area", "Bounds" } },
@@ -173,6 +180,7 @@ namespace SadRogue.Primitives.UnitTests.Serialization
         public static readonly Dictionary<Type, Type> RegularToExpressiveTypes = new Dictionary<Type, Type>
         {
             [typeof(ArrayView2D<int>)] = typeof(int[,]),
+            [typeof(ArrayView<int>)] = typeof(ArrayViewSerialized<int>),
             [typeof(AdjacencyRule)] = typeof(AdjacencyRule.Types),
             [typeof(Area)] = typeof(AreaSerialized),
             [typeof(BoundedRectangle)] = typeof(BoundedRectangleSerialized),
@@ -195,6 +203,9 @@ namespace SadRogue.Primitives.UnitTests.Serialization
         /// </summary>
         private static readonly object[] _nonSerializableValuesWithExpressiveTypes =
         {
+            // ArrayView
+            new ArrayView<int>(new[] { 1, 2, 3, 4 }, 2),
+            // ArrayView2D
             MockGridViews.RectangleArrayView2D(50, 40)
         };
         #endregion

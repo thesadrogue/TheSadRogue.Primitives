@@ -13,6 +13,8 @@ namespace SadRogue.Primitives.UnitTests.Serialization
             new Dictionary<Type, Func<object, object, bool>>()
             {
                 { typeof(ArrayView2D<int>), MapViewCompare<int> },
+                { typeof(ArrayView<int>), MapViewCompare<int> },
+                { typeof(ArrayViewSerialized<int>), ArrayViewSerializedCompare<int> },
                 { typeof(Area), MatchableCompare<IReadOnlyArea> },
                 { typeof(AreaSerialized), AreaSerializedCompare },
                 { typeof(BoundedRectangle), MatchableCompare<BoundedRectangle> },
@@ -34,6 +36,9 @@ namespace SadRogue.Primitives.UnitTests.Serialization
 
         private static bool GradientSerializedCompare(object o1, object o2)
             => ElementWiseEquality(((GradientSerialized)o1).Stops, ((GradientSerialized)o2).Stops);
+
+        private static bool ArrayViewSerializedCompare<T>(object o1, object o2)
+            => ElementWiseEquality(((ArrayViewSerialized<T>)o1).Data, ((ArrayViewSerialized<T>)o2).Data);
 
         private static bool MatchableCompare<T>(object o1, object o2)
             where T : class, IMatchable<T>

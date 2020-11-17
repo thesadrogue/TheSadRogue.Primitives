@@ -8,6 +8,16 @@ namespace SadRogue.Primitives.UnitTests.Mocks
     /// </summary>
     internal static class MockGridViews
     {
+        public static ArrayView2D<int> RectangleArrayView2D(int width, int height)
+        {
+            var grid = RectangleBooleanGrid(width, height);
+
+            var arrayGrid = new ArrayView2D<int>(grid.Width, grid.Height);
+            arrayGrid.ApplyOverlay(pos => grid[pos] ? 1 : 0);
+
+            return arrayGrid;
+        }
+
         public static ISettableGridView<double> RandomDoubleGrid(int width, int height)
         {
             var grid = new ArrayView<double>(width, height);

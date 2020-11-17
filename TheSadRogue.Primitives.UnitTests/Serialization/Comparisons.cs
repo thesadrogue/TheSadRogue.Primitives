@@ -12,6 +12,7 @@ namespace SadRogue.Primitives.UnitTests.Serialization
         private static readonly Dictionary<Type, Func<object, object, bool>> _equalityMethods =
             new Dictionary<Type, Func<object, object, bool>>()
             {
+                { typeof(ArrayView2D<int>), MapViewCompare<int> },
                 { typeof(Area), MatchableCompare<IReadOnlyArea> },
                 { typeof(AreaSerialized), AreaSerializedCompare },
                 { typeof(BoundedRectangle), MatchableCompare<BoundedRectangle> },

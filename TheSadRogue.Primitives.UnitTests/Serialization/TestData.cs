@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using SadRogue.Primitives.GridViews;
 using SadRogue.Primitives.SerializedTypes;
+using SadRogue.Primitives.UnitTests.Mocks;
 
 namespace SadRogue.Primitives.UnitTests.Serialization
 {
@@ -171,6 +172,7 @@ namespace SadRogue.Primitives.UnitTests.Serialization
         /// </summary>
         public static readonly Dictionary<Type, Type> RegularToExpressiveTypes = new Dictionary<Type, Type>
         {
+            [typeof(ArrayView2D<int>)] = typeof(int[,]),
             [typeof(AdjacencyRule)] = typeof(AdjacencyRule.Types),
             [typeof(Area)] = typeof(AreaSerialized),
             [typeof(BoundedRectangle)] = typeof(BoundedRectangleSerialized),
@@ -191,7 +193,10 @@ namespace SadRogue.Primitives.UnitTests.Serialization
         /// <summary>
         /// List of non-serializable objects that do have serializable equivalents (expressive types).
         /// </summary>
-        private static readonly object[] _nonSerializableValuesWithExpressiveTypes = { };
+        private static readonly object[] _nonSerializableValuesWithExpressiveTypes =
+        {
+            MockGridViews.RectangleArrayView2D(50, 40)
+        };
         #endregion
 
         #region Combinatory Data

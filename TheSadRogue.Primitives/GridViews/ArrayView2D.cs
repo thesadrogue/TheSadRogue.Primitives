@@ -76,12 +76,29 @@ namespace SadRogue.Primitives.GridViews
         public static implicit operator T[,](ArrayView2D<T> arrayView) => arrayView._array;
 #pragma warning restore CA2225
 
+#pragma warning disable CA2225 // The proper equivalent function is provided, however because the type is [,] instead of MultidimensionalArray the analyzer cannot determine this properly.
+        /// <summary>
+        /// Allows implicit conversion from 2D array.  Does not copy the underlying values.
+        /// </summary>
+        /// <param name="array"/>
+        /// <returns/>
+        public static implicit operator ArrayView2D<T>(T[,] array) => new ArrayView2D<T>(array);
+#pragma warning restore CA2225
+
         /// <summary>
         /// Converts to 2D array, without copying the values.  Typically using this method is unnecessary
         /// and you can use the implicit conversion defined for this type instead.
         /// </summary>
         /// <returns>The underlying ArrayView data as a 1D array.</returns>
         public T[,] ToMultidimensionalArray() => _array;
+
+        /// <summary>
+        /// Converts from 2D array, without copying the values.  Typically using this method is unnecessary and you
+        /// can use the implicit conversion defined for this type instead.
+        /// </summary>
+        /// <param name="array"/>
+        /// <returns/>
+        public static ArrayView2D<T> FromMultidimensionalArray(T[,] array) => new ArrayView2D<T>(array);
 
         /// <summary>
         /// Sets each element in the ArrayView to the default for type T.

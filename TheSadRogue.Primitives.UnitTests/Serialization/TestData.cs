@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using SadRogue.Primitives.GridViews;
 using SadRogue.Primitives.SerializedTypes;
+using SadRogue.Primitives.SerializedTypes.GridViews;
 using SadRogue.Primitives.UnitTests.Mocks;
 
 namespace SadRogue.Primitives.UnitTests.Serialization
@@ -42,6 +43,61 @@ namespace SadRogue.Primitives.UnitTests.Serialization
             },
             // ColorSerialized
             new ColorSerialized  { R = 120, G = 121, B = 122, A = 150 },
+            // DiffAwareGridViewSerialized
+            /*
+            new DiffAwareGridViewSerialized<int>
+            {
+                AutoCompress = true,
+                BaseGrid = new ArrayView<int>(new[] { 1, 2, 3, 4 }, 2),
+                CurrentDiffIndex = 1,
+                Diffs = new List<DiffSerialized<int>>
+                {
+                    new DiffSerialized<int>
+                    {
+                        Changes = new List<ValueChangeSerialized<int>>
+                        {
+                            new ValueChangeSerialized<int>
+                            {
+                                Position = new PointSerialized{ X = 1, Y = 1 },
+                                OldValue = 0,
+                                NewValue = 3
+                            }
+                        }
+                    }
+                }
+            },
+            */
+            // DiffSerialized
+            new DiffSerialized<int>
+            {
+                Changes = new List<ValueChangeSerialized<int>>
+                {
+                    new ValueChangeSerialized<int>
+                    {
+                        Position = new PointSerialized{ X = 1, Y = 2 },
+                        OldValue = 1,
+                        NewValue = 2,
+                    },
+                    new ValueChangeSerialized<int>
+                    {
+                        Position = new PointSerialized{ X = 1, Y = 2 },
+                        OldValue = 2,
+                        NewValue = 3,
+                    },
+                    new ValueChangeSerialized<int>
+                    {
+                        Position = new PointSerialized{ X = 5, Y = 6 },
+                        OldValue = 7,
+                        NewValue = 9,
+                    },
+                    new ValueChangeSerialized<int>
+                    {
+                        Position = new PointSerialized{ X = 5, Y = 6 },
+                        OldValue = 9,
+                        NewValue = 8,
+                    }
+                }
+            },
             // GradientStopSerialized
             new GradientStopSerialized
             {
@@ -142,6 +198,8 @@ namespace SadRogue.Primitives.UnitTests.Serialization
             { typeof(BoundedRectangleSerialized), new[] { "Area", "Bounds" } },
             { typeof(Color), new[] { "_packedValue" } },
             { typeof(ColorSerialized), new[] { "R", "G", "B", "A" } },
+            // { typeof(DiffAwareGridViewSerialized<int>), new[] { "AutoCompress", "Diffs", "BaseGrid", "CurrentDiffIndex" } },
+            { typeof(DiffSerialized<int>), new[] { "Changes" } },
             { typeof(Direction), new[] { "Type" } },
             { typeof(Distance), new[] { "Type" } },
             { typeof(GradientStop), new[] { "Color", "Stop" } },
@@ -167,6 +225,14 @@ namespace SadRogue.Primitives.UnitTests.Serialization
         {
             // Area
             new Area((1, 2), (3, 4), (5, 6)),
+            // Diff
+            new Diff<int>
+            {
+                new ValueChange<int>((1, 2), 1, 2),
+                new ValueChange<int>((1, 2), 2, 3),
+                new ValueChange<int>((5, 6), 7, 9),
+                new ValueChange<int>((5, 6), 9, 8)
+            },
             // Gradient
             new Gradient(new Color(100, 101, 102, 103), new Color(200, 201, 202, 203)),
             // Palette
@@ -185,6 +251,8 @@ namespace SadRogue.Primitives.UnitTests.Serialization
             [typeof(Area)] = typeof(AreaSerialized),
             [typeof(BoundedRectangle)] = typeof(BoundedRectangleSerialized),
             [typeof(Color)] = typeof(ColorSerialized),
+            // [typeof(DiffAwareGridView<int>)] = typeof(DiffAwareGridViewSerialized<int>),
+            [typeof(Diff<int>)] = typeof(DiffSerialized<int>),
             [typeof(Direction)] = typeof(Direction.Types),
             [typeof(Distance)] = typeof(Distance.Types),
             [typeof(GradientStop)] = typeof(GradientStopSerialized),
@@ -206,7 +274,9 @@ namespace SadRogue.Primitives.UnitTests.Serialization
             // ArrayView
             new ArrayView<int>(new[] { 1, 2, 3, 4 }, 2),
             // ArrayView2D
-            MockGridViews.RectangleArrayView2D(50, 40)
+            MockGridViews.RectangleArrayView2D(50, 40),
+            // DiffAwareGridView
+            // GenerateDiffAwareGridView()
         };
         #endregion
 
@@ -236,5 +306,25 @@ namespace SadRogue.Primitives.UnitTests.Serialization
         public static IEnumerable<object> AllSerializableObjects =>
             SerializableValuesJsonObjects.Concat(SerializableValuesNonJsonObjects);
         #endregion
+
+        /*
+        #region Instance Generation Helpers
+
+        public static DiffAwareGridView<int> GenerateDiffAwareGridView()
+        {
+            var diffView = new DiffAwareGridView<int>(10, 10);
+            diffView[1, 2] = 10;
+            diffView[5, 6] = 12;
+            diffView.FinalizeCurrentDiff();
+
+            diffView[1, 2] = 5;
+            diffView[5, 6] = 7;
+            diffView[9, 8] = 9;
+            diffView.FinalizeCurrentDiff();
+
+            return diffView;
+        }
+        #endregion
+        */
     }
 }

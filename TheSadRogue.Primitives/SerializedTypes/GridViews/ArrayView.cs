@@ -1,7 +1,7 @@
 ﻿using System;
 using SadRogue.Primitives.GridViews;
 
-namespace SadRogue.Primitives.SerializedTypes
+namespace SadRogue.Primitives.SerializedTypes.GridViews
 {
     /// <summary>
     /// Serializable (pure-data) object representing an <see cref="ArrayView{T}"/>.

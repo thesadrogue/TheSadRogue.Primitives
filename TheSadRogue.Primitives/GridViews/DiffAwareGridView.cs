@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -82,18 +83,39 @@ namespace SadRogue.Primitives.GridViews
     /// Represents a unique patch/diff of the state of a <see cref="DiffAwareGridView{T}"/>.
     /// </summary>
     /// <typeparam name="T">Type of value stored in the grid view.</typeparam>
-    public class Diff<T> where T : struct
+    [DataContract]
+    public class Diff<T> : IEnumerable<ValueChange<T>>
+        where T : struct
     {
-        private List<ValueChange<T>> _changes = new List<ValueChange<T>>();
+        private List<ValueChange<T>> _changes;
         /// <summary>
         /// Read-only list of changes made in this time step.
         /// </summary>
         public IReadOnlyList<ValueChange<T>> Changes => _changes.AsReadOnly();
 
         /// <summary>
+        /// Creates a new empty diff.
+        /// </summary>
+        public Diff()
+        {
+            _changes = new List<ValueChange<T>>();
+            IsCompressed = true;
+        }
+
+        /// <summary>
+        /// Creates a diff composed of the specified changes.
+        /// </summary>
+        /// <param name="changes">Changes to create a diff from.</param>
+        public Diff(IEnumerable<ValueChange<T>> changes)
+        {
+            _changes = new List<ValueChange<T>>(changes);
+            IsCompressed = CheckCompressed();
+        }
+
+        /// <summary>
         /// Whether or not the diff is currently known to be at the minimal possible size.
         /// </summary>
-        public bool IsCompressed { get; private set; } = true;
+        public bool IsCompressed { get; private set; }
 
         /// <summary>
         /// Adds a change to the diff.
@@ -101,6 +123,9 @@ namespace SadRogue.Primitives.GridViews
         /// <param name="change">Change to add.</param>
         public void Add(ValueChange<T> change)
         {
+            if (change.OldValue.Equals(change.NewValue))
+                throw new Exception("Cannot add change to diff that does not change a value.");
+
             _changes.Add(change);
 
             // Change means its worth potentially minimizing, as this change might duplicate previous ones
@@ -165,6 +190,18 @@ namespace SadRogue.Primitives.GridViews
             _changes = newChanges;
             IsCompressed = true;
         }
+
+        private bool CheckCompressed()
+        {
+            var positions = _changes.Select(change => change.Position).ToHashSet();
+            return positions.Count == _changes.Count;
+        }
+
+        /// <inheritdoc />
+        public IEnumerator<ValueChange<T>> GetEnumerator() => _changes.GetEnumerator();
+
+        /// <inheritdoc />
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 
     /// <summary>
@@ -233,9 +270,9 @@ namespace SadRogue.Primitives.GridViews
         /// </remarks>
         public int CurrentDiffIndex { get; private set; }
 
-        private readonly List<Diff<T>> _diffs;
+        private List<Diff<T>> _diffs;
         /// <summary>
-        /// All diffs recorded for the current map view, and their changes.
+        /// All diffs recorded for the current grid view, and their changes.
         /// </summary>
         public IReadOnlyList<Diff<T>> Diffs => _diffs.AsReadOnly();
 
@@ -384,6 +421,107 @@ namespace SadRogue.Primitives.GridViews
 
             ApplyNextDiff();
             return true;
+        }
+
+        /// <summary>
+        /// Erase recorded diffs without modifying state of grid view.
+        /// </summary>
+        public void ClearHistory()
+        {
+            // Set the input as the history and sync index
+            _diffs.Clear();
+            CurrentDiffIndex = 0;
+        }
+
+        /// <summary>
+        /// Overwrite any history present and replace it with the history given.  This does not modify the underlying
+        /// grid view; the history must be valid with respect to its current state.
+        /// </summary>
+        /// <remarks>
+        /// Generally, you will not call this function, however it can be useful for serialization and copying
+        /// histories between objects.  Assumes the grid view is in a state that reflects all of the diffs in the
+        /// history being applied.
+        /// </remarks>
+        /// <param name="history">The history to apply.</param>
+        public void SetHistory(IEnumerable<Diff<T>> history)
+        {
+            var historyList = history.ToList();
+            SetHistoryList(historyList, historyList.Count);
+        }
+
+        /// <summary>
+        /// Overwrite any history present and replace it with the history given.  This does not modify the underlying
+        /// grid view; the history must be valid with respect to its current state.
+        /// </summary>
+        /// <remarks>
+        /// Generally, you will not call this function, however it can be useful for serialization and copying
+        /// histories between objects.
+        /// </remarks>
+        /// <param name="history">The history to apply.</param>
+        /// <param name="currentIndex">The index of the given history that is applied to the BaseMap.  Set to the length
+        /// of the list if all diffs have been applied, or -1 if none of them have.</param>
+        public void SetHistory(IEnumerable<Diff<T>> history, int currentIndex)
+        {
+            var historyList = history.ToList();
+            SetHistoryList(historyList, currentIndex);
+        }
+
+        private void SetHistoryList(List<Diff<T>> historyList, int currentIndex)
+        {
+            // Validate history state
+            var gridValues = new Dictionary<Point, T>();
+            if (historyList.Count == 0)
+                throw new ArgumentException($"Cannot use {nameof(SetHistory)} to clear history.", nameof(historyList));
+            if (currentIndex <= -1 || currentIndex > historyList.Count)
+                throw new ArgumentException("Index is not within valid range for history specified", nameof(currentIndex));
+
+            // Validate history itself ahead of the current position
+            for (int i = currentIndex + 1; i < historyList.Count; i++)
+            {
+                foreach (var change in historyList[i])
+                {
+                    if (!gridValues.ContainsKey(change.Position))
+                    {
+                        if (!BaseGrid[change.Position].Equals(change.OldValue))
+                            throw new ArgumentException("History is not valid given state of grid view.", nameof(historyList));
+                    }
+                    else
+                    {
+                        if (!gridValues[change.Position].Equals(change.OldValue))
+                            throw new ArgumentException("History is not valid given state of grid view.", nameof(historyList));
+                    }
+
+                    gridValues[change.Position] = change.NewValue;
+                }
+            }
+
+            // Validate history itself behind the current position
+            gridValues.Clear();
+            for(int i = currentIndex; i >= 0; i--)
+            {
+                if (i == historyList.Count)
+                    continue;
+
+                foreach (var change in historyList[i].Reverse())
+                {
+                    if (!gridValues.ContainsKey(change.Position))
+                    {
+                        if (!BaseGrid[change.Position].Equals(change.NewValue))
+                            throw new ArgumentException("History is not valid given state of grid view.", nameof(historyList));
+                    }
+                    else
+                    {
+                        if (!gridValues[change.Position].Equals(change.NewValue))
+                            throw new ArgumentException("History is not valid given state of grid view.", nameof(historyList));
+                    }
+
+                    gridValues[change.Position] = change.OldValue;
+                }
+            }
+
+            // Set the input as the history and sync index
+            _diffs = historyList;
+            CurrentDiffIndex = currentIndex;
         }
     }
 }

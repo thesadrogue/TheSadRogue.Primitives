@@ -282,13 +282,9 @@ namespace SadRogue.Primitives.GridViews
 
         /// <summary>
         /// The index of the diff whose ending state is currently reflected in <see cref="BaseGrid"/>. Returns -1
-        /// if none of the diffs in the list have been applied (eg. the map is in the state it was in at the
+        /// if none of the diffs in the list have been applied (eg. the grid view is in the state it was in at the
         /// <see cref="DiffAwareGridView{T}"/>'s creation.
         /// </summary>
-        /// <remarks>
-        /// This index in <see cref="Diffs"/> MAY or MAY NOT exist.  It will only exist if a change
-        /// has actually been added to the current diff (or it has been finalized).
-        /// </remarks>
         public int CurrentDiffIndex { get; private set; }
 
         private List<Diff<T>> _diffs;
@@ -303,9 +299,9 @@ namespace SadRogue.Primitives.GridViews
         public bool AutoCompress;
 
         /// <summary>
-        /// Constructs a diff-aware map view that wraps around an existing map view.
+        /// Constructs a diff-aware grid view that wraps around an existing grid view.
         /// </summary>
-        /// <param name="baseGrid">The map view whose changes are to be recorded in diffs.</param>
+        /// <param name="baseGrid">The grid view whose changes are to be recorded in diffs.</param>
         /// <param name="autoCompress">
         /// Whether or not to automatically compress diffs when the currently applied diff is changed.
         /// </param>
@@ -318,10 +314,10 @@ namespace SadRogue.Primitives.GridViews
         }
 
         /// <summary>
-        /// Constructs a diff-aware map view, whose base map will be a new <see cref="ArrayView{T}"/>.
+        /// Constructs a diff-aware grid view, whose base grid will be a new <see cref="ArrayView{T}"/>.
         /// </summary>
-        /// <param name="width">Width of the base map view that will be created.</param>
-        /// <param name="height">Height of the base map view that will be created.</param>
+        /// <param name="width">Width of the base grid view that will be created.</param>
+        /// <param name="height">Height of the base grid view that will be created.</param>
         /// <param name="autoCompress">
         /// Whether or not to automatically compress diffs when the currently applied diff is changed.
         /// </param>
@@ -330,7 +326,7 @@ namespace SadRogue.Primitives.GridViews
         { }
 
         /// <summary>
-        /// Sets the baseline values (eg. values before any diffs are recorded) to the values from the given map view.
+        /// Sets the baseline values (eg. values before any diffs are recorded) to the values from the given grid view.
         /// Only valid to do before any diffs are recorded.
         /// </summary>
         /// <param name="baseline">Baseline values to use.  Must have same width/height as <see cref="BaseGrid"/>.</param>
@@ -338,7 +334,7 @@ namespace SadRogue.Primitives.GridViews
         {
             if (baseline.Width != BaseGrid.Width || baseline.Height != BaseGrid.Height)
                 throw new ArgumentException(
-                    $"Baseline map's width/height must be same as {nameof(BaseGrid)}.",
+                    $"Baseline grid view's width/height must be same as {nameof(BaseGrid)}.",
                     nameof(baseline));
 
             if (_diffs.Count != 0)
@@ -374,7 +370,7 @@ namespace SadRogue.Primitives.GridViews
         }
 
         /// <summary>
-        /// Reverts the current diff's changes, so that the map will be in the state it was in at the end
+        /// Reverts the current diff's changes, so that the grid view will be in the state it was in at the end
         /// of the previous diff.  Throws exception if no diffs are applied.
         /// </summary>
         public void RevertToPreviousDiff()
@@ -487,8 +483,8 @@ namespace SadRogue.Primitives.GridViews
         /// histories between objects.
         /// </remarks>
         /// <param name="history">The history to apply.</param>
-        /// <param name="currentIndex">The index of the given history that is applied to the BaseMap.  Set to the length
-        /// of the list if all diffs have been applied, or -1 if none of them have.</param>
+        /// <param name="currentIndex">The index of the given history that is applied to the <see cref="BaseGrid"/>.
+        /// Set to the length of the list - 1 if all diffs have been applied, or -1 if none of them have.</param>
         public void SetHistory(IEnumerable<Diff<T>> history, int currentIndex)
         {
             var historyList = history.ToList();

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using SadRogue.Primitives.GridViews;
 using Xunit;
+using XUnit.ValueTuples;
 
 namespace SadRogue.Primitives.UnitTests.GridViews
 {
@@ -18,6 +19,8 @@ namespace SadRogue.Primitives.UnitTests.GridViews
             Assert.Empty(diff.Changes);
             // Compressed state should be true since there are no items
             Assert.True(diff.IsCompressed);
+            // Diffs start out non-finalized
+            Assert.False(diff.IsFinalized);
         }
 
         [Fact]
@@ -33,6 +36,7 @@ namespace SadRogue.Primitives.UnitTests.GridViews
             Assert.False(diff.IsCompressed);
             Assert.Single(diff.Changes);
             Assert.Equal(change1, diff.Changes[0]);
+            Assert.False(diff.IsFinalized);
 
             // Add another change (at same location) and verify its addition
             var change2 = new ValueChange<bool>((1, 2), false, true);
@@ -40,6 +44,10 @@ namespace SadRogue.Primitives.UnitTests.GridViews
             Assert.False(diff.IsCompressed);
             Assert.Equal(2, diff.Changes.Count);
             Assert.Equal(change2, diff.Changes[1]);
+            Assert.False(diff.IsFinalized);
+
+            diff.FinalizeChanges();
+            Assert.True(diff.IsFinalized);
         }
 
         [Fact]
@@ -136,7 +144,6 @@ namespace SadRogue.Primitives.UnitTests.GridViews
 
     public class DiffAwareGridViewTests
     {
-
         [Theory]
         [InlineData(true)]
         [InlineData(false)]
@@ -151,7 +158,7 @@ namespace SadRogue.Primitives.UnitTests.GridViews
             Assert.Equal(arrayView, diffAwareView.BaseGrid);
             Assert.Equal(arrayView.Width, diffAwareView.Width);
             Assert.Equal(arrayView.Height, diffAwareView.Height);
-            Assert.Equal(0, diffAwareView.CurrentDiffIndex);
+            Assert.Equal(-1, diffAwareView.CurrentDiffIndex);
             Assert.Empty(diffAwareView.Diffs);
         }
 
@@ -170,7 +177,7 @@ namespace SadRogue.Primitives.UnitTests.GridViews
             Assert.Equal(25, diffAwareView.BaseGrid.Height);
             Assert.Equal(80, diffAwareView.Width);
             Assert.Equal(25, diffAwareView.Height);
-            Assert.Equal(0, diffAwareView.CurrentDiffIndex);
+            Assert.Equal(-1, diffAwareView.CurrentDiffIndex);
             Assert.Empty(diffAwareView.Diffs);
         }
 
@@ -196,6 +203,8 @@ namespace SadRogue.Primitives.UnitTests.GridViews
             Assert.Equal<Point>((1, 2), change.Position);
             Assert.False(change.OldValue);
             Assert.True(change.NewValue);
+            Assert.Equal(0, view.CurrentDiffIndex);
+            Assert.False(view.Diffs[0].IsFinalized);
 
             // Change value 2
             view[5, 6] = true;
@@ -211,6 +220,8 @@ namespace SadRogue.Primitives.UnitTests.GridViews
             Assert.Equal<Point>((5, 6), change.Position);
             Assert.False(change.OldValue);
             Assert.True(change.NewValue);
+            Assert.Equal(0, view.CurrentDiffIndex);
+            Assert.False(view.Diffs[0].IsFinalized);
 
             // Change value 1 again
             view[1, 2] = false;
@@ -226,6 +237,8 @@ namespace SadRogue.Primitives.UnitTests.GridViews
             Assert.Equal<Point>((1, 2), change.Position);
             Assert.True(change.OldValue);
             Assert.False(change.NewValue);
+            Assert.Equal(0, view.CurrentDiffIndex);
+            Assert.False(view.Diffs[0].IsFinalized);
         }
 
         [Theory]
@@ -268,17 +281,20 @@ namespace SadRogue.Primitives.UnitTests.GridViews
                     view[pos] = val;
                 view.FinalizeCurrentDiff();
             }
-            // 3 diffs with changes, but the active one hasn't been created yet
+            // Should have 3 diffs with changes, all of which are finalized.  The CurrentDiffIndex still points to the
+            // last diff which is fully applied.
             Assert.Equal(3, view.Diffs.Count);
-            Assert.Equal(3, view.CurrentDiffIndex);
+            Assert.Equal(2, view.CurrentDiffIndex);
+            foreach (var change in view.Diffs)
+                Assert.True(change.IsFinalized);
 
             // Going to next diff should fail since there is no next diff
             Assert.Throws<InvalidOperationException>(view.ApplyNextDiff);
             CheckViewState(view, forwardOrderStates[^1]);
 
             // We should be able to go to all the previous diffs back to the start without exception
-            // and the states should match the expected
-            foreach (var prevState in Enumerable.Reverse(forwardOrderStates).Append(new Dictionary<Point, int>()))
+            // and the states should match the expected.  We skip the first one, since it represents the current state
+            foreach (var prevState in Enumerable.Reverse(forwardOrderStates).Skip(1).Append(new Dictionary<Point, int>()))
             {
                 view.RevertToPreviousDiff();
                 CheckViewState(view, prevState);
@@ -299,16 +315,18 @@ namespace SadRogue.Primitives.UnitTests.GridViews
             // One more will not apply any state, instead finalizing the last one that actually has changes
             Assert.False(view.ApplyNextDiffOrFinalize());
 
-            // No new diffs should have been created, but we should have the one active that hasn't been created yet
-            // (no changes)
+            // No new diffs should have been created, but they should all be finalized and we should be in a good state
+            // to add subsequent changes
             Assert.Equal(3, view.Diffs.Count);
-            Assert.Equal(3, view.CurrentDiffIndex);
+            Assert.Equal(2, view.CurrentDiffIndex);
+            foreach (var change in view.Diffs)
+                Assert.True(change.IsFinalized);
 
-            // This call will not fail but should instead create a new diff, and finalize the current one (with no
-            // changes)
+            // This call will not fail but should instead finalize the current one (which is already finalized,
+            // so in this case is no-op)
             Assert.False(view.ApplyNextDiffOrFinalize());
-            Assert.Equal(4, view.Diffs.Count);
-            Assert.Equal(4, view.CurrentDiffIndex);
+            Assert.Equal(3, view.Diffs.Count);
+            Assert.Equal(2, view.CurrentDiffIndex);
         }
 
         [Fact]

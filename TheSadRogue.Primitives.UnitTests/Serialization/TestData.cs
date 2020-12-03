@@ -225,14 +225,6 @@ namespace SadRogue.Primitives.UnitTests.Serialization
         {
             // Area
             new Area((1, 2), (3, 4), (5, 6)),
-            // Diff
-            new Diff<int>
-            {
-                new ValueChange<int>((1, 2), 1, 2),
-                new ValueChange<int>((1, 2), 2, 3),
-                new ValueChange<int>((5, 6), 7, 9),
-                new ValueChange<int>((5, 6), 9, 8)
-            },
             // Gradient
             new Gradient(new Color(100, 101, 102, 103), new Color(200, 201, 202, 203)),
             // Palette
@@ -275,6 +267,14 @@ namespace SadRogue.Primitives.UnitTests.Serialization
             new ArrayView<int>(new[] { 1, 2, 3, 4 }, 2),
             // ArrayView2D
             MockGridViews.RectangleArrayView2D(50, 40),
+            // Diff
+            new Diff<int>
+            {
+                new ValueChange<int>((1, 2), 1, 2),
+                new ValueChange<int>((1, 2), 2, 3),
+                new ValueChange<int>((5, 6), 7, 9),
+                new ValueChange<int>((5, 6), 9, 8)
+            },
             // DiffAwareGridView
             // GenerateDiffAwareGridView()
         };

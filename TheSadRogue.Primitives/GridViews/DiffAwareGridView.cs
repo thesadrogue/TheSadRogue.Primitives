@@ -83,7 +83,6 @@ namespace SadRogue.Primitives.GridViews
     /// Represents a unique patch/diff of the state of a <see cref="DiffAwareGridView{T}"/>.
     /// </summary>
     /// <typeparam name="T">Type of value stored in the grid view.</typeparam>
-    [DataContract]
     public class Diff<T> : IEnumerable<ValueChange<T>>
         where T : struct
     {
@@ -94,12 +93,18 @@ namespace SadRogue.Primitives.GridViews
         public IReadOnlyList<ValueChange<T>> Changes => _changes.AsReadOnly();
 
         /// <summary>
+        /// Whether or not the list of changes in this diff has been finalized, eg allows more changes to be added.
+        /// </summary>
+        public bool IsFinalized { get; private set; }
+
+        /// <summary>
         /// Creates a new empty diff.
         /// </summary>
         public Diff()
         {
             _changes = new List<ValueChange<T>>();
             IsCompressed = true;
+            IsFinalized = false;
         }
 
         /// <summary>
@@ -110,6 +115,7 @@ namespace SadRogue.Primitives.GridViews
         {
             _changes = new List<ValueChange<T>>(changes);
             IsCompressed = CheckCompressed();
+            IsFinalized = false;
         }
 
         /// <summary>
@@ -123,6 +129,9 @@ namespace SadRogue.Primitives.GridViews
         /// <param name="change">Change to add.</param>
         public void Add(ValueChange<T> change)
         {
+            if (IsFinalized)
+                throw new Exception("Cannot add change to a finalized diff.");
+
             if (change.OldValue.Equals(change.NewValue))
                 throw new Exception("Cannot add change to diff that does not change a value.");
 
@@ -130,6 +139,14 @@ namespace SadRogue.Primitives.GridViews
 
             // Change means its worth potentially minimizing, as this change might duplicate previous ones
             IsCompressed = false;
+        }
+
+        /// <summary>
+        /// Finalizes the current diff, such that no changes are allowed to be added to it.  It can still be compressed.
+        /// </summary>
+        public void FinalizeChanges()
+        {
+            IsFinalized = true;
         }
 
         /// <summary>
@@ -243,17 +260,21 @@ namespace SadRogue.Primitives.GridViews
                 if (oldValue.Equals(value))
                     return;
 
-                // First change for this diff so create the change object
-                if (CurrentDiffIndex == _diffs.Count)
-                    _diffs.Add(new Diff<T>());
-
                 // We can't make changes when there's previously recorded states to apply
-                if (CurrentDiffIndex != _diffs.Count - 1)
+                if (CurrentDiffIndex < _diffs.Count - 1)
                     throw new InvalidOperationException(
                         $"Cannot set values to a {nameof(DiffAwareGridView<T>)} when there are existing diffs " +
                         "that are not applied.");
 
-                // Apply change to base map and add to current diff
+                // If there are no diffs or the current diff is finalized, add a new one to record the current change.
+                // No need to compress as it should either be finalized during application or finalization
+                if (CurrentDiffIndex == -1 || _diffs[CurrentDiffIndex].IsFinalized)
+                {
+                    _diffs.Add(new Diff<T>());
+                    CurrentDiffIndex++;
+                }
+
+                // Apply change to base grid view and add to current diff
                 _baseGrid[pos] = value;
                 _diffs[^1].Add(new ValueChange<T>(pos, oldValue, value));
             }
@@ -261,13 +282,9 @@ namespace SadRogue.Primitives.GridViews
 
         /// <summary>
         /// The index of the diff whose ending state is currently reflected in <see cref="BaseGrid"/>. Returns -1
-        /// if none of the diffs in the list have been applied (eg. the map is in the state it was in at the
+        /// if none of the diffs in the list have been applied (eg. the grid view is in the state it was in at the
         /// <see cref="DiffAwareGridView{T}"/>'s creation.
         /// </summary>
-        /// <remarks>
-        /// This index in <see cref="Diffs"/> MAY or MAY NOT exist.  It will only exist if a change
-        /// has actually been added to the current diff (or it has been finalized).
-        /// </remarks>
         public int CurrentDiffIndex { get; private set; }
 
         private List<Diff<T>> _diffs;
@@ -282,25 +299,25 @@ namespace SadRogue.Primitives.GridViews
         public bool AutoCompress;
 
         /// <summary>
-        /// Constructs a diff-aware map view that wraps around an existing map view.
+        /// Constructs a diff-aware grid view that wraps around an existing grid view.
         /// </summary>
-        /// <param name="baseGrid">The map view whose changes are to be recorded in diffs.</param>
+        /// <param name="baseGrid">The grid view whose changes are to be recorded in diffs.</param>
         /// <param name="autoCompress">
         /// Whether or not to automatically compress diffs when the currently applied diff is changed.
         /// </param>
         public DiffAwareGridView(ISettableGridView<T> baseGrid, bool autoCompress = true)
         {
             _baseGrid = baseGrid;
-            CurrentDiffIndex = 0;
+            CurrentDiffIndex = -1;
             AutoCompress = autoCompress;
             _diffs = new List<Diff<T>>();
         }
 
         /// <summary>
-        /// Constructs a diff-aware map view, whose base map will be a new <see cref="ArrayView{T}"/>.
+        /// Constructs a diff-aware grid view, whose base grid will be a new <see cref="ArrayView{T}"/>.
         /// </summary>
-        /// <param name="width">Width of the base map view that will be created.</param>
-        /// <param name="height">Height of the base map view that will be created.</param>
+        /// <param name="width">Width of the base grid view that will be created.</param>
+        /// <param name="height">Height of the base grid view that will be created.</param>
         /// <param name="autoCompress">
         /// Whether or not to automatically compress diffs when the currently applied diff is changed.
         /// </param>
@@ -309,7 +326,7 @@ namespace SadRogue.Primitives.GridViews
         { }
 
         /// <summary>
-        /// Sets the baseline values (eg. values before any diffs are recorded) to the values from the given map view.
+        /// Sets the baseline values (eg. values before any diffs are recorded) to the values from the given grid view.
         /// Only valid to do before any diffs are recorded.
         /// </summary>
         /// <param name="baseline">Baseline values to use.  Must have same width/height as <see cref="BaseGrid"/>.</param>
@@ -317,7 +334,7 @@ namespace SadRogue.Primitives.GridViews
         {
             if (baseline.Width != BaseGrid.Width || baseline.Height != BaseGrid.Height)
                 throw new ArgumentException(
-                    $"Baseline map's width/height must be same as {nameof(BaseGrid)}.",
+                    $"Baseline grid view's width/height must be same as {nameof(BaseGrid)}.",
                     nameof(baseline));
 
             if (_diffs.Count != 0)
@@ -333,7 +350,7 @@ namespace SadRogue.Primitives.GridViews
         {
             // Can't apply a diff if there is no next diff
             if (CurrentDiffIndex >= _diffs.Count - 1)
-                throw new InvalidOperationException($"Cannot {nameof(ApplyNextDiff)} when the map is already " +
+                throw new InvalidOperationException($"Cannot {nameof(ApplyNextDiff)} when the view is already " +
                                                     "synchronized with the most recent recorded diff.");
 
             // Compress the diff we're about to switch off if it needs it and auto-compression is on
@@ -341,7 +358,7 @@ namespace SadRogue.Primitives.GridViews
                 _diffs[CurrentDiffIndex].Compress();
 
             // Modify state to reflect diff we're applying
-            CurrentDiffIndex += 1;
+            CurrentDiffIndex++;
 
             // Compress the diff we're about to apply if it needs it and auto-compression is on
             if (AutoCompress)
@@ -353,7 +370,7 @@ namespace SadRogue.Primitives.GridViews
         }
 
         /// <summary>
-        /// Reverts the current diff's changes, so that the map will be in the state it was in at the end
+        /// Reverts the current diff's changes, so that the grid view will be in the state it was in at the end
         /// of the previous diff.  Throws exception if no diffs are applied.
         /// </summary>
         public void RevertToPreviousDiff()
@@ -362,20 +379,22 @@ namespace SadRogue.Primitives.GridViews
                 throw new InvalidOperationException(
                     $"Cannot {nameof(RevertToPreviousDiff)} when there are no applied diffs.");
 
-            if (CurrentDiffIndex != _diffs.Count) // If current diff has no changes, nothing to do
-            {
-                // Compress the diff we're about to switch off if it needs it and auto-compression is on
-                if (AutoCompress)
-                    _diffs[CurrentDiffIndex].Compress();
 
-                // Revert current diff's changes
-                foreach (var change in _diffs[CurrentDiffIndex].Changes)
-                    _baseGrid[change.Position] = change.OldValue;
-            }
+            // Compress the diff we're about to switch off if it needs it and auto-compression is on
+            if (AutoCompress)
+                _diffs[CurrentDiffIndex].Compress();
+
+            // Revert current diff's changes
+            foreach (var change in _diffs[CurrentDiffIndex].Changes)
+                _baseGrid[change.Position] = change.OldValue;
+
+            // If the diff we are switching off of is empty and we don't allow blank diffs, get rid of it
+            if (_diffs[CurrentDiffIndex].Changes.Count == 0)
+                _diffs.RemoveAt(CurrentDiffIndex);
 
             // Modify state to reflect diff we're applying.  Exit if we're at beginning state, eg. there are no longer
             // any diffs applied
-            CurrentDiffIndex -= 1;
+            CurrentDiffIndex--;
             if (CurrentDiffIndex == -1)
                 return;
 
@@ -385,8 +404,8 @@ namespace SadRogue.Primitives.GridViews
         }
 
         /// <summary>
-        /// Finalizes the current diff, and creates a new one.  Throws exceptions if there are diffs that are not
-        /// currently applied.
+        /// Finalizes the current diff so that no more changes can be added to it; future changes will create a new
+        /// diff.  Throws exceptions if there are diffs that are not currently applied.
         /// </summary>
         public void FinalizeCurrentDiff()
         {
@@ -394,15 +413,21 @@ namespace SadRogue.Primitives.GridViews
                 throw new InvalidOperationException(
                     $"Cannot {nameof(FinalizeCurrentDiff)} if there are existing diffs that are not applied.");
 
-            // No changes were ever added to the current diff, so create the empty one since it's been finalized
-            if (CurrentDiffIndex == _diffs.Count)
-                _diffs.Add(new Diff<T>());
-            // No need to compress if diff we just added was empty
-            else if (AutoCompress)
+            // Compress diff if needed
+            if (AutoCompress)
                 _diffs[^1].Compress();
 
-            // Add to index to record currently active diff
-            CurrentDiffIndex += 1;
+            // If the diff we're finalizing has no changes, and we don't allow blank diffs, just remove it
+            if (_diffs[^1].Changes.Count == 0)
+            {
+                _diffs.RemoveAt(_diffs.Count - 1);
+                CurrentDiffIndex--;
+            }
+            // We don't add to the index since there's no changes in the new diff so the current one still represents
+            // the current state of the grid view.  Instead, we just finalize current diff so that a new one will
+            // be created if changes happen in the future.
+            else
+                _diffs[^1].FinalizeChanges();
         }
 
         /// <summary>
@@ -430,7 +455,7 @@ namespace SadRogue.Primitives.GridViews
         {
             // Set the input as the history and sync index
             _diffs.Clear();
-            CurrentDiffIndex = 0;
+            CurrentDiffIndex = -1;
         }
 
         /// <summary>
@@ -446,7 +471,7 @@ namespace SadRogue.Primitives.GridViews
         public void SetHistory(IEnumerable<Diff<T>> history)
         {
             var historyList = history.ToList();
-            SetHistoryList(historyList, historyList.Count);
+            SetHistoryList(historyList, historyList.Count - 1);
         }
 
         /// <summary>
@@ -458,8 +483,8 @@ namespace SadRogue.Primitives.GridViews
         /// histories between objects.
         /// </remarks>
         /// <param name="history">The history to apply.</param>
-        /// <param name="currentIndex">The index of the given history that is applied to the BaseMap.  Set to the length
-        /// of the list if all diffs have been applied, or -1 if none of them have.</param>
+        /// <param name="currentIndex">The index of the given history that is applied to the <see cref="BaseGrid"/>.
+        /// Set to the length of the list - 1 if all diffs have been applied, or -1 if none of them have.</param>
         public void SetHistory(IEnumerable<Diff<T>> history, int currentIndex)
         {
             var historyList = history.ToList();
@@ -472,12 +497,15 @@ namespace SadRogue.Primitives.GridViews
             var gridValues = new Dictionary<Point, T>();
             if (historyList.Count == 0)
                 throw new ArgumentException($"Cannot use {nameof(SetHistory)} to clear history.", nameof(historyList));
-            if (currentIndex <= -1 || currentIndex > historyList.Count)
+            if (currentIndex <= -1 || currentIndex > historyList.Count - 1)
                 throw new ArgumentException("Index is not within valid range for history specified", nameof(currentIndex));
 
             // Validate history itself ahead of the current position
             for (int i = currentIndex + 1; i < historyList.Count; i++)
             {
+                if (historyList[i].Changes.Count == 0)
+                    throw new Exception($"Cannot have blank diffs in history of a {nameof(DiffAwareGridView<T>)}.");
+
                 foreach (var change in historyList[i])
                 {
                     if (!gridValues.ContainsKey(change.Position))
@@ -499,8 +527,8 @@ namespace SadRogue.Primitives.GridViews
             gridValues.Clear();
             for(int i = currentIndex; i >= 0; i--)
             {
-                if (i == historyList.Count)
-                    continue;
+                if (historyList[i].Changes.Count == 0)
+                    throw new Exception($"Cannot have blank diffs in history of a {nameof(DiffAwareGridView<T>)}.");
 
                 foreach (var change in historyList[i].Reverse())
                 {

@@ -117,6 +117,7 @@ namespace SadRogue.Primitives.UnitTests
             Point center = (25, 20);
             int radius = 10;
 
+            // ReSharper disable once RedundantCast
             Distance dist = (Distance)shape;
 
             var positions = shape.PositionsInRadius(center, radius).ToList();
@@ -144,6 +145,7 @@ namespace SadRogue.Primitives.UnitTests
             Point center = (5, 7);
             int radius = 10;
 
+            // ReSharper disable once RedundantCast
             Distance dist = (Distance)shape;
 
             var positions = shape.PositionsInRadius(center, radius, bounds).ToList();

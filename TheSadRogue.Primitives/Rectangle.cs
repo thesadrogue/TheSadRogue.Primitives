@@ -370,6 +370,45 @@ namespace SadRogue.Primitives
             => new Rectangle(X, Y, Width + deltaWidth, Height);
 
         /// <summary>
+        /// Creates and returns a new rectangle that has its position moved in the given direction.
+        /// </summary>
+        /// <param name="direction">The direction to move the new rectangle in.</param>
+        /// <returns>A new rectangle that has its position moved in the given direction.</returns>
+        [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Rectangle ChangePosition(Direction direction) => Translate(direction);
+
+        /// <summary>
+        /// Creates and returns a new rectangle whose position has been moved by the given
+        /// delta-change values.
+        /// </summary>
+        /// <param name="deltaChange">Delta-x and delta-y values by which to move the new rectangle.</param>
+        /// <returns>
+        /// A new rectangle, whose position has been moved by the given delta-change values.
+        /// </returns>
+        [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Rectangle ChangePosition(Point deltaChange) => Translate(deltaChange);
+
+        /// <summary>
+        /// Creates and returns a new rectangle whose x-position has been moved by the given delta value.
+        /// </summary>
+        /// <param name="dx">Value by which to move the new rectangle's x-position.</param>
+        /// <returns>A new rectangle, whose x-position has been moved by the given delta-x value.</returns>
+        [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Rectangle ChangeX(int dx) => TranslateX(dx);
+
+        /// <summary>
+        /// Creates and returns a new rectangle whose y-position has been moved by the given delta value.
+        /// </summary>
+        /// <param name="dy">Value by which to move the new rectangle's y-position.</param>
+        /// <returns>A new rectangle, whose y-position has been moved by the given delta-y value.</returns>
+        [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Rectangle ChangeY(int dy) => TranslateY(dy);
+
+        /// <summary>
         /// Returns whether or not the specified point is considered within the rectangle.
         /// </summary>
         /// <param name="position">The position to check.</param>

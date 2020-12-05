@@ -454,13 +454,14 @@ namespace SadRogue.Primitives
         public override bool Equals(object? obj) => obj is Rectangle && this == (Rectangle)obj;
 
         /// <summary>
-        /// Returns a new rectangle, expanded to include the additional specified rows/columns.
+        /// Returns a new rectangle, expanded on each side by the given amounts.  Negative change values
+        /// can be used to shrink the rectangle on each side.
         /// </summary>
         /// <param name="horizontalChange">
-        /// Number of additional columns to include on the left/right of the rectangle.
+        /// Number of additional columns to include on the left and right of the rectangle.
         /// </param>
         /// <param name="verticalChange">
-        /// Number of additional rows to include on the top/bottom of the rectangle.
+        /// Number of additional rows to include on the top and bottom of the rectangle.
         /// </param>
         /// <returns>A new rectangle, expanded appropriately.</returns>
         [Pure]

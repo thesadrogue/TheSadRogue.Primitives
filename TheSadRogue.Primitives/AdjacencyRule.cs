@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
+using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 
 namespace SadRogue.Primitives
@@ -242,6 +243,18 @@ namespace SadRogue.Primitives
 
         /// <summary>
         /// Gets all neighbors of the specified location, based on the current adjacency method.
+        /// Cardinals are returned before any diagonals.
+        /// </summary>
+        /// <param name="startingLocationX">X-value of the location to return neighbors for.</param>
+        /// <param name="startingLocationY">Y-value of the location to return neighbors for.</param>
+        /// <returns>All neighbors of the given location.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [Pure]
+        public IEnumerable<Point> Neighbors(int startingLocationX, int startingLocationY)
+            => Neighbors(new Point(startingLocationX, startingLocationY));
+
+        /// <summary>
+        /// Gets all neighbors of the specified location, based on the current adjacency method.
         /// Neighbors are returned in clockwise order, starting with the neighbor in the given
         /// starting direction.
         /// </summary>
@@ -259,6 +272,26 @@ namespace SadRogue.Primitives
             foreach (Direction dir in DirectionsOfNeighborsClockwise(startingDirection))
                 yield return startingLocation + dir;
         }
+
+        /// <summary>
+        /// Gets all neighbors of the specified location, based on the current adjacency method.
+        /// Neighbors are returned in clockwise order, starting with the neighbor in the given
+        /// starting direction.
+        /// </summary>
+        /// <param name="startingLocationX">X-value of the location to return neighbors for.</param>
+        /// <param name="startingLocationY">Y-value of the location to return neighbors for.</param>
+        /// <param name="startingDirection">
+        /// The neighbor in this direction will be returned first, proceeding clockwise.
+        /// If <see cref="Direction.None"/> is specified, the default starting direction
+        /// is used, which is <see cref="Direction.Up"/> for CARDINALS/EIGHT_WAY, and <see cref="Direction.UpRight"/>
+        /// for DIAGONALS.
+        /// </param>
+        /// <returns>All neighbors of the given location.</returns>
+        [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public IEnumerable<Point> NeighborsClockwise(int startingLocationX, int startingLocationY,
+                                                     Direction startingDirection = default)
+            => NeighborsClockwise(new Point(startingLocationX, startingLocationY), startingDirection);
 
         /// <summary>
         /// Gets all neighbors of the specified location, based on the current adjacency method.
@@ -280,6 +313,26 @@ namespace SadRogue.Primitives
             foreach (Direction dir in DirectionsOfNeighborsCounterClockwise(startingDirection))
                 yield return startingLocation + dir;
         }
+
+        /// <summary>
+        /// Gets all neighbors of the specified location, based on the current adjacency method.
+        /// Neighbors are returned in counter-clockwise order, starting with the neighbor in the given
+        /// starting direction.
+        /// </summary>
+        /// <param name="startingLocationX">X-value of the location to return neighbors for.</param>
+        /// <param name="startingLocationY">Y-value of the location to return neighbors for.</param>
+        /// <param name="startingDirection">
+        /// The neighbor in this direction will be returned first, proceeding counter-clockwise.
+        /// If <see cref="Direction.None"/> is specified, the default starting direction
+        /// is used, which is <see cref="Direction.Up"/> for CARDINALS/EIGHT_WAY, and
+        /// <see cref="Direction.UpLeft"/> for DIAGONALS.
+        /// </param>
+        /// <returns>All neighbors of the given location.</returns>
+        [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public IEnumerable<Point> NeighborsCounterClockwise(int startingLocationX, int startingLocationY,
+                                                            Direction startingDirection = default)
+            => NeighborsCounterClockwise(new Point(startingLocationX, startingLocationY), startingDirection);
 
         /// <summary>
         /// True if the given AdjacencyRule has the same Type the current one.

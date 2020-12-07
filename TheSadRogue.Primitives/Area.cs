@@ -214,6 +214,19 @@ namespace SadRogue.Primitives
         }
 
         /// <summary>
+        /// Adds the given position to the list of points within the area if it is not already in the
+        /// list, or does nothing otherwise.
+        /// </summary>
+        /// <remarks>
+        /// Because the class uses a hash set internally to determine what points have already been added,
+        /// this is an average case O(1) operation.
+        /// </remarks>
+        /// <param name="positionX">X-value of the position to add.</param>
+        /// <param name="positionY">Y-value of the position to add.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void Add(int positionX, int positionY) => Add(new Point(positionX, positionY));
+
+        /// <summary>
         /// Adds the given positions to the list of points within the area if they are not already in
         /// the list.
         /// </summary>
@@ -251,6 +264,15 @@ namespace SadRogue.Primitives
         /// <returns>True if the specified position is within the area, false otherwise.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool Contains(Point position) => _positionsSet.Contains(position);
+
+        /// <summary>
+        /// Determines whether or not the given position is within the area or not.
+        /// </summary>
+        /// <param name="positionX">X-value of the position to check.</param>
+        /// <param name="positionY">Y-value of the position to check.</param>
+        /// <returns>True if the specified position is within the area, false otherwise.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public bool Contains(int positionX, int positionY) => Contains(new Point(positionX, positionY));
 
         /// <summary>
         /// Returns whether or not the given area is completely contained within the current one.
@@ -308,6 +330,16 @@ namespace SadRogue.Primitives
         /// <param name="position">The position to remove.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void Remove(Point position) => Remove(YieldPoint(position));
+
+        /// <summary>
+        /// Removes the given position specified from the area. Particularly when the remove operation
+        /// operation changes the bounds, this operation can be expensive, so if you must do multiple
+        /// remove operations, it would be best to group them into 1 using <see cref="Remove(IEnumerable{Point})"/>.
+        /// </summary>
+        /// <param name="positionX">X-value of the position to remove.</param>
+        /// <param name="positionY">Y-value of the position to remove.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void Remove(int positionX, int positionY) => Remove(YieldPoint(new Point(positionX, positionY)));
 
         /// <summary>
         /// Removes positions for which the given predicate returns true from the area.

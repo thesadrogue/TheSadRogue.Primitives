@@ -39,6 +39,14 @@ namespace SadRogue.Primitives
         bool Contains(Point position);
 
         /// <summary>
+        /// Determines whether or not the given position is considered within the area or not.
+        /// </summary>
+        /// <param name="positionX">X-value of the position to check.</param>
+        /// <param name="positionY">X-value of the position to check.</param>
+        /// <returns>True if the specified position is within the area, false otherwise.</returns>
+        bool Contains(int positionX, int positionY);
+
+        /// <summary>
         /// Returns whether or not the given map area intersects the current one. If you intend to
         /// determine/use the exact intersection based on this return value, it is best to instead
         /// call <see cref="Area.GetIntersection(IReadOnlyArea, IReadOnlyArea)"/>, and check the number

@@ -6,7 +6,7 @@
     <RootNamespace>SadRogue.Primitives</RootNamespace>
     <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
-	<Version>1.0.0-alpha7</Version>
+	<Version>1.0.0-alpha8</Version>
 	<Version Condition="'$(Configuration)'=='Debug'">$(Version)-debug</Version>
 	<Authors>Chris3606;Thraka</Authors>
 	<Company>TheSadRogue</Company>
@@ -15,7 +15,13 @@
 
 	<!-- More nuget package settings-->
 	<PackageId>TheSadRogue.Primitives</PackageId>
-	<PackageReleaseNotes>Added grid views.</PackageReleaseNotes>
+	<PackageReleaseNotes>
+    - Fixed a bug in DiffAwareGridView regarding index tracking at end of diffs.
+    - Added x/y overloads to functions taking Point .
+    - Added ChangePosition functions to Rectangle to apply a consistent interface
+    - Corrected description of Rectangle.Expand
+    - Removes inheritdoc from build to ensure the project can be built on all platforms
+  </PackageReleaseNotes>
 	<RepositoryUrl>https://https://github.com/thesadrogue/TheSadRogue.Primitives</RepositoryUrl>
 	<RepositoryType>git</RepositoryType>
 	<PublishRepositoryUrl>true</PublishRepositoryUrl>
@@ -45,11 +51,5 @@
   <Target Name="CopyPackage" AfterTargets="Pack">
     <Copy SourceFiles="$(OutputPath)\$(PackageId).$(PackageVersion).nupkg" DestinationFolder="$(OutputPath)..\..\..\nuget" />
     <Copy SourceFiles="$(OutputPath)\$(PackageId).$(PackageVersion).snupkg" DestinationFolder="$(OutputPath)..\..\..\nuget" />
-  </Target>
-
-  <!-- Run InheritDoc on the final builds. -->
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(OS)' == 'Windows_NT'">
-	<Exec Command="dotnet tool restore" />
-    <Exec Command="dotnet inheritdoc -o -b $(OutDir)" />
   </Target>
 </Project>

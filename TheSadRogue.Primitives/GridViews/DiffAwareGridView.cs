@@ -413,6 +413,10 @@ namespace SadRogue.Primitives.GridViews
                 throw new InvalidOperationException(
                     $"Cannot {nameof(FinalizeCurrentDiff)} if there are existing diffs that are not applied.");
 
+            // Nothing to do here; we're already in the appropriate state
+            if (Diffs.Count == 0)
+                return;
+
             // Compress diff if needed
             if (AutoCompress)
                 _diffs[^1].Compress();

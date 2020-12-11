@@ -328,6 +328,36 @@ namespace SadRogue.Primitives.UnitTests.GridViews
             Assert.Equal(2, view.CurrentDiffIndex);
         }
 
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void FinalizeWithNoDiffs(bool autoCompress)
+        {
+            // Create a new grid view
+            var view = new DiffAwareGridView<int>(80, 25, autoCompress);
+
+            // Attempt to finalize with 0 diffs.  This should do nothing, since it leaves a valid operational
+            // state and is a valid operation, but there is no diff to mark.
+            view.FinalizeCurrentDiff();
+
+            // Should still be no diffs
+            Assert.Equal(-1, view.CurrentDiffIndex);
+            Assert.Empty(view.Diffs);
+
+            // Should also work with next-or-finalize
+            Assert.False(view.ApplyNextDiffOrFinalize());
+
+            // Should still be no diffs
+            Assert.Equal(-1, view.CurrentDiffIndex);
+            Assert.Empty(view.Diffs);
+
+            // Creating changes should still create a new diff as normal
+            view[1, 2] = 10;
+            view[2, 3] = 11;
+            Assert.Equal(0, view.CurrentDiffIndex);
+            Assert.Single(view.Diffs);
+        }
+
         [Fact]
         public void SetHistory()
         {

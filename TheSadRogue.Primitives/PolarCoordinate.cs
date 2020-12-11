@@ -122,12 +122,24 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="cartesian">The cartesian point to analyze</param>
         /// <returns>An Equivalent Polar Coordinate</returns>
+        [Pure]
         public static PolarCoordinate FromCartesian(Point cartesian)
         {
             double radius = Math.Sqrt(cartesian.X * cartesian.X + cartesian.Y * cartesian.Y);
             double theta = Math.Atan2(cartesian.Y, cartesian.X);
             return new PolarCoordinate(radius, theta);
         }
+
+        /// <summary>
+        /// Returns a new PolarCoordinate that is equivalent to the Cartesian point provided.
+        /// </summary>
+        /// <param name="cartesianX">X-value of the cartesian point to analyze.</param>
+        /// <param name="cartesianY">Y-value of the cartesian point to analyze.</param>
+        /// <returns>An Equivalent Polar Coordinate</returns>
+        [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static PolarCoordinate FromCartesian(int cartesianX, int cartesianY)
+            => FromCartesian(new Point(cartesianX, cartesianY));
 
         #region Tuple Compatibility
 

@@ -62,6 +62,19 @@ namespace SadRogue.Primitives
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static double BearingOfLine(Point start, Point end) => BearingOfLine(start - end);
 
+        /// <summary>
+        /// Calculates degree bearing of the line (start =&gt; end), where 0 points in the direction <see cref="Direction.Up"/>.
+        /// </summary>
+        /// <param name="startX">X-value of the position of line starting point.</param>
+        /// <param name="startY">Y-value of the position of line starting point.</param>
+        /// <param name="endX">X-value of the position of line ending point.</param>
+        /// <param name="endY">X-value of the position of line ending point.</param>
+        /// <returns>The degree bearing of the line specified by the two given points.</returns>
+        [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static double BearingOfLine(int startX, int startY, int endX, int endY)
+            => BearingOfLine(new Point(startX, startY), new Point(endX, endY));
+
 
         /// <summary>
         /// Calculates the degree bearing of a line with the given delta-x and delta-y values, where
@@ -87,6 +100,18 @@ namespace SadRogue.Primitives
         }
 
         /// <summary>
+        /// Calculates the degree bearing of a line with the given delta-x and delta-y values, where
+        /// 0 degrees points in the direction <see cref="Direction.Up"/>.
+        /// </summary>
+        /// <param name="dx">Change in x-value across the line.</param>
+        /// <param name="dy">Change in y-value across the line.</param>
+        /// <returns>The degree bearing of the line with the given dx and dy values.</returns>
+        [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static double BearingOfLine(int dx, int dy)
+            => BearingOfLine(new Point(dx, dy));
+
+        /// <summary>
         /// Returns the result of the euclidean distance formula, without the square root -- eg.,
         /// (c2.X - c1.X) * (c2.X - c1.X) + (c2.Y - c1.Y) * (c2.Y - c1.Y). Use this if you only care
         /// about the magnitude of the distance -- eg., if you're trying to compare two distances.
@@ -103,6 +128,25 @@ namespace SadRogue.Primitives
         public static double EuclideanDistanceMagnitude(Point c1, Point c2) => EuclideanDistanceMagnitude(c2 - c1);
 
         /// <summary>
+        /// Returns the result of the euclidean distance formula, without the square root -- eg.,
+        /// (c2.X - c1.X) * (c2.X - c1.X) + (c2.Y - c1.Y) * (c2.Y - c1.Y). Use this if you only care
+        /// about the magnitude of the distance -- eg., if you're trying to compare two distances.
+        /// Omitting the square root provides a speed increase.
+        /// </summary>
+        /// <param name="firstX">X-value for the first point.</param>
+        /// <param name="firstY">Y-value for the first point.</param>
+        /// <param name="secondX">X-value for the second point.</param>
+        /// <param name="secondY">Y-value for the second point.</param>
+        /// <returns>
+        /// The "magnitude" of the euclidean distance between the two points -- basically the
+        /// distance formula without the square root.
+        /// </returns>
+        [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static double EuclideanDistanceMagnitude(int firstX, int firstY, int secondX, int secondY)
+            => EuclideanDistanceMagnitude(new Point(firstX, firstY), new Point(secondX, secondY));
+
+        /// <summary>
         /// Returns the result of the euclidean distance formula, without the square root, given the
         /// dx and dy values between two points -- eg., (deltaChange.X * deltaChange.X) + (deltaChange.Y
         /// * deltaChange.Y). Use this if you only care about the magnitude of the distance -- eg., if
@@ -117,8 +161,26 @@ namespace SadRogue.Primitives
         /// values -- basically the distance formula without the square root.
         /// </returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static double EuclideanDistanceMagnitude(Point deltaChange)
             => deltaChange.X * deltaChange.X + deltaChange.Y * deltaChange.Y;
+
+        /// <summary>
+        /// Returns the result of the euclidean distance formula, without the square root, given the
+        /// dx and dy values between two points -- eg., (deltaChange.X * deltaChange.X) + (deltaChange.Y
+        /// * deltaChange.Y). Use this if you only care about the magnitude of the distance -- eg., if
+        /// you're trying to compare two distances. Omitting the square root provides a speed increase.
+        /// </summary>
+        /// <param name="dx">Change in x-values between the two points.</param>
+        /// <param name="dy">Change in y-values between the two points.</param>
+        /// <returns>
+        /// The "magnitude" of the euclidean distance of two locations with the given dx and dy
+        /// values -- basically the distance formula without the square root.
+        /// </returns>
+        [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static double EuclideanDistanceMagnitude(int dx, int dy)
+            => EuclideanDistanceMagnitude(new Point(dx, dy));
 
         /// <summary>
         /// True if the given coordinate has equal x and y values to the current one.
@@ -139,6 +201,19 @@ namespace SadRogue.Primitives
         public static Point Midpoint(Point c1, Point c2)
             => new Point((int)Math.Round((c1.X + c2.X) / 2.0f, MidpointRounding.AwayFromZero),
                 (int)Math.Round((c1.Y + c2.Y) / 2.0f, MidpointRounding.AwayFromZero));
+
+        /// <summary>
+        /// Returns the midpoint between the two points.
+        /// </summary>
+        /// <param name="firstX">X-value for the first point.</param>
+        /// <param name="firstY">Y-value for the first point.</param>
+        /// <param name="secondX">X-value for the second point.</param>
+        /// <param name="secondY">Y-value for the second point.</param>
+        /// <returns>The midpoint between the two points.</returns>
+        [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Point Midpoint(int firstX, int firstY, int secondX, int secondY)
+            => Midpoint(new Point(firstX, firstY), new Point(secondX, secondY));
 
         /// <summary>
         /// Returns the coordinate (c1.X - c2.X, c1.Y - c2.Y).
@@ -376,6 +451,17 @@ namespace SadRogue.Primitives
         public Point Translate(Point deltaChange) => new Point(X + deltaChange.X, Y + deltaChange.Y);
 
         /// <summary>
+        /// Returns the position resulting from adding dx to the X-value of the position, and dy
+        /// to the Y-value of the position.
+        /// </summary>
+        /// <param name="dx">Change in x-value to apply.</param>
+        /// <param name="dy">Change in y-value to apply.</param>
+        /// <returns>The position (<see cref="X"/> + dx, <see cref="Y"/> + dy)</returns>
+        [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Point Translate(int dx, int dy) => Translate(new Point(dx, dy));
+
+        /// <summary>
         /// Creates a new Point with its X value moved to the given one.
         /// </summary>
         /// <param name="x">X-value for the new Point.</param>
@@ -586,6 +672,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="degrees">The amount of Degrees to rotate this point clockwise</param>
         /// <returns>The equivalent point after a rotation</returns>
+        [Pure]
         public  Point Rotate(double degrees)
         {
             double radians = MathHelpers.ToRadian(degrees);
@@ -600,14 +687,28 @@ namespace SadRogue.Primitives
         /// <param name="degrees">The amount of Degrees to rotate this point</param>
         /// <param name="origin">The Point around which to rotate</param>
         /// <returns>The equivalent point after a rotation</returns>
+        [Pure]
         public Point Rotate(double degrees, Point origin)
         {
             Point rotatingPoint = this - origin;
             double radians = MathHelpers.ToRadian(degrees);
             int x = (int)Math.Round(rotatingPoint.X * Math.Cos(radians) - rotatingPoint.Y * Math.Sin(radians));
             int y = (int)Math.Round(rotatingPoint.X * Math.Sin(radians) + rotatingPoint.Y * Math.Cos(radians));
-            return origin + (x, y);
+            return origin + new Point(x, y);
         }
+
+        /// <summary>
+        /// Rotates a single point around the origin point.
+        /// </summary>
+        /// <param name="degrees">The amount of Degrees to rotate this point</param>
+        /// <param name="originX">X-value of the location around which to rotate</param>
+        /// <param name="originY">Y-value of the location around which to rotate</param>
+        /// <returns>The equivalent point after a rotation</returns>
+        [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Point Rotate(double degrees, int originX, int originY)
+            => Rotate(degrees, new Point(originX, originY));
+
         #endregion
     }
 }

@@ -5,7 +5,7 @@ namespace SadRogue.Primitives
     /// <summary>
     /// Read-only interface for an arbitrary 2D area.
     /// </summary>
-    public interface IReadOnlyArea : IMatchable<IReadOnlyArea>
+    public interface IReadOnlyArea : IMatchable<IReadOnlyArea>, IEnumerable<Point>
     {
         /// <summary>
         /// Smallest possible rectangle that encompasses every position in the area.
@@ -18,9 +18,10 @@ namespace SadRogue.Primitives
         int Count { get; }
 
         /// <summary>
-        /// List of all (unique) positions in the current area.
+        /// Returns positions from the area in the same fashion you would via a list.
         /// </summary>
-        IReadOnlyList<Point> Positions { get; }
+        /// <param name="index">Index of list to retrieve.</param>
+        Point this[int index] { get; }
 
         /// <summary>
         /// Returns whether or not the given area is completely contained within the current one.

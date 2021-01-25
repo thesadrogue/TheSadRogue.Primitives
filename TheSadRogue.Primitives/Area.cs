@@ -13,7 +13,7 @@ namespace SadRogue.Primitives
     /// unique position in the area.
     /// </summary>
     [DataContract]
-    public class Area : IReadOnlyArea, IEnumerable<Point>
+    public class Area : IReadOnlyArea
     {
         private readonly HashSet<Point> _positionsSet;
 
@@ -52,6 +52,9 @@ namespace SadRogue.Primitives
             : this((IEnumerable<Point>)initialPoints)
         { }
 
+        /// <inheritdoc />
+        public Point this[int index] => _positions[index];
+
         /// <summary>
         /// Smallest possible rectangle that encompasses every position in the area.
         /// </summary>
@@ -72,11 +75,6 @@ namespace SadRogue.Primitives
         public int Count => _positions.Count;
 
         /// <summary>
-        /// List of all (unique) positions in the area.
-        /// </summary>
-        public IReadOnlyList<Point> Positions => _positions.AsReadOnly();
-
-        /// <summary>
         /// Gets an area containing all positions in <paramref name="area1"/>, minus those that are in
         /// <paramref name="area2"/>.
         /// </summary>
@@ -88,7 +86,7 @@ namespace SadRogue.Primitives
         {
             Area retVal = new Area();
 
-            foreach (Point pos in area1.Positions)
+            foreach (Point pos in area1)
             {
                 if (area2.Contains(pos))
                     continue;
@@ -115,7 +113,7 @@ namespace SadRogue.Primitives
             if (area1.Count > area2.Count)
                 Swap(ref area1, ref area2);
 
-            foreach (Point pos in area1.Positions)
+            foreach (Point pos in area1)
                 if (area2.Contains(pos))
                     retVal.Add(pos);
 
@@ -150,7 +148,7 @@ namespace SadRogue.Primitives
         {
             Area retVal = new Area();
 
-            foreach (Point pos in lhs.Positions)
+            foreach (Point pos in lhs)
                 retVal.Add(pos + rhs);
 
             return retVal;
@@ -176,7 +174,7 @@ namespace SadRogue.Primitives
             if (Bounds != other.Bounds)
                 return false;
 
-            foreach (Point pos in Positions)
+            foreach (Point pos in _positions)
                 if (!other.Contains(pos))
                     return false;
 
@@ -253,7 +251,7 @@ namespace SadRogue.Primitives
         /// <param name="area">Area containing positions to add.</param>
         public void Add(IReadOnlyArea area)
         {
-            foreach (Point pos in area.Positions)
+            foreach (Point pos in area)
                 Add(pos);
         }
 
@@ -286,7 +284,7 @@ namespace SadRogue.Primitives
             if (!Bounds.Contains(area.Bounds))
                 return false;
 
-            foreach (Point pos in area.Positions)
+            foreach (Point pos in area)
                 if (!Contains(pos))
                     return false;
 
@@ -308,14 +306,14 @@ namespace SadRogue.Primitives
 
             if (Count <= area.Count)
             {
-                foreach (Point pos in Positions)
+                foreach (Point pos in _positions)
                     if (area.Contains(pos))
                         return true;
 
                 return false;
             }
 
-            foreach (Point pos in area.Positions)
+            foreach (Point pos in area)
                 if (Contains(pos))
                     return true;
 
@@ -397,7 +395,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="area">Area containing positions to remove.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void Remove(IReadOnlyArea area) => Remove(area.Positions);
+        public void Remove(IReadOnlyArea area) => Remove((IEnumerable<Point>)area);
 
         /// <summary>
         /// Removes all positions in the given rectangle from this area.

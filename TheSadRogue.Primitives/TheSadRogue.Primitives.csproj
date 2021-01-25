@@ -6,21 +6,18 @@
     <RootNamespace>SadRogue.Primitives</RootNamespace>
     <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
-	<Version>1.0.0-alpha8</Version>
+	<Version>1.0.0-alpha9</Version>
 	<Version Condition="'$(Configuration)'=='Debug'">$(Version)-debug</Version>
 	<Authors>Chris3606;Thraka</Authors>
 	<Company>TheSadRogue</Company>
-	<Copyright>Copyright © 2020 [Christopher Ridley (Chris3606) and TheSadRogue Steve De George JR (Thraka)]</Copyright>
+	<Copyright>Copyright © 2021 [Christopher Ridley (Chris3606) and TheSadRogue Steve De George JR (Thraka)]</Copyright>
 	<Description>A collection of primitive data structures for working with a 2-dimensional grid.</Description>
 
 	<!-- More nuget package settings-->
 	<PackageId>TheSadRogue.Primitives</PackageId>
 	<PackageReleaseNotes>
-    - Fixed a bug in DiffAwareGridView regarding index tracking at end of diffs.
-    - Added x/y overloads to functions taking Point .
-    - Added ChangePosition functions to Rectangle to apply a consistent interface
-    - Corrected description of Rectangle.Expand
-    - Removes inheritdoc from build to ensure the project can be built on all platforms
+    - Modified Area interface to have an indexer instead of the Positions property
+	- Removed default value for the DefaultValue parameter in UnboundedViewport to conform to nullability constraints
   </PackageReleaseNotes>
 	<RepositoryUrl>https://https://github.com/thesadrogue/TheSadRogue.Primitives</RepositoryUrl>
 	<RepositoryType>git</RepositoryType>

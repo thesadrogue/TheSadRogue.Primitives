@@ -29,6 +29,6 @@ namespace SadRogue.Primitives.SerializedTypes
         /// <param name="area"/>
         /// <returns/>
         public static implicit operator AreaSerialized(Area area)
-            => new AreaSerialized() { Positions = area.Positions.Select(p => (PointSerialized)p).ToList() };
+            => new AreaSerialized() { Positions = area.Select(p => (PointSerialized)p).ToList() };
     }
 }

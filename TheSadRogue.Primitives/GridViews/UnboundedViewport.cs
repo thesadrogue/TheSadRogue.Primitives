@@ -27,7 +27,7 @@ namespace SadRogue.Primitives.GridViews
         /// <param name="defaultValue">
         /// The value to return if a position is accessed that is outside the actual underlying grid view.
         /// </param>
-        public UnboundedViewport(IGridView<T> gridView, Rectangle viewArea, T defaultValue = default)
+        public UnboundedViewport(IGridView<T> gridView, Rectangle viewArea, T defaultValue)
         {
             GridView = gridView;
             _viewArea = viewArea;
@@ -41,7 +41,7 @@ namespace SadRogue.Primitives.GridViews
         /// <param name="defaultValue">
         /// The value to return if a position is accessed that is outside the actual underlying grid view.
         /// </param>
-        public UnboundedViewport(IGridView<T> gridView, T defaultValue = default)
+        public UnboundedViewport(IGridView<T> gridView, T defaultValue)
             : this(gridView, gridView.Bounds(), defaultValue)
         { }
 

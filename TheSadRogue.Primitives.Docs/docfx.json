@@ -33,7 +33,7 @@
           "toc.yml",
           "*.md"
         ]
-      }
+      },
     ],
     "resource": [
       {
@@ -52,6 +52,9 @@
           "_site/**"
         ]
       }
+    ],
+	"xrefservice": [
+      "https://xref.docs.microsoft.com/query?uid={uid}"
     ],
     "dest": "../docs",
     "globalMetadataFiles": [],

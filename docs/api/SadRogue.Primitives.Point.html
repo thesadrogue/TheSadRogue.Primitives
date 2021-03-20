@@ -79,32 +79,34 @@ common grid/position-related math and operations.</p>
   <div class="markdown level0 conceptual"></div>
   <div classs="implements">
     <h5>Implements</h5>
-    <div><span class="xref">System.IEquatable</span>&lt;<a class="xref" href="SadRogue.Primitives.Point.html">Point</a>&gt;</div>
-    <div><span class="xref">System.IEquatable</span>&lt;<span class="xref">System.ValueTuple</span>&lt;<span class="xref">System.Int32</span>, <span class="xref">System.Int32</span>&gt;&gt;</div>
+    <div><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="SadRogue.Primitives.Point.html">Point</a>&gt;</div>
+    <div><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-2">ValueTuple</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>&gt;&gt;</div>
+    <div><a class="xref" href="SadRogue.Primitives.IMatchable-1.html">IMatchable</a>&lt;<a class="xref" href="SadRogue.Primitives.Point.html">Point</a>&gt;</div>
+    <div><a class="xref" href="SadRogue.Primitives.IMatchable-1.html">IMatchable</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-2">ValueTuple</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>&gt;&gt;</div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
-      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.equals#System_Object_Equals_System_Object_System_Object_">Object.Equals(Object, Object)</a>
     </div>
     <div>
-      <span class="xref">System.Object.GetType()</span>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.gettype#System_Object_GetType">Object.GetType()</a>
     </div>
     <div>
-      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.referenceequals#System_Object_ReferenceEquals_System_Object_System_Object_">Object.ReferenceEquals(Object, Object)</a>
     </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="SadRogue.Primitives.html">SadRogue.Primitives</a></h6>
   <h6><strong>Assembly</strong>: TheSadRogue.Primitives.dll</h6>
   <h5 id="SadRogue_Primitives_Point_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Serializable]
-public struct Point : IEquatable&lt;Point&gt;, IEquatable&lt;(int x, int y)&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">[DataContract]
+public struct Point : IEquatable&lt;Point&gt;, IEquatable&lt;(int x, int y)&gt;, IMatchable&lt;Point&gt;, IMatchable&lt;(int x, int y)&gt;</code></pre>
   </div>
   <h5 id="SadRogue_Primitives_Point_remarks"><strong>Remarks</strong></h5>
   <div class="markdown level0 remarks"><p>Point instances can be created using the standard Point c = new Point(x, y) syntax.  In addition,
 you may create a coord from a c# 7 tuple, like Point c = (x, y);.  As well, Point supports C#
-Deconstrution syntax.</p>
+Deconstruction syntax.</p>
 <p>Point also provides operators and static helper functions that perform common grid math/operations,
 as well as interoperability with other grid-based classes like <a class="xref" href="SadRogue.Primitives.Direction.html">Direction</a>.</p>
 </div>
@@ -115,7 +117,7 @@ as well as interoperability with other grid-based classes like <a class="xref" h
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point__ctor_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.%23ctor(System.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L46">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L49">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point__ctor_" data-uid="SadRogue.Primitives.Point.#ctor*"></a>
   <h4 id="SadRogue_Primitives_Point__ctor_System_Int32_System_Int32_" data-uid="SadRogue.Primitives.Point.#ctor(System.Int32,System.Int32)">Point(Int32, Int32)</h4>
@@ -137,13 +139,13 @@ as well as interoperability with other grid-based classes like <a class="xref" h
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">x</span></td>
         <td><p>X-value for the coordinate.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">y</span></td>
         <td><p>Y-value for the coordinate.</p>
 </td>
@@ -157,7 +159,7 @@ as well as interoperability with other grid-based classes like <a class="xref" h
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_None.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.None%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L29">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L32">View Source</a>
   </span>
   <h4 id="SadRogue_Primitives_Point_None" data-uid="SadRogue.Primitives.Point.None">None</h4>
   <div class="markdown level1 summary"><p>Point value that represents None or no position (since Point is not a nullable type).
@@ -166,8 +168,7 @@ Typically you would use this constant instead of null.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[NonSerialized]
-public static readonly Point None</code></pre>
+    <pre><code class="lang-csharp hljs">public static readonly Point None</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -193,7 +194,7 @@ x/y values is not considered a valid coordinate by many functions.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_X.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.X%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L34">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L37">View Source</a>
   </span>
   <h4 id="SadRogue_Primitives_Point_X" data-uid="SadRogue.Primitives.Point.X">X</h4>
   <div class="markdown level1 summary"><p>X-value of the position.</p>
@@ -201,7 +202,8 @@ x/y values is not considered a valid coordinate by many functions.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public readonly int X</code></pre>
+    <pre><code class="lang-csharp hljs">[DataMember]
+public readonly int X</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -213,7 +215,7 @@ x/y values is not considered a valid coordinate by many functions.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -223,7 +225,7 @@ x/y values is not considered a valid coordinate by many functions.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_Y.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.Y%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L39">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L42">View Source</a>
   </span>
   <h4 id="SadRogue_Primitives_Point_Y" data-uid="SadRogue.Primitives.Point.Y">Y</h4>
   <div class="markdown level1 summary"><p>Y-value of the position.</p>
@@ -231,7 +233,8 @@ x/y values is not considered a valid coordinate by many functions.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public readonly int Y</code></pre>
+    <pre><code class="lang-csharp hljs">[DataMember]
+public readonly int Y</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -243,7 +246,7 @@ x/y values is not considered a valid coordinate by many functions.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -255,17 +258,18 @@ x/y values is not considered a valid coordinate by many functions.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_BearingOfLine_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.BearingOfLine(SadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L70">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L88">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_BearingOfLine_" data-uid="SadRogue.Primitives.Point.BearingOfLine*"></a>
   <h4 id="SadRogue_Primitives_Point_BearingOfLine_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Point.BearingOfLine(SadRogue.Primitives.Point)">BearingOfLine(Point)</h4>
   <div class="markdown level1 summary"><p>Calculates the degree bearing of a line with the given delta-x and delta-y values, where
-0 degreees points in the direction <a class="xref" href="SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_Up">Up</a>.</p>
+0 degrees points in the direction <a class="xref" href="SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_Up">Up</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static double BearingOfLine(Point deltaChange)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public static double BearingOfLine(Point deltaChange)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -296,7 +300,7 @@ is the change in y-values across the line.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Double</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a></td>
         <td><p>The degree bearing of the line with the given dx and dy values.</p>
 </td>
       </tr>
@@ -307,7 +311,7 @@ is the change in y-values across the line.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_BearingOfLine_SadRogue_Primitives_Point_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.BearingOfLine(SadRogue.Primitives.Point%2CSadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L58">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L61">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_BearingOfLine_" data-uid="SadRogue.Primitives.Point.BearingOfLine*"></a>
   <h4 id="SadRogue_Primitives_Point_BearingOfLine_SadRogue_Primitives_Point_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Point.BearingOfLine(SadRogue.Primitives.Point,SadRogue.Primitives.Point)">BearingOfLine(Point, Point)</h4>
@@ -316,7 +320,8 @@ is the change in y-values across the line.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static double BearingOfLine(Point start, Point end)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public static double BearingOfLine(Point start, Point end)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -352,7 +357,7 @@ is the change in y-values across the line.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Double</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a></td>
         <td><p>The degree bearing of the line specified by the two given points.</p>
 </td>
       </tr>
@@ -360,19 +365,21 @@ is the change in y-values across the line.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_Deconstruct_System_Int32__System_Int32__.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.Deconstruct(System.Int32%40%2CSystem.Int32%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_BearingOfLine_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.BearingOfLine(System.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L353">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L109">View Source</a>
   </span>
-  <a id="SadRogue_Primitives_Point_Deconstruct_" data-uid="SadRogue.Primitives.Point.Deconstruct*"></a>
-  <h4 id="SadRogue_Primitives_Point_Deconstruct_System_Int32__System_Int32__" data-uid="SadRogue.Primitives.Point.Deconstruct(System.Int32@,System.Int32@)">Deconstruct(out Int32, out Int32)</h4>
-  <div class="markdown level1 summary"><p>Adds support for C# Deconstruction syntax.</p>
+  <a id="SadRogue_Primitives_Point_BearingOfLine_" data-uid="SadRogue.Primitives.Point.BearingOfLine*"></a>
+  <h4 id="SadRogue_Primitives_Point_BearingOfLine_System_Int32_System_Int32_" data-uid="SadRogue.Primitives.Point.BearingOfLine(System.Int32,System.Int32)">BearingOfLine(Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Calculates the degree bearing of a line with the given delta-x and delta-y values, where
+0 degrees points in the direction <a class="xref" href="SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_Up">Up</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Deconstruct(out int x, out int y)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public static double BearingOfLine(int dx, int dy)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -385,12 +392,138 @@ is the change in y-values across the line.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">dx</span></td>
+        <td><p>Change in x-value across the line.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">dy</span></td>
+        <td><p>Change in y-value across the line.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a></td>
+        <td><p>The degree bearing of the line with the given dx and dy values.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_BearingOfLine_System_Int32_System_Int32_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.BearingOfLine(System.Int32%2CSystem.Int32%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L73">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Point_BearingOfLine_" data-uid="SadRogue.Primitives.Point.BearingOfLine*"></a>
+  <h4 id="SadRogue_Primitives_Point_BearingOfLine_System_Int32_System_Int32_System_Int32_System_Int32_" data-uid="SadRogue.Primitives.Point.BearingOfLine(System.Int32,System.Int32,System.Int32,System.Int32)">BearingOfLine(Int32, Int32, Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Calculates degree bearing of the line (start =&gt; end), where 0 points in the direction <a class="xref" href="SadRogue.Primitives.Direction.html#SadRogue_Primitives_Direction_Up">Up</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Pure]
+public static double BearingOfLine(int startX, int startY, int endX, int endY)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">startX</span></td>
+        <td><p>X-value of the position of line starting point.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">startY</span></td>
+        <td><p>Y-value of the position of line starting point.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">endX</span></td>
+        <td><p>X-value of the position of line ending point.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">endY</span></td>
+        <td><p>X-value of the position of line ending point.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a></td>
+        <td><p>The degree bearing of the line specified by the two given points.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_Deconstruct_System_Int32__System_Int32__.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.Deconstruct(System.Int32%40%2CSystem.Int32%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L497">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Point_Deconstruct_" data-uid="SadRogue.Primitives.Point.Deconstruct*"></a>
+  <h4 id="SadRogue_Primitives_Point_Deconstruct_System_Int32__System_Int32__" data-uid="SadRogue.Primitives.Point.Deconstruct(System.Int32@,System.Int32@)">Deconstruct(out Int32, out Int32)</h4>
+  <div class="markdown level1 summary"><p>Adds support for C# Deconstruction syntax.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Pure]
+public void Deconstruct(out int x, out int y)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">x</span></td>
         <td></td>
       </tr>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">y</span></td>
         <td></td>
       </tr>
@@ -401,7 +534,7 @@ is the change in y-values across the line.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_Equals_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.Equals(SadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L345">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L487">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_Equals_" data-uid="SadRogue.Primitives.Point.Equals*"></a>
   <h4 id="SadRogue_Primitives_Point_Equals_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Point.Equals(SadRogue.Primitives.Point)">Equals(Point)</h4>
@@ -410,7 +543,8 @@ is the change in y-values across the line.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool Equals(Point other)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public bool Equals(Point other)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -440,7 +574,7 @@ is the change in y-values across the line.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
         <td><p>True if the two positions are equal, false if not.</p>
 </td>
       </tr>
@@ -451,7 +585,7 @@ is the change in y-values across the line.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_Equals_System_Object_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.Equals(System.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L280">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L400">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_Equals_" data-uid="SadRogue.Primitives.Point.Equals*"></a>
   <h4 id="SadRogue_Primitives_Point_Equals_System_Object_" data-uid="SadRogue.Primitives.Point.Equals(System.Object)">Equals(Object)</h4>
@@ -460,7 +594,8 @@ is the change in y-values across the line.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override bool Equals(object obj)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public override bool Equals(object obj)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -473,7 +608,7 @@ is the change in y-values across the line.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Object</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></td>
         <td><span class="parametername">obj</span></td>
         <td><p>The object to compare the current Point to.</p>
 </td>
@@ -490,20 +625,20 @@ is the change in y-values across the line.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
         <td><p>True if <code data-dev-comment-type="paramref" class="paramref">obj</code> is a Coord instance, and the two positions are equal, false otherwise.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">System.ValueType.Equals(System.Object)</span></div>
+  <div><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetype.equals#System_ValueType_Equals_System_Object_">ValueType.Equals(Object)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_Equals_System_ValueTuple_System_Int32_System_Int32__.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.Equals(System.ValueTuple%7BSystem.Int32%2CSystem.Int32%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L477">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L641">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_Equals_" data-uid="SadRogue.Primitives.Point.Equals*"></a>
   <h4 id="SadRogue_Primitives_Point_Equals_System_ValueTuple_System_Int32_System_Int32__" data-uid="SadRogue.Primitives.Point.Equals(System.ValueTuple{System.Int32,System.Int32})">Equals((Int32 x, Int32 y))</h4>
@@ -512,7 +647,8 @@ is the change in y-values across the line.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool Equals((int x, int y) other)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public bool Equals((int x, int y) other)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -525,9 +661,9 @@ is the change in y-values across the line.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ValueTuple</span>&lt;<span class="xref">System.Int32</span>, <span class="xref">System.Int32</span>&gt;</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-2">ValueTuple</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>&gt;</td>
         <td><span class="parametername">other</span></td>
-        <td><p>Point to compare.</p>
+        <td><p>Tuple to compare.</p>
 </td>
       </tr>
     </tbody>
@@ -542,7 +678,7 @@ is the change in y-values across the line.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
         <td><p>True if the two positions are equal, false if not.</p>
 </td>
       </tr>
@@ -553,7 +689,7 @@ is the change in y-values across the line.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_EuclideanDistanceMagnitude_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.EuclideanDistanceMagnitude(SadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L111">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L163">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_EuclideanDistanceMagnitude_" data-uid="SadRogue.Primitives.Point.EuclideanDistanceMagnitude*"></a>
   <h4 id="SadRogue_Primitives_Point_EuclideanDistanceMagnitude_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Point.EuclideanDistanceMagnitude(SadRogue.Primitives.Point)">EuclideanDistanceMagnitude(Point)</h4>
@@ -567,7 +703,8 @@ you're trying to compare two distances. Omitting the square root provides a spee
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static double EuclideanDistanceMagnitude(Point deltaChange)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public static double EuclideanDistanceMagnitude(Point deltaChange)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -598,7 +735,7 @@ deltaChange.Y is the change in y-values between the two points.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Double</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a></td>
         <td><p>The &quot;magnitude&quot; of the euclidean distance of two locations with the given dx and dy
 values -- basically the distance formula without the square root.</p>
 </td>
@@ -610,7 +747,7 @@ values -- basically the distance formula without the square root.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_EuclideanDistanceMagnitude_SadRogue_Primitives_Point_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.EuclideanDistanceMagnitude(SadRogue.Primitives.Point%2CSadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L95">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L126">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_EuclideanDistanceMagnitude_" data-uid="SadRogue.Primitives.Point.EuclideanDistanceMagnitude*"></a>
   <h4 id="SadRogue_Primitives_Point_EuclideanDistanceMagnitude_SadRogue_Primitives_Point_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Point.EuclideanDistanceMagnitude(SadRogue.Primitives.Point,SadRogue.Primitives.Point)">EuclideanDistanceMagnitude(Point, Point)</h4>
@@ -622,7 +759,8 @@ Omitting the square root provides a speed increase.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static double EuclideanDistanceMagnitude(Point c1, Point c2)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public static double EuclideanDistanceMagnitude(Point c1, Point c2)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -658,7 +796,7 @@ Omitting the square root provides a speed increase.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Double</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a></td>
         <td><p>The &quot;magnitude&quot; of the euclidean distance between the two points -- basically the
 distance formula without the square root.</p>
 </td>
@@ -667,19 +805,25 @@ distance formula without the square root.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_FromIndex_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.FromIndex(System.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_EuclideanDistanceMagnitude_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.EuclideanDistanceMagnitude(System.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L246">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L180">View Source</a>
   </span>
-  <a id="SadRogue_Primitives_Point_FromIndex_" data-uid="SadRogue.Primitives.Point.FromIndex*"></a>
-  <h4 id="SadRogue_Primitives_Point_FromIndex_System_Int32_System_Int32_" data-uid="SadRogue.Primitives.Point.FromIndex(System.Int32,System.Int32)">FromIndex(Int32, Int32)</h4>
-  <div class="markdown level1 summary"><p>Reverses the ToIndex functions, returning the position represented by a given index.</p>
+  <a id="SadRogue_Primitives_Point_EuclideanDistanceMagnitude_" data-uid="SadRogue.Primitives.Point.EuclideanDistanceMagnitude*"></a>
+  <h4 id="SadRogue_Primitives_Point_EuclideanDistanceMagnitude_System_Int32_System_Int32_" data-uid="SadRogue.Primitives.Point.EuclideanDistanceMagnitude(System.Int32,System.Int32)">EuclideanDistanceMagnitude(Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Returns the result of the euclidean distance formula, without the square root, given the
+dx and dy values between two points -- eg., (deltaChange.X * deltaChange.X) + (deltaChange.Y</p>
+<ul>
+<li>deltaChange.Y). Use this if you only care about the magnitude of the distance -- eg., if
+you're trying to compare two distances. Omitting the square root provides a speed increase.</li>
+</ul>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Point FromIndex(int index, int width)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public static double EuclideanDistanceMagnitude(int dx, int dy)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -692,13 +836,144 @@ distance formula without the square root.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">dx</span></td>
+        <td><p>Change in x-values between the two points.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">dy</span></td>
+        <td><p>Change in y-values between the two points.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a></td>
+        <td><p>The &quot;magnitude&quot; of the euclidean distance of two locations with the given dx and dy
+values -- basically the distance formula without the square root.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_EuclideanDistanceMagnitude_System_Int32_System_Int32_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.EuclideanDistanceMagnitude(System.Int32%2CSystem.Int32%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L144">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Point_EuclideanDistanceMagnitude_" data-uid="SadRogue.Primitives.Point.EuclideanDistanceMagnitude*"></a>
+  <h4 id="SadRogue_Primitives_Point_EuclideanDistanceMagnitude_System_Int32_System_Int32_System_Int32_System_Int32_" data-uid="SadRogue.Primitives.Point.EuclideanDistanceMagnitude(System.Int32,System.Int32,System.Int32,System.Int32)">EuclideanDistanceMagnitude(Int32, Int32, Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Returns the result of the euclidean distance formula, without the square root -- eg.,
+(c2.X - c1.X) * (c2.X - c1.X) + (c2.Y - c1.Y) * (c2.Y - c1.Y). Use this if you only care
+about the magnitude of the distance -- eg., if you're trying to compare two distances.
+Omitting the square root provides a speed increase.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Pure]
+public static double EuclideanDistanceMagnitude(int firstX, int firstY, int secondX, int secondY)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">firstX</span></td>
+        <td><p>X-value for the first point.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">firstY</span></td>
+        <td><p>Y-value for the first point.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">secondX</span></td>
+        <td><p>X-value for the second point.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">secondY</span></td>
+        <td><p>Y-value for the second point.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a></td>
+        <td><p>The &quot;magnitude&quot; of the euclidean distance between the two points -- basically the
+distance formula without the square root.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_FromIndex_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.FromIndex(System.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L358">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Point_FromIndex_" data-uid="SadRogue.Primitives.Point.FromIndex*"></a>
+  <h4 id="SadRogue_Primitives_Point_FromIndex_System_Int32_System_Int32_" data-uid="SadRogue.Primitives.Point.FromIndex(System.Int32,System.Int32)">FromIndex(Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Reverses the ToIndex functions, returning the position represented by a given index.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Pure]
+public static Point FromIndex(int index, int width)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">index</span></td>
         <td><p>The index in 1D form.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">width</span></td>
         <td><p>The width of the 2D array.</p>
 </td>
@@ -726,7 +1001,7 @@ distance formula without the square root.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_GetHashCode.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.GetHashCode%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L294">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L415">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_GetHashCode_" data-uid="SadRogue.Primitives.Point.GetHashCode*"></a>
   <h4 id="SadRogue_Primitives_Point_GetHashCode" data-uid="SadRogue.Primitives.Point.GetHashCode">GetHashCode()</h4>
@@ -736,7 +1011,8 @@ does not collide often.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public override int GetHashCode()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -748,27 +1024,129 @@ does not collide often.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><p>The hash-code for the Point.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">System.ValueType.GetHashCode()</span></div>
+  <div><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetype.gethashcode#System_ValueType_GetHashCode">ValueType.GetHashCode()</a></div>
   <h5 id="SadRogue_Primitives_Point_GetHashCode_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>This hashing algorithm uses a seperate bit-mixing algorithm for <a class="xref" href="SadRogue.Primitives.Point.html#SadRogue_Primitives_Point_X">X</a> and
-<a class="xref" href="SadRogue.Primitives.Point.html#SadRogue_Primitives_Point_Y">Y</a>, with X and Y each multiplied by a differet large integer, then xors
+  <div class="markdown level1 remarks"><p>This hashing algorithm uses a separate bit-mixing algorithm for <a class="xref" href="SadRogue.Primitives.Point.html#SadRogue_Primitives_Point_X">X</a> and
+<a class="xref" href="SadRogue.Primitives.Point.html#SadRogue_Primitives_Point_Y">Y</a>, with X and Y each multiplied by a different large integer, then xors
 the mixed values, does a right shift, and finally multiplies by an overflowing prime
 number.  This hashing algorithm should produce an exceptionally low collision rate for
 coordinates between (0, 0) and (255, 255), and remain relatively reasonable beyond that.</p>
 </div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_Matches_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.Matches(SadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L190">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Point_Matches_" data-uid="SadRogue.Primitives.Point.Matches*"></a>
+  <h4 id="SadRogue_Primitives_Point_Matches_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Point.Matches(SadRogue.Primitives.Point)">Matches(Point)</h4>
+  <div class="markdown level1 summary"><p>True if the given coordinate has equal x and y values to the current one.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Pure]
+public bool Matches(Point other)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><span class="parametername">other</span></td>
+        <td><p>Position to compare.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True if the two positions are equal, false if not.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_Matches_System_ValueTuple_System_Int32_System_Int32__.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.Matches(System.ValueTuple%7BSystem.Int32%2CSystem.Int32%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L649">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Point_Matches_" data-uid="SadRogue.Primitives.Point.Matches*"></a>
+  <h4 id="SadRogue_Primitives_Point_Matches_System_ValueTuple_System_Int32_System_Int32__" data-uid="SadRogue.Primitives.Point.Matches(System.ValueTuple{System.Int32,System.Int32})">Matches((Int32 x, Int32 y))</h4>
+  <div class="markdown level1 summary"><p>True if the given position has equal x and y values to the current one.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Pure]
+public bool Matches((int x, int y) other)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-2">ValueTuple</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>&gt;</td>
+        <td><span class="parametername">other</span></td>
+        <td><p>Point to compare.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True if the two positions are equal, false if not.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_Midpoint_SadRogue_Primitives_Point_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.Midpoint(SadRogue.Primitives.Point%2CSadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L120">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L199">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_Midpoint_" data-uid="SadRogue.Primitives.Point.Midpoint*"></a>
   <h4 id="SadRogue_Primitives_Point_Midpoint_SadRogue_Primitives_Point_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Point.Midpoint(SadRogue.Primitives.Point,SadRogue.Primitives.Point)">Midpoint(Point, Point)</h4>
@@ -777,7 +1155,8 @@ coordinates between (0, 0) and (255, 255), and remain relatively reasonable beyo
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Point Midpoint(Point c1, Point c2)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public static Point Midpoint(Point c1, Point c2)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -821,19 +1200,20 @@ coordinates between (0, 0) and (255, 255), and remain relatively reasonable beyo
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_ToIndex_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.ToIndex(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_Midpoint_System_Int32_System_Int32_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.Midpoint(System.Int32%2CSystem.Int32%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L307">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L213">View Source</a>
   </span>
-  <a id="SadRogue_Primitives_Point_ToIndex_" data-uid="SadRogue.Primitives.Point.ToIndex*"></a>
-  <h4 id="SadRogue_Primitives_Point_ToIndex_System_Int32_" data-uid="SadRogue.Primitives.Point.ToIndex(System.Int32)">ToIndex(Int32)</h4>
-  <div class="markdown level1 summary"><p>Returns a value that can be used to uniquely index this location 1D array.</p>
+  <a id="SadRogue_Primitives_Point_Midpoint_" data-uid="SadRogue.Primitives.Point.Midpoint*"></a>
+  <h4 id="SadRogue_Primitives_Point_Midpoint_System_Int32_System_Int32_System_Int32_System_Int32_" data-uid="SadRogue.Primitives.Point.Midpoint(System.Int32,System.Int32,System.Int32,System.Int32)">Midpoint(Int32, Int32, Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Returns the midpoint between the two points.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int ToIndex(int width)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public static Point Midpoint(int firstX, int firstY, int secondX, int secondY)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -846,7 +1226,247 @@ coordinates between (0, 0) and (255, 255), and remain relatively reasonable beyo
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">firstX</span></td>
+        <td><p>X-value for the first point.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">firstY</span></td>
+        <td><p>Y-value for the first point.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">secondX</span></td>
+        <td><p>X-value for the second point.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">secondY</span></td>
+        <td><p>Y-value for the second point.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><p>The midpoint between the two points.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_Rotate_System_Double_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.Rotate(System.Double)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L675">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Point_Rotate_" data-uid="SadRogue.Primitives.Point.Rotate*"></a>
+  <h4 id="SadRogue_Primitives_Point_Rotate_System_Double_" data-uid="SadRogue.Primitives.Point.Rotate(System.Double)">Rotate(Double)</h4>
+  <div class="markdown level1 summary"><p>Rotates a single point around the origin (0, 0).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Pure]
+public Point Rotate(double degrees)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a></td>
+        <td><span class="parametername">degrees</span></td>
+        <td><p>The amount of Degrees to rotate this point clockwise</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><p>The equivalent point after a rotation</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_Rotate_System_Double_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.Rotate(System.Double%2CSadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L690">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Point_Rotate_" data-uid="SadRogue.Primitives.Point.Rotate*"></a>
+  <h4 id="SadRogue_Primitives_Point_Rotate_System_Double_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Point.Rotate(System.Double,SadRogue.Primitives.Point)">Rotate(Double, Point)</h4>
+  <div class="markdown level1 summary"><p>Rotates a single point around the origin point.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Pure]
+public Point Rotate(double degrees, Point origin)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a></td>
+        <td><span class="parametername">degrees</span></td>
+        <td><p>The amount of Degrees to rotate this point</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><span class="parametername">origin</span></td>
+        <td><p>The Point around which to rotate</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><p>The equivalent point after a rotation</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_Rotate_System_Double_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.Rotate(System.Double%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L707">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Point_Rotate_" data-uid="SadRogue.Primitives.Point.Rotate*"></a>
+  <h4 id="SadRogue_Primitives_Point_Rotate_System_Double_System_Int32_System_Int32_" data-uid="SadRogue.Primitives.Point.Rotate(System.Double,System.Int32,System.Int32)">Rotate(Double, Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Rotates a single point around the origin point.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Pure]
+public Point Rotate(double degrees, int originX, int originY)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a></td>
+        <td><span class="parametername">degrees</span></td>
+        <td><p>The amount of Degrees to rotate this point</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">originX</span></td>
+        <td><p>X-value of the location around which to rotate</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">originY</span></td>
+        <td><p>Y-value of the location around which to rotate</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><p>The equivalent point after a rotation</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_ToIndex_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.ToIndex(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L429">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Point_ToIndex_" data-uid="SadRogue.Primitives.Point.ToIndex*"></a>
+  <h4 id="SadRogue_Primitives_Point_ToIndex_System_Int32_" data-uid="SadRogue.Primitives.Point.ToIndex(System.Int32)">ToIndex(Int32)</h4>
+  <div class="markdown level1 summary"><p>Returns a value that can be used to uniquely index this location 1D array.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Pure]
+public int ToIndex(int width)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">width</span></td>
         <td><p>The width of the 2D map/array this location is referring to --
 used to do the math to calculate index.</p>
@@ -864,7 +1484,7 @@ used to do the math to calculate index.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><p>The 1D index of this Point.</p>
 </td>
       </tr>
@@ -875,7 +1495,7 @@ used to do the math to calculate index.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_ToIndex_System_Int32_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.ToIndex(System.Int32%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L255">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L369">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_ToIndex_" data-uid="SadRogue.Primitives.Point.ToIndex*"></a>
   <h4 id="SadRogue_Primitives_Point_ToIndex_System_Int32_System_Int32_System_Int32_" data-uid="SadRogue.Primitives.Point.ToIndex(System.Int32,System.Int32,System.Int32)">ToIndex(Int32, Int32, Int32)</h4>
@@ -884,7 +1504,8 @@ used to do the math to calculate index.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static int ToIndex(int x, int y, int width)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public static int ToIndex(int x, int y, int width)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -897,19 +1518,19 @@ used to do the math to calculate index.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">x</span></td>
         <td><p>X-value of the coordinate.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">y</span></td>
         <td><p>Y-value of the coordinate.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">width</span></td>
         <td><p>The width of the 2D array, used to do the math to calculate index.</p>
 </td>
@@ -926,7 +1547,7 @@ used to do the math to calculate index.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><p>The 1D index of the position specified.</p>
 </td>
       </tr>
@@ -934,19 +1555,20 @@ used to do the math to calculate index.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_ToString.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.ToString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_ToPolarCoordinate.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.ToPolarCoordinate%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L313">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L666">View Source</a>
   </span>
-  <a id="SadRogue_Primitives_Point_ToString_" data-uid="SadRogue.Primitives.Point.ToString*"></a>
-  <h4 id="SadRogue_Primitives_Point_ToString" data-uid="SadRogue.Primitives.Point.ToString">ToString()</h4>
-  <div class="markdown level1 summary"><p>Returns representation (X, Y).</p>
+  <a id="SadRogue_Primitives_Point_ToPolarCoordinate_" data-uid="SadRogue.Primitives.Point.ToPolarCoordinate*"></a>
+  <h4 id="SadRogue_Primitives_Point_ToPolarCoordinate" data-uid="SadRogue.Primitives.Point.ToPolarCoordinate">ToPolarCoordinate()</h4>
+  <div class="markdown level1 summary"><p>Returns a Polar Coordinate that is equivalent to this (Cartesian) Coordinate</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public PolarCoordinate ToPolarCoordinate()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -958,20 +1580,53 @@ used to do the math to calculate index.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><a class="xref" href="SadRogue.Primitives.PolarCoordinate.html">PolarCoordinate</a></td>
+        <td><p>The Equivalent Polar Coordinate</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_ToString.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.ToString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L437">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Point_ToString_" data-uid="SadRogue.Primitives.Point.ToString*"></a>
+  <h4 id="SadRogue_Primitives_Point_ToString" data-uid="SadRogue.Primitives.Point.ToString">ToString()</h4>
+  <div class="markdown level1 summary"><p>Returns representation (X, Y).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Pure]
+public override string ToString()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
         <td><p>String (X, Y)</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">System.ValueType.ToString()</span></div>
+  <div><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetype.tostring#System_ValueType_ToString">ValueType.ToString()</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_ToXValue_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.ToXValue(System.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L263">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L379">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_ToXValue_" data-uid="SadRogue.Primitives.Point.ToXValue*"></a>
   <h4 id="SadRogue_Primitives_Point_ToXValue_System_Int32_System_Int32_" data-uid="SadRogue.Primitives.Point.ToXValue(System.Int32,System.Int32)">ToXValue(Int32, Int32)</h4>
@@ -980,7 +1635,8 @@ used to do the math to calculate index.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static int ToXValue(int index, int width)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public static int ToXValue(int index, int width)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -993,13 +1649,13 @@ used to do the math to calculate index.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">index</span></td>
         <td><p>The index in 1D form.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">width</span></td>
         <td><p>The width of the 2D array.</p>
 </td>
@@ -1016,7 +1672,7 @@ used to do the math to calculate index.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><p>The X-value for the location represented by the given index.</p>
 </td>
       </tr>
@@ -1027,7 +1683,7 @@ used to do the math to calculate index.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_ToYValue_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.ToYValue(System.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L271">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L389">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_ToYValue_" data-uid="SadRogue.Primitives.Point.ToYValue*"></a>
   <h4 id="SadRogue_Primitives_Point_ToYValue_System_Int32_System_Int32_" data-uid="SadRogue.Primitives.Point.ToYValue(System.Int32,System.Int32)">ToYValue(Int32, Int32)</h4>
@@ -1036,7 +1692,8 @@ used to do the math to calculate index.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static int ToYValue(int index, int width)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public static int ToYValue(int index, int width)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1049,13 +1706,13 @@ used to do the math to calculate index.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">index</span></td>
         <td><p>The index in 1D form.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">width</span></td>
         <td><p>The width of the 2D array.</p>
 </td>
@@ -1072,7 +1729,7 @@ used to do the math to calculate index.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><p>The Y-value for the location represented by the given index.</p>
 </td>
       </tr>
@@ -1083,7 +1740,7 @@ used to do the math to calculate index.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_Translate_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.Translate(SadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L324">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L449">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_Translate_" data-uid="SadRogue.Primitives.Point.Translate*"></a>
   <h4 id="SadRogue_Primitives_Point_Translate_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Point.Translate(SadRogue.Primitives.Point)">Translate(Point)</h4>
@@ -1093,7 +1750,8 @@ to the Y-value of the position.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Point Translate(Point deltaChange)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public Point Translate(Point deltaChange)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1132,19 +1790,21 @@ delta-y value.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_WithX_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.WithX(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_Translate_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.Translate(System.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L331">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L460">View Source</a>
   </span>
-  <a id="SadRogue_Primitives_Point_WithX_" data-uid="SadRogue.Primitives.Point.WithX*"></a>
-  <h4 id="SadRogue_Primitives_Point_WithX_System_Int32_" data-uid="SadRogue.Primitives.Point.WithX(System.Int32)">WithX(Int32)</h4>
-  <div class="markdown level1 summary"><p>Creates a new Point with its X value moved to the given one.</p>
+  <a id="SadRogue_Primitives_Point_Translate_" data-uid="SadRogue.Primitives.Point.Translate*"></a>
+  <h4 id="SadRogue_Primitives_Point_Translate_System_Int32_System_Int32_" data-uid="SadRogue.Primitives.Point.Translate(System.Int32,System.Int32)">Translate(Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Returns the position resulting from adding dx to the X-value of the position, and dy
+to the Y-value of the position.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Point WithX(int x)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public Point Translate(int dx, int dy)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1157,7 +1817,64 @@ delta-y value.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">dx</span></td>
+        <td><p>Change in x-value to apply.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">dy</span></td>
+        <td><p>Change in y-value to apply.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><p>The position (<a class="xref" href="SadRogue.Primitives.Point.html#SadRogue_Primitives_Point_X">X</a> + dx, <a class="xref" href="SadRogue.Primitives.Point.html#SadRogue_Primitives_Point_Y">Y</a> + dy)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_WithX_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.WithX(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L469">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Point_WithX_" data-uid="SadRogue.Primitives.Point.WithX*"></a>
+  <h4 id="SadRogue_Primitives_Point_WithX_System_Int32_" data-uid="SadRogue.Primitives.Point.WithX(System.Int32)">WithX(Int32)</h4>
+  <div class="markdown level1 summary"><p>Creates a new Point with its X value moved to the given one.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Pure]
+public Point WithX(int x)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">x</span></td>
         <td><p>X-value for the new Point.</p>
 </td>
@@ -1185,7 +1902,7 @@ delta-y value.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_WithY_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.WithY(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L338">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L478">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_WithY_" data-uid="SadRogue.Primitives.Point.WithY*"></a>
   <h4 id="SadRogue_Primitives_Point_WithY_System_Int32_" data-uid="SadRogue.Primitives.Point.WithY(System.Int32)">WithY(Int32)</h4>
@@ -1194,7 +1911,8 @@ delta-y value.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Point WithY(int y)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public Point WithY(int y)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1207,7 +1925,7 @@ delta-y value.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">y</span></td>
         <td><p>Y-value for the new Point.</p>
 </td>
@@ -1237,7 +1955,7 @@ delta-y value.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_op_Addition_SadRogue_Primitives_Point_SadRogue_Primitives_Direction_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Addition(SadRogue.Primitives.Point%2CSadRogue.Primitives.Direction)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L230">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L340">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_op_Addition_" data-uid="SadRogue.Primitives.Point.op_Addition*"></a>
   <h4 id="SadRogue_Primitives_Point_op_Addition_SadRogue_Primitives_Point_SadRogue_Primitives_Direction_" data-uid="SadRogue.Primitives.Point.op_Addition(SadRogue.Primitives.Point,SadRogue.Primitives.Direction)">Addition(Point, Direction)</h4>
@@ -1246,7 +1964,8 @@ delta-y value.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Point operator +(Point c, Direction d)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public static Point operator +(Point c, Direction d)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1291,7 +2010,7 @@ delta-y value.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_op_Addition_SadRogue_Primitives_Point_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Addition(SadRogue.Primitives.Point%2CSadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L212">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L320">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_op_Addition_" data-uid="SadRogue.Primitives.Point.op_Addition*"></a>
   <h4 id="SadRogue_Primitives_Point_op_Addition_SadRogue_Primitives_Point_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Point.op_Addition(SadRogue.Primitives.Point,SadRogue.Primitives.Point)">Addition(Point, Point)</h4>
@@ -1300,7 +2019,8 @@ delta-y value.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Point operator +(Point c1, Point c2)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public static Point operator +(Point c1, Point c2)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1345,7 +2065,7 @@ delta-y value.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_op_Addition_SadRogue_Primitives_Point_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Addition(SadRogue.Primitives.Point%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L220">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L329">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_op_Addition_" data-uid="SadRogue.Primitives.Point.op_Addition*"></a>
   <h4 id="SadRogue_Primitives_Point_op_Addition_SadRogue_Primitives_Point_System_Int32_" data-uid="SadRogue.Primitives.Point.op_Addition(SadRogue.Primitives.Point,System.Int32)">Addition(Point, Int32)</h4>
@@ -1354,7 +2074,8 @@ delta-y value.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Point operator +(Point c, int i)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public static Point operator +(Point c, int i)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1372,7 +2093,7 @@ delta-y value.</p>
         <td></td>
       </tr>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">i</span></td>
         <td></td>
       </tr>
@@ -1399,7 +2120,7 @@ delta-y value.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_op_Addition_SadRogue_Primitives_Point_System_ValueTuple_System_Int32_System_Int32__.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Addition(SadRogue.Primitives.Point%2CSystem.ValueTuple%7BSystem.Int32%2CSystem.Int32%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L385">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L535">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_op_Addition_" data-uid="SadRogue.Primitives.Point.op_Addition*"></a>
   <h4 id="SadRogue_Primitives_Point_op_Addition_SadRogue_Primitives_Point_System_ValueTuple_System_Int32_System_Int32__" data-uid="SadRogue.Primitives.Point.op_Addition(SadRogue.Primitives.Point,System.ValueTuple{System.Int32,System.Int32})">Addition(Point, (Int32 x, Int32 y))</h4>
@@ -1408,7 +2129,8 @@ delta-y value.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Point operator +(Point c, (int x, int y) tuple)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public static Point operator +(Point c, (int x, int y) tuple)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1426,7 +2148,7 @@ delta-y value.</p>
         <td></td>
       </tr>
       <tr>
-        <td><span class="xref">System.ValueTuple</span>&lt;<span class="xref">System.Int32</span>, <span class="xref">System.Int32</span>&gt;</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-2">ValueTuple</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>&gt;</td>
         <td><span class="parametername">tuple</span></td>
         <td></td>
       </tr>
@@ -1453,7 +2175,7 @@ delta-y value.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_op_Addition_System_ValueTuple_System_Int32_System_Int32__SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Addition(System.ValueTuple%7BSystem.Int32%2CSystem.Int32%7D%2CSadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L378">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L526">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_op_Addition_" data-uid="SadRogue.Primitives.Point.op_Addition*"></a>
   <h4 id="SadRogue_Primitives_Point_op_Addition_System_ValueTuple_System_Int32_System_Int32__SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Point.op_Addition(System.ValueTuple{System.Int32,System.Int32},SadRogue.Primitives.Point)">Addition((Int32 x, Int32 y), Point)</h4>
@@ -1462,7 +2184,8 @@ delta-y value.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static (int x, int y) operator +((int x, int y) tuple, Point c)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public static (int x, int y) operator +((int x, int y) tuple, Point c)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1475,7 +2198,7 @@ delta-y value.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ValueTuple</span>&lt;<span class="xref">System.Int32</span>, <span class="xref">System.Int32</span>&gt;</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-2">ValueTuple</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>&gt;</td>
         <td><span class="parametername">tuple</span></td>
         <td></td>
       </tr>
@@ -1496,7 +2219,7 @@ delta-y value.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ValueTuple</span>&lt;<span class="xref">System.Int32</span>, <span class="xref">System.Int32</span>&gt;</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-2">ValueTuple</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>&gt;</td>
         <td><p>A tuple (tuple.x + c.X, tuple.y + c.Y).</p>
 </td>
       </tr>
@@ -1507,7 +2230,7 @@ delta-y value.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_op_Division_SadRogue_Primitives_Point_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Division(SadRogue.Primitives.Point%2CSadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L193">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L297">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_op_Division_" data-uid="SadRogue.Primitives.Point.op_Division*"></a>
   <h4 id="SadRogue_Primitives_Point_op_Division_SadRogue_Primitives_Point_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Point.op_Division(SadRogue.Primitives.Point,SadRogue.Primitives.Point)">Division(Point, Point)</h4>
@@ -1517,7 +2240,8 @@ value to the nearest integer.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Point operator /(Point c1, Point c2)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public static Point operator /(Point c1, Point c2)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1562,7 +2286,7 @@ value to the nearest integer.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_op_Division_SadRogue_Primitives_Point_System_Double_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Division(SadRogue.Primitives.Point%2CSystem.Double)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L203">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L309">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_op_Division_" data-uid="SadRogue.Primitives.Point.op_Division*"></a>
   <h4 id="SadRogue_Primitives_Point_op_Division_SadRogue_Primitives_Point_System_Double_" data-uid="SadRogue.Primitives.Point.op_Division(SadRogue.Primitives.Point,System.Double)">Division(Point, Double)</h4>
@@ -1572,7 +2296,8 @@ to the nearest integer.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Point operator /(Point c, double i)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public static Point operator /(Point c, double i)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1590,7 +2315,7 @@ to the nearest integer.</p>
         <td></td>
       </tr>
       <tr>
-        <td><span class="xref">System.Double</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a></td>
         <td><span class="parametername">i</span></td>
         <td></td>
       </tr>
@@ -1617,7 +2342,7 @@ to the nearest integer.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_op_Division_SadRogue_Primitives_Point_System_ValueTuple_System_Int32_System_Int32__.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Division(SadRogue.Primitives.Point%2CSystem.ValueTuple%7BSystem.Int32%2CSystem.Int32%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L433">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L591">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_op_Division_" data-uid="SadRogue.Primitives.Point.op_Division*"></a>
   <h4 id="SadRogue_Primitives_Point_op_Division_SadRogue_Primitives_Point_System_ValueTuple_System_Int32_System_Int32__" data-uid="SadRogue.Primitives.Point.op_Division(SadRogue.Primitives.Point,System.ValueTuple{System.Int32,System.Int32})">Division(Point, (Int32 x, Int32 y))</h4>
@@ -1626,7 +2351,8 @@ to the nearest integer.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static (int x, int y) operator /(Point c, (int x, int y) tuple)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public static (int x, int y) operator /(Point c, (int x, int y) tuple)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1644,7 +2370,7 @@ to the nearest integer.</p>
         <td></td>
       </tr>
       <tr>
-        <td><span class="xref">System.ValueTuple</span>&lt;<span class="xref">System.Int32</span>, <span class="xref">System.Int32</span>&gt;</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-2">ValueTuple</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>&gt;</td>
         <td><span class="parametername">tuple</span></td>
         <td></td>
       </tr>
@@ -1660,7 +2386,7 @@ to the nearest integer.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ValueTuple</span>&lt;<span class="xref">System.Int32</span>, <span class="xref">System.Int32</span>&gt;</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-2">ValueTuple</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>&gt;</td>
         <td><p>Position (c.X / tuple.x, c.Y / tuple.y), with each value rounded to the nearest integer.</p>
 </td>
       </tr>
@@ -1671,7 +2397,7 @@ to the nearest integer.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_op_Division_System_ValueTuple_System_Int32_System_Int32__SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Division(System.ValueTuple%7BSystem.Int32%2CSystem.Int32%7D%2CSadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L424">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L580">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_op_Division_" data-uid="SadRogue.Primitives.Point.op_Division*"></a>
   <h4 id="SadRogue_Primitives_Point_op_Division_System_ValueTuple_System_Int32_System_Int32__SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Point.op_Division(System.ValueTuple{System.Int32,System.Int32},SadRogue.Primitives.Point)">Division((Int32 x, Int32 y), Point)</h4>
@@ -1680,7 +2406,8 @@ to the nearest integer.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static (int x, int y) operator /((int x, int y) tuple, Point c)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public static (int x, int y) operator /((int x, int y) tuple, Point c)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1693,7 +2420,7 @@ to the nearest integer.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ValueTuple</span>&lt;<span class="xref">System.Int32</span>, <span class="xref">System.Int32</span>&gt;</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-2">ValueTuple</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>&gt;</td>
         <td><span class="parametername">tuple</span></td>
         <td></td>
       </tr>
@@ -1714,7 +2441,7 @@ to the nearest integer.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ValueTuple</span>&lt;<span class="xref">System.Int32</span>, <span class="xref">System.Int32</span>&gt;</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-2">ValueTuple</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>&gt;</td>
         <td><p>Position (tuple.x / c.X, tuple.y / c.Y), with each value rounded to the nearest integer.</p>
 </td>
       </tr>
@@ -1725,7 +2452,7 @@ to the nearest integer.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_op_Equality_SadRogue_Primitives_Point_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Equality(SadRogue.Primitives.Point%2CSadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L238">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L349">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_op_Equality_" data-uid="SadRogue.Primitives.Point.op_Equality*"></a>
   <h4 id="SadRogue_Primitives_Point_op_Equality_SadRogue_Primitives_Point_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Point.op_Equality(SadRogue.Primitives.Point,SadRogue.Primitives.Point)">Equality(Point, Point)</h4>
@@ -1734,7 +2461,8 @@ to the nearest integer.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool operator ==(Point c1, Point c2)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public static bool operator ==(Point c1, Point c2)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1768,7 +2496,7 @@ to the nearest integer.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
         <td><p>True if the two positions are equal, false if not.</p>
 </td>
       </tr>
@@ -1779,7 +2507,7 @@ to the nearest integer.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_op_Equality_SadRogue_Primitives_Point_System_ValueTuple_System_Int32_System_Int32__.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Equality(SadRogue.Primitives.Point%2CSystem.ValueTuple%7BSystem.Int32%2CSystem.Int32%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L442">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L602">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_op_Equality_" data-uid="SadRogue.Primitives.Point.op_Equality*"></a>
   <h4 id="SadRogue_Primitives_Point_op_Equality_SadRogue_Primitives_Point_System_ValueTuple_System_Int32_System_Int32__" data-uid="SadRogue.Primitives.Point.op_Equality(SadRogue.Primitives.Point,System.ValueTuple{System.Int32,System.Int32})">Equality(Point, (Int32 x, Int32 y))</h4>
@@ -1788,7 +2516,8 @@ to the nearest integer.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool operator ==(Point c, (int x, int y) tuple)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public static bool operator ==(Point c, (int x, int y) tuple)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1806,7 +2535,7 @@ to the nearest integer.</p>
         <td></td>
       </tr>
       <tr>
-        <td><span class="xref">System.ValueTuple</span>&lt;<span class="xref">System.Int32</span>, <span class="xref">System.Int32</span>&gt;</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-2">ValueTuple</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>&gt;</td>
         <td><span class="parametername">tuple</span></td>
         <td></td>
       </tr>
@@ -1822,7 +2551,7 @@ to the nearest integer.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
         <td><p>True if the two positions are equal, false if not.</p>
 </td>
       </tr>
@@ -1833,7 +2562,7 @@ to the nearest integer.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_op_Equality_System_ValueTuple_System_Int32_System_Int32__SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Equality(System.ValueTuple%7BSystem.Int32%2CSystem.Int32%7D%2CSadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L460">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L622">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_op_Equality_" data-uid="SadRogue.Primitives.Point.op_Equality*"></a>
   <h4 id="SadRogue_Primitives_Point_op_Equality_System_ValueTuple_System_Int32_System_Int32__SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Point.op_Equality(System.ValueTuple{System.Int32,System.Int32},SadRogue.Primitives.Point)">Equality((Int32 x, Int32 y), Point)</h4>
@@ -1842,7 +2571,8 @@ to the nearest integer.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool operator ==((int x, int y) tuple, Point c)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public static bool operator ==((int x, int y) tuple, Point c)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1855,7 +2585,7 @@ to the nearest integer.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ValueTuple</span>&lt;<span class="xref">System.Int32</span>, <span class="xref">System.Int32</span>&gt;</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-2">ValueTuple</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>&gt;</td>
         <td><span class="parametername">tuple</span></td>
         <td></td>
       </tr>
@@ -1876,8 +2606,58 @@ to the nearest integer.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
         <td><p>True if the two positions are equal, false if not.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_op_Implicit_SadRogue_Primitives_Point__SadRogue_Primitives_PolarCoordinate.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Implicit(SadRogue.Primitives.Point)~SadRogue.Primitives.PolarCoordinate%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L660">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Point_op_Implicit_" data-uid="SadRogue.Primitives.Point.op_Implicit*"></a>
+  <h4 id="SadRogue_Primitives_Point_op_Implicit_SadRogue_Primitives_Point__SadRogue_Primitives_PolarCoordinate" data-uid="SadRogue.Primitives.Point.op_Implicit(SadRogue.Primitives.Point)~SadRogue.Primitives.PolarCoordinate">Implicit(Point to PolarCoordinate)</h4>
+  <div class="markdown level1 summary"><p>Implicitly converts a Point to its equivalent polar coordinate.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator PolarCoordinate(Point pos)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><span class="parametername">pos</span></td>
+        <td><p>Point to convert.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.PolarCoordinate.html">PolarCoordinate</a></td>
+        <td><p>A <a class="xref" href="SadRogue.Primitives.PolarCoordinate.html">PolarCoordinate</a> equivalent to this cartesian point.</p>
 </td>
       </tr>
     </tbody>
@@ -1887,7 +2667,7 @@ to the nearest integer.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_op_Implicit_SadRogue_Primitives_Point__System_ValueTuple_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Implicit(SadRogue.Primitives.Point)~System.ValueTuple%7BSystem.Int32%2CSystem.Int32%7D%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L364">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L509">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_op_Implicit_" data-uid="SadRogue.Primitives.Point.op_Implicit*"></a>
   <h4 id="SadRogue_Primitives_Point_op_Implicit_SadRogue_Primitives_Point__System_ValueTuple_System_Int32_System_Int32_" data-uid="SadRogue.Primitives.Point.op_Implicit(SadRogue.Primitives.Point)~System.ValueTuple{System.Int32,System.Int32}">Implicit(Point to (Int32 x, Int32 y))</h4>
@@ -1896,7 +2676,8 @@ to the nearest integer.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static implicit operator (int x, int y)(Point c)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public static implicit operator (int x, int y)(Point c)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1925,7 +2706,7 @@ to the nearest integer.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ValueTuple</span>&lt;<span class="xref">System.Int32</span>, <span class="xref">System.Int32</span>&gt;</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-2">ValueTuple</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1935,7 +2716,7 @@ to the nearest integer.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_op_Implicit_System_ValueTuple_System_Int32_System_Int32___SadRogue_Primitives_Point.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Implicit(System.ValueTuple%7BSystem.Int32%2CSystem.Int32%7D)~SadRogue.Primitives.Point%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L370">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L517">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_op_Implicit_" data-uid="SadRogue.Primitives.Point.op_Implicit*"></a>
   <h4 id="SadRogue_Primitives_Point_op_Implicit_System_ValueTuple_System_Int32_System_Int32___SadRogue_Primitives_Point" data-uid="SadRogue.Primitives.Point.op_Implicit(System.ValueTuple{System.Int32,System.Int32})~SadRogue.Primitives.Point">Implicit((Int32 x, Int32 y) to Point)</h4>
@@ -1944,7 +2725,8 @@ to the nearest integer.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static implicit operator Point((int x, int y) tuple)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public static implicit operator Point((int x, int y) tuple)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1957,7 +2739,7 @@ to the nearest integer.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ValueTuple</span>&lt;<span class="xref">System.Int32</span>, <span class="xref">System.Int32</span>&gt;</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-2">ValueTuple</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>&gt;</td>
         <td><span class="parametername">tuple</span></td>
         <td></td>
       </tr>
@@ -1983,7 +2765,7 @@ to the nearest integer.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_op_Inequality_SadRogue_Primitives_Point_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Inequality(SadRogue.Primitives.Point%2CSadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L155">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L254">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_op_Inequality_" data-uid="SadRogue.Primitives.Point.op_Inequality*"></a>
   <h4 id="SadRogue_Primitives_Point_op_Inequality_SadRogue_Primitives_Point_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Point.op_Inequality(SadRogue.Primitives.Point,SadRogue.Primitives.Point)">Inequality(Point, Point)</h4>
@@ -1992,7 +2774,8 @@ to the nearest integer.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool operator !=(Point c1, Point c2)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public static bool operator !=(Point c1, Point c2)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2026,7 +2809,7 @@ to the nearest integer.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
         <td><p>True if either the x-values or y-values are not equal, false if they are both equal.</p>
 </td>
       </tr>
@@ -2037,7 +2820,7 @@ to the nearest integer.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_op_Inequality_SadRogue_Primitives_Point_System_ValueTuple_System_Int32_System_Int32__.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Inequality(SadRogue.Primitives.Point%2CSystem.ValueTuple%7BSystem.Int32%2CSystem.Int32%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L452">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L613">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_op_Inequality_" data-uid="SadRogue.Primitives.Point.op_Inequality*"></a>
   <h4 id="SadRogue_Primitives_Point_op_Inequality_SadRogue_Primitives_Point_System_ValueTuple_System_Int32_System_Int32__" data-uid="SadRogue.Primitives.Point.op_Inequality(SadRogue.Primitives.Point,System.ValueTuple{System.Int32,System.Int32})">Inequality(Point, (Int32 x, Int32 y))</h4>
@@ -2046,7 +2829,8 @@ to the nearest integer.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool operator !=(Point c, (int x, int y) tuple)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public static bool operator !=(Point c, (int x, int y) tuple)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2064,7 +2848,7 @@ to the nearest integer.</p>
         <td></td>
       </tr>
       <tr>
-        <td><span class="xref">System.ValueTuple</span>&lt;<span class="xref">System.Int32</span>, <span class="xref">System.Int32</span>&gt;</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-2">ValueTuple</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>&gt;</td>
         <td><span class="parametername">tuple</span></td>
         <td></td>
       </tr>
@@ -2080,7 +2864,7 @@ to the nearest integer.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
         <td><p>True if either the x-values or y-values are not equal, false if they are both equal.</p>
 </td>
       </tr>
@@ -2091,7 +2875,7 @@ to the nearest integer.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_op_Inequality_System_ValueTuple_System_Int32_System_Int32__SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Inequality(System.ValueTuple%7BSystem.Int32%2CSystem.Int32%7D%2CSadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L470">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L633">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_op_Inequality_" data-uid="SadRogue.Primitives.Point.op_Inequality*"></a>
   <h4 id="SadRogue_Primitives_Point_op_Inequality_System_ValueTuple_System_Int32_System_Int32__SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Point.op_Inequality(System.ValueTuple{System.Int32,System.Int32},SadRogue.Primitives.Point)">Inequality((Int32 x, Int32 y), Point)</h4>
@@ -2100,7 +2884,8 @@ to the nearest integer.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool operator !=((int x, int y) tuple, Point c)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public static bool operator !=((int x, int y) tuple, Point c)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2113,7 +2898,7 @@ to the nearest integer.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ValueTuple</span>&lt;<span class="xref">System.Int32</span>, <span class="xref">System.Int32</span>&gt;</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-2">ValueTuple</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>&gt;</td>
         <td><span class="parametername">tuple</span></td>
         <td></td>
       </tr>
@@ -2134,7 +2919,7 @@ to the nearest integer.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
         <td><p>True if either the x-values or y-values are not equal, false if they are both equal.</p>
 </td>
       </tr>
@@ -2145,7 +2930,7 @@ to the nearest integer.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_op_Multiply_SadRogue_Primitives_Point_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Multiply(SadRogue.Primitives.Point%2CSadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L163">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L263">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_op_Multiply_" data-uid="SadRogue.Primitives.Point.op_Multiply*"></a>
   <h4 id="SadRogue_Primitives_Point_op_Multiply_SadRogue_Primitives_Point_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Point.op_Multiply(SadRogue.Primitives.Point,SadRogue.Primitives.Point)">Multiply(Point, Point)</h4>
@@ -2154,7 +2939,8 @@ to the nearest integer.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Point operator *(Point c1, Point c2)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public static Point operator *(Point c1, Point c2)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2199,7 +2985,7 @@ to the nearest integer.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_op_Multiply_SadRogue_Primitives_Point_System_Double_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Multiply(SadRogue.Primitives.Point%2CSystem.Double)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L183">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L285">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_op_Multiply_" data-uid="SadRogue.Primitives.Point.op_Multiply*"></a>
   <h4 id="SadRogue_Primitives_Point_op_Multiply_SadRogue_Primitives_Point_System_Double_" data-uid="SadRogue.Primitives.Point.op_Multiply(SadRogue.Primitives.Point,System.Double)">Multiply(Point, Double)</h4>
@@ -2209,7 +2995,8 @@ the result to the nearest integer.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Point operator *(Point c, double i)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public static Point operator *(Point c, double i)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2227,7 +3014,7 @@ the result to the nearest integer.</p>
         <td></td>
       </tr>
       <tr>
-        <td><span class="xref">System.Double</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a></td>
         <td><span class="parametername">i</span></td>
         <td></td>
       </tr>
@@ -2255,7 +3042,7 @@ rounded to nearest integer.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_op_Multiply_SadRogue_Primitives_Point_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Multiply(SadRogue.Primitives.Point%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L171">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L272">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_op_Multiply_" data-uid="SadRogue.Primitives.Point.op_Multiply*"></a>
   <h4 id="SadRogue_Primitives_Point_op_Multiply_SadRogue_Primitives_Point_System_Int32_" data-uid="SadRogue.Primitives.Point.op_Multiply(SadRogue.Primitives.Point,System.Int32)">Multiply(Point, Int32)</h4>
@@ -2264,7 +3051,8 @@ rounded to nearest integer.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Point operator *(Point c, int i)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public static Point operator *(Point c, int i)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2282,7 +3070,7 @@ rounded to nearest integer.</p>
         <td></td>
       </tr>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">i</span></td>
         <td></td>
       </tr>
@@ -2309,7 +3097,7 @@ rounded to nearest integer.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_op_Multiply_SadRogue_Primitives_Point_System_ValueTuple_System_Int32_System_Int32__.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Multiply(SadRogue.Primitives.Point%2CSystem.ValueTuple%7BSystem.Int32%2CSystem.Int32%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L416">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L571">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_op_Multiply_" data-uid="SadRogue.Primitives.Point.op_Multiply*"></a>
   <h4 id="SadRogue_Primitives_Point_op_Multiply_SadRogue_Primitives_Point_System_ValueTuple_System_Int32_System_Int32__" data-uid="SadRogue.Primitives.Point.op_Multiply(SadRogue.Primitives.Point,System.ValueTuple{System.Int32,System.Int32})">Multiply(Point, (Int32 x, Int32 y))</h4>
@@ -2318,7 +3106,8 @@ rounded to nearest integer.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Point operator *(Point c, (int x, int y) tuple)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public static Point operator *(Point c, (int x, int y) tuple)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2336,7 +3125,7 @@ rounded to nearest integer.</p>
         <td></td>
       </tr>
       <tr>
-        <td><span class="xref">System.ValueTuple</span>&lt;<span class="xref">System.Int32</span>, <span class="xref">System.Int32</span>&gt;</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-2">ValueTuple</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>&gt;</td>
         <td><span class="parametername">tuple</span></td>
         <td></td>
       </tr>
@@ -2363,7 +3152,7 @@ rounded to nearest integer.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_op_Multiply_System_ValueTuple_System_Int32_System_Int32__SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Multiply(System.ValueTuple%7BSystem.Int32%2CSystem.Int32%7D%2CSadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L408">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L562">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_op_Multiply_" data-uid="SadRogue.Primitives.Point.op_Multiply*"></a>
   <h4 id="SadRogue_Primitives_Point_op_Multiply_System_ValueTuple_System_Int32_System_Int32__SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Point.op_Multiply(System.ValueTuple{System.Int32,System.Int32},SadRogue.Primitives.Point)">Multiply((Int32 x, Int32 y), Point)</h4>
@@ -2372,7 +3161,8 @@ rounded to nearest integer.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static (int x, int y) operator *((int x, int y) tuple, Point c)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public static (int x, int y) operator *((int x, int y) tuple, Point c)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2385,7 +3175,7 @@ rounded to nearest integer.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ValueTuple</span>&lt;<span class="xref">System.Int32</span>, <span class="xref">System.Int32</span>&gt;</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-2">ValueTuple</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>&gt;</td>
         <td><span class="parametername">tuple</span></td>
         <td></td>
       </tr>
@@ -2406,7 +3196,7 @@ rounded to nearest integer.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ValueTuple</span>&lt;<span class="xref">System.Int32</span>, <span class="xref">System.Int32</span>&gt;</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-2">ValueTuple</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>&gt;</td>
         <td><p>Position (tuple.x * c.X, tuple.y * c.Y).</p>
 </td>
       </tr>
@@ -2417,7 +3207,7 @@ rounded to nearest integer.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_op_Subtraction_SadRogue_Primitives_Point_SadRogue_Primitives_Direction_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Subtraction(SadRogue.Primitives.Point%2CSadRogue.Primitives.Direction)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L137">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L233">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_op_Subtraction_" data-uid="SadRogue.Primitives.Point.op_Subtraction*"></a>
   <h4 id="SadRogue_Primitives_Point_op_Subtraction_SadRogue_Primitives_Point_SadRogue_Primitives_Direction_" data-uid="SadRogue.Primitives.Point.op_Subtraction(SadRogue.Primitives.Point,SadRogue.Primitives.Direction)">Subtraction(Point, Direction)</h4>
@@ -2426,7 +3216,8 @@ rounded to nearest integer.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Point operator -(Point point, Direction direction)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public static Point operator -(Point point, Direction direction)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2471,7 +3262,7 @@ rounded to nearest integer.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_op_Subtraction_SadRogue_Primitives_Point_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Subtraction(SadRogue.Primitives.Point%2CSadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L129">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L224">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_op_Subtraction_" data-uid="SadRogue.Primitives.Point.op_Subtraction*"></a>
   <h4 id="SadRogue_Primitives_Point_op_Subtraction_SadRogue_Primitives_Point_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Point.op_Subtraction(SadRogue.Primitives.Point,SadRogue.Primitives.Point)">Subtraction(Point, Point)</h4>
@@ -2480,7 +3271,8 @@ rounded to nearest integer.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Point operator -(Point c1, Point c2)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public static Point operator -(Point c1, Point c2)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2525,7 +3317,7 @@ rounded to nearest integer.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_op_Subtraction_SadRogue_Primitives_Point_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Subtraction(SadRogue.Primitives.Point%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L145">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L243">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_op_Subtraction_" data-uid="SadRogue.Primitives.Point.op_Subtraction*"></a>
   <h4 id="SadRogue_Primitives_Point_op_Subtraction_SadRogue_Primitives_Point_System_Int32_" data-uid="SadRogue.Primitives.Point.op_Subtraction(SadRogue.Primitives.Point,System.Int32)">Subtraction(Point, Int32)</h4>
@@ -2534,7 +3326,8 @@ rounded to nearest integer.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Point operator -(Point c, int i)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public static Point operator -(Point c, int i)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2552,7 +3345,7 @@ rounded to nearest integer.</p>
         <td></td>
       </tr>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">i</span></td>
         <td></td>
       </tr>
@@ -2579,7 +3372,7 @@ rounded to nearest integer.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_op_Subtraction_SadRogue_Primitives_Point_System_ValueTuple_System_Int32_System_Int32__.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Subtraction(SadRogue.Primitives.Point%2CSystem.ValueTuple%7BSystem.Int32%2CSystem.Int32%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L400">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L553">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_op_Subtraction_" data-uid="SadRogue.Primitives.Point.op_Subtraction*"></a>
   <h4 id="SadRogue_Primitives_Point_op_Subtraction_SadRogue_Primitives_Point_System_ValueTuple_System_Int32_System_Int32__" data-uid="SadRogue.Primitives.Point.op_Subtraction(SadRogue.Primitives.Point,System.ValueTuple{System.Int32,System.Int32})">Subtraction(Point, (Int32 x, Int32 y))</h4>
@@ -2588,7 +3381,8 @@ rounded to nearest integer.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Point operator -(Point c, (int x, int y) tuple)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public static Point operator -(Point c, (int x, int y) tuple)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2606,7 +3400,7 @@ rounded to nearest integer.</p>
         <td></td>
       </tr>
       <tr>
-        <td><span class="xref">System.ValueTuple</span>&lt;<span class="xref">System.Int32</span>, <span class="xref">System.Int32</span>&gt;</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-2">ValueTuple</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>&gt;</td>
         <td><span class="parametername">tuple</span></td>
         <td></td>
       </tr>
@@ -2633,7 +3427,7 @@ rounded to nearest integer.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point_op_Subtraction_System_ValueTuple_System_Int32_System_Int32__SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point.op_Subtraction(System.ValueTuple%7BSystem.Int32%2CSystem.Int32%7D%2CSadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L393">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L544">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Point_op_Subtraction_" data-uid="SadRogue.Primitives.Point.op_Subtraction*"></a>
   <h4 id="SadRogue_Primitives_Point_op_Subtraction_System_ValueTuple_System_Int32_System_Int32__SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Point.op_Subtraction(System.ValueTuple{System.Int32,System.Int32},SadRogue.Primitives.Point)">Subtraction((Int32 x, Int32 y), Point)</h4>
@@ -2642,7 +3436,8 @@ rounded to nearest integer.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static (int x, int y) operator -((int x, int y) tuple, Point c)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public static (int x, int y) operator -((int x, int y) tuple, Point c)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2655,7 +3450,7 @@ rounded to nearest integer.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ValueTuple</span>&lt;<span class="xref">System.Int32</span>, <span class="xref">System.Int32</span>&gt;</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-2">ValueTuple</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>&gt;</td>
         <td><span class="parametername">tuple</span></td>
         <td></td>
       </tr>
@@ -2676,7 +3471,7 @@ rounded to nearest integer.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ValueTuple</span>&lt;<span class="xref">System.Int32</span>, <span class="xref">System.Int32</span>&gt;</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-2">ValueTuple</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>&gt;</td>
         <td><p>A tuple (tuple.x - c.X, tuple.y - c.Y).</p>
 </td>
       </tr>
@@ -2684,10 +3479,16 @@ rounded to nearest integer.</p>
   </table>
   <h3 id="implements">Implements</h3>
   <div>
-      <span class="xref">System.IEquatable&lt;T&gt;</span>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.iequatable-1">System.IEquatable&lt;T&gt;</a>
   </div>
   <div>
-      <span class="xref">System.IEquatable&lt;T&gt;</span>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.iequatable-1">System.IEquatable&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="SadRogue.Primitives.IMatchable-1.html">IMatchable&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="SadRogue.Primitives.IMatchable-1.html">IMatchable&lt;T&gt;</a>
   </div>
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>
@@ -2704,6 +3505,9 @@ rounded to nearest integer.</p>
   </div>
   <div>
       <a class="xref" href="SadRogue.Primitives.PointExtensions.html#SadRogue_Primitives_PointExtensions_Subtract_SadRogue_Primitives_Point_System_Int32_">PointExtensions.Subtract(Point, Int32)</a>
+  </div>
+  <div>
+      <a class="xref" href="SadRogue.Primitives.PointExtensions.html#SadRogue_Primitives_PointExtensions_Subtract_SadRogue_Primitives_Point_SadRogue_Primitives_Direction_">PointExtensions.Subtract(Point, Direction)</a>
   </div>
   <div>
       <a class="xref" href="SadRogue.Primitives.PointExtensions.html#SadRogue_Primitives_PointExtensions_Multiply_SadRogue_Primitives_Point_SadRogue_Primitives_Point_">PointExtensions.Multiply(Point, Point)</a>
@@ -2723,6 +3527,9 @@ rounded to nearest integer.</p>
   <div>
       <a class="xref" href="SadRogue.Primitives.PointExtensions.html#SadRogue_Primitives_PointExtensions_Divide_SadRogue_Primitives_Point_System_Double_">PointExtensions.Divide(Point, Double)</a>
   </div>
+  <div>
+      <a class="xref" href="SadRogue.Primitives.PointExtensions.html#SadRogue_Primitives_PointExtensions_Matches_SadRogue_Primitives_Point_SadRogue_Primitives_Point_">PointExtensions.Matches(Point, Point)</a>
+  </div>
 </article>
           </div>
           
@@ -2734,7 +3541,7 @@ rounded to nearest integer.</p>
                     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Point.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Point%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L17" class="contribution-link">View Source</a>
+                    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Point.cs/#L20" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

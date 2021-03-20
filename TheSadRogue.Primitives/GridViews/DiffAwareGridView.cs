@@ -42,7 +42,11 @@ namespace SadRogue.Primitives.GridViews
             NewValue = newValue;
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Compares the two changes according to their positions and values.
+        /// </summary>
+        /// <param name="other"/>
+        /// <returns>True if the two value changes represent the same change, false otherwise.</returns>
         public bool Equals(ValueChange<T> other)
             => Position.Equals(other.Position) && OldValue.Equals(other.OldValue) && NewValue.Equals(other.NewValue);
 
@@ -53,10 +57,17 @@ namespace SadRogue.Primitives.GridViews
         /// <returns>True if the two value changes represent the same change, false otherwise.</returns>
         public bool Matches(ValueChange<T> other) => Equals(other);
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Compares the two changes according to their types, positions and values.
+        /// </summary>
+        /// <param name="obj"/>
+        /// <returns>True if the two value changes represent the same object and change, false otherwise.</returns>
         public override bool Equals(object? obj) => obj is ValueChange<T> other && Equals(other);
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Returns a hash value computed using the item's position, old value, and new value.
+        /// </summary>
+        /// <returns></returns>
         public override int GetHashCode() => HashCode.Combine(Position, OldValue, NewValue);
 
         /// <summary>
@@ -75,7 +86,10 @@ namespace SadRogue.Primitives.GridViews
         /// <returns>True if all the changes are equivalent; false otherwise.</returns>
         public static bool operator !=(ValueChange<T> left, ValueChange<T> right) => !left.Equals(right);
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Returns a string representing the object, including its position, old value, and new value.
+        /// </summary>
+        /// <returns></returns>
         public override string ToString() => $"{Position}: {OldValue} -> {NewValue}";
     }
 
@@ -214,10 +228,16 @@ namespace SadRogue.Primitives.GridViews
             return positions.Count == _changes.Count;
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Returns an enumerator of the changes in the diff.
+        /// </summary>
+        /// <returns></returns>
         public IEnumerator<ValueChange<T>> GetEnumerator() => _changes.GetEnumerator();
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Returns an enumerator of the changes in the diff.
+        /// </summary>
+        /// <returns></returns>
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 

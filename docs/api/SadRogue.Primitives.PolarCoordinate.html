@@ -1,0 +1,1296 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Struct PolarCoordinate
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Struct PolarCoordinate
+   ">
+    <meta name="generator" content="docfx 2.52.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="SadRogue.Primitives.PolarCoordinate">
+  
+  
+  <h1 id="SadRogue_Primitives_PolarCoordinate" data-uid="SadRogue.Primitives.PolarCoordinate" class="text-break">Struct PolarCoordinate
+  </h1>
+  <div class="markdown level0 summary"><p>A Polar Coordinate.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="SadRogue.Primitives.PolarCoordinate.html">PolarCoordinate</a>&gt;</div>
+    <div><a class="xref" href="SadRogue.Primitives.IMatchable-1.html">IMatchable</a>&lt;<a class="xref" href="SadRogue.Primitives.PolarCoordinate.html">PolarCoordinate</a>&gt;</div>
+    <div><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-2">ValueTuple</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a>&gt;&gt;</div>
+    <div><a class="xref" href="SadRogue.Primitives.IMatchable-1.html">IMatchable</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-2">ValueTuple</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a>&gt;&gt;</div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.equals#System_Object_Equals_System_Object_System_Object_">Object.Equals(Object, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.gettype#System_Object_GetType">Object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.referenceequals#System_Object_ReferenceEquals_System_Object_System_Object_">Object.ReferenceEquals(Object, Object)</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="SadRogue.Primitives.html">SadRogue.Primitives</a></h6>
+  <h6><strong>Assembly</strong>: TheSadRogue.Primitives.dll</h6>
+  <h5 id="SadRogue_Primitives_PolarCoordinate_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DataContract]
+public struct PolarCoordinate : IEquatable&lt;PolarCoordinate&gt;, IMatchable&lt;PolarCoordinate&gt;, IEquatable&lt;(double radius, double theta)&gt;, IMatchable&lt;(double radius, double theta)&gt;</code></pre>
+  </div>
+  <h5 id="SadRogue_Primitives_PolarCoordinate_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>See wikipedia: <a href="https://en.wikipedia.org/wiki/Polar_coordinate_system">https://en.wikipedia.org/wiki/Polar_coordinate_system</a>
+Polar Coordinates are very, very slow and should not be used often</p>
+</div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_PolarCoordinate__ctor_System_Double_System_Double_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.PolarCoordinate.%23ctor(System.Double%2CSystem.Double)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/PolarCoordinate.cs/#L35">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_PolarCoordinate__ctor_" data-uid="SadRogue.Primitives.PolarCoordinate.#ctor*"></a>
+  <h4 id="SadRogue_Primitives_PolarCoordinate__ctor_System_Double_System_Double_" data-uid="SadRogue.Primitives.PolarCoordinate.#ctor(System.Double,System.Double)">PolarCoordinate(Double, Double)</h4>
+  <div class="markdown level1 summary"><p>Creates a new Polar Coordinate with the given Radius and Theta</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PolarCoordinate(double radius, double theta)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a></td>
+        <td><span class="parametername">radius</span></td>
+        <td><p>Radius of the Polar Coord</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a></td>
+        <td><span class="parametername">theta</span></td>
+        <td><p>Degree of rotation (clockwise) of the Polar Coord</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="fields">Fields
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_PolarCoordinate_Radius.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.PolarCoordinate.Radius%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/PolarCoordinate.cs/#L23">View Source</a>
+  </span>
+  <h4 id="SadRogue_Primitives_PolarCoordinate_Radius" data-uid="SadRogue.Primitives.PolarCoordinate.Radius">Radius</h4>
+  <div class="markdown level1 summary"><p>The distance away from the Origin (0,0) of this Polar Coord</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DataMember]
+public readonly double Radius</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_PolarCoordinate_Theta.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.PolarCoordinate.Theta%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/PolarCoordinate.cs/#L28">View Source</a>
+  </span>
+  <h4 id="SadRogue_Primitives_PolarCoordinate_Theta" data-uid="SadRogue.Primitives.PolarCoordinate.Theta">Theta</h4>
+  <div class="markdown level1 summary"><p>The angle of rotation, clockwise, in radians</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DataMember]
+public readonly double Theta</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_PolarCoordinate_Functions.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.PolarCoordinate.Functions%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/PolarCoordinate.cs/#L248">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_PolarCoordinate_Functions_" data-uid="SadRogue.Primitives.PolarCoordinate.Functions*"></a>
+  <h4 id="SadRogue_Primitives_PolarCoordinate_Functions" data-uid="SadRogue.Primitives.PolarCoordinate.Functions">Functions</h4>
+  <div class="markdown level1 summary"><p>A handy list of example polar functions for you.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Pure]
+public static Dictionary&lt;string, Func&lt;double, Point&gt;&gt; Functions { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a>, <a class="xref" href="SadRogue.Primitives.Point.html">Point</a>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="SadRogue_Primitives_PolarCoordinate_Functions_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This list contains several examples of Polar Coordinates you can use.
+Add more by calling <code>PolarFunctions.Add((theta) =&gt; { Return new PolarCoordinate(radius, theta);});</code></p>
+<p>Each function accepts a parameter of Theta, which is the angle of rotation around the center.
+They return a Point that can be used on the map.
+Polar functions are very slow. Use them seldom, for things like spirographs
+As the radius gets larger, there will be increased likelihood of functions producing gaps in output.
+You've been warned.</p>
+</div>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_PolarCoordinate_Deconstruct_System_Double__System_Double__.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.PolarCoordinate.Deconstruct(System.Double%40%2CSystem.Double%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/PolarCoordinate.cs/#L151">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_PolarCoordinate_Deconstruct_" data-uid="SadRogue.Primitives.PolarCoordinate.Deconstruct*"></a>
+  <h4 id="SadRogue_Primitives_PolarCoordinate_Deconstruct_System_Double__System_Double__" data-uid="SadRogue.Primitives.PolarCoordinate.Deconstruct(System.Double@,System.Double@)">Deconstruct(out Double, out Double)</h4>
+  <div class="markdown level1 summary"><p>Adds support for C# Deconstruction syntax.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Pure]
+public void Deconstruct(out double radius, out double theta)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a></td>
+        <td><span class="parametername">radius</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a></td>
+        <td><span class="parametername">theta</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_PolarCoordinate_Equals_SadRogue_Primitives_PolarCoordinate_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.PolarCoordinate.Equals(SadRogue.Primitives.PolarCoordinate)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/PolarCoordinate.cs/#L79">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_PolarCoordinate_Equals_" data-uid="SadRogue.Primitives.PolarCoordinate.Equals*"></a>
+  <h4 id="SadRogue_Primitives_PolarCoordinate_Equals_SadRogue_Primitives_PolarCoordinate_" data-uid="SadRogue.Primitives.PolarCoordinate.Equals(SadRogue.Primitives.PolarCoordinate)">Equals(PolarCoordinate)</h4>
+  <div class="markdown level1 summary"><p>Performs comparison between this PolarCoordinate and an other</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Pure]
+public bool Equals(PolarCoordinate other)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.PolarCoordinate.html">PolarCoordinate</a></td>
+        <td><span class="parametername">other</span></td>
+        <td><p>The other Polar Coordinate to analyze</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>Whether these two PolarCoordinates are equal</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_PolarCoordinate_Equals_System_Object_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.PolarCoordinate.Equals(System.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/PolarCoordinate.cs/#L87">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_PolarCoordinate_Equals_" data-uid="SadRogue.Primitives.PolarCoordinate.Equals*"></a>
+  <h4 id="SadRogue_Primitives_PolarCoordinate_Equals_System_Object_" data-uid="SadRogue.Primitives.PolarCoordinate.Equals(System.Object)">Equals(Object)</h4>
+  <div class="markdown level1 summary"><p>Compares the equality of this Polar Coordinate to another object</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Pure]
+public override bool Equals(object obj)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></td>
+        <td><span class="parametername">obj</span></td>
+        <td><p>The object against which to compare</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>Whether or not these objects are equal</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetype.equals#System_ValueType_Equals_System_Object_">ValueType.Equals(Object)</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_PolarCoordinate_Equals_System_ValueTuple_System_Double_System_Double__.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.PolarCoordinate.Equals(System.ValueTuple%7BSystem.Double%2CSystem.Double%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/PolarCoordinate.cs/#L180">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_PolarCoordinate_Equals_" data-uid="SadRogue.Primitives.PolarCoordinate.Equals*"></a>
+  <h4 id="SadRogue_Primitives_PolarCoordinate_Equals_System_ValueTuple_System_Double_System_Double__" data-uid="SadRogue.Primitives.PolarCoordinate.Equals(System.ValueTuple{System.Double,System.Double})">Equals((Double radius, Double theta))</h4>
+  <div class="markdown level1 summary"><p>Compares the values in this polar coordinate to the specified values.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Equals((double radius, double theta) other)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-2">ValueTuple</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a>&gt;</td>
+        <td><span class="parametername">other</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_PolarCoordinate_FromCartesian_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.PolarCoordinate.FromCartesian(SadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/PolarCoordinate.cs/#L125">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_PolarCoordinate_FromCartesian_" data-uid="SadRogue.Primitives.PolarCoordinate.FromCartesian*"></a>
+  <h4 id="SadRogue_Primitives_PolarCoordinate_FromCartesian_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.PolarCoordinate.FromCartesian(SadRogue.Primitives.Point)">FromCartesian(Point)</h4>
+  <div class="markdown level1 summary"><p>Returns a new PolarCoordinate that is equivalent to the Cartesian point provided.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Pure]
+public static PolarCoordinate FromCartesian(Point cartesian)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><span class="parametername">cartesian</span></td>
+        <td><p>The cartesian point to analyze</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.PolarCoordinate.html">PolarCoordinate</a></td>
+        <td><p>An Equivalent Polar Coordinate</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_PolarCoordinate_FromCartesian_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.PolarCoordinate.FromCartesian(System.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/PolarCoordinate.cs/#L139">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_PolarCoordinate_FromCartesian_" data-uid="SadRogue.Primitives.PolarCoordinate.FromCartesian*"></a>
+  <h4 id="SadRogue_Primitives_PolarCoordinate_FromCartesian_System_Int32_System_Int32_" data-uid="SadRogue.Primitives.PolarCoordinate.FromCartesian(System.Int32,System.Int32)">FromCartesian(Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Returns a new PolarCoordinate that is equivalent to the Cartesian point provided.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Pure]
+public static PolarCoordinate FromCartesian(int cartesianX, int cartesianY)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">cartesianX</span></td>
+        <td><p>X-value of the cartesian point to analyze.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">cartesianY</span></td>
+        <td><p>Y-value of the cartesian point to analyze.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.PolarCoordinate.html">PolarCoordinate</a></td>
+        <td><p>An Equivalent Polar Coordinate</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_PolarCoordinate_GetHashCode.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.PolarCoordinate.GetHashCode%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/PolarCoordinate.cs/#L72">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_PolarCoordinate_GetHashCode_" data-uid="SadRogue.Primitives.PolarCoordinate.GetHashCode*"></a>
+  <h4 id="SadRogue_Primitives_PolarCoordinate_GetHashCode" data-uid="SadRogue.Primitives.PolarCoordinate.GetHashCode">GetHashCode()</h4>
+  <div class="markdown level1 summary"><p>Gets the Object's Hash Code</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><p>A Hash code.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetype.gethashcode#System_ValueType_GetHashCode">ValueType.GetHashCode()</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_PolarCoordinate_Matches_SadRogue_Primitives_PolarCoordinate_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.PolarCoordinate.Matches(SadRogue.Primitives.PolarCoordinate)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/PolarCoordinate.cs/#L100">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_PolarCoordinate_Matches_" data-uid="SadRogue.Primitives.PolarCoordinate.Matches*"></a>
+  <h4 id="SadRogue_Primitives_PolarCoordinate_Matches_SadRogue_Primitives_PolarCoordinate_" data-uid="SadRogue.Primitives.PolarCoordinate.Matches(SadRogue.Primitives.PolarCoordinate)">Matches(PolarCoordinate)</h4>
+  <div class="markdown level1 summary"><p>Performs comparison between this PolarCoordinate and an other</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Pure]
+public bool Matches(PolarCoordinate other)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.PolarCoordinate.html">PolarCoordinate</a></td>
+        <td><span class="parametername">other</span></td>
+        <td><p>The other Polar Coordinate to analyze</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>Whether these two PolarCoordinates are equal</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_PolarCoordinate_Matches_System_ValueTuple_System_Double_System_Double__.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.PolarCoordinate.Matches(System.ValueTuple%7BSystem.Double%2CSystem.Double%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/PolarCoordinate.cs/#L188">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_PolarCoordinate_Matches_" data-uid="SadRogue.Primitives.PolarCoordinate.Matches*"></a>
+  <h4 id="SadRogue_Primitives_PolarCoordinate_Matches_System_ValueTuple_System_Double_System_Double__" data-uid="SadRogue.Primitives.PolarCoordinate.Matches(System.ValueTuple{System.Double,System.Double})">Matches((Double radius, Double theta))</h4>
+  <div class="markdown level1 summary"><p>Compares the values in this polar coordinate to the specified values.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Matches((double radius, double theta) other)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-2">ValueTuple</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a>&gt;</td>
+        <td><span class="parametername">other</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_PolarCoordinate_ToCartesian.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.PolarCoordinate.ToCartesian%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/PolarCoordinate.cs/#L115">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_PolarCoordinate_ToCartesian_" data-uid="SadRogue.Primitives.PolarCoordinate.ToCartesian*"></a>
+  <h4 id="SadRogue_Primitives_PolarCoordinate_ToCartesian" data-uid="SadRogue.Primitives.PolarCoordinate.ToCartesian">ToCartesian()</h4>
+  <div class="markdown level1 summary"><p>Returns the Cartesian Equivalent of this Polar Coordinate</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Pure]
+public Point ToCartesian()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><p>A Cartesian Coordinate that points at the same spot on the map as the Polar Coord</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_PolarCoordinate_ToString.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.PolarCoordinate.ToString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/PolarCoordinate.cs/#L45">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_PolarCoordinate_ToString_" data-uid="SadRogue.Primitives.PolarCoordinate.ToString*"></a>
+  <h4 id="SadRogue_Primitives_PolarCoordinate_ToString" data-uid="SadRogue.Primitives.PolarCoordinate.ToString">ToString()</h4>
+  <div class="markdown level1 summary"><p>Ovverride ToString to help you debug</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><p>A short representation of the Polar Coordinate</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetype.tostring#System_ValueType_ToString">ValueType.ToString()</a></div>
+  <h3 id="operators">Operators
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_PolarCoordinate_op_Equality_SadRogue_Primitives_PolarCoordinate_SadRogue_Primitives_PolarCoordinate_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.PolarCoordinate.op_Equality(SadRogue.Primitives.PolarCoordinate%2CSadRogue.Primitives.PolarCoordinate)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/PolarCoordinate.cs/#L56">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_PolarCoordinate_op_Equality_" data-uid="SadRogue.Primitives.PolarCoordinate.op_Equality*"></a>
+  <h4 id="SadRogue_Primitives_PolarCoordinate_op_Equality_SadRogue_Primitives_PolarCoordinate_SadRogue_Primitives_PolarCoordinate_" data-uid="SadRogue.Primitives.PolarCoordinate.op_Equality(SadRogue.Primitives.PolarCoordinate,SadRogue.Primitives.PolarCoordinate)">Equality(PolarCoordinate, PolarCoordinate)</h4>
+  <div class="markdown level1 summary"><p>Compares two polar Coordinates</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Pure]
+public static bool operator ==(PolarCoordinate left, PolarCoordinate right)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.PolarCoordinate.html">PolarCoordinate</a></td>
+        <td><span class="parametername">left</span></td>
+        <td><p>The first polar coordinate to analyze</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.PolarCoordinate.html">PolarCoordinate</a></td>
+        <td><span class="parametername">right</span></td>
+        <td><p>The Second polar coordinate to analyze</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>Whether or not these two Polar Coordinates are similar enough to be considered &quot;Equal&quot;</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_PolarCoordinate_op_Equality_SadRogue_Primitives_PolarCoordinate_System_ValueTuple_System_Double_System_Double__.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.PolarCoordinate.op_Equality(SadRogue.Primitives.PolarCoordinate%2CSystem.ValueTuple%7BSystem.Double%2CSystem.Double%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/PolarCoordinate.cs/#L196">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_PolarCoordinate_op_Equality_" data-uid="SadRogue.Primitives.PolarCoordinate.op_Equality*"></a>
+  <h4 id="SadRogue_Primitives_PolarCoordinate_op_Equality_SadRogue_Primitives_PolarCoordinate_System_ValueTuple_System_Double_System_Double__" data-uid="SadRogue.Primitives.PolarCoordinate.op_Equality(SadRogue.Primitives.PolarCoordinate,System.ValueTuple{System.Double,System.Double})">Equality(PolarCoordinate, (Double radius, Double theta))</h4>
+  <div class="markdown level1 summary"><p>True if the two polar coordinates' radius and theta values are close enough to equal.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Pure]
+public static bool operator ==(PolarCoordinate c, (double radius, double theta) tuple)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.PolarCoordinate.html">PolarCoordinate</a></td>
+        <td><span class="parametername">c</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-2">ValueTuple</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a>&gt;</td>
+        <td><span class="parametername">tuple</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True if the two polar coordinates are equivalent, false if not.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_PolarCoordinate_op_Equality_System_ValueTuple_System_Double_System_Double__SadRogue_Primitives_PolarCoordinate_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.PolarCoordinate.op_Equality(System.ValueTuple%7BSystem.Double%2CSystem.Double%7D%2CSadRogue.Primitives.PolarCoordinate)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/PolarCoordinate.cs/#L217">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_PolarCoordinate_op_Equality_" data-uid="SadRogue.Primitives.PolarCoordinate.op_Equality*"></a>
+  <h4 id="SadRogue_Primitives_PolarCoordinate_op_Equality_System_ValueTuple_System_Double_System_Double__SadRogue_Primitives_PolarCoordinate_" data-uid="SadRogue.Primitives.PolarCoordinate.op_Equality(System.ValueTuple{System.Double,System.Double},SadRogue.Primitives.PolarCoordinate)">Equality((Double radius, Double theta), PolarCoordinate)</h4>
+  <div class="markdown level1 summary"><p>True if the two polar coordinate's values are equivalent.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Pure]
+public static bool operator ==((double radius, double theta) tuple, PolarCoordinate c)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-2">ValueTuple</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a>&gt;</td>
+        <td><span class="parametername">tuple</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.PolarCoordinate.html">PolarCoordinate</a></td>
+        <td><span class="parametername">c</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True if the two polar coordinates are equal, false if not.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_PolarCoordinate_op_Implicit_SadRogue_Primitives_PolarCoordinate__SadRogue_Primitives_Point.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.PolarCoordinate.op_Implicit(SadRogue.Primitives.PolarCoordinate)~SadRogue.Primitives.Point%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/PolarCoordinate.cs/#L108">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_PolarCoordinate_op_Implicit_" data-uid="SadRogue.Primitives.PolarCoordinate.op_Implicit*"></a>
+  <h4 id="SadRogue_Primitives_PolarCoordinate_op_Implicit_SadRogue_Primitives_PolarCoordinate__SadRogue_Primitives_Point" data-uid="SadRogue.Primitives.PolarCoordinate.op_Implicit(SadRogue.Primitives.PolarCoordinate)~SadRogue.Primitives.Point">Implicit(PolarCoordinate to Point)</h4>
+  <div class="markdown level1 summary"><p>Implicitly converts the polar coordinate to its cartesian plane equivalent.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator Point(PolarCoordinate pos)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.PolarCoordinate.html">PolarCoordinate</a></td>
+        <td><span class="parametername">pos</span></td>
+        <td><p>Polar coordinate to convert.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><p>The equivalent cartesian coordinate.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_PolarCoordinate_op_Implicit_SadRogue_Primitives_PolarCoordinate__System_ValueTuple_System_Double_System_Double_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.PolarCoordinate.op_Implicit(SadRogue.Primitives.PolarCoordinate)~System.ValueTuple%7BSystem.Double%2CSystem.Double%7D%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/PolarCoordinate.cs/#L163">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_PolarCoordinate_op_Implicit_" data-uid="SadRogue.Primitives.PolarCoordinate.op_Implicit*"></a>
+  <h4 id="SadRogue_Primitives_PolarCoordinate_op_Implicit_SadRogue_Primitives_PolarCoordinate__System_ValueTuple_System_Double_System_Double_" data-uid="SadRogue.Primitives.PolarCoordinate.op_Implicit(SadRogue.Primitives.PolarCoordinate)~System.ValueTuple{System.Double,System.Double}">Implicit(PolarCoordinate to (Double radius, Double theta))</h4>
+  <div class="markdown level1 summary"><p>Implicitly converts a PolarCoordinate to an equivalent tuple of two doubles.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Pure]
+public static implicit operator (double radius, double theta)(PolarCoordinate c)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.PolarCoordinate.html">PolarCoordinate</a></td>
+        <td><span class="parametername">c</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-2">ValueTuple</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_PolarCoordinate_op_Implicit_System_ValueTuple_System_Double_System_Double___SadRogue_Primitives_PolarCoordinate.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.PolarCoordinate.op_Implicit(System.ValueTuple%7BSystem.Double%2CSystem.Double%7D)~SadRogue.Primitives.PolarCoordinate%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/PolarCoordinate.cs/#L171">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_PolarCoordinate_op_Implicit_" data-uid="SadRogue.Primitives.PolarCoordinate.op_Implicit*"></a>
+  <h4 id="SadRogue_Primitives_PolarCoordinate_op_Implicit_System_ValueTuple_System_Double_System_Double___SadRogue_Primitives_PolarCoordinate" data-uid="SadRogue.Primitives.PolarCoordinate.op_Implicit(System.ValueTuple{System.Double,System.Double})~SadRogue.Primitives.PolarCoordinate">Implicit((Double radius, Double theta) to PolarCoordinate)</h4>
+  <div class="markdown level1 summary"><p>Implicitly converts a tuple of two doubles to an equivalent PolarCoordinate.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Pure]
+public static implicit operator PolarCoordinate((double radius, double theta) tuple)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-2">ValueTuple</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a>&gt;</td>
+        <td><span class="parametername">tuple</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.PolarCoordinate.html">PolarCoordinate</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_PolarCoordinate_op_Inequality_SadRogue_Primitives_PolarCoordinate_SadRogue_Primitives_PolarCoordinate_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.PolarCoordinate.op_Inequality(SadRogue.Primitives.PolarCoordinate%2CSadRogue.Primitives.PolarCoordinate)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/PolarCoordinate.cs/#L66">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_PolarCoordinate_op_Inequality_" data-uid="SadRogue.Primitives.PolarCoordinate.op_Inequality*"></a>
+  <h4 id="SadRogue_Primitives_PolarCoordinate_op_Inequality_SadRogue_Primitives_PolarCoordinate_SadRogue_Primitives_PolarCoordinate_" data-uid="SadRogue.Primitives.PolarCoordinate.op_Inequality(SadRogue.Primitives.PolarCoordinate,SadRogue.Primitives.PolarCoordinate)">Inequality(PolarCoordinate, PolarCoordinate)</h4>
+  <div class="markdown level1 summary"><p>Compares two PolarCoordinates</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator !=(PolarCoordinate left, PolarCoordinate right)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.PolarCoordinate.html">PolarCoordinate</a></td>
+        <td><span class="parametername">left</span></td>
+        <td><p>The first polar coordinate to analyze</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.PolarCoordinate.html">PolarCoordinate</a></td>
+        <td><span class="parametername">right</span></td>
+        <td><p>The second PolarCoordinate to analyze</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>Whether these polar coordinates are dissimilar enough to not be equal</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_PolarCoordinate_op_Inequality_SadRogue_Primitives_PolarCoordinate_System_ValueTuple_System_Double_System_Double__.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.PolarCoordinate.op_Inequality(SadRogue.Primitives.PolarCoordinate%2CSystem.ValueTuple%7BSystem.Double%2CSystem.Double%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/PolarCoordinate.cs/#L207">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_PolarCoordinate_op_Inequality_" data-uid="SadRogue.Primitives.PolarCoordinate.op_Inequality*"></a>
+  <h4 id="SadRogue_Primitives_PolarCoordinate_op_Inequality_SadRogue_Primitives_PolarCoordinate_System_ValueTuple_System_Double_System_Double__" data-uid="SadRogue.Primitives.PolarCoordinate.op_Inequality(SadRogue.Primitives.PolarCoordinate,System.ValueTuple{System.Double,System.Double})">Inequality(PolarCoordinate, (Double radius, Double theta))</h4>
+  <div class="markdown level1 summary"><p>True if either the radius or theta values aren't equivalent.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Pure]
+public static bool operator !=(PolarCoordinate c, (double radius, double theta) tuple)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.PolarCoordinate.html">PolarCoordinate</a></td>
+        <td><span class="parametername">c</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-2">ValueTuple</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a>&gt;</td>
+        <td><span class="parametername">tuple</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True if either the radius or theta values are not equal, false if they are both equal.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_PolarCoordinate_op_Inequality_System_ValueTuple_System_Double_System_Double__SadRogue_Primitives_PolarCoordinate_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.PolarCoordinate.op_Inequality(System.ValueTuple%7BSystem.Double%2CSystem.Double%7D%2CSadRogue.Primitives.PolarCoordinate)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/PolarCoordinate.cs/#L229">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_PolarCoordinate_op_Inequality_" data-uid="SadRogue.Primitives.PolarCoordinate.op_Inequality*"></a>
+  <h4 id="SadRogue_Primitives_PolarCoordinate_op_Inequality_System_ValueTuple_System_Double_System_Double__SadRogue_Primitives_PolarCoordinate_" data-uid="SadRogue.Primitives.PolarCoordinate.op_Inequality(System.ValueTuple{System.Double,System.Double},SadRogue.Primitives.PolarCoordinate)">Inequality((Double radius, Double theta), PolarCoordinate)</h4>
+  <div class="markdown level1 summary"><p>True if either the radius or theta values are not equal.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Pure]
+public static bool operator !=((double radius, double theta) tuple, PolarCoordinate c)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetuple-2">ValueTuple</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a>&gt;</td>
+        <td><span class="parametername">tuple</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.PolarCoordinate.html">PolarCoordinate</a></td>
+        <td><span class="parametername">c</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True if either the radius or theta values are not equal, false if they are both equal.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.iequatable-1">System.IEquatable&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="SadRogue.Primitives.IMatchable-1.html">IMatchable&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.iequatable-1">System.IEquatable&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="SadRogue.Primitives.IMatchable-1.html">IMatchable&lt;T&gt;</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_PolarCoordinate.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.PolarCoordinate%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/PolarCoordinate.cs/#L16" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

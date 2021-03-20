@@ -1,6 +1,6 @@
 {
   "homepages": [],
-  "source_base_path": "D:/Google Drive/Documents/Development/CSharp/TheSadRogue.Primitives/TheSadRogue.Primitives.Docs",
+  "source_base_path": "D:/Documents/Development/CSharp/TheSadRogue.Primitives/TheSadRogue.Primitives.Docs",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
@@ -9,10 +9,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.AdjacencyRule.Types.html",
-          "hash": "COnZc7NrOge8jiS91kw8cA=="
+          "hash": "ysBkFqN0+doJFTdmJcPJUA=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -21,10 +21,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.AdjacencyRule.html",
-          "hash": "Yp6oc2NTuzuswQHopze8Wg=="
+          "hash": "l80u/eLZ2kOWYfDDpSlTFQ=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -33,10 +33,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.Area.html",
-          "hash": "Hr8LfLl90H1UonlMMx6mmQ=="
+          "hash": "hmZNwcQxbX8Ngz3pooRHYg=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -45,10 +45,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.BoundedRectangle.html",
-          "hash": "lpe/DgkFRhoF4iPGfEaPhA=="
+          "hash": "gh5PuwQFaaoFUPb8dAvxAg=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -57,10 +57,22 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.Color.html",
-          "hash": "fm+M+YyH1zftY5cB2qpjLQ=="
+          "hash": "2nqCkgcwoMou/yiXIixJZA=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SadRogue.Primitives.ColorExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SadRogue.Primitives.ColorExtensions.html",
+          "hash": "ZHAfCH7iAU3Pr0PUt2XxlA=="
+        }
+      },
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -69,10 +81,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.Direction.Types.html",
-          "hash": "qrvncrEK2LEaR+fFvZd8gw=="
+          "hash": "C2Ngyhpu4sDE0Vsn1f22xw=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -81,10 +93,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.Direction.html",
-          "hash": "0R9R4aNTJXyRKeNtR1kPGg=="
+          "hash": "tcb6hedptU8x1QhbHfiRtQ=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -93,10 +105,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.Distance.Types.html",
-          "hash": "BP7TL9Z68WGvktT/+vKZrA=="
+          "hash": "6BG8544dmAtDEkFrI2FPLw=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -105,10 +117,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.Distance.html",
-          "hash": "as7dZbUNslTpHY0wXcnCiA=="
+          "hash": "pvaSQ2JwyAuQcdIEyjh8PQ=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -117,10 +129,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.Gradient.html",
-          "hash": "plqLGB9ZgqViwJsBAPD6CQ=="
+          "hash": "6L4iiuZK9+4MYVElfal73w=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -129,10 +141,262 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.GradientStop.html",
-          "hash": "LOuLq5pJDLnGGU4AIneVdg=="
+          "hash": "N9xvV9lpp6g1349Fb83dGg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SadRogue.Primitives.GridViews.ArrayView-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SadRogue.Primitives.GridViews.ArrayView-1.html",
+          "hash": "DnTsMIqPPj6KL75hkaUk+A=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SadRogue.Primitives.GridViews.ArrayView2D-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SadRogue.Primitives.GridViews.ArrayView2D-1.html",
+          "hash": "M7dFsXFQ/IyPbc+UQxSyJg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SadRogue.Primitives.GridViews.Diff-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SadRogue.Primitives.GridViews.Diff-1.html",
+          "hash": "kH0Sv5/QnBUbJ2t6XUFVZg=="
         }
       },
       "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SadRogue.Primitives.GridViews.DiffAwareGridView-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SadRogue.Primitives.GridViews.DiffAwareGridView-1.html",
+          "hash": "J/vd4B+mUgHM7gYQgm2AaQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SadRogue.Primitives.GridViews.GridViewBase-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SadRogue.Primitives.GridViews.GridViewBase-1.html",
+          "hash": "AZj6OELRnweKr69PDS36GQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SadRogue.Primitives.GridViews.GridViewExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SadRogue.Primitives.GridViews.GridViewExtensions.html",
+          "hash": "0inkH4/zT3F16SGnjSnrcg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SadRogue.Primitives.GridViews.IGridView-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SadRogue.Primitives.GridViews.IGridView-1.html",
+          "hash": "qCYUjWfL0QvwJfsrFt4IDQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SadRogue.Primitives.GridViews.ISettableGridView-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SadRogue.Primitives.GridViews.ISettableGridView-1.html",
+          "hash": "u/34qYZmYoFUHFhs85aoVA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SadRogue.Primitives.GridViews.LambdaGridView-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SadRogue.Primitives.GridViews.LambdaGridView-1.html",
+          "hash": "S0GTQZfgNK+sqWMySmFI4A=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SadRogue.Primitives.GridViews.LambdaSettableGridView-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SadRogue.Primitives.GridViews.LambdaSettableGridView-1.html",
+          "hash": "O935FMeofx28RnGiHau0mA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SadRogue.Primitives.GridViews.LambdaSettableTranslationGridView-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SadRogue.Primitives.GridViews.LambdaSettableTranslationGridView-2.html",
+          "hash": "Mb858H6/5wnKGImfevsvCQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SadRogue.Primitives.GridViews.LambdaTranslationGridView-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SadRogue.Primitives.GridViews.LambdaTranslationGridView-2.html",
+          "hash": "O0rR0lUm6SbMKXS2oojPaw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SadRogue.Primitives.GridViews.SettableGridViewBase-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SadRogue.Primitives.GridViews.SettableGridViewBase-1.html",
+          "hash": "7+X0oK1t9/yGW+f6C6TfyQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SadRogue.Primitives.GridViews.SettableTranslationGridView-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SadRogue.Primitives.GridViews.SettableTranslationGridView-2.html",
+          "hash": "LIOZ2IxKhzZIiIpiuqXwRw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SadRogue.Primitives.GridViews.SettableViewport-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SadRogue.Primitives.GridViews.SettableViewport-1.html",
+          "hash": "dAF7pINXwHabe4DIGVmBQw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SadRogue.Primitives.GridViews.TranslationGridView-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SadRogue.Primitives.GridViews.TranslationGridView-2.html",
+          "hash": "QakLiwtn/2jyQt5ZY5qQ/Q=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SadRogue.Primitives.GridViews.UnboundedViewport-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SadRogue.Primitives.GridViews.UnboundedViewport-1.html",
+          "hash": "L9VVAqw76rnhaiEyIlRf9g=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SadRogue.Primitives.GridViews.ValueChange-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SadRogue.Primitives.GridViews.ValueChange-1.html",
+          "hash": "JG3tmRSWknLczDT1/OkXxg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SadRogue.Primitives.GridViews.Viewport-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SadRogue.Primitives.GridViews.Viewport-1.html",
+          "hash": "cUFzYcLRa9Ku25foYEDCWg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SadRogue.Primitives.GridViews.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SadRogue.Primitives.GridViews.html",
+          "hash": "DdTiiDupAssLKLliR3jXow=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SadRogue.Primitives.IMatchable-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SadRogue.Primitives.IMatchable-1.html",
+          "hash": "JhQA74PtFH7MzJqlZoOwZQ=="
+        }
+      },
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -141,10 +405,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.IReadOnlyArea.html",
-          "hash": "xem1igag2E1hVkI8p0tXGw=="
+          "hash": "3siUxefUClSeCKMLZqaCPw=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -153,10 +417,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.MathHelpers.html",
-          "hash": "3cWSbVUeAi3TK8wTX0HoOQ=="
+          "hash": "oo6VT0LufPcHY/JOi5NO7Q=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -165,10 +429,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.Palette.html",
-          "hash": "zyCCN+wM1zHKAjnCYimlgw=="
+          "hash": "hl1T/8S9QVVT4LCRMtGCEg=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -177,10 +441,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.Point.html",
-          "hash": "vSL5NEFv1bYJZGwFWelESw=="
+          "hash": "neCT/ws03BQljaBJYibHRg=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -189,10 +453,22 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.PointExtensions.html",
-          "hash": "a5tXacVqiA+sb6qpSUS2LA=="
+          "hash": "2ma+2ViHqi5ooWeVK35FBQ=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SadRogue.Primitives.PolarCoordinate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SadRogue.Primitives.PolarCoordinate.html",
+          "hash": "oSmziZ3231stOV93IGIHZQ=="
+        }
+      },
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -201,10 +477,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.Radius.Types.html",
-          "hash": "Kcb6gusHpg5js/vfDRGOPg=="
+          "hash": "W9qudGPxDeOKuEhAWFcNsg=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -213,10 +489,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.Radius.html",
-          "hash": "b5Aksn8UYpEXHAvBu535nQ=="
+          "hash": "4a0/yLDDBDx4nEwEfoWZ9A=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -225,10 +501,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.RadiusLocationContext.html",
-          "hash": "nvmsoaz50Yose8ikVdnOlQ=="
+          "hash": "fdHZsp2zYNIA+HQ2EObJFg=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -237,10 +513,202 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.Rectangle.html",
-          "hash": "EILEHndne+ncgtZO6XUcUQ=="
+          "hash": "NF6cB4PaA6K5pG/EhQAZvA=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SadRogue.Primitives.RectangleExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SadRogue.Primitives.RectangleExtensions.html",
+          "hash": "xSIXgHW5KIonyEd1jXHgog=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SadRogue.Primitives.SerializedTypes.AreaSerialized.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SadRogue.Primitives.SerializedTypes.AreaSerialized.html",
+          "hash": "oQJwcK2PuHe0YtnJvL5oAg=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SadRogue.Primitives.SerializedTypes.BoundedRectangleSerialized.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SadRogue.Primitives.SerializedTypes.BoundedRectangleSerialized.html",
+          "hash": "/YEBaDU24iSzgyZGmFHFfQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SadRogue.Primitives.SerializedTypes.ColorSerialized.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SadRogue.Primitives.SerializedTypes.ColorSerialized.html",
+          "hash": "cyjKkzUnqGI36X/Fii5L1A=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SadRogue.Primitives.SerializedTypes.GradientSerialized.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SadRogue.Primitives.SerializedTypes.GradientSerialized.html",
+          "hash": "t2pHrkY/hFMjV8bzSkL83g=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SadRogue.Primitives.SerializedTypes.GradientStopSerialized.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SadRogue.Primitives.SerializedTypes.GradientStopSerialized.html",
+          "hash": "OtwYTDfHgWLg2BTo/czzkQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SadRogue.Primitives.SerializedTypes.GridViews.ArrayViewSerialized-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SadRogue.Primitives.SerializedTypes.GridViews.ArrayViewSerialized-1.html",
+          "hash": "roOIxAnCVePbZqnovbltrQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SadRogue.Primitives.SerializedTypes.GridViews.DiffAwareGridViewSerialized-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SadRogue.Primitives.SerializedTypes.GridViews.DiffAwareGridViewSerialized-1.html",
+          "hash": "QljOaP1ztgYYo6kR+wT83w=="
         }
       },
       "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SadRogue.Primitives.SerializedTypes.GridViews.DiffSerialized-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SadRogue.Primitives.SerializedTypes.GridViews.DiffSerialized-1.html",
+          "hash": "v86CXuk/5RR0kwALtqhX7A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SadRogue.Primitives.SerializedTypes.GridViews.ValueChangeSerialized-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SadRogue.Primitives.SerializedTypes.GridViews.ValueChangeSerialized-1.html",
+          "hash": "xxVpic6UmI7ONlVHzkxvtA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SadRogue.Primitives.SerializedTypes.GridViews.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SadRogue.Primitives.SerializedTypes.GridViews.html",
+          "hash": "NKumxM6E2WaKo30zuiBxuA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SadRogue.Primitives.SerializedTypes.PaletteSerialized.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SadRogue.Primitives.SerializedTypes.PaletteSerialized.html",
+          "hash": "J4EITiu5wRj5wNn6dNiScQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SadRogue.Primitives.SerializedTypes.PointSerialized.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SadRogue.Primitives.SerializedTypes.PointSerialized.html",
+          "hash": "e6MAzw56GUhC57krCUFhRw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SadRogue.Primitives.SerializedTypes.PolarCoordinateSerialized.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SadRogue.Primitives.SerializedTypes.PolarCoordinateSerialized.html",
+          "hash": "R+nPBbyFIi5RqGRhLf4yPw=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SadRogue.Primitives.SerializedTypes.RectangleSerialized.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SadRogue.Primitives.SerializedTypes.RectangleSerialized.html",
+          "hash": "7KReXoaMSNle8mGoLqfXoQ=="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SadRogue.Primitives.SerializedTypes.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SadRogue.Primitives.SerializedTypes.html",
+          "hash": "wPN3Q0kRZqtBaz7lyLepDg=="
+        }
+      },
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -249,10 +717,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.html",
-          "hash": "DxIVCb+bwoiLePay9OzFmw=="
+          "hash": "JVrP4Kr/ITfFCHD1n16Aqg=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -264,7 +732,7 @@
           "hash": "t/GeRx5JE/qlwCu1uh3WpA=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -273,7 +741,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "AcXiVEd6lzSSQmZ0hF2aqg=="
+          "hash": "4EP8tPcW2mZI2ax2A7hI2A=="
         }
       },
       "is_incremental": false,
@@ -285,10 +753,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/intro.html",
-          "hash": "pSb/aHzMRZW1BuBOJcuEWA=="
+          "hash": "ZJGzvySd9ae+BuextTAzDg=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -309,10 +777,10 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "9mHxj4d/UmsuiggESE0uVA=="
+          "hash": "ISi63RYvcy+7a40sEyX3sQ=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -331,25 +799,23 @@
   "incremental_info": [
     {
       "status": {
-        "can_incremental": false,
-        "details": "Cannot build incrementally because docfx version changed from 2.41.0.0 to 2.52.0.0.",
+        "can_incremental": true,
         "incrementalPhase": "build",
         "total_file_count": 0,
-        "skipped_file_count": 0,
-        "full_build_reason_code": "DocfxVersionChanged"
+        "skipped_file_count": 0
       },
       "processors": {
         "ConceptualDocumentProcessor": {
-          "can_incremental": false,
+          "can_incremental": true,
           "incrementalPhase": "build",
           "total_file_count": 3,
-          "skipped_file_count": 0
+          "skipped_file_count": 3
         },
         "ManagedReferenceDocumentProcessor": {
-          "can_incremental": false,
+          "can_incremental": true,
           "incrementalPhase": "build",
-          "total_file_count": 21,
-          "skipped_file_count": 0
+          "total_file_count": 60,
+          "skipped_file_count": 57
         },
         "TocDocumentProcessor": {
           "can_incremental": false,

@@ -80,26 +80,27 @@ various distance calculations.</p>
   <div class="markdown level0 conceptual"></div>
   <div classs="implements">
     <h5>Implements</h5>
-    <div><span class="xref">System.IEquatable</span>&lt;<a class="xref" href="SadRogue.Primitives.Distance.html">Distance</a>&gt;</div>
+    <div><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="SadRogue.Primitives.Distance.html">Distance</a>&gt;</div>
+    <div><a class="xref" href="SadRogue.Primitives.IMatchable-1.html">IMatchable</a>&lt;<a class="xref" href="SadRogue.Primitives.Distance.html">Distance</a>&gt;</div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
-      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.equals#System_Object_Equals_System_Object_System_Object_">Object.Equals(Object, Object)</a>
     </div>
     <div>
-      <span class="xref">System.Object.GetType()</span>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.gettype#System_Object_GetType">Object.GetType()</a>
     </div>
     <div>
-      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.referenceequals#System_Object_ReferenceEquals_System_Object_System_Object_">Object.ReferenceEquals(Object, Object)</a>
     </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="SadRogue.Primitives.html">SadRogue.Primitives</a></h6>
   <h6><strong>Assembly</strong>: TheSadRogue.Primitives.dll</h6>
   <h5 id="SadRogue_Primitives_Distance_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Serializable]
-public struct Distance : IEquatable&lt;Distance&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">[DataContract]
+public struct Distance : IEquatable&lt;Distance&gt;, IMatchable&lt;Distance&gt;</code></pre>
   </div>
   <h5 id="SadRogue_Primitives_Distance_remarks"><strong>Remarks</strong></h5>
   <div class="markdown level0 remarks"><p>Provides functions that calculate the distance between two points according to the distance
@@ -114,7 +115,7 @@ locations and a radius shape are implied by a distance calculation).</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Distance_Chebyshev.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Distance.Chebyshev%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Distance.cs/#L23">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Distance.cs/#L25">View Source</a>
   </span>
   <h4 id="SadRogue_Primitives_Distance_Chebyshev" data-uid="SadRogue.Primitives.Distance.Chebyshev">Chebyshev</h4>
   <div class="markdown level1 summary"><p>Represents chebyshev distance (equivalent to 8-way movement with no extra cost for diagonals).</p>
@@ -122,8 +123,7 @@ locations and a radius shape are implied by a distance calculation).</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[NonSerialized]
-public static Distance Chebyshev</code></pre>
+    <pre><code class="lang-csharp hljs">public static Distance Chebyshev</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -145,7 +145,7 @@ public static Distance Chebyshev</code></pre>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Distance_Euclidean.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Distance.Euclidean%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Distance.cs/#L29">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Distance.cs/#L30">View Source</a>
   </span>
   <h4 id="SadRogue_Primitives_Distance_Euclidean" data-uid="SadRogue.Primitives.Distance.Euclidean">Euclidean</h4>
   <div class="markdown level1 summary"><p>Represents euclidean distance (equivalent to 8-way movement with ~1.41 movement cost for diagonals).</p>
@@ -153,8 +153,7 @@ public static Distance Chebyshev</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[NonSerialized]
-public static Distance Euclidean</code></pre>
+    <pre><code class="lang-csharp hljs">public static Distance Euclidean</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -184,8 +183,7 @@ public static Distance Euclidean</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[NonSerialized]
-public static Distance Manhattan</code></pre>
+    <pre><code class="lang-csharp hljs">public static Distance Manhattan</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -216,7 +214,8 @@ Distance types in switch statements.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public readonly Distance.Types Type</code></pre>
+    <pre><code class="lang-csharp hljs">[DataMember]
+public readonly Distance.Types Type</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -240,7 +239,7 @@ Distance types in switch statements.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Distance_Calculate_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Distance.Calculate(SadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Distance.cs/#L174">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Distance.cs/#L158">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Distance_Calculate_" data-uid="SadRogue.Primitives.Distance.Calculate*"></a>
   <h4 id="SadRogue_Primitives_Distance_Calculate_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Distance.Calculate(SadRogue.Primitives.Point)">Calculate(Point)</h4>
@@ -250,7 +249,8 @@ Distance types in switch statements.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public double Calculate(Point deltaChange)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public double Calculate(Point deltaChange)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -280,7 +280,7 @@ Distance types in switch statements.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Double</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a></td>
         <td><p>The distance between two locations withe the given delta-change values.</p>
 </td>
       </tr>
@@ -291,7 +291,7 @@ Distance types in switch statements.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Distance_Calculate_SadRogue_Primitives_Point_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Distance.Calculate(SadRogue.Primitives.Point%2CSadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Distance.cs/#L150">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Distance.cs/#L131">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Distance_Calculate_" data-uid="SadRogue.Primitives.Distance.Calculate*"></a>
   <h4 id="SadRogue_Primitives_Distance_Calculate_SadRogue_Primitives_Point_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Distance.Calculate(SadRogue.Primitives.Point,SadRogue.Primitives.Point)">Calculate(Point, Point)</h4>
@@ -300,7 +300,8 @@ Distance types in switch statements.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public double Calculate(Point start, Point end)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public double Calculate(Point start, Point end)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -336,7 +337,7 @@ Distance types in switch statements.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Double</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a></td>
         <td><p>The distance between the two points.</p>
 </td>
       </tr>
@@ -347,7 +348,7 @@ Distance types in switch statements.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Distance_Calculate_System_Double_System_Double_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Distance.Calculate(System.Double%2CSystem.Double)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Distance.cs/#L182">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Distance.cs/#L168">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Distance_Calculate_" data-uid="SadRogue.Primitives.Distance.Calculate*"></a>
   <h4 id="SadRogue_Primitives_Distance_Calculate_System_Double_System_Double_" data-uid="SadRogue.Primitives.Distance.Calculate(System.Double,System.Double)">Calculate(Double, Double)</h4>
@@ -356,7 +357,8 @@ Distance types in switch statements.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public double Calculate(double dx, double dy)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public double Calculate(double dx, double dy)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -369,13 +371,13 @@ Distance types in switch statements.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Double</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a></td>
         <td><span class="parametername">dx</span></td>
         <td><p>The delta-x between the two locations.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Double</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a></td>
         <td><span class="parametername">dy</span></td>
         <td><p>The delta-y between the two locations.</p>
 </td>
@@ -392,7 +394,7 @@ Distance types in switch statements.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Double</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a></td>
         <td><p>The distance between two locations with the given delta-change values.</p>
 </td>
       </tr>
@@ -403,7 +405,7 @@ Distance types in switch statements.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Distance_Calculate_System_Double_System_Double_System_Double_System_Double_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Distance.Calculate(System.Double%2CSystem.Double%2CSystem.Double%2CSystem.Double)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Distance.cs/#L160">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Distance.cs/#L143">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Distance_Calculate_" data-uid="SadRogue.Primitives.Distance.Calculate*"></a>
   <h4 id="SadRogue_Primitives_Distance_Calculate_System_Double_System_Double_System_Double_System_Double_" data-uid="SadRogue.Primitives.Distance.Calculate(System.Double,System.Double,System.Double,System.Double)">Calculate(Double, Double, Double, Double)</h4>
@@ -412,7 +414,8 @@ Distance types in switch statements.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public double Calculate(double startX, double startY, double endX, double endY)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public double Calculate(double startX, double startY, double endX, double endY)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -425,25 +428,25 @@ Distance types in switch statements.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Double</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a></td>
         <td><span class="parametername">startX</span></td>
         <td><p>X-Coordinate of the starting point.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Double</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a></td>
         <td><span class="parametername">startY</span></td>
         <td><p>Y-Coordinate of the starting point.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Double</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a></td>
         <td><span class="parametername">endX</span></td>
         <td><p>X-Coordinate of the ending point.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Double</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a></td>
         <td><span class="parametername">endY</span></td>
         <td><p>Y-Coordinate of the ending point.</p>
 </td>
@@ -460,7 +463,7 @@ Distance types in switch statements.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Double</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.double">Double</a></td>
         <td><p>The distance between the two points.</p>
 </td>
       </tr>
@@ -471,7 +474,7 @@ Distance types in switch statements.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Distance_Equals_SadRogue_Primitives_Distance_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Distance.Equals(SadRogue.Primitives.Distance)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Distance.cs/#L210">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Distance.cs/#L189">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Distance_Equals_" data-uid="SadRogue.Primitives.Distance.Equals*"></a>
   <h4 id="SadRogue_Primitives_Distance_Equals_SadRogue_Primitives_Distance_" data-uid="SadRogue.Primitives.Distance.Equals(SadRogue.Primitives.Distance)">Equals(Distance)</h4>
@@ -480,7 +483,8 @@ Distance types in switch statements.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool Equals(Distance other)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public bool Equals(Distance other)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -510,7 +514,7 @@ Distance types in switch statements.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
         <td><p>True if the two distance calculation methods are the same, false if not.</p>
 </td>
       </tr>
@@ -521,7 +525,7 @@ Distance types in switch statements.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Distance_Equals_System_Object_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Distance.Equals(System.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Distance.cs/#L219">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Distance.cs/#L199">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Distance_Equals_" data-uid="SadRogue.Primitives.Distance.Equals*"></a>
   <h4 id="SadRogue_Primitives_Distance_Equals_System_Object_" data-uid="SadRogue.Primitives.Distance.Equals(System.Object)">Equals(Object)</h4>
@@ -530,7 +534,8 @@ Distance types in switch statements.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override bool Equals(object obj)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public override bool Equals(object obj)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -543,7 +548,7 @@ Distance types in switch statements.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Object</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></td>
         <td><span class="parametername">obj</span></td>
         <td><p>The object to compare the current Distance to.</p>
 </td>
@@ -560,20 +565,20 @@ Distance types in switch statements.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
         <td><p>True if <code data-dev-comment-type="paramref" class="paramref">obj</code> is a Distance, and the two distance calculations are equal, false otherwise.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">System.ValueType.Equals(System.Object)</span></div>
+  <div><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetype.equals#System_ValueType_Equals_System_Object_">ValueType.Equals(Object)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Distance_GetHashCode.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Distance.GetHashCode%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Distance.cs/#L225">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Distance.cs/#L206">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Distance_GetHashCode_" data-uid="SadRogue.Primitives.Distance.GetHashCode*"></a>
   <h4 id="SadRogue_Primitives_Distance_GetHashCode" data-uid="SadRogue.Primitives.Distance.GetHashCode">GetHashCode()</h4>
@@ -582,7 +587,8 @@ Distance types in switch statements.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public override int GetHashCode()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -594,28 +600,29 @@ Distance types in switch statements.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">System.ValueType.GetHashCode()</span></div>
+  <div><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetype.gethashcode#System_ValueType_GetHashCode">ValueType.GetHashCode()</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Distance_ToDistance_SadRogue_Primitives_Distance_Types_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Distance.ToDistance(SadRogue.Primitives.Distance.Types)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Distance_Matches_SadRogue_Primitives_Distance_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Distance.Matches(SadRogue.Primitives.Distance)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Distance.cs/#L126">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Distance.cs/#L214">View Source</a>
   </span>
-  <a id="SadRogue_Primitives_Distance_ToDistance_" data-uid="SadRogue.Primitives.Distance.ToDistance*"></a>
-  <h4 id="SadRogue_Primitives_Distance_ToDistance_SadRogue_Primitives_Distance_Types_" data-uid="SadRogue.Primitives.Distance.ToDistance(SadRogue.Primitives.Distance.Types)">ToDistance(Distance.Types)</h4>
-  <div class="markdown level1 summary"><p>Gets the Distance class instance representing the distance type specified.</p>
+  <a id="SadRogue_Primitives_Distance_Matches_" data-uid="SadRogue.Primitives.Distance.Matches*"></a>
+  <h4 id="SadRogue_Primitives_Distance_Matches_SadRogue_Primitives_Distance_" data-uid="SadRogue.Primitives.Distance.Matches(SadRogue.Primitives.Distance)">Matches(Distance)</h4>
+  <div class="markdown level1 summary"><p>True if the given Distance has the same Type the current one.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Distance ToDistance(Distance.Types distanceType)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public bool Matches(Distance other)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -628,9 +635,9 @@ Distance types in switch statements.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="SadRogue.Primitives.Distance.Types.html">Distance.Types</a></td>
-        <td><span class="parametername">distanceType</span></td>
-        <td><p>The enum value for the distance calculation method.</p>
+        <td><a class="xref" href="SadRogue.Primitives.Distance.html">Distance</a></td>
+        <td><span class="parametername">other</span></td>
+        <td><p>Distance to compare.</p>
 </td>
       </tr>
     </tbody>
@@ -645,8 +652,8 @@ Distance types in switch statements.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="SadRogue.Primitives.Distance.html">Distance</a></td>
-        <td><p>The Distance class representing the given distance calculation.</p>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True if the two distance calculation methods are the same, false if not.</p>
 </td>
       </tr>
     </tbody>
@@ -656,7 +663,7 @@ Distance types in switch statements.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Distance_ToString.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Distance.ToString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Distance.cs/#L249">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Distance.cs/#L241">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Distance_ToString_" data-uid="SadRogue.Primitives.Distance.ToString*"></a>
   <h4 id="SadRogue_Primitives_Distance_ToString" data-uid="SadRogue.Primitives.Distance.ToString">ToString()</h4>
@@ -665,7 +672,8 @@ Distance types in switch statements.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public override string ToString()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -677,14 +685,14 @@ Distance types in switch statements.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
         <td><p>A string representation of the distance method represented.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">System.ValueType.ToString()</span></div>
+  <div><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.valuetype.tostring#System_ValueType_ToString">ValueType.ToString()</a></div>
   <h3 id="operators">Operators
   </h3>
   <span class="small pull-right mobile-hide">
@@ -692,7 +700,7 @@ Distance types in switch statements.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Distance_op_Equality_SadRogue_Primitives_Distance_SadRogue_Primitives_Distance_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Distance.op_Equality(SadRogue.Primitives.Distance%2CSadRogue.Primitives.Distance)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Distance.cs/#L233">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Distance.cs/#L223">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Distance_op_Equality_" data-uid="SadRogue.Primitives.Distance.op_Equality*"></a>
   <h4 id="SadRogue_Primitives_Distance_op_Equality_SadRogue_Primitives_Distance_SadRogue_Primitives_Distance_" data-uid="SadRogue.Primitives.Distance.op_Equality(SadRogue.Primitives.Distance,SadRogue.Primitives.Distance)">Equality(Distance, Distance)</h4>
@@ -701,7 +709,8 @@ Distance types in switch statements.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool operator ==(Distance lhs, Distance rhs)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public static bool operator ==(Distance lhs, Distance rhs)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -735,7 +744,7 @@ Distance types in switch statements.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
         <td><p>True if the two distance calculations are equal, false if not.</p>
 </td>
       </tr>
@@ -746,7 +755,7 @@ Distance types in switch statements.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Distance_op_Implicit_SadRogue_Primitives_Distance__SadRogue_Primitives_AdjacencyRule.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Distance.op_Implicit(SadRogue.Primitives.Distance)~SadRogue.Primitives.AdjacencyRule%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Distance.cs/#L105">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Distance.cs/#L95">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Distance_op_Implicit_" data-uid="SadRogue.Primitives.Distance.op_Implicit*"></a>
   <h4 id="SadRogue_Primitives_Distance_op_Implicit_SadRogue_Primitives_Distance__SadRogue_Primitives_AdjacencyRule" data-uid="SadRogue.Primitives.Distance.op_Implicit(SadRogue.Primitives.Distance)~SadRogue.Primitives.AdjacencyRule">Implicit(Distance to AdjacencyRule)</h4>
@@ -755,7 +764,8 @@ Distance types in switch statements.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static implicit operator AdjacencyRule(Distance distance)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public static implicit operator AdjacencyRule(Distance distance)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -795,10 +805,59 @@ distance calculation casted will be returned.</p>
 </div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Distance_op_Implicit_SadRogue_Primitives_Distance__SadRogue_Primitives_Distance_Types.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Distance.op_Implicit(SadRogue.Primitives.Distance)~SadRogue.Primitives.Distance.Types%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Distance.cs/#L109">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Distance_op_Implicit_" data-uid="SadRogue.Primitives.Distance.op_Implicit*"></a>
+  <h4 id="SadRogue_Primitives_Distance_op_Implicit_SadRogue_Primitives_Distance__SadRogue_Primitives_Distance_Types" data-uid="SadRogue.Primitives.Distance.op_Implicit(SadRogue.Primitives.Distance)~SadRogue.Primitives.Distance.Types">Implicit(Distance to Distance.Types)</h4>
+  <div class="markdown level1 summary"><p>Implicitly converts a Distance to its corresponding <a class="xref" href="SadRogue.Primitives.Distance.html#SadRogue_Primitives_Distance_Type">Type</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Pure]
+public static implicit operator Distance.Types(Distance distance)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Distance.html">Distance</a></td>
+        <td><span class="parametername">distance</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Distance.Types.html">Distance.Types</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Distance_op_Implicit_SadRogue_Primitives_Distance__SadRogue_Primitives_Radius.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Distance.op_Implicit(SadRogue.Primitives.Distance)~SadRogue.Primitives.Radius%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Distance.cs/#L79">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Distance.cs/#L78">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Distance_op_Implicit_" data-uid="SadRogue.Primitives.Distance.op_Implicit*"></a>
   <h4 id="SadRogue_Primitives_Distance_op_Implicit_SadRogue_Primitives_Distance__SadRogue_Primitives_Radius" data-uid="SadRogue.Primitives.Distance.op_Implicit(SadRogue.Primitives.Distance)~SadRogue.Primitives.Radius">Implicit(Distance to Radius)</h4>
@@ -807,7 +866,8 @@ distance calculation casted will be returned.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static implicit operator Radius(Distance distance)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public static implicit operator Radius(Distance distance)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -847,10 +907,59 @@ casted will be returned.</p>
 </div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Distance_op_Implicit_SadRogue_Primitives_Distance_Types__SadRogue_Primitives_Distance.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Distance.op_Implicit(SadRogue.Primitives.Distance.Types)~SadRogue.Primitives.Distance%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Distance.cs/#L116">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Distance_op_Implicit_" data-uid="SadRogue.Primitives.Distance.op_Implicit*"></a>
+  <h4 id="SadRogue_Primitives_Distance_op_Implicit_SadRogue_Primitives_Distance_Types__SadRogue_Primitives_Distance" data-uid="SadRogue.Primitives.Distance.op_Implicit(SadRogue.Primitives.Distance.Types)~SadRogue.Primitives.Distance">Implicit(Distance.Types to Distance)</h4>
+  <div class="markdown level1 summary"><p>Implicitly converts an <a class="xref" href="SadRogue.Primitives.Distance.Types.html">Distance.Types</a> enum value to its corresponding Distance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Pure]
+public static implicit operator Distance(Distance.Types type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Distance.Types.html">Distance.Types</a></td>
+        <td><span class="parametername">type</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Distance.html">Distance</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Distance_op_Inequality_SadRogue_Primitives_Distance_SadRogue_Primitives_Distance_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Distance.op_Inequality(SadRogue.Primitives.Distance%2CSadRogue.Primitives.Distance)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Distance.cs/#L243">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Distance.cs/#L234">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Distance_op_Inequality_" data-uid="SadRogue.Primitives.Distance.op_Inequality*"></a>
   <h4 id="SadRogue_Primitives_Distance_op_Inequality_SadRogue_Primitives_Distance_SadRogue_Primitives_Distance_" data-uid="SadRogue.Primitives.Distance.op_Inequality(SadRogue.Primitives.Distance,SadRogue.Primitives.Distance)">Inequality(Distance, Distance)</h4>
@@ -859,7 +968,8 @@ casted will be returned.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool operator !=(Distance lhs, Distance rhs)</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+public static bool operator !=(Distance lhs, Distance rhs)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -893,7 +1003,7 @@ casted will be returned.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
         <td><p>True if the types are not equal, false if they are both equal.</p>
 </td>
       </tr>
@@ -901,7 +1011,10 @@ casted will be returned.</p>
   </table>
   <h3 id="implements">Implements</h3>
   <div>
-      <span class="xref">System.IEquatable&lt;T&gt;</span>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.iequatable-1">System.IEquatable&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="SadRogue.Primitives.IMatchable-1.html">IMatchable&lt;T&gt;</a>
   </div>
 </article>
           </div>
@@ -914,7 +1027,7 @@ casted will be returned.</p>
                     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Distance.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Distance%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Distance.cs/#L16" class="contribution-link">View Source</a>
+                    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Distance.cs/#L19" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

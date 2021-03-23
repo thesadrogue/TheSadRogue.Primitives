@@ -1,0 +1,201 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Namespace SadRogue.Primitives.GridViews
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Namespace SadRogue.Primitives.GridViews
+   ">
+    <meta name="generator" content="docfx 2.52.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="SadRogue.Primitives.GridViews">
+  
+  <h1 id="SadRogue_Primitives_GridViews" data-uid="SadRogue.Primitives.GridViews" class="text-break">Namespace SadRogue.Primitives.GridViews
+  </h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 remarks"></div>
+    <h3 id="classes">Classes
+  </h3>
+      <h4><a class="xref" href="SadRogue.Primitives.GridViews.ArrayView-1.html">ArrayView&lt;T&gt;</a></h4>
+      <section><p>Implementation of <a class="xref" href="SadRogue.Primitives.GridViews.ISettableGridView-1.html">ISettableGridView&lt;T&gt;</a> that uses a 1D array to store data.</p>
+</section>
+      <h4><a class="xref" href="SadRogue.Primitives.GridViews.ArrayView2D-1.html">ArrayView2D&lt;T&gt;</a></h4>
+      <section><p>Implementation of <a class="xref" href="SadRogue.Primitives.GridViews.ISettableGridView-1.html">ISettableGridView&lt;T&gt;</a> that uses a 2D array to store data.</p>
+</section>
+      <h4><a class="xref" href="SadRogue.Primitives.GridViews.Diff-1.html">Diff&lt;T&gt;</a></h4>
+      <section><p>Represents a unique patch/diff of the state of a <a class="xref" href="SadRogue.Primitives.GridViews.DiffAwareGridView-1.html">DiffAwareGridView&lt;T&gt;</a>.</p>
+</section>
+      <h4><a class="xref" href="SadRogue.Primitives.GridViews.DiffAwareGridView-1.html">DiffAwareGridView&lt;T&gt;</a></h4>
+      <section><p>A grid view wrapper useful for recording diffs (change-sets) of changes to a grid view, and applying/removing
+those change-sets of values from the grid view.  Only works with grid views of value types.</p>
+</section>
+      <h4><a class="xref" href="SadRogue.Primitives.GridViews.GridViewBase-1.html">GridViewBase&lt;T&gt;</a></h4>
+      <section><p>A convenient base class to inherit from when implementing <a class="xref" href="SadRogue.Primitives.GridViews.IGridView-1.html">IGridView&lt;T&gt;</a> that minimizes
+the number of items you must implement by implementing indexers in terms of a single indexer taking a Point.</p>
+</section>
+      <h4><a class="xref" href="SadRogue.Primitives.GridViews.GridViewExtensions.html">GridViewExtensions</a></h4>
+      <section><p>Extensions for <a class="xref" href="SadRogue.Primitives.GridViews.IGridView-1.html">IGridView&lt;T&gt;</a> implementations that provide basic utility functions
+for them.</p>
+</section>
+      <h4><a class="xref" href="SadRogue.Primitives.GridViews.LambdaGridView-1.html">LambdaGridView&lt;T&gt;</a></h4>
+      <section><p>Class implementing <a class="xref" href="SadRogue.Primitives.GridViews.IGridView-1.html">IGridView&lt;T&gt;</a>, by providing the &quot;get&quot; functionality via a function that is
+passed in at construction.  For a version that implements <a class="xref" href="SadRogue.Primitives.GridViews.ISettableGridView-1.html">ISettableGridView&lt;T&gt;</a>, see
+<a class="xref" href="SadRogue.Primitives.GridViews.LambdaSettableGridView-1.html">LambdaSettableGridView&lt;T&gt;</a>.</p>
+</section>
+      <h4><a class="xref" href="SadRogue.Primitives.GridViews.LambdaSettableGridView-1.html">LambdaSettableGridView&lt;T&gt;</a></h4>
+      <section><p>Class implementing <a class="xref" href="SadRogue.Primitives.GridViews.ISettableGridView-1.html">ISettableGridView&lt;T&gt;</a>, by providing the &quot;get&quot; and &quot;set&quot; functionality via
+functions that are passed in at construction.  For a version that implements <a class="xref" href="SadRogue.Primitives.GridViews.IGridView-1.html">IGridView&lt;T&gt;</a>, see
+<a class="xref" href="SadRogue.Primitives.GridViews.LambdaGridView-1.html">LambdaGridView&lt;T&gt;</a>.</p>
+</section>
+      <h4><a class="xref" href="SadRogue.Primitives.GridViews.LambdaSettableTranslationGridView-2.html">LambdaSettableTranslationGridView&lt;T1, T2&gt;</a></h4>
+      <section><p>A simple <a class="xref" href="SadRogue.Primitives.GridViews.SettableTranslationGridView-2.html">SettableTranslationGridView&lt;T1, T2&gt;</a> implementation that allows you to provide
+functions/lambdas for the translation functions. For a version offering only &quot;get&quot; functionality,
+see <a class="xref" href="SadRogue.Primitives.GridViews.LambdaTranslationGridView-2.html">LambdaTranslationGridView&lt;T1, T2&gt;</a>.</p>
+</section>
+      <h4><a class="xref" href="SadRogue.Primitives.GridViews.LambdaTranslationGridView-2.html">LambdaTranslationGridView&lt;T1, T2&gt;</a></h4>
+      <section><p>A simple <a class="xref" href="SadRogue.Primitives.GridViews.TranslationGridView-2.html">TranslationGridView&lt;T1, T2&gt;</a> implementation that allows you to provide a function/lambda
+at construction to use as the <a class="xref" href="SadRogue.Primitives.GridViews.TranslationGridView-2.html#SadRogue_Primitives_GridViews_TranslationGridView_2_TranslateGet_SadRogue_Primitives_Point__0_">TranslateGet(Point, T1)</a> implementation.
+For a version offering &quot;set&quot; functionality, see <a class="xref" href="SadRogue.Primitives.GridViews.LambdaSettableTranslationGridView-2.html">LambdaSettableTranslationGridView&lt;T1, T2&gt;</a>.</p>
+</section>
+      <h4><a class="xref" href="SadRogue.Primitives.GridViews.SettableGridViewBase-1.html">SettableGridViewBase&lt;T&gt;</a></h4>
+      <section><p>A convenient base class to inherit from when implementing <a class="xref" href="SadRogue.Primitives.GridViews.ISettableGridView-1.html">ISettableGridView&lt;T&gt;</a> that minimizes
+the number of items you must implement by implementing indexers in terms of a single indexer taking a Point.</p>
+</section>
+      <h4><a class="xref" href="SadRogue.Primitives.GridViews.SettableTranslationGridView-2.html">SettableTranslationGridView&lt;T1, T2&gt;</a></h4>
+      <section><p>Class implementing <a class="xref" href="SadRogue.Primitives.GridViews.ISettableGridView-1.html">ISettableGridView&lt;T&gt;</a> by providing a functions that translate values from one
+grid view with complex data types, to a grid view with simple data types, and vice versa.  For a version that
+provides only &quot;get&quot; functionality, see <a class="xref" href="SadRogue.Primitives.GridViews.TranslationGridView-2.html">TranslationGridView&lt;T1, T2&gt;</a>.</p>
+</section>
+      <h4><a class="xref" href="SadRogue.Primitives.GridViews.SettableViewport-1.html">SettableViewport&lt;T&gt;</a></h4>
+      <section><p>Similar to <a class="xref" href="SadRogue.Primitives.GridViews.Viewport-1.html">Viewport&lt;T&gt;</a>, but implements <a class="xref" href="SadRogue.Primitives.GridViews.ISettableGridView-1.html">ISettableGridView&lt;T&gt;</a>and thus implements
+&quot;set&quot; functionality via relative coordinates.</p>
+</section>
+      <h4><a class="xref" href="SadRogue.Primitives.GridViews.TranslationGridView-2.html">TranslationGridView&lt;T1, T2&gt;</a></h4>
+      <section><p>Class implementing <a class="xref" href="SadRogue.Primitives.GridViews.IGridView-1.html">IGridView&lt;T&gt;</a> by providing a function that translates values from one grid view
+with complex data types, to a grid view with simple data types.  For a version that provides &quot;set&quot;
+functionality, see <a class="xref" href="SadRogue.Primitives.GridViews.SettableTranslationGridView-2.html">SettableTranslationGridView&lt;T1, T2&gt;</a>.</p>
+</section>
+      <h4><a class="xref" href="SadRogue.Primitives.GridViews.UnboundedViewport-1.html">UnboundedViewport&lt;T&gt;</a></h4>
+      <section><p>Similar to <a class="xref" href="SadRogue.Primitives.GridViews.Viewport-1.html">Viewport&lt;T&gt;</a>, except that the view area is in no way bounded to the edges of the
+underlying grid view.  Instead, if you access a position that cannot map to any valid position in the underlying
+grid view, a (specified) default value is returned.</p>
+</section>
+      <h4><a class="xref" href="SadRogue.Primitives.GridViews.Viewport-1.html">Viewport&lt;T&gt;</a></h4>
+      <section><p>Implements <a class="xref" href="SadRogue.Primitives.GridViews.IGridView-1.html">IGridView&lt;T&gt;</a> to expose a &quot;viewport&quot;, or sub-area, of another grid view.
+Its indexers perform relative to absolute coordinate translations based on the viewport size/location, and
+return the proper value of type T from the underlying view.</p>
+</section>
+    <h3 id="structs">Structs
+  </h3>
+      <h4><a class="xref" href="SadRogue.Primitives.GridViews.ValueChange-1.html">ValueChange&lt;T&gt;</a></h4>
+      <section><p>Records a value change in a diff as recorded by a <a class="xref" href="SadRogue.Primitives.GridViews.DiffAwareGridView-1.html">DiffAwareGridView&lt;T&gt;</a>.</p>
+</section>
+    <h3 id="interfaces">Interfaces
+  </h3>
+      <h4><a class="xref" href="SadRogue.Primitives.GridViews.IGridView-1.html">IGridView&lt;T&gt;</a></h4>
+      <section><p>Interface designed to act as a standardized input/output format that defines minimal required data
+for algorithms that operate on a grid of some sort.  For a concrete implementation to subclass for custom
+implementations, see <a class="xref" href="SadRogue.Primitives.GridViews.GridViewBase-1.html">GridViewBase&lt;T&gt;</a>.</p>
+</section>
+      <h4><a class="xref" href="SadRogue.Primitives.GridViews.ISettableGridView-1.html">ISettableGridView&lt;T&gt;</a></h4>
+      <section><p>Interface designed to act as a standardized input/output format that defines minimal required data
+for algorithms that operate and make changes to a grid of some sort.  For a concrete implementation to subclass
+for custom implementations, see <a class="xref" href="SadRogue.Primitives.GridViews.SettableGridViewBase-1.html">SettableGridViewBase&lt;T&gt;</a>.</p>
+</section>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

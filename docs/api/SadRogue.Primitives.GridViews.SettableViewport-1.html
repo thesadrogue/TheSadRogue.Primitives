@@ -1,0 +1,503 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class SettableViewport&lt;T&gt;
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class SettableViewport&lt;T&gt;
+   ">
+    <meta name="generator" content="docfx 2.52.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="SadRogue.Primitives.GridViews.SettableViewport`1">
+  
+  
+  <h1 id="SadRogue_Primitives_GridViews_SettableViewport_1" data-uid="SadRogue.Primitives.GridViews.SettableViewport`1" class="text-break">Class SettableViewport&lt;T&gt;
+  </h1>
+  <div class="markdown level0 summary"><p>Similar to <a class="xref" href="SadRogue.Primitives.GridViews.Viewport-1.html">Viewport&lt;T&gt;</a>, but implements <a class="xref" href="SadRogue.Primitives.GridViews.ISettableGridView-1.html">ISettableGridView&lt;T&gt;</a>and thus implements
+&quot;set&quot; functionality via relative coordinates.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><a class="xref" href="SadRogue.Primitives.GridViews.GridViewBase-1.html">GridViewBase</a>&lt;T&gt;</div>
+    <div class="level2"><a class="xref" href="SadRogue.Primitives.GridViews.Viewport-1.html">Viewport</a>&lt;T&gt;</div>
+    <div class="level3"><span class="xref">SettableViewport&lt;T&gt;</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="SadRogue.Primitives.GridViews.ISettableGridView-1.html">ISettableGridView</a>&lt;T&gt;</div>
+    <div><a class="xref" href="SadRogue.Primitives.GridViews.IGridView-1.html">IGridView</a>&lt;T&gt;</div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.GridViews.Viewport-1.html#SadRogue_Primitives_GridViews_Viewport_1_ViewArea">Viewport&lt;T&gt;.ViewArea</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.GridViews.Viewport-1.html#SadRogue_Primitives_GridViews_Viewport_1_Height">Viewport&lt;T&gt;.Height</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.GridViews.Viewport-1.html#SadRogue_Primitives_GridViews_Viewport_1_Width">Viewport&lt;T&gt;.Width</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.GridViews.Viewport-1.html#SadRogue_Primitives_GridViews_Viewport_1_SetViewArea_SadRogue_Primitives_Rectangle_">Viewport&lt;T&gt;.SetViewArea(Rectangle)</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.GridViews.Viewport-1.html#SadRogue_Primitives_GridViews_Viewport_1_ToString">Viewport&lt;T&gt;.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.GridViews.Viewport-1.html#SadRogue_Primitives_GridViews_Viewport_1_ToString_System_Func__0_System_String__">Viewport&lt;T&gt;.ToString(Func&lt;T, String&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.GridViews.Viewport-1.html#SadRogue_Primitives_GridViews_Viewport_1_ToString_System_Int32_System_Func__0_System_String__">Viewport&lt;T&gt;.ToString(Int32, Func&lt;T, String&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.GridViews.GridViewBase-1.html#SadRogue_Primitives_GridViews_GridViewBase_1_Count">GridViewBase&lt;T&gt;.Count</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.equals#System_Object_Equals_System_Object_">Object.Equals(Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.equals#System_Object_Equals_System_Object_System_Object_">Object.Equals(Object, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.gethashcode#System_Object_GetHashCode">Object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.gettype#System_Object_GetType">Object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.memberwiseclone#System_Object_MemberwiseClone">Object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.referenceequals#System_Object_ReferenceEquals_System_Object_System_Object_">Object.ReferenceEquals(Object, Object)</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="SadRogue.Primitives.GridViews.html">SadRogue.Primitives.GridViews</a></h6>
+  <h6><strong>Assembly</strong>: TheSadRogue.Primitives.dll</h6>
+  <h5 id="SadRogue_Primitives_GridViews_SettableViewport_1_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class SettableViewport&lt;T&gt; : Viewport&lt;T&gt;, ISettableGridView&lt;T&gt;, IGridView&lt;T&gt;</code></pre>
+  </div>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>Type being exposed by map view.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_GridViews_SettableViewport_1__ctor_SadRogue_Primitives_GridViews_ISettableGridView__0__.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.GridViews.SettableViewport%601.%23ctor(SadRogue.Primitives.GridViews.ISettableGridView%7B%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/GridViews/SettableViewport.cs/#L23">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_GridViews_SettableViewport_1__ctor_" data-uid="SadRogue.Primitives.GridViews.SettableViewport`1.#ctor*"></a>
+  <h4 id="SadRogue_Primitives_GridViews_SettableViewport_1__ctor_SadRogue_Primitives_GridViews_ISettableGridView__0__" data-uid="SadRogue.Primitives.GridViews.SettableViewport`1.#ctor(SadRogue.Primitives.GridViews.ISettableGridView{`0})">SettableViewport(ISettableGridView&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Constructor. Takes the map view to represent. The viewport will represent the entire given map view.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SettableViewport(ISettableGridView&lt;T&gt; gridView)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.GridViews.ISettableGridView-1.html">ISettableGridView</a>&lt;T&gt;</td>
+        <td><span class="parametername">gridView</span></td>
+        <td><p>The map view to represent.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_GridViews_SettableViewport_1__ctor_SadRogue_Primitives_GridViews_ISettableGridView__0__SadRogue_Primitives_Rectangle_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.GridViews.SettableViewport%601.%23ctor(SadRogue.Primitives.GridViews.ISettableGridView%7B%600%7D%2CSadRogue.Primitives.Rectangle)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/GridViews/SettableViewport.cs/#L15">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_GridViews_SettableViewport_1__ctor_" data-uid="SadRogue.Primitives.GridViews.SettableViewport`1.#ctor*"></a>
+  <h4 id="SadRogue_Primitives_GridViews_SettableViewport_1__ctor_SadRogue_Primitives_GridViews_ISettableGridView__0__SadRogue_Primitives_Rectangle_" data-uid="SadRogue.Primitives.GridViews.SettableViewport`1.#ctor(SadRogue.Primitives.GridViews.ISettableGridView{`0},SadRogue.Primitives.Rectangle)">SettableViewport(ISettableGridView&lt;T&gt;, Rectangle)</h4>
+  <div class="markdown level1 summary"><p>Constructor. Takes the parent map view, and the initial subsection of that map view to represent.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SettableViewport(ISettableGridView&lt;T&gt; gridView, Rectangle viewArea)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.GridViews.ISettableGridView-1.html">ISettableGridView</a>&lt;T&gt;</td>
+        <td><span class="parametername">gridView</span></td>
+        <td><p>The map view being represented.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a></td>
+        <td><span class="parametername">viewArea</span></td>
+        <td><p>The initial subsection of that map to represent.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_GridViews_SettableViewport_1_GridView.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.GridViews.SettableViewport%601.GridView%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/GridViews/SettableViewport.cs/#L30">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_GridViews_SettableViewport_1_GridView_" data-uid="SadRogue.Primitives.GridViews.SettableViewport`1.GridView*"></a>
+  <h4 id="SadRogue_Primitives_GridViews_SettableViewport_1_GridView" data-uid="SadRogue.Primitives.GridViews.SettableViewport`1.GridView">GridView</h4>
+  <div class="markdown level1 summary"><p>The map view that this viewport is exposing values from.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ISettableGridView&lt;T&gt; GridView { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.GridViews.ISettableGridView-1.html">ISettableGridView</a>&lt;T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_GridViews_SettableViewport_1_Item_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.GridViews.SettableViewport%601.Item(SadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/GridViews/SettableViewport.cs/#L58">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_GridViews_SettableViewport_1_Item_" data-uid="SadRogue.Primitives.GridViews.SettableViewport`1.Item*"></a>
+  <h4 id="SadRogue_Primitives_GridViews_SettableViewport_1_Item_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.GridViews.SettableViewport`1.Item(SadRogue.Primitives.Point)">Item[Point]</h4>
+  <div class="markdown level1 summary"><p>Given a position in relative coordinates, sets/returns the &quot;value&quot; associated with that
+location in absolute coordinates.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T this[Point relativePosition] { get; set; }</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><span class="parametername">relativePosition</span></td>
+        <td><p>Viewport-relative position of the location to retrieve/set the value for.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>The &quot;value&quot; associated with the absolute location represented on the underlying map view.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_GridViews_SettableViewport_1_Item_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.GridViews.SettableViewport%601.Item(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/GridViews/SettableViewport.cs/#L42">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_GridViews_SettableViewport_1_Item_" data-uid="SadRogue.Primitives.GridViews.SettableViewport`1.Item*"></a>
+  <h4 id="SadRogue_Primitives_GridViews_SettableViewport_1_Item_System_Int32_" data-uid="SadRogue.Primitives.GridViews.SettableViewport`1.Item(System.Int32)">Item[Int32]</h4>
+  <div class="markdown level1 summary"><p>Given a position in relative 1d-array-index style, returns/sets the &quot;value&quot; associated with that
+location in absolute coordinates.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T this[int relativeIndex1D] { get; set; }</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">relativeIndex1D</span></td>
+        <td><p>Viewport-relative position of the location to retrieve/set the value for, as a 1D array index.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>The &quot;value&quot; associated with the absolute location represented on the underlying map view.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_GridViews_SettableViewport_1_Item_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.GridViews.SettableViewport%601.Item(System.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/GridViews/SettableViewport.cs/#L73">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_GridViews_SettableViewport_1_Item_" data-uid="SadRogue.Primitives.GridViews.SettableViewport`1.Item*"></a>
+  <h4 id="SadRogue_Primitives_GridViews_SettableViewport_1_Item_System_Int32_System_Int32_" data-uid="SadRogue.Primitives.GridViews.SettableViewport`1.Item(System.Int32,System.Int32)">Item[Int32, Int32]</h4>
+  <div class="markdown level1 summary"><p>Given an X and Y value in relative coordinates, sets/returns the &quot;value&quot; associated with
+that location in absolute coordinates.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T this[int relativeX, int relativeY] { get; set; }</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">relativeX</span></td>
+        <td><p>Viewport-relative X-value of location.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">relativeY</span></td>
+        <td><p>Viewport-relative Y-value of location.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>The &quot;value&quot; associated with the absolute location represented on the underlying map view.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="SadRogue.Primitives.GridViews.ISettableGridView-1.html">ISettableGridView&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="SadRogue.Primitives.GridViews.IGridView-1.html">IGridView&lt;T&gt;</a>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="SadRogue.Primitives.GridViews.GridViewExtensions.html#SadRogue_Primitives_GridViews_GridViewExtensions_ApplyOverlay__1_SadRogue_Primitives_GridViews_ISettableGridView___0__SadRogue_Primitives_GridViews_IGridView___0__">GridViewExtensions.ApplyOverlay&lt;T&gt;(ISettableGridView&lt;T&gt;, IGridView&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="SadRogue.Primitives.GridViews.GridViewExtensions.html#SadRogue_Primitives_GridViews_GridViewExtensions_ApplyOverlay__1_SadRogue_Primitives_GridViews_ISettableGridView___0__System_Func_SadRogue_Primitives_Point___0__">GridViewExtensions.ApplyOverlay&lt;T&gt;(ISettableGridView&lt;T&gt;, Func&lt;Point, T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="SadRogue.Primitives.GridViews.GridViewExtensions.html#SadRogue_Primitives_GridViews_GridViewExtensions_Bounds__1_SadRogue_Primitives_GridViews_IGridView___0__">GridViewExtensions.Bounds&lt;T&gt;(IGridView&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="SadRogue.Primitives.GridViews.GridViewExtensions.html#SadRogue_Primitives_GridViews_GridViewExtensions_Contains__1_SadRogue_Primitives_GridViews_IGridView___0__System_Int32_System_Int32_">GridViewExtensions.Contains&lt;T&gt;(IGridView&lt;T&gt;, Int32, Int32)</a>
+  </div>
+  <div>
+      <a class="xref" href="SadRogue.Primitives.GridViews.GridViewExtensions.html#SadRogue_Primitives_GridViews_GridViewExtensions_Contains__1_SadRogue_Primitives_GridViews_IGridView___0__SadRogue_Primitives_Point_">GridViewExtensions.Contains&lt;T&gt;(IGridView&lt;T&gt;, Point)</a>
+  </div>
+  <div>
+      <a class="xref" href="SadRogue.Primitives.GridViews.GridViewExtensions.html#SadRogue_Primitives_GridViews_GridViewExtensions_ExtendToString__1_SadRogue_Primitives_GridViews_IGridView___0__System_String_System_String_System_Func___0_System_String__System_String_System_String_System_String_System_String_">GridViewExtensions.ExtendToString&lt;T&gt;(IGridView&lt;T&gt;, String, String, Func&lt;T, String&gt;, String, String, String, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="SadRogue.Primitives.GridViews.GridViewExtensions.html#SadRogue_Primitives_GridViews_GridViewExtensions_ExtendToString__1_SadRogue_Primitives_GridViews_IGridView___0__System_Int32_System_String_System_String_System_Func___0_System_String__System_String_System_String_System_String_System_String_">GridViewExtensions.ExtendToString&lt;T&gt;(IGridView&lt;T&gt;, Int32, String, String, Func&lt;T, String&gt;, String, String, String, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="SadRogue.Primitives.GridViews.GridViewExtensions.html#SadRogue_Primitives_GridViews_GridViewExtensions_Fill__1_SadRogue_Primitives_GridViews_ISettableGridView___0____0_">GridViewExtensions.Fill&lt;T&gt;(ISettableGridView&lt;T&gt;, T)</a>
+  </div>
+  <div>
+      <a class="xref" href="SadRogue.Primitives.GridViews.GridViewExtensions.html#SadRogue_Primitives_GridViews_GridViewExtensions_Positions__1_SadRogue_Primitives_GridViews_IGridView___0__">GridViewExtensions.Positions&lt;T&gt;(IGridView&lt;T&gt;)</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_GridViews_SettableViewport_1.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.GridViews.SettableViewport%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/GridViews/SettableViewport.cs/#L8" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

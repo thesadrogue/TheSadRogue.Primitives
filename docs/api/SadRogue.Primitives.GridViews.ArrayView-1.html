@@ -1,0 +1,776 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class ArrayView&lt;T&gt;
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class ArrayView&lt;T&gt;
+   ">
+    <meta name="generator" content="docfx 2.52.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="SadRogue.Primitives.GridViews.ArrayView`1">
+  
+  
+  <h1 id="SadRogue_Primitives_GridViews_ArrayView_1" data-uid="SadRogue.Primitives.GridViews.ArrayView`1" class="text-break">Class ArrayView&lt;T&gt;
+  </h1>
+  <div class="markdown level0 summary"><p>Implementation of <a class="xref" href="SadRogue.Primitives.GridViews.ISettableGridView-1.html">ISettableGridView&lt;T&gt;</a> that uses a 1D array to store data.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><a class="xref" href="SadRogue.Primitives.GridViews.SettableGridViewBase-1.html">SettableGridViewBase</a>&lt;T&gt;</div>
+    <div class="level2"><span class="xref">ArrayView&lt;T&gt;</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="SadRogue.Primitives.GridViews.ISettableGridView-1.html">ISettableGridView</a>&lt;T&gt;</div>
+    <div><a class="xref" href="SadRogue.Primitives.GridViews.IGridView-1.html">IGridView</a>&lt;T&gt;</div>
+    <div><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.icloneable">ICloneable</a></div>
+    <div><a class="xref" href="SadRogue.Primitives.IMatchable-1.html">IMatchable</a>&lt;<a class="xref" href="SadRogue.Primitives.GridViews.ArrayView-1.html">ArrayView</a>&lt;T&gt;&gt;</div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.GridViews.SettableGridViewBase-1.html#SadRogue_Primitives_GridViews_SettableGridViewBase_1_Count">SettableGridViewBase&lt;T&gt;.Count</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.GridViews.SettableGridViewBase-1.html#SadRogue_Primitives_GridViews_SettableGridViewBase_1_Item_System_Int32_System_Int32_">SettableGridViewBase&lt;T&gt;.Item[Int32, Int32]</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.GridViews.SettableGridViewBase-1.html#SadRogue_Primitives_GridViews_SettableGridViewBase_1_Item_System_Int32_">SettableGridViewBase&lt;T&gt;.Item[Int32]</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.equals#System_Object_Equals_System_Object_">Object.Equals(Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.equals#System_Object_Equals_System_Object_System_Object_">Object.Equals(Object, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.gethashcode#System_Object_GetHashCode">Object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.gettype#System_Object_GetType">Object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.memberwiseclone#System_Object_MemberwiseClone">Object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.referenceequals#System_Object_ReferenceEquals_System_Object_System_Object_">Object.ReferenceEquals(Object, Object)</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="SadRogue.Primitives.GridViews.html">SadRogue.Primitives.GridViews</a></h6>
+  <h6><strong>Assembly</strong>: TheSadRogue.Primitives.dll</h6>
+  <h5 id="SadRogue_Primitives_GridViews_ArrayView_1_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class ArrayView&lt;T&gt; : SettableGridViewBase&lt;T&gt;, ISettableGridView&lt;T&gt;, IGridView&lt;T&gt;, ICloneable, IMatchable&lt;ArrayView&lt;T&gt;&gt;</code></pre>
+  </div>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of value being stored.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="SadRogue_Primitives_GridViews_ArrayView_1_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>An <a class="xref" href="SadRogue.Primitives.GridViews.ArrayView-1.html">ArrayView&lt;T&gt;</a> can be implicitly converted to its underlying 1D array,
+which allows exposing that array to code that works with 1D arrays.  Modifications in the array
+appear in the map view as well.</p>
+<p>If you need a 2D array instead of 1D, then you should use <a class="xref" href="SadRogue.Primitives.GridViews.ArrayView2D-1.html">ArrayView2D&lt;T&gt;</a> instead.</p>
+</div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_GridViews_ArrayView_1__ctor__0___System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.GridViews.ArrayView%601.%23ctor(%600%5B%5D%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/GridViews/ArrayView.cs/#L35">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_GridViews_ArrayView_1__ctor_" data-uid="SadRogue.Primitives.GridViews.ArrayView`1.#ctor*"></a>
+  <h4 id="SadRogue_Primitives_GridViews_ArrayView_1__ctor__0___System_Int32_" data-uid="SadRogue.Primitives.GridViews.ArrayView`1.#ctor(`0[],System.Int32)">ArrayView(T[], Int32)</h4>
+  <div class="markdown level1 summary"><p>Constructor.  Takes an existing 1D array to use as the underlying array, and
+the width of the 2D grid represented by that array.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ArrayView(T[] existingArray, int width)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>T[]</td>
+        <td><span class="parametername">existingArray</span></td>
+        <td><p>Existing 1D array to use as the underlying array.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">width</span></td>
+        <td><p>The width of the 2D grid represented by <code data-dev-comment-type="paramref" class="paramref">existingArray</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_GridViews_ArrayView_1__ctor_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.GridViews.ArrayView%601.%23ctor(System.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/GridViews/ArrayView.cs/#L25">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_GridViews_ArrayView_1__ctor_" data-uid="SadRogue.Primitives.GridViews.ArrayView`1.#ctor*"></a>
+  <h4 id="SadRogue_Primitives_GridViews_ArrayView_1__ctor_System_Int32_System_Int32_" data-uid="SadRogue.Primitives.GridViews.ArrayView`1.#ctor(System.Int32,System.Int32)">ArrayView(Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Constructor. Takes width and height of array to create.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ArrayView(int width, int height)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">width</span></td>
+        <td><p>Width of array.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">height</span></td>
+        <td><p>Height of array.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_GridViews_ArrayView_1_Height.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.GridViews.ArrayView%601.Height%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/GridViews/ArrayView.cs/#L69">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_GridViews_ArrayView_1_Height_" data-uid="SadRogue.Primitives.GridViews.ArrayView`1.Height*"></a>
+  <h4 id="SadRogue_Primitives_GridViews_ArrayView_1_Height" data-uid="SadRogue.Primitives.GridViews.ArrayView`1.Height">Height</h4>
+  <div class="markdown level1 summary"><p>The height of the grid being represented.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int Height { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">SadRogue.Primitives.GridViews.SettableGridViewBase&lt;T&gt;.Height</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_GridViews_ArrayView_1_Item_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.GridViews.ArrayView%601.Item(SadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/GridViews/ArrayView.cs/#L75">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_GridViews_ArrayView_1_Item_" data-uid="SadRogue.Primitives.GridViews.ArrayView`1.Item*"></a>
+  <h4 id="SadRogue_Primitives_GridViews_ArrayView_1_Item_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.GridViews.ArrayView`1.Item(SadRogue.Primitives.Point)">Item[Point]</h4>
+  <div class="markdown level1 summary"><p>Interface designed to act as a standardized input/output format that defines minimal required data
+for algorithms that operate and make changes to a grid of some sort.  For a concrete implementation to subclass
+for custom implementations, see <a class="xref" href="SadRogue.Primitives.GridViews.SettableGridViewBase-1.html">SettableGridViewBase&lt;T&gt;</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override T this[Point pos] { get; set; }</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><span class="parametername">pos</span></td>
+        <td><p>Location to get/set the value for.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>The &quot;value&quot; associated with the provided location.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">SadRogue.Primitives.GridViews.SettableGridViewBase&lt;T&gt;.Item[SadRogue.Primitives.Point]</span></div>
+  <h5 id="SadRogue_Primitives_GridViews_ArrayView_1_Item_SadRogue_Primitives_Point__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>See <a class="xref" href="SadRogue.Primitives.GridViews.IGridView-1.html">IGridView&lt;T&gt;</a>. This interface serves the same purpose, but for cases when it is also
+necessary for an algorithm to be able to change the value at each location.</p>
+<p>Like IGridView, a number of implementations of this interface to cover common needs are provided.  For example,
+<a class="xref" href="SadRogue.Primitives.GridViews.ArrayView-1.html">ArrayView&lt;T&gt;</a> defines the interface such that the data is retrieved from and set to an array, and
+<a class="xref" href="SadRogue.Primitives.GridViews.LambdaSettableGridView-1.html">LambdaSettableGridView&lt;T&gt;</a> defines the interface such that arbitrary callbacks are used to retrieve
+and set the data.</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_GridViews_ArrayView_1_Width.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.GridViews.ArrayView%601.Width%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/GridViews/ArrayView.cs/#L72">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_GridViews_ArrayView_1_Width_" data-uid="SadRogue.Primitives.GridViews.ArrayView`1.Width*"></a>
+  <h4 id="SadRogue_Primitives_GridViews_ArrayView_1_Width" data-uid="SadRogue.Primitives.GridViews.ArrayView`1.Width">Width</h4>
+  <div class="markdown level1 summary"><p>The width of the grid being represented.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int Width { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">SadRogue.Primitives.GridViews.SettableGridViewBase&lt;T&gt;.Width</span></div>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_GridViews_ArrayView_1_Clear.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.GridViews.ArrayView%601.Clear%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/GridViews/ArrayView.cs/#L99">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_GridViews_ArrayView_1_Clear_" data-uid="SadRogue.Primitives.GridViews.ArrayView`1.Clear*"></a>
+  <h4 id="SadRogue_Primitives_GridViews_ArrayView_1_Clear" data-uid="SadRogue.Primitives.GridViews.ArrayView`1.Clear">Clear()</h4>
+  <div class="markdown level1 summary"><p>Sets each element in the ArrayView to the default for type T.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Clear()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_GridViews_ArrayView_1_Clone.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.GridViews.ArrayView%601.Clone%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/GridViews/ArrayView.cs/#L50">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_GridViews_ArrayView_1_Clone_" data-uid="SadRogue.Primitives.GridViews.ArrayView`1.Clone*"></a>
+  <h4 id="SadRogue_Primitives_GridViews_ArrayView_1_Clone" data-uid="SadRogue.Primitives.GridViews.ArrayView`1.Clone">Clone()</h4>
+  <div class="markdown level1 summary"><p>Performs deep copy of array view.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public object Clone()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></td>
+        <td><p>The cloned ArrayView.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_GridViews_ArrayView_1_Matches_SadRogue_Primitives_GridViews_ArrayView__0__.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.GridViews.ArrayView%601.Matches(SadRogue.Primitives.GridViews.ArrayView%7B%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/GridViews/ArrayView.cs/#L66">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_GridViews_ArrayView_1_Matches_" data-uid="SadRogue.Primitives.GridViews.ArrayView`1.Matches*"></a>
+  <h4 id="SadRogue_Primitives_GridViews_ArrayView_1_Matches_SadRogue_Primitives_GridViews_ArrayView__0__" data-uid="SadRogue.Primitives.GridViews.ArrayView`1.Matches(SadRogue.Primitives.GridViews.ArrayView{`0})">Matches(ArrayView&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Compares the current ArrayView to the one given.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Matches(ArrayView&lt;T&gt; other)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.GridViews.ArrayView-1.html">ArrayView</a>&lt;T&gt;</td>
+        <td><span class="parametername">other</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True if the given ArrayView&lt;T&gt; with a reference to the same underlying array, false otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_GridViews_ArrayView_1_ToArray.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.GridViews.ArrayView%601.ToArray%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/GridViews/ArrayView.cs/#L94">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_GridViews_ArrayView_1_ToArray_" data-uid="SadRogue.Primitives.GridViews.ArrayView`1.ToArray*"></a>
+  <h4 id="SadRogue_Primitives_GridViews_ArrayView_1_ToArray" data-uid="SadRogue.Primitives.GridViews.ArrayView`1.ToArray">ToArray()</h4>
+  <div class="markdown level1 summary"><p>Converts to 1D array, without copying the values.  Typically using this method is unnecessary
+and you can use the implicit conversion defined for this type instead.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T[] ToArray()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>T[]</td>
+        <td><p>The underlying ArrayView data as a 1D array.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_GridViews_ArrayView_1_ToString.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.GridViews.ArrayView%601.ToString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/GridViews/ArrayView.cs/#L105">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_GridViews_ArrayView_1_ToString_" data-uid="SadRogue.Primitives.GridViews.ArrayView`1.ToString*"></a>
+  <h4 id="SadRogue_Primitives_GridViews_ArrayView_1_ToString" data-uid="SadRogue.Primitives.GridViews.ArrayView`1.ToString">ToString()</h4>
+  <div class="markdown level1 summary"><p>Returns a string representation of the grid values.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><p>A string representation of the grid values.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.tostring#System_Object_ToString">Object.ToString()</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_GridViews_ArrayView_1_ToString_System_Func__0_System_String__.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.GridViews.ArrayView%601.ToString(System.Func%7B%600%2CSystem.String%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/GridViews/ArrayView.cs/#L115">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_GridViews_ArrayView_1_ToString_" data-uid="SadRogue.Primitives.GridViews.ArrayView`1.ToString*"></a>
+  <h4 id="SadRogue_Primitives_GridViews_ArrayView_1_ToString_System_Func__0_System_String__" data-uid="SadRogue.Primitives.GridViews.ArrayView`1.ToString(System.Func{`0,System.String})">ToString(Func&lt;T, String&gt;)</h4>
+  <div class="markdown level1 summary"><p>Returns a string representation of the grid values, using <code data-dev-comment-type="paramref" class="paramref">elementStringifier</code>
+to determine what string represents each value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ToString(Func&lt;T, string&gt; elementStringifier)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td><span class="parametername">elementStringifier</span></td>
+        <td><p>Function determining the string representation of each value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><p>A string representation of the grid values.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_GridViews_ArrayView_1_ToString_System_Int32_System_Func__0_System_String__.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.GridViews.ArrayView%601.ToString(System.Int32%2CSystem.Func%7B%600%2CSystem.String%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/GridViews/ArrayView.cs/#L135">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_GridViews_ArrayView_1_ToString_" data-uid="SadRogue.Primitives.GridViews.ArrayView`1.ToString*"></a>
+  <h4 id="SadRogue_Primitives_GridViews_ArrayView_1_ToString_System_Int32_System_Func__0_System_String__" data-uid="SadRogue.Primitives.GridViews.ArrayView`1.ToString(System.Int32,System.Func{`0,System.String})">ToString(Int32, Func&lt;T, String&gt;)</h4>
+  <div class="markdown level1 summary"><p>Returns a string representation of the grid values using the given parameters.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ToString(int fieldSize, Func&lt;T, string&gt; elementStringifier = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">fieldSize</span></td>
+        <td><p>The size of the field to give each value.  A positive-number
+right-aligns the text within the field, while a negative number left-aligns the text.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td><span class="parametername">elementStringifier</span></td>
+        <td><p>Function to use to convert each value to a string. null defaults to the ToString
+function of type T.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><p>A string representation of the grid values.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="SadRogue_Primitives_GridViews_ArrayView_1_ToString_System_Int32_System_Func__0_System_String___remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Each element will have spaces added to cause it to take up exactly
+<code data-dev-comment-type="paramref" class="paramref">fieldSize</code> characters, provided <code data-dev-comment-type="paramref" class="paramref">fieldSize</code>
+is less than the length of the value's string representation.</p>
+</div>
+  <h3 id="operators">Operators
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_GridViews_ArrayView_1_op_Implicit_SadRogue_Primitives_GridViews_ArrayView__0____0__.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.GridViews.ArrayView%601.op_Implicit(SadRogue.Primitives.GridViews.ArrayView%7B%600%7D)~%600%5B%5D%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/GridViews/ArrayView.cs/#L86">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_GridViews_ArrayView_1_op_Implicit_" data-uid="SadRogue.Primitives.GridViews.ArrayView`1.op_Implicit*"></a>
+  <h4 id="SadRogue_Primitives_GridViews_ArrayView_1_op_Implicit_SadRogue_Primitives_GridViews_ArrayView__0____0__" data-uid="SadRogue.Primitives.GridViews.ArrayView`1.op_Implicit(SadRogue.Primitives.GridViews.ArrayView{`0})~`0[]">Implicit(ArrayView&lt;T&gt; to T[])</h4>
+  <div class="markdown level1 summary"><p>Allows implicit conversion to 1D array.  Does not copy the underlying values.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator T[](ArrayView&lt;T&gt; arrayView)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.GridViews.ArrayView-1.html">ArrayView</a>&lt;T&gt;</td>
+        <td><span class="parametername">arrayView</span></td>
+        <td><p>ArrayView to convert.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>T[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="SadRogue.Primitives.GridViews.ISettableGridView-1.html">ISettableGridView&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="SadRogue.Primitives.GridViews.IGridView-1.html">IGridView&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.icloneable">System.ICloneable</a>
+  </div>
+  <div>
+      <a class="xref" href="SadRogue.Primitives.IMatchable-1.html">IMatchable&lt;T&gt;</a>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="SadRogue.Primitives.GridViews.GridViewExtensions.html#SadRogue_Primitives_GridViews_GridViewExtensions_ApplyOverlay__1_SadRogue_Primitives_GridViews_ISettableGridView___0__SadRogue_Primitives_GridViews_IGridView___0__">GridViewExtensions.ApplyOverlay&lt;T&gt;(ISettableGridView&lt;T&gt;, IGridView&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="SadRogue.Primitives.GridViews.GridViewExtensions.html#SadRogue_Primitives_GridViews_GridViewExtensions_ApplyOverlay__1_SadRogue_Primitives_GridViews_ISettableGridView___0__System_Func_SadRogue_Primitives_Point___0__">GridViewExtensions.ApplyOverlay&lt;T&gt;(ISettableGridView&lt;T&gt;, Func&lt;Point, T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="SadRogue.Primitives.GridViews.GridViewExtensions.html#SadRogue_Primitives_GridViews_GridViewExtensions_Bounds__1_SadRogue_Primitives_GridViews_IGridView___0__">GridViewExtensions.Bounds&lt;T&gt;(IGridView&lt;T&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="SadRogue.Primitives.GridViews.GridViewExtensions.html#SadRogue_Primitives_GridViews_GridViewExtensions_Contains__1_SadRogue_Primitives_GridViews_IGridView___0__System_Int32_System_Int32_">GridViewExtensions.Contains&lt;T&gt;(IGridView&lt;T&gt;, Int32, Int32)</a>
+  </div>
+  <div>
+      <a class="xref" href="SadRogue.Primitives.GridViews.GridViewExtensions.html#SadRogue_Primitives_GridViews_GridViewExtensions_Contains__1_SadRogue_Primitives_GridViews_IGridView___0__SadRogue_Primitives_Point_">GridViewExtensions.Contains&lt;T&gt;(IGridView&lt;T&gt;, Point)</a>
+  </div>
+  <div>
+      <a class="xref" href="SadRogue.Primitives.GridViews.GridViewExtensions.html#SadRogue_Primitives_GridViews_GridViewExtensions_ExtendToString__1_SadRogue_Primitives_GridViews_IGridView___0__System_String_System_String_System_Func___0_System_String__System_String_System_String_System_String_System_String_">GridViewExtensions.ExtendToString&lt;T&gt;(IGridView&lt;T&gt;, String, String, Func&lt;T, String&gt;, String, String, String, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="SadRogue.Primitives.GridViews.GridViewExtensions.html#SadRogue_Primitives_GridViews_GridViewExtensions_ExtendToString__1_SadRogue_Primitives_GridViews_IGridView___0__System_Int32_System_String_System_String_System_Func___0_System_String__System_String_System_String_System_String_System_String_">GridViewExtensions.ExtendToString&lt;T&gt;(IGridView&lt;T&gt;, Int32, String, String, Func&lt;T, String&gt;, String, String, String, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="SadRogue.Primitives.GridViews.GridViewExtensions.html#SadRogue_Primitives_GridViews_GridViewExtensions_Fill__1_SadRogue_Primitives_GridViews_ISettableGridView___0____0_">GridViewExtensions.Fill&lt;T&gt;(ISettableGridView&lt;T&gt;, T)</a>
+  </div>
+  <div>
+      <a class="xref" href="SadRogue.Primitives.GridViews.GridViewExtensions.html#SadRogue_Primitives_GridViews_GridViewExtensions_Positions__1_SadRogue_Primitives_GridViews_IGridView___0__">GridViewExtensions.Positions&lt;T&gt;(IGridView&lt;T&gt;)</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_GridViews_ArrayView_1.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.GridViews.ArrayView%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/GridViews/ArrayView.cs/#L16" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

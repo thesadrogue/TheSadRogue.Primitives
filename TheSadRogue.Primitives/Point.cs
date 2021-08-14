@@ -676,8 +676,8 @@ namespace SadRogue.Primitives
         public  Point Rotate(double degrees)
         {
             double radians = MathHelpers.ToRadian(degrees);
-            int x = (int)Math.Round(X * Math.Cos(radians) - Y * Math.Sin(radians));
-            int y = (int)Math.Round(X * Math.Sin(radians) + Y * Math.Cos(radians));
+            int x = (int)Math.Round(X * Math.Cos(radians) - Y * Math.Sin(radians), MidpointRounding.AwayFromZero);
+            int y = (int)Math.Round(X * Math.Sin(radians) + Y * Math.Cos(radians), MidpointRounding.AwayFromZero);
             return new Point(x, y);
         }
 
@@ -692,8 +692,8 @@ namespace SadRogue.Primitives
         {
             Point rotatingPoint = this - origin;
             double radians = MathHelpers.ToRadian(degrees);
-            int x = (int)Math.Round(rotatingPoint.X * Math.Cos(radians) - rotatingPoint.Y * Math.Sin(radians));
-            int y = (int)Math.Round(rotatingPoint.X * Math.Sin(radians) + rotatingPoint.Y * Math.Cos(radians));
+            int x = (int)Math.Round(rotatingPoint.X * Math.Cos(radians) - rotatingPoint.Y * Math.Sin(radians), MidpointRounding.AwayFromZero);
+            int y = (int)Math.Round(rotatingPoint.X * Math.Sin(radians) + rotatingPoint.Y * Math.Cos(radians), MidpointRounding.AwayFromZero);
             return origin + new Point(x, y);
         }
 

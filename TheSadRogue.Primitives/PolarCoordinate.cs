@@ -44,7 +44,7 @@ namespace SadRogue.Primitives
         /// <returns>A short representation of the Polar Coordinate</returns>
         public override string ToString()
         {
-            return "(Radius = " + Math.Round(Radius, 5) + ", Theta = " + Math.Round(Theta, 5) + ")";
+            return "(Radius = " + Math.Round(Radius, 5, MidpointRounding.AwayFromZero) + ", Theta = " + Math.Round(Theta, 5, MidpointRounding.AwayFromZero) + ")";
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace SadRogue.Primitives
         /// <returns>Whether or not these two Polar Coordinates are similar enough to be considered "Equal"</returns>
         [Pure]
         public static bool operator ==(PolarCoordinate left, PolarCoordinate right) =>
-            Math.Round(left.Theta - right.Theta, 5) == 0.0 && Math.Round(left.Radius - right.Radius, 5) == 0.0;
+            Math.Round(left.Theta - right.Theta, 5, MidpointRounding.AwayFromZero) == 0.0 && Math.Round(left.Radius - right.Radius, 5, MidpointRounding.AwayFromZero) == 0.0;
 
         /// <summary>
         /// Compares two PolarCoordinates
@@ -69,7 +69,7 @@ namespace SadRogue.Primitives
         /// Gets the Object's Hash Code
         /// </summary>
         /// <returns>A Hash code.</returns>
-        public override int GetHashCode() => Math.Round(Radius, 5).GetHashCode() ^ Math.Round(Theta, 5).GetHashCode();
+        public override int GetHashCode() => Math.Round(Radius, 5, MidpointRounding.AwayFromZero).GetHashCode() ^ Math.Round(Theta, 5, MidpointRounding.AwayFromZero).GetHashCode();
 
         /// <summary>
         /// Performs comparison between this PolarCoordinate and an other
@@ -115,7 +115,7 @@ namespace SadRogue.Primitives
         [Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Point ToCartesian()
-            => new Point((int)Math.Round(Radius * Math.Cos(Theta), 0), (int)Math.Round(Radius * Math.Sin(Theta), 0));
+            => new Point((int)Math.Round(Radius * Math.Cos(Theta), 0, MidpointRounding.AwayFromZero), (int)Math.Round(Radius * Math.Sin(Theta), 0, MidpointRounding.AwayFromZero));
 
         /// <summary>
         /// Returns a new PolarCoordinate that is equivalent to the Cartesian point provided.
@@ -178,7 +178,7 @@ namespace SadRogue.Primitives
         /// <param name="other"/>
         /// <returns/>
         public bool Equals((double radius, double theta) other)
-            => Math.Round(Theta - other.theta, 5) == 0.0 && Math.Round(Radius - other.radius, 5) == 0.0;
+            => Math.Round(Theta - other.theta, 5, MidpointRounding.AwayFromZero) == 0.0 && Math.Round(Radius - other.radius, 5, MidpointRounding.AwayFromZero) == 0.0;
 
         /// <summary>
         /// Compares the values in this polar coordinate to the specified values.
@@ -329,7 +329,7 @@ namespace SadRogue.Primitives
                     radius += Math.Pow(powerBase, 5);
                     double x = radius * Math.Cos(theta);
                     double y = radius * Math.Sin(theta);
-                    return new Point((int)Math.Round(x, 0), (int)Math.Round(y, 0));
+                    return new Point((int)Math.Round(x, 0, MidpointRounding.AwayFromZero), (int)Math.Round(y, 0, MidpointRounding.AwayFromZero));
                 }
             },
         };

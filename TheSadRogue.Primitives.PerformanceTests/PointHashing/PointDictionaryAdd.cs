@@ -42,7 +42,7 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
         }
 
         [Benchmark]
-        public Dictionary<Point, int> CurrentPrimitives() => CreateAndPopulate(CurrentPrimitivesAlgorithm.Instance);
+        public Dictionary<Point, int> CurrentPrimitives() => CreateAndPopulate(EqualityComparer<Point>.Default);
 
         [Benchmark]
         public Dictionary<Point, int> OriginalGoRogue() => CreateAndPopulate(OriginalGoRogueAlgorithm.Instance);

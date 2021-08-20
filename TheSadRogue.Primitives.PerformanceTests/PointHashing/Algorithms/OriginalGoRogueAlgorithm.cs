@@ -7,13 +7,13 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing.Algorithms
     /// IEqualityComparer using the method originally used in GoRogue 2 (currently the same as what is used
     /// in the primitives library).
     /// </summary>
-    public sealed class OriginalGoRogueAlgorithm : IEqualityComparer<Point>
+    public sealed class OriginalGoRogueAlgorithm : EqualityComparer<Point>
     {
         public static readonly IEqualityComparer<Point> Instance = new OriginalGoRogueAlgorithm();
 
-        public bool Equals(Point x, Point y) => x.Equals(y);
+        public override bool Equals(Point x, Point y) => x.Equals(y);
 
-        public int GetHashCode(Point p)
+        public override int GetHashCode(Point p)
         {
             // Intentional overflow on both of these, part of hash-code generation
             int x2 = (int)(0x9E3779B9 * p.X), y2 = 0x632BE5AB * p.Y;

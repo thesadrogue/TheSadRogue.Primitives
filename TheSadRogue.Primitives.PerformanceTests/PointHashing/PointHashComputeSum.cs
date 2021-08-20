@@ -41,7 +41,7 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
         }
 
         [Benchmark]
-        public int CurrentPrimitives() => SumHashesAlgorithm(CurrentPrimitivesAlgorithm.Instance);
+        public int CurrentPrimitives() => SumHashesAlgorithm(EqualityComparer<Point>.Default);
 
         [Benchmark]
         public int OriginalGoRogue() => SumHashesAlgorithm(OriginalGoRogueAlgorithm.Instance);

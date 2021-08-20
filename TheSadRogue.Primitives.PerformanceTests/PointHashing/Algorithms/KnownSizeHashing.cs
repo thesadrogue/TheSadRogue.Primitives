@@ -17,7 +17,7 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing.Algorithms
     /// algorithm can be significantly faster to compute than fully generalized algorithms, it can be useful for these
     /// cases, and having a measure of its relative performance is useful.
     /// </remarks>
-    public sealed class KnownSizeHashing : IEqualityComparer<Point>
+    public sealed class KnownSizeHashing : EqualityComparer<Point>
     {
         private readonly int _maxWidth;
 
@@ -26,8 +26,8 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing.Algorithms
             _maxWidth = maxWidth;
         }
 
-        public bool Equals(Point x, Point y) => x.Equals(y);
+        public override bool Equals(Point x, Point y) => x.Equals(y);
 
-        public int GetHashCode(Point p) => p.ToIndex(_maxWidth);
+        public override int GetHashCode(Point p) => p.ToIndex(_maxWidth);
     }
 }

@@ -47,7 +47,7 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
             _sizeHasher = new KnownSizeHashing(Size);
 
             // Create dictionaries to retrieve from (we don't want to time this part so we will cache them)
-            _currentPrimitives = CreateAndPopulate(CurrentPrimitivesAlgorithm.Instance);
+            _currentPrimitives = CreateAndPopulate(EqualityComparer<Point>.Default);
             _originalGoRogue = CreateAndPopulate(OriginalGoRogueAlgorithm.Instance);
             _knownSizeHashing = CreateAndPopulate(_sizeHasher);
             _rosenbergStrong = CreateAndPopulate(RosenbergStrongBasedAlgorithm.Instance);
@@ -96,8 +96,8 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
         private int CheckNonExistingFrom(HashSet<Point> hashSet)
         {
             int sum = 0;
-            for (int y = Size; y < Size + (Size * Size); y++)
-                for (int x = Size; x < Size + (Size * Size); x++)
+            for (int y = Size; y < Size * 2; y++)
+                for (int x = Size; x < Size * 2; x++)
                     if (hashSet.Contains(new Point(x, y)))
                         sum++;
 

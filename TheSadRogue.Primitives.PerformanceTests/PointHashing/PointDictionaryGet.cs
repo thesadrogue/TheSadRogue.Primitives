@@ -45,7 +45,7 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
             _sizeHasher = new KnownSizeHashing(Size);
 
             // Create dictionaries to retrieve from (we don't want to time this part so we will cache them)
-            _currentPrimitives = CreateAndPopulate(CurrentPrimitivesAlgorithm.Instance);
+            _currentPrimitives = CreateAndPopulate(EqualityComparer<Point>.Default);
             _originalGoRogue = CreateAndPopulate(OriginalGoRogueAlgorithm.Instance);
             _knownSizeHashing = CreateAndPopulate(_sizeHasher);
             _rosenbergStrong = CreateAndPopulate(RosenbergStrongBasedAlgorithm.Instance);

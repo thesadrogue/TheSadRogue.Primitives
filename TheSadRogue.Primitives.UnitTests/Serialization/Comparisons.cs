@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using SadRogue.Primitives.GridViews;
+using SadRogue.Primitives.PointHashers;
 using SadRogue.Primitives.SerializedTypes;
 using SadRogue.Primitives.SerializedTypes.GridViews;
 
@@ -16,7 +17,7 @@ namespace SadRogue.Primitives.UnitTests.Serialization
                 [typeof(ArrayView2D<int>)] = CastFromObject<IGridView<int>>(GridViewCompare),
                 [typeof(ArrayView<int>)] = CastFromObject<IGridView<int>>(GridViewCompare),
                 [typeof(ArrayViewSerialized<int>)] = CastFromObject<ArrayViewSerialized<int>>(ArrayViewSerializedCompare),
-                [typeof(Area)] = CastFromObject<IReadOnlyArea>(MatchableCompare),
+                [typeof(Area)] = CastFromObject<Area>(AreaCompare),
                 [typeof(AreaSerialized)] = CastFromObject<AreaSerialized>(AreaSerializedCompare),
                 [typeof(BoundedRectangle)] = CastFromObject<BoundedRectangle>(MatchableCompare),
                 //[typeof(DiffAwareGridView<int>)] = CastFromObject<DiffAwareGridView<int>>(DiffAwareGridViewCompare),
@@ -25,6 +26,7 @@ namespace SadRogue.Primitives.UnitTests.Serialization
                 [typeof(DiffSerialized<int>)] = CastFromObject<DiffSerialized<int>>(DiffSerializedCompare),
                 [typeof(Gradient)] = CastFromObject<Gradient>(MatchableCompare),
                 [typeof(GradientSerialized)] = CastFromObject<GradientSerialized>(GradientSerializedCompare),
+                [typeof(KnownSizeHasher)] = CastFromObject<KnownSizeHasher>(PointHasherKnownSizeCompare),
                 [typeof(Palette)] = CastFromObject<Palette>(MatchableCompare),
                 [typeof(PaletteSerialized)] = CastFromObject<PaletteSerialized>(PaletteSerializedCompare)
             };
@@ -37,7 +39,7 @@ namespace SadRogue.Primitives.UnitTests.Serialization
 
         // Compares two AreaSerialized instances
         private static bool AreaSerializedCompare(AreaSerialized o1, AreaSerialized o2)
-            => ElementWiseEquality(o1.Positions, o2.Positions);
+            => ElementWiseEquality(o1.Positions, o2.Positions) && o1.PointHasher.GetType() == o2.PointHasher.GetType();
 
         /*
         private static bool DiffAwareGridViewCompare<T>(DiffAwareGridView<T> o1, DiffAwareGridView<T> o2)
@@ -77,6 +79,9 @@ namespace SadRogue.Primitives.UnitTests.Serialization
             where T : class, IMatchable<T>
             => o1.Matches(o2);
 
+        private static bool AreaCompare(Area area1, Area area2)
+            => area1.Matches(area2) && area1.PointHasher.GetType() == area2.PointHasher.GetType();
+
         private static bool GridViewCompare<T>(IGridView<T> view1, IGridView<T> view2)
         {
             if (ReferenceEquals(view1, view2))
@@ -101,6 +106,9 @@ namespace SadRogue.Primitives.UnitTests.Serialization
 
             return true;
         }
+
+        private static bool PointHasherKnownSizeCompare(KnownSizeHasher h1, KnownSizeHasher h2)
+            => h1.MaxXValue == h2.MaxXValue;
 
         private static bool ElementWiseEquality<T>(IEnumerable<T> e1, IEnumerable<T> e2,
                                                    Func<T, T, bool>? compareFunc = null)

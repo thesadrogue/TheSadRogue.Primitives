@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using BenchmarkDotNet.Attributes;
 using SadRogue.Primitives;
+using SadRogue.Primitives.PointHashers;
 using TheSadRogue.Primitives.PerformanceTests.PointHashing.Algorithms;
 
 namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
@@ -38,7 +39,7 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
 
             // Create equality comparer to ensure that the creation time isn't factored into benchmark
             // (since it is not for any other algorithms
-            _sizeHasher = new KnownSizeHashing(Size);
+            _sizeHasher = new KnownSizeHasher(Size);
         }
 
         [Benchmark]

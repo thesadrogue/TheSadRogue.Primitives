@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Runtime.Serialization;
 using System.Text;
 
 namespace SadRogue.Primitives
@@ -12,19 +11,27 @@ namespace SadRogue.Primitives
     /// Represents an arbitrarily-shaped 2D area. Stores and provides access to a list of each
     /// unique position in the area.
     /// </summary>
-    [DataContract]
     public class Area : IReadOnlyArea
     {
         private readonly HashSet<Point> _positionsSet;
 
-        [DataMember] private readonly List<Point> _positions;
+        private readonly List<Point> _positions;
 
         private int _left, _top, _bottom, _right;
 
         /// <summary>
+        /// Hashing algorithm being used to store points added to this area.
+        /// </summary>
+        public readonly IEqualityComparer<Point> PointHasher;
+
+        /// <summary>
         /// Constructor.
         /// </summary>
-        public Area()
+        /// <param name="pointHasher">
+        /// A custom equality comparer/hashing algorithm to use when storing points.  If not specified, it defaults
+        /// to using the Equals and GetHashCode functions of the Point struct.
+        /// </param>
+        public Area(IEqualityComparer<Point>? pointHasher = null)
         {
             _left = int.MaxValue;
             _top = int.MaxValue;
@@ -32,24 +39,33 @@ namespace SadRogue.Primitives
             _right = 0;
             _bottom = 0;
 
+            PointHasher = pointHasher ?? EqualityComparer<Point>.Default;
             _positions = new List<Point>();
-            _positionsSet = new HashSet<Point>();
+            _positionsSet = new HashSet<Point>(PointHasher);
         }
 
         /// <summary>
         /// Constructor that takes initial points to add to the area.
         /// </summary>
         /// <param name="initialPoints">Initial points to add to the area.</param>
-        public Area(IEnumerable<Point> initialPoints)
-            : this()
+        /// <param name="pointHasher">
+        /// A custom equality comparer/hashing algorithm to use when storing points.  If not specified, it defaults
+        /// to using the Equals and GetHashCode functions of the Point struct.
+        /// </param>
+        public Area(IEnumerable<Point> initialPoints, IEqualityComparer<Point>? pointHasher = null)
+            : this(pointHasher)
             => Add(initialPoints);
 
         /// <summary>
         /// Constructor that takes initial points to add to the area.
         /// </summary>
         /// <param name="initialPoints">Initial points to add to the area.</param>
-        public Area(params Point[] initialPoints)
-            : this((IEnumerable<Point>)initialPoints)
+        /// <param name="pointHasher">
+        /// A custom equality comparer/hashing algorithm to use when storing points.  If not specified, it defaults
+        /// to using the Equals and GetHashCode functions of the Point struct.
+        /// </param>
+        public Area(IEqualityComparer<Point>? pointHasher = null, params Point[] initialPoints)
+            : this(initialPoints, pointHasher)
         { }
 
         /// <inheritdoc />

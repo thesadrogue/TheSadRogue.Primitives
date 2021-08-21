@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using SadRogue.Primitives.GridViews;
+using SadRogue.Primitives.PointHashers;
 using SadRogue.Primitives.SerializedTypes;
 using SadRogue.Primitives.SerializedTypes.GridViews;
+using SadRogue.Primitives.SerializedTypes.PointHashers;
 using SadRogue.Primitives.UnitTests.Mocks;
 
 namespace SadRogue.Primitives.UnitTests.Serialization
@@ -33,7 +35,8 @@ namespace SadRogue.Primitives.UnitTests.Serialization
                     new PointSerialized { X = 1, Y = 2 },
                     new PointSerialized { X = 3, Y = 4 },
                     new PointSerialized { X = 5, Y = 6 }
-                }
+                },
+                PointHasher = EqualityComparer<Point>.Default
             },
             // BoundedRectangleSerialized
             new BoundedRectangleSerialized
@@ -121,6 +124,8 @@ namespace SadRogue.Primitives.UnitTests.Serialization
                     }
                 }
             },
+            // KnownSizeHasherSerialized
+            new KnownSizeHasherSerialized { MaxXValue = 10 },
             // PaletteSerialized
             new PaletteSerialized
             {
@@ -173,6 +178,8 @@ namespace SadRogue.Primitives.UnitTests.Serialization
             Distance.Chebyshev, Distance.Manhattan,
             // GradientStop
             new GradientStop(new Color(100, 101, 102, 103), .5f),
+            // KnownSizeHasher
+            new KnownSizeHasher(10),
             // Points
             new Point(-1, -5), new Point(4, 9),
             // Polar Coordinates
@@ -193,7 +200,7 @@ namespace SadRogue.Primitives.UnitTests.Serialization
         {
             { typeof(AdjacencyRule), new[] { "Type" } },
             { typeof(ArrayViewSerialized<int>), new[] { "Width", "Data" } },
-            { typeof(AreaSerialized), new[] { "Positions" } },
+            { typeof(AreaSerialized), new[] { "Positions", "PointHasher" } },
             { typeof(BoundedRectangle), new[] { "_area", "_boundingBox" } },
             { typeof(BoundedRectangleSerialized), new[] { "Area", "Bounds" } },
             { typeof(Color), new[] { "_packedValue" } },
@@ -205,6 +212,8 @@ namespace SadRogue.Primitives.UnitTests.Serialization
             { typeof(GradientStop), new[] { "Color", "Stop" } },
             { typeof(GradientStopSerialized), new[] { "Color", "Stop" } },
             { typeof(GradientSerialized), new[] { "Stops" } },
+            { typeof(KnownSizeHasher), new[] {"MaxXValue"} },
+            { typeof(KnownSizeHasherSerialized), new[] {"MaxXValue"} },
             { typeof(PaletteSerialized), new[] { "Colors" } },
             { typeof(Point), new[] { "X", "Y" } },
             { typeof(PointSerialized), new[] { "X", "Y" } },
@@ -223,8 +232,6 @@ namespace SadRogue.Primitives.UnitTests.Serialization
         /// </summary>
         public static readonly IEnumerable<object> SerializableValuesNonJsonObjects = new object[]
         {
-            // Area
-            new Area((1, 2), (3, 4), (5, 6)),
             // Gradient
             new Gradient(new Color(100, 101, 102, 103), new Color(200, 201, 202, 203)),
             // Palette
@@ -248,6 +255,7 @@ namespace SadRogue.Primitives.UnitTests.Serialization
             [typeof(Direction)] = typeof(Direction.Types),
             [typeof(Distance)] = typeof(Distance.Types),
             [typeof(GradientStop)] = typeof(GradientStopSerialized),
+            [typeof(KnownSizeHasher)] = typeof(KnownSizeHasherSerialized),
             [typeof(Gradient)] = typeof(GradientSerialized),
             [typeof(Palette)] = typeof(PaletteSerialized),
             [typeof(Point)] = typeof(PointSerialized),
@@ -263,6 +271,10 @@ namespace SadRogue.Primitives.UnitTests.Serialization
         /// </summary>
         private static readonly object[] _nonSerializableValuesWithExpressiveTypes =
         {
+            // Area
+            new Area(null, (1, 2), (3, 4), (5, 6)),
+            // Area with custom equality comparer
+            new Area(new KnownSizeHasher(5), (1, 2), (3, 4), (5, 6)),
             // ArrayView
             new ArrayView<int>(new[] { 1, 2, 3, 4 }, 2),
             // ArrayView2D

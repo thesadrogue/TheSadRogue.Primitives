@@ -12,7 +12,7 @@
           "hash": "ysBkFqN0+doJFTdmJcPJUA=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -24,7 +24,7 @@
           "hash": "l80u/eLZ2kOWYfDDpSlTFQ=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -33,10 +33,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.Area.html",
-          "hash": "hmZNwcQxbX8Ngz3pooRHYg=="
+          "hash": "/86bRsK0UUYUmEd6uGqkgg=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -48,7 +48,7 @@
           "hash": "gh5PuwQFaaoFUPb8dAvxAg=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -60,7 +60,7 @@
           "hash": "2nqCkgcwoMou/yiXIixJZA=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -72,7 +72,7 @@
           "hash": "ZHAfCH7iAU3Pr0PUt2XxlA=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -84,7 +84,7 @@
           "hash": "C2Ngyhpu4sDE0Vsn1f22xw=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -96,7 +96,7 @@
           "hash": "tcb6hedptU8x1QhbHfiRtQ=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -108,7 +108,7 @@
           "hash": "6BG8544dmAtDEkFrI2FPLw=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -120,7 +120,7 @@
           "hash": "pvaSQ2JwyAuQcdIEyjh8PQ=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -132,7 +132,7 @@
           "hash": "6L4iiuZK9+4MYVElfal73w=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -144,7 +144,7 @@
           "hash": "N9xvV9lpp6g1349Fb83dGg=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -153,10 +153,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.GridViews.ArrayView-1.html",
-          "hash": "DnTsMIqPPj6KL75hkaUk+A=="
+          "hash": "2B1tJ62SgqAUA/tU0XeRtQ=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -165,10 +165,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.GridViews.ArrayView2D-1.html",
-          "hash": "M7dFsXFQ/IyPbc+UQxSyJg=="
+          "hash": "a2Wp7XJU6x/5nrxptIZnoQ=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -189,7 +189,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.GridViews.DiffAwareGridView-1.html",
-          "hash": "J/vd4B+mUgHM7gYQgm2AaQ=="
+          "hash": "6vvz2MxEVqUrsM0G4rvDFQ=="
         }
       },
       "is_incremental": false,
@@ -201,10 +201,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.GridViews.GridViewBase-1.html",
-          "hash": "AZj6OELRnweKr69PDS36GQ=="
+          "hash": "4IiMXWeLPKfQtcu/sZQovw=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -216,7 +216,7 @@
           "hash": "0inkH4/zT3F16SGnjSnrcg=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -228,7 +228,7 @@
           "hash": "qCYUjWfL0QvwJfsrFt4IDQ=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -240,7 +240,7 @@
           "hash": "u/34qYZmYoFUHFhs85aoVA=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -249,10 +249,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.GridViews.LambdaGridView-1.html",
-          "hash": "S0GTQZfgNK+sqWMySmFI4A=="
+          "hash": "1TWEVct8OV2w/BAA+xFctA=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -261,10 +261,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.GridViews.LambdaSettableGridView-1.html",
-          "hash": "O935FMeofx28RnGiHau0mA=="
+          "hash": "6cXsMwdSpjTmafAl+LTePQ=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -276,7 +276,7 @@
           "hash": "Mb858H6/5wnKGImfevsvCQ=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -288,7 +288,7 @@
           "hash": "O0rR0lUm6SbMKXS2oojPaw=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -297,7 +297,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.GridViews.SettableGridViewBase-1.html",
-          "hash": "7+X0oK1t9/yGW+f6C6TfyQ=="
+          "hash": "/AeAtyUZC9GyiqcLNoA1RA=="
         }
       },
       "is_incremental": false,
@@ -309,10 +309,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.GridViews.SettableTranslationGridView-2.html",
-          "hash": "LIOZ2IxKhzZIiIpiuqXwRw=="
+          "hash": "/Ab+MhWXBZE8jqriplERSw=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -324,7 +324,7 @@
           "hash": "dAF7pINXwHabe4DIGVmBQw=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -336,7 +336,7 @@
           "hash": "QakLiwtn/2jyQt5ZY5qQ/Q=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -348,7 +348,7 @@
           "hash": "L9VVAqw76rnhaiEyIlRf9g=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -372,7 +372,7 @@
           "hash": "cUFzYcLRa9Ku25foYEDCWg=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -408,7 +408,7 @@
           "hash": "3siUxefUClSeCKMLZqaCPw=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -432,7 +432,7 @@
           "hash": "hl1T/8S9QVVT4LCRMtGCEg=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -444,7 +444,7 @@
           "hash": "neCT/ws03BQljaBJYibHRg=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -456,7 +456,31 @@
           "hash": "2ma+2ViHqi5ooWeVK35FBQ=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SadRogue.Primitives.PointHashers.KnownSizeHasher.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SadRogue.Primitives.PointHashers.KnownSizeHasher.html",
+          "hash": "cJU5Xdtd+R5G/lR8TfNlkA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SadRogue.Primitives.PointHashers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SadRogue.Primitives.PointHashers.html",
+          "hash": "h9rFHw4IvmZmHBSUpo3Fwg=="
+        }
+      },
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -468,7 +492,7 @@
           "hash": "oSmziZ3231stOV93IGIHZQ=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -480,7 +504,7 @@
           "hash": "W9qudGPxDeOKuEhAWFcNsg=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -492,7 +516,7 @@
           "hash": "4a0/yLDDBDx4nEwEfoWZ9A=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -504,7 +528,7 @@
           "hash": "fdHZsp2zYNIA+HQ2EObJFg=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -516,7 +540,7 @@
           "hash": "NF6cB4PaA6K5pG/EhQAZvA=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -528,7 +552,7 @@
           "hash": "xSIXgHW5KIonyEd1jXHgog=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -537,10 +561,10 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.SerializedTypes.AreaSerialized.html",
-          "hash": "oQJwcK2PuHe0YtnJvL5oAg=="
+          "hash": "Xdeg+ElH18/knytEbIpplg=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -552,7 +576,7 @@
           "hash": "/YEBaDU24iSzgyZGmFHFfQ=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -564,7 +588,7 @@
           "hash": "cyjKkzUnqGI36X/Fii5L1A=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -576,7 +600,7 @@
           "hash": "t2pHrkY/hFMjV8bzSkL83g=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -588,7 +612,7 @@
           "hash": "OtwYTDfHgWLg2BTo/czzkQ=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -600,7 +624,7 @@
           "hash": "roOIxAnCVePbZqnovbltrQ=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -609,7 +633,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.SerializedTypes.GridViews.DiffAwareGridViewSerialized-1.html",
-          "hash": "QljOaP1ztgYYo6kR+wT83w=="
+          "hash": "tYRCCxqBTT0QLfU/oBTwlQ=="
         }
       },
       "is_incremental": false,
@@ -621,7 +645,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.SerializedTypes.GridViews.DiffSerialized-1.html",
-          "hash": "v86CXuk/5RR0kwALtqhX7A=="
+          "hash": "5BK3044CcwvO8jN2F6oqzA=="
         }
       },
       "is_incremental": false,
@@ -633,7 +657,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.SerializedTypes.GridViews.ValueChangeSerialized-1.html",
-          "hash": "xxVpic6UmI7ONlVHzkxvtA=="
+          "hash": "/1vEGAtH6K2XoPg8tZq34Q=="
         }
       },
       "is_incremental": false,
@@ -660,7 +684,31 @@
           "hash": "J4EITiu5wRj5wNn6dNiScQ=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SadRogue.Primitives.SerializedTypes.PointHashers.KnownSizeHasherSerialized.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SadRogue.Primitives.SerializedTypes.PointHashers.KnownSizeHasherSerialized.html",
+          "hash": "BcQFUdJFaGem3hV7dDPfRA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SadRogue.Primitives.SerializedTypes.PointHashers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SadRogue.Primitives.SerializedTypes.PointHashers.html",
+          "hash": "K04V+CeIbRqbRCQdw2OPWQ=="
+        }
+      },
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -672,7 +720,7 @@
           "hash": "e6MAzw56GUhC57krCUFhRw=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -684,7 +732,7 @@
           "hash": "R+nPBbyFIi5RqGRhLf4yPw=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -696,7 +744,7 @@
           "hash": "7KReXoaMSNle8mGoLqfXoQ=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -708,7 +756,7 @@
           "hash": "wPN3Q0kRZqtBaz7lyLepDg=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -720,7 +768,7 @@
           "hash": "JVrP4Kr/ITfFCHD1n16Aqg=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -741,7 +789,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "4EP8tPcW2mZI2ax2A7hI2A=="
+          "hash": "+qzUV+7SJzEtDoKAwfnLcw=="
         }
       },
       "is_incremental": false,
@@ -814,8 +862,8 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": true,
           "incrementalPhase": "build",
-          "total_file_count": 60,
-          "skipped_file_count": 57
+          "total_file_count": 64,
+          "skipped_file_count": 29
         },
         "TocDocumentProcessor": {
           "can_incremental": false,

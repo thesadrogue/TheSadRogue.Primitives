@@ -275,30 +275,33 @@ references:
   commentId: T:SadRogue.Primitives.Area
   fullName: SadRogue.Primitives.Area
   nameWithType: Area
-- uid: SadRogue.Primitives.Area.#ctor
-  name: Area()
-  href: api/SadRogue.Primitives.Area.html#SadRogue_Primitives_Area__ctor
-  commentId: M:SadRogue.Primitives.Area.#ctor
-  fullName: SadRogue.Primitives.Area.Area()
-  nameWithType: Area.Area()
-- uid: SadRogue.Primitives.Area.#ctor(SadRogue.Primitives.Point[])
-  name: Area(Point[])
-  href: api/SadRogue.Primitives.Area.html#SadRogue_Primitives_Area__ctor_SadRogue_Primitives_Point___
-  commentId: M:SadRogue.Primitives.Area.#ctor(SadRogue.Primitives.Point[])
-  name.vb: Area(Point())
-  fullName: SadRogue.Primitives.Area.Area(SadRogue.Primitives.Point[])
-  fullName.vb: SadRogue.Primitives.Area.Area(SadRogue.Primitives.Point())
-  nameWithType: Area.Area(Point[])
-  nameWithType.vb: Area.Area(Point())
-- uid: SadRogue.Primitives.Area.#ctor(System.Collections.Generic.IEnumerable{SadRogue.Primitives.Point})
-  name: Area(IEnumerable<Point>)
-  href: api/SadRogue.Primitives.Area.html#SadRogue_Primitives_Area__ctor_System_Collections_Generic_IEnumerable_SadRogue_Primitives_Point__
-  commentId: M:SadRogue.Primitives.Area.#ctor(System.Collections.Generic.IEnumerable{SadRogue.Primitives.Point})
-  name.vb: Area(IEnumerable(Of Point))
-  fullName: SadRogue.Primitives.Area.Area(System.Collections.Generic.IEnumerable<SadRogue.Primitives.Point>)
-  fullName.vb: SadRogue.Primitives.Area.Area(System.Collections.Generic.IEnumerable(Of SadRogue.Primitives.Point))
-  nameWithType: Area.Area(IEnumerable<Point>)
-  nameWithType.vb: Area.Area(IEnumerable(Of Point))
+- uid: SadRogue.Primitives.Area.#ctor(System.Collections.Generic.IEnumerable{SadRogue.Primitives.Point},System.Collections.Generic.IEqualityComparer{SadRogue.Primitives.Point})
+  name: Area(IEnumerable<Point>, IEqualityComparer<Point>)
+  href: api/SadRogue.Primitives.Area.html#SadRogue_Primitives_Area__ctor_System_Collections_Generic_IEnumerable_SadRogue_Primitives_Point__System_Collections_Generic_IEqualityComparer_SadRogue_Primitives_Point__
+  commentId: M:SadRogue.Primitives.Area.#ctor(System.Collections.Generic.IEnumerable{SadRogue.Primitives.Point},System.Collections.Generic.IEqualityComparer{SadRogue.Primitives.Point})
+  name.vb: Area(IEnumerable(Of Point), IEqualityComparer(Of Point))
+  fullName: SadRogue.Primitives.Area.Area(System.Collections.Generic.IEnumerable<SadRogue.Primitives.Point>, System.Collections.Generic.IEqualityComparer<SadRogue.Primitives.Point>)
+  fullName.vb: SadRogue.Primitives.Area.Area(System.Collections.Generic.IEnumerable(Of SadRogue.Primitives.Point), System.Collections.Generic.IEqualityComparer(Of SadRogue.Primitives.Point))
+  nameWithType: Area.Area(IEnumerable<Point>, IEqualityComparer<Point>)
+  nameWithType.vb: Area.Area(IEnumerable(Of Point), IEqualityComparer(Of Point))
+- uid: SadRogue.Primitives.Area.#ctor(System.Collections.Generic.IEqualityComparer{SadRogue.Primitives.Point})
+  name: Area(IEqualityComparer<Point>)
+  href: api/SadRogue.Primitives.Area.html#SadRogue_Primitives_Area__ctor_System_Collections_Generic_IEqualityComparer_SadRogue_Primitives_Point__
+  commentId: M:SadRogue.Primitives.Area.#ctor(System.Collections.Generic.IEqualityComparer{SadRogue.Primitives.Point})
+  name.vb: Area(IEqualityComparer(Of Point))
+  fullName: SadRogue.Primitives.Area.Area(System.Collections.Generic.IEqualityComparer<SadRogue.Primitives.Point>)
+  fullName.vb: SadRogue.Primitives.Area.Area(System.Collections.Generic.IEqualityComparer(Of SadRogue.Primitives.Point))
+  nameWithType: Area.Area(IEqualityComparer<Point>)
+  nameWithType.vb: Area.Area(IEqualityComparer(Of Point))
+- uid: SadRogue.Primitives.Area.#ctor(System.Collections.Generic.IEqualityComparer{SadRogue.Primitives.Point},SadRogue.Primitives.Point[])
+  name: Area(IEqualityComparer<Point>, Point[])
+  href: api/SadRogue.Primitives.Area.html#SadRogue_Primitives_Area__ctor_System_Collections_Generic_IEqualityComparer_SadRogue_Primitives_Point__SadRogue_Primitives_Point___
+  commentId: M:SadRogue.Primitives.Area.#ctor(System.Collections.Generic.IEqualityComparer{SadRogue.Primitives.Point},SadRogue.Primitives.Point[])
+  name.vb: Area(IEqualityComparer(Of Point), Point())
+  fullName: SadRogue.Primitives.Area.Area(System.Collections.Generic.IEqualityComparer<SadRogue.Primitives.Point>, SadRogue.Primitives.Point[])
+  fullName.vb: SadRogue.Primitives.Area.Area(System.Collections.Generic.IEqualityComparer(Of SadRogue.Primitives.Point), SadRogue.Primitives.Point())
+  nameWithType: Area.Area(IEqualityComparer<Point>, Point[])
+  nameWithType.vb: Area.Area(IEqualityComparer(Of Point), Point())
 - uid: SadRogue.Primitives.Area.#ctor*
   name: Area
   href: api/SadRogue.Primitives.Area.html#SadRogue_Primitives_Area__ctor_
@@ -504,6 +507,12 @@ references:
   isSpec: "True"
   fullName: SadRogue.Primitives.Area.Addition
   nameWithType: Area.Addition
+- uid: SadRogue.Primitives.Area.PointHasher
+  name: PointHasher
+  href: api/SadRogue.Primitives.Area.html#SadRogue_Primitives_Area_PointHasher
+  commentId: F:SadRogue.Primitives.Area.PointHasher
+  fullName: SadRogue.Primitives.Area.PointHasher
+  nameWithType: Area.PointHasher
 - uid: SadRogue.Primitives.Area.Remove(SadRogue.Primitives.IReadOnlyArea)
   name: Remove(IReadOnlyArea)
   href: api/SadRogue.Primitives.Area.html#SadRogue_Primitives_Area_Remove_SadRogue_Primitives_IReadOnlyArea_
@@ -6723,6 +6732,63 @@ references:
   isSpec: "True"
   fullName: SadRogue.Primitives.PointExtensions.Subtract
   nameWithType: PointExtensions.Subtract
+- uid: SadRogue.Primitives.PointHashers
+  name: SadRogue.Primitives.PointHashers
+  href: api/SadRogue.Primitives.PointHashers.html
+  commentId: N:SadRogue.Primitives.PointHashers
+  fullName: SadRogue.Primitives.PointHashers
+  nameWithType: SadRogue.Primitives.PointHashers
+- uid: SadRogue.Primitives.PointHashers.KnownSizeHasher
+  name: KnownSizeHasher
+  href: api/SadRogue.Primitives.PointHashers.KnownSizeHasher.html
+  commentId: T:SadRogue.Primitives.PointHashers.KnownSizeHasher
+  fullName: SadRogue.Primitives.PointHashers.KnownSizeHasher
+  nameWithType: KnownSizeHasher
+- uid: SadRogue.Primitives.PointHashers.KnownSizeHasher.#ctor(System.Int32)
+  name: KnownSizeHasher(Int32)
+  href: api/SadRogue.Primitives.PointHashers.KnownSizeHasher.html#SadRogue_Primitives_PointHashers_KnownSizeHasher__ctor_System_Int32_
+  commentId: M:SadRogue.Primitives.PointHashers.KnownSizeHasher.#ctor(System.Int32)
+  fullName: SadRogue.Primitives.PointHashers.KnownSizeHasher.KnownSizeHasher(System.Int32)
+  nameWithType: KnownSizeHasher.KnownSizeHasher(Int32)
+- uid: SadRogue.Primitives.PointHashers.KnownSizeHasher.#ctor*
+  name: KnownSizeHasher
+  href: api/SadRogue.Primitives.PointHashers.KnownSizeHasher.html#SadRogue_Primitives_PointHashers_KnownSizeHasher__ctor_
+  commentId: Overload:SadRogue.Primitives.PointHashers.KnownSizeHasher.#ctor
+  isSpec: "True"
+  fullName: SadRogue.Primitives.PointHashers.KnownSizeHasher.KnownSizeHasher
+  nameWithType: KnownSizeHasher.KnownSizeHasher
+- uid: SadRogue.Primitives.PointHashers.KnownSizeHasher.Equals(SadRogue.Primitives.Point,SadRogue.Primitives.Point)
+  name: Equals(Point, Point)
+  href: api/SadRogue.Primitives.PointHashers.KnownSizeHasher.html#SadRogue_Primitives_PointHashers_KnownSizeHasher_Equals_SadRogue_Primitives_Point_SadRogue_Primitives_Point_
+  commentId: M:SadRogue.Primitives.PointHashers.KnownSizeHasher.Equals(SadRogue.Primitives.Point,SadRogue.Primitives.Point)
+  fullName: SadRogue.Primitives.PointHashers.KnownSizeHasher.Equals(SadRogue.Primitives.Point, SadRogue.Primitives.Point)
+  nameWithType: KnownSizeHasher.Equals(Point, Point)
+- uid: SadRogue.Primitives.PointHashers.KnownSizeHasher.Equals*
+  name: Equals
+  href: api/SadRogue.Primitives.PointHashers.KnownSizeHasher.html#SadRogue_Primitives_PointHashers_KnownSizeHasher_Equals_
+  commentId: Overload:SadRogue.Primitives.PointHashers.KnownSizeHasher.Equals
+  isSpec: "True"
+  fullName: SadRogue.Primitives.PointHashers.KnownSizeHasher.Equals
+  nameWithType: KnownSizeHasher.Equals
+- uid: SadRogue.Primitives.PointHashers.KnownSizeHasher.GetHashCode(SadRogue.Primitives.Point)
+  name: GetHashCode(Point)
+  href: api/SadRogue.Primitives.PointHashers.KnownSizeHasher.html#SadRogue_Primitives_PointHashers_KnownSizeHasher_GetHashCode_SadRogue_Primitives_Point_
+  commentId: M:SadRogue.Primitives.PointHashers.KnownSizeHasher.GetHashCode(SadRogue.Primitives.Point)
+  fullName: SadRogue.Primitives.PointHashers.KnownSizeHasher.GetHashCode(SadRogue.Primitives.Point)
+  nameWithType: KnownSizeHasher.GetHashCode(Point)
+- uid: SadRogue.Primitives.PointHashers.KnownSizeHasher.GetHashCode*
+  name: GetHashCode
+  href: api/SadRogue.Primitives.PointHashers.KnownSizeHasher.html#SadRogue_Primitives_PointHashers_KnownSizeHasher_GetHashCode_
+  commentId: Overload:SadRogue.Primitives.PointHashers.KnownSizeHasher.GetHashCode
+  isSpec: "True"
+  fullName: SadRogue.Primitives.PointHashers.KnownSizeHasher.GetHashCode
+  nameWithType: KnownSizeHasher.GetHashCode
+- uid: SadRogue.Primitives.PointHashers.KnownSizeHasher.MaxXValue
+  name: MaxXValue
+  href: api/SadRogue.Primitives.PointHashers.KnownSizeHasher.html#SadRogue_Primitives_PointHashers_KnownSizeHasher_MaxXValue
+  commentId: F:SadRogue.Primitives.PointHashers.KnownSizeHasher.MaxXValue
+  fullName: SadRogue.Primitives.PointHashers.KnownSizeHasher.MaxXValue
+  nameWithType: KnownSizeHasher.MaxXValue
 - uid: SadRogue.Primitives.PolarCoordinate
   name: PolarCoordinate
   href: api/SadRogue.Primitives.PolarCoordinate.html
@@ -8421,6 +8487,12 @@ references:
   fullName.vb: SadRogue.Primitives.SerializedTypes.AreaSerialized.Widening
   nameWithType: AreaSerialized.Implicit
   nameWithType.vb: AreaSerialized.Widening
+- uid: SadRogue.Primitives.SerializedTypes.AreaSerialized.PointHasher
+  name: PointHasher
+  href: api/SadRogue.Primitives.SerializedTypes.AreaSerialized.html#SadRogue_Primitives_SerializedTypes_AreaSerialized_PointHasher
+  commentId: F:SadRogue.Primitives.SerializedTypes.AreaSerialized.PointHasher
+  fullName: SadRogue.Primitives.SerializedTypes.AreaSerialized.PointHasher
+  nameWithType: AreaSerialized.PointHasher
 - uid: SadRogue.Primitives.SerializedTypes.AreaSerialized.Positions
   name: Positions
   href: api/SadRogue.Primitives.SerializedTypes.AreaSerialized.html#SadRogue_Primitives_SerializedTypes_AreaSerialized_Positions
@@ -8891,6 +8963,52 @@ references:
   fullName.vb: SadRogue.Primitives.SerializedTypes.PaletteSerialized.Widening
   nameWithType: PaletteSerialized.Implicit
   nameWithType.vb: PaletteSerialized.Widening
+- uid: SadRogue.Primitives.SerializedTypes.PointHashers
+  name: SadRogue.Primitives.SerializedTypes.PointHashers
+  href: api/SadRogue.Primitives.SerializedTypes.PointHashers.html
+  commentId: N:SadRogue.Primitives.SerializedTypes.PointHashers
+  fullName: SadRogue.Primitives.SerializedTypes.PointHashers
+  nameWithType: SadRogue.Primitives.SerializedTypes.PointHashers
+- uid: SadRogue.Primitives.SerializedTypes.PointHashers.KnownSizeHasherSerialized
+  name: KnownSizeHasherSerialized
+  href: api/SadRogue.Primitives.SerializedTypes.PointHashers.KnownSizeHasherSerialized.html
+  commentId: T:SadRogue.Primitives.SerializedTypes.PointHashers.KnownSizeHasherSerialized
+  fullName: SadRogue.Primitives.SerializedTypes.PointHashers.KnownSizeHasherSerialized
+  nameWithType: KnownSizeHasherSerialized
+- uid: SadRogue.Primitives.SerializedTypes.PointHashers.KnownSizeHasherSerialized.MaxXValue
+  name: MaxXValue
+  href: api/SadRogue.Primitives.SerializedTypes.PointHashers.KnownSizeHasherSerialized.html#SadRogue_Primitives_SerializedTypes_PointHashers_KnownSizeHasherSerialized_MaxXValue
+  commentId: F:SadRogue.Primitives.SerializedTypes.PointHashers.KnownSizeHasherSerialized.MaxXValue
+  fullName: SadRogue.Primitives.SerializedTypes.PointHashers.KnownSizeHasherSerialized.MaxXValue
+  nameWithType: KnownSizeHasherSerialized.MaxXValue
+- uid: SadRogue.Primitives.SerializedTypes.PointHashers.KnownSizeHasherSerialized.op_Implicit(SadRogue.Primitives.PointHashers.KnownSizeHasher)~SadRogue.Primitives.SerializedTypes.PointHashers.KnownSizeHasherSerialized
+  name: Implicit(KnownSizeHasher to KnownSizeHasherSerialized)
+  href: api/SadRogue.Primitives.SerializedTypes.PointHashers.KnownSizeHasherSerialized.html#SadRogue_Primitives_SerializedTypes_PointHashers_KnownSizeHasherSerialized_op_Implicit_SadRogue_Primitives_PointHashers_KnownSizeHasher__SadRogue_Primitives_SerializedTypes_PointHashers_KnownSizeHasherSerialized
+  commentId: M:SadRogue.Primitives.SerializedTypes.PointHashers.KnownSizeHasherSerialized.op_Implicit(SadRogue.Primitives.PointHashers.KnownSizeHasher)~SadRogue.Primitives.SerializedTypes.PointHashers.KnownSizeHasherSerialized
+  name.vb: Widening(KnownSizeHasher to KnownSizeHasherSerialized)
+  fullName: SadRogue.Primitives.SerializedTypes.PointHashers.KnownSizeHasherSerialized.Implicit(SadRogue.Primitives.PointHashers.KnownSizeHasher to SadRogue.Primitives.SerializedTypes.PointHashers.KnownSizeHasherSerialized)
+  fullName.vb: SadRogue.Primitives.SerializedTypes.PointHashers.KnownSizeHasherSerialized.Widening(SadRogue.Primitives.PointHashers.KnownSizeHasher to SadRogue.Primitives.SerializedTypes.PointHashers.KnownSizeHasherSerialized)
+  nameWithType: KnownSizeHasherSerialized.Implicit(KnownSizeHasher to KnownSizeHasherSerialized)
+  nameWithType.vb: KnownSizeHasherSerialized.Widening(KnownSizeHasher to KnownSizeHasherSerialized)
+- uid: SadRogue.Primitives.SerializedTypes.PointHashers.KnownSizeHasherSerialized.op_Implicit(SadRogue.Primitives.SerializedTypes.PointHashers.KnownSizeHasherSerialized)~SadRogue.Primitives.PointHashers.KnownSizeHasher
+  name: Implicit(KnownSizeHasherSerialized to KnownSizeHasher)
+  href: api/SadRogue.Primitives.SerializedTypes.PointHashers.KnownSizeHasherSerialized.html#SadRogue_Primitives_SerializedTypes_PointHashers_KnownSizeHasherSerialized_op_Implicit_SadRogue_Primitives_SerializedTypes_PointHashers_KnownSizeHasherSerialized__SadRogue_Primitives_PointHashers_KnownSizeHasher
+  commentId: M:SadRogue.Primitives.SerializedTypes.PointHashers.KnownSizeHasherSerialized.op_Implicit(SadRogue.Primitives.SerializedTypes.PointHashers.KnownSizeHasherSerialized)~SadRogue.Primitives.PointHashers.KnownSizeHasher
+  name.vb: Widening(KnownSizeHasherSerialized to KnownSizeHasher)
+  fullName: SadRogue.Primitives.SerializedTypes.PointHashers.KnownSizeHasherSerialized.Implicit(SadRogue.Primitives.SerializedTypes.PointHashers.KnownSizeHasherSerialized to SadRogue.Primitives.PointHashers.KnownSizeHasher)
+  fullName.vb: SadRogue.Primitives.SerializedTypes.PointHashers.KnownSizeHasherSerialized.Widening(SadRogue.Primitives.SerializedTypes.PointHashers.KnownSizeHasherSerialized to SadRogue.Primitives.PointHashers.KnownSizeHasher)
+  nameWithType: KnownSizeHasherSerialized.Implicit(KnownSizeHasherSerialized to KnownSizeHasher)
+  nameWithType.vb: KnownSizeHasherSerialized.Widening(KnownSizeHasherSerialized to KnownSizeHasher)
+- uid: SadRogue.Primitives.SerializedTypes.PointHashers.KnownSizeHasherSerialized.op_Implicit*
+  name: Implicit
+  href: api/SadRogue.Primitives.SerializedTypes.PointHashers.KnownSizeHasherSerialized.html#SadRogue_Primitives_SerializedTypes_PointHashers_KnownSizeHasherSerialized_op_Implicit_
+  commentId: Overload:SadRogue.Primitives.SerializedTypes.PointHashers.KnownSizeHasherSerialized.op_Implicit
+  isSpec: "True"
+  name.vb: Widening
+  fullName: SadRogue.Primitives.SerializedTypes.PointHashers.KnownSizeHasherSerialized.Implicit
+  fullName.vb: SadRogue.Primitives.SerializedTypes.PointHashers.KnownSizeHasherSerialized.Widening
+  nameWithType: KnownSizeHasherSerialized.Implicit
+  nameWithType.vb: KnownSizeHasherSerialized.Widening
 - uid: SadRogue.Primitives.SerializedTypes.PointSerialized
   name: PointSerialized
   href: api/SadRogue.Primitives.SerializedTypes.PointSerialized.html

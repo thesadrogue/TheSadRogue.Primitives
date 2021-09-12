@@ -114,76 +114,25 @@ unique position in the area.</p>
   <h6><strong>Assembly</strong>: TheSadRogue.Primitives.dll</h6>
   <h5 id="SadRogue_Primitives_Area_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[DataContract]
-public class Area : IReadOnlyArea, IMatchable&lt;IReadOnlyArea&gt;, IEnumerable&lt;Point&gt;, IEnumerable</code></pre>
+    <pre><code class="lang-csharp hljs">public class Area : IReadOnlyArea, IMatchable&lt;IReadOnlyArea&gt;, IEnumerable&lt;Point&gt;, IEnumerable</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Area__ctor.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Area.%23ctor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Area__ctor_System_Collections_Generic_IEnumerable_SadRogue_Primitives_Point__System_Collections_Generic_IEqualityComparer_SadRogue_Primitives_Point__.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Area.%23ctor(System.Collections.Generic.IEnumerable%7BSadRogue.Primitives.Point%7D%2CSystem.Collections.Generic.IEqualityComparer%7BSadRogue.Primitives.Point%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L27">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L55">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Area__ctor_" data-uid="SadRogue.Primitives.Area.#ctor*"></a>
-  <h4 id="SadRogue_Primitives_Area__ctor" data-uid="SadRogue.Primitives.Area.#ctor">Area()</h4>
-  <div class="markdown level1 summary"><p>Constructor.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Area()</code></pre>
-  </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Area__ctor_SadRogue_Primitives_Point___.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Area.%23ctor(SadRogue.Primitives.Point%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L51">View Source</a>
-  </span>
-  <a id="SadRogue_Primitives_Area__ctor_" data-uid="SadRogue.Primitives.Area.#ctor*"></a>
-  <h4 id="SadRogue_Primitives_Area__ctor_SadRogue_Primitives_Point___" data-uid="SadRogue.Primitives.Area.#ctor(SadRogue.Primitives.Point[])">Area(Point[])</h4>
+  <h4 id="SadRogue_Primitives_Area__ctor_System_Collections_Generic_IEnumerable_SadRogue_Primitives_Point__System_Collections_Generic_IEqualityComparer_SadRogue_Primitives_Point__" data-uid="SadRogue.Primitives.Area.#ctor(System.Collections.Generic.IEnumerable{SadRogue.Primitives.Point},System.Collections.Generic.IEqualityComparer{SadRogue.Primitives.Point})">Area(IEnumerable&lt;Point&gt;, IEqualityComparer&lt;Point&gt;)</h4>
   <div class="markdown level1 summary"><p>Constructor that takes initial points to add to the area.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Area(params Point[] initialPoints)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a>[]</td>
-        <td><span class="parametername">initialPoints</span></td>
-        <td><p>Initial points to add to the area.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Area__ctor_System_Collections_Generic_IEnumerable_SadRogue_Primitives_Point__.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Area.%23ctor(System.Collections.Generic.IEnumerable%7BSadRogue.Primitives.Point%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L43">View Source</a>
-  </span>
-  <a id="SadRogue_Primitives_Area__ctor_" data-uid="SadRogue.Primitives.Area.#ctor*"></a>
-  <h4 id="SadRogue_Primitives_Area__ctor_System_Collections_Generic_IEnumerable_SadRogue_Primitives_Point__" data-uid="SadRogue.Primitives.Area.#ctor(System.Collections.Generic.IEnumerable{SadRogue.Primitives.Point})">Area(IEnumerable&lt;Point&gt;)</h4>
-  <div class="markdown level1 summary"><p>Constructor that takes initial points to add to the area.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Area(IEnumerable&lt;Point&gt; initialPoints)</code></pre>
+    <pre><code class="lang-csharp hljs">public Area(IEnumerable&lt;Point&gt; initialPoints, IEqualityComparer&lt;Point&gt; pointHasher = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -201,6 +150,121 @@ public class Area : IReadOnlyArea, IMatchable&lt;IReadOnlyArea&gt;, IEnumerable&
         <td><p>Initial points to add to the area.</p>
 </td>
       </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.iequalitycomparer-1">IEqualityComparer</a>&lt;<a class="xref" href="SadRogue.Primitives.Point.html">Point</a>&gt;</td>
+        <td><span class="parametername">pointHasher</span></td>
+        <td><p>A custom equality comparer/hashing algorithm to use when storing points.  If not specified, it defaults
+to using the Equals and GetHashCode functions of the Point struct.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Area__ctor_System_Collections_Generic_IEqualityComparer_SadRogue_Primitives_Point__.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Area.%23ctor(System.Collections.Generic.IEqualityComparer%7BSadRogue.Primitives.Point%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L34">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Area__ctor_" data-uid="SadRogue.Primitives.Area.#ctor*"></a>
+  <h4 id="SadRogue_Primitives_Area__ctor_System_Collections_Generic_IEqualityComparer_SadRogue_Primitives_Point__" data-uid="SadRogue.Primitives.Area.#ctor(System.Collections.Generic.IEqualityComparer{SadRogue.Primitives.Point})">Area(IEqualityComparer&lt;Point&gt;)</h4>
+  <div class="markdown level1 summary"><p>Constructor.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Area(IEqualityComparer&lt;Point&gt; pointHasher = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.iequalitycomparer-1">IEqualityComparer</a>&lt;<a class="xref" href="SadRogue.Primitives.Point.html">Point</a>&gt;</td>
+        <td><span class="parametername">pointHasher</span></td>
+        <td><p>A custom equality comparer/hashing algorithm to use when storing points.  If not specified, it defaults
+to using the Equals and GetHashCode functions of the Point struct.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Area__ctor_System_Collections_Generic_IEqualityComparer_SadRogue_Primitives_Point__SadRogue_Primitives_Point___.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Area.%23ctor(System.Collections.Generic.IEqualityComparer%7BSadRogue.Primitives.Point%7D%2CSadRogue.Primitives.Point%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L67">View Source</a>
+  </span>
+  <a id="SadRogue_Primitives_Area__ctor_" data-uid="SadRogue.Primitives.Area.#ctor*"></a>
+  <h4 id="SadRogue_Primitives_Area__ctor_System_Collections_Generic_IEqualityComparer_SadRogue_Primitives_Point__SadRogue_Primitives_Point___" data-uid="SadRogue.Primitives.Area.#ctor(System.Collections.Generic.IEqualityComparer{SadRogue.Primitives.Point},SadRogue.Primitives.Point[])">Area(IEqualityComparer&lt;Point&gt;, Point[])</h4>
+  <div class="markdown level1 summary"><p>Constructor that takes initial points to add to the area.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Area(IEqualityComparer&lt;Point&gt; pointHasher = null, params Point[] initialPoints)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.iequalitycomparer-1">IEqualityComparer</a>&lt;<a class="xref" href="SadRogue.Primitives.Point.html">Point</a>&gt;</td>
+        <td><span class="parametername">pointHasher</span></td>
+        <td><p>A custom equality comparer/hashing algorithm to use when storing points.  If not specified, it defaults
+to using the Equals and GetHashCode functions of the Point struct.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a>[]</td>
+        <td><span class="parametername">initialPoints</span></td>
+        <td><p>Initial points to add to the area.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="fields">Fields
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Area_PointHasher.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Area.PointHasher%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L25">View Source</a>
+  </span>
+  <h4 id="SadRogue_Primitives_Area_PointHasher" data-uid="SadRogue.Primitives.Area.PointHasher">PointHasher</h4>
+  <div class="markdown level1 summary"><p>Hashing algorithm being used to store points added to this area.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly IEqualityComparer&lt;Point&gt; PointHasher</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.iequalitycomparer-1">IEqualityComparer</a>&lt;<a class="xref" href="SadRogue.Primitives.Point.html">Point</a>&gt;</td>
+        <td></td>
+      </tr>
     </tbody>
   </table>
   <h3 id="properties">Properties
@@ -210,7 +274,7 @@ public class Area : IReadOnlyArea, IMatchable&lt;IReadOnlyArea&gt;, IEnumerable&
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Area_Bounds.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Area.Bounds%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L61">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L77">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Area_Bounds_" data-uid="SadRogue.Primitives.Area.Bounds*"></a>
   <h4 id="SadRogue_Primitives_Area_Bounds" data-uid="SadRogue.Primitives.Area.Bounds">Bounds</h4>
@@ -241,7 +305,7 @@ public class Area : IReadOnlyArea, IMatchable&lt;IReadOnlyArea&gt;, IEnumerable&
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Area_Count.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Area.Count%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L75">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L91">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Area_Count_" data-uid="SadRogue.Primitives.Area.Count*"></a>
   <h4 id="SadRogue_Primitives_Area_Count" data-uid="SadRogue.Primitives.Area.Count">Count</h4>
@@ -272,12 +336,11 @@ public class Area : IReadOnlyArea, IMatchable&lt;IReadOnlyArea&gt;, IEnumerable&
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Area_Item_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Area.Item(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L56">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L72">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Area_Item_" data-uid="SadRogue.Primitives.Area.Item*"></a>
   <h4 id="SadRogue_Primitives_Area_Item_System_Int32_" data-uid="SadRogue.Primitives.Area.Item(System.Int32)">Item[Int32]</h4>
-  <div class="markdown level1 summary"><p>Returns positions from the area in the same fashion you would via a list.</p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -296,8 +359,7 @@ public class Area : IReadOnlyArea, IMatchable&lt;IReadOnlyArea&gt;, IEnumerable&
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">index</span></td>
-        <td><p>Index of list to retrieve.</p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
@@ -323,7 +385,7 @@ public class Area : IReadOnlyArea, IMatchable&lt;IReadOnlyArea&gt;, IEnumerable&
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Area_Add_SadRogue_Primitives_IReadOnlyArea_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Area.Add(SadRogue.Primitives.IReadOnlyArea)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L252">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L268">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Area_Add_" data-uid="SadRogue.Primitives.Area.Add*"></a>
   <h4 id="SadRogue_Primitives_Area_Add_SadRogue_Primitives_IReadOnlyArea_" data-uid="SadRogue.Primitives.Area.Add(SadRogue.Primitives.IReadOnlyArea)">Add(IReadOnlyArea)</h4>
@@ -357,7 +419,7 @@ public class Area : IReadOnlyArea, IMatchable&lt;IReadOnlyArea&gt;, IEnumerable&
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Area_Add_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Area.Add(SadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L193">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L209">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Area_Add_" data-uid="SadRogue.Primitives.Area.Add*"></a>
   <h4 id="SadRogue_Primitives_Area_Add_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Area.Add(SadRogue.Primitives.Point)">Add(Point)</h4>
@@ -396,7 +458,7 @@ this is an average case O(1) operation.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Area_Add_SadRogue_Primitives_Rectangle_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Area.Add(SadRogue.Primitives.Rectangle)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L242">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L258">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Area_Add_" data-uid="SadRogue.Primitives.Area.Add*"></a>
   <h4 id="SadRogue_Primitives_Area_Add_SadRogue_Primitives_Rectangle_" data-uid="SadRogue.Primitives.Area.Add(SadRogue.Primitives.Rectangle)">Add(Rectangle)</h4>
@@ -430,7 +492,7 @@ this is an average case O(1) operation.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Area_Add_System_Collections_Generic_IEnumerable_SadRogue_Primitives_Point__.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Area.Add(System.Collections.Generic.IEnumerable%7BSadRogue.Primitives.Point%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L232">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L248">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Area_Add_" data-uid="SadRogue.Primitives.Area.Add*"></a>
   <h4 id="SadRogue_Primitives_Area_Add_System_Collections_Generic_IEnumerable_SadRogue_Primitives_Point__" data-uid="SadRogue.Primitives.Area.Add(System.Collections.Generic.IEnumerable{SadRogue.Primitives.Point})">Add(IEnumerable&lt;Point&gt;)</h4>
@@ -465,7 +527,7 @@ the list.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Area_Add_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Area.Add(System.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L224">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L240">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Area_Add_" data-uid="SadRogue.Primitives.Area.Add*"></a>
   <h4 id="SadRogue_Primitives_Area_Add_System_Int32_System_Int32_" data-uid="SadRogue.Primitives.Area.Add(System.Int32,System.Int32)">Add(Int32, Int32)</h4>
@@ -510,7 +572,7 @@ this is an average case O(1) operation.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Area_Contains_SadRogue_Primitives_IReadOnlyArea_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Area.Contains(SadRogue.Primitives.IReadOnlyArea)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L282">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L298">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Area_Contains_" data-uid="SadRogue.Primitives.Area.Contains*"></a>
   <h4 id="SadRogue_Primitives_Area_Contains_SadRogue_Primitives_IReadOnlyArea_" data-uid="SadRogue.Primitives.Area.Contains(SadRogue.Primitives.IReadOnlyArea)">Contains(IReadOnlyArea)</h4>
@@ -560,7 +622,7 @@ this is an average case O(1) operation.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Area_Contains_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Area.Contains(SadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L263">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L279">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Area_Contains_" data-uid="SadRogue.Primitives.Area.Contains*"></a>
   <h4 id="SadRogue_Primitives_Area_Contains_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Area.Contains(SadRogue.Primitives.Point)">Contains(Point)</h4>
@@ -610,7 +672,7 @@ this is an average case O(1) operation.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Area_Contains_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Area.Contains(System.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L272">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L288">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Area_Contains_" data-uid="SadRogue.Primitives.Area.Contains*"></a>
   <h4 id="SadRogue_Primitives_Area_Contains_System_Int32_System_Int32_" data-uid="SadRogue.Primitives.Area.Contains(System.Int32,System.Int32)">Contains(Int32, Int32)</h4>
@@ -666,7 +728,7 @@ this is an average case O(1) operation.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Area_GetDifference_SadRogue_Primitives_IReadOnlyArea_SadRogue_Primitives_IReadOnlyArea_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Area.GetDifference(SadRogue.Primitives.IReadOnlyArea%2CSadRogue.Primitives.IReadOnlyArea)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L85">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L101">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Area_GetDifference_" data-uid="SadRogue.Primitives.Area.GetDifference*"></a>
   <h4 id="SadRogue_Primitives_Area_GetDifference_SadRogue_Primitives_IReadOnlyArea_SadRogue_Primitives_IReadOnlyArea_" data-uid="SadRogue.Primitives.Area.GetDifference(SadRogue.Primitives.IReadOnlyArea,SadRogue.Primitives.IReadOnlyArea)">GetDifference(IReadOnlyArea, IReadOnlyArea)</h4>
@@ -722,7 +784,7 @@ this is an average case O(1) operation.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Area_GetEnumerator.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Area.GetEnumerator%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L435">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L451">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Area_GetEnumerator_" data-uid="SadRogue.Primitives.Area.GetEnumerator*"></a>
   <h4 id="SadRogue_Primitives_Area_GetEnumerator" data-uid="SadRogue.Primitives.Area.GetEnumerator">GetEnumerator()</h4>
@@ -754,7 +816,7 @@ this is an average case O(1) operation.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Area_GetIntersection_SadRogue_Primitives_IReadOnlyArea_SadRogue_Primitives_IReadOnlyArea_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Area.GetIntersection(SadRogue.Primitives.IReadOnlyArea%2CSadRogue.Primitives.IReadOnlyArea)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L106">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L122">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Area_GetIntersection_" data-uid="SadRogue.Primitives.Area.GetIntersection*"></a>
   <h4 id="SadRogue_Primitives_Area_GetIntersection_SadRogue_Primitives_IReadOnlyArea_SadRogue_Primitives_IReadOnlyArea_" data-uid="SadRogue.Primitives.Area.GetIntersection(SadRogue.Primitives.IReadOnlyArea,SadRogue.Primitives.IReadOnlyArea)">GetIntersection(IReadOnlyArea, IReadOnlyArea)</h4>
@@ -808,7 +870,7 @@ this is an average case O(1) operation.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Area_GetUnion_SadRogue_Primitives_IReadOnlyArea_SadRogue_Primitives_IReadOnlyArea_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Area.GetUnion(SadRogue.Primitives.IReadOnlyArea%2CSadRogue.Primitives.IReadOnlyArea)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L129">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L145">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Area_GetUnion_" data-uid="SadRogue.Primitives.Area.GetUnion*"></a>
   <h4 id="SadRogue_Primitives_Area_GetUnion_SadRogue_Primitives_IReadOnlyArea_SadRogue_Primitives_IReadOnlyArea_" data-uid="SadRogue.Primitives.Area.GetUnion(SadRogue.Primitives.IReadOnlyArea,SadRogue.Primitives.IReadOnlyArea)">GetUnion(IReadOnlyArea, IReadOnlyArea)</h4>
@@ -862,7 +924,7 @@ this is an average case O(1) operation.</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Area_Intersects_SadRogue_Primitives_IReadOnlyArea_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Area.Intersects(SadRogue.Primitives.IReadOnlyArea)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L302">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L318">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Area_Intersects_" data-uid="SadRogue.Primitives.Area.Intersects*"></a>
   <h4 id="SadRogue_Primitives_Area_Intersects_SadRogue_Primitives_IReadOnlyArea_" data-uid="SadRogue.Primitives.Area.Intersects(SadRogue.Primitives.IReadOnlyArea)">Intersects(IReadOnlyArea)</h4>
@@ -915,7 +977,7 @@ check the number of positions in the result (0 if no intersection).</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Area_Matches_SadRogue_Primitives_IReadOnlyArea_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Area.Matches(SadRogue.Primitives.IReadOnlyArea)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L162">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L178">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Area_Matches_" data-uid="SadRogue.Primitives.Area.Matches*"></a>
   <h4 id="SadRogue_Primitives_Area_Matches_SadRogue_Primitives_IReadOnlyArea_" data-uid="SadRogue.Primitives.Area.Matches(SadRogue.Primitives.IReadOnlyArea)">Matches(IReadOnlyArea)</h4>
@@ -964,7 +1026,7 @@ check the number of positions in the result (0 if no intersection).</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Area_Remove_SadRogue_Primitives_IReadOnlyArea_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Area.Remove(SadRogue.Primitives.IReadOnlyArea)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L397">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L413">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Area_Remove_" data-uid="SadRogue.Primitives.Area.Remove*"></a>
   <h4 id="SadRogue_Primitives_Area_Remove_SadRogue_Primitives_IReadOnlyArea_" data-uid="SadRogue.Primitives.Area.Remove(SadRogue.Primitives.IReadOnlyArea)">Remove(IReadOnlyArea)</h4>
@@ -998,7 +1060,7 @@ check the number of positions in the result (0 if no intersection).</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Area_Remove_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Area.Remove(SadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L329">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L345">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Area_Remove_" data-uid="SadRogue.Primitives.Area.Remove*"></a>
   <h4 id="SadRogue_Primitives_Area_Remove_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Area.Remove(SadRogue.Primitives.Point)">Remove(Point)</h4>
@@ -1034,7 +1096,7 @@ remove operations, it would be best to group them into 1 using <a class="xref" h
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Area_Remove_SadRogue_Primitives_Rectangle_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Area.Remove(SadRogue.Primitives.Rectangle)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L404">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L420">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Area_Remove_" data-uid="SadRogue.Primitives.Area.Remove*"></a>
   <h4 id="SadRogue_Primitives_Area_Remove_SadRogue_Primitives_Rectangle_" data-uid="SadRogue.Primitives.Area.Remove(SadRogue.Primitives.Rectangle)">Remove(Rectangle)</h4>
@@ -1068,7 +1130,7 @@ remove operations, it would be best to group them into 1 using <a class="xref" h
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Area_Remove_System_Collections_Generic_HashSet_SadRogue_Primitives_Point__.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Area.Remove(System.Collections.Generic.HashSet%7BSadRogue.Primitives.Point%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L366">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L382">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Area_Remove_" data-uid="SadRogue.Primitives.Area.Remove*"></a>
   <h4 id="SadRogue_Primitives_Area_Remove_System_Collections_Generic_HashSet_SadRogue_Primitives_Point__" data-uid="SadRogue.Primitives.Area.Remove(System.Collections.Generic.HashSet{SadRogue.Primitives.Point})">Remove(HashSet&lt;Point&gt;)</h4>
@@ -1102,7 +1164,7 @@ remove operations, it would be best to group them into 1 using <a class="xref" h
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Area_Remove_System_Collections_Generic_IEnumerable_SadRogue_Primitives_Point__.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Area.Remove(System.Collections.Generic.IEnumerable%7BSadRogue.Primitives.Point%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L384">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L400">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Area_Remove_" data-uid="SadRogue.Primitives.Area.Remove*"></a>
   <h4 id="SadRogue_Primitives_Area_Remove_System_Collections_Generic_IEnumerable_SadRogue_Primitives_Point__" data-uid="SadRogue.Primitives.Area.Remove(System.Collections.Generic.IEnumerable{SadRogue.Primitives.Point})">Remove(IEnumerable&lt;Point&gt;)</h4>
@@ -1136,7 +1198,7 @@ remove operations, it would be best to group them into 1 using <a class="xref" h
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Area_Remove_System_Func_SadRogue_Primitives_Point_System_Boolean__.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Area.Remove(System.Func%7BSadRogue.Primitives.Point%2CSystem.Boolean%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L346">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L362">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Area_Remove_" data-uid="SadRogue.Primitives.Area.Remove*"></a>
   <h4 id="SadRogue_Primitives_Area_Remove_System_Func_SadRogue_Primitives_Point_System_Boolean__" data-uid="SadRogue.Primitives.Area.Remove(System.Func{SadRogue.Primitives.Point,System.Boolean})">Remove(Func&lt;Point, Boolean&gt;)</h4>
@@ -1170,7 +1232,7 @@ remove operations, it would be best to group them into 1 using <a class="xref" h
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Area_Remove_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Area.Remove(System.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L339">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L355">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Area_Remove_" data-uid="SadRogue.Primitives.Area.Remove*"></a>
   <h4 id="SadRogue_Primitives_Area_Remove_System_Int32_System_Int32_" data-uid="SadRogue.Primitives.Area.Remove(System.Int32,System.Int32)">Remove(Int32, Int32)</h4>
@@ -1212,7 +1274,7 @@ remove operations, it would be best to group them into 1 using <a class="xref" h
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Area_ToString.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Area.ToString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L412">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L428">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Area_ToString_" data-uid="SadRogue.Primitives.Area.ToString*"></a>
   <h4 id="SadRogue_Primitives_Area_ToString" data-uid="SadRogue.Primitives.Area.ToString">ToString()</h4>
@@ -1249,7 +1311,7 @@ eg. [(1, 2), (3, 4), (5, 6)].</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Area_op_Addition_SadRogue_Primitives_Area_SadRogue_Primitives_Point_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Area.op_Addition(SadRogue.Primitives.Area%2CSadRogue.Primitives.Point)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L147">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L163">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Area_op_Addition_" data-uid="SadRogue.Primitives.Area.op_Addition*"></a>
   <h4 id="SadRogue_Primitives_Area_op_Addition_SadRogue_Primitives_Area_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.Area.op_Addition(SadRogue.Primitives.Area,SadRogue.Primitives.Point)">Addition(Area, Point)</h4>
@@ -1306,7 +1368,7 @@ eg. [(1, 2), (3, 4), (5, 6)].</p>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Area_System_Collections_IEnumerable_GetEnumerator.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Area.System%23Collections%23IEnumerable%23GetEnumerator%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L441">View Source</a>
+    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L457">View Source</a>
   </span>
   <a id="SadRogue_Primitives_Area_System_Collections_IEnumerable_GetEnumerator_" data-uid="SadRogue.Primitives.Area.System#Collections#IEnumerable#GetEnumerator*"></a>
   <h4 id="SadRogue_Primitives_Area_System_Collections_IEnumerable_GetEnumerator" data-uid="SadRogue.Primitives.Area.System#Collections#IEnumerable#GetEnumerator">IEnumerable.GetEnumerator()</h4>
@@ -1357,7 +1419,7 @@ eg. [(1, 2), (3, 4), (5, 6)].</p>
                     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_Area.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.Area%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L15" class="contribution-link">View Source</a>
+                    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/Area.cs/#L14" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

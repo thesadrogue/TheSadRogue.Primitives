@@ -148,7 +148,8 @@ the number of items you must implement by implementing indexers in terms of a si
   </span>
   <a id="SadRogue_Primitives_GridViews_SettableGridViewBase_1_Count_" data-uid="SadRogue.Primitives.GridViews.SettableGridViewBase`1.Count*"></a>
   <h4 id="SadRogue_Primitives_GridViews_SettableGridViewBase_1_Count" data-uid="SadRogue.Primitives.GridViews.SettableGridViewBase`1.Count">Count</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Number of tiles in the grid; equal to <a class="xref" href="SadRogue.Primitives.GridViews.IGridView-1.html#SadRogue_Primitives_GridViews_IGridView_1_Width">Width</a> * <a class="xref" href="SadRogue.Primitives.GridViews.IGridView-1.html#SadRogue_Primitives_GridViews_IGridView_1_Height">Height</a>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -178,7 +179,8 @@ the number of items you must implement by implementing indexers in terms of a si
   </span>
   <a id="SadRogue_Primitives_GridViews_SettableGridViewBase_1_Height_" data-uid="SadRogue.Primitives.GridViews.SettableGridViewBase`1.Height*"></a>
   <h4 id="SadRogue_Primitives_GridViews_SettableGridViewBase_1_Height" data-uid="SadRogue.Primitives.GridViews.SettableGridViewBase`1.Height">Height</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The height of the grid being represented.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -208,7 +210,10 @@ the number of items you must implement by implementing indexers in terms of a si
   </span>
   <a id="SadRogue_Primitives_GridViews_SettableGridViewBase_1_Item_" data-uid="SadRogue.Primitives.GridViews.SettableGridViewBase`1.Item*"></a>
   <h4 id="SadRogue_Primitives_GridViews_SettableGridViewBase_1_Item_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.GridViews.SettableGridViewBase`1.Item(SadRogue.Primitives.Point)">Item[Point]</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Interface designed to act as a standardized input/output format that defines minimal required data
+for algorithms that operate and make changes to a grid of some sort.  For a concrete implementation to subclass
+for custom implementations, see <a class="xref" href="SadRogue.Primitives.GridViews.SettableGridViewBase-1.html">SettableGridViewBase&lt;T&gt;</a>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -227,7 +232,8 @@ the number of items you must implement by implementing indexers in terms of a si
       <tr>
         <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
         <td><span class="parametername">pos</span></td>
-        <td></td>
+        <td><p>Location to get/set the value for.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -242,10 +248,19 @@ the number of items you must implement by implementing indexers in terms of a si
     <tbody>
       <tr>
         <td><span class="xref">T</span></td>
-        <td></td>
+        <td><p>The &quot;value&quot; associated with the provided location.</p>
+</td>
       </tr>
     </tbody>
   </table>
+  <h5 id="SadRogue_Primitives_GridViews_SettableGridViewBase_1_Item_SadRogue_Primitives_Point__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>See <a class="xref" href="SadRogue.Primitives.GridViews.IGridView-1.html">IGridView&lt;T&gt;</a>. This interface serves the same purpose, but for cases when it is also
+necessary for an algorithm to be able to change the value at each location.</p>
+<p>Like IGridView, a number of implementations of this interface to cover common needs are provided.  For example,
+<a class="xref" href="SadRogue.Primitives.GridViews.ArrayView-1.html">ArrayView&lt;T&gt;</a> defines the interface such that the data is retrieved from and set to an array, and
+<a class="xref" href="SadRogue.Primitives.GridViews.LambdaSettableGridView-1.html">LambdaSettableGridView&lt;T&gt;</a> defines the interface such that arbitrary callbacks are used to retrieve
+and set the data.</p>
+</div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_GridViews_SettableGridViewBase_1_Item_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.GridViews.SettableGridViewBase%601.Item(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
@@ -255,7 +270,10 @@ the number of items you must implement by implementing indexers in terms of a si
   </span>
   <a id="SadRogue_Primitives_GridViews_SettableGridViewBase_1_Item_" data-uid="SadRogue.Primitives.GridViews.SettableGridViewBase`1.Item*"></a>
   <h4 id="SadRogue_Primitives_GridViews_SettableGridViewBase_1_Item_System_Int32_" data-uid="SadRogue.Primitives.GridViews.SettableGridViewBase`1.Item(System.Int32)">Item[Int32]</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Interface designed to act as a standardized input/output format that defines minimal required data
+for algorithms that operate and make changes to a grid of some sort.  For a concrete implementation to subclass
+for custom implementations, see <a class="xref" href="SadRogue.Primitives.GridViews.SettableGridViewBase-1.html">SettableGridViewBase&lt;T&gt;</a>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -274,7 +292,8 @@ the number of items you must implement by implementing indexers in terms of a si
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">index1D</span></td>
-        <td></td>
+        <td><p>1D index of location to get/set the &quot;value&quot; for.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -289,10 +308,19 @@ the number of items you must implement by implementing indexers in terms of a si
     <tbody>
       <tr>
         <td><span class="xref">T</span></td>
-        <td></td>
+        <td><p>The &quot;value&quot; associated with the given location.</p>
+</td>
       </tr>
     </tbody>
   </table>
+  <h5 id="SadRogue_Primitives_GridViews_SettableGridViewBase_1_Item_System_Int32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>See <a class="xref" href="SadRogue.Primitives.GridViews.IGridView-1.html">IGridView&lt;T&gt;</a>. This interface serves the same purpose, but for cases when it is also
+necessary for an algorithm to be able to change the value at each location.</p>
+<p>Like IGridView, a number of implementations of this interface to cover common needs are provided.  For example,
+<a class="xref" href="SadRogue.Primitives.GridViews.ArrayView-1.html">ArrayView&lt;T&gt;</a> defines the interface such that the data is retrieved from and set to an array, and
+<a class="xref" href="SadRogue.Primitives.GridViews.LambdaSettableGridView-1.html">LambdaSettableGridView&lt;T&gt;</a> defines the interface such that arbitrary callbacks are used to retrieve
+and set the data.</p>
+</div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_GridViews_SettableGridViewBase_1_Item_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.GridViews.SettableGridViewBase%601.Item(System.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
@@ -302,7 +330,10 @@ the number of items you must implement by implementing indexers in terms of a si
   </span>
   <a id="SadRogue_Primitives_GridViews_SettableGridViewBase_1_Item_" data-uid="SadRogue.Primitives.GridViews.SettableGridViewBase`1.Item*"></a>
   <h4 id="SadRogue_Primitives_GridViews_SettableGridViewBase_1_Item_System_Int32_System_Int32_" data-uid="SadRogue.Primitives.GridViews.SettableGridViewBase`1.Item(System.Int32,System.Int32)">Item[Int32, Int32]</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Interface designed to act as a standardized input/output format that defines minimal required data
+for algorithms that operate and make changes to a grid of some sort.  For a concrete implementation to subclass
+for custom implementations, see <a class="xref" href="SadRogue.Primitives.GridViews.SettableGridViewBase-1.html">SettableGridViewBase&lt;T&gt;</a>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -321,12 +352,14 @@ the number of items you must implement by implementing indexers in terms of a si
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">x</span></td>
-        <td></td>
+        <td><p>X-value of location.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">y</span></td>
-        <td></td>
+        <td><p>Y-value of location.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -341,10 +374,19 @@ the number of items you must implement by implementing indexers in terms of a si
     <tbody>
       <tr>
         <td><span class="xref">T</span></td>
-        <td></td>
+        <td><p>The &quot;value&quot; associated with that location.</p>
+</td>
       </tr>
     </tbody>
   </table>
+  <h5 id="SadRogue_Primitives_GridViews_SettableGridViewBase_1_Item_System_Int32_System_Int32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>See <a class="xref" href="SadRogue.Primitives.GridViews.IGridView-1.html">IGridView&lt;T&gt;</a>. This interface serves the same purpose, but for cases when it is also
+necessary for an algorithm to be able to change the value at each location.</p>
+<p>Like IGridView, a number of implementations of this interface to cover common needs are provided.  For example,
+<a class="xref" href="SadRogue.Primitives.GridViews.ArrayView-1.html">ArrayView&lt;T&gt;</a> defines the interface such that the data is retrieved from and set to an array, and
+<a class="xref" href="SadRogue.Primitives.GridViews.LambdaSettableGridView-1.html">LambdaSettableGridView&lt;T&gt;</a> defines the interface such that arbitrary callbacks are used to retrieve
+and set the data.</p>
+</div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_GridViews_SettableGridViewBase_1_Width.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.GridViews.SettableGridViewBase%601.Width%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
@@ -354,7 +396,8 @@ the number of items you must implement by implementing indexers in terms of a si
   </span>
   <a id="SadRogue_Primitives_GridViews_SettableGridViewBase_1_Width_" data-uid="SadRogue.Primitives.GridViews.SettableGridViewBase`1.Width*"></a>
   <h4 id="SadRogue_Primitives_GridViews_SettableGridViewBase_1_Width" data-uid="SadRogue.Primitives.GridViews.SettableGridViewBase`1.Width">Width</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The width of the grid being represented.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">

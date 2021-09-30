@@ -8,7 +8,7 @@ namespace SadRogue.Primitives.PointHashers
     /// maximum x-value.
     /// </summary>
     /// <remarks>
-    /// This is NOT and efficient generalized hashing algorithm; it generates a hash code using the assumption
+    /// This is NOT an efficient generalized hashing algorithm; it generates a hash code using the assumption
     /// of a "maximum width" that can occur in any point given to it.  It simply uses the <see cref="Point.ToIndex(int)"/>
     /// function to generate a hash.  The algorithm WILL still function on points outside of the max x-value; however
     /// it will simply start to generate collisions.

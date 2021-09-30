@@ -6,7 +6,7 @@
     <RootNamespace>SadRogue.Primitives</RootNamespace>
     <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
-	<Version>1.1.0</Version>
+	<Version>1.1.1</Version>
 	<Version Condition="'$(Configuration)'=='Debug'">$(Version)-debug</Version>
 	<Authors>Chris3606;Thraka</Authors>
 	<Company>TheSadRogue</Company>
@@ -16,9 +16,7 @@
 	<!-- More nuget package settings-->
 	<PackageId>TheSadRogue.Primitives</PackageId>
 	<PackageReleaseNotes>
-		- Added custom Point hashing algorithm implementations
-		- Added capability to customize Point hashing algorithm used by Area
-		- Area is no longer serializable directly; it instead converts implicitly to AreaSerializable and back 
+		- Added more custom Point hashing algorithm implementations
 	</PackageReleaseNotes>
 	<RepositoryUrl>https://https://github.com/thesadrogue/TheSadRogue.Primitives</RepositoryUrl>
 	<RepositoryType>git</RepositoryType>

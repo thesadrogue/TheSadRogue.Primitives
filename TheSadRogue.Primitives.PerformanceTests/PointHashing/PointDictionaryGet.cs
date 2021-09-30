@@ -26,10 +26,12 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
 
         private Point[] _points = null!;
         private IEqualityComparer<Point> _sizeHasher = null!;
+        private IEqualityComparer<Point> _rangeHasher = null!;
 
         private Dictionary<Point, int> _currentPrimitives = null!;
         private Dictionary<Point, int> _originalGoRogue = null!;
         private Dictionary<Point, int> _knownSizeHashing = null!;
+        private Dictionary<Point, int> _knownRangeHashing = null!;
         private Dictionary<Point, int> _rosenbergStrong = null!;
         private Dictionary<Point, int> _rosenbergStrongMinusMultiply = null!;
 
@@ -41,14 +43,16 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
             for (int i = 0; i < _points.Length; i++)
                 _points[i] = Point.FromIndex(i, Size);
 
-            // Create equality comparer to ensure that the creation time isn't factored into benchmark
-            // (since it is not for any other algorithms
+            // Create equality comparers now to ensure that the creation time isn't factored into benchmark
+            // (since it is not for any other algorithms)
             _sizeHasher = new KnownSizeHasher(Size);
+            _rangeHasher = new KnownRangeHasher(new Point(0, 0), new Point(Size, Size));
 
             // Create dictionaries to retrieve from (we don't want to time this part so we will cache them)
             _currentPrimitives = CreateAndPopulate(EqualityComparer<Point>.Default);
             _originalGoRogue = CreateAndPopulate(OriginalGoRogueAlgorithm.Instance);
             _knownSizeHashing = CreateAndPopulate(_sizeHasher);
+            _knownRangeHashing = CreateAndPopulate(_rangeHasher);
             _rosenbergStrong = CreateAndPopulate(RosenbergStrongBasedAlgorithm.Instance);
             _rosenbergStrongMinusMultiply = CreateAndPopulate(RosenbergStrongBasedMinusMultiplyAlgorithm.Instance);
         }
@@ -61,6 +65,9 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
 
         [Benchmark]
         public int KnownSize() => GetAllFrom(_knownSizeHashing);
+
+        [Benchmark]
+        public int KnownRange() => GetAllFrom(_knownRangeHashing);
 
         [Benchmark]
         public int RosenbergStrongBased() => GetAllFrom(_rosenbergStrong);

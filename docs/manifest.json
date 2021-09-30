@@ -33,7 +33,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.Area.html",
-          "hash": "/86bRsK0UUYUmEd6uGqkgg=="
+          "hash": "9gVVqmOYcr4a+0UwnXspwA=="
         }
       },
       "is_incremental": false,
@@ -153,7 +153,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.GridViews.ArrayView-1.html",
-          "hash": "2B1tJ62SgqAUA/tU0XeRtQ=="
+          "hash": "DnTsMIqPPj6KL75hkaUk+A=="
         }
       },
       "is_incremental": false,
@@ -165,7 +165,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.GridViews.ArrayView2D-1.html",
-          "hash": "a2Wp7XJU6x/5nrxptIZnoQ=="
+          "hash": "M7dFsXFQ/IyPbc+UQxSyJg=="
         }
       },
       "is_incremental": false,
@@ -189,7 +189,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.GridViews.DiffAwareGridView-1.html",
-          "hash": "6vvz2MxEVqUrsM0G4rvDFQ=="
+          "hash": "J/vd4B+mUgHM7gYQgm2AaQ=="
         }
       },
       "is_incremental": false,
@@ -201,7 +201,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.GridViews.GridViewBase-1.html",
-          "hash": "4IiMXWeLPKfQtcu/sZQovw=="
+          "hash": "AZj6OELRnweKr69PDS36GQ=="
         }
       },
       "is_incremental": false,
@@ -249,7 +249,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.GridViews.LambdaGridView-1.html",
-          "hash": "1TWEVct8OV2w/BAA+xFctA=="
+          "hash": "S0GTQZfgNK+sqWMySmFI4A=="
         }
       },
       "is_incremental": false,
@@ -261,7 +261,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.GridViews.LambdaSettableGridView-1.html",
-          "hash": "6cXsMwdSpjTmafAl+LTePQ=="
+          "hash": "O935FMeofx28RnGiHau0mA=="
         }
       },
       "is_incremental": false,
@@ -297,7 +297,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.GridViews.SettableGridViewBase-1.html",
-          "hash": "/AeAtyUZC9GyiqcLNoA1RA=="
+          "hash": "7+X0oK1t9/yGW+f6C6TfyQ=="
         }
       },
       "is_incremental": false,
@@ -309,7 +309,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.GridViews.SettableTranslationGridView-2.html",
-          "hash": "/Ab+MhWXBZE8jqriplERSw=="
+          "hash": "LIOZ2IxKhzZIiIpiuqXwRw=="
         }
       },
       "is_incremental": false,
@@ -396,7 +396,7 @@
           "hash": "JhQA74PtFH7MzJqlZoOwZQ=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -420,7 +420,7 @@
           "hash": "oo6VT0LufPcHY/JOi5NO7Q=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -461,11 +461,23 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/SadRogue.Primitives.PointHashers.KnownRangeHasher.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SadRogue.Primitives.PointHashers.KnownRangeHasher.html",
+          "hash": "DT295m4og8tpXJDTVK17hw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/SadRogue.Primitives.PointHashers.KnownSizeHasher.yml",
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.PointHashers.KnownSizeHasher.html",
-          "hash": "cJU5Xdtd+R5G/lR8TfNlkA=="
+          "hash": "sMfPsx8PJRjTCtek7LaDzg=="
         }
       },
       "is_incremental": false,
@@ -477,7 +489,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.PointHashers.html",
-          "hash": "h9rFHw4IvmZmHBSUpo3Fwg=="
+          "hash": "btH8N40Cs8LMaU08MW2N4A=="
         }
       },
       "is_incremental": false,
@@ -633,7 +645,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.SerializedTypes.GridViews.DiffAwareGridViewSerialized-1.html",
-          "hash": "tYRCCxqBTT0QLfU/oBTwlQ=="
+          "hash": "QljOaP1ztgYYo6kR+wT83w=="
         }
       },
       "is_incremental": false,
@@ -645,7 +657,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.SerializedTypes.GridViews.DiffSerialized-1.html",
-          "hash": "5BK3044CcwvO8jN2F6oqzA=="
+          "hash": "v86CXuk/5RR0kwALtqhX7A=="
         }
       },
       "is_incremental": false,
@@ -657,7 +669,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.SerializedTypes.GridViews.ValueChangeSerialized-1.html",
-          "hash": "/1vEGAtH6K2XoPg8tZq34Q=="
+          "hash": "xxVpic6UmI7ONlVHzkxvtA=="
         }
       },
       "is_incremental": false,
@@ -689,11 +701,23 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/SadRogue.Primitives.SerializedTypes.PointHashers.KnownRangeHasherSerialized.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SadRogue.Primitives.SerializedTypes.PointHashers.KnownRangeHasherSerialized.html",
+          "hash": "2OArrQFaGKZJUorGdxBn4g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/SadRogue.Primitives.SerializedTypes.PointHashers.KnownSizeHasherSerialized.yml",
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.SerializedTypes.PointHashers.KnownSizeHasherSerialized.html",
-          "hash": "BcQFUdJFaGem3hV7dDPfRA=="
+          "hash": "qaXURGk6ysUL7T+t5cTNTA=="
         }
       },
       "is_incremental": false,
@@ -705,7 +729,7 @@
       "output": {
         ".html": {
           "relative_path": "api/SadRogue.Primitives.SerializedTypes.PointHashers.html",
-          "hash": "K04V+CeIbRqbRCQdw2OPWQ=="
+          "hash": "ONKXGT/Gmyb7CXK3rCYZvQ=="
         }
       },
       "is_incremental": false,
@@ -780,7 +804,7 @@
           "hash": "t/GeRx5JE/qlwCu1uh3WpA=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -789,7 +813,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "+qzUV+7SJzEtDoKAwfnLcw=="
+          "hash": "RFb2ovmYrELoMQs4igXS1A=="
         }
       },
       "is_incremental": false,
@@ -862,8 +886,8 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": true,
           "incrementalPhase": "build",
-          "total_file_count": 64,
-          "skipped_file_count": 29
+          "total_file_count": 66,
+          "skipped_file_count": 26
         },
         "TocDocumentProcessor": {
           "can_incremental": false,

@@ -28,10 +28,12 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
 
         private Point[] _points = null!;
         private IEqualityComparer<Point> _sizeHasher = null!;
+        private IEqualityComparer<Point> _rangeHasher = null!;
 
         private HashSet<Point> _currentPrimitives = null!;
         private HashSet<Point> _originalGoRogue = null!;
         private HashSet<Point> _knownSizeHashing = null!;
+        private HashSet<Point> _knownRangeHashing = null!;
         private HashSet<Point> _rosenbergStrong = null!;
         private HashSet<Point> _rosenbergStrongMinusMultiply = null!;
 
@@ -43,14 +45,16 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
             for (int i = 0; i < _points.Length; i++)
                 _points[i] = Point.FromIndex(i, Size);
 
-            // Create equality comparer to ensure that the creation time isn't factored into benchmark
-            // (since it is not for any other algorithms
+            // Create equality comparers now to ensure that the creation time isn't factored into benchmark
+            // (since it is not for any other algorithms)
             _sizeHasher = new KnownSizeHasher(Size);
+            _rangeHasher = new KnownRangeHasher(new Point(0, 0), new Point(Size, Size));
 
             // Create dictionaries to retrieve from (we don't want to time this part so we will cache them)
             _currentPrimitives = CreateAndPopulate(EqualityComparer<Point>.Default);
             _originalGoRogue = CreateAndPopulate(OriginalGoRogueAlgorithm.Instance);
             _knownSizeHashing = CreateAndPopulate(_sizeHasher);
+            _knownRangeHashing = CreateAndPopulate(_rangeHasher);
             _rosenbergStrong = CreateAndPopulate(RosenbergStrongBasedAlgorithm.Instance);
             _rosenbergStrongMinusMultiply = CreateAndPopulate(RosenbergStrongBasedMinusMultiplyAlgorithm.Instance);
         }
@@ -72,6 +76,12 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
 
         [Benchmark]
         public int KnownSizeNonExisting() => CheckNonExistingFrom(_knownSizeHashing);
+
+        [Benchmark]
+        public int KnownRangeExisting() => CheckExistingFrom(_knownRangeHashing);
+
+        [Benchmark]
+        public int KnownRangeNonExisting() => CheckNonExistingFrom(_knownRangeHashing);
 
         [Benchmark]
         public int RosenbergStrongBasedExisting() => CheckExistingFrom(_rosenbergStrong);

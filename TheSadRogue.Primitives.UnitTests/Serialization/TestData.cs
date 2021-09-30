@@ -126,6 +126,8 @@ namespace SadRogue.Primitives.UnitTests.Serialization
             },
             // KnownSizeHasherSerialized
             new KnownSizeHasherSerialized { MaxXValue = 10 },
+            // KnownRangeHasherSerialized
+            new KnownRangeHasherSerialized { MinExtent = new Point(1, 1), MaxNormalizedX = 9 },
             // PaletteSerialized
             new PaletteSerialized
             {
@@ -214,6 +216,7 @@ namespace SadRogue.Primitives.UnitTests.Serialization
             { typeof(GradientSerialized), new[] { "Stops" } },
             { typeof(KnownSizeHasher), new[] {"MaxXValue"} },
             { typeof(KnownSizeHasherSerialized), new[] {"MaxXValue"} },
+            { typeof(KnownRangeHasherSerialized), new[] {"MinExtent", "MaxNormalizedX"} },
             { typeof(PaletteSerialized), new[] { "Colors" } },
             { typeof(Point), new[] { "X", "Y" } },
             { typeof(PointSerialized), new[] { "X", "Y" } },
@@ -256,6 +259,7 @@ namespace SadRogue.Primitives.UnitTests.Serialization
             [typeof(Distance)] = typeof(Distance.Types),
             [typeof(GradientStop)] = typeof(GradientStopSerialized),
             [typeof(KnownSizeHasher)] = typeof(KnownSizeHasherSerialized),
+            [typeof(KnownRangeHasher)] = typeof(KnownRangeHasherSerialized),
             [typeof(Gradient)] = typeof(GradientSerialized),
             [typeof(Palette)] = typeof(PaletteSerialized),
             [typeof(Point)] = typeof(PointSerialized),
@@ -289,6 +293,9 @@ namespace SadRogue.Primitives.UnitTests.Serialization
             },
             // DiffAwareGridView
             // GenerateDiffAwareGridView()
+
+            // KnownRangeHasher
+            new KnownRangeHasher(new Point(1, 1), new Point(10, 10)),
         };
         #endregion
 

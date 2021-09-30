@@ -4,7 +4,7 @@ using SadRogue.Primitives.PointHashers;
 namespace SadRogue.Primitives.SerializedTypes.PointHashers
 {
     /// <summary>
-    /// Serializable (pure-data) object representing an <see cref="Area"/>.
+    /// Serializable (pure-data) object representing a <see cref="KnownSizeHasher"/>.
     /// </summary>
     [Serializable]
     public struct KnownSizeHasherSerialized

@@ -146,7 +146,8 @@ the number of items you must implement by implementing indexers in terms of a si
   </span>
   <a id="SadRogue_Primitives_GridViews_GridViewBase_1_Count_" data-uid="SadRogue.Primitives.GridViews.GridViewBase`1.Count*"></a>
   <h4 id="SadRogue_Primitives_GridViews_GridViewBase_1_Count" data-uid="SadRogue.Primitives.GridViews.GridViewBase`1.Count">Count</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Number of tiles in the grid; equal to <a class="xref" href="SadRogue.Primitives.GridViews.IGridView-1.html#SadRogue_Primitives_GridViews_IGridView_1_Width">Width</a> * <a class="xref" href="SadRogue.Primitives.GridViews.IGridView-1.html#SadRogue_Primitives_GridViews_IGridView_1_Height">Height</a>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -176,7 +177,8 @@ the number of items you must implement by implementing indexers in terms of a si
   </span>
   <a id="SadRogue_Primitives_GridViews_GridViewBase_1_Height_" data-uid="SadRogue.Primitives.GridViews.GridViewBase`1.Height*"></a>
   <h4 id="SadRogue_Primitives_GridViews_GridViewBase_1_Height" data-uid="SadRogue.Primitives.GridViews.GridViewBase`1.Height">Height</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The height of the grid being represented.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -206,7 +208,8 @@ the number of items you must implement by implementing indexers in terms of a si
   </span>
   <a id="SadRogue_Primitives_GridViews_GridViewBase_1_Item_" data-uid="SadRogue.Primitives.GridViews.GridViewBase`1.Item*"></a>
   <h4 id="SadRogue_Primitives_GridViews_GridViewBase_1_Item_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.GridViews.GridViewBase`1.Item(SadRogue.Primitives.Point)">Item[Point]</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Given a position, returns the &quot;value&quot; associated with that location.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -225,7 +228,8 @@ the number of items you must implement by implementing indexers in terms of a si
       <tr>
         <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
         <td><span class="parametername">pos</span></td>
-        <td></td>
+        <td><p>Location to retrieve the value for.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -240,7 +244,8 @@ the number of items you must implement by implementing indexers in terms of a si
     <tbody>
       <tr>
         <td><span class="xref">T</span></td>
-        <td></td>
+        <td><p>The &quot;value&quot; associated with the provided location.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -253,7 +258,9 @@ the number of items you must implement by implementing indexers in terms of a si
   </span>
   <a id="SadRogue_Primitives_GridViews_GridViewBase_1_Item_" data-uid="SadRogue.Primitives.GridViews.GridViewBase`1.Item*"></a>
   <h4 id="SadRogue_Primitives_GridViews_GridViewBase_1_Item_System_Int32_" data-uid="SadRogue.Primitives.GridViews.GridViewBase`1.Item(System.Int32)">Item[Int32]</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Given an 1-dimensional index, returns the value associated with the corresponding position
+in the map view.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -272,7 +279,8 @@ the number of items you must implement by implementing indexers in terms of a si
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">index1D</span></td>
-        <td></td>
+        <td><p>1D index of location to retrieve the &quot;value&quot; for.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -287,10 +295,17 @@ the number of items you must implement by implementing indexers in terms of a si
     <tbody>
       <tr>
         <td><span class="xref">T</span></td>
-        <td></td>
+        <td><p>The &quot;value&quot; associated with the given location.</p>
+</td>
       </tr>
     </tbody>
   </table>
+  <h5 id="SadRogue_Primitives_GridViews_GridViewBase_1_Item_System_Int32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Typically, this may be implemented in terms of <a class="xref" href="SadRogue.Primitives.GridViews.IGridView-1.html#SadRogue_Primitives_GridViews_IGridView_1_Item_SadRogue_Primitives_Point_">Item[Point]</a> by using
+<a class="xref" href="SadRogue.Primitives.Point.html#SadRogue_Primitives_Point_FromIndex_System_Int32_System_Int32_">FromIndex(Int32, Int32)</a> to calculate the 2D position represented by that
+1D index, and passing that position to the <a class="xref" href="SadRogue.Primitives.GridViews.IGridView-1.html#SadRogue_Primitives_GridViews_IGridView_1_Item_SadRogue_Primitives_Point_">Item[Point]</a> indexer to determine
+the value associated with the position.</p>
+</div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_GridViews_GridViewBase_1_Item_System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.GridViews.GridViewBase%601.Item(System.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
@@ -300,7 +315,8 @@ the number of items you must implement by implementing indexers in terms of a si
   </span>
   <a id="SadRogue_Primitives_GridViews_GridViewBase_1_Item_" data-uid="SadRogue.Primitives.GridViews.GridViewBase`1.Item*"></a>
   <h4 id="SadRogue_Primitives_GridViews_GridViewBase_1_Item_System_Int32_System_Int32_" data-uid="SadRogue.Primitives.GridViews.GridViewBase`1.Item(System.Int32,System.Int32)">Item[Int32, Int32]</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Given an X and Y value, returns the &quot;value&quot; associated with that location.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -319,12 +335,14 @@ the number of items you must implement by implementing indexers in terms of a si
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">x</span></td>
-        <td></td>
+        <td><p>X-value of location.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">y</span></td>
-        <td></td>
+        <td><p>Y-value of location.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -339,10 +357,14 @@ the number of items you must implement by implementing indexers in terms of a si
     <tbody>
       <tr>
         <td><span class="xref">T</span></td>
-        <td></td>
+        <td><p>The &quot;value&quot; associated with that location.</p>
+</td>
       </tr>
     </tbody>
   </table>
+  <h5 id="SadRogue_Primitives_GridViews_GridViewBase_1_Item_System_Int32_System_Int32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Typically, this can be implemented via <a class="xref" href="SadRogue.Primitives.GridViews.IGridView-1.html#SadRogue_Primitives_GridViews_IGridView_1_Item_SadRogue_Primitives_Point_">Item[Point]</a>.</p>
+</div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_GridViews_GridViewBase_1_Width.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.GridViews.GridViewBase%601.Width%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
@@ -352,7 +374,8 @@ the number of items you must implement by implementing indexers in terms of a si
   </span>
   <a id="SadRogue_Primitives_GridViews_GridViewBase_1_Width_" data-uid="SadRogue.Primitives.GridViews.GridViewBase`1.Width*"></a>
   <h4 id="SadRogue_Primitives_GridViews_GridViewBase_1_Width" data-uid="SadRogue.Primitives.GridViews.GridViewBase`1.Width">Width</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The width of the grid being represented.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">

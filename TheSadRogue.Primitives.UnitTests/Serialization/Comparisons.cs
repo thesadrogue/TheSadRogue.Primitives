@@ -27,6 +27,7 @@ namespace SadRogue.Primitives.UnitTests.Serialization
                 [typeof(Gradient)] = CastFromObject<Gradient>(MatchableCompare),
                 [typeof(GradientSerialized)] = CastFromObject<GradientSerialized>(GradientSerializedCompare),
                 [typeof(KnownSizeHasher)] = CastFromObject<KnownSizeHasher>(PointHasherKnownSizeCompare),
+                [typeof(KnownRangeHasher)] = CastFromObject<KnownRangeHasher>(PointHasherKnownRangeCompare),
                 [typeof(Palette)] = CastFromObject<Palette>(MatchableCompare),
                 [typeof(PaletteSerialized)] = CastFromObject<PaletteSerialized>(PaletteSerializedCompare)
             };
@@ -109,6 +110,9 @@ namespace SadRogue.Primitives.UnitTests.Serialization
 
         private static bool PointHasherKnownSizeCompare(KnownSizeHasher h1, KnownSizeHasher h2)
             => h1.MaxXValue == h2.MaxXValue;
+
+        private static bool PointHasherKnownRangeCompare(KnownRangeHasher h1, KnownRangeHasher h2)
+            => h1.MinExtent == h2.MinExtent && h1.MaxNormalizedX == h2.MaxNormalizedX;
 
         private static bool ElementWiseEquality<T>(IEnumerable<T> e1, IEnumerable<T> e2,
                                                    Func<T, T, bool>? compareFunc = null)

@@ -6738,6 +6738,69 @@ references:
   commentId: N:SadRogue.Primitives.PointHashers
   fullName: SadRogue.Primitives.PointHashers
   nameWithType: SadRogue.Primitives.PointHashers
+- uid: SadRogue.Primitives.PointHashers.KnownRangeHasher
+  name: KnownRangeHasher
+  href: api/SadRogue.Primitives.PointHashers.KnownRangeHasher.html
+  commentId: T:SadRogue.Primitives.PointHashers.KnownRangeHasher
+  fullName: SadRogue.Primitives.PointHashers.KnownRangeHasher
+  nameWithType: KnownRangeHasher
+- uid: SadRogue.Primitives.PointHashers.KnownRangeHasher.#ctor(SadRogue.Primitives.Point,SadRogue.Primitives.Point)
+  name: KnownRangeHasher(Point, Point)
+  href: api/SadRogue.Primitives.PointHashers.KnownRangeHasher.html#SadRogue_Primitives_PointHashers_KnownRangeHasher__ctor_SadRogue_Primitives_Point_SadRogue_Primitives_Point_
+  commentId: M:SadRogue.Primitives.PointHashers.KnownRangeHasher.#ctor(SadRogue.Primitives.Point,SadRogue.Primitives.Point)
+  fullName: SadRogue.Primitives.PointHashers.KnownRangeHasher.KnownRangeHasher(SadRogue.Primitives.Point, SadRogue.Primitives.Point)
+  nameWithType: KnownRangeHasher.KnownRangeHasher(Point, Point)
+- uid: SadRogue.Primitives.PointHashers.KnownRangeHasher.#ctor(SadRogue.Primitives.Point,System.Int32)
+  name: KnownRangeHasher(Point, Int32)
+  href: api/SadRogue.Primitives.PointHashers.KnownRangeHasher.html#SadRogue_Primitives_PointHashers_KnownRangeHasher__ctor_SadRogue_Primitives_Point_System_Int32_
+  commentId: M:SadRogue.Primitives.PointHashers.KnownRangeHasher.#ctor(SadRogue.Primitives.Point,System.Int32)
+  fullName: SadRogue.Primitives.PointHashers.KnownRangeHasher.KnownRangeHasher(SadRogue.Primitives.Point, System.Int32)
+  nameWithType: KnownRangeHasher.KnownRangeHasher(Point, Int32)
+- uid: SadRogue.Primitives.PointHashers.KnownRangeHasher.#ctor*
+  name: KnownRangeHasher
+  href: api/SadRogue.Primitives.PointHashers.KnownRangeHasher.html#SadRogue_Primitives_PointHashers_KnownRangeHasher__ctor_
+  commentId: Overload:SadRogue.Primitives.PointHashers.KnownRangeHasher.#ctor
+  isSpec: "True"
+  fullName: SadRogue.Primitives.PointHashers.KnownRangeHasher.KnownRangeHasher
+  nameWithType: KnownRangeHasher.KnownRangeHasher
+- uid: SadRogue.Primitives.PointHashers.KnownRangeHasher.Equals(SadRogue.Primitives.Point,SadRogue.Primitives.Point)
+  name: Equals(Point, Point)
+  href: api/SadRogue.Primitives.PointHashers.KnownRangeHasher.html#SadRogue_Primitives_PointHashers_KnownRangeHasher_Equals_SadRogue_Primitives_Point_SadRogue_Primitives_Point_
+  commentId: M:SadRogue.Primitives.PointHashers.KnownRangeHasher.Equals(SadRogue.Primitives.Point,SadRogue.Primitives.Point)
+  fullName: SadRogue.Primitives.PointHashers.KnownRangeHasher.Equals(SadRogue.Primitives.Point, SadRogue.Primitives.Point)
+  nameWithType: KnownRangeHasher.Equals(Point, Point)
+- uid: SadRogue.Primitives.PointHashers.KnownRangeHasher.Equals*
+  name: Equals
+  href: api/SadRogue.Primitives.PointHashers.KnownRangeHasher.html#SadRogue_Primitives_PointHashers_KnownRangeHasher_Equals_
+  commentId: Overload:SadRogue.Primitives.PointHashers.KnownRangeHasher.Equals
+  isSpec: "True"
+  fullName: SadRogue.Primitives.PointHashers.KnownRangeHasher.Equals
+  nameWithType: KnownRangeHasher.Equals
+- uid: SadRogue.Primitives.PointHashers.KnownRangeHasher.GetHashCode(SadRogue.Primitives.Point)
+  name: GetHashCode(Point)
+  href: api/SadRogue.Primitives.PointHashers.KnownRangeHasher.html#SadRogue_Primitives_PointHashers_KnownRangeHasher_GetHashCode_SadRogue_Primitives_Point_
+  commentId: M:SadRogue.Primitives.PointHashers.KnownRangeHasher.GetHashCode(SadRogue.Primitives.Point)
+  fullName: SadRogue.Primitives.PointHashers.KnownRangeHasher.GetHashCode(SadRogue.Primitives.Point)
+  nameWithType: KnownRangeHasher.GetHashCode(Point)
+- uid: SadRogue.Primitives.PointHashers.KnownRangeHasher.GetHashCode*
+  name: GetHashCode
+  href: api/SadRogue.Primitives.PointHashers.KnownRangeHasher.html#SadRogue_Primitives_PointHashers_KnownRangeHasher_GetHashCode_
+  commentId: Overload:SadRogue.Primitives.PointHashers.KnownRangeHasher.GetHashCode
+  isSpec: "True"
+  fullName: SadRogue.Primitives.PointHashers.KnownRangeHasher.GetHashCode
+  nameWithType: KnownRangeHasher.GetHashCode
+- uid: SadRogue.Primitives.PointHashers.KnownRangeHasher.MaxNormalizedX
+  name: MaxNormalizedX
+  href: api/SadRogue.Primitives.PointHashers.KnownRangeHasher.html#SadRogue_Primitives_PointHashers_KnownRangeHasher_MaxNormalizedX
+  commentId: F:SadRogue.Primitives.PointHashers.KnownRangeHasher.MaxNormalizedX
+  fullName: SadRogue.Primitives.PointHashers.KnownRangeHasher.MaxNormalizedX
+  nameWithType: KnownRangeHasher.MaxNormalizedX
+- uid: SadRogue.Primitives.PointHashers.KnownRangeHasher.MinExtent
+  name: MinExtent
+  href: api/SadRogue.Primitives.PointHashers.KnownRangeHasher.html#SadRogue_Primitives_PointHashers_KnownRangeHasher_MinExtent
+  commentId: F:SadRogue.Primitives.PointHashers.KnownRangeHasher.MinExtent
+  fullName: SadRogue.Primitives.PointHashers.KnownRangeHasher.MinExtent
+  nameWithType: KnownRangeHasher.MinExtent
 - uid: SadRogue.Primitives.PointHashers.KnownSizeHasher
   name: KnownSizeHasher
   href: api/SadRogue.Primitives.PointHashers.KnownSizeHasher.html
@@ -8969,6 +9032,52 @@ references:
   commentId: N:SadRogue.Primitives.SerializedTypes.PointHashers
   fullName: SadRogue.Primitives.SerializedTypes.PointHashers
   nameWithType: SadRogue.Primitives.SerializedTypes.PointHashers
+- uid: SadRogue.Primitives.SerializedTypes.PointHashers.KnownRangeHasherSerialized
+  name: KnownRangeHasherSerialized
+  href: api/SadRogue.Primitives.SerializedTypes.PointHashers.KnownRangeHasherSerialized.html
+  commentId: T:SadRogue.Primitives.SerializedTypes.PointHashers.KnownRangeHasherSerialized
+  fullName: SadRogue.Primitives.SerializedTypes.PointHashers.KnownRangeHasherSerialized
+  nameWithType: KnownRangeHasherSerialized
+- uid: SadRogue.Primitives.SerializedTypes.PointHashers.KnownRangeHasherSerialized.MaxNormalizedX
+  name: MaxNormalizedX
+  href: api/SadRogue.Primitives.SerializedTypes.PointHashers.KnownRangeHasherSerialized.html#SadRogue_Primitives_SerializedTypes_PointHashers_KnownRangeHasherSerialized_MaxNormalizedX
+  commentId: F:SadRogue.Primitives.SerializedTypes.PointHashers.KnownRangeHasherSerialized.MaxNormalizedX
+  fullName: SadRogue.Primitives.SerializedTypes.PointHashers.KnownRangeHasherSerialized.MaxNormalizedX
+  nameWithType: KnownRangeHasherSerialized.MaxNormalizedX
+- uid: SadRogue.Primitives.SerializedTypes.PointHashers.KnownRangeHasherSerialized.MinExtent
+  name: MinExtent
+  href: api/SadRogue.Primitives.SerializedTypes.PointHashers.KnownRangeHasherSerialized.html#SadRogue_Primitives_SerializedTypes_PointHashers_KnownRangeHasherSerialized_MinExtent
+  commentId: F:SadRogue.Primitives.SerializedTypes.PointHashers.KnownRangeHasherSerialized.MinExtent
+  fullName: SadRogue.Primitives.SerializedTypes.PointHashers.KnownRangeHasherSerialized.MinExtent
+  nameWithType: KnownRangeHasherSerialized.MinExtent
+- uid: SadRogue.Primitives.SerializedTypes.PointHashers.KnownRangeHasherSerialized.op_Implicit(SadRogue.Primitives.PointHashers.KnownRangeHasher)~SadRogue.Primitives.SerializedTypes.PointHashers.KnownRangeHasherSerialized
+  name: Implicit(KnownRangeHasher to KnownRangeHasherSerialized)
+  href: api/SadRogue.Primitives.SerializedTypes.PointHashers.KnownRangeHasherSerialized.html#SadRogue_Primitives_SerializedTypes_PointHashers_KnownRangeHasherSerialized_op_Implicit_SadRogue_Primitives_PointHashers_KnownRangeHasher__SadRogue_Primitives_SerializedTypes_PointHashers_KnownRangeHasherSerialized
+  commentId: M:SadRogue.Primitives.SerializedTypes.PointHashers.KnownRangeHasherSerialized.op_Implicit(SadRogue.Primitives.PointHashers.KnownRangeHasher)~SadRogue.Primitives.SerializedTypes.PointHashers.KnownRangeHasherSerialized
+  name.vb: Widening(KnownRangeHasher to KnownRangeHasherSerialized)
+  fullName: SadRogue.Primitives.SerializedTypes.PointHashers.KnownRangeHasherSerialized.Implicit(SadRogue.Primitives.PointHashers.KnownRangeHasher to SadRogue.Primitives.SerializedTypes.PointHashers.KnownRangeHasherSerialized)
+  fullName.vb: SadRogue.Primitives.SerializedTypes.PointHashers.KnownRangeHasherSerialized.Widening(SadRogue.Primitives.PointHashers.KnownRangeHasher to SadRogue.Primitives.SerializedTypes.PointHashers.KnownRangeHasherSerialized)
+  nameWithType: KnownRangeHasherSerialized.Implicit(KnownRangeHasher to KnownRangeHasherSerialized)
+  nameWithType.vb: KnownRangeHasherSerialized.Widening(KnownRangeHasher to KnownRangeHasherSerialized)
+- uid: SadRogue.Primitives.SerializedTypes.PointHashers.KnownRangeHasherSerialized.op_Implicit(SadRogue.Primitives.SerializedTypes.PointHashers.KnownRangeHasherSerialized)~SadRogue.Primitives.PointHashers.KnownRangeHasher
+  name: Implicit(KnownRangeHasherSerialized to KnownRangeHasher)
+  href: api/SadRogue.Primitives.SerializedTypes.PointHashers.KnownRangeHasherSerialized.html#SadRogue_Primitives_SerializedTypes_PointHashers_KnownRangeHasherSerialized_op_Implicit_SadRogue_Primitives_SerializedTypes_PointHashers_KnownRangeHasherSerialized__SadRogue_Primitives_PointHashers_KnownRangeHasher
+  commentId: M:SadRogue.Primitives.SerializedTypes.PointHashers.KnownRangeHasherSerialized.op_Implicit(SadRogue.Primitives.SerializedTypes.PointHashers.KnownRangeHasherSerialized)~SadRogue.Primitives.PointHashers.KnownRangeHasher
+  name.vb: Widening(KnownRangeHasherSerialized to KnownRangeHasher)
+  fullName: SadRogue.Primitives.SerializedTypes.PointHashers.KnownRangeHasherSerialized.Implicit(SadRogue.Primitives.SerializedTypes.PointHashers.KnownRangeHasherSerialized to SadRogue.Primitives.PointHashers.KnownRangeHasher)
+  fullName.vb: SadRogue.Primitives.SerializedTypes.PointHashers.KnownRangeHasherSerialized.Widening(SadRogue.Primitives.SerializedTypes.PointHashers.KnownRangeHasherSerialized to SadRogue.Primitives.PointHashers.KnownRangeHasher)
+  nameWithType: KnownRangeHasherSerialized.Implicit(KnownRangeHasherSerialized to KnownRangeHasher)
+  nameWithType.vb: KnownRangeHasherSerialized.Widening(KnownRangeHasherSerialized to KnownRangeHasher)
+- uid: SadRogue.Primitives.SerializedTypes.PointHashers.KnownRangeHasherSerialized.op_Implicit*
+  name: Implicit
+  href: api/SadRogue.Primitives.SerializedTypes.PointHashers.KnownRangeHasherSerialized.html#SadRogue_Primitives_SerializedTypes_PointHashers_KnownRangeHasherSerialized_op_Implicit_
+  commentId: Overload:SadRogue.Primitives.SerializedTypes.PointHashers.KnownRangeHasherSerialized.op_Implicit
+  isSpec: "True"
+  name.vb: Widening
+  fullName: SadRogue.Primitives.SerializedTypes.PointHashers.KnownRangeHasherSerialized.Implicit
+  fullName.vb: SadRogue.Primitives.SerializedTypes.PointHashers.KnownRangeHasherSerialized.Widening
+  nameWithType: KnownRangeHasherSerialized.Implicit
+  nameWithType.vb: KnownRangeHasherSerialized.Widening
 - uid: SadRogue.Primitives.SerializedTypes.PointHashers.KnownSizeHasherSerialized
   name: KnownSizeHasherSerialized
   href: api/SadRogue.Primitives.SerializedTypes.PointHashers.KnownSizeHasherSerialized.html

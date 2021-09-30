@@ -28,6 +28,7 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
 
         private Point[] _points = null!;
         private IEqualityComparer<Point> _sizeHasher = null!;
+        private IEqualityComparer<Point> _rangeHasher = null!;
 
         [GlobalSetup]
         public void GlobalSetup()
@@ -37,9 +38,10 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
             for (int i = 0; i < _points.Length; i++)
                 _points[i] = Point.FromIndex(i, Size);
 
-            // Create equality comparer to ensure that the creation time isn't factored into benchmark
-            // (since it is not for any other algorithms
+            // Create equality comparers now to ensure that the creation time isn't factored into benchmark
+            // (since it is not for any other algorithms)
             _sizeHasher = new KnownSizeHasher(Size);
+            _rangeHasher = new KnownRangeHasher(new Point(0, 0), new Point(Size, Size));
         }
 
         [Benchmark]
@@ -50,6 +52,9 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
 
         [Benchmark]
         public Dictionary<Point, int> KnownSize() => CreateAndPopulate(_sizeHasher);
+
+        [Benchmark]
+        public Dictionary<Point, int> KnownRange() => CreateAndPopulate(_rangeHasher);
 
         [Benchmark]
         public Dictionary<Point, int> RosenbergStrongBased() => CreateAndPopulate(RosenbergStrongBasedAlgorithm.Instance);

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 
@@ -34,8 +35,41 @@ namespace SadRogue.Primitives
 
         private static readonly string[] s_writeValues = Enum.GetNames(typeof(Types));
 
-        // Constructor, takes type.
-        private AdjacencyRule(Types type) => Type = type;
+        /// <summary>
+        /// Array that caches the output of DirectionsOfNeighbors() for this instance.  Can be useful since iterating
+        /// over an array by index is often faster than using a foreach/IEnumerable.
+        /// </summary>
+        /// <remarks>
+        /// The indices in this value are not intended to be modified; doing so may result in bad behavior!
+        /// </remarks>
+        public readonly Direction[] DirectionsOfNeighborsCache;
+
+        /// <summary>
+        /// Array that caches the output of DirectionsOfNeighborsClockwise() for this instance.  Can be useful since iterating
+        /// over an array by index is often faster than using a foreach/IEnumerable.
+        /// </summary>
+        /// <remarks>
+        /// The indices in this value are not intended to be modified; doing so may result in bad behavior!
+        /// </remarks>
+        public readonly Direction[] DirectionsOfNeighborsClockwiseCache;
+
+        /// <summary>
+        /// Array that caches the output of DirectionsOfNeighborsCounterClockwise() for this instance.  Can be useful since iterating
+        /// over an array by index is often faster than using a foreach/IEnumerable.
+        /// </summary>
+        /// <remarks>
+        /// The indices in this value are not intended to be modified; doing so may result in bad behavior!
+        /// </remarks>
+        public readonly Direction[] DirectionsOfNeighborsCounterClockwiseCache;
+
+        // Constructor, takes type and initializes cached arrays.
+        private AdjacencyRule(Types type)
+        {
+            Type = type;
+            DirectionsOfNeighborsCache = DirectionsOfNeighborsType(type).ToArray();
+            DirectionsOfNeighborsClockwiseCache = DirectionsOfNeighborsClockwiseType(type).ToArray();
+            DirectionsOfNeighborsCounterClockwiseCache = DirectionsOfNeighborsCounterClockwiseType(type).ToArray();
+        }
 
         /// <summary>
         /// Enum representing <see cref="AdjacencyRule"/> types. Each AdjacencyRule instance has a <see cref="Type"/> field
@@ -72,39 +106,9 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <returns>Directions that lead to neighboring locations.</returns>
         [Pure]
-        public IEnumerable<Direction> DirectionsOfNeighbors()
-        {
-            switch (Type)
-            {
-                case Types.Cardinals:
-                    yield return Direction.Up;
-                    yield return Direction.Down;
-                    yield return Direction.Left;
-                    yield return Direction.Right;
-                    break;
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public IEnumerable<Direction> DirectionsOfNeighbors() => DirectionsOfNeighborsCache;
 
-                case Types.Diagonals:
-                    yield return Direction.UpLeft;
-                    yield return Direction.UpRight;
-                    yield return Direction.DownLeft;
-                    yield return Direction.DownRight;
-                    break;
-
-                case Types.EightWay:
-                    yield return Direction.Up;
-                    yield return Direction.Down;
-                    yield return Direction.Left;
-                    yield return Direction.Right;
-                    yield return Direction.UpLeft;
-                    yield return Direction.UpRight;
-                    yield return Direction.DownLeft;
-                    yield return Direction.DownRight;
-                    break;
-                default:
-                    throw new NotSupportedException(
-                        $"{nameof(DirectionsOfNeighbors)} does not support AdjacencyRule type {Type} -- this is a bug!");
-            }
-        }
 
         /// <summary>
         /// Gets directions leading to neighboring locations, according to the current adjacency
@@ -116,52 +120,9 @@ namespace SadRogue.Primitives
         /// for diagonals.</param>
         /// <returns>Directions that lead to neighboring locations.</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public IEnumerable<Direction> DirectionsOfNeighborsClockwise(Direction startingDirection = default)
-        {
-            switch (Type)
-            {
-                case Types.Cardinals:
-                    if (startingDirection == Direction.None)
-                        startingDirection = Direction.Up;
-
-                    if ((int)startingDirection.Type % 2 == 0)
-                        startingDirection++; // Make it a cardinal
-
-                    yield return startingDirection;
-                    yield return startingDirection + 2;
-                    yield return startingDirection + 4;
-                    yield return startingDirection + 6;
-                    break;
-
-                case Types.Diagonals:
-                    if (startingDirection == Direction.None)
-                        startingDirection = Direction.UpRight;
-
-                    if ((int)startingDirection.Type % 2 == 1)
-                        startingDirection++; // Make it a diagonal
-
-                    yield return startingDirection;
-                    yield return startingDirection + 2;
-                    yield return startingDirection + 4;
-                    yield return startingDirection + 6;
-                    break;
-
-                case Types.EightWay:
-                    if (startingDirection == Direction.None)
-                        startingDirection = Direction.Up;
-
-                    for (int i = 1; i <= 8; i++)
-                    {
-                        yield return startingDirection;
-                        startingDirection++;
-                    }
-
-                    break;
-                default:
-                    throw new NotSupportedException(
-                        $"{nameof(DirectionsOfNeighborsClockwise)} does not support AdjacencyRule type {Type} -- this is a bug!");
-            }
-        }
+            => DirectionsOfNeighborsClockwiseType(Type, startingDirection);
 
         /// <summary>
         /// Gets directions leading to neighboring locations, according to the current adjacency
@@ -174,51 +135,7 @@ namespace SadRogue.Primitives
         /// <returns>Directions that lead to neighboring locations.</returns>
         [Pure]
         public IEnumerable<Direction> DirectionsOfNeighborsCounterClockwise(Direction startingDirection = default)
-        {
-            switch (Type)
-            {
-                case Types.Cardinals:
-                    if (startingDirection == Direction.None)
-                        startingDirection = Direction.Up;
-
-                    if ((int)startingDirection.Type % 2 == 0)
-                        startingDirection--; // Make it a cardinal
-
-                    yield return startingDirection;
-                    yield return startingDirection - 2;
-                    yield return startingDirection - 4;
-                    yield return startingDirection - 6;
-                    break;
-
-                case Types.Diagonals:
-                    if (startingDirection == Direction.None)
-                        startingDirection = Direction.UpLeft;
-
-                    if ((int)startingDirection.Type % 2 == 1)
-                        startingDirection--; // Make it a diagonal
-
-                    yield return startingDirection;
-                    yield return startingDirection - 2;
-                    yield return startingDirection - 4;
-                    yield return startingDirection - 6;
-                    break;
-
-                case Types.EightWay:
-                    if (startingDirection == Direction.None)
-                        startingDirection = Direction.Up;
-
-                    for (int i = 1; i <= 8; i++)
-                    {
-                        yield return startingDirection;
-                        startingDirection--;
-                    }
-
-                    break;
-                default:
-                    throw new NotSupportedException(
-                        $"{nameof(DirectionsOfNeighborsCounterClockwise)} does not support AdjacencyRule type {Type} -- this is a bug!");
-            }
-        }
+            => DirectionsOfNeighborsCounterClockwiseType(Type, startingDirection);
 
         /// <summary>
         /// True if the given AdjacencyRule has the same Type the current one.
@@ -226,6 +143,7 @@ namespace SadRogue.Primitives
         /// <param name="other">AdjacencyRule to compare.</param>
         /// <returns>True if the two directions are the same, false if not.</returns>
         [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool Matches(AdjacencyRule other) => Equals(other);
 
         /// <summary>
@@ -406,5 +324,134 @@ namespace SadRogue.Primitives
         /// <returns>A string representation of the <see cref="AdjacencyRule"/>.</returns>
         [Pure]
         public override string ToString() => s_writeValues[(int)Type];
+
+        private static IEnumerable<Direction> DirectionsOfNeighborsType(Types type)
+        {
+            switch (type)
+            {
+                case Types.Cardinals:
+                    yield return Direction.Up;
+                    yield return Direction.Down;
+                    yield return Direction.Left;
+                    yield return Direction.Right;
+                    break;
+
+                case Types.Diagonals:
+                    yield return Direction.UpLeft;
+                    yield return Direction.UpRight;
+                    yield return Direction.DownLeft;
+                    yield return Direction.DownRight;
+                    break;
+
+                case Types.EightWay:
+                    yield return Direction.Up;
+                    yield return Direction.Down;
+                    yield return Direction.Left;
+                    yield return Direction.Right;
+                    yield return Direction.UpLeft;
+                    yield return Direction.UpRight;
+                    yield return Direction.DownLeft;
+                    yield return Direction.DownRight;
+                    break;
+                default:
+                    throw new NotSupportedException(
+                        $"{nameof(DirectionsOfNeighbors)} does not support AdjacencyRule type {type} -- this is a bug!");
+            }
+        }
+
+        private static IEnumerable<Direction> DirectionsOfNeighborsClockwiseType(
+            Types type, Direction startingDirection = default)
+        {
+            switch (type)
+            {
+                case Types.Cardinals:
+                    if (startingDirection == Direction.None)
+                        startingDirection = Direction.Up;
+
+                    if ((int)startingDirection.Type % 2 == 0)
+                        startingDirection++; // Make it a cardinal
+
+                    yield return startingDirection;
+                    yield return startingDirection + 2;
+                    yield return startingDirection + 4;
+                    yield return startingDirection + 6;
+                    break;
+
+                case Types.Diagonals:
+                    if (startingDirection == Direction.None)
+                        startingDirection = Direction.UpRight;
+
+                    if ((int)startingDirection.Type % 2 == 1)
+                        startingDirection++; // Make it a diagonal
+
+                    yield return startingDirection;
+                    yield return startingDirection + 2;
+                    yield return startingDirection + 4;
+                    yield return startingDirection + 6;
+                    break;
+
+                case Types.EightWay:
+                    if (startingDirection == Direction.None)
+                        startingDirection = Direction.Up;
+
+                    for (int i = 1; i <= 8; i++)
+                    {
+                        yield return startingDirection;
+                        startingDirection++;
+                    }
+
+                    break;
+                default:
+                    throw new NotSupportedException(
+                        $"{nameof(DirectionsOfNeighborsClockwise)} does not support AdjacencyRule type {type} -- this is a bug!");
+            }
+        }
+
+        private static IEnumerable<Direction> DirectionsOfNeighborsCounterClockwiseType(Types type, Direction startingDirection = default)
+        {
+            switch (type)
+            {
+                case Types.Cardinals:
+                    if (startingDirection == Direction.None)
+                        startingDirection = Direction.Up;
+
+                    if ((int)startingDirection.Type % 2 == 0)
+                        startingDirection--; // Make it a cardinal
+
+                    yield return startingDirection;
+                    yield return startingDirection - 2;
+                    yield return startingDirection - 4;
+                    yield return startingDirection - 6;
+                    break;
+
+                case Types.Diagonals:
+                    if (startingDirection == Direction.None)
+                        startingDirection = Direction.UpLeft;
+
+                    if ((int)startingDirection.Type % 2 == 1)
+                        startingDirection--; // Make it a diagonal
+
+                    yield return startingDirection;
+                    yield return startingDirection - 2;
+                    yield return startingDirection - 4;
+                    yield return startingDirection - 6;
+                    break;
+
+                case Types.EightWay:
+                    if (startingDirection == Direction.None)
+                        startingDirection = Direction.Up;
+
+                    for (int i = 1; i <= 8; i++)
+                    {
+                        yield return startingDirection;
+                        startingDirection--;
+                    }
+
+                    break;
+                default:
+                    throw new NotSupportedException(
+                        $"{nameof(DirectionsOfNeighborsCounterClockwise)} does not support AdjacencyRule type {type} -- this is a bug!");
+            }
+        }
     }
 }

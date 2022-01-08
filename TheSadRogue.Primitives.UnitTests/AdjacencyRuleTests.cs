@@ -327,5 +327,17 @@ namespace SadRogue.Primitives.UnitTests
         }
 
         #endregion
+
+        #region Caches Equal to Functions
+
+        [Theory]
+        [MemberDataEnumerable(nameof(AdjacencyRules))]
+        public void CachesEqualToFunction(AdjacencyRule rule)
+        {
+            TestUtils.AssertElementEquals(rule.DirectionsOfNeighbors().ToArray(), rule.DirectionsOfNeighborsCache);
+            TestUtils.AssertElementEquals(rule.DirectionsOfNeighborsClockwise().ToArray(), rule.DirectionsOfNeighborsClockwiseCache);
+            TestUtils.AssertElementEquals(rule.DirectionsOfNeighborsCounterClockwise().ToArray(), rule.DirectionsOfNeighborsCounterClockwiseCache);
+        }
+        #endregion
     }
 }

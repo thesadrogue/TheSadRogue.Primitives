@@ -1,4 +1,6 @@
-﻿namespace SadRogue.Primitives.GridViews
+﻿using System.Runtime.CompilerServices;
+
+namespace SadRogue.Primitives.GridViews
 {
     /// <summary>
     /// A convenient base class to inherit from when implementing <see cref="IGridView{T}"/> that minimizes
@@ -18,9 +20,17 @@
         public int Count => Width * Height;
 
         /// <inheritdoc />
-        public T this[int x, int y] => this[new Point(x, y)];
+        public T this[int x, int y]
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get => this[new Point(x, y)];
+        }
 
         /// <inheritdoc />
-        public T this[int index1D] => this[Point.FromIndex(index1D, Width)];
+        public T this[int index1D]
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get => this[Point.FromIndex(index1D, Width)];
+        }
     }
 }

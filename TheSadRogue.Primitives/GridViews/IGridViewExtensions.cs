@@ -173,7 +173,15 @@ namespace SadRogue.Primitives.GridViews
         /// <param name="self" />
         /// <param name="value">Value to fill the grid view with.</param>
         public static void Fill<T>(this ISettableGridView<T> self, T value)
-            => self.ApplyOverlay(_ => value);
+        {
+            // This method is much faster for BitArrayView, so we'll special-case it to provide the best optimization
+            // we can.  It's still better to call the BitArrayView directly, but since the Fill method can be
+            // easily 10x faster for Bit arrays, even with both of these casts it's still faster than not
+            if (self is BitArrayView bitArray && value is bool b)
+                bitArray.Fill(b);
+            else
+                self.ApplyOverlay(_ => value);
+        }
 
         /// <summary>
         /// Iterates through each position in the grid view.

@@ -1,30 +1,47 @@
 ﻿using System;
+using System.Collections;
 using System.Runtime.CompilerServices;
 
 namespace SadRogue.Primitives.GridViews
 {
     /// <summary>
-    /// Implementation of <see cref="ISettableGridView{T}" /> that uses a 1D array to store data.
+    /// A grid view that wraps a C# BitArray into a settable grid view of boolean values.
     /// </summary>
     /// <remarks>
-    /// An <see cref="ArrayView{T}" /> can be implicitly converted to its underlying 1D array,
-    /// which allows exposing that array to code that works with 1D arrays.  Modifications in the array
-    /// appear in the map view as well.
-    ///
-    /// If you need a 2D array instead of 1D, then you should use <see cref="ArrayView2D{T}" /> instead.
+    /// This grid view con be useful to represent a region or area of a 2d grid where points are either "on" or "off".
+    /// HashSet&lt;Point&gt; can work for this purpose, but hashing can be slow.  bool[] or ArrayView&lt;bool&gt;
+    /// are other options, but this class uses approximately 8x less memory than those options, and is only very slightly
+    /// slower (less than 0.5ns) in terms of index access.  The Fill operation is actually much faster than the
+    /// corresponding operation for a boolean array, which can make it a very useful alternative as a "visited" array
+    /// when iterating over a grid.
     /// </remarks>
-    /// <typeparam name="T">The type of value being stored.</typeparam>
-    public sealed class ArrayView<T> : SettableGridView1DIndexBase<T>, ICloneable, IMatchable<ArrayView<T>>
+    public sealed class BitArrayView : SettableGridView1DIndexBase<bool>, ICloneable, IMatchable<BitArrayView>
     {
-        private readonly T[] _array;
+        private readonly BitArray _array;
+
+        /// <inheritdoc />
+        public override int Height { get; }
+
+        /// <inheritdoc />
+        public override int Width { get; }
+
+        /// <inheritdoc />
+        public override bool this[int index1D]
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get => _array[index1D];
+
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            set => _array[index1D] = value;
+        }
 
         /// <summary>
         /// Constructor. Takes width and height of array to create.
         /// </summary>
         /// <param name="width">Width of array.</param>
         /// <param name="height">Height of array.</param>
-        public ArrayView(int width, int height)
-            : this(new T[width * height], width)
+        public BitArrayView(int width, int height)
+            : this(new BitArray(width * height), width)
         { }
 
         /// <summary>
@@ -33,10 +50,10 @@ namespace SadRogue.Primitives.GridViews
         /// </summary>
         /// <param name="existingArray">Existing 1D array to use as the underlying array.</param>
         /// <param name="width">The width of the 2D grid represented by <paramref name="existingArray" />.</param>
-        public ArrayView(T[] existingArray, int width)
+        public BitArrayView(BitArray existingArray, int width)
         {
             if (existingArray.Length % width != 0)
-                throw new ArgumentException($"Existing array must have length equal to {nameof(width)}*height.",
+                throw new ArgumentException($"Existing {nameof(BitArray)} must have length equal to {nameof(width)}*height.",
                     nameof(existingArray));
 
             _array = existingArray;
@@ -45,12 +62,12 @@ namespace SadRogue.Primitives.GridViews
         }
 
         /// <summary>
-        /// Performs deep copy of array view.
+        /// Performs deep copy of bit-array view.
         /// </summary>
-        /// <returns>The cloned ArrayView.</returns>
+        /// <returns>The cloned BitArrayView.</returns>
         public object Clone()
         {
-            var newObj = new ArrayView<T>(Width, Height);
+            var newObj = new BitArrayView(Width, Height);
 
             for (int x = 0; x < Width; x++)
                 for (int y = 0; y < Height; y++)
@@ -60,48 +77,35 @@ namespace SadRogue.Primitives.GridViews
         }
 
         /// <summary>
-        /// Compares the current ArrayView to the one given.
+        /// Compares the current BitArrayView to the one given.
         /// </summary>
         /// <param name="other" />
-        /// <returns>True if the given ArrayView&lt;T&gt; references the same underlying array, false otherwise.</returns>
-        public bool Matches(ArrayView<T>? other) => !(other is null) && _array == other._array;
+        /// <returns>True if the given BitArrayView references the same underlying bit-array, false otherwise.</returns>
+        public bool Matches(BitArrayView? other) => !(other is null) && _array == other._array;
 
-        /// <inheritdoc />
-        public override int Height { get; }
-
-        /// <inheritdoc />
-        public override int Width { get; }
-
-        /// <inheritdoc />
-        public override T this[int index1D]
-        {
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            get => _array[index1D];
-
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            set => _array[index1D] = value;
-        }
-
-#pragma warning disable CA2225 // The proper equivalent function is provided, however because the type is [] instead of Array the analyzer cannot determine this properly.
         /// <summary>
-        /// Allows implicit conversion to 1D array.  Does not copy the underlying values.
+        /// Allows implicit conversion to BitArray.  Does not copy the underlying values.
         /// </summary>
-        /// <param name="arrayView">ArrayView to convert.</param>
-        public static implicit operator T[](ArrayView<T> arrayView) => arrayView._array;
-#pragma warning restore CA2225
+        /// <param name="arrayView">BitArrayView to convert.</param>
+        public static implicit operator BitArray(BitArrayView arrayView) => arrayView._array;
 
         /// <summary>
-        /// Converts to 1D array, without copying the values.  Typically using this method is unnecessary
+        /// Converts to BitArray, without copying the values.  Typically using this method is unnecessary
         /// and you can use the implicit conversion defined for this type instead.
         /// </summary>
-        /// <returns>The underlying ArrayView data as a 1D array.</returns>
-        public T[] ToArray() => this;
+        /// <returns>The underlying BitArray data as a 1D array.</returns>
+        public BitArray ToBitArray() => this;
 
         /// <summary>
-        /// Sets each element in the ArrayView to the default for type T.
+        /// Sets each location in the grid view to the value specified.
         /// </summary>
+        /// <remarks>
+        /// This method is much faster than the typical Fill extension method for grid views; and is even faster than an
+        /// equivalently sized boolean array's Clear operation.
+        /// </remarks>
+        /// <param name="value">Value to fill the grid view with.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void Clear() => Array.Clear(_array, 0, _array.Length);
+        public void Fill(bool value) => _array.SetAll(value);
 
         /// <summary>
         /// Returns a string representation of the grid values.
@@ -117,7 +121,7 @@ namespace SadRogue.Primitives.GridViews
         /// Function determining the string representation of each value.
         /// </param>
         /// <returns>A string representation of the grid values.</returns>
-        public string ToString(Func<T, string> elementStringifier)
+        public string ToString(Func<bool, string> elementStringifier)
             => this.ExtendToString(elementStringifier: elementStringifier);
 
         /// <summary>
@@ -137,7 +141,7 @@ namespace SadRogue.Primitives.GridViews
         /// function of type T.
         /// </param>
         /// <returns>A string representation of the grid values.</returns>
-        public string ToString(int fieldSize, Func<T, string>? elementStringifier = null)
+        public string ToString(int fieldSize, Func<bool, string>? elementStringifier = null)
             => this.ExtendToString(fieldSize, elementStringifier: elementStringifier);
     }
 }

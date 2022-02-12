@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 
 namespace SadRogue.Primitives.GridViews
 {
@@ -63,7 +64,10 @@ namespace SadRogue.Primitives.GridViews
         /// <inheritdoc />
         public override T this[Point pos]
         {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get => _array[pos.X, pos.Y];
+
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             set => _array[pos.X, pos.Y] = value;
         }
 
@@ -103,6 +107,7 @@ namespace SadRogue.Primitives.GridViews
         /// <summary>
         /// Sets each element in the ArrayView to the default for type T.
         /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void Clear() => Array.Clear(_array, 0, _array.Length);
 
         /// <summary>

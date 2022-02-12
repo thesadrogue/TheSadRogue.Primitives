@@ -199,8 +199,9 @@ namespace SadRogue.Primitives
                 yield return cur;
 
                 // Add neighbors
-                foreach (Point neighbor in rule.Neighbors(cur))
+                for (int i = 0; i < rule.DirectionsOfNeighborsCache.Length; i++)
                 {
+                    var neighbor = cur + rule.DirectionsOfNeighborsCache[i];
                     localNeighbor = neighbor - topLeft;
 
                     if (distCalc.Calculate(context.Center, neighbor) > context.Radius ||

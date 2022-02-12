@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
+using SadRogue.Primitives.GridViews;
 
 namespace SadRogue.Primitives
 {
@@ -179,9 +180,9 @@ namespace SadRogue.Primitives
             if (context._newlyInitialized)
                 context._newlyInitialized = false;
             else
-                Array.Clear(context._inQueue, 0, context._inQueue.Length);
+                context._inQueue.Fill(false);
 
-            int startArrayIndex = context._inQueue.GetLength(0) / 2;
+            int startArrayIndex = context._inQueue.Width / 2;
             Point topLeft = context.Center - context.Radius;
             AdjacencyRule rule = this;
             Distance distCalc = this;
@@ -336,7 +337,7 @@ namespace SadRogue.Primitives
     /// </summary>
     public class RadiusLocationContext
     {
-        internal bool[,] _inQueue;
+        internal BitArrayView _inQueue;
         internal bool _newlyInitialized;
 
         private int _radius;
@@ -353,7 +354,7 @@ namespace SadRogue.Primitives
                 {
                     _radius = value;
                     int size = _radius * 2 + 1;
-                    _inQueue = new bool[size, size];
+                    _inQueue = new BitArrayView(size, size);
                 }
             }
         }
@@ -385,7 +386,7 @@ namespace SadRogue.Primitives
             Bounds = bounds;
 
             int size = _radius * 2 + 1;
-            _inQueue = new bool[size, size];
+            _inQueue = new BitArrayView(size, size);
             _newlyInitialized = true;
         }
 

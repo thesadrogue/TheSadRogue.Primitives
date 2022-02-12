@@ -2,11 +2,11 @@
 
   <PropertyGroup>
 	<!-- Basic package info -->
-    <TargetFrameworks>netstandard2.1;netcoreapp3.1;net5.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.1;netcoreapp3.1;net5.0;net6.0</TargetFrameworks>
     <RootNamespace>SadRogue.Primitives</RootNamespace>
     <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
-	<Version>1.2.0</Version>
+	<Version>1.3.0</Version>
 	<Version Condition="'$(Configuration)'=='Debug'">$(Version)-debug</Version>
 	<Authors>Chris3606;Thraka</Authors>
 	<Company>TheSadRogue</Company>
@@ -16,7 +16,8 @@
 	<!-- More nuget package settings-->
 	<PackageId>TheSadRogue.Primitives</PackageId>
 	<PackageReleaseNotes>
-		- Added arrays that cache adjacency rules
+		- Added grid view which wraps a BitArray
+    - Optimized speed (~60% faster) and memory usage (~8x less) for PositionsInRadius
 	</PackageReleaseNotes>
 	<RepositoryUrl>https://https://github.com/thesadrogue/TheSadRogue.Primitives</RepositoryUrl>
 	<RepositoryType>git</RepositoryType>

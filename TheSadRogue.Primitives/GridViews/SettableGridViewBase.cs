@@ -1,4 +1,6 @@
-﻿namespace SadRogue.Primitives.GridViews
+﻿using System.Runtime.CompilerServices;
+
+namespace SadRogue.Primitives.GridViews
 {
     /// <summary>
     /// A convenient base class to inherit from when implementing <see cref="ISettableGridView{T}"/> that minimizes
@@ -21,14 +23,20 @@
         /// <inheritdoc cref="ISettableGridView{T}"/>
         public T this[int x, int y]
         {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get => this[new Point(x, y)];
+
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             set => this[new Point(x, y)] = value;
         }
 
         /// <inheritdoc cref="ISettableGridView{T}"/>
         public T this[int index1D]
         {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get => this[Point.FromIndex(index1D, Width)];
+
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             set => this[Point.FromIndex(index1D, Width)] = value;
         }
     }

@@ -16,7 +16,7 @@
 	<!-- More nuget package settings-->
 	<PackageId>TheSadRogue.Primitives.MonoGame</PackageId>
 	<PackageReleaseNotes>Multi-targeted to .NET 6.  Updated to depend on most recent 1.x release of core primitives.</PackageReleaseNotes>
-	<RepositoryUrl>https://https://github.com/thesadrogue/TheSadRogue.Primitives</RepositoryUrl>
+	<RepositoryUrl>https://github.com/thesadrogue/TheSadRogue.Primitives</RepositoryUrl>
 	<RepositoryType>git</RepositoryType>
 	<PublishRepositoryUrl>true</PublishRepositoryUrl>
 	<PackageLicenseExpression>MIT</PackageLicenseExpression>

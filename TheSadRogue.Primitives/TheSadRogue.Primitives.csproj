@@ -19,7 +19,7 @@
 		- Added grid view which wraps a BitArray
     - Optimized speed (~60% faster) and memory usage (~8x less) for PositionsInRadius
 	</PackageReleaseNotes>
-	<RepositoryUrl>https://https://github.com/thesadrogue/TheSadRogue.Primitives</RepositoryUrl>
+	<RepositoryUrl>https://github.com/thesadrogue/TheSadRogue.Primitives</RepositoryUrl>
 	<RepositoryType>git</RepositoryType>
 	<PublishRepositoryUrl>true</PublishRepositoryUrl>
 	<PackageLicenseExpression>MIT</PackageLicenseExpression>

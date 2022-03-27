@@ -15,8 +15,8 @@
 
 	<!-- More nuget package settings-->
 	<PackageId>TheSadRogue.Primitives.SFML</PackageId>
-	<PackageReleaseNotes>Multi-targted to .NET 6.  Updated to use the most recent 1.x version of the primitives library.</PackageReleaseNotes>
-	<RepositoryUrl>https://https://github.com/thesadrogue/TheSadRogue.Primitives</RepositoryUrl>
+	<PackageReleaseNotes>Multi-targeted to .NET 6.  Updated to use the most recent 1.x version of the primitives library.</PackageReleaseNotes>
+	<RepositoryUrl>https://github.com/thesadrogue/TheSadRogue.Primitives</RepositoryUrl>
 	<RepositoryType>git</RepositoryType>
 	<PublishRepositoryUrl>true</PublishRepositoryUrl>
 	<PackageLicenseExpression>MIT</PackageLicenseExpression>

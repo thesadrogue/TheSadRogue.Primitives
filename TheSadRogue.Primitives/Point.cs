@@ -23,13 +23,18 @@ namespace SadRogue.Primitives
     {
         /// <summary>
         /// Point value that represents None or no position (since Point is not a nullable type).
-        /// Typically you would use this constant instead of null.
+        /// You can use this constant instead of null if you wish to avoid the use of Point?.
         /// </summary>
         /// <remarks>
         /// This constant has (x, y) values (int.MinValue, int.MinValue), so a position with those
         /// x/y values is not considered a valid coordinate by many functions.
         /// </remarks>
         public static readonly Point None = new Point(int.MinValue, int.MinValue);
+
+        /// <summary>
+        /// Point value representing Zero (eg, (0, 0)).
+        /// </summary>
+        public static readonly Point Zero = new Point(0, 0);
 
         /// <summary>
         /// X-value of the position.

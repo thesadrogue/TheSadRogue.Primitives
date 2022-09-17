@@ -4,6 +4,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using Xunit;
 using XUnit.ValueTuples;
+#pragma warning disable SYSLIB0011
 
 namespace SadRogue.Primitives.UnitTests.Serialization
 {

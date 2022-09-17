@@ -6,7 +6,7 @@ using System.Runtime.Serialization;
 namespace SadRogue.Primitives
 {
     /// <summary>
-    /// Structure representing methods of calculating distance on a grid. You cannot create instances of this
+    /// Class representing methods of calculating distance on a grid. You cannot create instances of this
     /// class using a constructor -- instead this class contains static instances representing the
     /// various distance calculations.
     /// </summary>
@@ -15,34 +15,43 @@ namespace SadRogue.Primitives
     /// measurement being used. Instances of Distance are also implicitly convertible to both
     /// <see cref="Radius"/> and <see cref="AdjacencyRule"/> (since both a method of determining adjacent
     /// locations and a radius shape are implied by a distance calculation).
+    ///
+    /// Note that, although this class is abstract, you cannot practically create your own subclasses.
+    /// Each subclass requires an entry in <see cref="Distance.Types"/> to function properly.  The class is only
+    /// abstract in order to allow an internal implementation which will maximize performance.
     /// </remarks>
     [DataContract]
-    public readonly struct Distance : IEquatable<Distance>, IMatchable<Distance>
+    public abstract class Distance : IMatchable<Distance>
     {
         /// <summary>
         /// Represents chebyshev distance (equivalent to 8-way movement with no extra cost for diagonals).
         /// </summary>
-        public static Distance Chebyshev = new Distance(Types.Chebyshev);
+        public static ChebyshevDistance Chebyshev = new ChebyshevDistance();
 
         /// <summary>
         /// Represents euclidean distance (equivalent to 8-way movement with ~1.41 movement cost for diagonals).
         /// </summary>
-        public static Distance Euclidean = new Distance(Types.Euclidean);
+        public static EuclideanDistance Euclidean = new EuclideanDistance();
 
         /// <summary>
         /// Represents manhattan distance (equivalent to 4-way, cardinal-only movement).
         /// </summary>
-        public static Distance Manhattan = new Distance(Types.Manhattan);
+        public static ManhattanDistance Manhattan = new ManhattanDistance();
 
         /// <summary>
-        /// Enum value representing the method of calcuating distance -- useful for using
+        /// Enum value representing the method of calculating distance -- useful for using
         /// Distance types in switch statements.
         /// </summary>
-        [DataMember] public readonly Types Type;
+        [DataMember]
+        public Types Type { get; }
 
         private static readonly string[] s_writeVals = Enum.GetNames(typeof(Types));
 
-        private Distance(Types type) => Type = type;
+        /// <summary>
+        /// Creates a new Distance class to represent the distance calculation specified by the type.
+        /// </summary>
+        /// <param name="type"/>
+        protected Distance(Types type) => Type = type;
 
         /// <summary>
         /// Enum representing Distance types. Each Distance instance has a <see cref="Type"/> field
@@ -166,38 +175,7 @@ namespace SadRogue.Primitives
         /// <param name="dy">The delta-y between the two locations.</param>
         /// <returns>The distance between two locations with the given delta-change values.</returns>
         [Pure]
-        public double Calculate(double dx, double dy)
-        {
-            dx = Math.Abs(dx);
-            dy = Math.Abs(dy);
-
-            return Type switch
-            {
-                Types.Chebyshev => Math.Max(dx, dy), // Radius is the longest axial distance
-                Types.Manhattan => dx + dy, // Simply manhattan distance
-                Types.Euclidean => Math.Sqrt(dx * dx + dy * dy), // Spherical radius
-                _ => throw new NotSupportedException(
-                    $"{nameof(Calculate)} does not support distance calculation {this}: this is a bug!")
-            };
-        }
-
-        /// <summary>
-        /// True if the given Distance has the same Type the current one.
-        /// </summary>
-        /// <param name="other">Distance to compare.</param>
-        /// <returns>True if the two distance calculation methods are the same, false if not.</returns>
-        [Pure]
-        public bool Equals(Distance other) => Type == other.Type;
-
-        /// <summary>
-        /// Same as operator == in this case; returns false if <paramref name="obj"/> is not a Distance.
-        /// </summary>
-        /// <param name="obj">The object to compare the current Distance to.</param>
-        /// <returns>
-        /// True if <paramref name="obj"/> is a Distance, and the two distance calculations are equal, false otherwise.
-        /// </returns>
-        [Pure]
-        public override bool Equals(object? obj) => obj is Distance c && Equals(c);
+        public abstract double Calculate(double dx, double dy);
 
         /// <summary>
         /// Returns a hash-map value for the current object.
@@ -212,27 +190,7 @@ namespace SadRogue.Primitives
         /// <param name="other">Distance to compare.</param>
         /// <returns>True if the two distance calculation methods are the same, false if not.</returns>
         [Pure]
-        public bool Matches(Distance other) => Equals(other);
-
-        /// <summary>
-        /// True if the two Distances have the same Type.
-        /// </summary>
-        /// <param name="lhs"/>
-        /// <param name="rhs"/>
-        /// <returns>True if the two distance calculations are equal, false if not.</returns>
-        [Pure]
-        public static bool operator ==(Distance lhs, Distance rhs) => lhs.Type == rhs.Type;
-
-        /// <summary>
-        /// True if the types are not equal.
-        /// </summary>
-        /// <param name="lhs"/>
-        /// <param name="rhs"/>
-        /// <returns>
-        /// True if the types are not equal, false if they are both equal.
-        /// </returns>
-        [Pure]
-        public static bool operator !=(Distance lhs, Distance rhs) => !(lhs == rhs);
+        public bool Matches(Distance? other) => !(other is null) && Type == other.Type;
 
         /// <summary>
         /// Returns a string representation of the distance calculation method represented.
@@ -241,4 +199,56 @@ namespace SadRogue.Primitives
         [Pure]
         public override string ToString() => s_writeVals[(int)Type];
     }
+
+    /// <summary>
+    /// Represents manhattan distance (equivalent to 4-way, cardinal-only movement).
+    /// </summary>
+    /// <remarks>
+    /// You can't create instances of this class; instead, use <see cref="Distance.Manhattan"/>.
+    /// </remarks>
+    [DataContract]
+    public class ManhattanDistance : Distance
+    {
+        internal ManhattanDistance()
+            : base(Types.Manhattan)
+        { }
+
+        /// <inheritdoc />
+        public override double Calculate(double dx, double dy) => Math.Abs(dx) + Math.Abs(dy);
+    }
+
+    /// <summary>
+    /// Represents chebyshev distance (equivalent to 8-way movement with no extra cost for diagonals).
+    /// </summary>
+    /// <remarks>
+    /// You can't create instances of this class; instead, use <see cref="Distance.Chebyshev"/>.
+    /// </remarks>
+    [DataContract]
+    public class ChebyshevDistance : Distance
+    {
+        internal ChebyshevDistance()
+            : base(Types.Chebyshev)
+        { }
+
+        /// <inheritdoc />
+        public override double Calculate(double dx, double dy) => Math.Max(Math.Abs(dx), Math.Abs(dy));
+    }
+
+    /// /// <summary>
+    /// Represents euclidean distance (equivalent to 8-way movement with ~1.41 movement cost for diagonals).
+    /// </summary>
+    /// <remarks>
+    /// You can't create instances of this class; instead, use <see cref="Distance.Chebyshev"/>.
+    /// </remarks>
+    [DataContract]
+    public class EuclideanDistance : Distance
+    {
+        internal EuclideanDistance()
+            : base(Types.Euclidean)
+        { }
+
+        /// <inheritdoc />
+        public override double Calculate(double dx, double dy) => Math.Sqrt(dx * dx + dy * dy);
+    }
+
 }

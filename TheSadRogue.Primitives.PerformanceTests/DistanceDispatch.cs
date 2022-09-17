@@ -1,79 +1,117 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Diagnostics.Contracts;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 using BenchmarkDotNet.Attributes;
-using Iced.Intel;
 using SadRogue.Primitives;
 
 namespace TheSadRogue.Primitives.PerformanceTests
 {
-    public abstract class AbstractDistance
+    public readonly struct SwitchExpressionDistance
     {
-        public static readonly DistanceChebyshev Chebyshev = new DistanceChebyshev();
+        public static readonly SwitchExpressionDistance Chebyshev = new(Distance.Types.Chebyshev);
 
-        public static readonly DistanceEuclidean Euclidean = new DistanceEuclidean();
+        public static readonly SwitchExpressionDistance Euclidean = new(Distance.Types.Euclidean);
 
-        public static readonly DistanceManhattan Manhattan = new DistanceManhattan();
+        public static readonly SwitchExpressionDistance Manhattan = new(Distance.Types.Manhattan);
 
-        public abstract Distance.Types Type { get; }
+        public readonly Distance.Types Type;
 
-        public abstract double Calculate(double dx, double dy);
 
-        [Pure]
-        public static implicit operator Distance.Types(AbstractDistance distance) => distance.Type;
+        private SwitchExpressionDistance(Distance.Types type) => Type = type;
 
         [Pure]
-        public static implicit operator AbstractDistance(Distance.Types type) => type switch
+        public double Calculate(double dx, double dy) => Type switch
+        {
+            Distance.Types.Chebyshev => Math.Max(Math.Abs(dx),
+                Math.Abs(dy)), // Radius is the longest axial distance
+            Distance.Types.Manhattan => Math.Abs(dx) + Math.Abs(dy), // Simply manhattan distance
+            Distance.Types.Euclidean => Math.Sqrt(dx * dx + dy * dy), // Spherical radius
+            _ => throw new NotSupportedException(
+                $"{nameof(Calculate)} does not support distance calculation {this}: this is a bug!")
+        };
+
+        [Pure]
+        public static implicit operator SwitchExpressionDistance(Distance.Types type) => type switch
         {
             Distance.Types.Manhattan => Manhattan,
             Distance.Types.Euclidean => Euclidean,
             Distance.Types.Chebyshev => Chebyshev,
-            _ => throw new Exception($"Could not convert {nameof(Distance.Types)} to {nameof(Distance)} -- this is a bug!")
+            _ => throw new Exception(
+                $"Could not convert {nameof(Distance.Types)} to {nameof(Distance)} -- this is a bug!")
         };
     }
 
-    public sealed class DistanceManhattan : AbstractDistance
+    public readonly struct SwitchStatementDistance
     {
-        public override Distance.Types Type => Distance.Types.Manhattan;
+        public static readonly SwitchStatementDistance Chebyshev = new(Distance.Types.Chebyshev);
 
-        public override double Calculate(double dx, double dy)
+        public static readonly SwitchStatementDistance Euclidean = new(Distance.Types.Euclidean);
+
+        public static readonly SwitchStatementDistance Manhattan = new(Distance.Types.Manhattan);
+
+        public readonly Distance.Types Type;
+
+
+        private SwitchStatementDistance(Distance.Types type) => Type = type;
+
+        [Pure]
+        public double Calculate(double dx, double dy)
         {
-            dx = Math.Abs(dx);
-            dy = Math.Abs(dy);
-
-            return dx + dy;
+            switch (Type)
+            {
+                case Distance.Types.Chebyshev:
+                    return Math.Max(Math.Abs(dx), Math.Abs(dy));
+                case Distance.Types.Euclidean:
+                    return Math.Sqrt(dx * dx + dy * dy);
+                case Distance.Types.Manhattan:
+                    return Math.Abs(dx) + Math.Abs(dy);
+                default:
+                    return 0;
+            }
         }
+
+        [Pure]
+        public static implicit operator SwitchStatementDistance(Distance.Types type) => type switch
+        {
+            Distance.Types.Manhattan => Manhattan,
+            Distance.Types.Euclidean => Euclidean,
+            Distance.Types.Chebyshev => Chebyshev,
+            _ => throw new Exception(
+                $"Could not convert {nameof(Distance.Types)} to {nameof(Distance)} -- this is a bug!")
+        };
     }
 
-    public sealed class DistanceChebyshev : AbstractDistance
+    public readonly struct DistanceFunc
     {
-        public override Distance.Types Type => Distance.Types.Chebyshev;
+        public static readonly DistanceFunc Chebyshev = new(Distance.Types.Chebyshev);
 
-        public override double Calculate(double dx, double dy)
+        public static readonly DistanceFunc Euclidean = new(Distance.Types.Euclidean);
+
+        public static readonly DistanceFunc Manhattan = new(Distance.Types.Manhattan);
+
+        public readonly Distance.Types Type;
+
+        private readonly Func<double, double, double> _func;
+
+        private DistanceFunc(Distance.Types type)
         {
-            dx = Math.Abs(dx);
-            dy = Math.Abs(dy);
 
-            return Math.Max(dx, dy);
+            Type = type;
+            _func = Type switch
+            {
+                Distance.Types.Chebyshev => ChebyshevDistance,
+                Distance.Types.Manhattan => ManhattanDistance,
+                Distance.Types.Euclidean => EuclideanDistance,
+                _ => throw new Exception("Bad")
+            };
         }
-    }
 
-    public sealed class DistanceEuclidean : AbstractDistance
-    {
-        public override Distance.Types Type => Distance.Types.Euclidean;
+        [Pure]
+        public double Calculate(double dx, double dy) => _func(dx, dy);
 
-        public override double Calculate(double dx, double dy)
-        {
-            dx = Math.Abs(dx);
-            dy = Math.Abs(dy);
+        private static double ChebyshevDistance(double dx, double dy) => Math.Max(Math.Abs(dx), Math.Abs(dy));
+        private static double ManhattanDistance(double dx, double dy) => Math.Abs(dx) + Math.Abs(dy);
+        private static double EuclideanDistance(double dx, double dy) => Math.Sqrt(dx * dx + dy * dy);
 
-            return Math.Sqrt(dx * dx + dy * dy);
-        }
     }
 
 
@@ -88,21 +126,30 @@ namespace TheSadRogue.Primitives.PerformanceTests
         [ParamsAllValues]
         public Distance.Types DistanceType;
 
-        private Distance _distance;
-
-        private AbstractDistance _distanceAbstract;
+        private Distance _distance = null!;
+        private SwitchExpressionDistance _switchExpressionDistance;
+        private SwitchStatementDistance _switchStatementDistance;
+        private SwitchStatementDistance _funcDistance;
 
         [GlobalSetup]
         public void GlobalSetup()
         {
             _distance = DistanceType;
-            _distanceAbstract = DistanceType;
+            _switchExpressionDistance = DistanceType;
+            _switchStatementDistance = DistanceType;
+            _funcDistance = DistanceType;
         }
 
         [Benchmark]
-        public double DistanceWithSwitch() => _distance.Calculate(DeltaX, DeltaY);
+        public double DistanceSwitchExpression() => _switchExpressionDistance.Calculate(DeltaX, DeltaY);
 
         [Benchmark]
-        public double DistanceWithAbstract() => _distanceAbstract.Calculate(DeltaX, DeltaY);
+        public double DistanceSwitchStatement() => _switchStatementDistance.Calculate(DeltaX, DeltaY);
+
+        [Benchmark]
+        public double DistanceFunc() => _funcDistance.Calculate(DeltaX, DeltaY);
+
+        [Benchmark]
+        public double Distance() => _distance.Calculate(DeltaX, DeltaY);
     }
 }

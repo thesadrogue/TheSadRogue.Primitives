@@ -6,17 +6,17 @@
     <RootNamespace>SadRogue.Primitives</RootNamespace>
     <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
-	<Version>1.3.1</Version>
+	<Version>1.3.2</Version>
 	<Version Condition="'$(Configuration)'=='Debug'">$(Version)-debug</Version>
 	<Authors>Chris3606;Thraka</Authors>
 	<Company>TheSadRogue</Company>
-	<Copyright>Copyright © 2021 [Christopher Ridley (Chris3606) and TheSadRogue Steve De George JR (Thraka)]</Copyright>
+	<Copyright>Copyright © 2022 [Christopher Ridley (Chris3606) and TheSadRogue Steve De George JR (Thraka)]</Copyright>
 	<Description>A collection of primitive data structures for working with a 2-dimensional grid.</Description>
 
 	<!-- More nuget package settings-->
 	<PackageId>TheSadRogue.Primitives</PackageId>
 	<PackageReleaseNotes>
-		- Added Point.Zero for convenience.
+		- Modified Distance to use abstract class instead of switch expression for better performance.
 	</PackageReleaseNotes>
 	<RepositoryUrl>https://github.com/thesadrogue/TheSadRogue.Primitives</RepositoryUrl>
 	<RepositoryType>git</RepositoryType>

@@ -89,7 +89,7 @@ namespace SadRogue.Primitives
             var maxExtent = _positions.MaxExtent;
 
             for (int y = _positions.MinExtentY; y <= maxExtent.Y; y++)
-                for (int x = _positions.MinExtentX; x < maxExtent.X; x++)
+                for (int x = _positions.MinExtentX; x <= maxExtent.X; x++)
                     yield return new Point(x, y);
         }
     }

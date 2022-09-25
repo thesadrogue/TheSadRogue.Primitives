@@ -36,7 +36,7 @@ namespace SadRogue.Primitives
         {
             _positions = positions;
 
-            _current = positions.MinExtent;
+            _current = positions.MinExtent - new Point(1, 0);
         }
 
         /// <summary>
@@ -46,12 +46,12 @@ namespace SadRogue.Primitives
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool MoveNext()
         {
-            if (_current.X < _positions.MaxExtent.X)
+            if (_current.X + 1 <= _positions.MaxExtent.X)
             {
                 _current = new Point(_current.X + 1, _current.Y);
                 return true;
             }
-            else if (_current.Y < _positions.MaxExtent.Y)
+            else if (_current.Y + 1 <= _positions.MaxExtent.Y)
             {
                 _current = new Point(_positions.MinExtent.X, _current.Y + 1);
                 return true;

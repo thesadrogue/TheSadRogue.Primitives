@@ -8,23 +8,23 @@ namespace SadRogue.Primitives.UnitTests
     {
         #region Testdata
 
-        public static Distance[] Distances => new[] { Distance.Manhattan, Distance.Chebyshev, Distance.Euclidean };
+        public static Distance[] Distances => new[] { (Distance)Distance.Manhattan, Distance.Chebyshev, Distance.Euclidean };
 
         public static (Distance.Types, Distance)[] TypeDistanceConversion => new[]
         {
-            (Distance.Types.Chebyshev, Distance.Chebyshev), (Distance.Types.Euclidean, Distance.Euclidean),
+            (Distance.Types.Chebyshev, (Distance)Distance.Chebyshev), (Distance.Types.Euclidean, Distance.Euclidean),
             (Distance.Types.Manhattan, Distance.Manhattan)
         };
 
         public static (Distance, AdjacencyRule)[] AdjacencyRuleConversionValues => new[]
         {
-            (Distance.Chebyshev, AdjacencyRule.EightWay), (Distance.Euclidean, AdjacencyRule.EightWay),
+            ((Distance) Distance.Chebyshev, AdjacencyRule.EightWay), (Distance.Euclidean, AdjacencyRule.EightWay),
             (Distance.Manhattan, AdjacencyRule.Cardinals)
         };
 
         public static (Distance, Radius)[] RadiusConversionValues => new[]
         {
-            (Distance.Chebyshev, Radius.Square), (Distance.Euclidean, Radius.Circle),
+            ((Distance) Distance.Chebyshev, Radius.Square), (Distance.Euclidean, Radius.Circle),
             (Distance.Manhattan, Radius.Diamond)
         };
 
@@ -73,6 +73,7 @@ namespace SadRogue.Primitives.UnitTests
             foreach (Distance dist in dists)
             {
                 Assert.Equal(dist == compareDist, dist.Equals(compareDist));
+                // ReSharper disable once RedundantCast
                 Assert.Equal(dist == compareDist, dist.Equals((object)compareDist));
             }
         }

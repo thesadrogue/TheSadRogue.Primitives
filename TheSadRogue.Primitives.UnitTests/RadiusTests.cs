@@ -24,7 +24,7 @@ namespace SadRogue.Primitives.UnitTests
 
         public static (Radius, Distance)[] DistanceConversionValues => new[]
         {
-            (Radius.Square, Distance.Chebyshev), (Radius.Circle, Distance.Euclidean),
+            (Radius.Square, (Distance) Distance.Chebyshev), (Radius.Circle, Distance.Euclidean),
             (Radius.Diamond, Distance.Manhattan)
         };
 

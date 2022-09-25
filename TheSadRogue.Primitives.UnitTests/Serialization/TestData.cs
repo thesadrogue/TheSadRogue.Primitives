@@ -211,6 +211,9 @@ namespace SadRogue.Primitives.UnitTests.Serialization
             { typeof(DiffSerialized<int>), new[] { "Changes" } },
             { typeof(Direction), new[] { "Type" } },
             { typeof(Distance), new[] { "Type" } },
+            { typeof(ChebyshevDistance), new[] { "Type" } },
+            { typeof(ManhattanDistance), new[] { "Type" } },
+            { typeof(EuclideanDistance), new[] { "Type" } },
             { typeof(GradientStop), new[] { "Color", "Stop" } },
             { typeof(GradientStopSerialized), new[] { "Color", "Stop" } },
             { typeof(GradientSerialized), new[] { "Stops" } },
@@ -257,6 +260,9 @@ namespace SadRogue.Primitives.UnitTests.Serialization
             [typeof(Diff<int>)] = typeof(DiffSerialized<int>),
             [typeof(Direction)] = typeof(Direction.Types),
             [typeof(Distance)] = typeof(Distance.Types),
+            [typeof(ChebyshevDistance)] = typeof(Distance.Types),
+            [typeof(ManhattanDistance)] = typeof(Distance.Types),
+            [typeof(EuclideanDistance)] = typeof(Distance.Types),
             [typeof(GradientStop)] = typeof(GradientStopSerialized),
             [typeof(KnownSizeHasher)] = typeof(KnownSizeHasherSerialized),
             [typeof(KnownRangeHasher)] = typeof(KnownRangeHasherSerialized),
@@ -296,6 +302,18 @@ namespace SadRogue.Primitives.UnitTests.Serialization
 
             // KnownRangeHasher
             new KnownRangeHasher(new Point(1, 1), new Point(10, 10)),
+        };
+
+        /// <summary>
+        /// Mapping of any type to the type which defines the implicit conversion to its expressive type.  Types in here must:
+        /// a) Have an entry in _expressiveTypes
+        /// b) Map to one of their base classes (ie. ManhattanDistance can map to Distance, its base class, but not to ArbitraryClass1)
+        /// </summary>
+        public static readonly Dictionary<Type, Type> ImplicitTypeConversionMap = new Dictionary<Type, Type>
+        {
+            {typeof(ManhattanDistance), typeof(Distance)},
+            {typeof(ChebyshevDistance), typeof(Distance)},
+            {typeof(EuclideanDistance), typeof(Distance)}
         };
         #endregion
 

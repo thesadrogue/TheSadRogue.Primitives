@@ -86,11 +86,10 @@ namespace SadRogue.Primitives
             //    yield return pos
             //
             // However, this is slightly faster.
-            int width = _positions.Width;
-            int height = _positions.Height;
+            var maxExtent = _positions.MaxExtent;
 
-            for (int y = 0; y < height; y++)
-                for (int x = 0; x < width; x++)
+            for (int y = _positions.MinExtentY; y <= maxExtent.Y; y++)
+                for (int x = _positions.MinExtentX; x < maxExtent.X; x++)
                     yield return new Point(x, y);
         }
     }

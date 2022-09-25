@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Reports;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using SadRogue.Primitives;
 using SadRogue.Primitives.GridViews;
 
@@ -23,6 +24,12 @@ namespace TheSadRogue.Primitives.PerformanceTests.GridViews
             for (int y = 0; y < height; y++)
                 for (int x = 0; x < width; x++)
                     yield return new Point(x, y);
+        }
+
+        public static IEnumerable<Point> ToEnumerableShortcut(this RectanglePositionsEnumerable enumerable)
+        {
+            foreach (var pos in enumerable)
+                yield return pos;
         }
     }
 
@@ -127,6 +134,16 @@ namespace TheSadRogue.Primitives.PerformanceTests.GridViews
         {
             int sum = 0;
             foreach (var pos in _gridView.Positions().ToEnumerable())
+                sum += pos.X + pos.Y;
+
+            return sum;
+        }
+
+        [Benchmark]
+        public int PositionsToEnumerableIterationShortcutMethod()
+        {
+            int sum = 0;
+            foreach (var pos in _gridView.Positions().ToEnumerableShortcut())
                 sum += pos.X + pos.Y;
 
             return sum;

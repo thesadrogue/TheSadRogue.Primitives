@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using SadRogue.Primitives.GridViews;
 using SadRogue.Primitives.UnitTests.Mocks;
 using Xunit;
@@ -233,20 +234,20 @@ namespace SadRogue.Primitives.UnitTests.GridViews
         }
 
         [Fact]
-        public void PositionsEmptyRectTest()
+        public void PositionsIEnumerableEquivalent()
         {
-            var rect1 = new Rectangle(1, 2, 1, 0);
-            var rect2 = new Rectangle(1, 2, 0, 1);
-            var rect3 = new Rectangle(1, 2, 0, 0);
+            const int gridWidth = 80;
+            const int gridHeight = 61;
 
-            var set1 = rect1.Positions().ToEnumerable().ToHashSet();
-            Assert.Empty(set1);
+            IGridView<bool> view = new ArrayView<bool>(gridWidth, gridHeight);
 
-            var set2 = rect2.Positions().ToEnumerable().ToHashSet();
-            Assert.Empty(set2);
+            var l1 = new List<Point>();
+            foreach (var pos in view.Positions())
+                l1.Add(pos);
 
-            var set3 = rect3.Positions().ToEnumerable().ToHashSet();
-            Assert.Empty(set3);
+            var l2 = view.Positions().ToEnumerable().ToList();
+
+            Assert.Equal((IEnumerable<Point>)l1, l2);
         }
     }
 }

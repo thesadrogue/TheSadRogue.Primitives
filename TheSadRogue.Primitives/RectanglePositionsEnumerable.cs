@@ -81,8 +81,17 @@ namespace SadRogue.Primitives
         /// </returns>
         public IEnumerable<Point> ToEnumerable()
         {
-            foreach (var point in this)
-                yield return point;
+            // This is equivalent of:
+            // foreach (var pos in this)
+            //    yield return pos
+            //
+            // However, this is slightly faster.
+            int width = _positions.Width;
+            int height = _positions.Height;
+
+            for (int y = 0; y < height; y++)
+                for (int x = 0; x < width; x++)
+                    yield return new Point(x, y);
         }
     }
 }

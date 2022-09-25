@@ -254,5 +254,22 @@ namespace SadRogue.Primitives.UnitTests
             Assert.Empty(yLocations.Where(location => location < dividend.MinExtentY || location > dividend.MaxExtentY ));
         }
         #endregion
+
+        [Fact]
+        public void PositionsEmptyRectTest()
+        {
+            var rect1 = new Rectangle(1, 2, 1, 0);
+            var rect2 = new Rectangle(1, 2, 0, 1);
+            var rect3 = new Rectangle(1, 2, 0, 0);
+
+            var set1 = rect1.Positions().ToEnumerable().ToHashSet();
+            Assert.Empty(set1);
+
+            var set2 = rect2.Positions().ToEnumerable().ToHashSet();
+            Assert.Empty(set2);
+
+            var set3 = rect3.Positions().ToEnumerable().ToHashSet();
+            Assert.Empty(set3);
+        }
     }
 }

@@ -37,7 +37,7 @@ namespace SadRogue.Primitives.UnitTests.Serialization
             };
 
         public static Func<object, object, bool> GetComparisonFunc(object obj)
-            => _equalityMethods.GetValueOrDefault(obj.GetType(), (o1, o2) => o1.Equals(o2))!;
+            => _equalityMethods.GetValueOrDefault(obj.GetType(), (o1, o2) => o1.Equals(o2));
 
         private static Func<object, object, bool> CastFromObject<T>(Func<T, T, bool> func)
             => (o1, o2) => func((T) o1, (T) o2);

@@ -96,16 +96,9 @@ namespace SadRogue.Primitives.GridViews
         /// <returns>The underlying BitArray data as a 1D array.</returns>
         public BitArray ToBitArray() => this;
 
-        /// <summary>
-        /// Sets each location in the grid view to the value specified.
-        /// </summary>
-        /// <remarks>
-        /// This method is much faster than the typical Fill extension method for grid views; and is even faster than an
-        /// equivalently sized boolean array's Clear operation.
-        /// </remarks>
-        /// <param name="value">Value to fill the grid view with.</param>
+        /// <inheritdoc/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void Fill(bool value) => _array.SetAll(value);
+        public override void Fill(bool value) => _array.SetAll(value);
 
         /// <summary>
         /// Returns a string representation of the grid values.

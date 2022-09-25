@@ -45,5 +45,15 @@ namespace SadRogue.Primitives.GridViews
 
         /// <inheritdoc cref="ISettableGridView{T}"/>
         public abstract T this[int index1D] { get; set; }
+
+        /// <inheritdoc/>
+        public virtual void Fill(T value)
+        {
+            for (int i = 0; i < Count; i++)
+                this[i] = value;
+        }
+
+        /// <inheritdoc/>
+        public virtual void Clear() => Fill(default!);
     }
 }

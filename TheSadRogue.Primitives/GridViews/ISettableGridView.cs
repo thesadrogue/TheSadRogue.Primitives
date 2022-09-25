@@ -48,5 +48,25 @@
         /// <param name="index1D">1D index of location to get/set the "value" for.</param>
         /// <returns>The "value" associated with the given location.</returns>
         new T this[int index1D] { get; set; }
+
+        /// <summary>
+        /// Sets every location within the grid view to the given value.
+        /// </summary>
+        /// <param name="value">Value to set to all locations in the grid view.</param>
+        void Fill(T value)
+        {
+            for (int i = 0; i < Count; i++)
+                this[i] = value;
+        }
+
+        /// <summary>
+        /// Sets every location within the grid view to the default value for the type.
+        /// </summary>
+        /// <remarks>
+        /// This function can sometimes be implemented more efficiently than Fill(default), so it is provided as an interface function to enable dispatching.
+        /// 
+        /// Remember the default value of a non-nullable type is null for reference types; so use with caution if your element type is non-nullable!
+        /// </remarks>
+        void Clear() => Fill(default!);
     }
 }

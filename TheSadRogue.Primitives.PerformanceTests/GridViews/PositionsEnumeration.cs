@@ -1,59 +1,28 @@
 ﻿using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using BenchmarkDotNet.Attributes;
 using SadRogue.Primitives;
 using SadRogue.Primitives.GridViews;
 
 namespace TheSadRogue.Primitives.PerformanceTests.GridViews
 {
-
-    public struct CustomPositionsEnumerable
+    public static class EnumerablePositionsExtension
     {
-        private Point _current;
-
-        public Point Current => _current;
-
-        private readonly Rectangle _positions;
-
-        public CustomPositionsEnumerable(Rectangle positions)
+        public static IEnumerable<Point> PositionsIEnumerable<T>(this IGridView<T> gridView)
         {
-            _positions = positions;
-
-            _current = positions.MinExtent;
+            for (int y = 0; y < gridView.Height; y++)
+                for (int x = 0; x < gridView.Width; x++)
+                    yield return new Point(x, y);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public bool MoveNext()
+        public static IEnumerable<Point> PositionsIEnumerableCacheWidthHeight<T>(this IGridView<T> gridView)
         {
-            //var maxExtent = _positions.MaxExtent;
-            if (_current.X < _positions.MaxExtent.X)
-            {
-                _current = new Point(_current.X + 1, _current.Y);
-                return true;
-            }
-            else if (_current.Y < _positions.MaxExtent.Y)
-            {
-                _current = new Point(_positions.MinExtent.X, _current.Y + 1);
-                return true;
-            }
+            int width = gridView.Width;
+            int height = gridView.Height;
 
-            return false;
+            for (int y = 0; y < height; y++)
+                for (int x = 0; x < width; x++)
+                    yield return new Point(x, y);
         }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public CustomPositionsEnumerable GetEnumerator() => this;
-
-        public IEnumerable<Point> ToEnumerable()
-        {
-            foreach (var point in this)
-                yield return point;
-        }
-    }
-
-    public static class CustomPositionsExtension
-    {
-        public static CustomPositionsEnumerable PositionsCustom<T>(this IGridView<T> gridView)
-            => new CustomPositionsEnumerable(gridView.Bounds());
     }
 
     public class PositionsEnumeration
@@ -104,20 +73,30 @@ namespace TheSadRogue.Primitives.PerformanceTests.GridViews
         }
 
         [Benchmark]
-        public int CustomPositionsIteration()
+        public int OldEnumerablePositionsIteration()
         {
             int sum = 0;
-            foreach (var pos in _gridView.PositionsCustom())
+            foreach (var pos in _gridView.PositionsIEnumerable())
                 sum += pos.X + pos.Y;
 
             return sum;
         }
 
         [Benchmark]
-        public int CustomPositionsEnumerableIteration()
+        public int OldEnumerablePositionsIterationCacheWidthHeight()
         {
             int sum = 0;
-            foreach (var pos in _gridView.PositionsCustom().ToEnumerable())
+            foreach (var pos in _gridView.PositionsIEnumerableCacheWidthHeight())
+                sum += pos.X + pos.Y;
+
+            return sum;
+        }
+
+        [Benchmark]
+        public int PositionsEnumerableIteration()
+        {
+            int sum = 0;
+            foreach (var pos in _gridView.Positions().ToEnumerable())
                 sum += pos.X + pos.Y;
 
             return sum;

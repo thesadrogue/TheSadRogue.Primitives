@@ -1,4 +1,5 @@
-﻿using SadRogue.Primitives.GridViews;
+﻿using System.Linq;
+using SadRogue.Primitives.GridViews;
 using SadRogue.Primitives.UnitTests.Mocks;
 using Xunit;
 // Should disable this because the functions triggering it are just assertion methods
@@ -215,6 +216,20 @@ namespace SadRogue.Primitives.UnitTests.GridViews
                     Assert.Equal(0, unboundedViewport[pos]);
                 else
                     Assert.Equal(1, unboundedViewport[pos]);
+        }
+
+        [Fact]
+        public void PositionsTest()
+        {
+            const int gridWidth = 80;
+            const int gridHeight = 61;
+
+            IGridView<bool> view = new ArrayView<bool>(gridWidth, gridHeight);
+            var set = view.Positions().ToEnumerable().ToHashSet();
+
+            Assert.Equal(view.Count, set.Count);
+            for (int i = 0; i < view.Count; i++)
+                Assert.Contains(Point.FromIndex(i, view.Width), set);
         }
     }
 }

@@ -34,7 +34,7 @@ namespace SadRogue.Primitives.UnitTests
             Assert.Equal(edgePoints.Length, hashSet.Count);
 
             // Verify correct points
-            HashSet<Point> expectedHash = rect.Positions().Where(pos => pos.Y == yToCheck).ToHashSet();
+            HashSet<Point> expectedHash = rect.Positions().ToEnumerable().Where(pos => pos.Y == yToCheck).ToHashSet();
             Assert.Equal(expectedHash, hashSet);
 
             Direction.SetYIncreasesUpwardsUnsafe(false); // Ensure we reset to false for next test
@@ -54,7 +54,7 @@ namespace SadRogue.Primitives.UnitTests
             Assert.Equal(edgePoints.Length, hashSet.Count);
 
             // Verify correct points
-            HashSet<Point> expectedHash = rect.Positions().Where(pos => pos.X == rect.MaxExtentX).ToHashSet();
+            HashSet<Point> expectedHash = rect.Positions().ToEnumerable().Where(pos => pos.X == rect.MaxExtentX).ToHashSet();
             Assert.Equal(expectedHash, hashSet);
 
             Direction.SetYIncreasesUpwardsUnsafe(false); // Ensure we reset to false for next test
@@ -76,7 +76,7 @@ namespace SadRogue.Primitives.UnitTests
             Assert.Equal(edgePoints.Length, hashSet.Count);
 
             // Verify correct points
-            HashSet<Point> expectedHash = rect.Positions().Where(pos => pos.Y == yToCheck).ToHashSet();
+            HashSet<Point> expectedHash = rect.Positions().ToEnumerable().Where(pos => pos.Y == yToCheck).ToHashSet();
             Assert.Equal(expectedHash, hashSet);
 
             Direction.SetYIncreasesUpwardsUnsafe(false); // Ensure we reset to false for next test
@@ -96,7 +96,7 @@ namespace SadRogue.Primitives.UnitTests
             Assert.Equal(edgePoints.Length, hashSet.Count);
 
             // Verify correct points
-            HashSet<Point> expectedHash = rect.Positions().Where(pos => pos.X == rect.MinExtentX).ToHashSet();
+            HashSet<Point> expectedHash = rect.Positions().ToEnumerable().Where(pos => pos.X == rect.MinExtentX).ToHashSet();
             Assert.Equal(expectedHash, hashSet);
 
             Direction.SetYIncreasesUpwardsUnsafe(false); // Ensure we reset to false for next test

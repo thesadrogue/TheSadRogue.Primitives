@@ -546,12 +546,7 @@ namespace SadRogue.Primitives
         /// <returns>All positions in the rectangle.</returns>
         [Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public IEnumerable<Point> Positions()
-        {
-            for (int y = Y; y <= MaxExtentY; y++)
-                for (int x = X; x <= MaxExtentX; x++)
-                    yield return new Point(x, y);
-        }
+        public RectanglePositionsEnumerable Positions() => new RectanglePositionsEnumerable(this);
 
         /// <summary>
         /// Creates and returns a new rectangle that has the same position and width as the current

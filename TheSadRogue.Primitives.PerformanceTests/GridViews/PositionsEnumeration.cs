@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Reports;
 using SadRogue.Primitives;
 using SadRogue.Primitives.GridViews;
 
@@ -39,7 +40,18 @@ namespace TheSadRogue.Primitives.PerformanceTests.GridViews
         }
 
         [Benchmark]
-        public int ManualPositionsIteration()
+        public int ManualPositionsIterationNormal()
+        {
+            int sum = 0;
+            for (int y = 0; y < _gridView.Height; y++)
+                for (int x = 0; x < _gridView.Width; x++)
+                    sum += x + y;
+
+            return sum;
+        }
+
+        [Benchmark]
+        public int ManualPositionsIterationCacheWidthHeight()
         {
             int sum = 0;
             int height = _gridView.Height;
@@ -52,12 +64,30 @@ namespace TheSadRogue.Primitives.PerformanceTests.GridViews
         }
 
         [Benchmark]
-        public int ManualPositionsIterationNoCachingWidthHeight()
+        public int ManualPositionsIterationCountNormal()
         {
             int sum = 0;
-            for (int y = 0; y < _gridView.Height; y++)
-            for (int x = 0; x < _gridView.Width; x++)
-                sum += x + y;
+            for (int i = 0; i < _gridView.Count; i++)
+            {
+                var pos = Point.FromIndex(i, _gridView.Width);
+                sum += pos.X + pos.Y;
+            }
+                
+
+            return sum;
+        }
+
+        [Benchmark]
+        public int ManualPositionsIterationCountCacheCountAndWidth()
+        {
+            int count = _gridView.Count;
+            int width = _gridView.Width;
+            int sum = 0;
+            for (int i = 0; i < count; i++)
+            {
+                var pos = Point.FromIndex(i, width);
+                sum += pos.X + pos.Y;
+            }
 
             return sum;
         }
@@ -73,7 +103,7 @@ namespace TheSadRogue.Primitives.PerformanceTests.GridViews
         }
 
         [Benchmark]
-        public int OldEnumerablePositionsIteration()
+        public int OldEnumerablePositionsIterationNormal()
         {
             int sum = 0;
             foreach (var pos in _gridView.PositionsIEnumerable())
@@ -93,7 +123,7 @@ namespace TheSadRogue.Primitives.PerformanceTests.GridViews
         }
 
         [Benchmark]
-        public int PositionsEnumerableIteration()
+        public int PositionsToEnumerableIteration()
         {
             int sum = 0;
             foreach (var pos in _gridView.Positions().ToEnumerable())

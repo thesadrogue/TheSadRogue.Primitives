@@ -36,7 +36,7 @@ namespace SadRogue.Primitives
         {
             _positions = positions;
 
-            _current = positions.MinExtent - new Point(1, 0);
+            _current = (_positions.Width * _positions.Height > 0) ? positions.MinExtent - new Point(1, 0) : _positions.MaxExtent;
         }
 
         /// <summary>

@@ -132,7 +132,7 @@ namespace SadRogue.Primitives.UnitTests
 
             // Positions returned should be exactly the ones within the radius
             var positionsHashExpected =
-                area.Positions().Where(pos => dist.Calculate(pos, center) <= radius).ToHashSet();
+                area.Positions().ToEnumerable().Where(pos => dist.Calculate(pos, center) <= radius).ToHashSet();
             Assert.Equal(positionsHashExpected, positionsHash);
         }
 
@@ -159,7 +159,7 @@ namespace SadRogue.Primitives.UnitTests
 
             // Positions returned should be exactly the ones within the radius
             var positionsHashExpected =
-                bounds.Positions().Where(pos => dist.Calculate(pos, center) <= radius).ToHashSet();
+                bounds.Positions().ToEnumerable().Where(pos => dist.Calculate(pos, center) <= radius).ToHashSet();
             Assert.Equal(positionsHashExpected, positionsHash);
         }
 

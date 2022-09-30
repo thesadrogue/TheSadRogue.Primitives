@@ -97,11 +97,9 @@ namespace SadRogue.Primitives.GridViews
         /// <returns>The underlying ArrayView data as a 1D array.</returns>
         public T[] ToArray() => this;
 
-        /// <summary>
-        /// Sets each element in the ArrayView to the default for type T.
-        /// </summary>
+        /// <inheritdoc/>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void Clear() => Array.Clear(_array, 0, _array.Length);
+        public override void Clear() => Array.Clear(_array, 0, _array.Length);
 
         /// <summary>
         /// Returns a string representation of the grid values.

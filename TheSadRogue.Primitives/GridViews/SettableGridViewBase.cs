@@ -39,5 +39,15 @@ namespace SadRogue.Primitives.GridViews
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             set => this[Point.FromIndex(index1D, Width)] = value;
         }
+
+        /// <inheritdoc/>
+        public virtual void Fill(T value)
+        {
+            for (int i = 0; i < Count; i++)
+                this[i] = value;
+        }
+
+        /// <inheritdoc/>
+        public virtual void Clear() => Fill(default!);
     }
 }

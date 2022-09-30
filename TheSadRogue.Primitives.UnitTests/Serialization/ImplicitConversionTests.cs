@@ -18,9 +18,9 @@ namespace SadRogue.Primitives.UnitTests.Serialization
 
         private static MethodInfo? FindImplicitConversionOnType(Type typeToScan, Type from, Type to)
         {
-            typeToScan = TestData.ImplicitTypeConversionMap.GetValueOrDefault(typeToScan, typeToScan)!;
-            from = TestData.ImplicitTypeConversionMap.GetValueOrDefault(from, from)!;
-            to = TestData.ImplicitTypeConversionMap.GetValueOrDefault(to, to)!;
+            typeToScan = TestData.ImplicitTypeConversionMap.GetValueOrDefault(typeToScan, typeToScan);
+            from = TestData.ImplicitTypeConversionMap.GetValueOrDefault(from, from);
+            to = TestData.ImplicitTypeConversionMap.GetValueOrDefault(to, to);
 
             var methods = typeToScan.GetMethods();
             foreach (var method in methods)

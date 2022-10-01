@@ -7,6 +7,146 @@ using System.Runtime.Serialization;
 namespace SadRogue.Primitives
 {
     /// <summary>
+    /// Structure representing the result of a rectangle bisection.
+    /// </summary>
+    [Serializable]
+    public readonly struct BisectionResult : IEquatable<BisectionResult>, IMatchable<BisectionResult>
+    {
+        /// <summary>
+        /// The first rectangle.
+        /// </summary>
+        public readonly Rectangle Rect1;
+        /// <summary>
+        /// The second rectangle.
+        /// </summary>
+        public readonly Rectangle Rect2;
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="rect1">The first rectangle.</param>
+        /// <param name="rect2">The second rectangle.</param>
+        public BisectionResult(Rectangle rect1, Rectangle rect2)
+        {
+            Rect1 = rect1;
+            Rect2 = rect2;
+        }
+
+        #region Tuple Compatibility
+        /// <summary>
+        /// Supports C# Deconstruction syntax.
+        /// </summary>
+        /// <param name="rect1"/>
+        /// <param name="rect2"/>
+        public void Deconstruct(out Rectangle rect1, out Rectangle rect2)
+        {
+            rect1 = Rect1;
+            rect2 = Rect2;
+        }
+
+        /// <summary>
+        /// Implicit conversion to an equivalent tuple.
+        /// </summary>
+        /// <param name="result">The BisectionResult to convert to a tuple.</param>
+        public static implicit operator (Rectangle rect1, Rectangle rect2)(BisectionResult result)
+            => result.ToTuple();
+
+        /// <summary>
+        /// Implicit conversion from a tuple to the equivalent bisection result.
+        /// </summary>
+        /// <param name="tuple">The tuple to convert to a BisectionResult.</param>
+        public static implicit operator BisectionResult((Rectangle rect1, Rectangle rect2) tuple)
+            => FromTuple(tuple);
+
+        /// <summary>
+        /// Converts the pair to an equivalent tuple.
+        /// </summary>
+        /// <returns/>
+        [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public (Rectangle rect1, Rectangle rect2) ToTuple() => (Rect1, Rect2);
+
+        /// <summary>
+        /// Converts the tuple to an equivalent BisectionResult.
+        /// </summary>
+        /// <param name="tuple"/>
+        /// <returns/>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static BisectionResult FromTuple((Rectangle rect1, Rectangle rect2) tuple)
+            => new BisectionResult(tuple.rect1, tuple.rect2);
+        #endregion
+
+        #region Equality Comparison
+
+        /// <summary>
+        /// True if the given bisection result contains equivalent rectangles; false otherwise.
+        /// </summary>
+        /// <param name="other"/>
+        /// <returns/>
+        [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public bool Equals(BisectionResult other)
+            => Rect1 == other.Rect1 && Rect2 == other.Rect2;
+
+        /// <summary>
+        /// True if the given bisection result contains equivalent rectangles; false otherwise.
+        /// </summary>
+        /// <param name="other"/>
+        /// <returns/>
+        [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public bool Matches(BisectionResult other) => Equals(other);
+
+        /// <summary>
+        /// True if the given object is a BisectionResult and contains equivalent rectangles; false otherwise.
+        /// </summary>
+        /// <param name="obj"/>
+        /// <returns/>
+        [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public override bool Equals(object? obj) => obj is BisectionResult pair && Equals(pair);
+
+        /// <summary>
+        /// Returns a hash code based on all of the rectangle's fields.
+        /// </summary>
+        /// <returns/>
+        [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public override int GetHashCode() => Rect1.GetHashCode() ^ Rect2.GetHashCode();
+
+        /// <summary>
+        /// True if the given results contain equivalent rectangles; false otherwise.
+        /// </summary>
+        /// <param name="left"/>
+        /// <param name="right"/>
+        /// <returns/>
+        public static bool operator ==(BisectionResult left, BisectionResult right)
+            => left.Equals(right);
+
+        /// <summary>
+        /// True if the given results contain different rectangles; false otherwise.
+        /// </summary>
+        /// <param name="left"/>
+        /// <param name="right"/>
+        /// <returns/>
+        public static bool operator !=(BisectionResult left, BisectionResult right) => !(left == right);
+        #endregion
+
+        #region To Enumerables
+
+        /// <summary>
+        /// Returns an enumerable containing Rect1, then Rect 2.
+        /// </summary>
+        /// <returns>An enumerable containing Rect1, then Rect 2.</returns>
+        public IEnumerable<Rectangle> ToEnumerable()
+        {
+            yield return Rect1;
+            yield return Rect2;
+        }
+        #endregion
+    }
+
+    /// <summary>
     /// Represents a 2D rectangle. Provides numerous static functions that enable creation and common operations
     /// involving rectangles.
     /// </summary>
@@ -1003,13 +1143,13 @@ namespace SadRogue.Primitives
 
         #region Division & Bisection
         /// <summary>
-        /// Recursively divides this rectangle in half until the small rectangles are between minimumDimension and 2 * minimumDimenson.
+        /// Recursively divides this rectangle in half until the small rectangles are between minimumDimension and 2 * minimumDimension.
         /// </summary>
         /// <param name="minimumDimension">The smallest allowable dimension for a rectangle to be.</param>
         /// <returns>A list of all rectangles that add up to the original rectangle</returns>
         public IEnumerable<Rectangle> BisectRecursive(int minimumDimension)
         {
-            foreach (Rectangle child in Bisect())
+            foreach (Rectangle child in Bisect().ToEnumerable())
             {
                 if (child.Width < minimumDimension * 2 && child.Height < minimumDimension * 2)
                     yield return child;
@@ -1017,7 +1157,6 @@ namespace SadRogue.Primitives
                 else
                     foreach (var grandChild in child.BisectRecursive(minimumDimension))
                         yield return grandChild;
-
             }
         }
 
@@ -1025,8 +1164,7 @@ namespace SadRogue.Primitives
         /// Bisects the rectangle into two halves along its longest axis.
         /// </summary>
         /// <returns>
-        /// An IEnumerable of either Top and Bottom halves, or Left and Right halves,
-        /// at indexes 0 and 1 respectively.
+        /// A BisectionResult of either Top and Bottom halves, or Left and Right halves.
         /// </returns>
         /// <remarks>
         /// Cuts the rectangle by reducing it's longest dimension by half. For example, a
@@ -1035,7 +1173,7 @@ namespace SadRogue.Primitives
         /// starts at (3, 3) and extends to (9, 7), and the rectangle at index 1 extends from
         /// (10, 3) to (18, 7)
         /// </remarks>
-        public IEnumerable<Rectangle> Bisect()
+        public BisectionResult Bisect()
         {
             if (Width > Height)
                 return BisectVertically();
@@ -1048,10 +1186,10 @@ namespace SadRogue.Primitives
         }
 
         /// <summary>
-        /// Bisects the rectangle into top and bottom halves
+        /// Bisects the rectangle into top and bottom halves.
         /// </summary>
-        /// <returns>An IEnumerable with Top and Bottom Rectangles in indexes 0 and 1, respectively</returns>
-        public IEnumerable<Rectangle> BisectHorizontally()
+        /// <returns>A BisectionResult with Top and Bottom Rectangles.</returns>
+        public BisectionResult BisectHorizontally()
         {
             int startX = MinExtentX;
             int stopY = MaxExtentY;
@@ -1059,17 +1197,19 @@ namespace SadRogue.Primitives
             int stopX = MaxExtentX;
             int bisection = (startY + stopY) / 2;
 
-            yield return new Rectangle(new Point(startX, startY), new Point(stopX, bisection));
-            yield return new Rectangle(new Point(startX, bisection + 1), new Point(stopX, stopY));
+            return new BisectionResult(
+                new Rectangle(new Point(startX, startY), new Point(stopX, bisection)),
+                new Rectangle(new Point(startX, bisection + 1), new Point(stopX, stopY))
+                );
         }
 
         /// <summary>
         /// Divides the rectangle into a left and right half.
         /// </summary>
         /// <returns>
-        /// An IEnumerable with the Left and Right rectangles in index 0 and 1 respectively.
+        /// A BisectionResult with the Left and Right rectangles.
         /// </returns>
-        public IEnumerable<Rectangle> BisectVertically()
+        public BisectionResult BisectVertically()
         {
             int startY = MinExtentY;
             int stopY = MaxExtentY;
@@ -1077,8 +1217,10 @@ namespace SadRogue.Primitives
             int stopX = MaxExtentX;
             int bisection = (startX + stopX) / 2;
 
-            yield return new Rectangle(new Point(startX, startY), new Point(bisection, stopY));
-            yield return new Rectangle(new Point(bisection + 1, startY), new Point(stopX, stopY));
+            return new BisectionResult(
+                new Rectangle(new Point(startX, startY), new Point(bisection, stopY)),
+                new Rectangle(new Point(bisection + 1, startY), new Point(stopX, stopY))
+            );
         }
 
         /// <summary>

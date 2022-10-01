@@ -132,7 +132,7 @@ namespace SadRogue.Primitives.UnitTests
             {
                 for (int j = 0; j < 30; j++)
                 {
-                    int count = rectangles.Where(r => r.Contains(new Point(i, j))).Count();
+                    int count = rectangles.Count(r => r.Contains(new Point(i, j)));
                     Assert.Equal(1, count);
                 }
             }
@@ -142,7 +142,7 @@ namespace SadRogue.Primitives.UnitTests
         public void BisectInHalfTest()
         {
             Rectangle rectangle = new Rectangle(0, 0, 5, 13);
-            List<Rectangle> rectangles = rectangle.Bisect().ToList();
+            List<Rectangle> rectangles = rectangle.Bisect().ToEnumerable().ToList();
             foreach (Point c in rectangles[0].Positions())
             {
                 Assert.True(rectangle.Contains(c));
@@ -163,7 +163,7 @@ namespace SadRogue.Primitives.UnitTests
             Assert.Equal(5, rectangles[1].Width);
 
             rectangle = new Rectangle(0, 0, 13, 5);
-            rectangles.AddRange(rectangle.Bisect().ToList());
+            rectangles.AddRange(rectangle.Bisect().ToEnumerable());
             foreach (Point c in rectangles[2].Positions())
             {
                 Assert.True(rectangle.Contains(c));
@@ -188,7 +188,7 @@ namespace SadRogue.Primitives.UnitTests
         public void BisectHorizontallyTest()
         {
             Rectangle rectangle = new Rectangle(0, 0, 5, 13);
-            List<Rectangle> rectangles = rectangle.BisectHorizontally().ToList();
+            List<Rectangle> rectangles = rectangle.BisectHorizontally().ToEnumerable().ToList();
             foreach (Point c in rectangles[0].Positions())
             {
                 Assert.True(rectangle.Contains(c));
@@ -208,7 +208,7 @@ namespace SadRogue.Primitives.UnitTests
         public void BisectVerticallyTest()
         {
             Rectangle rectangle = new Rectangle(0, 0, 13, 5);
-            List<Rectangle> rectangles = rectangle.BisectVertically().ToList();
+            List<Rectangle> rectangles = rectangle.BisectVertically().ToEnumerable().ToList();
             foreach (Point c in rectangles[0].Positions())
             {
                 Assert.True(rectangle.Contains(c));

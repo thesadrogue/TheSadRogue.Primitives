@@ -3,6 +3,36 @@
 namespace SadRogue.Primitives.SerializedTypes
 {
     /// <summary>
+    /// Serializable (pure-data) object representing a <see cref="BisectionResult"/>.
+    /// </summary>
+    [Serializable]
+    public struct BisectionResultSerialized
+    {
+        public RectangleSerialized Rect1;
+        public RectangleSerialized Rect2;
+
+        /// <summary>
+        /// Converts from <see cref="BisectionResult"/> to <see cref="BisectionResultSerialized"/>.
+        /// </summary>
+        /// <param name="result"/>
+        /// <returns/>
+        public static implicit operator BisectionResultSerialized(BisectionResult result) => new BisectionResultSerialized()
+        {
+            Rect1 = result.Rect1,
+            Rect2 = result.Rect2,
+            
+        };
+
+        /// <summary>
+        /// Converts from <see cref="BisectionResultSerialized"/> to <see cref="BisectionResult"/>.
+        /// </summary>
+        /// <param name="result"/>
+        /// <returns/>
+        public static implicit operator BisectionResult(BisectionResultSerialized result)
+            => new BisectionResult(result.Rect1, result.Rect2);
+    }
+
+    /// <summary>
     /// Serializable (pure-data) object representing a <see cref="Rectangle"/>.
     /// </summary>
     [Serializable]

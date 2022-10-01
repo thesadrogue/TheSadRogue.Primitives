@@ -9,16 +9,18 @@ namespace SadRogue.Primitives
     /// <summary>
     /// Structure representing the result of a rectangle bisection.
     /// </summary>
-    [Serializable]
+    [DataContract]
     public readonly struct BisectionResult : IEquatable<BisectionResult>, IMatchable<BisectionResult>
     {
         /// <summary>
         /// The first rectangle.
         /// </summary>
+        [DataMember]
         public readonly Rectangle Rect1;
         /// <summary>
         /// The second rectangle.
         /// </summary>
+        [DataMember]
         public readonly Rectangle Rect2;
 
         /// <summary>

@@ -76,9 +76,9 @@ namespace SadRogue.Primitives.UnitTests
             => new[] { Direction.Up, Direction.Right, Direction.Down, Direction.Left };
 
         public static IEnumerable<(AdjacencyRule, Direction)> ClockwisePairs
-            => AdjacencyRule.EightWay.ToEnumerable().Combinate(EightWayDirectionsClockwise)
-                .Concat(AdjacencyRule.Cardinals.ToEnumerable().Combinate(CardinalsDirectionsClockwise))
-                .Concat(AdjacencyRule.Diagonals.ToEnumerable().Combinate(DiagonalDirectionsClockwise));
+            => AdjacencyRule.EightWay.Yield().Combinate(EightWayDirectionsClockwise)
+                .Concat(AdjacencyRule.Cardinals.Yield().Combinate(CardinalsDirectionsClockwise))
+                .Concat(AdjacencyRule.Diagonals.Yield().Combinate(DiagonalDirectionsClockwise));
 
         public static IEnumerable<(AdjacencyRule, Direction)> AdjacencyDefaultsClockwise
             => TestUtils.Enumerable((AdjacencyRule.Cardinals, Direction.Up), (AdjacencyRule.EightWay, Direction.Up),
@@ -89,8 +89,8 @@ namespace SadRogue.Primitives.UnitTests
                 (AdjacencyRule.Diagonals, Direction.UpLeft));
 
         public static IEnumerable<(AdjacencyRule, Direction)> RotatePairs =>
-            AdjacencyRule.Cardinals.ToEnumerable().Combinate(DiagonalDirectionsClockwise)
-                .Concat(AdjacencyRule.Diagonals.ToEnumerable().Combinate(CardinalsDirectionsClockwise));
+            AdjacencyRule.Cardinals.Yield().Combinate(DiagonalDirectionsClockwise)
+                .Concat(AdjacencyRule.Diagonals.Yield().Combinate(CardinalsDirectionsClockwise));
 
         public static IEnumerable<(Point, AdjacencyRule)> PointAdjacencyPairs =>
             TestUtils.Enumerable<Point>((1, 2), (-1, -2), (0, 4), (3, 0)).Combinate(AdjacencyRules);

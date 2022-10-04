@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace SadRogue.Primitives.UnitTests
@@ -9,14 +10,30 @@ namespace SadRogue.Primitives.UnitTests
     public class AreaTests
     {
         [Fact]
-        public void EnumerableEquivalence()
+        public void EnumerableCorrect()
         {
-            var area = new Area(new Rectangle(0, 0, 15, 15).Positions().ToEnumerable());
+            var rect = new Rectangle(0, 0, 15, 15);
+            var area = new Area(rect.Positions().ToEnumerable());
+            IReadOnlyArea areaInterface = area;
 
-            var l1 = area.ToList();
-            var l2 = area.FastEnumerator().ToEnumerable().ToList();
+            var expected = new List<Point>();
+            for (int i = 0; i < area.Count; i++)
+                expected.Add(area[i]);
 
-            Assert.Equal(l1, l2);
+            List<Point> l1 = area.ToEnumerable().ToList();
+
+            var l2 = new List<Point>();
+            foreach (var pos in area)
+                l2.Add(pos);
+
+            var l3 = new List<Point>();
+            foreach (var pos in areaInterface)
+                l3.Add(pos);
+            
+
+            Assert.Equal(expected, l1);
+            Assert.Equal(expected, l2);
+            Assert.Equal(expected, l3);
         }
     }
 }

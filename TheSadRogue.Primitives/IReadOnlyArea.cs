@@ -41,7 +41,7 @@ namespace SadRogue.Primitives
     /// <summary>
     /// Read-only interface for an arbitrary 2D area.
     /// </summary>
-    public interface IReadOnlyArea : IMatchable<IReadOnlyArea>, IEnumerable<Point>
+    public interface IReadOnlyArea : IMatchable<IReadOnlyArea>
     {
         /// <summary>
         /// Smallest possible rectangle that encompasses every position in the area.
@@ -92,5 +92,7 @@ namespace SadRogue.Primitives
         /// <param name="area">The area to check.</param>
         /// <returns>True if the given area intersects the current one, false otherwise.</returns>
         bool Intersects(IReadOnlyArea area);
+
+        ReadOnlyAreaPostionsEnumerable GetEnumerator() => new ReadOnlyAreaPostionsEnumerable(this);
     }
 }

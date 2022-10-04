@@ -13,7 +13,7 @@ namespace SadRogue.Primitives.UnitTests
     {
         public static void Fail(string message) => Assert.True(false, message);
 
-        public static IEnumerable<T> ToEnumerable<T>(this T obj)
+        public static IEnumerable<T> Yield<T>(this T obj)
         {
             yield return obj;
         }

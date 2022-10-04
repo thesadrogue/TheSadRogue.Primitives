@@ -36,7 +36,7 @@ namespace SadRogue.Primitives.SerializedTypes
         public static implicit operator AreaSerialized(Area area)
             => new AreaSerialized
             {
-                Positions = area.Select(p => (PointSerialized)p).ToList(),
+                Positions = area.ToEnumerable().Select(p => (PointSerialized)p).ToList(),
                 PointHasher = area.PointHasher
             };
     }

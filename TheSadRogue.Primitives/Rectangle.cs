@@ -1151,15 +1151,23 @@ namespace SadRogue.Primitives
         /// <returns>A list of all rectangles that add up to the original rectangle</returns>
         public IEnumerable<Rectangle> BisectRecursive(int minimumDimension)
         {
-            foreach (Rectangle child in Bisect().ToEnumerable())
-            {
-                if (child.Width < minimumDimension * 2 && child.Height < minimumDimension * 2)
-                    yield return child;
+            var children = Bisect();
 
-                else
-                    foreach (var grandChild in child.BisectRecursive(minimumDimension))
-                        yield return grandChild;
-            }
+            var child = children.Rect1;
+            if (child.Width < minimumDimension * 2 && child.Height < minimumDimension * 2)
+                yield return child;
+
+            else
+                foreach (var grandChild in child.BisectRecursive(minimumDimension))
+                    yield return grandChild;
+
+            child = children.Rect2;
+            if (child.Width < minimumDimension * 2 && child.Height < minimumDimension * 2)
+                yield return child;
+
+            else
+                foreach (var grandChild in child.BisectRecursive(minimumDimension))
+                    yield return grandChild;
         }
 
         /// <summary>

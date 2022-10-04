@@ -40,5 +40,59 @@ namespace TheSadRogue.Primitives.PerformanceTests
 
             return sum;
         }
+
+        [Benchmark]
+        public int BenchmarkManualFor()
+        {
+            int sum = 0;
+            for (int i = 0; i < _areaInterface.Count; i++)
+            {
+                var pos = _areaInterface[i];
+                sum += pos.X + pos.Y;
+            }
+
+            return sum;
+        }
+
+        [Benchmark]
+        public int BenchmarkManualForCachedCount()
+        {
+            int sum = 0;
+            int count = _areaInterface.Count;
+            for (int i = 0; i < count; i++)
+            {
+                var pos = _areaInterface[i];
+                sum += pos.X + pos.Y;
+            }
+
+            return sum;
+        }
+
+        [Benchmark]
+        public int BenchmarkManualForAsConcrete()
+        {
+            int sum = 0;
+            for (int i = 0; i < _area.Count; i++)
+            {
+                var pos = _area[i];
+                sum += pos.X + pos.Y;
+            }
+
+            return sum;
+        }
+
+        [Benchmark]
+        public int BenchmarkManualForAsConcreteCachedCount()
+        {
+            int sum = 0;
+            int count = _area.Count;
+            for (int i = 0; i < count; i++)
+            {
+                var pos = _area[i];
+                sum += pos.X + pos.Y;
+            }
+
+            return sum;
+        }
     }
 }

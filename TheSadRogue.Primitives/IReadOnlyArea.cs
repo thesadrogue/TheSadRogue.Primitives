@@ -1,43 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-
-namespace SadRogue.Primitives
+﻿namespace SadRogue.Primitives
 {
-    public struct ReadOnlyAreaPostionsEnumerable
-    {
-        private readonly IReadOnlyArea _area;
-
-        private readonly int _count;
-        private int _currentIdx;
-        public Point Current => _area[_currentIdx];
-
-        public ReadOnlyAreaPostionsEnumerable(IReadOnlyArea area)
-        {
-            _area = area;
-            _currentIdx = -1;
-            _count = area.Count;
-        }
-
-        public bool MoveNext()
-        {
-            _currentIdx++;
-            return _currentIdx < _count;
-        }
-
-        /// <summary>
-        /// Returns this enumerator.
-        /// </summary>
-        /// <returns>This enumerator.</returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public ReadOnlyAreaPostionsEnumerable GetEnumerator() => this;
-
-        public IEnumerable<Point> ToEnumerable()
-        {
-            int count = _area.Count;
-            for (int i = 0; i < count; i++)
-                yield return _area[i];
-        }
-    }
     /// <summary>
     /// Read-only interface for an arbitrary 2D area.
     /// </summary>
@@ -93,6 +55,10 @@ namespace SadRogue.Primitives
         /// <returns>True if the given area intersects the current one, false otherwise.</returns>
         bool Intersects(IReadOnlyArea area);
 
+        /// <summary>
+        /// Returns an enumerator that iterates through all positions in the area, in the order they were added.
+        /// </summary>
+        /// <returns>An enumerator that iterates through all the positions in the area, in the order they were added.</returns>
         ReadOnlyAreaPostionsEnumerable GetEnumerator() => new ReadOnlyAreaPostionsEnumerable(this);
     }
 }

@@ -8,7 +8,14 @@ namespace SadRogue.Primitives.SerializedTypes
     [Serializable]
     public struct BisectionResultSerialized
     {
+        /// <summary>
+        /// The first rectangle.
+        /// </summary>
         public RectangleSerialized Rect1;
+
+        /// <summary>
+        /// The second rectangle.
+        /// </summary>
         public RectangleSerialized Rect2;
 
         /// <summary>

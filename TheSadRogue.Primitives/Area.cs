@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 
@@ -90,6 +89,9 @@ namespace SadRogue.Primitives
         /// </summary>
         public int Count => _positions.Count;
 
+        /// <inheritdoc/>
+        public bool UseIndexEnumeration => true;
+
         /// <summary>
         /// Gets an area containing all positions in <paramref name="area1"/>, minus those that are in
         /// <paramref name="area2"/>.
@@ -164,7 +166,7 @@ namespace SadRogue.Primitives
         {
             Area retVal = new Area();
 
-            foreach (Point pos in lhs)
+            foreach (Point pos in lhs.FastEnumerator())
                 retVal.Add(pos + rhs);
 
             return retVal;
@@ -267,7 +269,7 @@ namespace SadRogue.Primitives
         /// <param name="area">Area containing positions to add.</param>
         public void Add(IReadOnlyArea area)
         {
-            foreach (Point pos in area)
+            foreach (Point pos in area.FastEnumerator())
                 Add(pos);
         }
 
@@ -329,7 +331,7 @@ namespace SadRogue.Primitives
                 return false;
             }
 
-            foreach (Point pos in area)
+            foreach (Point pos in area.FastEnumerator())
                 if (Contains(pos))
                     return true;
 
@@ -363,10 +365,14 @@ namespace SadRogue.Primitives
         {
             bool recalculateBounds = false;
 
-            foreach (Point pos in _positions.Where(predicate))
+            foreach (Point pos in _positions)
+            {
+                if (!predicate(pos)) continue;
+
                 if (_positionsSet.Remove(pos))
                     if (pos.X == _left || pos.X == _right || pos.Y == _top || pos.Y == _bottom)
                         recalculateBounds = true;
+            }
 
             _positions.RemoveAll(c => predicate(c));
 

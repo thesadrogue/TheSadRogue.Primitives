@@ -12,6 +12,7 @@ namespace TheSadRogue.Primitives.PerformanceTests
         public int Size;
 
         private SadRogue.Primitives.Area _area = null!;
+        private SadRogue.Primitives.Area _area2 = null!;
         private IReadOnlyArea _areaInterface = null!;
 
         [GlobalSetup]
@@ -19,6 +20,8 @@ namespace TheSadRogue.Primitives.PerformanceTests
         {
             _area = new SadRogue.Primitives.Area(new SadRogue.Primitives.Rectangle(0, 0, Size, Size).Positions().ToEnumerable());
             _areaInterface = _area;
+
+            _area2 = new SadRogue.Primitives.Area(new SadRogue.Primitives.Rectangle(0, 0, Size / 2, Size / 2).Positions().ToEnumerable());
         }
 
         [Benchmark]
@@ -114,5 +117,23 @@ namespace TheSadRogue.Primitives.PerformanceTests
 
             return sum;
         }
+
+        [Benchmark]
+        public SadRogue.Primitives.Area Intersection()
+            => SadRogue.Primitives.Area.GetIntersection(_area, _area2);
+
+        [Benchmark]
+        public SadRogue.Primitives.Area Difference()
+            => SadRogue.Primitives.Area.GetDifference(_area, _area2);
+
+        [Benchmark]
+        public SadRogue.Primitives.Area Union()
+            => SadRogue.Primitives.Area.GetUnion(_area, _area2);
+
+        [Benchmark]
+        public bool ContainsArea()
+            => _area.Contains(_area2);
+
+
     }
 }

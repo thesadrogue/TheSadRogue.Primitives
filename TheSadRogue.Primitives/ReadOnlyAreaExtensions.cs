@@ -7,16 +7,18 @@
     {
         /// <summary>
         /// Returns an enumerator which can be used to iterate over the positions in this area with a foreach loop
-        /// much more efficiently than the typical IEnumerable implementation, for many IReadOnlyArea implementations.
+        /// in the most efficient manner possible.
         /// </summary>
         /// <remarks>
-        /// This enumerator simply uses the indexer to iterate over the area, like you might a list.  For implementations
-        /// such as <see cref="Area"/>, using this is typically much faster than using the regular IEnumerable (but still
-        /// slower than a manual for loop in some cases).  For implementations of <see cref="IReadOnlyArea"/> with a more complex
-        /// indexer function, there may not be as much benefit here.
+        /// The enumerator returned will use the area's indexer to iterate over the positions (like you might a list),
+        /// if the area's <see cref="IReadOnlyArea.UseIndexEnumeration"/> is true.  Otherwise, it uses the typical IEnumerator
+        /// implementation for that area.
+        ///
+        /// This may be much faster than the typical IEnumerable/IEnumerator usage for implementations which have <see cref="IReadOnlyArea.UseIndexEnumeration"/>
+        /// set to true; however it won't have much benefit otherwise.
         /// </remarks>
         /// <param name="self"/>
-        /// <returns>A custom enumerator that iterates over the positions in the area using the indexer.</returns>
+        /// <returns>A custom enumerator that iterates over the positions in the area in the most efficient manner possible.</returns>
         public static ReadOnlyAreaPositionsEnumerable FastEnumerator(this IReadOnlyArea self)
             => new ReadOnlyAreaPositionsEnumerable(self);
     }

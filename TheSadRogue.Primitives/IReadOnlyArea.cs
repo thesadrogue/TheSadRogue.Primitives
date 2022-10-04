@@ -8,6 +8,18 @@ namespace SadRogue.Primitives
     public interface IReadOnlyArea : IMatchable<IReadOnlyArea>, IEnumerable<Point>
     {
         /// <summary>
+        /// Whether or not it is more efficient for this implementation to use enumeration by index,
+        /// rather than generic IEnumerable, when iterating over positions using <see cref="ReadOnlyAreaExtensions.FastEnumerator"/>
+        /// or <see cref="ReadOnlyAreaPositionsEnumerable"/>.
+        /// </summary>
+        /// <remarks>
+        /// Set this to true if your indexer implementation scales well (constant time), and is relatively fast.  Implementations with
+        /// more complex indexers should set this to false.
+        ///
+        /// The default interface implementation returns false, in order to preserve backwards compatibility with previous versions.
+        /// </remarks>
+        public bool UseIndexEnumeration => false;
+        /// <summary>
         /// Smallest possible rectangle that encompasses every position in the area.
         /// </summary>
         Rectangle Bounds { get; }

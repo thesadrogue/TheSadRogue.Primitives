@@ -486,9 +486,7 @@ namespace SadRogue.Primitives
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static void Swap(ref IReadOnlyArea lhs, ref IReadOnlyArea rhs)
         {
-            IReadOnlyArea temp = lhs;
-            lhs = rhs;
-            rhs = temp;
+            (rhs, lhs) = (lhs, rhs);
         }
 
         private static IEnumerable<Point> YieldPoint(Point item)

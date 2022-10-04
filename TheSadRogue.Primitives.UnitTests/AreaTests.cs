@@ -20,7 +20,7 @@ namespace SadRogue.Primitives.UnitTests
             for (int i = 0; i < area.Count; i++)
                 expected.Add(area[i]);
 
-            List<Point> l1 = area.ToEnumerable().ToList();
+            List<Point> l1 = area.ToList();
 
             var l2 = new List<Point>();
             foreach (var pos in area)
@@ -29,11 +29,17 @@ namespace SadRogue.Primitives.UnitTests
             var l3 = new List<Point>();
             foreach (var pos in areaInterface)
                 l3.Add(pos);
+
+            var l4 = new List<Point>();
+            foreach (var pos in area.FastEnumerator())
+                l4.Add(pos);
             
 
             Assert.Equal(expected, l1);
             Assert.Equal(expected, l2);
             Assert.Equal(expected, l3);
+            Assert.Equal(expected, l4);
+
         }
     }
 }

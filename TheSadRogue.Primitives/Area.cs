@@ -448,13 +448,13 @@ namespace SadRogue.Primitives
         /// Returns an enumerator that iterates through all positions in the Area, in the order they were added.
         /// </summary>
         /// <returns>An enumerator that iterates through all the positions in the Area, in the order they were added.</returns>
-        public ReadOnlyAreaPostionsEnumerable GetEnumerator() => new ReadOnlyAreaPostionsEnumerable(this);
+        public IEnumerator<Point> GetEnumerator() => _positions.GetEnumerator();
 
         /// <summary>
         /// Returns an enumerator that iterates through all positions in the Area, in the order they were added.
         /// </summary>
         /// <returns>An enumerator that iterates through all the positions in the Area, in the order they were added.</returns>
-        //IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable)_positions).GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable)_positions).GetEnumerator();
 
         private void RecalculateBounds()
         {

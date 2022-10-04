@@ -42,6 +42,26 @@ namespace TheSadRogue.Primitives.PerformanceTests
         }
 
         [Benchmark]
+        public int BenchmarkFastEnumerable()
+        {
+            int sum = 0;
+            foreach (var pos in _areaInterface.FastEnumerator())
+                sum += pos.X + pos.Y;
+
+            return sum;
+        }
+
+        [Benchmark]
+        public int BenchmarkFastEnumerableAsConcrete()
+        {
+            int sum = 0;
+            foreach (var pos in _area.FastEnumerator())
+                sum += pos.X + pos.Y;
+
+            return sum;
+        }
+
+        [Benchmark]
         public int BenchmarkManualFor()
         {
             int sum = 0;

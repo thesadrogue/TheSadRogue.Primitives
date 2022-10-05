@@ -104,7 +104,7 @@ namespace SadRogue.Primitives
         {
             Area retVal = new Area();
 
-            foreach (Point pos in area1)
+            foreach (Point pos in area1.FastEnumerator())
             {
                 if (area2.Contains(pos))
                     continue;
@@ -129,9 +129,9 @@ namespace SadRogue.Primitives
                 return retVal;
 
             if (area1.Count > area2.Count)
-                Swap(ref area1, ref area2);
+                (area2, area1) = (area1, area2);
 
-            foreach (Point pos in area1)
+            foreach (Point pos in area1.FastEnumerator())
                 if (area2.Contains(pos))
                     retVal.Add(pos);
 
@@ -302,7 +302,7 @@ namespace SadRogue.Primitives
             if (!Bounds.Contains(area.Bounds))
                 return false;
 
-            foreach (Point pos in area)
+            foreach (Point pos in area.FastEnumerator())
                 if (!Contains(pos))
                     return false;
 
@@ -344,8 +344,14 @@ namespace SadRogue.Primitives
         /// remove operations, it would be best to group them into 1 using <see cref="Remove(IEnumerable{Point})"/>.
         /// </summary>
         /// <param name="position">The position to remove.</param>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void Remove(Point position) => Remove(YieldPoint(position));
+        public void Remove(Point position)
+        {
+            if (!_positionsSet.Remove(position)) return;
+
+            _positions.Remove(position);
+            if (position.X == _left || position.X == _right || position.Y == _top || position.Y == _bottom)
+                RecalculateBounds();
+        }
 
         /// <summary>
         /// Removes the given position specified from the area. Particularly when the remove operation
@@ -355,7 +361,7 @@ namespace SadRogue.Primitives
         /// <param name="positionX">X-value of the position to remove.</param>
         /// <param name="positionY">Y-value of the position to remove.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void Remove(int positionX, int positionY) => Remove(YieldPoint(new Point(positionX, positionY)));
+        public void Remove(int positionX, int positionY) => Remove(new Point(positionX, positionY));
 
         /// <summary>
         /// Removes positions for which the given predicate returns true from the area.
@@ -487,17 +493,6 @@ namespace SadRogue.Primitives
             _right = rightLocal;
             _top = topLocal;
             _bottom = bottomLocal;
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static void Swap(ref IReadOnlyArea lhs, ref IReadOnlyArea rhs)
-        {
-            (rhs, lhs) = (lhs, rhs);
-        }
-
-        private static IEnumerable<Point> YieldPoint(Point item)
-        {
-            yield return item;
         }
     }
 }

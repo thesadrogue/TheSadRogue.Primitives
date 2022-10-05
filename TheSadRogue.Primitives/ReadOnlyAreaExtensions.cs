@@ -14,8 +14,8 @@
         /// if the area's <see cref="IReadOnlyArea.UseIndexEnumeration"/> is true.  Otherwise, it uses the typical IEnumerator
         /// implementation for that area.
         ///
-        /// This may be much faster than the typical IEnumerable/IEnumerator usage for implementations which have <see cref="IReadOnlyArea.UseIndexEnumeration"/>
-        /// set to true; however it won't have much benefit otherwise.
+        /// This may be significantly faster than the typical IEnumerable/IEnumerator usage for implementations which have
+        /// <see cref="IReadOnlyArea.UseIndexEnumeration"/> set to true; however it won't have much benefit otherwise.
         /// </remarks>
         /// <param name="self"/>
         /// <returns>A custom enumerator that iterates over the positions in the area in the most efficient manner possible.</returns>

@@ -62,7 +62,7 @@ namespace SadRogue.Primitives
         /// <summary>
         /// Returns whether or not the given map area intersects the current one. If you intend to
         /// determine/use the exact intersection based on this return value, it is best to instead
-        /// call <see cref="Area.GetIntersection(IReadOnlyArea, IReadOnlyArea)"/>, and check the number
+        /// call <see cref="Area.GetIntersection"/>, and check the number
         /// of positions in the result (0 if no intersection).
         /// </summary>
         /// <param name="area">The area to check.</param>

@@ -98,11 +98,15 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="area1"/>
         /// <param name="area2"/>
+        /// <param name="pointHasher">
+        /// A custom equality comparer/hashing algorithm to use when storing points in the new Area.  If not specified, it defaults
+        /// to using the Equals and GetHashCode functions of the Point struct.
+        /// </param>
         /// <returns>A area with exactly those positions in <paramref name="area1"/> that are NOT in
         /// <paramref name="area2"/>.</returns>
-        public static Area GetDifference(IReadOnlyArea area1, IReadOnlyArea area2)
+        public static Area GetDifference(IReadOnlyArea area1, IReadOnlyArea area2, IEqualityComparer<Point>? pointHasher = null)
         {
-            Area retVal = new Area();
+            Area retVal = new Area(pointHasher);
 
             foreach (Point pos in area1.FastEnumerator())
             {
@@ -120,10 +124,14 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="area1"/>
         /// <param name="area2"/>
+        /// <param name="pointHasher">
+        /// A custom equality comparer/hashing algorithm to use when storing points in the new Area.  If not specified, it defaults
+        /// to using the Equals and GetHashCode functions of the Point struct.
+        /// </param>
         /// <returns>An area containing exactly those positions contained in both of the given areas.</returns>
-        public static Area GetIntersection(IReadOnlyArea area1, IReadOnlyArea area2)
+        public static Area GetIntersection(IReadOnlyArea area1, IReadOnlyArea area2, IEqualityComparer<Point>? pointHasher = null)
         {
-            Area retVal = new Area();
+            Area retVal = new Area(pointHasher);
 
             if (!area1.Bounds.Intersects(area2.Bounds))
                 return retVal;
@@ -143,10 +151,14 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="area1"/>
         /// <param name="area2"/>
+        /// <param name="pointHasher">
+        /// A custom equality comparer/hashing algorithm to use when storing points in the new Area.  If not specified, it defaults
+        /// to using the Equals and GetHashCode functions of the Point struct.
+        /// </param>
         /// <returns>An area containing only those positions in one or both of the given areas.</returns>
-        public static Area GetUnion(IReadOnlyArea area1, IReadOnlyArea area2)
+        public static Area GetUnion(IReadOnlyArea area1, IReadOnlyArea area2, IEqualityComparer<Point>? pointHasher = null)
         {
-            Area retVal = new Area();
+            Area retVal = new Area(pointHasher);
 
             retVal.Add(area1);
             retVal.Add(area2);
@@ -158,13 +170,13 @@ namespace SadRogue.Primitives
         /// Creates an area with the positions all shifted by the given vector.
         /// </summary>
         /// <param name="lhs"/>
-        /// <param name="rhs">Vector) to add to each position in <paramref name="lhs"/>.</param>
+        /// <param name="rhs">Vector to add to each position in <paramref name="lhs"/>.</param>
         /// <returns>
         /// An area with the positions all translated by the given amount in x and y directions.
         /// </returns>
         public static Area operator +(Area lhs, Point rhs)
         {
-            Area retVal = new Area();
+            Area retVal = new Area(lhs.PointHasher);
 
             foreach (Point pos in lhs.FastEnumerator())
                 retVal.Add(pos + rhs);
@@ -312,7 +324,7 @@ namespace SadRogue.Primitives
         /// <summary>
         /// Returns whether or not the given map area intersects the current one. If you intend to
         /// determine/use the exact intersection based on this return value, it is best to instead
-        /// call the <see cref="Area.GetIntersection(IReadOnlyArea, IReadOnlyArea)"/>, and
+        /// call the <see cref="GetIntersection"/>, and
         /// check the number of positions in the result (0 if no intersection).
         /// </summary>
         /// <param name="area">The area to check.</param>

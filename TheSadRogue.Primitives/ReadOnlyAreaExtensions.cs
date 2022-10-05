@@ -1,4 +1,6 @@
-﻿namespace SadRogue.Primitives
+﻿using System.Collections.Generic;
+
+namespace SadRogue.Primitives
 {
     /// <summary>
     /// Extension methods for IReadOnlyArea.
@@ -21,5 +23,21 @@
         /// <returns>A custom enumerator that iterates over the positions in the area in the most efficient manner possible.</returns>
         public static ReadOnlyAreaPositionsEnumerable FastEnumerator(this IReadOnlyArea self)
             => new ReadOnlyAreaPositionsEnumerable(self);
+
+        public static IEnumerable<Point> PerimeterPositions(this IReadOnlyArea area, AdjacencyRule rule)
+        {
+            foreach (var pos in area.FastEnumerator())
+            {
+                foreach (var dir in rule.DirectionsOfNeighborsCache)
+                {
+                    var neighbor = pos + dir;
+                    if (!area.Contains(neighbor))
+                    {
+                        yield return pos;
+                        break;
+                    }
+                }
+            }
+        }
     }
 }

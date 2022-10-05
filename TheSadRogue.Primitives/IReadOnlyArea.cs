@@ -8,6 +8,18 @@ namespace SadRogue.Primitives
     public interface IReadOnlyArea : IMatchable<IReadOnlyArea>, IEnumerable<Point>
     {
         /// <summary>
+        /// Whether or not it is more efficient for this implementation to use enumeration by index,
+        /// rather than generic IEnumerable, when iterating over positions using <see cref="ReadOnlyAreaExtensions.FastEnumerator"/>
+        /// or <see cref="ReadOnlyAreaPositionsEnumerable"/>.
+        /// </summary>
+        /// <remarks>
+        /// Set this to true if your indexer implementation scales well (constant time), and is relatively fast.  Implementations with
+        /// more complex indexers should set this to false.
+        ///
+        /// The default interface implementation returns false, in order to preserve backwards compatibility with previous versions.
+        /// </remarks>
+        public bool UseIndexEnumeration => false;
+        /// <summary>
         /// Smallest possible rectangle that encompasses every position in the area.
         /// </summary>
         Rectangle Bounds { get; }
@@ -50,7 +62,7 @@ namespace SadRogue.Primitives
         /// <summary>
         /// Returns whether or not the given map area intersects the current one. If you intend to
         /// determine/use the exact intersection based on this return value, it is best to instead
-        /// call <see cref="Area.GetIntersection(IReadOnlyArea, IReadOnlyArea)"/>, and check the number
+        /// call <see cref="Area.GetIntersection"/>, and check the number
         /// of positions in the result (0 if no intersection).
         /// </summary>
         /// <param name="area">The area to check.</param>

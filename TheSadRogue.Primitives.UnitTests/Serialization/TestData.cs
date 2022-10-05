@@ -38,6 +38,12 @@ namespace SadRogue.Primitives.UnitTests.Serialization
                 },
                 PointHasher = EqualityComparer<Point>.Default
             },
+            // BisectionResultSerialized
+            new BisectionResultSerialized()
+            {
+                Rect1 = new Rectangle(1, 2, 5, 7),
+                Rect2 = new Rectangle(7, 8, 10, 19)
+            },
             // BoundedRectangleSerialized
             new BoundedRectangleSerialized
             {
@@ -170,6 +176,8 @@ namespace SadRogue.Primitives.UnitTests.Serialization
         {
             // AdjacencyRules
             AdjacencyRule.Cardinals, AdjacencyRule.EightWay,
+            // BisectionResult
+            new BisectionResult(new Rectangle(1, 2, 5, 7), new Rectangle(7, 8, 10, 19)),
             // BoundedRectangle
             new BoundedRectangle(new Rectangle(1, 4, 10, 14), new Rectangle(-10, -9, 100, 101)),
             // Colors
@@ -203,6 +211,8 @@ namespace SadRogue.Primitives.UnitTests.Serialization
             { typeof(AdjacencyRule), new[] { "Type" } },
             { typeof(ArrayViewSerialized<int>), new[] { "Width", "Data" } },
             { typeof(AreaSerialized), new[] { "Positions", "PointHasher" } },
+            { typeof(BisectionResult), new[] { "Rect1", "Rect2" } },
+            { typeof(BisectionResultSerialized), new[] { "Rect1", "Rect2" } },
             { typeof(BoundedRectangle), new[] { "_area", "_boundingBox" } },
             { typeof(BoundedRectangleSerialized), new[] { "Area", "Bounds" } },
             { typeof(Color), new[] { "_packedValue" } },
@@ -254,6 +264,7 @@ namespace SadRogue.Primitives.UnitTests.Serialization
             [typeof(ArrayView<int>)] = typeof(ArrayViewSerialized<int>),
             [typeof(AdjacencyRule)] = typeof(AdjacencyRule.Types),
             [typeof(Area)] = typeof(AreaSerialized),
+            [typeof(BisectionResult)] = typeof(BisectionResultSerialized),
             [typeof(BoundedRectangle)] = typeof(BoundedRectangleSerialized),
             [typeof(Color)] = typeof(ColorSerialized),
             // [typeof(DiffAwareGridView<int>)] = typeof(DiffAwareGridViewSerialized<int>),

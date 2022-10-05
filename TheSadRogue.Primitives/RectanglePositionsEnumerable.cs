@@ -9,7 +9,7 @@ namespace SadRogue.Primitives
     /// <remarks>
     /// This type is a struct, and as such is much more efficient than using the otherwise equivalent type of
     /// IEnumerable&lt;Point&gt; with "yield return".  The type does contain a function <see cref="ToEnumerable"/> which
-    /// creates an IEnumerable&lt;Point&gt;, which can be convenient for allowing the returned layer sets to be used with
+    /// creates an IEnumerable&lt;Point&gt;, which can be convenient for allowing the returned positions to be used with
     /// LINQ; however using this function is not recommended in situations where runtime performance is a primary
     /// concern.
     /// </remarks>

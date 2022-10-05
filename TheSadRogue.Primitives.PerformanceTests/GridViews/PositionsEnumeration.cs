@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using BenchmarkDotNet.Attributes;
-using BenchmarkDotNet.Reports;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using SadRogue.Primitives;
 using SadRogue.Primitives.GridViews;
 

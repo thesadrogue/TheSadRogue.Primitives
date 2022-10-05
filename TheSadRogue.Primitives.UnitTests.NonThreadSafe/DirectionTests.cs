@@ -80,8 +80,8 @@ namespace SadRogue.Primitives.UnitTests
             );
 
         public static IEnumerable<(Direction, bool)> IsCardinalPairs
-            => AdjacencyRule.Cardinals.DirectionsOfNeighbors().Combinate(true.ToEnumerable())
-                .Concat(AdjacencyRule.Diagonals.DirectionsOfNeighbors().Combinate(false.ToEnumerable()))
+            => AdjacencyRule.Cardinals.DirectionsOfNeighbors().Combinate(true.Yield())
+                .Concat(AdjacencyRule.Diagonals.DirectionsOfNeighbors().Combinate(false.Yield()))
                 .Append((Direction.None, false));
 
         #endregion

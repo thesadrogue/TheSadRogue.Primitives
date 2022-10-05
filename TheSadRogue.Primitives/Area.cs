@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 
@@ -90,19 +89,26 @@ namespace SadRogue.Primitives
         /// </summary>
         public int Count => _positions.Count;
 
+        /// <inheritdoc/>
+        public bool UseIndexEnumeration => true;
+
         /// <summary>
         /// Gets an area containing all positions in <paramref name="area1"/>, minus those that are in
         /// <paramref name="area2"/>.
         /// </summary>
         /// <param name="area1"/>
         /// <param name="area2"/>
+        /// <param name="pointHasher">
+        /// A custom equality comparer/hashing algorithm to use when storing points in the new Area.  If not specified, it defaults
+        /// to using the Equals and GetHashCode functions of the Point struct.
+        /// </param>
         /// <returns>A area with exactly those positions in <paramref name="area1"/> that are NOT in
         /// <paramref name="area2"/>.</returns>
-        public static Area GetDifference(IReadOnlyArea area1, IReadOnlyArea area2)
+        public static Area GetDifference(IReadOnlyArea area1, IReadOnlyArea area2, IEqualityComparer<Point>? pointHasher = null)
         {
-            Area retVal = new Area();
+            Area retVal = new Area(pointHasher);
 
-            foreach (Point pos in area1)
+            foreach (Point pos in area1.FastEnumerator())
             {
                 if (area2.Contains(pos))
                     continue;
@@ -118,18 +124,22 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="area1"/>
         /// <param name="area2"/>
+        /// <param name="pointHasher">
+        /// A custom equality comparer/hashing algorithm to use when storing points in the new Area.  If not specified, it defaults
+        /// to using the Equals and GetHashCode functions of the Point struct.
+        /// </param>
         /// <returns>An area containing exactly those positions contained in both of the given areas.</returns>
-        public static Area GetIntersection(IReadOnlyArea area1, IReadOnlyArea area2)
+        public static Area GetIntersection(IReadOnlyArea area1, IReadOnlyArea area2, IEqualityComparer<Point>? pointHasher = null)
         {
-            Area retVal = new Area();
+            Area retVal = new Area(pointHasher);
 
             if (!area1.Bounds.Intersects(area2.Bounds))
                 return retVal;
 
             if (area1.Count > area2.Count)
-                Swap(ref area1, ref area2);
+                (area2, area1) = (area1, area2);
 
-            foreach (Point pos in area1)
+            foreach (Point pos in area1.FastEnumerator())
                 if (area2.Contains(pos))
                     retVal.Add(pos);
 
@@ -141,10 +151,14 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="area1"/>
         /// <param name="area2"/>
+        /// <param name="pointHasher">
+        /// A custom equality comparer/hashing algorithm to use when storing points in the new Area.  If not specified, it defaults
+        /// to using the Equals and GetHashCode functions of the Point struct.
+        /// </param>
         /// <returns>An area containing only those positions in one or both of the given areas.</returns>
-        public static Area GetUnion(IReadOnlyArea area1, IReadOnlyArea area2)
+        public static Area GetUnion(IReadOnlyArea area1, IReadOnlyArea area2, IEqualityComparer<Point>? pointHasher = null)
         {
-            Area retVal = new Area();
+            Area retVal = new Area(pointHasher);
 
             retVal.Add(area1);
             retVal.Add(area2);
@@ -156,15 +170,15 @@ namespace SadRogue.Primitives
         /// Creates an area with the positions all shifted by the given vector.
         /// </summary>
         /// <param name="lhs"/>
-        /// <param name="rhs">Vector) to add to each position in <paramref name="lhs"/>.</param>
+        /// <param name="rhs">Vector to add to each position in <paramref name="lhs"/>.</param>
         /// <returns>
         /// An area with the positions all translated by the given amount in x and y directions.
         /// </returns>
         public static Area operator +(Area lhs, Point rhs)
         {
-            Area retVal = new Area();
+            Area retVal = new Area(lhs.PointHasher);
 
-            foreach (Point pos in lhs)
+            foreach (Point pos in lhs.FastEnumerator())
                 retVal.Add(pos + rhs);
 
             return retVal;
@@ -267,7 +281,7 @@ namespace SadRogue.Primitives
         /// <param name="area">Area containing positions to add.</param>
         public void Add(IReadOnlyArea area)
         {
-            foreach (Point pos in area)
+            foreach (Point pos in area.FastEnumerator())
                 Add(pos);
         }
 
@@ -300,7 +314,7 @@ namespace SadRogue.Primitives
             if (!Bounds.Contains(area.Bounds))
                 return false;
 
-            foreach (Point pos in area)
+            foreach (Point pos in area.FastEnumerator())
                 if (!Contains(pos))
                     return false;
 
@@ -310,7 +324,7 @@ namespace SadRogue.Primitives
         /// <summary>
         /// Returns whether or not the given map area intersects the current one. If you intend to
         /// determine/use the exact intersection based on this return value, it is best to instead
-        /// call the <see cref="Area.GetIntersection(IReadOnlyArea, IReadOnlyArea)"/>, and
+        /// call the <see cref="GetIntersection"/>, and
         /// check the number of positions in the result (0 if no intersection).
         /// </summary>
         /// <param name="area">The area to check.</param>
@@ -329,7 +343,7 @@ namespace SadRogue.Primitives
                 return false;
             }
 
-            foreach (Point pos in area)
+            foreach (Point pos in area.FastEnumerator())
                 if (Contains(pos))
                     return true;
 
@@ -342,8 +356,14 @@ namespace SadRogue.Primitives
         /// remove operations, it would be best to group them into 1 using <see cref="Remove(IEnumerable{Point})"/>.
         /// </summary>
         /// <param name="position">The position to remove.</param>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void Remove(Point position) => Remove(YieldPoint(position));
+        public void Remove(Point position)
+        {
+            if (!_positionsSet.Remove(position)) return;
+
+            _positions.Remove(position);
+            if (position.X == _left || position.X == _right || position.Y == _top || position.Y == _bottom)
+                RecalculateBounds();
+        }
 
         /// <summary>
         /// Removes the given position specified from the area. Particularly when the remove operation
@@ -353,7 +373,7 @@ namespace SadRogue.Primitives
         /// <param name="positionX">X-value of the position to remove.</param>
         /// <param name="positionY">Y-value of the position to remove.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void Remove(int positionX, int positionY) => Remove(YieldPoint(new Point(positionX, positionY)));
+        public void Remove(int positionX, int positionY) => Remove(new Point(positionX, positionY));
 
         /// <summary>
         /// Removes positions for which the given predicate returns true from the area.
@@ -363,10 +383,14 @@ namespace SadRogue.Primitives
         {
             bool recalculateBounds = false;
 
-            foreach (Point pos in _positions.Where(predicate))
+            foreach (Point pos in _positions)
+            {
+                if (!predicate(pos)) continue;
+
                 if (_positionsSet.Remove(pos))
                     if (pos.X == _left || pos.X == _right || pos.Y == _top || pos.Y == _bottom)
                         recalculateBounds = true;
+            }
 
             _positions.RemoveAll(c => predicate(c));
 
@@ -481,19 +505,6 @@ namespace SadRogue.Primitives
             _right = rightLocal;
             _top = topLocal;
             _bottom = bottomLocal;
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static void Swap(ref IReadOnlyArea lhs, ref IReadOnlyArea rhs)
-        {
-            IReadOnlyArea temp = lhs;
-            lhs = rhs;
-            rhs = temp;
-        }
-
-        private static IEnumerable<Point> YieldPoint(Point item)
-        {
-            yield return item;
         }
     }
 }

@@ -21,6 +21,8 @@
             - Default implementations are provided, and the Base classes implement them as well
 		- Modified Positions() enumerable functions to use custom enumerators for improved performance with foreach loops
             - Use Positions().ToEnumerable() if you need an IEnumerable for LINQ usage or similar
+        - Modified Area Get* functions to allow the specification of a custom point hasher
+        - Added `IReadOnlyArea.FastEnumerator()` in order to allow efficient foreach iteration of arbitrary areas
 	</PackageReleaseNotes>
 	<RepositoryUrl>https://github.com/thesadrogue/TheSadRogue.Primitives</RepositoryUrl>
 	<RepositoryType>git</RepositoryType>

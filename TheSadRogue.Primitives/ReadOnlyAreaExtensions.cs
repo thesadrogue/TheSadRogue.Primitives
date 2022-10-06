@@ -63,9 +63,9 @@ namespace SadRogue.Primitives
         /// </example>
         /// </remarks>
         /// 
-        /// <param name="area"></param>
-        /// <param name="rule"></param>
-        /// <returns></returns>
+        /// <param name="area"/>
+        /// <param name="rule">The AdjacencyRule to use for determining adjacency to cells which are outside of the area.</param>
+        /// <returns>An enumerable of every point which is on the outer edge of the area specified.</returns>
         public static IEnumerable<Point> PerimeterPositions(this IReadOnlyArea area, AdjacencyRule rule)
         {
             foreach (var pos in area.FastEnumerator())

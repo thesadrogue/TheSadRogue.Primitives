@@ -24,6 +24,48 @@ namespace SadRogue.Primitives
         public static ReadOnlyAreaPositionsEnumerable FastEnumerator(this IReadOnlyArea self)
             => new ReadOnlyAreaPositionsEnumerable(self);
 
+        /// <summary>
+        /// Returns all points that are on the border of the area, assuming the specified adjacency rule is used to determine adjacent cells
+        /// for the sake of determining border.
+        /// </summary>
+        /// <remarks>
+        /// Typically, you will want to use AdjacencyRule.EightWay as the rule; however AdjacencyRule.Cardinals is faster if you don't want
+        /// border cells adjacent to a wall ONLY diagonally to be considered border cells.
+        ///
+        /// <example>
+        /// Using AdjacencyRule.Cardinals, if "." and "x" are cells within the area and "#" are cells that are not within, X will NOT be considered
+        /// a border:
+        /// <code>
+        /// # # # # # # # #
+        /// # . . . . . # #
+        /// # . . . . X . #
+        /// # . . . . . . #
+        /// # . . . . . . #
+        /// # . . . . . . #
+        /// # . . . . . . #
+        /// # # # # # # # #
+        /// </code>
+        /// </example>
+        ///
+        /// <example>
+        /// Using AdjacencyRule.EightWay, if "." and "x" are cells within the area and "#" are cells that are not within, X WILL be considered
+        /// a border:
+        /// <code>
+        /// # # # # # # # #
+        /// # . . . . . # #
+        /// # . . . . X . #
+        /// # . . . . . . #
+        /// # . . . . . . #
+        /// # . . . . . . #
+        /// # . . . . . . #
+        /// # # # # # # # #
+        /// </code>
+        /// </example>
+        /// </remarks>
+        /// 
+        /// <param name="area"></param>
+        /// <param name="rule"></param>
+        /// <returns></returns>
         public static IEnumerable<Point> PerimeterPositions(this IReadOnlyArea area, AdjacencyRule rule)
         {
             foreach (var pos in area.FastEnumerator())

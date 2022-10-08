@@ -5,17 +5,19 @@
         {
           "src": "../",
           "files": [
-            "TheSadRogue.Primitives/**.csproj"
+            "TheSadRogue.Primitives/bin/Debug/net6.0/TheSadRogue.Primitives.dll"
           ],
 		  "exclude": [
-            "**/bin/**",
             "**/obj/**"
           ]
         }
       ],
       "dest": "api",
       "disableGitFeatures": false,
-      "disableDefaultFilter": false
+      "disableDefaultFilter": false,
+	  "properties": {
+		  "TargetFramework": "net6"
+	  }
     }
   ],
   "build": {
@@ -53,9 +55,6 @@
         ]
       }
     ],
-	"xrefservice": [
-      "https://xref.docs.microsoft.com/query?uid={uid}"
-    ],
     "dest": "../docs",
     "globalMetadataFiles": [],
     "fileMetadataFiles": [],
@@ -67,6 +66,9 @@
     "noLangKeyword": false,
     "keepFileLink": false,
     "cleanupCacheHistory": false,
-    "disableGitFeatures": false
+    "disableGitFeatures": false,
+	"xrefservice": [
+      "https://xref.docs.microsoft.com/query?uid={uid}"
+    ],
   }
 }

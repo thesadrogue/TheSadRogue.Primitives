@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class ArrayView&lt;T&gt;
+    <title>Class BitArrayView
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class ArrayView&lt;T&gt;
+    <meta name="title" content="Class BitArrayView
    ">
     <meta name="generator" content="docfx 2.58.9.0">
     
@@ -68,83 +68,69 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="SadRogue.Primitives.GridViews.ArrayView`1">
+            <article class="content wrap" id="_content" data-uid="SadRogue.Primitives.GridViews.BitArrayView">
   
   
-  <h1 id="SadRogue_Primitives_GridViews_ArrayView_1" data-uid="SadRogue.Primitives.GridViews.ArrayView`1" class="text-break">Class ArrayView&lt;T&gt;
+  <h1 id="SadRogue_Primitives_GridViews_BitArrayView" data-uid="SadRogue.Primitives.GridViews.BitArrayView" class="text-break">Class BitArrayView
   </h1>
-  <div class="markdown level0 summary"><p>Implementation of <a class="xref" href="SadRogue.Primitives.GridViews.ISettableGridView-1.html">ISettableGridView&lt;T&gt;</a> that uses a 1D array to store data.</p>
+  <div class="markdown level0 summary"><p>A grid view that wraps a C# BitArray into a settable grid view of boolean values.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></div>
-    <div class="level1"><a class="xref" href="SadRogue.Primitives.GridViews.SettableGridView1DIndexBase-1.html">SettableGridView1DIndexBase</a>&lt;T&gt;</div>
-    <div class="level2"><span class="xref">ArrayView&lt;T&gt;</span></div>
+    <div class="level1"><a class="xref" href="SadRogue.Primitives.GridViews.SettableGridView1DIndexBase-1.html">SettableGridView1DIndexBase</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</div>
+    <div class="level2"><span class="xref">BitArrayView</span></div>
   </div>
   <div classs="implements">
     <h5>Implements</h5>
-    <div><a class="xref" href="SadRogue.Primitives.GridViews.ISettableGridView-1.html">ISettableGridView</a>&lt;T&gt;</div>
-    <div><a class="xref" href="SadRogue.Primitives.GridViews.IGridView-1.html">IGridView</a>&lt;T&gt;</div>
+    <div><a class="xref" href="SadRogue.Primitives.GridViews.ISettableGridView-1.html">ISettableGridView</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</div>
+    <div><a class="xref" href="SadRogue.Primitives.GridViews.IGridView-1.html">IGridView</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</div>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.icloneable">ICloneable</a></div>
-    <div><a class="xref" href="SadRogue.Primitives.IMatchable-1.html">IMatchable</a>&lt;<a class="xref" href="SadRogue.Primitives.GridViews.ArrayView-1.html">ArrayView</a>&lt;T&gt;&gt;</div>
+    <div><a class="xref" href="SadRogue.Primitives.IMatchable-1.html">IMatchable</a>&lt;<a class="xref" href="SadRogue.Primitives.GridViews.BitArrayView.html">BitArrayView</a>&gt;</div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
-      <a class="xref" href="SadRogue.Primitives.GridViews.SettableGridView1DIndexBase-1.html#SadRogue_Primitives_GridViews_SettableGridView1DIndexBase_1_Fill__0_">SettableGridView1DIndexBase&lt;T&gt;.Fill(T)</a>
+      <a class="xref" href="SadRogue.Primitives.GridViews.SettableGridView1DIndexBase-1.html#SadRogue_Primitives_GridViews_SettableGridView1DIndexBase_1_Clear">SettableGridView1DIndexBase&lt;Boolean&gt;.Clear()</a>
     </div>
     <div>
-      <a class="xref" href="SadRogue.Primitives.GridViews.SettableGridView1DIndexBase-1.html#SadRogue_Primitives_GridViews_SettableGridView1DIndexBase_1_Count">SettableGridView1DIndexBase&lt;T&gt;.Count</a>
+      <a class="xref" href="SadRogue.Primitives.GridViews.SettableGridView1DIndexBase-1.html#SadRogue_Primitives_GridViews_SettableGridView1DIndexBase_1_Count">SettableGridView1DIndexBase&lt;Boolean&gt;.Count</a>
     </div>
     <div>
-      <a class="xref" href="SadRogue.Primitives.GridViews.SettableGridView1DIndexBase-1.html#SadRogue_Primitives_GridViews_SettableGridView1DIndexBase_1_Item_SadRogue_Primitives_Point_">SettableGridView1DIndexBase&lt;T&gt;.Item[Point]</a>
+      <a class="xref" href="SadRogue.Primitives.GridViews.SettableGridView1DIndexBase-1.html#SadRogue_Primitives_GridViews_SettableGridView1DIndexBase_1_Item_SadRogue_Primitives_Point_">SettableGridView1DIndexBase&lt;Boolean&gt;.Item[Point]</a>
     </div>
     <div>
-      <a class="xref" href="SadRogue.Primitives.GridViews.SettableGridView1DIndexBase-1.html#SadRogue_Primitives_GridViews_SettableGridView1DIndexBase_1_Item_System_Int32_System_Int32_">SettableGridView1DIndexBase&lt;T&gt;.Item[Int32, Int32]</a>
+      <a class="xref" href="SadRogue.Primitives.GridViews.SettableGridView1DIndexBase-1.html#SadRogue_Primitives_GridViews_SettableGridView1DIndexBase_1_Item_System_Int32_System_Int32_">SettableGridView1DIndexBase&lt;Boolean&gt;.Item[Int32, Int32]</a>
     </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="SadRogue.Primitives.GridViews.html">SadRogue.Primitives.GridViews</a></h6>
   <h6><strong>Assembly</strong>: TheSadRogue.Primitives.dll</h6>
-  <h5 id="SadRogue_Primitives_GridViews_ArrayView_1_syntax">Syntax</h5>
+  <h5 id="SadRogue_Primitives_GridViews_BitArrayView_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public sealed class ArrayView&lt;T&gt; : SettableGridView1DIndexBase&lt;T&gt;, ISettableGridView&lt;T&gt;, IGridView&lt;T&gt;, ICloneable, IMatchable&lt;ArrayView&lt;T&gt;&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed class BitArrayView : SettableGridView1DIndexBase&lt;bool&gt;, ISettableGridView&lt;bool&gt;, IGridView&lt;bool&gt;, ICloneable, IMatchable&lt;BitArrayView&gt;</code></pre>
   </div>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">T</span></td>
-        <td><p>The type of value being stored.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="SadRogue_Primitives_GridViews_ArrayView_1_remarks"><strong>Remarks</strong></h5>
-  <div class="markdown level0 remarks"><p>An <a class="xref" href="SadRogue.Primitives.GridViews.ArrayView-1.html">ArrayView&lt;T&gt;</a> can be implicitly converted to its underlying 1D array,
-which allows exposing that array to code that works with 1D arrays.  Modifications in the array
-appear in the map view as well.</p>
-<p>If you need a 2D array instead of 1D, then you should use <a class="xref" href="SadRogue.Primitives.GridViews.ArrayView2D-1.html">ArrayView2D&lt;T&gt;</a> instead.</p>
+  <h5 id="SadRogue_Primitives_GridViews_BitArrayView_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>This grid view con be useful to represent a region or area of a 2d grid where points are either &quot;on&quot; or &quot;off&quot;.
+HashSet&lt;Point&gt; can work for this purpose, but hashing can be slow.  bool[] or ArrayView&lt;bool&gt;
+are other options, but this class uses approximately 8x less memory than those options, and is only very slightly
+slower (less than 0.5ns) in terms of index access.  The Fill operation is actually much faster than the
+corresponding operation for a boolean array, which can make it a very useful alternative as a &quot;visited&quot; array
+when iterating over a grid.</p>
 </div>
   <h3 id="constructors">Constructors
   </h3>
   
   
-  <a id="SadRogue_Primitives_GridViews_ArrayView_1__ctor_" data-uid="SadRogue.Primitives.GridViews.ArrayView`1.#ctor*"></a>
-  <h4 id="SadRogue_Primitives_GridViews_ArrayView_1__ctor__0___System_Int32_" data-uid="SadRogue.Primitives.GridViews.ArrayView`1.#ctor(`0[],System.Int32)">ArrayView(T[], Int32)</h4>
+  <a id="SadRogue_Primitives_GridViews_BitArrayView__ctor_" data-uid="SadRogue.Primitives.GridViews.BitArrayView.#ctor*"></a>
+  <h4 id="SadRogue_Primitives_GridViews_BitArrayView__ctor_System_Collections_BitArray_System_Int32_" data-uid="SadRogue.Primitives.GridViews.BitArrayView.#ctor(System.Collections.BitArray,System.Int32)">BitArrayView(BitArray, Int32)</h4>
   <div class="markdown level1 summary"><p>Constructor.  Takes an existing 1D array to use as the underlying array, and
 the width of the 2D grid represented by that array.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ArrayView(T[] existingArray, int width)</code></pre>
+    <pre><code class="lang-csharp hljs">public BitArrayView(BitArray existingArray, int width)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -157,7 +143,7 @@ the width of the 2D grid represented by that array.</p>
     </thead>
     <tbody>
       <tr>
-        <td>T[]</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.bitarray">BitArray</a></td>
         <td><span class="parametername">existingArray</span></td>
         <td><p>Existing 1D array to use as the underlying array.</p>
 </td>
@@ -172,14 +158,14 @@ the width of the 2D grid represented by that array.</p>
   </table>
   
   
-  <a id="SadRogue_Primitives_GridViews_ArrayView_1__ctor_" data-uid="SadRogue.Primitives.GridViews.ArrayView`1.#ctor*"></a>
-  <h4 id="SadRogue_Primitives_GridViews_ArrayView_1__ctor_System_Int32_System_Int32_" data-uid="SadRogue.Primitives.GridViews.ArrayView`1.#ctor(System.Int32,System.Int32)">ArrayView(Int32, Int32)</h4>
+  <a id="SadRogue_Primitives_GridViews_BitArrayView__ctor_" data-uid="SadRogue.Primitives.GridViews.BitArrayView.#ctor*"></a>
+  <h4 id="SadRogue_Primitives_GridViews_BitArrayView__ctor_System_Int32_System_Int32_" data-uid="SadRogue.Primitives.GridViews.BitArrayView.#ctor(System.Int32,System.Int32)">BitArrayView(Int32, Int32)</h4>
   <div class="markdown level1 summary"><p>Constructor. Takes width and height of array to create.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ArrayView(int width, int height)</code></pre>
+    <pre><code class="lang-csharp hljs">public BitArrayView(int width, int height)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -209,8 +195,8 @@ the width of the 2D grid represented by that array.</p>
   </h3>
   
   
-  <a id="SadRogue_Primitives_GridViews_ArrayView_1_Height_" data-uid="SadRogue.Primitives.GridViews.ArrayView`1.Height*"></a>
-  <h4 id="SadRogue_Primitives_GridViews_ArrayView_1_Height" data-uid="SadRogue.Primitives.GridViews.ArrayView`1.Height">Height</h4>
+  <a id="SadRogue_Primitives_GridViews_BitArrayView_Height_" data-uid="SadRogue.Primitives.GridViews.BitArrayView.Height*"></a>
+  <h4 id="SadRogue_Primitives_GridViews_BitArrayView_Height" data-uid="SadRogue.Primitives.GridViews.BitArrayView.Height">Height</h4>
   <div class="markdown level1 summary"><p>The height of the grid being represented.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -234,11 +220,11 @@ the width of the 2D grid represented by that array.</p>
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">SadRogue.Primitives.GridViews.SettableGridView1DIndexBase&lt;T&gt;.Height</span></div>
+  <div><span class="xref">SadRogue.Primitives.GridViews.SettableGridView1DIndexBase&lt;System.Boolean&gt;.Height</span></div>
   
   
-  <a id="SadRogue_Primitives_GridViews_ArrayView_1_Item_" data-uid="SadRogue.Primitives.GridViews.ArrayView`1.Item*"></a>
-  <h4 id="SadRogue_Primitives_GridViews_ArrayView_1_Item_System_Int32_" data-uid="SadRogue.Primitives.GridViews.ArrayView`1.Item(System.Int32)">Item[Int32]</h4>
+  <a id="SadRogue_Primitives_GridViews_BitArrayView_Item_" data-uid="SadRogue.Primitives.GridViews.BitArrayView.Item*"></a>
+  <h4 id="SadRogue_Primitives_GridViews_BitArrayView_Item_System_Int32_" data-uid="SadRogue.Primitives.GridViews.BitArrayView.Item(System.Int32)">Item[Int32]</h4>
   <div class="markdown level1 summary"><p>Interface designed to act as a standardized input/output format that defines minimal required data
 for algorithms that operate and make changes to a grid of some sort.  For a concrete implementation to subclass
 for custom implementations, see <a class="xref" href="SadRogue.Primitives.GridViews.SettableGridViewBase-1.html">SettableGridViewBase&lt;T&gt;</a>.</p>
@@ -246,7 +232,7 @@ for custom implementations, see <a class="xref" href="SadRogue.Primitives.GridVi
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override T this[int index1D] { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public override bool this[int index1D] { get; set; }</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -276,15 +262,15 @@ for custom implementations, see <a class="xref" href="SadRogue.Primitives.GridVi
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">T</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
         <td><p>The &quot;value&quot; associated with the given location.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">SadRogue.Primitives.GridViews.SettableGridView1DIndexBase&lt;T&gt;.Item[System.Int32]</span></div>
-  <h5 id="SadRogue_Primitives_GridViews_ArrayView_1_Item_System_Int32__remarks">Remarks</h5>
+  <div><span class="xref">SadRogue.Primitives.GridViews.SettableGridView1DIndexBase&lt;System.Boolean&gt;.Item[System.Int32]</span></div>
+  <h5 id="SadRogue_Primitives_GridViews_BitArrayView_Item_System_Int32__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>See <a class="xref" href="SadRogue.Primitives.GridViews.IGridView-1.html">IGridView&lt;T&gt;</a>. This interface serves the same purpose, but for cases when it is also
 necessary for an algorithm to be able to change the value at each location.</p>
 <p>Like IGridView, a number of implementations of this interface to cover common needs are provided.  For example,
@@ -294,8 +280,8 @@ and set the data.</p>
 </div>
   
   
-  <a id="SadRogue_Primitives_GridViews_ArrayView_1_Width_" data-uid="SadRogue.Primitives.GridViews.ArrayView`1.Width*"></a>
-  <h4 id="SadRogue_Primitives_GridViews_ArrayView_1_Width" data-uid="SadRogue.Primitives.GridViews.ArrayView`1.Width">Width</h4>
+  <a id="SadRogue_Primitives_GridViews_BitArrayView_Width_" data-uid="SadRogue.Primitives.GridViews.BitArrayView.Width*"></a>
+  <h4 id="SadRogue_Primitives_GridViews_BitArrayView_Width" data-uid="SadRogue.Primitives.GridViews.BitArrayView.Width">Width</h4>
   <div class="markdown level1 summary"><p>The width of the grid being represented.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -319,31 +305,14 @@ and set the data.</p>
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">SadRogue.Primitives.GridViews.SettableGridView1DIndexBase&lt;T&gt;.Width</span></div>
+  <div><span class="xref">SadRogue.Primitives.GridViews.SettableGridView1DIndexBase&lt;System.Boolean&gt;.Width</span></div>
   <h3 id="methods">Methods
   </h3>
   
   
-  <a id="SadRogue_Primitives_GridViews_ArrayView_1_Clear_" data-uid="SadRogue.Primitives.GridViews.ArrayView`1.Clear*"></a>
-  <h4 id="SadRogue_Primitives_GridViews_ArrayView_1_Clear" data-uid="SadRogue.Primitives.GridViews.ArrayView`1.Clear">Clear()</h4>
-  <div class="markdown level1 summary"><p>Sets every location within the grid view to the default value for the type.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override void Clear()</code></pre>
-  </div>
-  <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">SadRogue.Primitives.GridViews.SettableGridView1DIndexBase&lt;T&gt;.Clear()</span></div>
-  <h5 id="SadRogue_Primitives_GridViews_ArrayView_1_Clear_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>This function can sometimes be implemented more efficiently than Fill(default), so it is provided as an interface function to enable dispatching.</p>
-<p>Remember the default value of a non-nullable type is null for reference types; so use with caution if your element type is non-nullable!</p>
-</div>
-  
-  
-  <a id="SadRogue_Primitives_GridViews_ArrayView_1_Clone_" data-uid="SadRogue.Primitives.GridViews.ArrayView`1.Clone*"></a>
-  <h4 id="SadRogue_Primitives_GridViews_ArrayView_1_Clone" data-uid="SadRogue.Primitives.GridViews.ArrayView`1.Clone">Clone()</h4>
-  <div class="markdown level1 summary"><p>Performs deep copy of array view.</p>
+  <a id="SadRogue_Primitives_GridViews_BitArrayView_Clone_" data-uid="SadRogue.Primitives.GridViews.BitArrayView.Clone*"></a>
+  <h4 id="SadRogue_Primitives_GridViews_BitArrayView_Clone" data-uid="SadRogue.Primitives.GridViews.BitArrayView.Clone">Clone()</h4>
+  <div class="markdown level1 summary"><p>Performs deep copy of bit-array view.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -361,21 +330,21 @@ and set the data.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></td>
-        <td><p>The cloned ArrayView.</p>
+        <td><p>The cloned BitArrayView.</p>
 </td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="SadRogue_Primitives_GridViews_ArrayView_1_Matches_" data-uid="SadRogue.Primitives.GridViews.ArrayView`1.Matches*"></a>
-  <h4 id="SadRogue_Primitives_GridViews_ArrayView_1_Matches_SadRogue_Primitives_GridViews_ArrayView__0__" data-uid="SadRogue.Primitives.GridViews.ArrayView`1.Matches(SadRogue.Primitives.GridViews.ArrayView{`0})">Matches(ArrayView&lt;T&gt;)</h4>
-  <div class="markdown level1 summary"><p>Compares the current ArrayView to the one given.</p>
+  <a id="SadRogue_Primitives_GridViews_BitArrayView_Fill_" data-uid="SadRogue.Primitives.GridViews.BitArrayView.Fill*"></a>
+  <h4 id="SadRogue_Primitives_GridViews_BitArrayView_Fill_System_Boolean_" data-uid="SadRogue.Primitives.GridViews.BitArrayView.Fill(System.Boolean)">Fill(Boolean)</h4>
+  <div class="markdown level1 summary"><p>Sets every location within the grid view to the given value.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool Matches(ArrayView&lt;T&gt; other)</code></pre>
+    <pre><code class="lang-csharp hljs">public override void Fill(bool value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -388,7 +357,37 @@ and set the data.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="SadRogue.Primitives.GridViews.ArrayView-1.html">ArrayView</a>&lt;T&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="parametername">value</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">SadRogue.Primitives.GridViews.SettableGridView1DIndexBase&lt;System.Boolean&gt;.Fill(System.Boolean)</span></div>
+  
+  
+  <a id="SadRogue_Primitives_GridViews_BitArrayView_Matches_" data-uid="SadRogue.Primitives.GridViews.BitArrayView.Matches*"></a>
+  <h4 id="SadRogue_Primitives_GridViews_BitArrayView_Matches_SadRogue_Primitives_GridViews_BitArrayView_" data-uid="SadRogue.Primitives.GridViews.BitArrayView.Matches(SadRogue.Primitives.GridViews.BitArrayView)">Matches(BitArrayView)</h4>
+  <div class="markdown level1 summary"><p>Compares the current BitArrayView to the one given.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Matches(BitArrayView other)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.GridViews.BitArrayView.html">BitArrayView</a></td>
         <td><span class="parametername">other</span></td>
         <td></td>
       </tr>
@@ -405,22 +404,22 @@ and set the data.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
-        <td><p>True if the given ArrayView&lt;T&gt; references the same underlying array, false otherwise.</p>
+        <td><p>True if the given BitArrayView references the same underlying bit-array, false otherwise.</p>
 </td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="SadRogue_Primitives_GridViews_ArrayView_1_ToArray_" data-uid="SadRogue.Primitives.GridViews.ArrayView`1.ToArray*"></a>
-  <h4 id="SadRogue_Primitives_GridViews_ArrayView_1_ToArray" data-uid="SadRogue.Primitives.GridViews.ArrayView`1.ToArray">ToArray()</h4>
-  <div class="markdown level1 summary"><p>Converts to 1D array, without copying the values.  Typically using this method is unnecessary
+  <a id="SadRogue_Primitives_GridViews_BitArrayView_ToBitArray_" data-uid="SadRogue.Primitives.GridViews.BitArrayView.ToBitArray*"></a>
+  <h4 id="SadRogue_Primitives_GridViews_BitArrayView_ToBitArray" data-uid="SadRogue.Primitives.GridViews.BitArrayView.ToBitArray">ToBitArray()</h4>
+  <div class="markdown level1 summary"><p>Converts to BitArray, without copying the values.  Typically using this method is unnecessary
 and you can use the implicit conversion defined for this type instead.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public T[] ToArray()</code></pre>
+    <pre><code class="lang-csharp hljs">public BitArray ToBitArray()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -432,16 +431,16 @@ and you can use the implicit conversion defined for this type instead.</p>
     </thead>
     <tbody>
       <tr>
-        <td>T[]</td>
-        <td><p>The underlying ArrayView data as a 1D array.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.bitarray">BitArray</a></td>
+        <td><p>The underlying BitArray data as a 1D array.</p>
 </td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="SadRogue_Primitives_GridViews_ArrayView_1_ToString_" data-uid="SadRogue.Primitives.GridViews.ArrayView`1.ToString*"></a>
-  <h4 id="SadRogue_Primitives_GridViews_ArrayView_1_ToString" data-uid="SadRogue.Primitives.GridViews.ArrayView`1.ToString">ToString()</h4>
+  <a id="SadRogue_Primitives_GridViews_BitArrayView_ToString_" data-uid="SadRogue.Primitives.GridViews.BitArrayView.ToString*"></a>
+  <h4 id="SadRogue_Primitives_GridViews_BitArrayView_ToString" data-uid="SadRogue.Primitives.GridViews.BitArrayView.ToString">ToString()</h4>
   <div class="markdown level1 summary"><p>Returns a string representation of the grid values.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -467,15 +466,15 @@ and you can use the implicit conversion defined for this type instead.</p>
   </table>
   
   
-  <a id="SadRogue_Primitives_GridViews_ArrayView_1_ToString_" data-uid="SadRogue.Primitives.GridViews.ArrayView`1.ToString*"></a>
-  <h4 id="SadRogue_Primitives_GridViews_ArrayView_1_ToString_System_Func__0_System_String__" data-uid="SadRogue.Primitives.GridViews.ArrayView`1.ToString(System.Func{`0,System.String})">ToString(Func&lt;T, String&gt;)</h4>
+  <a id="SadRogue_Primitives_GridViews_BitArrayView_ToString_" data-uid="SadRogue.Primitives.GridViews.BitArrayView.ToString*"></a>
+  <h4 id="SadRogue_Primitives_GridViews_BitArrayView_ToString_System_Func_System_Boolean_System_String__" data-uid="SadRogue.Primitives.GridViews.BitArrayView.ToString(System.Func{System.Boolean,System.String})">ToString(Func&lt;Boolean, String&gt;)</h4>
   <div class="markdown level1 summary"><p>Returns a string representation of the grid values, using <code data-dev-comment-type="paramref" class="paramref">elementStringifier</code>
 to determine what string represents each value.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string ToString(Func&lt;T, string&gt; elementStringifier)</code></pre>
+    <pre><code class="lang-csharp hljs">public string ToString(Func&lt;bool, string&gt; elementStringifier)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -488,7 +487,7 @@ to determine what string represents each value.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
         <td><span class="parametername">elementStringifier</span></td>
         <td><p>Function determining the string representation of each value.</p>
 </td>
@@ -513,14 +512,14 @@ to determine what string represents each value.</p>
   </table>
   
   
-  <a id="SadRogue_Primitives_GridViews_ArrayView_1_ToString_" data-uid="SadRogue.Primitives.GridViews.ArrayView`1.ToString*"></a>
-  <h4 id="SadRogue_Primitives_GridViews_ArrayView_1_ToString_System_Int32_System_Func__0_System_String__" data-uid="SadRogue.Primitives.GridViews.ArrayView`1.ToString(System.Int32,System.Func{`0,System.String})">ToString(Int32, Func&lt;T, String&gt;)</h4>
+  <a id="SadRogue_Primitives_GridViews_BitArrayView_ToString_" data-uid="SadRogue.Primitives.GridViews.BitArrayView.ToString*"></a>
+  <h4 id="SadRogue_Primitives_GridViews_BitArrayView_ToString_System_Int32_System_Func_System_Boolean_System_String__" data-uid="SadRogue.Primitives.GridViews.BitArrayView.ToString(System.Int32,System.Func{System.Boolean,System.String})">ToString(Int32, Func&lt;Boolean, String&gt;)</h4>
   <div class="markdown level1 summary"><p>Returns a string representation of the grid values using the given parameters.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string ToString(int fieldSize, Func&lt;T, string&gt; elementStringifier = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public string ToString(int fieldSize, Func&lt;bool, string&gt; elementStringifier = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -540,7 +539,7 @@ right-aligns the text within the field, while a negative number left-aligns the 
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
         <td><span class="parametername">elementStringifier</span></td>
         <td><p>Function to use to convert each value to a string. null defaults to the ToString
 function of type T.</p>
@@ -564,7 +563,7 @@ function of type T.</p>
       </tr>
     </tbody>
   </table>
-  <h5 id="SadRogue_Primitives_GridViews_ArrayView_1_ToString_System_Int32_System_Func__0_System_String___remarks">Remarks</h5>
+  <h5 id="SadRogue_Primitives_GridViews_BitArrayView_ToString_System_Int32_System_Func_System_Boolean_System_String___remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>Each element will have spaces added to cause it to take up exactly
 <code data-dev-comment-type="paramref" class="paramref">fieldSize</code> characters, provided <code data-dev-comment-type="paramref" class="paramref">fieldSize</code>
 is less than the length of the value's string representation.</p>
@@ -573,14 +572,14 @@ is less than the length of the value's string representation.</p>
   </h3>
   
   
-  <a id="SadRogue_Primitives_GridViews_ArrayView_1_op_Implicit_" data-uid="SadRogue.Primitives.GridViews.ArrayView`1.op_Implicit*"></a>
-  <h4 id="SadRogue_Primitives_GridViews_ArrayView_1_op_Implicit_SadRogue_Primitives_GridViews_ArrayView__0____0__" data-uid="SadRogue.Primitives.GridViews.ArrayView`1.op_Implicit(SadRogue.Primitives.GridViews.ArrayView{`0})~`0[]">Implicit(ArrayView&lt;T&gt; to T[])</h4>
-  <div class="markdown level1 summary"><p>Allows implicit conversion to 1D array.  Does not copy the underlying values.</p>
+  <a id="SadRogue_Primitives_GridViews_BitArrayView_op_Implicit_" data-uid="SadRogue.Primitives.GridViews.BitArrayView.op_Implicit*"></a>
+  <h4 id="SadRogue_Primitives_GridViews_BitArrayView_op_Implicit_SadRogue_Primitives_GridViews_BitArrayView__System_Collections_BitArray" data-uid="SadRogue.Primitives.GridViews.BitArrayView.op_Implicit(SadRogue.Primitives.GridViews.BitArrayView)~System.Collections.BitArray">Implicit(BitArrayView to BitArray)</h4>
+  <div class="markdown level1 summary"><p>Allows implicit conversion to BitArray.  Does not copy the underlying values.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static implicit operator T[](ArrayView&lt;T&gt; arrayView)</code></pre>
+    <pre><code class="lang-csharp hljs">public static implicit operator BitArray(BitArrayView arrayView)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -593,9 +592,9 @@ is less than the length of the value's string representation.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="SadRogue.Primitives.GridViews.ArrayView-1.html">ArrayView</a>&lt;T&gt;</td>
+        <td><a class="xref" href="SadRogue.Primitives.GridViews.BitArrayView.html">BitArrayView</a></td>
         <td><span class="parametername">arrayView</span></td>
-        <td><p>ArrayView to convert.</p>
+        <td><p>BitArrayView to convert.</p>
 </td>
       </tr>
     </tbody>
@@ -610,7 +609,7 @@ is less than the length of the value's string representation.</p>
     </thead>
     <tbody>
       <tr>
-        <td>T[]</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.bitarray">BitArray</a></td>
         <td></td>
       </tr>
     </tbody>

@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class KnownSizeHasher
+    <title>Class ReadOnlyAreaPositionsEnumerable
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class KnownSizeHasher
+    <meta name="title" content="Class ReadOnlyAreaPositionsEnumerable
    ">
     <meta name="generator" content="docfx 2.58.9.0">
     
@@ -68,48 +68,42 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="SadRogue.Primitives.PointHashers.KnownSizeHasher">
+            <article class="content wrap" id="_content" data-uid="SadRogue.Primitives.ReadOnlyAreaPositionsEnumerable">
   
   
-  <h1 id="SadRogue_Primitives_PointHashers_KnownSizeHasher" data-uid="SadRogue.Primitives.PointHashers.KnownSizeHasher" class="text-break">Class KnownSizeHasher
+  <h1 id="SadRogue_Primitives_ReadOnlyAreaPositionsEnumerable" data-uid="SadRogue.Primitives.ReadOnlyAreaPositionsEnumerable" class="text-break">Class ReadOnlyAreaPositionsEnumerable
   </h1>
-  <div class="markdown level0 summary"><p>NON-GENERALIZED hashing algorithm for <a class="xref" href="SadRogue.Primitives.Point.html">Point</a> instances that calculates a hash, assuming a known
-maximum x-value.</p>
+  <div class="markdown level0 summary"><p>A custom enumerator used to iterate over all positions within an area with a foreach loop efficiently.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></div>
-    <div class="level1"><span class="xref">KnownSizeHasher</span></div>
+    <div class="level1"><span class="xref">ReadOnlyAreaPositionsEnumerable</span></div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="SadRogue.Primitives.PointHashers.html">SadRogue.Primitives.PointHashers</a></h6>
+  <h6><strong>Namespace</strong>: <a class="xref" href="SadRogue.Primitives.html">SadRogue.Primitives</a></h6>
   <h6><strong>Assembly</strong>: TheSadRogue.Primitives.dll</h6>
-  <h5 id="SadRogue_Primitives_PointHashers_KnownSizeHasher_syntax">Syntax</h5>
+  <h5 id="SadRogue_Primitives_ReadOnlyAreaPositionsEnumerable_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class KnownSizeHasher : EqualityComparer&lt;Point&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed class ReadOnlyAreaPositionsEnumerable : ValueType</code></pre>
   </div>
-  <h5 id="SadRogue_Primitives_PointHashers_KnownSizeHasher_remarks"><strong>Remarks</strong></h5>
-  <div class="markdown level0 remarks"><p>This is NOT an efficient generalized hashing algorithm; it generates a hash code using the assumption
-of a &quot;maximum width&quot; that can occur in any point given to it.  It simply uses the <a class="xref" href="SadRogue.Primitives.Point.html#SadRogue_Primitives_Point_ToIndex_System_Int32_">ToIndex(Int32)</a>
-function to generate a hash.  The algorithm WILL still function on points outside of the max x-value; however
-it will simply start to generate collisions.</p>
-<p>This algorithm is nonetheless useful in some cases; the assumption that points will fall from
-(0, 0) to some known max width is fairly common (as it could apply to any fixed-size grid).  Since this
-algorithm can be significantly faster to compute than fully generalized algorithms, it can be useful for these
-cases.</p>
+  <h5 id="SadRogue_Primitives_ReadOnlyAreaPositionsEnumerable_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>This type is a struct, and will either use an indexer-based enumeration method, or a standard IEnumerator, depending on
+the area's <a class="xref" href="SadRogue.Primitives.IReadOnlyArea.html#SadRogue_Primitives_IReadOnlyArea_UseIndexEnumeration">UseIndexEnumeration</a> value.  Therefore, it will provide the quickest way of iterating
+over positions in an area with a for-each loop.</p>
 </div>
   <h3 id="constructors">Constructors
   </h3>
   
   
-  <a id="SadRogue_Primitives_PointHashers_KnownSizeHasher__ctor_" data-uid="SadRogue.Primitives.PointHashers.KnownSizeHasher.#ctor*"></a>
-  <h4 id="SadRogue_Primitives_PointHashers_KnownSizeHasher__ctor_System_Int32_" data-uid="SadRogue.Primitives.PointHashers.KnownSizeHasher.#ctor(System.Int32)">KnownSizeHasher(Int32)</h4>
-  <div class="markdown level1 summary"><p>Creates a new instance of the comparison/hashing algorithm implementation.</p>
+  <a id="SadRogue_Primitives_ReadOnlyAreaPositionsEnumerable__ctor_" data-uid="SadRogue.Primitives.ReadOnlyAreaPositionsEnumerable.#ctor*"></a>
+  <h4 id="SadRogue_Primitives_ReadOnlyAreaPositionsEnumerable__ctor_SadRogue_Primitives_IReadOnlyArea_" data-uid="SadRogue.Primitives.ReadOnlyAreaPositionsEnumerable.#ctor(SadRogue.Primitives.IReadOnlyArea)">ReadOnlyAreaPositionsEnumerable(IReadOnlyArea)</h4>
+  <div class="markdown level1 summary"><p>Creates an enumerator which iterates over all positions in the given area.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public KnownSizeHasher(int maxXValue)</code></pre>
+    <pre><code class="lang-csharp hljs">public ReadOnlyAreaPositionsEnumerable(IReadOnlyArea area)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -122,28 +116,27 @@ cases.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
-        <td><span class="parametername">maxXValue</span></td>
-        <td><p>Maximum x-value to assume for points that are hashed by this algorithm.
-It IS allowed to hash points outside this value, however doing so may generate
-collisions.</p>
+        <td><a class="xref" href="SadRogue.Primitives.IReadOnlyArea.html">IReadOnlyArea</a></td>
+        <td><span class="parametername">area</span></td>
+        <td><p>A read-only area containing the positions to iterate over.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h3 id="fields">Fields
+  <h3 id="properties">Properties
   </h3>
   
   
-  <h4 id="SadRogue_Primitives_PointHashers_KnownSizeHasher_MaxXValue" data-uid="SadRogue.Primitives.PointHashers.KnownSizeHasher.MaxXValue">MaxXValue</h4>
-  <div class="markdown level1 summary"><p>Maximum x-value that is generally expected for points that this hashing algorithm will receive.</p>
+  <a id="SadRogue_Primitives_ReadOnlyAreaPositionsEnumerable_Current_" data-uid="SadRogue.Primitives.ReadOnlyAreaPositionsEnumerable.Current*"></a>
+  <h4 id="SadRogue_Primitives_ReadOnlyAreaPositionsEnumerable_Current" data-uid="SadRogue.Primitives.ReadOnlyAreaPositionsEnumerable.Current">Current</h4>
+  <div class="markdown level1 summary"><p>The current value for enumeration.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public readonly int MaxXValue</code></pre>
+    <pre><code class="lang-csharp hljs">public Point Current { get; }</code></pre>
   </div>
-  <h5 class="fieldValue">Field Value</h5>
+  <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
@@ -153,7 +146,7 @@ collisions.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -162,36 +155,42 @@ collisions.</p>
   </h3>
   
   
-  <a id="SadRogue_Primitives_PointHashers_KnownSizeHasher_Equals_" data-uid="SadRogue.Primitives.PointHashers.KnownSizeHasher.Equals*"></a>
-  <h4 id="SadRogue_Primitives_PointHashers_KnownSizeHasher_Equals_SadRogue_Primitives_Point_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.PointHashers.KnownSizeHasher.Equals(SadRogue.Primitives.Point,SadRogue.Primitives.Point)">Equals(Point, Point)</h4>
-  <div class="markdown level1 summary"></div>
+  <a id="SadRogue_Primitives_ReadOnlyAreaPositionsEnumerable_GetEnumerator_" data-uid="SadRogue.Primitives.ReadOnlyAreaPositionsEnumerable.GetEnumerator*"></a>
+  <h4 id="SadRogue_Primitives_ReadOnlyAreaPositionsEnumerable_GetEnumerator" data-uid="SadRogue.Primitives.ReadOnlyAreaPositionsEnumerable.GetEnumerator">GetEnumerator()</h4>
+  <div class="markdown level1 summary"><p>Returns this enumerator.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override bool Equals(Point x, Point y)</code></pre>
+    <pre><code class="lang-csharp hljs">public ReadOnlyAreaPositionsEnumerable GetEnumerator()</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
+  <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
-        <th>Name</th>
         <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
-        <td><span class="parametername">x</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
-        <td><span class="parametername">y</span></td>
-        <td></td>
+        <td><a class="xref" href="SadRogue.Primitives.ReadOnlyAreaPositionsEnumerable.html">ReadOnlyAreaPositionsEnumerable</a></td>
+        <td><p>This enumerator.</p>
+</td>
       </tr>
     </tbody>
   </table>
+  
+  
+  <a id="SadRogue_Primitives_ReadOnlyAreaPositionsEnumerable_MoveNext_" data-uid="SadRogue.Primitives.ReadOnlyAreaPositionsEnumerable.MoveNext*"></a>
+  <h4 id="SadRogue_Primitives_ReadOnlyAreaPositionsEnumerable_MoveNext" data-uid="SadRogue.Primitives.ReadOnlyAreaPositionsEnumerable.MoveNext">MoveNext()</h4>
+  <div class="markdown level1 summary"><p>Advances the iterator to the next position.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool MoveNext()</code></pre>
+  </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -203,49 +202,8 @@ collisions.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <a id="SadRogue_Primitives_PointHashers_KnownSizeHasher_GetHashCode_" data-uid="SadRogue.Primitives.PointHashers.KnownSizeHasher.GetHashCode*"></a>
-  <h4 id="SadRogue_Primitives_PointHashers_KnownSizeHasher_GetHashCode_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.PointHashers.KnownSizeHasher.GetHashCode(SadRogue.Primitives.Point)">GetHashCode(Point)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override int GetHashCode(Point p)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
-        <td><span class="parametername">p</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
-        <td></td>
+        <td><p>True if the a position within the area was found; false otherwise.</p>
+</td>
       </tr>
     </tbody>
   </table>

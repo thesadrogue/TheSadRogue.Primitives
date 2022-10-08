@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Namespace SadRogue.Primitives.GridViews
    ">
-    <meta name="generator" content="docfx 2.52.0.0">
+    <meta name="generator" content="docfx 2.58.9.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -83,12 +83,19 @@
       <h4><a class="xref" href="SadRogue.Primitives.GridViews.ArrayView2D-1.html">ArrayView2D&lt;T&gt;</a></h4>
       <section><p>Implementation of <a class="xref" href="SadRogue.Primitives.GridViews.ISettableGridView-1.html">ISettableGridView&lt;T&gt;</a> that uses a 2D array to store data.</p>
 </section>
+      <h4><a class="xref" href="SadRogue.Primitives.GridViews.BitArrayView.html">BitArrayView</a></h4>
+      <section><p>A grid view that wraps a C# BitArray into a settable grid view of boolean values.</p>
+</section>
       <h4><a class="xref" href="SadRogue.Primitives.GridViews.Diff-1.html">Diff&lt;T&gt;</a></h4>
       <section><p>Represents a unique patch/diff of the state of a <a class="xref" href="SadRogue.Primitives.GridViews.DiffAwareGridView-1.html">DiffAwareGridView&lt;T&gt;</a>.</p>
 </section>
       <h4><a class="xref" href="SadRogue.Primitives.GridViews.DiffAwareGridView-1.html">DiffAwareGridView&lt;T&gt;</a></h4>
       <section><p>A grid view wrapper useful for recording diffs (change-sets) of changes to a grid view, and applying/removing
 those change-sets of values from the grid view.  Only works with grid views of value types.</p>
+</section>
+      <h4><a class="xref" href="SadRogue.Primitives.GridViews.GridView1DIndexBase-1.html">GridView1DIndexBase&lt;T&gt;</a></h4>
+      <section><p>Exactly like <a class="xref" href="SadRogue.Primitives.GridViews.GridViewBase-1.html">GridViewBase&lt;T&gt;</a>, except for the one indexer left to the user to implement
+is the one which takes a 1D array, and the position-based indexers are implemented off that.</p>
 </section>
       <h4><a class="xref" href="SadRogue.Primitives.GridViews.GridViewBase-1.html">GridViewBase&lt;T&gt;</a></h4>
       <section><p>A convenient base class to inherit from when implementing <a class="xref" href="SadRogue.Primitives.GridViews.IGridView-1.html">IGridView&lt;T&gt;</a> that minimizes
@@ -118,6 +125,10 @@ see <a class="xref" href="SadRogue.Primitives.GridViews.LambdaTranslationGridVie
 at construction to use as the <a class="xref" href="SadRogue.Primitives.GridViews.TranslationGridView-2.html#SadRogue_Primitives_GridViews_TranslationGridView_2_TranslateGet_SadRogue_Primitives_Point__0_">TranslateGet(Point, T1)</a> implementation.
 For a version offering &quot;set&quot; functionality, see <a class="xref" href="SadRogue.Primitives.GridViews.LambdaSettableTranslationGridView-2.html">LambdaSettableTranslationGridView&lt;T1, T2&gt;</a>.</p>
 </section>
+      <h4><a class="xref" href="SadRogue.Primitives.GridViews.SettableGridView1DIndexBase-1.html">SettableGridView1DIndexBase&lt;T&gt;</a></h4>
+      <section><p>Exactly like <a class="xref" href="SadRogue.Primitives.GridViews.SettableGridViewBase-1.html">SettableGridViewBase&lt;T&gt;</a>, except for the one indexer left to the user to implement
+is the one which takes a 1D array, and the position-based indexers are implemented off that.</p>
+</section>
       <h4><a class="xref" href="SadRogue.Primitives.GridViews.SettableGridViewBase-1.html">SettableGridViewBase&lt;T&gt;</a></h4>
       <section><p>A convenient base class to inherit from when implementing <a class="xref" href="SadRogue.Primitives.GridViews.ISettableGridView-1.html">ISettableGridView&lt;T&gt;</a> that minimizes
 the number of items you must implement by implementing indexers in terms of a single indexer taking a Point.</p>
@@ -141,15 +152,13 @@ functionality, see <a class="xref" href="SadRogue.Primitives.GridViews.SettableT
 underlying grid view.  Instead, if you access a position that cannot map to any valid position in the underlying
 grid view, a (specified) default value is returned.</p>
 </section>
+      <h4><a class="xref" href="SadRogue.Primitives.GridViews.ValueChange-1.html">ValueChange&lt;T&gt;</a></h4>
+      <section><p>Records a value change in a diff as recorded by a <a class="xref" href="SadRogue.Primitives.GridViews.DiffAwareGridView-1.html">DiffAwareGridView&lt;T&gt;</a>.</p>
+</section>
       <h4><a class="xref" href="SadRogue.Primitives.GridViews.Viewport-1.html">Viewport&lt;T&gt;</a></h4>
       <section><p>Implements <a class="xref" href="SadRogue.Primitives.GridViews.IGridView-1.html">IGridView&lt;T&gt;</a> to expose a &quot;viewport&quot;, or sub-area, of another grid view.
 Its indexers perform relative to absolute coordinate translations based on the viewport size/location, and
 return the proper value of type T from the underlying view.</p>
-</section>
-    <h3 id="structs">Structs
-  </h3>
-      <h4><a class="xref" href="SadRogue.Primitives.GridViews.ValueChange-1.html">ValueChange&lt;T&gt;</a></h4>
-      <section><p>Records a value change in a diff as recorded by a <a class="xref" href="SadRogue.Primitives.GridViews.DiffAwareGridView-1.html">DiffAwareGridView&lt;T&gt;</a>.</p>
 </section>
     <h3 id="interfaces">Interfaces
   </h3>
@@ -173,7 +182,8 @@ for custom implementations, see <a class="xref" href="SadRogue.Primitives.GridVi
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+                <h5>In This Article</h5>
+                <div></div>
               </nav>
             </div>
           </div>

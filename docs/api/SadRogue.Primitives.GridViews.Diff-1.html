@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class Diff&lt;T&gt;
    ">
-    <meta name="generator" content="docfx 2.52.0.0">
+    <meta name="generator" content="docfx 2.58.9.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -78,43 +78,19 @@
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
-    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></div>
     <div class="level1"><span class="xref">Diff&lt;T&gt;</span></div>
   </div>
   <div classs="implements">
     <h5>Implements</h5>
-    <div><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="SadRogue.Primitives.GridViews.ValueChange-1.html">ValueChange</a>&lt;T&gt;&gt;</div>
-    <div><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.ienumerable">IEnumerable</a></div>
-  </div>
-  <div class="inheritedMembers">
-    <h5>Inherited Members</h5>
-    <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.equals#System_Object_Equals_System_Object_">Object.Equals(Object)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.equals#System_Object_Equals_System_Object_System_Object_">Object.Equals(Object, Object)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.gethashcode#System_Object_GetHashCode">Object.GetHashCode()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.gettype#System_Object_GetType">Object.GetType()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.memberwiseclone#System_Object_MemberwiseClone">Object.MemberwiseClone()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.referenceequals#System_Object_ReferenceEquals_System_Object_System_Object_">Object.ReferenceEquals(Object, Object)</a>
-    </div>
-    <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.tostring#System_Object_ToString">Object.ToString()</a>
-    </div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="SadRogue.Primitives.GridViews.ValueChange-1.html">ValueChange</a>&lt;T&gt;&gt;</div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerable">IEnumerable</a></div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="SadRogue.Primitives.GridViews.html">SadRogue.Primitives.GridViews</a></h6>
   <h6><strong>Assembly</strong>: TheSadRogue.Primitives.dll</h6>
   <h5 id="SadRogue_Primitives_GridViews_Diff_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Diff&lt;T&gt; : IEnumerable&lt;ValueChange&lt;T&gt;&gt;, IEnumerable where T : struct</code></pre>
+    <pre><code class="lang-csharp hljs">public class Diff&lt;T&gt; : Object, IEnumerable&lt;ValueChange&lt;T&gt;&gt;, IEnumerable where T : struct, ValueType</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -134,13 +110,8 @@
   </table>
   <h3 id="constructors">Constructors
   </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_GridViews_Diff_1__ctor.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.GridViews.Diff%601.%23ctor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/GridViews/DiffAwareGridView.cs/#L117">View Source</a>
-  </span>
+  
+  
   <a id="SadRogue_Primitives_GridViews_Diff_1__ctor_" data-uid="SadRogue.Primitives.GridViews.Diff`1.#ctor*"></a>
   <h4 id="SadRogue_Primitives_GridViews_Diff_1__ctor" data-uid="SadRogue.Primitives.GridViews.Diff`1.#ctor">Diff()</h4>
   <div class="markdown level1 summary"><p>Creates a new empty diff.</p>
@@ -150,13 +121,8 @@
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Diff()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_GridViews_Diff_1__ctor_System_Collections_Generic_IEnumerable_SadRogue_Primitives_GridViews_ValueChange__0___.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.GridViews.Diff%601.%23ctor(System.Collections.Generic.IEnumerable%7BSadRogue.Primitives.GridViews.ValueChange%7B%600%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/GridViews/DiffAwareGridView.cs/#L128">View Source</a>
-  </span>
+  
+  
   <a id="SadRogue_Primitives_GridViews_Diff_1__ctor_" data-uid="SadRogue.Primitives.GridViews.Diff`1.#ctor*"></a>
   <h4 id="SadRogue_Primitives_GridViews_Diff_1__ctor_System_Collections_Generic_IEnumerable_SadRogue_Primitives_GridViews_ValueChange__0___" data-uid="SadRogue.Primitives.GridViews.Diff`1.#ctor(System.Collections.Generic.IEnumerable{SadRogue.Primitives.GridViews.ValueChange{`0}})">Diff(IEnumerable&lt;ValueChange&lt;T&gt;&gt;)</h4>
   <div class="markdown level1 summary"><p>Creates a diff composed of the specified changes.</p>
@@ -177,7 +143,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="SadRogue.Primitives.GridViews.ValueChange-1.html">ValueChange</a>&lt;T&gt;&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="SadRogue.Primitives.GridViews.ValueChange-1.html">ValueChange</a>&lt;T&gt;&gt;</td>
         <td><span class="parametername">changes</span></td>
         <td><p>Changes to create a diff from.</p>
 </td>
@@ -186,13 +152,8 @@
   </table>
   <h3 id="properties">Properties
   </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_GridViews_Diff_1_Changes.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.GridViews.Diff%601.Changes%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/GridViews/DiffAwareGridView.cs/#L107">View Source</a>
-  </span>
+  
+  
   <a id="SadRogue_Primitives_GridViews_Diff_1_Changes_" data-uid="SadRogue.Primitives.GridViews.Diff`1.Changes*"></a>
   <h4 id="SadRogue_Primitives_GridViews_Diff_1_Changes" data-uid="SadRogue.Primitives.GridViews.Diff`1.Changes">Changes</h4>
   <div class="markdown level1 summary"><p>Read-only list of changes made in this time step.</p>
@@ -212,18 +173,13 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="SadRogue.Primitives.GridViews.ValueChange-1.html">ValueChange</a>&lt;T&gt;&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="SadRogue.Primitives.GridViews.ValueChange-1.html">ValueChange</a>&lt;T&gt;&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_GridViews_Diff_1_IsCompressed.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.GridViews.Diff%601.IsCompressed%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/GridViews/DiffAwareGridView.cs/#L138">View Source</a>
-  </span>
+  
+  
   <a id="SadRogue_Primitives_GridViews_Diff_1_IsCompressed_" data-uid="SadRogue.Primitives.GridViews.Diff`1.IsCompressed*"></a>
   <h4 id="SadRogue_Primitives_GridViews_Diff_1_IsCompressed" data-uid="SadRogue.Primitives.GridViews.Diff`1.IsCompressed">IsCompressed</h4>
   <div class="markdown level1 summary"><p>Whether or not the diff is currently known to be at the minimal possible size.</p>
@@ -243,18 +199,13 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_GridViews_Diff_1_IsFinalized.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.GridViews.Diff%601.IsFinalized%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/GridViews/DiffAwareGridView.cs/#L112">View Source</a>
-  </span>
+  
+  
   <a id="SadRogue_Primitives_GridViews_Diff_1_IsFinalized_" data-uid="SadRogue.Primitives.GridViews.Diff`1.IsFinalized*"></a>
   <h4 id="SadRogue_Primitives_GridViews_Diff_1_IsFinalized" data-uid="SadRogue.Primitives.GridViews.Diff`1.IsFinalized">IsFinalized</h4>
   <div class="markdown level1 summary"><p>Whether or not the list of changes in this diff has been finalized, eg allows more changes to be added.</p>
@@ -274,20 +225,15 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <h3 id="methods">Methods
   </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_GridViews_Diff_1_Add_SadRogue_Primitives_GridViews_ValueChange__0__.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.GridViews.Diff%601.Add(SadRogue.Primitives.GridViews.ValueChange%7B%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/GridViews/DiffAwareGridView.cs/#L144">View Source</a>
-  </span>
+  
+  
   <a id="SadRogue_Primitives_GridViews_Diff_1_Add_" data-uid="SadRogue.Primitives.GridViews.Diff`1.Add*"></a>
   <h4 id="SadRogue_Primitives_GridViews_Diff_1_Add_SadRogue_Primitives_GridViews_ValueChange__0__" data-uid="SadRogue.Primitives.GridViews.Diff`1.Add(SadRogue.Primitives.GridViews.ValueChange{`0})">Add(ValueChange&lt;T&gt;)</h4>
   <div class="markdown level1 summary"><p>Adds a change to the diff.</p>
@@ -315,13 +261,8 @@
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_GridViews_Diff_1_Compress.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.GridViews.Diff%601.Compress%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/GridViews/DiffAwareGridView.cs/#L170">View Source</a>
-  </span>
+  
+  
   <a id="SadRogue_Primitives_GridViews_Diff_1_Compress_" data-uid="SadRogue.Primitives.GridViews.Diff`1.Compress*"></a>
   <h4 id="SadRogue_Primitives_GridViews_Diff_1_Compress" data-uid="SadRogue.Primitives.GridViews.Diff`1.Compress">Compress()</h4>
   <div class="markdown level1 summary"><p>Reduces the diff to the minimum possible changes to achieve the resulting values by removing duplicate
@@ -332,13 +273,8 @@ positions from the change list.</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Compress()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_GridViews_Diff_1_FinalizeChanges.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.GridViews.Diff%601.FinalizeChanges%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/GridViews/DiffAwareGridView.cs/#L161">View Source</a>
-  </span>
+  
+  
   <a id="SadRogue_Primitives_GridViews_Diff_1_FinalizeChanges_" data-uid="SadRogue.Primitives.GridViews.Diff`1.FinalizeChanges*"></a>
   <h4 id="SadRogue_Primitives_GridViews_Diff_1_FinalizeChanges" data-uid="SadRogue.Primitives.GridViews.Diff`1.FinalizeChanges">FinalizeChanges()</h4>
   <div class="markdown level1 summary"><p>Finalizes the current diff, such that no changes are allowed to be added to it.  It can still be compressed.</p>
@@ -348,13 +284,8 @@ positions from the change list.</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void FinalizeChanges()</code></pre>
   </div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_GridViews_Diff_1_GetEnumerator.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.GridViews.Diff%601.GetEnumerator%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/GridViews/DiffAwareGridView.cs/#L235">View Source</a>
-  </span>
+  
+  
   <a id="SadRogue_Primitives_GridViews_Diff_1_GetEnumerator_" data-uid="SadRogue.Primitives.GridViews.Diff`1.GetEnumerator*"></a>
   <h4 id="SadRogue_Primitives_GridViews_Diff_1_GetEnumerator" data-uid="SadRogue.Primitives.GridViews.Diff`1.GetEnumerator">GetEnumerator()</h4>
   <div class="markdown level1 summary"><p>Returns an enumerator of the changes in the diff.</p>
@@ -374,50 +305,17 @@ positions from the change list.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ienumerator-1">IEnumerator</a>&lt;<a class="xref" href="SadRogue.Primitives.GridViews.ValueChange-1.html">ValueChange</a>&lt;T&gt;&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h3 id="eii">Explicit Interface Implementations
-  </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_GridViews_Diff_1_System_Collections_IEnumerable_GetEnumerator.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.GridViews.Diff%601.System%23Collections%23IEnumerable%23GetEnumerator%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/GridViews/DiffAwareGridView.cs/#L241">View Source</a>
-  </span>
-  <a id="SadRogue_Primitives_GridViews_Diff_1_System_Collections_IEnumerable_GetEnumerator_" data-uid="SadRogue.Primitives.GridViews.Diff`1.System#Collections#IEnumerable#GetEnumerator*"></a>
-  <h4 id="SadRogue_Primitives_GridViews_Diff_1_System_Collections_IEnumerable_GetEnumerator" data-uid="SadRogue.Primitives.GridViews.Diff`1.System#Collections#IEnumerable#GetEnumerator">IEnumerable.GetEnumerator()</h4>
-  <div class="markdown level1 summary"><p>Returns an enumerator of the changes in the diff.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IEnumerator IEnumerable.GetEnumerator()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.ienumerator">IEnumerator</a></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerator-1">IEnumerator</a>&lt;<a class="xref" href="SadRogue.Primitives.GridViews.ValueChange-1.html">ValueChange</a>&lt;T&gt;&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <h3 id="implements">Implements</h3>
   <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">System.Collections.Generic.IEnumerable&lt;T&gt;</a>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">System.Collections.Generic.IEnumerable&lt;T&gt;</a>
   </div>
   <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.ienumerable">System.Collections.IEnumerable</a>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerable">System.Collections.IEnumerable</a>
   </div>
 </article>
           </div>
@@ -426,16 +324,11 @@ positions from the change list.</p>
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
-                  <li>
-                    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/new/develop-chris3606/apiSpec/new?filename=SadRogue_Primitives_GridViews_Diff_1.md&amp;value=---%0Auid%3A%20SadRogue.Primitives.GridViews.Diff%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
-                  </li>
-                  <li>
-                    <a href="https://github.com/thesadrogue/TheSadRogue.Primitives/blob/develop-chris3606/TheSadRogue.Primitives/GridViews/DiffAwareGridView.cs/#L100" class="contribution-link">View Source</a>
-                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+                <h5>In This Article</h5>
+                <div></div>
               </nav>
             </div>
           </div>

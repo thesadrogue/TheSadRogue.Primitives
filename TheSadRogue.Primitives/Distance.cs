@@ -159,6 +159,23 @@ namespace SadRogue.Primitives
         }
 
         /// <summary>
+        /// Returns the distance between the two (2D) points specified.
+        /// </summary>
+        /// <param name="startX">X-Coordinate of the starting point.</param>
+        /// <param name="startY">Y-Coordinate of the starting point.</param>
+        /// <param name="endX">X-Coordinate of the ending point.</param>
+        /// <param name="endY">Y-Coordinate of the ending point.</param>
+        /// <returns>The distance between the two points.</returns>
+        [Pure]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public double Calculate(int startX, int startY, int endX, int endY)
+        {
+            double dx = startX - endX;
+            double dy = startY - endY;
+            return Calculate(dx, dy);
+        }
+
+        /// <summary>
         /// Returns the distance between two locations, given the change in X and change in Y value
         /// (specified by the X and Y values of the given vector).
         /// </summary>
@@ -176,6 +193,20 @@ namespace SadRogue.Primitives
         /// <returns>The distance between two locations with the given delta-change values.</returns>
         [Pure]
         public abstract double Calculate(double dx, double dy);
+
+        /// <summary>
+        /// Returns the distance between two locations, given the change in X and change in Y value.
+        /// </summary>
+        /// <remarks>
+        /// This version takes integer parameters instead of doubles; since distance calculations involving
+        /// known  are common on integral grids and can often be implemented more efficiently than their
+        /// floating-point counterparts.
+        /// </remarks>
+        /// <param name="dx">The delta-x between the two locations.</param>
+        /// <param name="dy">The delta-y between the two locations.</param>
+        /// <returns>The distance between two locations with the given delta-change values.</returns>
+        [Pure]
+        public abstract double Calculate(int dx, int dy);
 
         /// <summary>
         /// Returns a hash-map value for the current object.
@@ -215,6 +246,9 @@ namespace SadRogue.Primitives
 
         /// <inheritdoc />
         public override double Calculate(double dx, double dy) => Math.Abs(dx) + Math.Abs(dy);
+
+        /// <inheritdoc />
+        public override double Calculate(int dx, int dy) => Math.Abs(dx) + Math.Abs(dy);
     }
 
     /// <summary>
@@ -232,6 +266,9 @@ namespace SadRogue.Primitives
 
         /// <inheritdoc />
         public override double Calculate(double dx, double dy) => Math.Max(Math.Abs(dx), Math.Abs(dy));
+
+        /// <inheritdoc />
+        public override double Calculate(int dx, int dy) => Math.Max(Math.Abs(dx), Math.Abs(dy));
     }
 
     /// /// <summary>
@@ -249,6 +286,9 @@ namespace SadRogue.Primitives
 
         /// <inheritdoc />
         public override double Calculate(double dx, double dy) => Math.Sqrt(dx * dx + dy * dy);
+
+        /// <inheritdoc />
+        public override double Calculate(int dx, int dy) => Math.Sqrt(dx * dx + dy * dy);
     }
 
 }

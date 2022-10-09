@@ -1,5 +1,4 @@
-﻿using System;
-using BenchmarkDotNet.Attributes;
+﻿using BenchmarkDotNet.Attributes;
 using SadRogue.Primitives;
 
 namespace TheSadRogue.Primitives.PerformanceTests
@@ -12,34 +11,21 @@ namespace TheSadRogue.Primitives.PerformanceTests
         [Params(7)]
         public int DeltaY;
 
-        //[ParamsAllValues]
-        //public Distance.Types DistanceType;
+        [ParamsAllValues]
+        public Distance.Types DistanceType;
 
-        [Benchmark]
-        public double ChebyshevDouble()
+        private Distance _distance = null!;
+
+        [GlobalSetup]
+        public void GlobalSetup()
         {
-            double dx = Math.Abs(DeltaX);
-            double dy = Math.Abs(DeltaY);
-
-            return Math.Max(dx, dy);
+            _distance = DistanceType;
         }
 
         [Benchmark]
-        public double ChebyshevDoubleNoNaN()
-        {
-            double dx = Math.Abs(DeltaX);
-            double dy = Math.Abs(DeltaY);
-
-            return dx > dy ? dx : dy;
-        }
+        public double CalculateDouble() => _distance.Calculate((double)DeltaX, (double)DeltaY);
 
         [Benchmark]
-        public double ChebyshevInt()
-        {
-            int dx = Math.Abs(DeltaX);
-            int dy = Math.Abs(DeltaY);
-
-            return Math.Max(dx, dy);
-        }
+        public double CalculateInt() => _distance.Calculate(DeltaX, DeltaY);
     }
 }

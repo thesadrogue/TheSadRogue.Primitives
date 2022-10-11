@@ -238,7 +238,7 @@ namespace SadRogue.Primitives
     /// You can't create instances of this class; instead, use <see cref="Distance.Manhattan"/>.
     /// </remarks>
     [DataContract]
-    public class ManhattanDistance : Distance
+    public sealed class ManhattanDistance : Distance
     {
         internal ManhattanDistance()
             : base(Types.Manhattan)
@@ -258,7 +258,7 @@ namespace SadRogue.Primitives
     /// You can't create instances of this class; instead, use <see cref="Distance.Chebyshev"/>.
     /// </remarks>
     [DataContract]
-    public class ChebyshevDistance : Distance
+    public sealed class ChebyshevDistance : Distance
     {
         internal ChebyshevDistance()
             : base(Types.Chebyshev)
@@ -278,7 +278,7 @@ namespace SadRogue.Primitives
     /// You can't create instances of this class; instead, use <see cref="Distance.Chebyshev"/>.
     /// </remarks>
     [DataContract]
-    public class EuclideanDistance : Distance
+    public sealed class EuclideanDistance : Distance
     {
         internal EuclideanDistance()
             : base(Types.Euclidean)

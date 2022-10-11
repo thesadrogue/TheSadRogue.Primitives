@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Diagnostics.Contracts;
 using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Configs;
+using BenchmarkDotNet.Jobs;
 using SadRogue.Primitives;
 
 namespace TheSadRogue.Primitives.PerformanceTests
@@ -199,7 +201,7 @@ namespace TheSadRogue.Primitives.PerformanceTests
 
     }
 
-
+    [Config(typeof(DynamicPGOConfig))]
     public class DistanceDispatch
     {
         [Params(4)]

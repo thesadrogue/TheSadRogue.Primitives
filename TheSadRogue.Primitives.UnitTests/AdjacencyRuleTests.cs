@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Xunit;
 using XUnit.ValueTuples;
 
@@ -38,9 +39,11 @@ namespace SadRogue.Primitives.UnitTests
         public void NeighborsUnordered(Point point, AdjacencyRule rule)
         {
             Point[] result = rule.Neighbors(point).ToArray();
+            Point[] result2 = rule.Neighbors(point.X, point.Y).ToArray();
             Point[] expected = rule.DirectionsOfNeighbors().Select(i => point + i).ToArray();
 
-            TestUtils.AssertElementEquals(result, expected);
+            TestUtils.AssertElementEquals(expected, result);
+            TestUtils.AssertElementEquals(expected, result2);
         }
 
         #endregion
@@ -238,9 +241,11 @@ namespace SadRogue.Primitives.UnitTests
         public void NeighborsClockwise(Point point, AdjacencyRule rule, Direction startDir)
         {
             Point[] result = rule.NeighborsClockwise(point, startDir).ToArray();
+            Point[] result2 = rule.NeighborsClockwise(point.X, point.Y, startDir).ToArray();
             Point[] expected = rule.DirectionsOfNeighborsClockwise(startDir).Select(i => point + i).ToArray();
 
-            TestUtils.AssertElementEquals(result, expected);
+            TestUtils.AssertElementEquals(expected, result);
+            TestUtils.AssertElementEquals(expected, result2);
         }
 
         [Theory]
@@ -248,9 +253,11 @@ namespace SadRogue.Primitives.UnitTests
         public void NeighborsClockwiseNoStart(Point point, AdjacencyRule rule)
         {
             Point[] result = rule.NeighborsClockwise(point).ToArray();
-            Point[] expected = rule.NeighborsClockwise(point).ToArray();
+            Point[] result2 = rule.NeighborsClockwise(point.X, point.Y).ToArray();
+            Point[] expected = rule.NeighborsClockwise(point, default(Direction)).ToArray();
 
             TestUtils.AssertElementEquals(expected, result);
+            TestUtils.AssertElementEquals(expected, result2);
         }
 
         #endregion
@@ -262,9 +269,12 @@ namespace SadRogue.Primitives.UnitTests
         public void NeighborsCounterClockwise(Point point, AdjacencyRule rule, Direction startDir)
         {
             Point[] result = rule.NeighborsCounterClockwise(point, startDir).ToArray();
+            Point[] result2 = rule.NeighborsCounterClockwise(point.X, point.Y, startDir).ToArray();
             Point[] expected = rule.DirectionsOfNeighborsCounterClockwise(startDir).Select(i => point + i).ToArray();
 
-            TestUtils.AssertElementEquals(result, expected);
+            TestUtils.AssertElementEquals(expected, result);
+            TestUtils.AssertElementEquals(expected, result2);
+
         }
 
         [Theory]
@@ -272,9 +282,12 @@ namespace SadRogue.Primitives.UnitTests
         public void NeighborsCounterClockwiseNoStart(Point point, AdjacencyRule rule)
         {
             Point[] result = rule.NeighborsCounterClockwise(point).ToArray();
-            Point[] expected = rule.NeighborsCounterClockwise(point).ToArray();
+            Point[] result2 = rule.NeighborsCounterClockwise(point.X, point.Y).ToArray();
+            Point[] expected = rule.NeighborsCounterClockwise(point, default(Direction)).ToArray();
 
             TestUtils.AssertElementEquals(expected, result);
+            TestUtils.AssertElementEquals(expected, result2);
+
         }
 
         #endregion
@@ -323,9 +336,22 @@ namespace SadRogue.Primitives.UnitTests
             {
                 Assert.Equal(rule == compareRule, rule.Equals(compareRule));
                 Assert.Equal(rule == compareRule, rule.Equals((object)compareRule));
+                Assert.Equal(rule == compareRule, rule.Matches(compareRule));
             }
         }
 
+        [Theory]
+        [MemberDataEnumerable(nameof(AdjacencyRules))]
+        public void TestHashCode(AdjacencyRule compareRule)
+        {
+            AdjacencyRule[] rules = AdjacencyRules;
+
+            foreach (AdjacencyRule rule in rules)
+            {
+                if (compareRule.Matches(rule))
+                    Assert.Equal(compareRule.GetHashCode(), rule.GetHashCode());
+            }
+        }
         #endregion
 
         #region Caches Equal to Functions

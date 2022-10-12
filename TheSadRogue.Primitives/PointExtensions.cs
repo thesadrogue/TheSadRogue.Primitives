@@ -130,7 +130,7 @@ namespace SadRogue.Primitives
         public static Point Divide(this Point self, double d) => self / d;
 
         /// <summary>
-        /// Compares the two points for equality; equivalent to <see cref="Point.Equals(Point)"/>.
+        /// Compares the two points for equality; equivalent to <see cref="Point.Matches(Point)"/>.
         /// </summary>
         /// <param name="self"/>
         /// <param name="other"/>

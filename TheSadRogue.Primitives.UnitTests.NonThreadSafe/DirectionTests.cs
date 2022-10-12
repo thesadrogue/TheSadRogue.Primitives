@@ -162,9 +162,20 @@ namespace SadRogue.Primitives.UnitTests
             {
                 Assert.Equal(dir == compareDir, dir.Equals(compareDir));
                 Assert.Equal(dir == compareDir, dir.Equals((object)compareDir));
+                Assert.Equal(dir == compareDir, dir.Matches(compareDir));
             }
         }
 
+        [Theory]
+        [MemberDataEnumerable(nameof(AllDirections))]
+        public void TestHashCode(Direction compareDir)
+        {
+            Direction[] dirs = AllDirections;
+
+            foreach (var dir in dirs)
+                if (compareDir.Equals(dir))
+                    Assert.Equal(compareDir.GetHashCode(), dir.GetHashCode());
+        }
         #endregion
 
         #region Addition/Subtraction
@@ -177,16 +188,20 @@ namespace SadRogue.Primitives.UnitTests
             Assert.False(Direction.YIncreasesUpward);
 
             Point res = start + dir;
+            Point res2 = start.Add(dir);
             Assert.Equal(start.X + dir.DeltaX, res.X);
             Assert.Equal(start.Y + dir.DeltaY, res.Y);
+            Assert.Equal(res, res2);
 
             // Set to true
             Direction.SetYIncreasesUpwardsUnsafe(true);
 
             // Retest
             res = start + dir;
+            res2 = start.Add(dir);
             Assert.Equal(start.X + dir.DeltaX, res.X);
             Assert.Equal(start.Y + dir.DeltaY, res.Y);
+            Assert.Equal(res, res2);
 
             // Reset for next test
             Direction.SetYIncreasesUpwardsUnsafe(false);
@@ -230,16 +245,20 @@ namespace SadRogue.Primitives.UnitTests
             Assert.False(Direction.YIncreasesUpward);
 
             Point res = start - dir;
+            Point res2 = start.Subtract(dir);
             Assert.Equal(start.X - dir.DeltaX, res.X);
             Assert.Equal(start.Y - dir.DeltaY, res.Y);
+            Assert.Equal(res, res2);
 
             // Set to true
             Direction.SetYIncreasesUpwardsUnsafe(true);
 
             // Retest
             res = start - dir;
+            res2 = start.Subtract(dir);
             Assert.Equal(start.X - dir.DeltaX, res.X);
             Assert.Equal(start.Y - dir.DeltaY, res.Y);
+            Assert.Equal(res, res2);
 
             // Reset for next test
             Direction.SetYIncreasesUpwardsUnsafe(false);
@@ -350,7 +369,9 @@ namespace SadRogue.Primitives.UnitTests
             foreach ((Point p1, Point p2, Direction expectedDir) in testCases)
             {
                 Direction dir = Direction.GetDirection(p1, p2);
+                Direction dir2 = Direction.GetDirection(p1.X, p1.Y, p2.X, p2.Y);
                 Assert.Equal(expectedDir, dir);
+                Assert.Equal(expectedDir, dir2);
             }
 
             // The test cases create the second point by adding a direction, so if we re-grab the enumerable after flipping
@@ -360,7 +381,10 @@ namespace SadRogue.Primitives.UnitTests
             foreach ((Point p1, Point p2, Direction expectedDir) in testCases)
             {
                 Direction dir = Direction.GetDirection(p1, p2);
+                Direction dir2 = Direction.GetDirection(p1.X, p1.Y, p2.X, p2.Y);
+
                 Assert.Equal(expectedDir, dir);
+                Assert.Equal(expectedDir, dir2);
             }
 
             Direction.SetYIncreasesUpwardsUnsafe(false);
@@ -376,7 +400,9 @@ namespace SadRogue.Primitives.UnitTests
             {
                 Point delta = p2 - p1;
                 Direction dir = Direction.GetDirection(delta);
+                Direction dir2 = Direction.GetDirection(delta.X, delta.Y);
                 Assert.Equal(expectedDir, dir);
+                Assert.Equal(expectedDir, dir2);
             }
         }
 
@@ -389,7 +415,9 @@ namespace SadRogue.Primitives.UnitTests
             foreach ((Point p1, Point p2, Direction expectedDir) in testCases)
             {
                 Direction dir = Direction.GetCardinalDirection(p1, p2);
+                Direction dir2 = Direction.GetCardinalDirection(p1.X, p1.Y, p2.X, p2.Y);
                 Assert.Equal(expectedDir, dir);
+                Assert.Equal(expectedDir, dir2);
             }
 
             // The test cases create the second point by adding a direction, so if we re-grab the enumerable after flipping
@@ -399,7 +427,9 @@ namespace SadRogue.Primitives.UnitTests
             foreach ((Point p1, Point p2, Direction expectedDir) in testCases)
             {
                 Direction dir = Direction.GetCardinalDirection(p1, p2);
+                Direction dir2 = Direction.GetCardinalDirection(p1.X, p1.Y, p2.X, p2.Y);
                 Assert.Equal(expectedDir, dir);
+                Assert.Equal(expectedDir, dir2);
             }
 
             Direction.SetYIncreasesUpwardsUnsafe(false);
@@ -415,7 +445,9 @@ namespace SadRogue.Primitives.UnitTests
             {
                 Point delta = p2 - p1;
                 Direction dir = Direction.GetCardinalDirection(delta);
+                Direction dir2 = Direction.GetCardinalDirection(delta.X, delta.Y);
                 Assert.Equal(expectedDir, dir);
+                Assert.Equal(expectedDir, dir2);
             }
         }
 

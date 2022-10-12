@@ -247,9 +247,9 @@ namespace SadRogue.Primitives.UnitTests
             float s = color.GetSaturation();
             float v = color.GetBrightness();
 
-            Assert.Equal(expected.h, h);
-            Assert.Equal(expected.s, s);
-            Assert.Equal(expected.v, v);
+            Assert.InRange(expected.h - h, -.002f, .002f);
+            Assert.InRange(expected.s - s, -.002f, .002f);
+            Assert.InRange(expected.v - v, -.002f, .002f);
         }
 
 

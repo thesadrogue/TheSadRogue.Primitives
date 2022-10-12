@@ -1183,77 +1183,163 @@ namespace SadRogue.Primitives
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public float GetLuma() => (R + R + B + G + G + G) / 6f;
 
-        /// <summary>
-        /// Gets the brightness of a color.
-        /// </summary>
-        /// <returns>The brightness value.</returns>
-        /// <remarks>Taken from the mono source code.</remarks>
-        [Pure]
+        // /// <summary>
+        // /// Gets the brightness of a color.
+        // /// </summary>
+        // /// <returns>The brightness value.</returns>
+        // /// <remarks>Taken from the mono source code.</remarks>
+        // [Pure]
+        // public float GetBrightness()
+        // {
+        //     byte minval = Math.Min(R, Math.Min(G, B));
+        //     byte maxval = Math.Max(R, Math.Max(G, B));
+        //
+        //     return (float)(maxval + minval) / 510;
+        // }
+        //
+        // /// <summary>
+        // /// Gets the saturation of a color.
+        // /// </summary>
+        // /// <returns>The saturation value.</returns>
+        // /// <remarks>Taken from the mono source code.</remarks>
+        // [Pure]
+        // public float GetSaturation()
+        // {
+        //     byte minval = Math.Min(R, Math.Min(G, B));
+        //     byte maxval = Math.Max(R, Math.Max(G, B));
+        //
+        //
+        //     if (maxval == minval)
+        //         return 0.0f;
+        //
+        //     int sum = maxval + minval;
+        //     if (sum > 255)
+        //         sum = 510 - sum;
+        //
+        //     return (float)(maxval - minval) / sum;
+        // }
+        //
+        // /// <summary>
+        // /// Gets the hue of a color.
+        // /// </summary>
+        // /// <returns>The hue value.</returns>
+        // /// <remarks>Taken from the mono source code.</remarks>
+        // [Pure]
+        // public float GetHue()
+        // {
+        //     byte minval = Math.Min(R, Math.Min(G, B));
+        //     byte maxval = Math.Max(R, Math.Max(G, B));
+        //
+        //
+        //     if (maxval == minval)
+        //         return 0.0f;
+        //
+        //     float diff = maxval - minval;
+        //     float rnorm = (maxval - R) / diff;
+        //     float gnorm = (maxval - G) / diff;
+        //     float bnorm = (maxval - B) / diff;
+        //
+        //
+        //     float hue = 0.0f;
+        //     if (R == maxval)
+        //         hue = 60.0f * (6.0f + bnorm - gnorm);
+        //
+        //     if (G == maxval)
+        //         hue = 60.0f * (2.0f + rnorm - bnorm);
+        //
+        //     if (B == maxval)
+        //         hue = 60.0f * (4.0f + gnorm - rnorm);
+        //
+        //     if (hue > 360.0f)
+        //         hue -= 360.0f;
+        //
+        //     return hue;
+        // }
+
+
         public float GetBrightness()
         {
-            byte minval = Math.Min(R, Math.Min(G, B));
-            byte maxval = Math.Max(R, Math.Max(G, B));
+            //GetRgbValues(out int r, out int g, out int b);
+            int r = R, g = G, b = B;
+            //MinMaxRgb(out int min, out int max, r, g, b);
 
-            return (float)(maxval + minval) / 510;
-        }
-
-        /// <summary>
-        /// Gets the saturation of a color.
-        /// </summary>
-        /// <returns>The saturation value.</returns>
-        /// <remarks>Taken from the mono source code.</remarks>
-        [Pure]
-        public float GetSaturation()
-        {
-            byte minval = Math.Min(R, Math.Min(G, B));
-            byte maxval = Math.Max(R, Math.Max(G, B));
-
-
-            if (maxval == minval)
-                return 0.0f;
-
-            int sum = maxval + minval;
-            if (sum > 255)
-                sum = 510 - sum;
-
-            return (float)(maxval - minval) / sum;
+            int max = r > g ? r : g;
+            if (b > max)
+                max = b;
+            return max / (float)byte.MaxValue;
+            //return (max + min) / (float)byte.MaxValue;
+            //return (max + min) / (byte.MaxValue * 2f);
         }
 
         /// <summary>
         /// Gets the hue of a color.
         /// </summary>
         /// <returns>The hue value.</returns>
-        /// <remarks>Taken from the mono source code.</remarks>
-        [Pure]
         public float GetHue()
         {
-            byte minval = Math.Min(R, Math.Min(G, B));
-            byte maxval = Math.Max(R, Math.Max(G, B));
+            //GetRgbValues(out int r, out int g, out int b);
+            int r = R, g = G, b = B;
 
+            if (r == g && g == b)
+                return 0f;
 
-            if (maxval == minval)
-                return 0.0f;
+            MinMaxRgb(out int min, out int max, r, g, b);
 
-            float diff = maxval - minval;
-            float rnorm = (maxval - R) / diff;
-            float gnorm = (maxval - G) / diff;
-            float bnorm = (maxval - B) / diff;
+            float delta = max - min;
+            float hue;
 
+            if (r == max)
+                hue = (g - b) / delta;
+            else if (g == max)
+                hue = (b - r) / delta + 2f;
+            else
+                hue = (r - g) / delta + 4f;
 
-            float hue = 0.0f;
-            if (R == maxval)
-                hue = 60.0f * (6.0f + bnorm - gnorm);
-
-            if (G == maxval)
-                hue = 60.0f * (2.0f + rnorm - bnorm);
-
-            if (B == maxval)
-                hue = 60.0f * (4.0f + gnorm - rnorm);
-
-            if (hue > 360.0f)
-                hue -= 360.0f;
+            hue *= 60f;
+            if (hue < 0f)
+                hue += 360f;
 
             return hue;
+        }
+
+        public float GetSaturation()
+        {
+            //GetRgbValues(out int r, out int g, out int b);
+            int r = R, g = G, b = B;
+
+            if (r == g && g == b)
+                return 0f;
+
+            MinMaxRgb(out int min, out int max, r, g, b);
+
+            int div = max + min;
+            if (div > byte.MaxValue)
+                div = byte.MaxValue * 2 - max - min;
+
+            return (max - min) / (float)div;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static void MinMaxRgb(out int min, out int max, int r, int g, int b)
+        {
+            if (r > g)
+            {
+                max = r;
+                min = g;
+            }
+            else
+            {
+                max = g;
+                min = r;
+            }
+            if (b > max)
+            {
+                max = b;
+            }
+            else if (b < min)
+            {
+                min = b;
+            }
         }
 
         /// <summary>

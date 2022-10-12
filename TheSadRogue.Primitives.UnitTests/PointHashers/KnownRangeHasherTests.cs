@@ -18,9 +18,14 @@ namespace SadRogue.Primitives.UnitTests.PointHashers
             var points = new Rectangle((1, 2), (17, 14));
 
             var hasher = new KnownRangeHasher(points.MinExtent, points.MaxExtent);
+            var hasher2 = new KnownRangeHasher(points);
 
             foreach (var pos in points.Positions())
+            {
                 Assert.Equal((pos - points.MinExtent).ToIndex(points.Width), hasher.GetHashCode(pos));
+                Assert.Equal(hasher.GetHashCode(pos), hasher2.GetHashCode(pos));
+            }
+
         }
 
         [Theory]

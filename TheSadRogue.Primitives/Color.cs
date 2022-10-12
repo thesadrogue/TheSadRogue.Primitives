@@ -1457,9 +1457,9 @@ namespace SadRogue.Primitives
         [Pure]
         public void Deconstruct(out float r, out float g, out float b)
         {
-            r = R;
-            g = G;
-            b = B;
+            r = R / 255f;
+            g = G / 255f;
+            b = B / 255f;
         }
 
         /// <summary>
@@ -1472,10 +1472,10 @@ namespace SadRogue.Primitives
         [Pure]
         public void Deconstruct(out float r, out float g, out float b, out float a)
         {
-            r = R;
-            g = G;
-            b = B;
-            a = A;
+            r = R / 255f;
+            g = G / 255f;
+            b = B / 255f;
+            a = A / 255f;
         }
 
         /// <summary>
@@ -1501,6 +1501,36 @@ namespace SadRogue.Primitives
         /// <param name="a"></param>
         [Pure]
         public void Deconstruct(out byte r, out byte g, out byte b, out byte a)
+        {
+            r = R;
+            g = G;
+            b = B;
+            a = A;
+        }
+
+        /// <summary>
+        /// Deconstruction method for <see cref="Color"/>.
+        /// </summary>
+        /// <param name="r"></param>
+        /// <param name="g"></param>
+        /// <param name="b"></param>
+        [Pure]
+        public void Deconstruct(out int r, out int g, out int b)
+        {
+            r = R;
+            g = G;
+            b = B;
+        }
+
+        /// <summary>
+        /// Deconstruction method for <see cref="Color"/> with Alpha.
+        /// </summary>
+        /// <param name="r"></param>
+        /// <param name="g"></param>
+        /// <param name="b"></param>
+        /// <param name="a"></param>
+        [Pure]
+        public void Deconstruct(out int r, out int g, out int b, out int a)
         {
             r = R;
             g = G;

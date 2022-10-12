@@ -23,25 +23,73 @@ namespace SadRogue.Primitives.UnitTests
         };
 
 
-        // Color translation table: https://www.rapidtables.com/convert/color/rgb-to-hsv.html
+        // // Color translation table: https://www.rapidtables.com/convert/color/rgb-to-hsv.html
+        // public static readonly (Color color, (float h, float s, float v) expected)[] HSVTestCases =
+        // {
+        //     (new Color(0, 0, 0), (0, 0, 0)),
+        //     (new Color(255, 255, 255), (0, 0, 1)),
+        //     (new Color(255, 0, 0), (0, 1, 1)),
+        //     (new Color(0, 255, 0), (120, 1, 1)),
+        //     (new Color(0, 0, 255), (240, 1, 1)),
+        //     (new Color(255, 255, 0), (60, 1, 1)),
+        //     (new Color(0, 255, 255), (180, 1, 1)),
+        //     (new Color(255, 0, 255), (300, 1, 1)),
+        //     (new Color(191, 191, 191), (0, 0, .75f)),
+        //     (new Color(128, 128, 128), (0, 0, .5f)),
+        //     (new Color(128, 0, 0), (0, 1, .5f)),
+        //     (new Color(128, 128, 0), (60, 1, .5f)),
+        //     (new Color(0, 128, 0), (120, 1, .5f)),
+        //     (new Color(128, 0, 128), (300, 1, .5f)),
+        //     (new Color(0, 128, 128), (180, 1, .5f)),
+        //     (new Color(0, 0, 128), (240, 1, .5f)),
+        // };
+
+        // Color translation table: https://en.wikipedia.org/wiki/HSL_and_HSV#Examples
         public static readonly (Color color, (float h, float s, float v) expected)[] HSVTestCases =
         {
-            (new Color(0, 0, 0), (0, 0, 0)),
-            (new Color(255, 255, 255), (0, 0, 1)),
-            (new Color(255, 0, 0), (0, 1, 1)),
-            (new Color(0, 255, 0), (120, 1, 1)),
-            (new Color(0, 0, 255), (240, 1, 1)),
-            (new Color(255, 255, 0), (60, 1, 1)),
-            (new Color(0, 255, 255), (180, 1, 1)),
-            (new Color(255, 0, 255), (300, 1, 1)),
-            (new Color(191, 191, 191), (0, 0, .75f)),
-            (new Color(128, 128, 128), (0, 0, .5f)),
-            (new Color(128, 0, 0), (0, 1, .5f)),
-            (new Color(128, 128, 0), (60, 1, .5f)),
-            (new Color(0, 128, 0), (120, 1, .5f)),
-            (new Color(128, 0, 128), (300, 1, .5f)),
-            (new Color(0, 128, 128), (180, 1, .5f)),
-            (new Color(0, 0, 128), (240, 1, .5f)),
+            (new Color(1f, 1f, 1f), (0.0f, 0f, 1f)),
+            (new Color(0.5f, 0.5f, 0.5f), (0.0f, 0f, 0.5f)),
+            (new Color(0f, 0f, 0f), (0.0f, 0f, 0f)),
+            (new Color(1f, 0f, 0f), (0.0f, 1f, 1f)),
+            (new Color(0.75f, 0.75f, 0f), (60.0f, 1f, 0.75f)),
+            (new Color(0f, 0.5f, 0f), (120.0f, 1f, 0.5f)),
+            (new Color(0.5f, 1f, 1f), (180.0f, 0.5f, 1f)),
+            (new Color(0.5f, 0.5f, 1f), (240.0f, 0.5f, 1f)),
+            (new Color(0.75f, 0.25f, 0.75f), (300.0f, 0.667f, 0.75f)),
+            (new Color(0.628f, 0.643f, 0.142f), (61.8f, 0.779f, 0.643f)),
+            (new Color(0.255f, 0.104f, 0.918f), (251.1f, 0.887f, 0.918f)),
+            (new Color(0.116f, 0.675f, 0.255f), (134.9f, 0.828f, 0.675f)),
+            (new Color(0.941f, 0.785f, 0.053f), (49.5f, 0.944f, 0.941f)),
+            (new Color(0.704f, 0.187f, 0.897f), (283.7f, 0.792f, 0.897f)),
+            (new Color(0.931f, 0.463f, 0.316f), (14.3f, 0.661f, 0.931f)),
+            (new Color(0.998f, 0.974f, 0.532f), (56.9f, 0.467f, 0.998f)),
+            (new Color(0.099f, 0.795f, 0.591f), (162.4f, 0.875f, 0.795f)),
+            (new Color(0.211f, 0.149f, 0.597f), (248.3f, 0.75f, 0.597f)),
+            (new Color(0.495f, 0.493f, 0.721f), (240.5f, 0.316f, 0.721f))
+        };
+
+        // Color translation table: https://en.wikipedia.org/wiki/HSL_and_HSV#Examples
+        public static readonly (Color color, (float h, float s, float v) expected)[] HSLTestCases =
+        {
+            (new Color(1f, 1f, 1f), (0.0f, 0f, 1f)),
+            (new Color(0.5f, 0.5f, 0.5f), (0.0f, 0f, 0.5f)),
+            (new Color(0f, 0f, 0f), (0.0f, 0f, 0f)),
+            (new Color(1f, 0f, 0f), (0.0f, 1f, 0.5f)),
+            (new Color(0.75f, 0.75f, 0f), (60.0f, 1f, 0.375f)),
+            (new Color(0f, 0.5f, 0f), (120.0f, 1f, 0.25f)),
+            (new Color(0.5f, 1f, 1f), (180.0f, 1f, 0.75f)),
+            (new Color(0.5f, 0.5f, 1f), (240.0f, 1f, 0.75f)),
+            (new Color(0.75f, 0.25f, 0.75f), (300.0f, 0.5f, 0.5f)),
+            (new Color(0.628f, 0.643f, 0.142f), (61.8f, 0.638f, 0.393f)),
+            (new Color(0.255f, 0.104f, 0.918f), (251.1f, 0.832f, 0.511f)),
+            (new Color(0.116f, 0.675f, 0.255f), (134.9f, 0.707f, 0.396f)),
+            (new Color(0.941f, 0.785f, 0.053f), (49.5f, 0.893f, 0.497f)),
+            (new Color(0.704f, 0.187f, 0.897f), (283.7f, 0.775f, 0.542f)),
+            (new Color(0.931f, 0.463f, 0.316f), (14.3f, 0.817f, 0.624f)),
+            (new Color(0.998f, 0.974f, 0.532f), (56.9f, 0.991f, 0.765f)),
+            (new Color(0.099f, 0.795f, 0.591f), (162.4f, 0.779f, 0.447f)),
+            (new Color(0.211f, 0.149f, 0.597f), (248.3f, 0.601f, 0.373f)),
+            (new Color(0.495f, 0.493f, 0.721f), (240.5f, 0.29f, 0.607f))
         };
 
         #endregion
@@ -237,19 +285,32 @@ namespace SadRogue.Primitives.UnitTests
         }
         #endregion
 
-        #region HSV
+        #region HSV/HSL
+
+        [Theory]
+        [MemberDataTuple(nameof(HSLTestCases))]
+        public void TestHSLValues(Color color, (float h, float s, float l) expected)
+        {
+            float h = color.GetHSLHue();
+            float s = color.GetHSLSaturation();
+            float l = color.GetHSLLightness();
+
+            Assert.InRange(expected.h - h, -1f, 1f);
+            Assert.InRange(expected.s - s, -.01f, .01f);
+            Assert.InRange(expected.l - l, -.01f, .01f);
+        }
 
         [Theory]
         [MemberDataTuple(nameof(HSVTestCases))]
         public void TestHSVValues(Color color, (float h, float s, float v) expected)
         {
-            float h = color.GetHue();
-            float s = color.GetSaturation();
-            float v = color.GetBrightness();
+            float h = color.GetHSVHue();
+            float s = color.GetHSVSaturation();
+            float v = color.GetHSVBrightness();
 
-            Assert.InRange(expected.h - h, -.002f, .002f);
-            Assert.InRange(expected.s - s, -.002f, .002f);
-            Assert.InRange(expected.v - v, -.002f, .002f);
+            Assert.InRange(expected.h - h, -1f, 1f);
+            Assert.InRange(expected.s - s, -.01f, .01f);
+            Assert.InRange(expected.v - v, -.01f, .01f);
         }
 
 

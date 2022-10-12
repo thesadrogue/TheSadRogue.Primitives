@@ -1183,101 +1183,56 @@ namespace SadRogue.Primitives
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public float GetLuma() => (R + R + B + G + G + G) / 6f;
 
-        // /// <summary>
-        // /// Gets the brightness of a color.
-        // /// </summary>
-        // /// <returns>The brightness value.</returns>
-        // /// <remarks>Taken from the mono source code.</remarks>
-        // [Pure]
-        // public float GetBrightness()
-        // {
-        //     byte minval = Math.Min(R, Math.Min(G, B));
-        //     byte maxval = Math.Max(R, Math.Max(G, B));
-        //
-        //     return (float)(maxval + minval) / 510;
-        // }
-        //
-        // /// <summary>
-        // /// Gets the saturation of a color.
-        // /// </summary>
-        // /// <returns>The saturation value.</returns>
-        // /// <remarks>Taken from the mono source code.</remarks>
-        // [Pure]
-        // public float GetSaturation()
-        // {
-        //     byte minval = Math.Min(R, Math.Min(G, B));
-        //     byte maxval = Math.Max(R, Math.Max(G, B));
-        //
-        //
-        //     if (maxval == minval)
-        //         return 0.0f;
-        //
-        //     int sum = maxval + minval;
-        //     if (sum > 255)
-        //         sum = 510 - sum;
-        //
-        //     return (float)(maxval - minval) / sum;
-        // }
-        //
-        // /// <summary>
-        // /// Gets the hue of a color.
-        // /// </summary>
-        // /// <returns>The hue value.</returns>
-        // /// <remarks>Taken from the mono source code.</remarks>
-        // [Pure]
-        // public float GetHue()
-        // {
-        //     byte minval = Math.Min(R, Math.Min(G, B));
-        //     byte maxval = Math.Max(R, Math.Max(G, B));
-        //
-        //
-        //     if (maxval == minval)
-        //         return 0.0f;
-        //
-        //     float diff = maxval - minval;
-        //     float rnorm = (maxval - R) / diff;
-        //     float gnorm = (maxval - G) / diff;
-        //     float bnorm = (maxval - B) / diff;
-        //
-        //
-        //     float hue = 0.0f;
-        //     if (R == maxval)
-        //         hue = 60.0f * (6.0f + bnorm - gnorm);
-        //
-        //     if (G == maxval)
-        //         hue = 60.0f * (2.0f + rnorm - bnorm);
-        //
-        //     if (B == maxval)
-        //         hue = 60.0f * (4.0f + gnorm - rnorm);
-        //
-        //     if (hue > 360.0f)
-        //         hue -= 360.0f;
-        //
-        //     return hue;
-        // }
+        /// <summary>
+        /// Gets the lightness of a color (as defined by the HSL color space).
+        /// </summary>
+        /// <remarks>
+        /// This function exists largely for historical reasons; use GetHSLLightness and GetHSVBrightness instead.
+        /// </remarks>
+        /// <returns>The lightness value.</returns>
+        [Pure]
+        [Obsolete(
+            "Use GetHSLLightness for equivalent behavior, or GetHSVBrightness if you intend to use the HSV color space.")]
+        public float GetBrightness() => GetHSLLightness();
 
-
-        public float GetBrightness()
+        /// <summary>
+        /// Gets the lightness of a color (as defined by the HSL color space).
+        /// </summary>
+        /// <returns>The lightness value.</returns>
+        [Pure]
+        public float GetHSLLightness()
         {
-            //GetRgbValues(out int r, out int g, out int b);
             int r = R, g = G, b = B;
-            //MinMaxRgb(out int min, out int max, r, g, b);
+            MinMaxRgb(out int min, out int max, r, g, b);
 
-            int max = r > g ? r : g;
-            if (b > max)
-                max = b;
-            return max / (float)byte.MaxValue;
-            //return (max + min) / (float)byte.MaxValue;
-            //return (max + min) / (byte.MaxValue * 2f);
+            return (max + min) / (byte.MaxValue * 2f);
         }
 
         /// <summary>
-        /// Gets the hue of a color.
+        /// Gets the brightness of a color (as defined by the HSV color space).
+        /// </summary>
+        /// <returns>The brightness value.</returns>
+        [Pure]
+        public float GetHSVBrightness() => throw new NotImplementedException();
+
+        /// <summary>
+        /// Gets the hue of a color (as defined by the HSL color space).
+        /// </summary>
+        /// <remarks>
+        /// This function exists largely for historical reason; use GetHSLHue and GetHSVHue instead.
+        /// </remarks>
+        /// <returns>The hue value.</returns>
+        [Pure]
+        [Obsolete("Use GetHSLHue for equivalent behavior, or GetHSVHue if you intend to use the HSV color space.")]
+        public float GetHue() => GetHSLHue();
+
+        /// <summary>
+        /// Gets the hue of a color (as defined by the HSL color space).
         /// </summary>
         /// <returns>The hue value.</returns>
-        public float GetHue()
+        [Pure]
+        public float GetHSLHue()
         {
-            //GetRgbValues(out int r, out int g, out int b);
             int r = R, g = G, b = B;
 
             if (r == g && g == b)
@@ -1302,9 +1257,31 @@ namespace SadRogue.Primitives
             return hue;
         }
 
-        public float GetSaturation()
+        /// <summary>
+        /// Gets the hue of a color (as defined by the HSV color space).
+        /// </summary>
+        /// <returns>The hue value.</returns>
+        [Pure]
+        public float GetHSVHue() => GetHSLHue();
+
+        /// <summary>
+        /// Gets the saturation of a color (as defined by the HSL color space).
+        /// </summary>
+        /// <remarks>
+        /// This function exists largely for historical reason; use GetHSLSaturation and GetHSVSaturation instead.
+        /// </remarks>
+        /// <returns>The saturation value.</returns>
+        [Pure]
+        [Obsolete("Use GetHSLSaturation for equivalent behavior, or GetHSVSaturation if you intend to use the HSV color space.")]
+        public float GetSaturation() => GetHSLSaturation();
+
+        /// <summary>
+        /// Gets the saturation of a color (as defined by the HSL color space).
+        /// </summary>
+        /// <returns>The saturation value.</returns>
+        [Pure]
+        public float GetHSLSaturation()
         {
-            //GetRgbValues(out int r, out int g, out int b);
             int r = R, g = G, b = B;
 
             if (r == g && g == b)
@@ -1318,6 +1295,13 @@ namespace SadRogue.Primitives
 
             return (max - min) / (float)div;
         }
+
+        /// <summary>
+        /// Gets the saturation of a color (as defined by the HSL color space).
+        /// </summary>
+        /// <returns>The saturation value.</returns>
+        [Pure]
+        public float GetHSVSaturation() => throw new NotImplementedException();
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static void MinMaxRgb(out int min, out int max, int r, int g, int b)

@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using System.Linq;
+using Xunit;
 using XUnit.ValueTuples;
 
 namespace SadRogue.Primitives.UnitTests
@@ -6,6 +7,17 @@ namespace SadRogue.Primitives.UnitTests
     public class ColorTests
     {
         #region Test Data
+
+        private static readonly Color s_equalColor = new Color(1, 2, 3, 4);
+        public static readonly Color[] NotEqualColors =
+        {
+            new Color(s_equalColor.R, s_equalColor.G, s_equalColor.B, s_equalColor.A),
+            new Color(5, 2, 3, 4),
+            new Color(1, 5, 3, 4),
+            new Color(1, 2, 5, 4),
+            new Color(1, 2, 3, 5)
+        };
+
 
         public static readonly (Color color, (byte r, byte g, byte b, byte a) expected)[] CtorTestCases =
         {
@@ -21,28 +33,6 @@ namespace SadRogue.Primitives.UnitTests
             (new Color(0.25f, 0.5f, 0.75f, 0.125f), (64, 128, 192, 32)),
             (new Color(1.1f, 1.1f, -0.1f, -0.1f), (255, 255, 0, 0)),
         };
-
-
-        // // Color translation table: https://www.rapidtables.com/convert/color/rgb-to-hsv.html
-        // public static readonly (Color color, (float h, float s, float v) expected)[] HSVTestCases =
-        // {
-        //     (new Color(0, 0, 0), (0, 0, 0)),
-        //     (new Color(255, 255, 255), (0, 0, 1)),
-        //     (new Color(255, 0, 0), (0, 1, 1)),
-        //     (new Color(0, 255, 0), (120, 1, 1)),
-        //     (new Color(0, 0, 255), (240, 1, 1)),
-        //     (new Color(255, 255, 0), (60, 1, 1)),
-        //     (new Color(0, 255, 255), (180, 1, 1)),
-        //     (new Color(255, 0, 255), (300, 1, 1)),
-        //     (new Color(191, 191, 191), (0, 0, .75f)),
-        //     (new Color(128, 128, 128), (0, 0, .5f)),
-        //     (new Color(128, 0, 0), (0, 1, .5f)),
-        //     (new Color(128, 128, 0), (60, 1, .5f)),
-        //     (new Color(0, 128, 0), (120, 1, .5f)),
-        //     (new Color(128, 0, 128), (300, 1, .5f)),
-        //     (new Color(0, 128, 128), (180, 1, .5f)),
-        //     (new Color(0, 0, 128), (240, 1, .5f)),
-        // };
 
         // Color translation table: https://en.wikipedia.org/wiki/HSL_and_HSV#Examples
         public static readonly (Color color, (float h, float s, float v) expected)[] HSVTestCases =
@@ -301,6 +291,22 @@ namespace SadRogue.Primitives.UnitTests
         }
 
         [Theory]
+        [MemberDataTuple(nameof(HSLTestCases))]
+        public void TestDeprecatedIsHSL(Color color, (float h, float s, float l) expected)
+        {
+            // We're intentionally testing deprecated methods to ensure backwards compatibility
+#pragma warning disable CS0618
+            float h = color.GetHue();
+            float s = color.GetSaturation();
+            float l = color.GetBrightness();
+#pragma warning restore CS0618
+
+            Assert.InRange(expected.h - h, -1f, 1f);
+            Assert.InRange(expected.s - s, -.01f, .01f);
+            Assert.InRange(expected.l - l, -.01f, .01f);
+        }
+
+        [Theory]
         [MemberDataTuple(nameof(HSVTestCases))]
         public void TestHSVValues(Color color, (float h, float s, float v) expected)
         {
@@ -314,6 +320,36 @@ namespace SadRogue.Primitives.UnitTests
         }
 
 
+        #endregion
+
+        #region Equality/Inequality
+
+        [Fact]
+        public void TestKnownEquality()
+        {
+            Assert.True(s_equalColor.Matches(NotEqualColors[0]));
+            Assert.True(s_equalColor.Equals(NotEqualColors[0]));
+            Assert.True(s_equalColor.Equals((object)NotEqualColors[0]));
+            Assert.True(s_equalColor == NotEqualColors[0]);
+        }
+        [Theory]
+        [MemberDataEnumerable(nameof(NotEqualColors))]
+        public void TestEqualityInequalityRelationship(Color testColor)
+        {
+            Assert.Single(NotEqualColors.Where(i => i.Equals(testColor)));
+            Assert.Single(NotEqualColors.Where(i => i.Equals((object)testColor)));
+            Assert.Single(NotEqualColors.Where(i => i.Matches(testColor)));
+            Assert.Single(NotEqualColors.Where(i => i == testColor));
+        }
+
+        [Theory]
+        [MemberDataEnumerable(nameof(NotEqualColors))]
+        public void TestGetHashCode(Color testColor)
+        {
+            foreach (var other in NotEqualColors)
+                if (other.Equals(testColor))
+                    Assert.Equal(testColor.GetHashCode(), other.GetHashCode());
+        }
         #endregion
     }
 }

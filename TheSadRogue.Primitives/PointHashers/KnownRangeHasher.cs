@@ -26,9 +26,10 @@ namespace SadRogue.Primitives.PointHashers
         public readonly Point MinExtent;
 
         /// <summary>
-        /// Maximum X value that will occur when points are normalized to start at (0, 0).
+        /// Width of the area which encompasses points which will generally be hashed by this algorithm, starting at
+        /// <see cref="MinExtent"/>.
         /// </summary>
-        public readonly int MaxNormalizedX;
+        public readonly int BoundsWidth;
 
         /// <summary>
         /// Creates a new instance of the comparison/hashing algorithm implementation.
@@ -44,7 +45,19 @@ namespace SadRogue.Primitives.PointHashers
         public KnownRangeHasher(Point minExtent, Point maxExtent)
         {
             MinExtent = minExtent;
-            MaxNormalizedX = maxExtent.X - minExtent.X;
+            BoundsWidth = maxExtent.X - minExtent.X + 1;
+        }
+
+        /// <summary>
+        /// Creates a new instance of the comparison/hashing algorithm implementation.
+        /// </summary>
+        /// <param name="bounds">
+        /// Bounds encompassing the area which points generally hashed by this algorithm will reside within.
+        /// </param>
+        public KnownRangeHasher(Rectangle bounds)
+        {
+            MinExtent = bounds.MinExtent;
+            BoundsWidth = bounds.Width;
         }
 
         /// <summary>
@@ -54,20 +67,19 @@ namespace SadRogue.Primitives.PointHashers
         /// Point whose x and y values constitute the minimum x/y values that will
         /// generally be encountered in Point instances that are hashed by this algorithm.
         /// </param>
-        /// <param name="maxNormalizedX">
-        /// Maximum x-value that will generally occur in Points hashed by this hashing algorithm, AFTER
-        /// the Point has been transposed by MinExtent (eg normalized such that the Point MinExtent would be (0, 0).
+        /// <param name="boundsWidth">
+        /// Width of the bounds that will generally encompass Points hashed by this hashing algorithm.
         /// </param>
-        public KnownRangeHasher(Point minExtent, int maxNormalizedX)
+        public KnownRangeHasher(Point minExtent, int boundsWidth)
         {
             MinExtent = minExtent;
-            MaxNormalizedX = maxNormalizedX;
+            BoundsWidth = boundsWidth;
         }
 
         /// <inheritdoc/>
         public override bool Equals(Point x, Point y) => x.Equals(y);
 
         /// <inheritdoc/>
-        public override int GetHashCode(Point p) => (p - MinExtent).ToIndex(MaxNormalizedX);
+        public override int GetHashCode(Point p) => (p - MinExtent).ToIndex(BoundsWidth);
     }
 }

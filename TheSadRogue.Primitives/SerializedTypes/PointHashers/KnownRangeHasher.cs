@@ -15,9 +15,9 @@ namespace SadRogue.Primitives.SerializedTypes.PointHashers
         public PointSerialized MinExtent;
 
         /// <summary>
-        /// Maximum X value that will occur when points are normalized to start at (0, 0).
+        /// Width of the bounds of points hashed by this instance.
         /// </summary>
-        public int MaxNormalizedX;
+        public int BoundsWidth;
 
         /// <summary>
         /// Converts <see cref="KnownRangeHasherSerialized"/> to <see cref="KnownRangeHasher"/>.
@@ -25,7 +25,7 @@ namespace SadRogue.Primitives.SerializedTypes.PointHashers
         /// <param name="serialized"/>
         /// <returns/>
         public static implicit operator KnownRangeHasher(KnownRangeHasherSerialized serialized)
-            => new KnownRangeHasher(serialized.MinExtent, serialized.MaxNormalizedX);
+            => new KnownRangeHasher(serialized.MinExtent, serialized.BoundsWidth);
 
         /// <summary>
         /// Converts <see cref="KnownRangeHasher"/> to <see cref="KnownRangeHasherSerialized"/>.
@@ -36,7 +36,7 @@ namespace SadRogue.Primitives.SerializedTypes.PointHashers
             => new KnownRangeHasherSerialized
             {
                 MinExtent = rangeHasher.MinExtent,
-                MaxNormalizedX = rangeHasher.MaxNormalizedX
+                BoundsWidth = rangeHasher.BoundsWidth
             };
     }
 }

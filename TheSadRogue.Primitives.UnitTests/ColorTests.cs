@@ -5,25 +5,45 @@ namespace SadRogue.Primitives.UnitTests
 {
     public class ColorTests
     {
-        #region  Test Data
+        #region Test Data
+
         public static readonly (Color color, (byte r, byte g, byte b, byte a) expected)[] CtorTestCases =
         {
             (new Color(new Color(64, 128, 192), 32), (64, 128, 192, 32)),
             (new Color(new Color(64, 128, 192), 256), (64, 128, 192, 255)),
             (new Color(new Color(64, 128, 192), 0.125f), (64, 128, 192, 32)),
             (new Color(new Color(64, 128, 192), 1.1f), (64, 128, 192, 255)),
-            (new Color((byte)64, (byte)128, (byte)192, (byte)32), (64, 128, 192, 32)),
-
-            (new Color(), (0, 0, 0, 0)),
-            (new Color(64, 128, 192), (64, 128, 192, 255)),
-            (new Color(256, 256, -1), (255, 255, 0, 255)),
-            (new Color(64, 128, 192, 32), (64, 128, 192, 32)),
-            (new Color(256, 256, -1, 256), (255, 255, 0, 255)),
+            (new Color((byte)64, (byte)128, (byte)192, (byte)32), (64, 128, 192, 32)), (new Color(), (0, 0, 0, 0)),
+            (new Color(64, 128, 192), (64, 128, 192, 255)), (new Color(256, 256, -1), (255, 255, 0, 255)),
+            (new Color(64, 128, 192, 32), (64, 128, 192, 32)), (new Color(256, 256, -1, 256), (255, 255, 0, 255)),
             (new Color(0.25f, 0.5f, 0.75f), (64, 128, 192, 255)),
             (new Color(1.1f, 1.1f, -0.1f), (255, 255, 0, 255)),
             (new Color(0.25f, 0.5f, 0.75f, 0.125f), (64, 128, 192, 32)),
             (new Color(1.1f, 1.1f, -0.1f, -0.1f), (255, 255, 0, 0)),
         };
+
+
+        // Color translation table: https://www.rapidtables.com/convert/color/rgb-to-hsv.html
+        public static readonly (Color color, (float h, float s, float v) expected)[] HSVTestCases =
+        {
+            (new Color(0, 0, 0), (0, 0, 0)),
+            (new Color(255, 255, 255), (0, 0, 1)),
+            (new Color(255, 0, 0), (0, 1, 1)),
+            (new Color(0, 255, 0), (120, 1, 1)),
+            (new Color(0, 0, 255), (240, 1, 1)),
+            (new Color(255, 255, 0), (60, 1, 1)),
+            (new Color(0, 255, 255), (180, 1, 1)),
+            (new Color(255, 0, 255), (300, 1, 1)),
+            (new Color(191, 191, 191), (0, 0, .75f)),
+            (new Color(128, 128, 128), (0, 0, .5f)),
+            (new Color(128, 0, 0), (0, 1, .5f)),
+            (new Color(128, 128, 0), (60, 1, .5f)),
+            (new Color(0, 128, 0), (120, 1, .5f)),
+            (new Color(128, 0, 128), (300, 1, .5f)),
+            (new Color(0, 128, 128), (180, 1, .5f)),
+            (new Color(0, 0, 128), (240, 1, .5f)),
+        };
+
         #endregion
 
         #region Construction
@@ -215,6 +235,24 @@ namespace SadRogue.Primitives.UnitTests
             Assert.Equal(color2.B / 255f, b2);
             Assert.Equal(color2.A / 255f, a2);
         }
+        #endregion
+
+        #region HSV
+
+        [Theory]
+        [MemberDataTuple(nameof(HSVTestCases))]
+        public void TestHSVValues(Color color, (float h, float s, float v) expected)
+        {
+            float h = color.GetHue();
+            float s = color.GetSaturation();
+            float v = color.GetBrightness();
+
+            Assert.Equal(expected.h, h);
+            Assert.Equal(expected.s, s);
+            Assert.Equal(expected.v, v);
+        }
+
+
         #endregion
     }
 }

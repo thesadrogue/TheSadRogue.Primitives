@@ -1213,7 +1213,15 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <returns>The brightness value.</returns>
         [Pure]
-        public float GetHSVBrightness() => throw new NotImplementedException();
+        public float GetHSVBrightness()
+        {
+            int r = R, g = G, b = B;
+
+            int max = r > g ? r : g;
+            if (b > max) max = b;
+
+            return max / (float)byte.MaxValue;
+        }
 
         /// <summary>
         /// Gets the hue of a color (as defined by the HSL color space).
@@ -1301,7 +1309,13 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <returns>The saturation value.</returns>
         [Pure]
-        public float GetHSVSaturation() => throw new NotImplementedException();
+        public float GetHSVSaturation()
+        {
+            int r = R, g = G, b = B;
+            MinMaxRgb(out int min, out int max, r, g, b);
+
+            return max == 0 ? 0 : 1f - (float)min / max;
+        }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static void MinMaxRgb(out int min, out int max, int r, int g, int b)

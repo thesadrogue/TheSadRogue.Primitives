@@ -17,8 +17,6 @@ namespace SadRogue.Primitives.UnitTests.GridViews
         public void LambdaGridViewTest()
         {
             var grid = MockGridViews.RectangleBooleanGrid(Width, Height);
-
-            Assert.Throws<ArgumentNullException>(() => new LambdaGridView<double>(grid.Width, grid.Height, null!));
             IGridView<double> lambdaGridView = new LambdaGridView<double>(grid.Width, grid.Height, c => grid[c] ? 1.0 : 0.0);
 
             CheckGridViews(grid, lambdaGridView);

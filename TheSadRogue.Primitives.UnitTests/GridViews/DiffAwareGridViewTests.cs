@@ -45,8 +45,16 @@ namespace SadRogue.Primitives.UnitTests.GridViews
             Assert.Equal(change2, diff.Changes[1]);
             Assert.False(diff.IsFinalized);
 
+            // Validate that we can't add a change which doesn't change anything
+            var change3 = new ValueChange<bool>((1, 2), false, false);
+            Assert.Throws<Exception>(() => diff.Add(change3));
+
             diff.FinalizeChanges();
             Assert.True(diff.IsFinalized);
+
+            // Verify we can't add changes to a finalized set
+            var change4 = new ValueChange<bool>((1, 3), false, true);
+            Assert.Throws<Exception>(() => diff.Add(change4));
         }
 
         [Fact]

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using Xunit;
 using XUnit.ValueTuples;
 
@@ -254,6 +253,7 @@ namespace SadRogue.Primitives.UnitTests
         {
             Point[] result = rule.NeighborsClockwise(point).ToArray();
             Point[] result2 = rule.NeighborsClockwise(point.X, point.Y).ToArray();
+            // ReSharper disable once RedundantArgumentDefaultValue
             Point[] expected = rule.NeighborsClockwise(point, default(Direction)).ToArray();
 
             TestUtils.AssertElementEquals(expected, result);
@@ -283,6 +283,7 @@ namespace SadRogue.Primitives.UnitTests
         {
             Point[] result = rule.NeighborsCounterClockwise(point).ToArray();
             Point[] result2 = rule.NeighborsCounterClockwise(point.X, point.Y).ToArray();
+            // ReSharper disable once RedundantArgumentDefaultValue
             Point[] expected = rule.NeighborsCounterClockwise(point, default(Direction)).ToArray();
 
             TestUtils.AssertElementEquals(expected, result);

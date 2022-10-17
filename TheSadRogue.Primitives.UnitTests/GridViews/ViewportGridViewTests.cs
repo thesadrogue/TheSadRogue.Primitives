@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using SadRogue.Primitives.GridViews;
+﻿using SadRogue.Primitives.GridViews;
 using SadRogue.Primitives.UnitTests.Mocks;
 using Xunit;
 // Should disable this because the functions triggering it are just assertion methods

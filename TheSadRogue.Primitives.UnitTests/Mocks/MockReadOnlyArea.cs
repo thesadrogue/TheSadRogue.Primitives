@@ -9,8 +9,8 @@ namespace SadRogue.Primitives.UnitTests.Mocks
     public class ReadOnlyAreaCountEnumerations : IReadOnlyArea
     {
         public readonly List<Point> Points = new List<Point>{ (1, 2), (3, 4) };
-        public int GetEnumeratorCount = 0;
-        public int GetIndexCount = 0;
+        public int GetEnumeratorCount;
+        public int GetIndexCount;
 
         // This should almost _never_ be public in production, but allows us to test code for now
         public bool UseIndexEnumeration { get; set; }

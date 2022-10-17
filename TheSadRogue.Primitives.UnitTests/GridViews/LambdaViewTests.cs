@@ -1,5 +1,4 @@
-﻿using System;
-using SadRogue.Primitives.GridViews;
+﻿using SadRogue.Primitives.GridViews;
 using SadRogue.Primitives.UnitTests.Mocks;
 using Xunit;
 

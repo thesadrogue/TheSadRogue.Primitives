@@ -461,5 +461,16 @@ namespace SadRogue.Primitives.UnitTests
             Assert.Equal(expected, actual);
         }
         #endregion
+        #region ToString
+
+        [Fact]
+        public void TestToString()
+        {
+            var area = new Area(s_pointsToAdd);
+
+            string expected = "[" + string.Join(", ", s_pointsToAdd) + "]";
+            Assert.Equal(expected, area.ToString());
+        }
+        #endregion
     }
 }

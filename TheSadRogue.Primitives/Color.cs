@@ -1407,60 +1407,74 @@ namespace SadRogue.Primitives
         }
 
         /// <summary>
-        /// Sets the color values based on HSL instead of RGB.
+        /// Creates a <see cref="Color"/> from the specified hue, saturation, lightness, and alpha values.
+        /// Taken from the MIT licensed Windows Community Toolkit:
+        /// https://github.com/CommunityToolkit/WindowsCommunityToolkit/blob/63cbb4a51bdef59083ccfc86bbcba41f966d0027/Microsoft.Toolkit.Uwp/Helpers/ColorHelper.cs#L246
         /// </summary>
-        /// <param name="h">The hue amount.</param>
-        /// <param name="s">The saturation amount.</param>
-        /// <param name="l">The luminance amount.</param>
-        /// <remarks>Taken from http://www.easyrgb.com/index.php?X=MATH&amp;H=19#text19 </remarks>
+        /// <param name="h">0..360 range hue</param>
+        /// <param name="s">0..1 range saturation</param>
+        /// <param name="l">0..1 range lightness</param>
+        /// <returns>The created <see cref="Color"/>.</returns>
         [Pure]
         public static Color FromHSL(float h, float s, float l)
         {
-            if (Math.Abs(s) < 0.0000000001)
-                return new Color(
-                    (byte)(l * 255),
-                    (byte)(l * 255),
-                    (byte)(l * 255)
-                );
+            if (h < 0 || h > 360)
+            {
+                throw new ArgumentOutOfRangeException(nameof(h));
+            }
+
+            double chroma = (1 - Math.Abs((2 * l) - 1)) * s;
+            double h1 = h / 60;
+            double x = chroma * (1 - Math.Abs((h1 % 2) - 1));
+            double m = l - (0.5 * chroma);
+            double r1, g1, b1;
+
+            if (h1 < 1)
+            {
+                r1 = chroma;
+                g1 = x;
+                b1 = 0;
+            }
+            else if (h1 < 2)
+            {
+                r1 = x;
+                g1 = chroma;
+                b1 = 0;
+            }
+            else if (h1 < 3)
+            {
+                r1 = 0;
+                g1 = chroma;
+                b1 = x;
+            }
+            else if (h1 < 4)
+            {
+                r1 = 0;
+                g1 = x;
+                b1 = chroma;
+            }
+            else if (h1 < 5)
+            {
+                r1 = x;
+                g1 = 0;
+                b1 = chroma;
+            }
             else
             {
-                float var_2;
-                float var_1;
-
-                if (l < 0.5)
-                    var_2 = l * (1 + s);
-                else
-                    var_2 = l + s - s * l;
-
-                var_1 = 2 * l - var_2;
-
-                return new Color(
-                    (byte)(255 * Hue_2_RGB(var_1, var_2, h + 1f / 3)),
-                    (byte)(255 * Hue_2_RGB(var_1, var_2, h)),
-                    (byte)(255 * Hue_2_RGB(var_1, var_2, h - 1f / 3))
-                );
+                r1 = chroma;
+                g1 = 0;
+                b1 = x;
             }
+
+            byte r = (byte)(255 * (r1 + m));
+            byte g = (byte)(255 * (g1 + m));
+            byte b = (byte)(255 * (b1 + m));
+            byte a = 255;
+
+            return new Color(r, g, b, a);
         }
 
-        private static float Hue_2_RGB(float v1, float v2, float vH)
-        {
-            if (vH < 0)
-                vH += 1;
 
-            if (vH > 1)
-                vH -= 1;
-
-            if (6 * vH < 1)
-                return v1 + (v2 - v1) * 6 * vH;
-
-            if (2 * vH < 1)
-                return v2;
-
-            if (3 * vH < 2)
-                return v1 + (v2 - v1) * (2f / 3 - vH) * 6;
-
-            return v1;
-        }
 
         /// <summary>
         /// Multiply <see cref="Color"/> by value.

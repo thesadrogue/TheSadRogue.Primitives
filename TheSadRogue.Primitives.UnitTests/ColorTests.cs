@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
 using XUnit.ValueTuples;
@@ -260,6 +259,35 @@ namespace SadRogue.Primitives.UnitTests
             Assert.Equal(color2, Color.Lerp(color2, color1, 0.0f));
             Assert.Equal(color1, Color.Lerp(color2, color1, 1.0f));
             Assert.Equal(half, Color.Lerp(color2, color1, 0.5f));
+        }
+
+        [Fact]
+        public void LerpSteps()
+        {
+            var start = new Color (1, 254, 128, 255);
+            var end = new Color(254, 1, 128, 255);
+            const int steps = 10;
+
+            float rDiff = (end.R - start.R) / (float)(steps - 1);
+            float gDiff = (end.G - start.G) / (float)(steps - 1);
+            float bDiff = (end.B - start.B) / (float)(steps - 1);
+
+            var colors = Color.LerpSteps(start, end, steps);
+            Assert.Equal(colors.Length, 10);
+            Assert.Equal(start, colors[0]);
+            Assert.Equal(end, colors[^1]);
+
+            for (int i = 1; i < colors.Length; i++)
+            {
+                var cur = colors[i];
+                var prev = colors[i - 1];
+
+                // Numbers don't divide evenly by steps, so we have to account for rounding error here
+                Assert.InRange(cur.R - prev.R - rDiff, -1, 1);
+                Assert.InRange(cur.G - prev.G - gDiff, -1, 1);
+                Assert.InRange(cur.B - prev.B - bDiff, -1, 1);
+                Assert.Equal(255, cur.A);
+            }
         }
         #endregion
 

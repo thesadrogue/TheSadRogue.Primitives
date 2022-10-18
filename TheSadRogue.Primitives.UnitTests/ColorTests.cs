@@ -87,6 +87,30 @@ namespace SadRogue.Primitives.UnitTests
             (new Color(0.495f, 0.493f, 0.721f), (240.5f, 0.29f, 0.607f))
         };
 
+        // Color translation table: https://en.wikipedia.org/wiki/HSL_and_HSV#Examples
+        public static readonly (Color color, float expectedLuma)[] LumaTestCases =
+        {
+            (new Color(1f, 1f, 1f), 1f),
+            (new Color(0.5f, 0.5f, 0.5f), 0.5f),
+            (new Color(0f, 0f, 0f), 0f),
+            (new Color(1f, 0f, 0f), 0.333f),
+            (new Color(0.75f, 0.75f, 0f), 0.5f),
+            (new Color(0f, 0.5f, 0f), 0.167f),
+            (new Color(0.5f, 1f, 1f), 0.833f),
+            (new Color(0.5f, 0.5f, 1f), 0.667f),
+            (new Color(0.75f, 0.25f, 0.75f), 0.583f),
+            (new Color(0.628f, 0.643f, 0.142f), 0.471f),
+            (new Color(0.255f, 0.104f, 0.918f), 0.426f),
+            (new Color(0.116f, 0.675f, 0.255f), 0.349f),
+            (new Color(0.941f, 0.785f, 0.053f), 0.593f),
+            (new Color(0.704f, 0.187f, 0.897f), 0.596f),
+            (new Color(0.931f, 0.463f, 0.316f), 0.57f),
+            (new Color(0.998f, 0.974f, 0.532f), 0.835f),
+            (new Color(0.099f, 0.795f, 0.591f), 0.495f),
+            (new Color(0.211f, 0.149f, 0.597f), 0.319f),
+            (new Color(0.495f, 0.493f, 0.721f), 0.57f)
+        };
+
         #endregion
         public ColorTests(ITestOutputHelper output)
         {
@@ -349,6 +373,17 @@ namespace SadRogue.Primitives.UnitTests
         }
 
 
+        #endregion
+
+        #region Luma
+        [Theory]
+        [MemberDataTuple(nameof(LumaTestCases))]
+        public void TestLumaValues(Color color, float expectedLuma)
+        {
+            float luma = color.GetLuma() / 255f;
+
+            Assert.InRange(expectedLuma - luma, -0.15, 0.15);
+        }
         #endregion
 
         #region Equality/Inequality

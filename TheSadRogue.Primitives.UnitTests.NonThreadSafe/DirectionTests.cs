@@ -32,7 +32,9 @@ namespace SadRogue.Primitives.UnitTests
                 ((0, 0), (0, 0) + Direction.Down, Direction.Down),
                 ((0, 0), (0, 0) + Direction.DownLeft, Direction.DownLeft),
                 ((0, 0), (0, 0) + Direction.Left, Direction.Left),
-                ((0, 0), (0, 0) + Direction.UpLeft, Direction.UpLeft)
+                ((0, 0), (0, 0) + Direction.UpLeft, Direction.UpLeft),
+                // Just north of the UpLeft round-down boundary
+                ((0, 0), (0, 0) + Direction.UpLeft + Direction.Up + Direction.UpLeft + Direction.Up + Direction.Up, Direction.Up)
             };
 
         private static IEnumerable<(Point, Point, Direction)> GetCardinalDirectionBasePairs =>

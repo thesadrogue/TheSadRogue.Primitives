@@ -1,11 +1,14 @@
 ﻿using System.Linq;
 using Xunit;
+using Xunit.Abstractions;
 using XUnit.ValueTuples;
 
 namespace SadRogue.Primitives.UnitTests
 {
     public class ColorTests
     {
+        private readonly ITestOutputHelper _output;
+
         #region Test Data
 
         private static readonly Color s_equalColor = new Color(1, 2, 3, 4);
@@ -59,7 +62,7 @@ namespace SadRogue.Primitives.UnitTests
         };
 
         // Color translation table: https://en.wikipedia.org/wiki/HSL_and_HSV#Examples
-        public static readonly (Color color, (float h, float s, float v) expected)[] HSLTestCases =
+        public static readonly (Color color, (float h, float s, float l) expected)[] HSLTestCases =
         {
             (new Color(1f, 1f, 1f), (0.0f, 0f, 1f)),
             (new Color(0.5f, 0.5f, 0.5f), (0.0f, 0f, 0.5f)),
@@ -84,6 +87,10 @@ namespace SadRogue.Primitives.UnitTests
 
         #endregion
 
+        public ColorTests(ITestOutputHelper output)
+        {
+            _output = output;
+        }
         #region Construction
         [Theory]
         [MemberDataTuple(nameof(CtorTestCases))]
@@ -127,6 +134,20 @@ namespace SadRogue.Primitives.UnitTests
             Assert.InRange(140 - overflow2.G, -1, 1);
             Assert.InRange(70 - overflow2.B, -1, 1);
             Assert.Equal(255, overflow2.A);
+        }
+
+        [Theory]
+        [MemberDataTuple(nameof(HSLTestCases))]
+        public void FromHSL(Color expected, (float h, float s, float l) input)
+        {
+            var actual = Color.FromHSL(input.h, input.s, input.l);
+
+            _output.WriteLine($"Expected: {expected}");
+            _output.WriteLine($"Actual  : {actual}");
+            Assert.InRange(expected.R - actual.R, -1, 1);
+            Assert.InRange(expected.G - actual.G, -1, 1);
+            Assert.InRange(expected.B - actual.B, -1, 1);
+            Assert.Equal(expected.A, actual.A);
         }
         #endregion
 

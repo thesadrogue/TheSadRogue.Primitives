@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
 using XUnit.ValueTuples;
@@ -86,7 +88,6 @@ namespace SadRogue.Primitives.UnitTests
         };
 
         #endregion
-
         public ColorTests(ITestOutputHelper output)
         {
             _output = output;
@@ -148,6 +149,13 @@ namespace SadRogue.Primitives.UnitTests
             Assert.InRange(expected.G - actual.G, -1, 1);
             Assert.InRange(expected.B - actual.B, -1, 1);
             Assert.Equal(expected.A, actual.A);
+        }
+
+        [Fact]
+        public void FromHSLInvalidH()
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => Color.FromHSL(360.001f, 1f, 1f));
+            Assert.Throws<ArgumentOutOfRangeException>(() => Color.FromHSL(-0.0001f, 1f, 1f));
         }
         #endregion
 

@@ -1419,9 +1419,8 @@ namespace SadRogue.Primitives
         public static Color FromHSL(float h, float s, float l)
         {
             if (h < 0 || h > 360)
-            {
                 throw new ArgumentOutOfRangeException(nameof(h));
-            }
+
 
             double chroma = (1 - Math.Abs((2 * l) - 1)) * s;
             double h1 = h / 60;

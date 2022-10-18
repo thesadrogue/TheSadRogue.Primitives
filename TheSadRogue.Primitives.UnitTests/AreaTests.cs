@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using SadRogue.Primitives.GridViews;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -470,6 +471,112 @@ namespace SadRogue.Primitives.UnitTests
 
             string expected = "[" + string.Join(", ", s_pointsToAdd) + "]";
             Assert.Equal(expected, area.ToString());
+        }
+        #endregion
+
+        #region  Set Operations
+
+        [Fact]
+        public void TestDifference()
+        {
+            var area1 = new Area(s_pointsToAdd);
+            var set = new HashSet<Point>(s_pointsToAdd);
+
+            var area2 = new Area(null, s_pointsToAdd[0], (845, 543), (134, 432));
+            var set2 = new HashSet<Point>(area2);
+
+            var resultArea = Area.GetDifference(area1, area2);
+            set.ExceptWith(set2);
+
+            Assert.Equal(set, resultArea.ToHashSet());
+            Assert.Equal(2, resultArea.Count);
+            Assert.Equal(new Rectangle(s_pointsToAdd[1], s_pointsToAdd[^1]), resultArea.Bounds);
+        }
+
+        [Fact]
+        public void TestIntersection()
+        {
+            var area1 = new Area(s_pointsToAdd);
+            var set = new HashSet<Point>(s_pointsToAdd);
+
+            var area2 = new Area(null, s_pointsToAdd[0], (845, 543), (134, 432), (15, 15));
+            var set2 = new HashSet<Point>(area2);
+
+            var resultArea = Area.GetIntersection(area1, area2);
+            var resultArea2 = Area.GetIntersection(area2, area1);
+            set.IntersectWith(set2);
+
+            Assert.Equal(set, resultArea.ToHashSet());
+            Assert.Equal(1, resultArea.Count);
+            Assert.Equal(new Rectangle(s_pointsToAdd[0], s_pointsToAdd[0]), resultArea.Bounds);
+            Assert.True(resultArea.Matches(resultArea2));
+        }
+
+        [Fact]
+        public void TestIntersectionNoIntersect()
+        {
+            var area1 = new Area(s_pointsToAdd);
+            var area2 = new Area(null, (7, 8));
+
+            var resultArea = Area.GetIntersection(area1, area2);
+            Assert.Empty(resultArea);
+            Assert.Equal(0, resultArea.Count);
+        }
+
+        [Fact]
+        public void TestUnion()
+        {
+            var area1 = new Area(s_pointsToAdd);
+            var set = new HashSet<Point>(s_pointsToAdd);
+
+            var area2 = new Area(null, s_pointsToAdd[0], (845, 543), (134, 432));
+            var set2 = new HashSet<Point>(area2);
+
+            var resultArea = Area.GetUnion(area1, area2);
+            set.UnionWith(set2);
+
+            Assert.Equal(set, resultArea.ToHashSet());
+            Assert.Equal(5, resultArea.Count);
+            Assert.Equal(new Rectangle(s_pointsToAdd[0], (845, 543)), resultArea.Bounds);
+        }
+
+        [Fact]
+        public void TestShiftOperator()
+        {
+            var delta = new Point(5, 6);
+            var area = new Area(s_pointsToAdd);
+            area += delta;
+
+            Assert.Equal(s_pointsToAdd.Length, area.Count);
+            for (int i = 0; i < s_pointsToAdd.Length; i++)
+                Assert.Equal(s_pointsToAdd[i] + delta, area[i]);
+        }
+
+        [Fact]
+        public void TestIntersects()
+        {
+            var area = new Area(s_pointsToAdd);
+            var areaNoIntersectBounds = new Area(null, (7, 8));
+            var areaIntersect = new Area(null, (3, 3), s_pointsToAdd[0]);
+
+            // No bounds intersection at all
+            Assert.False(area.Intersects(areaNoIntersectBounds));
+
+            // Bounds intersect as do the areas both ways (also, reference check)
+            Assert.True(area.Intersects(areaIntersect));
+            Assert.True(areaIntersect.Intersects(area));
+            Assert.True(area.Intersects(area));
+        }
+
+        [Fact]
+        public void TestIntersectBoundsIntersectButNotArea()
+        {
+            var area = new Area(s_pointsToAdd);
+            var areaNoIntersect = new Area(null, (3, 3), (1, 3));
+
+            // Bounds intersect but no points do not
+            Assert.False(area.Intersects(areaNoIntersect));
+            Assert.False(areaNoIntersect.Intersects(area));
         }
         #endregion
     }

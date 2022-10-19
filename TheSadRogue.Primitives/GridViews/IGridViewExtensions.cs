@@ -152,7 +152,7 @@ namespace SadRogue.Primitives.GridViews
                 result.Append(beginRow);
                 for (var x = 0; x < gridView.Width; x++)
                 {
-                    result.Append(string.Format($"{{0, {fieldSize}}} ", elementStringifier(gridView[x, y])));
+                    result.Append(string.Format($"{{0, {fieldSize}}}", elementStringifier(gridView[x, y])));
                     if (x != gridView.Width - 1) result.Append(elementSeparator);
                 }
 

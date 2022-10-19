@@ -2,6 +2,7 @@
 using System.Linq;
 using SadRogue.Primitives.GridViews;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace SadRogue.Primitives.UnitTests.GridViews
 {
@@ -11,7 +12,12 @@ namespace SadRogue.Primitives.UnitTests.GridViews
         private const int Height = 50;
 
         private readonly Point _center = new Point(Width / 2, Height / 2);
+        private readonly ITestOutputHelper _output;
 
+        public ArrayViewTests(ITestOutputHelper output)
+        {
+            _output = output;
+        }
         #region Construction
 
         [Fact]
@@ -153,6 +159,45 @@ namespace SadRogue.Primitives.UnitTests.GridViews
             foreach (var pos in view.Positions())
                 Assert.False(view[pos]);
         }
+        #endregion
+
+        #region ToString
+
+        [Fact]
+        public void TestToString()
+        {
+            var view = new ArrayView<int>(6, 5);
+            foreach (var pos in view.Bounds().Expand(-1, -1).Positions())
+                view[pos] = 1;
+
+            string actual = view.ToString();
+            const string expected = "0 0 0 0 0 0\n0 1 1 1 1 0\n0 1 1 1 1 0\n0 1 1 1 1 0\n0 0 0 0 0 0";
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void TestToStringCustomStringifier()
+        {
+            var view = new ArrayView<int>(6, 5);
+            foreach (var pos in view.Bounds().Expand(-1, -1).Positions())
+                view[pos] = 1;
+
+            string actual = view.ToString(i => i >= 1 ? "." : "#");
+            string expected = "# # # # # #\n# . . . . #\n# . . . . #\n# . . . . #\n# # # # # #";
+
+            Assert.Equal(expected, actual);
+
+            expected = expected.Replace("#", " #").Replace(".", " .");
+            actual = view.ToString(2, i => i == 1 ? "." : "#");
+
+            _output.WriteLine("Expected");
+            _output.WriteLine(expected);
+            _output.WriteLine("\nActual:");
+            _output.WriteLine(actual);
+            Assert.Equal(expected, actual);
+        }
+
         #endregion
     }
 }

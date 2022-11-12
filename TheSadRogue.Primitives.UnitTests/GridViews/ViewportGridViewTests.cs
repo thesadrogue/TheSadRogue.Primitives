@@ -8,7 +8,6 @@ namespace SadRogue.Primitives.UnitTests.GridViews
 {
     public class ViewportGridViewTests
     {
-
         [Fact]
         public void ViewportBoundingRectangleTest()
         {
@@ -69,6 +68,26 @@ namespace SadRogue.Primitives.UnitTests.GridViews
                     Assert.Equal(0, unboundedViewport[pos]);
                 else
                     Assert.Equal(1, unboundedViewport[pos]);
+        }
+
+        [Fact]
+        public void UnboundedViewportToStringTest()
+        {
+            var view = MockGridViews.RectangleBooleanGrid(71, 50);
+            var viewport = new UnboundedViewport<bool>(view, new Rectangle(view.Bounds().MaxExtent, 3, 2), false);
+
+            string expected =
+                "True True True False False False False\nTrue True True False False False False\nFalse False False False False False False\nFalse False False False False False False\nFalse False False False False False False";
+            string actual = viewport.ToString();
+            Assert.Equal(expected, actual);
+
+            expected = expected.Replace("True", "1").Replace("False", "0");
+            actual = viewport.ToString(b => b ? "1" : "0");
+            Assert.Equal(expected, actual);
+
+            expected = expected.Replace("0", " 0").Replace("1", " 1");
+            actual = viewport.ToString(2, b => b ? "1" : "0");
+            Assert.Equal(expected, actual);
         }
 
         private static void CheckViewportBounds(Viewport<bool> viewport, Point expectedMinCorner,

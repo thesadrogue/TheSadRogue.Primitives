@@ -3,9 +3,63 @@ using System.Collections.Generic;
 using System.Linq;
 using SadRogue.Primitives.GridViews;
 using Xunit;
+using XUnit.ValueTuples;
 
 namespace SadRogue.Primitives.UnitTests.GridViews
 {
+    public class DiffValueChangeTests
+    {
+        private static readonly ValueChange<int> s_equivalentValue = new ValueChange<int>((1, 2), 1, 2);
+        public static readonly ValueChange<int>[] EquivalencyTestCases =
+        {
+            new ValueChange<int>((1, 2), 1, 2),
+            new ValueChange<int>((1, 2), 1, 3),
+            new ValueChange<int>((1, 2), 3, 2),
+            new ValueChange<int>((2, 3), 1, 2),
+        };
+
+        [Fact]
+        public void Construction()
+        {
+            var change = new ValueChange<int>((1, 2), 1, 2);
+            Assert.Equal(new Point(1, 2), change.Position);
+            Assert.Equal(1, change.OldValue);
+            Assert.Equal(2, change.NewValue);
+        }
+
+        [Fact]
+        public void EquivalencyTests()
+        {
+            var expected = s_equivalentValue;
+            var actual = EquivalencyTestCases[0];
+            Assert.True(expected.Equals(actual));
+            Assert.True(expected.Equals((object)actual));
+            Assert.True(expected.Matches(actual));
+            Assert.True(expected == actual);
+
+            expected = EquivalencyTestCases[0];
+            actual = s_equivalentValue;
+            Assert.True(expected.Equals(actual));
+            Assert.True(expected.Equals((object)actual));
+            Assert.True(expected.Matches(actual));
+            Assert.True(expected == actual);
+        }
+
+        [Theory]
+        [MemberDataEnumerable(nameof(EquivalencyTestCases))]
+        public void EqualityInequalityRelationshipTests(ValueChange<int> value)
+        {
+            foreach (var otherValue in EquivalencyTestCases)
+            {
+                Assert.Equal(otherValue.Equals(value), otherValue.Equals((object)value));
+                Assert.Equal(otherValue.Equals(value), otherValue.Matches(value));
+                Assert.Equal(otherValue.Equals(value), otherValue == value);
+
+                Assert.Equal(!otherValue.Equals(value), otherValue != value);
+                Assert.Equal(!otherValue.Equals(value), value != otherValue);
+            }
+        }
+    }
     public class DiffTests
     {
         [Fact]

@@ -273,7 +273,7 @@ namespace SadRogue.Primitives.UnitTests
             float bDiff = (end.B - start.B) / (float)(steps - 1);
 
             var colors = Color.LerpSteps(start, end, steps);
-            Assert.Equal(colors.Length, 10);
+            Assert.Equal(steps, colors.Length);
             Assert.Equal(start, colors[0]);
             Assert.Equal(end, colors[^1]);
 

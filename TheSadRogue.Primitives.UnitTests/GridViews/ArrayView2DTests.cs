@@ -153,5 +153,40 @@ namespace SadRogue.Primitives.UnitTests.GridViews
                 Assert.False(view[pos]);
         }
         #endregion
+
+        #region ToString
+
+        [Fact]
+        public void TestToString()
+        {
+            var view = new ArrayView2D<int>(6, 5);
+            foreach (var pos in view.Bounds().Expand(-1, -1).Positions())
+                view[pos] = 1;
+
+            string actual = view.ToString();
+            const string expected = "0 0 0 0 0 0\n0 1 1 1 1 0\n0 1 1 1 1 0\n0 1 1 1 1 0\n0 0 0 0 0 0";
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void TestToStringCustomStringifier()
+        {
+            var view = new ArrayView2D<int>(6, 5);
+            foreach (var pos in view.Bounds().Expand(-1, -1).Positions())
+                view[pos] = 1;
+
+            string actual = view.ToString(i => i >= 1 ? "." : "#");
+            string expected = "# # # # # #\n# . . . . #\n# . . . . #\n# . . . . #\n# # # # # #";
+
+            Assert.Equal(expected, actual);
+
+            expected = expected.Replace("#", " #").Replace(".", " .");
+            actual = view.ToString(2, i => i == 1 ? "." : "#");
+
+            Assert.Equal(expected, actual);
+        }
+
+        #endregion
     }
 }

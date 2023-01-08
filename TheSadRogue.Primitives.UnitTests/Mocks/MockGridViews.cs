@@ -69,12 +69,56 @@ namespace SadRogue.Primitives.UnitTests.Mocks
 
         public override int Width => View.Width;
 
-        public override T this[Point pos] => View[pos];
+        public override T this[Point pos]
+        {
+            get => View[pos];
+            //set => View[pos] = value;
+        }
 
         public GridViewBaseDefaultImplementationMock(int width, int height)
         {
             View = new ArrayView<T>(width, height);
         }
+    }
+
+    /// <summary>
+    /// An incorrect translation grid view implementation which does not override any variation of TranslateGet.
+    /// </summary>
+    /// <typeparam name="T1"/>
+    /// <typeparam name="T2"/>
+    public class TranslationGridViewNoOverrides<T1, T2> : TranslationGridView<T1, T2>
+    {
+        public TranslationGridViewNoOverrides(IGridView<T1> baseGrid)
+            : base(baseGrid)
+        { }
+    }
+
+    /// <summary>
+    /// TranslateGridView implementation which implements the most simple variation of TranslateGet, ie. the one which
+    /// doesn't take a position.
+    /// </summary>
+    public class TranslationGridViewSimpleOverride : TranslationGridView<bool, int>
+    {
+        public TranslationGridViewSimpleOverride(IGridView<bool> baseGrid)
+            : base(baseGrid)
+        { }
+
+        protected override int TranslateGet(bool value) => value ? 1 : 0;
+    }
+
+    /// <summary>
+    /// A TranslateGridView implementation which implements the version of TranslateGet
+    /// that takes a position and forces all perimeter squares to 0 in the output.
+    /// </summary>
+    public class TranslationGridViewPositionOverride : TranslationGridView<bool, int>
+    {
+        public TranslationGridViewPositionOverride(IGridView<bool> baseGrid)
+            : base(baseGrid)
+        { }
+
+        protected override int TranslateGet(Point position, bool value)
+            => this.Bounds().Expand(-1, -1).Contains(position) ? value ? 1 : 0 : 0;
+
     }
 
     /// <summary>

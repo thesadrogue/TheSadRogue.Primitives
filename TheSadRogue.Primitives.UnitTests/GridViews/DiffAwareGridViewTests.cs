@@ -421,6 +421,67 @@ namespace SadRogue.Primitives.UnitTests.GridViews
         }
 
         [Fact]
+        public void SetValuesWithUnappliedDiffsThrowsException()
+        {
+            // Create a new grid view
+            var view = new DiffAwareGridView<int>(80, 25) { [1, 0] = 1 };
+
+            view.FinalizeCurrentDiff();
+
+            view[1, 2] = 10;
+            view.RevertToPreviousDiff();
+            Assert.Throws<InvalidOperationException>(() => view[1, 3] = 20);
+        }
+
+        [Fact]
+        public void EmptyDiffsRemovedOnPrevious()
+        {
+            // Create a new grid view and record its state
+            var view = new DiffAwareGridView<int>(80, 25, true) { [1, 0] = 1 };
+
+            // Finalize current diff
+            view.FinalizeCurrentDiff();
+
+            // Check that reverting a blank diff (made blank by compression) does nothing to the number of diffs
+            view[1, 0] = 2;
+            view[1, 0] = 1;
+            view.RevertToPreviousDiff();
+            Assert.Equal(1, view.Diffs.Count);
+        }
+
+        [Fact]
+        public void EmptyDiffsRemovedOnFinalize()
+        {
+            // Create a new grid view and record its state
+            var view = new DiffAwareGridView<int>(80, 25) { [1, 0] = 1 };
+            var arrayView = new ArrayView<int>(view.Width, view.Height);
+            arrayView.ApplyOverlay(view);
+
+            // Finalize current diff
+            view.FinalizeCurrentDiff();
+
+            // Check that finalizing a blank diff (made blank by compression) does nothing
+            view[1, 0] = 2;
+            view[1, 0] = 1;
+            view.FinalizeCurrentDiff();
+            Assert.Equal(1, view.Diffs.Count);
+            foreach (var pos in arrayView.Positions())
+                Assert.Equal(arrayView[pos], view[pos]);
+        }
+
+        [Fact]
+        public void FinalizingDiffWhenNotCurrentStateThrowsException()
+        {
+            // Create a new grid view and record a diff.
+            var view = new DiffAwareGridView<int>(80, 25) { [1, 0] = 1 };
+            view.FinalizeCurrentDiff();
+
+            // Revert to previous diff and validate that trying to finalize the current one throws exception.
+            view.RevertToPreviousDiff();
+            Assert.Throws<InvalidOperationException>(() => view.FinalizeCurrentDiff());
+        }
+
+        [Fact]
         public void SetHistory()
         {
             // Create a valid history by creating a view and changing some things

@@ -1,4 +1,5 @@
-﻿using SadRogue.Primitives.GridViews;
+﻿using System;
+using SadRogue.Primitives.GridViews;
 using SadRogue.Primitives.UnitTests.Mocks;
 using Xunit;
 // Should disable this because the functions triggering it are just assertion methods
@@ -35,6 +36,60 @@ namespace SadRogue.Primitives.UnitTests.GridViews
             Point minVal = (gridWidth - viewportWidth, gridHeight - viewportHeight);
             Point maxVal = (gridWidth - 1, gridHeight - 1);
             CheckViewportBounds(viewport, minVal, maxVal);
+        }
+
+        [Fact]
+        public void ViewportSimpleConstructorTest()
+        {
+            const int gridWidth = 267;
+            const int gridHeight = 250;
+
+            var grid = MockGridViews.RectangleBooleanGrid(gridWidth, gridHeight);
+            var viewport = new Viewport<bool>(grid);
+
+            CheckViewportBounds(viewport, (0, 0), (gridWidth - 1, gridHeight - 1));
+        }
+
+        [Fact]
+        public void ViewportToStringTest()
+        {
+            var grid = MockGridViews.RectangleBooleanGrid(56, 42);
+            var viewport = new Viewport<bool>(grid, new Rectangle(0, 0, 5, 4));
+
+            string result = viewport.ToString();
+            string expected = "False False False False False\nFalse True True True True\nFalse True True True True\nFalse True True True True";
+
+            Assert.Equal(expected, result);
+
+            viewport.SetViewArea(viewport.ViewArea.WithPosition((1, 2)));
+            expected = "True True True True True\nTrue True True True True\nTrue True True True True\nTrue True True True True";
+
+            result = viewport.ToString();
+            Assert.Equal(expected, result);
+        }
+
+        [Fact]
+        public void ViewportToStringWithStringifierTest()
+        {
+            var grid = MockGridViews.RectangleBooleanGrid(56, 42);
+            var viewport = new Viewport<bool>(grid, new Rectangle(0, 0, 5, 4));
+
+            string Stringifier(bool i) => i ? "1" : "0";
+
+            string result = viewport.ToString(Stringifier);
+            string expected = "0 0 0 0 0\n0 1 1 1 1\n0 1 1 1 1\n0 1 1 1 1";
+
+            Assert.Equal(expected, result);
+
+            viewport.SetViewArea(viewport.ViewArea.WithPosition((1, 2)));
+            expected = "1 1 1 1 1\n1 1 1 1 1\n1 1 1 1 1\n1 1 1 1 1";
+
+            result = viewport.ToString(Stringifier);
+            Assert.Equal(expected, result);
+
+            result = viewport.ToString(2, Stringifier);
+            expected = " 1  1  1  1  1\n 1  1  1  1  1\n 1  1  1  1  1\n 1  1  1  1  1";
+            Assert.Equal(expected, result);
         }
 
         [Fact]
@@ -93,6 +148,9 @@ namespace SadRogue.Primitives.UnitTests.GridViews
         private static void CheckViewportBounds(Viewport<bool> viewport, Point expectedMinCorner,
                                                 Point expectedMaxCorner)
         {
+            Assert.Equal(expectedMaxCorner.X - expectedMinCorner.X + 1, viewport.Width);
+            Assert.Equal(expectedMaxCorner.Y - expectedMinCorner.Y + 1, viewport.Height);
+
             Assert.Equal(expectedMaxCorner, viewport.ViewArea.MaxExtent);
             Assert.Equal(expectedMinCorner, viewport.ViewArea.MinExtent);
             Assert.True(viewport.ViewArea.X >= 0);

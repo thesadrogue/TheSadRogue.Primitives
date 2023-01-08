@@ -20,6 +20,13 @@ namespace SadRogue.Primitives.UnitTests.GridViews
             foreach (var pos in view.Positions())
                 Assert.Equal(default, view[pos]);
         }
+
+        [Fact]
+        public void TestCount()
+        {
+            var view = new SettableGridViewBaseDefaultImplementationMock<int>(15, 12);
+            Assert.Equal(view.Width * view.Height, view.Count);
+        }
         #endregion
     }
 }

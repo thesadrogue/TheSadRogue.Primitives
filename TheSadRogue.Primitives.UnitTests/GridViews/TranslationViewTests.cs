@@ -7,7 +7,7 @@ using Xunit;
 namespace SadRogue.Primitives.UnitTests.GridViews
 {
     /// <summary>
-    /// Tests for <see cref="TranslationGridView{T1, T2}"/> and the settable variants.
+    /// Tests for <see cref="TranslationGridView{T1, T2}"/>.
     /// </summary>
     public class TranslationViewTests
     {

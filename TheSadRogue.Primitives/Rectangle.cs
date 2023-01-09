@@ -225,9 +225,9 @@ namespace SadRogue.Primitives
         [DataMember] public readonly int Height;
 
         /// <summary>
-        /// Whether or not this rectangle is empty (has width and height of 0).
+        /// Whether or not this rectangle contains no locations (eg. has width or height of 0).
         /// </summary>
-        public bool IsEmpty => Width == 0 && Height == 0;
+        public bool IsEmpty => Width == 0 || Height == 0;
 
         /// <summary>
         /// The maximum X and Y coordinates that are included in the rectangle.

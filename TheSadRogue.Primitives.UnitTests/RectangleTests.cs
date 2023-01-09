@@ -10,6 +10,11 @@ namespace SadRogue.Primitives.UnitTests
     {
         #region Test Data
 
+        public static Rectangle[] MiscTestRectangles = new Rectangle[] { (0, 0, 10, 20), (1, 2, 15, 17), (5, 2, 18, 6) };
+
+        public static Rectangle[] EmptyRectangles =
+            new Rectangle[] { (10, 11, 0, 20), (15, 14, 21, 0), (17, 14, 0, 0) };
+
         public static Rectangle[] EqualRectangles = new Rectangle[]
         {
             new Rectangle(1, 2, 11, 17), new Rectangle(new Point(1, 2), new Point(11, 18)),
@@ -261,13 +266,44 @@ namespace SadRogue.Primitives.UnitTests
             var rectangle = new Rectangle(1, 2, 50, 60);
 
             var divisor = new Rectangle(1, 2, 0, 10);
-            Assert.Throws<ArgumentOutOfRangeException>(() => rectangle.Divide(divisor));
+            Assert.Throws<ArgumentOutOfRangeException>(() => rectangle.Divide(divisor).ToArray());
 
             divisor = new Rectangle(1, 2, 10, 0);
-            Assert.Throws<ArgumentOutOfRangeException>(() => rectangle.Divide(divisor));
+            Assert.Throws<ArgumentOutOfRangeException>(() => rectangle.Divide(divisor).ToArray());
         }
         #endregion
 
+        #region CalculatedProperties
+
+        [Theory]
+        [MemberDataEnumerable(nameof(MiscTestRectangles))]
+        public void AreaTest(Rectangle rect)
+        {
+            Assert.Equal(rect.Width * rect.Height, rect.Area);
+        }
+
+        [Theory]
+        [MemberDataEnumerable(nameof(MiscTestRectangles))]
+        public void SizeTest(Rectangle rect)
+        {
+            Assert.Equal(new Point(rect.Width, rect.Height), rect.Size);
+        }
+
+        [Theory]
+        [MemberDataEnumerable(nameof(MiscTestRectangles))]
+        public void NonEmptyIsEmptyTest(Rectangle rect)
+        {
+            Assert.False(rect.IsEmpty);
+        }
+
+        [Theory]
+        [MemberDataEnumerable(nameof(EmptyRectangles))]
+        public void EmptyIsEmptyTest(Rectangle rect)
+        {
+            Assert.True(rect.IsEmpty);
+        }
+
+        #endregion
         [Fact]
         public void PositionsEmptyRectTest()
         {

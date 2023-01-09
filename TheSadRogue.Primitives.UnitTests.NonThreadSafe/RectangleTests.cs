@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 using XUnit.ValueTuples;
@@ -14,6 +15,11 @@ namespace SadRogue.Primitives.UnitTests
         public static (Rectangle rect, bool yIncreaseUpwards)[] TestRectanglesWithYIncreasesUpwards =
             TestRectangles.Combinate(TestUtils.Enumerable(true, false)).ToArray();
 
+        public static (Direction dir, bool yIncreaseUpwards)[] NonCardinalsWithYIncreasesUpwards =
+            AdjacencyRule.EightWay.DirectionsOfNeighborsCache
+                .Where(i => !i.IsCardinal())
+                .Combinate(TestUtils.Enumerable(true, false))
+                .ToArray();
         #endregion
 
         #region Test Side Points
@@ -102,6 +108,20 @@ namespace SadRogue.Primitives.UnitTests
             Direction.SetYIncreasesUpwardsUnsafe(false); // Ensure we reset to false for next test
         }
 
+        [Theory]
+        [MemberDataTuple(nameof(NonCardinalsWithYIncreasesUpwards))]
+        public void PositionsOnBadEdge(Direction badDir, bool yIncreasesUpwards)
+        {
+            // Set to test's value
+            Direction.SetYIncreasesUpwardsUnsafe(yIncreasesUpwards);
+
+            var rect = new Rectangle(1, 2, 10, 20);
+            Assert.Throws<ArgumentException>(() => rect.PositionsOnSide(badDir));
+
+            // Reset to false for next test
+            Direction.SetYIncreasesUpwardsUnsafe(false);
+        }
+
         #endregion
 
         #region Test Side Identification
@@ -173,6 +193,22 @@ namespace SadRogue.Primitives.UnitTests
             // Check that all points return the proper value
             foreach (Point point in rect.Positions())
                 Assert.Equal(expectedPoints.Contains(point), rect.IsOnSide(point, Direction.Left));
+
+            // Reset to false for next test
+            Direction.SetYIncreasesUpwardsUnsafe(false);
+        }
+
+        [Theory]
+        [MemberDataTuple(nameof(NonCardinalsWithYIncreasesUpwards))]
+        public void IsOnBadEdge(Direction badDir, bool yIncreasesUpwards)
+        {
+            // Set to test's value
+            Direction.SetYIncreasesUpwardsUnsafe(yIncreasesUpwards);
+
+            var rect = new Rectangle(1, 2, 10, 20);
+
+            foreach (var pos in rect.Positions())
+                Assert.Throws<ArgumentException>(() => rect.IsOnSide(pos, badDir));
 
             // Reset to false for next test
             Direction.SetYIncreasesUpwardsUnsafe(false);

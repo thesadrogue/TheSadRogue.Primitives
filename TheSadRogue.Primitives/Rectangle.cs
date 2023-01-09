@@ -1047,15 +1047,15 @@ namespace SadRogue.Primitives
                 yield return new Point(x, MinExtentY); // Minimum y-side perimeter
 
             // Start offset 1, since last loop returned the corner piece
-            for (int y = MinExtentY + 1; y <= MaxExtentY; y++) 
+            for (int y = MinExtentY + 1; y <= MaxExtentY; y++)
                 yield return new Point(MaxExtentX, y);
 
             // Again skip 1 because last loop returned the corner piece
-            for (int x = MaxExtentX - 1; x >= MinExtentX; x--) 
+            for (int x = MaxExtentX - 1; x >= MinExtentX; x--)
                 yield return new Point(x, MaxExtentY);
 
             // Skip 1 on both ends, because last loop returned one corner, first loop returned the other
-            for (int y = MaxExtentY - 1; y >= MinExtentY + 1; y--) 
+            for (int y = MaxExtentY - 1; y >= MinExtentY + 1; y--)
                 yield return new Point(MinExtentX, y);
         }
 
@@ -1137,7 +1137,7 @@ namespace SadRogue.Primitives
             Direction.Types.Right => MaxXPositions(),
             Direction.Types.Down => Direction.YIncreasesUpward ? MinYPositions() : MaxYPositions(),
             Direction.Types.Left => MinXPositions(),
-            _ => throw new Exception("Cannot retrieve positions on a non-cardinal side of a rectangle.")
+            _ => throw new ArgumentException("Cannot retrieve positions on a non-cardinal side of a rectangle.", nameof(side))
         };
 
         #region Division & Bisection

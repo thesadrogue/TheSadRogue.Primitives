@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using System;
+using Xunit;
 using XUnit.ValueTuples;
 using System.Linq;
 using System.Collections.Generic;
@@ -252,6 +253,18 @@ namespace SadRogue.Primitives.UnitTests
 
             Assert.Empty(xLocations.Where(location => location < dividend.MinExtentX || location > dividend.MaxExtentX ));
             Assert.Empty(yLocations.Where(location => location < dividend.MinExtentY || location > dividend.MaxExtentY ));
+        }
+
+        [Fact]
+        public void DivisionByZeroDivisorTest()
+        {
+            var rectangle = new Rectangle(1, 2, 50, 60);
+
+            var divisor = new Rectangle(1, 2, 0, 10);
+            Assert.Throws<ArgumentOutOfRangeException>(() => rectangle.Divide(divisor));
+
+            divisor = new Rectangle(1, 2, 10, 0);
+            Assert.Throws<ArgumentOutOfRangeException>(() => rectangle.Divide(divisor));
         }
         #endregion
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using SadRogue.Primitives.GridViews;
+using SadRogue.Primitives.UnitTests.Mocks;
 using Xunit;
 using XUnit.ValueTuples;
 
@@ -586,6 +587,57 @@ namespace SadRogue.Primitives.UnitTests.GridViews
 
             Assert.Throws<ArgumentException>(() => view.SetHistory(history));
             Assert.Throws<ArgumentException>(() => view.SetHistory(history, -1));
+        }
+
+        [Fact]
+        public void SetBaseline()
+        {
+            var rect = MockGridViews.RectangleBooleanGrid(80, 25);
+
+            var diffView = new DiffAwareGridView<bool>(rect.Width, rect.Height);
+            diffView.SetBaseline(rect);
+
+            diffView.FinalizeCurrentDiff();
+
+            foreach (var pos in rect.Positions())
+                Assert.Equal(rect[pos], diffView[pos]);
+
+            Assert.Empty(diffView.Diffs);
+            Assert.Equal(-1, diffView.CurrentDiffIndex);
+        }
+
+        [Fact]
+        public void SetBaselineErrors()
+        {
+            var diffView = new DiffAwareGridView<bool>(80, 25);
+
+            var badSizeRect = MockGridViews.RectangleBooleanGrid(diffView.Width, diffView.Height - 1);
+            Assert.Throws<ArgumentException>(() => diffView.SetBaseline(badSizeRect));
+
+            diffView[1, 2] = true;
+            var rect = MockGridViews.RectangleBooleanGrid(diffView.Width, diffView.Height);
+            Assert.Throws<InvalidOperationException>(() => diffView.SetBaseline(rect));
+
+            diffView.FinalizeCurrentDiff();
+            Assert.Throws<InvalidOperationException>(() => diffView.SetBaseline(rect));
+        }
+
+        [Fact]
+        public void ClearHistory()
+        {
+            var diffView = new DiffAwareGridView<int>(80, 25) { [1, 2] = 10 };
+
+            diffView.FinalizeCurrentDiff();
+            Assert.Single(diffView.Diffs);
+            Assert.Equal(0, diffView.CurrentDiffIndex);
+            var arrayView = new ArrayView<int>(diffView.Width, diffView.Height);
+            arrayView.ApplyOverlay(diffView);
+
+            diffView.ClearHistory();
+            Assert.Empty(diffView.Diffs);
+            Assert.Equal(-1, diffView.CurrentDiffIndex);
+            foreach (var pos in arrayView.Positions())
+                Assert.Equal(arrayView[pos], diffView[pos]);
         }
 
         private static void CheckViewState(IGridView<int> view, Dictionary<Point, int> fullChanges)

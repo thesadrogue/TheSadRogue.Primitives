@@ -1,6 +1,4 @@
-﻿using SadRogue.Primitives;
-using SadRogue.Primitives.GridViews;
-using SadRogue.Primitives.UnitTests.Mocks;
+﻿using SadRogue.Primitives.UnitTests.Mocks;
 using Xunit;
 
 namespace SadRogue.Primitives.UnitTests.GridViews

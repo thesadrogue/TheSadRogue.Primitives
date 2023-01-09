@@ -437,6 +437,7 @@ namespace SadRogue.Primitives.UnitTests.GridViews
         public void EmptyDiffsRemovedOnPrevious()
         {
             // Create a new grid view and record its state
+            // ReSharper disable once RedundantArgumentDefaultValue
             var view = new DiffAwareGridView<int>(80, 25, true) { [1, 0] = 1 };
 
             // Finalize current diff
@@ -496,6 +497,9 @@ namespace SadRogue.Primitives.UnitTests.GridViews
             diffView[9, 8] = 9;
             diffView.FinalizeCurrentDiff();
 
+            diffView[5, 6] = 2;
+            diffView.FinalizeCurrentDiff();
+
             var diffs = diffView.Diffs.ToList();
 
             // Validate that we can wrap the current view in a diff-aware one and set the history to it
@@ -503,8 +507,24 @@ namespace SadRogue.Primitives.UnitTests.GridViews
             Assert.Empty(newView.Diffs);
             newView.SetHistory(diffs);
             Assert.Equal(diffs, newView.Diffs);
+            Assert.Equal(diffs.Count - 1, newView.CurrentDiffIndex);
 
-            // TODO: Create other test cases for the cases where histories are applied at a non-ending index
+            // Validate same thing for each possible index
+            while (diffView.CurrentDiffIndex > -1)
+                diffView.RevertToPreviousDiff();
+
+            for (int i = -1; i < diffs.Count; i++)
+            {
+                Assert.Equal(i, diffView.CurrentDiffIndex);
+
+                newView = new DiffAwareGridView<int>(underlyingView);
+                newView.SetHistory(diffs, i);
+                Assert.Equal(diffs, newView.Diffs);
+                Assert.Equal(i, newView.CurrentDiffIndex);
+
+                if (i + 1 < diffs.Count)
+                    diffView.ApplyNextDiff();
+            }
 
             // Change the diff so it isn't a valid history for the grid view we have
             var newDiff = new Diff<int>();
@@ -516,6 +536,56 @@ namespace SadRogue.Primitives.UnitTests.GridViews
             // Make sure we throw exception when trying to set history
             newView = new DiffAwareGridView<int>(underlyingView);
             Assert.Throws<ArgumentException>(() => newView.SetHistory(diffs));
+
+            // Validate same thing for each possible index
+            // Change the diff so it isn't a valid history for the grid view we have
+            newDiff = new Diff<int>();
+            foreach (var change in diffs[1])
+                newDiff.Add(change.Position == (5, 6) ? new ValueChange<int>(change.Position, 12, 77) : change);
+            diffs[1] = newDiff;
+
+            while (diffView.CurrentDiffIndex > -1)
+                diffView.RevertToPreviousDiff();
+
+            for (int i = -1; i < diffs.Count; i++)
+            {
+                Assert.Equal(i, diffView.CurrentDiffIndex);
+                newView = new DiffAwareGridView<int>(underlyingView);
+                Assert.Throws<ArgumentException>(() => newView.SetHistory(diffs, i));
+                if (i + 1 < diffs.Count)
+                    diffView.ApplyNextDiff();
+            }
+        }
+
+        [Fact]
+        public void SetEmptyHistoryThrowsException()
+        {
+            var view = new DiffAwareGridView<int>(80, 25);
+            Assert.Throws<ArgumentException>(() => view.SetHistory(new List<Diff<int>>()));
+        }
+
+        [Fact]
+        public void SetEmptyHistoryOutOfRangeCurrentIndexThrowsException()
+        {
+            var view = new DiffAwareGridView<int>(80, 25) { [1, 2] = 3 };
+            view.FinalizeCurrentDiff();
+
+            var history = view.Diffs.ToList();
+            Assert.Single(history);
+
+            Assert.Throws<ArgumentException>(() => view.SetHistory(history, history.Count));
+            Assert.Throws<ArgumentException>(() => view.SetHistory(history, -1));
+        }
+
+        [Fact]
+        public void SetHistoryWithBlankDiffThrowsException()
+        {
+            var view = new DiffAwareGridView<int>(80, 25);
+
+            var history = new List<Diff<int>> { new Diff<int>() };
+
+            Assert.Throws<ArgumentException>(() => view.SetHistory(history));
+            Assert.Throws<ArgumentException>(() => view.SetHistory(history, -1));
         }
 
         private static void CheckViewState(IGridView<int> view, Dictionary<Point, int> fullChanges)

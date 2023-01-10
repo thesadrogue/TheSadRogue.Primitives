@@ -63,6 +63,7 @@ namespace SadRogue.Primitives.UnitTests
             Rectangle compareTo = rad;
             Rectangle[] allRects = DifferentRectangles;
             Assert.True(rad == compareTo);
+            Assert.Equal(rad.GetHashCode(), compareTo.GetHashCode());
 
             Assert.Equal(1, allRects.Count(i => i == compareTo));
         }
@@ -73,22 +74,34 @@ namespace SadRogue.Primitives.UnitTests
         public void TestInequality(Rectangle rect)
         {
             Rectangle compareTo = rect;
+            (int, int, int, int) compareT1 = compareTo;
+            (Point, Point) compareT2 = compareTo;
+
             Rectangle[] allRects = DifferentRectangles;
             Assert.False(rect != compareTo);
+            Assert.False(rect != compareT1);
+            Assert.False(compareT1 != rect);
+            Assert.False(rect != compareT2);
+            Assert.False(compareT2 != rect);
 
             Assert.Equal(allRects.Length - 1, allRects.Count(i => i != compareTo));
         }
 
         [Theory]
         [MemberDataEnumerable(nameof(DifferentRectangles))]
-        public void TestEqualityInqeualityOpposite(Rectangle compareRect)
+        public void TestEqualityInequalityOpposite(Rectangle compareRect)
         {
             Rectangle[] rects = DifferentRectangles;
+            (int, int, int, int) compareT1 = compareRect;
+            (Point, Point) compareT2 = compareRect;
 
             foreach (Rectangle rect in rects)
+            {
                 Assert.NotEqual(rect == compareRect, rect != compareRect);
+                Assert.Equal(rect != compareRect, rect != compareT1);
+                Assert.Equal(rect != compareRect, rect != compareT2);
+            }
         }
-
         #endregion
 
         #region Tuple Conversions
@@ -123,8 +136,28 @@ namespace SadRogue.Primitives.UnitTests
             Assert.True(t2 == rect);
             Assert.True(rect.Equals(t1));
             Assert.True(rect.Equals(t2));
+            Assert.True(rect.Matches(t1));
+            Assert.True(rect.Matches(t2));
         }
 
+        #endregion
+
+        #region Deconstruction
+
+        [Theory]
+        [MemberDataEnumerable(nameof(MiscTestRectangles))]
+        public void Deconstruction(Rectangle rect)
+        {
+            var (x, y, width, height) = rect;
+            var (minExtent, maxExtent) = rect;
+
+            Assert.Equal(rect.X, x);
+            Assert.Equal(rect.Y, y);
+            Assert.Equal(rect.Width, width);
+            Assert.Equal(rect.Height, height);
+            Assert.Equal(rect.MinExtent, minExtent);
+            Assert.Equal(rect.MaxExtent, maxExtent);
+        }
         #endregion
 
         #region Bisection

@@ -95,6 +95,7 @@ namespace SadRogue.Primitives.UnitTests
         {
             Assert.Equal(polar, PolarCoordinate.FromCartesian(cartesian));
             Assert.Equal(polar, (PolarCoordinate)cartesian);
+            Assert.Equal(polar, cartesian.ToPolarCoordinate());
             Assert.Equal(polar, PolarCoordinate.FromCartesian(cartesian.X, cartesian.Y));
         }
         #endregion

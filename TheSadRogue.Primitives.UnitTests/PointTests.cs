@@ -43,8 +43,76 @@ namespace SadRogue.Primitives.UnitTests
         // Negative, positive, and 0 for testing math operators.
         public static readonly IEnumerable<double> DoubleTestCases = new[]{ -3.1, 0, 6.7 };
 
+        public static Point[] DifferentPoints =
+        {
+            new Point(1, 2), new Point(3, 4), new Point(-3, -4), new Point(1, 10), new Point(6, 4)
+        };
+
         // Positive and negative values
         private readonly Rectangle _testPositions = new Rectangle((10, 20), 39, 27);
+        #endregion
+
+        #region With Construction
+
+        [Fact]
+        public void WithXTest()
+        {
+            const int x = 42;
+            foreach (var pos in _testPositions.Positions())
+            {
+                var transformed = pos.WithX(x);
+                Assert.Equal(x, transformed.X);
+                Assert.Equal(pos.Y, transformed.Y);
+            }
+        }
+
+        [Fact]
+        public void WithTTest()
+        {
+            const int y = 42;
+            foreach (var pos in _testPositions.Positions())
+            {
+                var transformed = pos.WithY(y);
+                Assert.Equal(pos.X, transformed.X);
+                Assert.Equal(y, transformed.Y);
+            }
+        }
+        #endregion
+
+        #region 1D Index
+
+        [Fact]
+        public void To1DIndex()
+        {
+            var rect = _testPositions.WithPosition((0, 0));
+            foreach (var pos in rect.Positions())
+            {
+                int expected = pos.Y * rect.Width + pos.X;
+                Assert.Equal(expected, pos.ToIndex(rect.Width));
+                Assert.Equal(expected, Point.ToIndex(pos.X, pos.Y, rect.Width));
+            }
+        }
+
+        [Fact]
+        public void From1DIndex()
+        {
+            var rect = _testPositions.WithPosition((0, 0));
+            foreach (var pos in rect.Positions())
+            {
+                int index = pos.Y * rect.Width + pos.X;
+                Assert.Equal(pos, Point.FromIndex(index, rect.Width));
+                Assert.Equal(pos.X, Point.ToXValue(index, rect.Width));
+                Assert.Equal(pos.Y, Point.ToYValue(index, rect.Width));
+            }
+        }
+
+        [Fact]
+        public void IndicesAreUnique()
+        {
+            var rect = _testPositions.WithPosition((0, 0));
+            Assert.Equal(rect.Area, rect.Positions().ToEnumerable().Select(i => i.ToIndex(rect.Width)).ToHashSet().Count);
+        }
+
         #endregion
 
         #region Rotation
@@ -66,37 +134,6 @@ namespace SadRogue.Primitives.UnitTests
             Assert.Equal(expected, answer);
             Assert.Equal(expected, answer2);
             AssertEquidistant(expected, answer, axis);
-        }
-
-        #endregion
-
-        #region BearingOfLine
-
-        [Fact]
-        public void TestBearingOfLine()
-        {
-            // Zero degrees must point up and degrees should increment clockwise
-            Point center = (1, 1);
-            var positions = AdjacencyRule.EightWay.DirectionsOfNeighborsClockwise(Direction.Up).Select(i => center + i).ToArray();
-
-            var bearings = positions.Select(i => Point.BearingOfLine(center, i)).ToArray();
-            var bearings2 = positions.Select(i => Point.BearingOfLine(i - center)).ToArray();
-            var bearings3 = positions.Select(i => Point.BearingOfLine((i - center).X, (i - center).Y)).ToArray();
-            var bearings4 = positions.Select(i => Point.BearingOfLine(center.X, center.Y, i.X, i.Y)).ToArray();
-
-            Assert.Equal(8, bearings.Length);
-
-            Assert.Equal((IEnumerable<double>)bearings, bearings2);
-            Assert.Equal((IEnumerable<double>)bearings, bearings3);
-            Assert.Equal((IEnumerable<double>)bearings, bearings4);
-
-            double expectedBearing = 0;
-            double increment = 45;
-            foreach (double bearing in bearings)
-            {
-                Assert.Equal(expectedBearing, bearing);
-                expectedBearing = (expectedBearing + increment) % 360;
-            }
         }
 
         #endregion
@@ -322,6 +359,130 @@ namespace SadRogue.Primitives.UnitTests
             Assert.True(expectedDistance > distanceUnderTest - 0.001 && expectedDistance < distanceUnderTest + 0.001);
         }
 
+        #endregion
+
+        #region Equality/Inequality
+
+        [Theory]
+        [MemberDataEnumerable(nameof(DifferentPoints))]
+        public void TestEquality(Point point)
+        {
+            Point compareTo = point;
+            Point[] allPoints = DifferentPoints;
+            Assert.True(point == compareTo);
+            Assert.True(point.Matches(compareTo));
+            Assert.True(point.Equals(compareTo));
+
+            Assert.True(compareTo == point);
+            Assert.True(compareTo.Matches(point));
+            Assert.True(compareTo.Equals(point));
+
+            Assert.Equal(point.GetHashCode(), compareTo.GetHashCode());
+
+            Assert.Equal(1, allPoints.Count(i => i == compareTo));
+        }
+
+
+        [Theory]
+        [MemberDataEnumerable(nameof(DifferentPoints))]
+        public void TestInequality(Point point)
+        {
+            Point compareTo = point;
+            (int, int) compareT1 = compareTo;
+
+            Point[] allPoints = DifferentPoints;
+            Assert.False(point != compareTo);
+            Assert.False(point != compareT1);
+            Assert.False(compareT1 != point);
+
+            Assert.Equal(allPoints.Length - 1, allPoints.Count(i => i != compareTo));
+        }
+
+        [Theory]
+        [MemberDataEnumerable(nameof(DifferentPoints))]
+        public void TestEqualityInequalityOpposite(Point comparePoint)
+        {
+            Point[] points = DifferentPoints;
+            (int, int) compareT1 = comparePoint;
+
+            foreach (Point point in points)
+            {
+                Assert.NotEqual(point == comparePoint, point != comparePoint);
+                Assert.Equal(point != comparePoint, point != compareT1);
+            }
+        }
+        #endregion
+
+        #region Tuple Conversions
+
+        [Theory]
+        [MemberDataEnumerable(nameof(DifferentPoints))]
+        public void TestTupleConversions(Point point)
+        {
+            (int x, int y) t1 = point;
+
+            Point point1 = t1;
+            Assert.Equal(point, point1);
+        }
+
+        #endregion
+
+        #region Tuple Equality
+        [Theory]
+        [MemberDataEnumerable(nameof(DifferentPoints))]
+        public void TestTupleEquality(Point point)
+        {
+            (int x, int y) t1 = point;
+
+            Assert.True(point == t1);
+            Assert.True(t1 == point);
+            Assert.True(point.Equals(t1));
+            Assert.True(point.Matches(t1));
+        }
+        #endregion
+
+        #region Deconstruction
+
+        [Theory]
+        [MemberDataEnumerable(nameof(DifferentPoints))]
+        public void Deconstruction(Point point)
+        {
+            (int x, int y) = point;
+
+            Assert.Equal(point.X, x);
+            Assert.Equal(point.Y, y);
+        }
+        #endregion
+
+        #region Midpoint
+
+        [Fact]
+        public void MidpointExact()
+        {
+            Point p1 = (-1, -2);
+
+            Point p2 = p1 + (4, 8);
+
+            var expected = p1 + (2, 4);
+            Assert.Equal(expected, Point.Midpoint(p1, p2));
+            Assert.Equal(expected, Point.Midpoint(p2, p1));
+            Assert.Equal(expected, Point.Midpoint(p1.X, p1.Y, p2.X, p2.Y));
+            Assert.Equal(expected, Point.Midpoint(p2.X, p2.Y, p1.X, p1.Y));
+        }
+
+        [Fact]
+        public void MidpointRound()
+        {
+            Point p1 = (-1, -2);
+
+            Point p2 = p1 + (5, 7);
+
+            var expected = p1 + (3, 4);
+            Assert.Equal(expected, Point.Midpoint(p1, p2));
+            Assert.Equal(expected, Point.Midpoint(p2, p1));
+            Assert.Equal(expected, Point.Midpoint(p1.X, p1.Y, p2.X, p2.Y));
+            Assert.Equal(expected, Point.Midpoint(p2.X, p2.Y, p1.X, p1.Y));
+        }
         #endregion
     }
 }

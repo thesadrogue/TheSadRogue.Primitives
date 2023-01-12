@@ -209,44 +209,79 @@ namespace SadRogue.Primitives.UnitTests
 
         [Theory]
         [MemberDataEnumerable(nameof(Radiuses))]
-        public void TestRadiusWithContextBounded(Radius shape)
+        public void TestRadiusWithContextUnbounded(Radius shape)
         {
             Point center = (25, 20);
             int radius = 10;
 
-            var context = new RadiusLocationContext(center, radius);
+            var context1 = new RadiusLocationContext(center, radius);
+            var context2 = new RadiusLocationContext(center.X, center.Y, radius);
 
             // Return values should not change with context
             var expected = shape.PositionsInRadius(center, radius).ToArray();
-            var actual = shape.PositionsInRadius(context).ToArray();
+            var actual1 = shape.PositionsInRadius(context1).ToArray();
+            var actual2 = shape.PositionsInRadius(context2).ToArray();
 
-            TestUtils.AssertElementEquals(expected, actual);
+            TestUtils.AssertElementEquals(expected, actual1);
+            TestUtils.AssertElementEquals(expected, actual2);
 
             // Re-use the context to ensure re-initialization happens properly
-            actual = shape.PositionsInRadius(context).ToArray();
-            TestUtils.AssertElementEquals(expected, actual);
+            actual1 = shape.PositionsInRadius(context1).ToArray();
+            actual2 = shape.PositionsInRadius(context2).ToArray();
+            TestUtils.AssertElementEquals(expected, actual1);
+            TestUtils.AssertElementEquals(expected, actual2);
+
+            // Change radius and validate re-initialization still happens
+            radius = 15;
+
+            context1.Radius = radius;
+            context2.Radius = radius;
+            expected = shape.PositionsInRadius(center, radius).ToArray();
+
+            actual1 = shape.PositionsInRadius(context1).ToArray();
+            actual2 = shape.PositionsInRadius(context2).ToArray();
+
+            TestUtils.AssertElementEquals(expected, actual1);
+            TestUtils.AssertElementEquals(expected, actual2);
         }
 
         [Theory]
         [MemberDataEnumerable(nameof(Radiuses))]
-        public void TestRadiusWithContextUnbounded(Radius shape)
+        public void TestRadiusWithContextBounded(Radius shape)
         {
             Rectangle bounds = (1, 2, 55, 43);
             // From here to bounds is < radius in terms of distance
             Point center = (5, 7);
             int radius = 10;
 
-            var context = new RadiusLocationContext(center, radius, bounds);
+            var context1 = new RadiusLocationContext(center, radius, bounds);
+            var context2 = new RadiusLocationContext(center.X, center.Y, radius, bounds);
 
             // Return values should not change with context
             var expected = shape.PositionsInRadius(center, radius, bounds).ToArray();
-            var actual = shape.PositionsInRadius(context).ToArray();
+            var actual1 = shape.PositionsInRadius(context1).ToArray();
+            var actual2 = shape.PositionsInRadius(context2).ToArray();
 
-            TestUtils.AssertElementEquals(expected, actual);
+            TestUtils.AssertElementEquals(expected, actual1);
+            TestUtils.AssertElementEquals(expected, actual2);
 
             // Re-use the context to ensure re-initialization happens properly
-            actual = shape.PositionsInRadius(context).ToArray();
-            TestUtils.AssertElementEquals(expected, actual);
+            actual1 = shape.PositionsInRadius(context1).ToArray();
+            actual2 = shape.PositionsInRadius(context2).ToArray();
+            TestUtils.AssertElementEquals(expected, actual1);
+            TestUtils.AssertElementEquals(expected, actual2);
+
+            // Change radius and validate re-initialization still happens
+            radius = 15;
+            context1.Radius = radius;
+            context2.Radius = radius;
+
+            expected = shape.PositionsInRadius(center, radius, bounds).ToArray();
+            actual1 = shape.PositionsInRadius(context1).ToArray();
+            actual2 = shape.PositionsInRadius(context2).ToArray();
+
+            TestUtils.AssertElementEquals(expected, actual1);
+            TestUtils.AssertElementEquals(expected, actual2);
         }
 
         #endregion

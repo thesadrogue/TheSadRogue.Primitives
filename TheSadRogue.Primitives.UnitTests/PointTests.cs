@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 using XUnit.ValueTuples;
 
@@ -21,7 +22,7 @@ namespace SadRogue.Primitives.UnitTests
             (new Point(13,71), 0, new Point(13,71)),
         };
 
-        // ( Point to Rotate, Point around which to rotate, degree of rotation, expected result )
+        // (Point to Rotate, Point around which to rotate, degree of rotation, expected result)
         public static readonly IEnumerable<(Point original, Point axis, double degrees, Point expected)> AroundOtherData = new[]
         {
             (new Point(5,0), new Point(0,5), 22.5, new Point(7,2)),
@@ -34,6 +35,7 @@ namespace SadRogue.Primitives.UnitTests
             (new Point(13,71), new Point(13,71), 222, new Point(13,71)),
         };
 
+        #region Rotation
         [Theory]
         [MemberDataTuple(nameof(AroundZeroZeroData))]
         public void RotateAroundZeroZeroTest(Point original, double degrees, Point expected)
@@ -52,6 +54,42 @@ namespace SadRogue.Primitives.UnitTests
             AssertEquidistant(expected, answer, axis);
         }
 
+        #endregion
+
+        #region BearingOfLine
+
+        [Fact]
+        public void TestBearingOfLine()
+        {
+            Point center = (1, 1);
+            var dirs = AdjacencyRule.EightWay.DirectionsOfNeighborsClockwise(Direction.Up).ToArray();
+            var positions = dirs.Select(i => center + i).ToArray();
+
+            var bearings = positions.Select(i => Point.BearingOfLine(center, i)).ToArray();
+            var bearings2 = positions.Select(i => Point.BearingOfLine(i - center)).ToArray();
+            var bearings3 = positions.Select(i => Point.BearingOfLine((i - center).X, (i - center).Y)).ToArray();
+            var bearings4 = positions.Select(i => Point.BearingOfLine(center.X, center.Y, i.X, i.Y)).ToArray();
+
+            Assert.Equal(8, bearings.Length);
+
+            Assert.Equal((IEnumerable<double>)bearings, bearings2);
+            Assert.Equal((IEnumerable<double>)bearings, bearings3);
+            Assert.Equal((IEnumerable<double>)bearings, bearings4);
+
+            double expectedBearing = 0;
+            double increment = 45;
+            foreach (double bearing in bearings)
+            {
+                Assert.Equal(expectedBearing, bearing);
+                expectedBearing = (expectedBearing + increment) % 360;
+            }
+        }
+
+        #endregion
+
+
+        #region Test Helpers
+
         private void AssertEquidistant(Point expected, Point pointUnderTest, Point center)
         {
             expected -= center;
@@ -60,5 +98,7 @@ namespace SadRogue.Primitives.UnitTests
             double distanceUnderTest = Math.Sqrt(pointUnderTest.X * pointUnderTest.X + pointUnderTest.Y * pointUnderTest.Y);
             Assert.True(expectedDistance > distanceUnderTest - 0.001 && expectedDistance < distanceUnderTest + 0.001);
         }
+
+        #endregion
     }
 }

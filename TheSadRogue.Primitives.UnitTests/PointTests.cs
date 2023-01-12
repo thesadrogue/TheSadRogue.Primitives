@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using Xunit;
 using XUnit.ValueTuples;
 
@@ -8,6 +9,7 @@ namespace SadRogue.Primitives.UnitTests
 {
     public class PointTests
     {
+        #region Test Data
         // (Point to rotate, degrees of rotation, expected result)
         public static readonly IEnumerable<(Point original, double degrees, Point expected)> AroundZeroZeroData = new[]
         {
@@ -35,6 +37,16 @@ namespace SadRogue.Primitives.UnitTests
             (new Point(13,71), new Point(13,71), 222, new Point(13,71)),
         };
 
+        // Negative, positive, and 0 for testing math operators.
+        public static readonly IEnumerable<int> IntTestCases = new[]{ -3, 0, 6 };
+
+        // Negative, positive, and 0 for testing math operators.
+        public static readonly IEnumerable<double> DoubleTestCases = new[]{ -3.1, 0, 6.7 };
+
+        // Positive and negative values
+        private readonly Rectangle _testPositions = new Rectangle((10, 20), 39, 27);
+        #endregion
+
         #region Rotation
         [Theory]
         [MemberDataTuple(nameof(AroundZeroZeroData))]
@@ -50,7 +62,9 @@ namespace SadRogue.Primitives.UnitTests
         public void RotateAroundOtherPointTest(Point original, Point axis, double degrees, Point expected)
         {
             Point answer = original.Rotate(degrees, axis);
+            Point answer2 = original.Rotate(degrees, axis.X, axis.Y);
             Assert.Equal(expected, answer);
+            Assert.Equal(expected, answer2);
             AssertEquidistant(expected, answer, axis);
         }
 
@@ -61,9 +75,9 @@ namespace SadRogue.Primitives.UnitTests
         [Fact]
         public void TestBearingOfLine()
         {
+            // Zero degrees must point up and degrees should increment clockwise
             Point center = (1, 1);
-            var dirs = AdjacencyRule.EightWay.DirectionsOfNeighborsClockwise(Direction.Up).ToArray();
-            var positions = dirs.Select(i => center + i).ToArray();
+            var positions = AdjacencyRule.EightWay.DirectionsOfNeighborsClockwise(Direction.Up).Select(i => center + i).ToArray();
 
             var bearings = positions.Select(i => Point.BearingOfLine(center, i)).ToArray();
             var bearings2 = positions.Select(i => Point.BearingOfLine(i - center)).ToArray();
@@ -87,6 +101,215 @@ namespace SadRogue.Primitives.UnitTests
 
         #endregion
 
+        #region Euclidean Distance Magnitude
+
+        [Fact]
+        public void EuclideanDistanceMagnitudeSameAsEuclideanMagnitude()
+        {
+            var positionsByDistance = _testPositions.Positions().ToEnumerable()
+                .OrderBy(i => Distance.Euclidean.Calculate(_testPositions.Center, i)).ToArray();
+            var positionsByMagnitude = _testPositions.Positions().ToEnumerable()
+                .OrderBy(i => Point.EuclideanDistanceMagnitude(_testPositions.Center, i)).ToArray();
+
+            Assert.Equal((IEnumerable<Point>)positionsByDistance, positionsByMagnitude);
+        }
+
+        [Fact]
+        public void EuclideanMagnitudeCommutative()
+        {
+            foreach (var pos in _testPositions.Positions())
+                Assert.Equal(Point.EuclideanDistanceMagnitude(_testPositions.Center, pos), Point.EuclideanDistanceMagnitude(pos, _testPositions.Center));
+        }
+
+        [Fact]
+        public void EuclideanMagnitudeOverloadsEquivalent()
+        {
+            foreach (var pos in _testPositions.Positions())
+            {
+                // Checked to be correct by other test cases
+                double expected = Point.EuclideanDistanceMagnitude(_testPositions.Center, pos);
+
+                // Other overloads should produce equivalent results
+                Assert.Equal(expected, Point.EuclideanDistanceMagnitude(_testPositions.Center - pos));
+                Assert.Equal(expected, Point.EuclideanDistanceMagnitude(pos - _testPositions.Center));
+
+                var delta = pos - _testPositions.Center;
+                Assert.Equal(expected, Point.EuclideanDistanceMagnitude(delta.X, delta.Y));
+                delta = _testPositions.Center - pos;
+                Assert.Equal(expected, Point.EuclideanDistanceMagnitude(delta.X, delta.Y));
+
+                Assert.Equal(expected, Point.EuclideanDistanceMagnitude(_testPositions.Center.X, _testPositions.Center.Y, pos.X, pos.Y));
+                Assert.Equal(expected, Point.EuclideanDistanceMagnitude(pos.X, pos.Y, _testPositions.Center.X, _testPositions.Center.Y));
+            }
+        }
+        #endregion
+
+        #region TranslationAndMathOps
+
+        [Fact]
+        public void TestTranslate()
+        {
+            foreach (var pos in _testPositions.Positions())
+            {
+                var expected = new Point(_testPositions.Center.X + pos.X, _testPositions.Center.Y + pos.Y);
+                Assert.Equal(expected, _testPositions.Center.Translate(pos));
+                Assert.Equal(expected, _testPositions.Center.Translate(pos.X, pos.Y));
+            }
+        }
+
+        [Fact]
+        public void TestAddPoint()
+        {
+            foreach (var pos in _testPositions.Positions())
+            {
+                var expected = new Point(_testPositions.Center.X + pos.X, _testPositions.Center.Y + pos.Y);
+                Assert.Equal(expected, _testPositions.Center + pos);
+            }
+        }
+
+        [Fact]
+        public void TestAddValueTuple()
+        {
+            foreach (var pos in _testPositions.Positions())
+            {
+                (int x, int y) tuple = (pos.X, pos.Y);
+                var expected = new Point(_testPositions.Center.X + pos.X, _testPositions.Center.Y + pos.Y);
+                (int x, int y) expected2 = expected;
+                Assert.Equal(expected, _testPositions.Center + tuple);
+                Assert.Equal(expected2, tuple + _testPositions.Center);
+            }
+        }
+
+        [Theory]
+        [MemberDataEnumerable(nameof(IntTestCases))]
+        public void TestAddInt(int i)
+        {
+            foreach (var pos in _testPositions.Positions())
+            {
+                var expected = new Point(_testPositions.Center.X + i, _testPositions.Center.Y + i);
+                Assert.Equal(expected, _testPositions.Center + i);
+            }
+        }
+
+        [Fact]
+        public void TestSubPoint()
+        {
+            foreach (var pos in _testPositions.Positions())
+            {
+                var expected = new Point(_testPositions.Center.X - pos.X, _testPositions.Center.Y - pos.Y);
+                Assert.Equal(expected, _testPositions.Center - pos);
+            }
+        }
+
+        [Fact]
+        public void TestSubValueTuple()
+        {
+            foreach (var pos in _testPositions.Positions())
+            {
+                (int x, int y) tuple = (pos.X, pos.Y);
+                var expected = new Point(_testPositions.Center.X - pos.X, _testPositions.Center.Y - pos.Y);
+                (int x, int y) expected2 = (tuple.x - _testPositions.Center.X, tuple.y - _testPositions.Center.Y);
+                Assert.Equal(expected, _testPositions.Center - tuple);
+
+                Assert.Equal(expected2, tuple - _testPositions.Center);
+            }
+        }
+
+        [Theory]
+        [MemberDataEnumerable(nameof(IntTestCases))]
+        public void TestSubInt(int i)
+        {
+            foreach (var pos in _testPositions.Positions())
+            {
+                var expected = new Point(_testPositions.Center.X - i, _testPositions.Center.Y - i);
+                Assert.Equal(expected, _testPositions.Center - i);
+            }
+        }
+
+        [Fact]
+        public void TestMultPoint()
+        {
+            foreach (var pos in _testPositions.Positions())
+            {
+                var expected = new Point(_testPositions.Center.X * pos.X, _testPositions.Center.Y * pos.Y);
+                Assert.Equal(expected, _testPositions.Center * pos);
+            }
+        }
+
+        [Fact]
+        public void TestMultValueTuple()
+        {
+            foreach (var pos in _testPositions.Positions())
+            {
+                (int x, int y) tuple = (pos.X, pos.Y);
+                var expected = new Point(_testPositions.Center.X * pos.X, _testPositions.Center.Y * pos.Y);
+                (int x, int y) expected2 = expected;
+                Assert.Equal(expected, _testPositions.Center * tuple);
+                Assert.Equal(expected2, tuple * _testPositions.Center);
+            }
+        }
+
+        [Theory]
+        [MemberDataEnumerable(nameof(IntTestCases))]
+        public void TestMultInt(int i)
+        {
+            foreach (var pos in _testPositions.Positions())
+            {
+                var expected = new Point(_testPositions.Center.X * i, _testPositions.Center.Y * i);
+                Assert.Equal(expected, _testPositions.Center * i);
+            }
+        }
+
+
+        [Theory]
+        [MemberDataEnumerable(nameof(DoubleTestCases))]
+        public void TestMultDouble(double d)
+        {
+            foreach (var pos in _testPositions.Positions())
+            {
+                var expected = new Point((int)Math.Round(_testPositions.Center.X * d, MidpointRounding.AwayFromZero), (int)Math.Round(_testPositions.Center.Y * d, MidpointRounding.AwayFromZero));
+                Assert.Equal(expected, _testPositions.Center * d);
+            }
+        }
+
+        [Fact]
+        public void TestDivPoint()
+        {
+            foreach (var pos in _testPositions.Positions())
+            {
+                // Integer rounding
+                var expected = new Point((int)Math.Round((double)_testPositions.Center.X / pos.X, MidpointRounding.AwayFromZero), (int)Math.Round((double)_testPositions.Center.Y / pos.Y, MidpointRounding.AwayFromZero));
+                Assert.Equal(expected, _testPositions.Center / pos);
+            }
+        }
+
+        [Fact]
+        public void TestDivValueTuple()
+        {
+            foreach (var pos in _testPositions.Positions())
+            {
+                // Integer rounding
+                (int x, int y) tuple = (pos.X, pos.Y);
+                var expected = new Point((int)Math.Round((double)_testPositions.Center.X / pos.X, MidpointRounding.AwayFromZero), (int)Math.Round((double)_testPositions.Center.Y / pos.Y, MidpointRounding.AwayFromZero));
+                (int x, int y) expected2 = ((int)Math.Round((double)tuple.x / _testPositions.Center.X, MidpointRounding.AwayFromZero), (int)Math.Round((double)tuple.y / _testPositions.Center.Y, MidpointRounding.AwayFromZero));
+                Assert.Equal(expected, _testPositions.Center / tuple);
+                Assert.Equal(expected2, tuple / _testPositions.Center);
+            }
+        }
+
+        [Theory]
+        [MemberDataEnumerable(nameof(DoubleTestCases))]
+        public void TestDivDouble(double d)
+        {
+            foreach (var pos in _testPositions.Positions())
+            {
+                // Integer rounding
+                var expected = new Point((int)Math.Round(_testPositions.Center.X / d, MidpointRounding.AwayFromZero), (int)Math.Round(_testPositions.Center.Y / d, MidpointRounding.AwayFromZero));
+                Assert.Equal(expected, _testPositions.Center / d);
+            }
+        }
+
+        #endregion
 
         #region Test Helpers
 

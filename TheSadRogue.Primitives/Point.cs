@@ -594,7 +594,7 @@ namespace SadRogue.Primitives
         /// <param name="c"/>
         /// <returns>Position (c.X / tuple.x, c.Y / tuple.y), with each value rounded to the nearest integer.</returns>
         [Pure]
-        public static (int x, int y) operator /(Point c, (int x, int y) tuple)
+        public static Point operator /(Point c, (int x, int y) tuple)
             => new Point((int)Math.Round(c.X / (double)tuple.x, MidpointRounding.AwayFromZero),
                 (int)Math.Round(c.Y / (double)tuple.y, MidpointRounding.AwayFromZero));
 

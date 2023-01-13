@@ -7,7 +7,7 @@
     public static class ColorExtensions
     {
         /// <summary>
-        /// Compares a two colors for equality.
+        /// Compares two colors for equality.
         /// </summary>
         /// <param name="self"/>
         /// <param name="other"/>

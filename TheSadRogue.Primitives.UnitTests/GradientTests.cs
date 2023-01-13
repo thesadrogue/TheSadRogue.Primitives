@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Xunit;
 using XUnit.ValueTuples;
@@ -69,7 +70,7 @@ namespace SadRogue.Primitives.UnitTests
 
     public class GradientTests
     {
-        #region Constructors
+        #region Constructors and Implicit Conversions
 
         [Fact]
         public void TwoColorConstructor()
@@ -152,14 +153,18 @@ namespace SadRogue.Primitives.UnitTests
         public void EvenlySpaceColorsSingleColor()
         {
             var gradient = new Gradient(Color.Green);
+            Gradient gradient2 = Color.Green;
 
             Assert.Equal(2, gradient.Stops.Length);
+            Assert.Equal(2, gradient2.Stops.Length);
 
             Assert.Equal(Color.Green, gradient.Stops[0].Color);
             Assert.Equal(0f, gradient.Stops[0].Stop);
 
             Assert.Equal(Color.Green, gradient.Stops[1].Color);
             Assert.Equal(1f, gradient.Stops[1].Stop);
+
+            Assert.Equal((IEnumerable<GradientStop>)gradient.Stops, gradient2.Stops);
         }
 
         [Fact]
@@ -185,6 +190,17 @@ namespace SadRogue.Primitives.UnitTests
 
             // ReSharper disable once RedundantCast
             Assert.Equal(stops, (IEnumerable<GradientStop>)gradient);
+
+            var objectEnumerableStops = new List<GradientStop>();
+            IEnumerator e = gradient.GetEnumerator();
+            while (e.MoveNext())
+            {
+                var stopObj = e.Current;
+                Assert.NotNull(stopObj);
+                var stop = (GradientStop)stopObj;
+                objectEnumerableStops.Add(stop);
+            }
+            Assert.Equal(stops, objectEnumerableStops);
         }
 
         #endregion
@@ -322,6 +338,79 @@ namespace SadRogue.Primitives.UnitTests
         {
             var gradient = new Gradient(new Color[] {}, new float[]{});
             Assert.Throws<IndexOutOfRangeException>(() => gradient.Lerp(.5f));
+        }
+        #endregion
+
+        #region Matches
+
+        [Fact]
+        public void Matches()
+        {
+            var stops = new[]
+            {
+                new GradientStop(Color.Aqua, 0f),
+                new GradientStop(Color.Orange, .4f),
+                new GradientStop(Color.White, 1f)
+            };
+            var stops2 = new[]
+            {
+                new GradientStop(Color.Aqua, 0f),
+                new GradientStop(Color.Orange, .4f),
+                new GradientStop(Color.White, 1f)
+            };
+
+            var gradient = new Gradient(stops);
+            var gradient2 = new Gradient(stops2);
+
+            Assert.True(gradient.Matches(gradient));
+            Assert.True(gradient2.Matches(gradient2));
+
+            Assert.True(gradient.Matches(gradient2));
+            Assert.True(gradient2.Matches(gradient));
+
+            stops2[1] = new GradientStop(Color.Orange, .6f);
+            gradient2 = new Gradient(stops2);
+
+            Assert.False(gradient.Matches(gradient2));
+            Assert.False(gradient2.Matches(gradient));
+
+        }
+
+        [Fact]
+        public void MatchesDifferentLengths()
+        {
+            var stops = new[]
+            {
+                new GradientStop(Color.Aqua, 0f),
+                new GradientStop(Color.Orange, .4f),
+                new GradientStop(Color.White, 1f)
+            };
+            var stops2 = new[]
+            {
+                new GradientStop(Color.Aqua, 0f),
+                new GradientStop(Color.Orange, .4f),
+                new GradientStop(Color.Blue, .5f),
+                new GradientStop(Color.White, 1f)
+            };
+
+            var gradient = new Gradient(stops);
+            var gradient2 = new Gradient(stops2);
+
+            Assert.False(gradient.Matches(gradient2));
+        }
+
+        [Fact]
+        public void MatchesNull()
+        {
+            var stops = new[]
+            {
+                new GradientStop(Color.Aqua, 0f),
+                new GradientStop(Color.Orange, .4f),
+                new GradientStop(Color.White, 1f)
+            };
+
+            var gradient = new Gradient(stops);
+            Assert.False(gradient.Matches(null));
         }
         #endregion
     }

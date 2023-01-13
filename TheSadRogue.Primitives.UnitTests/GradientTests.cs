@@ -189,7 +189,7 @@ namespace SadRogue.Primitives.UnitTests
 
         #endregion
 
-        #region Color Array From Gradient
+        #region Lerping
 
         [Fact]
         public void ToColorArrayBasic()
@@ -234,6 +234,52 @@ namespace SadRogue.Primitives.UnitTests
                 Assert.InRange(expected.G - actual.G, -5, 5);
                 Assert.InRange(expected.B - actual.B, -5, 5);
                 Assert.InRange(expected.A - actual.A, -5, 5);
+            }
+        }
+
+        [Fact]
+        public void LerpBasic()
+        {
+            // Define a gradient with uniform stops (every 0.25 units)
+            var gradientStops = new[]
+            {
+                new GradientStop(new Color(0, 0, 0), 0f),
+                new GradientStop(new Color(64, 32, 16), .25f),
+                new GradientStop(new Color(128, 64, 32), .5f),
+                new GradientStop(new Color(200, 30, 54), .75f),
+                new GradientStop(new Color(150, 234, 148), 1f)
+            };
+
+            // Manually specify what a sample size of 9 would look like for this gradient
+
+            var samplesExpected = new[]
+            {
+                new Color(0, 0, 0),
+                new Color(32, 16, 8), // Implicit based on defined gradient
+                new Color(64, 32, 16),
+                new Color(96, 48, 20), // Implicit based on defined gradient
+                new Color(128, 64, 32),
+                new Color(164, 47, 43), // Implicit based on defined gradient
+                new Color(200, 30, 54),
+                new Color(175, 137, 101), // Implicit based on defined gradient
+                new Color(150, 234, 148)
+            };
+
+            // Create the gradient
+            var gradient = new Gradient(gradientStops);
+
+            float lerpVal = 0f;
+            float increment = 1f / (samplesExpected.Length - 1);
+            for (int i = 0; i < samplesExpected.Length; i++)
+            {
+                var expected = samplesExpected[i];
+                var actual = gradient.Lerp(lerpVal);
+                Assert.InRange(expected.R - actual.R, -5, 5);
+                Assert.InRange(expected.G - actual.G, -5, 5);
+                Assert.InRange(expected.B - actual.B, -5, 5);
+                Assert.InRange(expected.A - actual.A, -5, 5);
+
+                lerpVal += increment;
             }
         }
         #endregion

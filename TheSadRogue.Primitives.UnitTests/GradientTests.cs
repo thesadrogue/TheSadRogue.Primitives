@@ -235,6 +235,28 @@ namespace SadRogue.Primitives.UnitTests
                 Assert.InRange(expected.B - actual.B, -5, 5);
                 Assert.InRange(expected.A - actual.A, -5, 5);
             }
+
+            // Required by SadConsole
+            Assert.Equal(gradient.Stops[0].Color, samples[0]);
+            Assert.Equal(gradient.Stops[^1].Color, samples[^1]);
+        }
+
+        [Fact]
+        public void ToColorArraySingleStopGradient()
+        {
+            var gradient = new Gradient(new[]{Color.Aqua}, new[] {0f});
+
+            var samples = gradient.ToColorArray(10);
+            Assert.Equal(10, samples.Length);
+            for (int i = 0; i < samples.Length; i+= 1)
+                Assert.Equal(Color.Aqua, samples[i]);
+        }
+
+        [Fact]
+        public void ToColorArrayNoStops()
+        {
+            var gradient = new Gradient(new Color[] {}, new float[]{});
+            Assert.Throws<IndexOutOfRangeException>(() => gradient.ToColorArray(10));
         }
 
         [Fact]
@@ -281,6 +303,25 @@ namespace SadRogue.Primitives.UnitTests
 
                 lerpVal += increment;
             }
+        }
+
+        [Fact]
+        public void LerpSingleStopGradient()
+        {
+            var gradient = new Gradient(new[]{Color.Aqua}, new[] {0f});
+
+            for (float lerp = 0f; lerp <= 1.0f; lerp += 0.1f)
+            {
+                var actual = gradient.Lerp(lerp);
+                Assert.Equal(Color.Aqua, actual);
+            }
+        }
+
+        [Fact]
+        public void LerpNoStops()
+        {
+            var gradient = new Gradient(new Color[] {}, new float[]{});
+            Assert.Throws<IndexOutOfRangeException>(() => gradient.Lerp(.5f));
         }
         #endregion
     }

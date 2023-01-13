@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using Xunit;
 using XUnit.ValueTuples;
 using System.Linq;
-using System.Runtime.Loader;
 
 namespace SadRogue.Primitives.UnitTests
 {

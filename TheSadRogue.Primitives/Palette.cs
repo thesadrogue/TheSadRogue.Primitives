@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 
@@ -10,7 +11,7 @@ namespace SadRogue.Primitives
     /// A palette of colors.
     /// </summary>
     [DataContract]
-    public class Palette : IEnumerable<Color>, IMatchable<Palette>
+    public class Palette : IReadOnlyList<Color>, IMatchable<Palette>
     {
         [DataMember] private readonly Color[] _colors;
 
@@ -18,6 +19,11 @@ namespace SadRogue.Primitives
         /// How many colors the palette has.
         /// </summary>
         public int Length => _colors.Length;
+
+        /// <summary>
+        /// How many colors the palette has.
+        /// </summary>
+        public int Count => _colors.Length;
 
         /// <summary>
         /// Gets or sets a color in the palette by index.
@@ -37,16 +43,13 @@ namespace SadRogue.Primitives
         public Palette(int colors)
         {
             _colors = new Color[colors];
-
-            for (int i = 0; i < colors; i++)
-                _colors[i] = new Color();
         }
 
         /// <summary>
         /// Creates a new palette of colors from a list of existing colors.
         /// </summary>
         /// <param name="colors">The list of colors this palette is made from.</param>
-        public Palette(IEnumerable<Color> colors) => _colors = new List<Color>(colors).ToArray();
+        public Palette(IEnumerable<Color> colors) => _colors = colors.ToArray();
 
         /// <summary>
         /// Shifts the entire palette once to the left.
@@ -109,11 +112,10 @@ namespace SadRogue.Primitives
         {
             int lowestDistanceIndex = -1;
             int lowestDistance = int.MaxValue;
-            int currentDistance;
             for (int i = 0; i < _colors.Length; i++)
             {
-                currentDistance = Math.Abs(_colors[i].R - color.R) + Math.Abs(_colors[i].G - color.G) +
-                                  Math.Abs(_colors[i].B - color.B);
+                int currentDistance = Math.Abs(_colors[i].R - color.R) + Math.Abs(_colors[i].G - color.G) +
+                                      Math.Abs(_colors[i].B - color.B);
 
                 if (currentDistance < lowestDistance)
                 {

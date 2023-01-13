@@ -89,7 +89,8 @@ namespace SadRogue.Primitives.UnitTests
         {
             var stops = new[]
             {
-                new GradientStop(Color.Aqua, 0f), new GradientStop(Color.Orange, .4f),
+                new GradientStop(Color.Aqua, 0f),
+                new GradientStop(Color.Orange, .4f),
                 new GradientStop(Color.White, 1f)
             };
 
@@ -166,6 +167,74 @@ namespace SadRogue.Primitives.UnitTests
         {
             var colors = Array.Empty<Color>();
             Assert.Throws<ArgumentException>(() => new Gradient(colors));
+        }
+        #endregion
+
+        #region Enumerable
+        [Fact]
+        public void EnumerationOfGradientStops()
+        {
+            var stops = new[]
+            {
+                new GradientStop(Color.Aqua, 0f),
+                new GradientStop(Color.Orange, .4f),
+                new GradientStop(Color.White, 1f)
+            };
+
+            var gradient = new Gradient(stops);
+
+            // ReSharper disable once RedundantCast
+            Assert.Equal(stops, (IEnumerable<GradientStop>)gradient);
+        }
+
+        #endregion
+
+        #region Color Array From Gradient
+
+        [Fact]
+        public void ToColorArrayBasic()
+        {
+            // Define a gradient with uniform stops (every 0.25 units)
+            var gradientStops = new[]
+            {
+                new GradientStop(new Color(0, 0, 0), 0f),
+                new GradientStop(new Color(64, 32, 16), .25f),
+                new GradientStop(new Color(128, 64, 32), .5f),
+                new GradientStop(new Color(200, 30, 54), .75f),
+                new GradientStop(new Color(150, 234, 148), 1f)
+            };
+
+            // Manually specify what a sample size of 9 would look like for this gradient
+
+            var samplesExpected = new[]
+            {
+                new Color(0, 0, 0),
+                new Color(32, 16, 8), // Implicit based on defined gradient
+                new Color(64, 32, 16),
+                new Color(96, 48, 20), // Implicit based on defined gradient
+                new Color(128, 64, 32),
+                new Color(164, 47, 43), // Implicit based on defined gradient
+                new Color(200, 30, 54),
+                new Color(175, 137, 101), // Implicit based on defined gradient
+                new Color(150, 234, 148)
+            };
+
+            // Create the gradient
+            var gradient = new Gradient(gradientStops);
+
+            var samples = gradient.ToColorArray(samplesExpected.Length);
+
+            Assert.Equal(samplesExpected.Length, samples.Length);
+
+            for (int i = 0; i < samplesExpected.Length; i++)
+            {
+                var expected = samplesExpected[i];
+                var actual = samples[i];
+                Assert.InRange(expected.R - actual.R, -5, 5);
+                Assert.InRange(expected.G - actual.G, -5, 5);
+                Assert.InRange(expected.B - actual.B, -5, 5);
+                Assert.InRange(expected.A - actual.A, -5, 5);
+            }
         }
         #endregion
     }

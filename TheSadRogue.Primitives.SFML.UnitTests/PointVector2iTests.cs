@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.Xna.Framework;
+using SFML.System;
 using Xunit;
 using XUnit.ValueTuples;
 
-namespace SadRogue.Primitives.MonoGame.UnitTests
+namespace SadRogue.Primitives.SFML.UnitTests
 {
-    public class PointTests
+    public class PointVector2iTests
     {
         #region Test Data
 
@@ -29,23 +29,23 @@ namespace SadRogue.Primitives.MonoGame.UnitTests
 
         #region Conversion
         [Fact]
-        public void ToMonoGamePoint()
+        public void ToVector2i()
         {
             var point = new Point(1, 3);
-            Microsoft.Xna.Framework.Point monoPoint = point.ToMonoPoint();
+            Vector2i vector2i = point.ToVector2i();
 
-            Assert.Equal(point.X, monoPoint.X);
-            Assert.Equal(point.Y, monoPoint.Y);
+            Assert.Equal(point.X, vector2i.X);
+            Assert.Equal(point.Y, vector2i.Y);
         }
 
         [Fact]
         public void ToSadRoguePoint()
         {
-            var point = new Microsoft.Xna.Framework.Point(1, 3);
-            Point sadRoguePoint = point.ToPoint();
+            var vec2i = new Vector2i(1, 3);
+            Point sadRoguePoint = vec2i.ToPoint();
 
-            Assert.Equal(point.X, sadRoguePoint.X);
-            Assert.Equal(point.Y, sadRoguePoint.Y);
+            Assert.Equal(vec2i.X, sadRoguePoint.X);
+            Assert.Equal(vec2i.Y, sadRoguePoint.Y);
         }
         #endregion
 
@@ -57,9 +57,9 @@ namespace SadRogue.Primitives.MonoGame.UnitTests
         {
             foreach (var point2 in TestPoints)
             {
-                var monoPoint = point2.ToMonoPoint();
-                Assert.Equal(point.Matches(point2), point.Matches(monoPoint));
-                Assert.Equal(point.Matches(point2), monoPoint.Matches(point));
+                var vector2i = point2.ToVector2i();
+                Assert.Equal(point.Matches(point2), point.Matches(vector2i));
+                Assert.Equal(point.Matches(point2), vector2i.Matches(point));
             }
         }
         #endregion
@@ -70,11 +70,11 @@ namespace SadRogue.Primitives.MonoGame.UnitTests
         {
             foreach (var pos in _testPositions.Positions())
             {
-                var monoPos = pos.ToMonoPoint();
+                var sfmlPos = pos.ToVector2i();
                 var expected = new Point(_testPositions.Center.X + pos.X, _testPositions.Center.Y + pos.Y);
-                var monoExpected = expected.ToMonoPoint();
-                Assert.Equal(expected, _testPositions.Center.Add(monoPos));
-                Assert.Equal(monoExpected, _testPositions.Center.ToMonoPoint().Add(pos));
+                var sfmlExpected = expected.ToVector2i();
+                Assert.Equal(expected, _testPositions.Center.Add(sfmlPos));
+                Assert.Equal(sfmlExpected, _testPositions.Center.ToVector2i().Add(pos));
             }
         }
 
@@ -85,9 +85,9 @@ namespace SadRogue.Primitives.MonoGame.UnitTests
             {
                 foreach (var pos in _testPositions.Positions())
                 {
-                    var monoPos = pos.ToMonoPoint();
+                    var sfmlPos = pos.ToVector2i();
                     var expected = pos + dir;
-                    Assert.Equal(expected.ToMonoPoint(), monoPos.Add(dir));
+                    Assert.Equal(expected.ToVector2i(), sfmlPos.Add(dir));
                 }
             }
         }
@@ -98,9 +98,9 @@ namespace SadRogue.Primitives.MonoGame.UnitTests
         {
             foreach (var pos in _testPositions.Positions())
             {
-                var monoPos = pos.ToMonoPoint();
-                var expected = new Point(pos.X + i, pos.Y + i).ToMonoPoint();
-                Assert.Equal(expected, monoPos.Add(i));
+                var sfmlPos = pos.ToVector2i();
+                var expected = new Point(pos.X + i, pos.Y + i).ToVector2i();
+                Assert.Equal(expected, sfmlPos.Add(i));
             }
         }
 
@@ -109,11 +109,11 @@ namespace SadRogue.Primitives.MonoGame.UnitTests
         {
             foreach (var pos in _testPositions.Positions())
             {
-                var monoPos = pos.ToMonoPoint();
+                var sfmlPos = pos.ToVector2i();
                 var expected = new Point(_testPositions.Center.X - pos.X, _testPositions.Center.Y - pos.Y);
-                var monoExpected = expected.ToMonoPoint();
-                Assert.Equal(expected, _testPositions.Center.Subtract(monoPos));
-                Assert.Equal(monoExpected, _testPositions.Center.ToMonoPoint().Subtract(pos));
+                var sfmlExpected = expected.ToVector2i();
+                Assert.Equal(expected, _testPositions.Center.Subtract(sfmlPos));
+                Assert.Equal(sfmlExpected, _testPositions.Center.ToVector2i().Subtract(pos));
             }
         }
 
@@ -124,9 +124,9 @@ namespace SadRogue.Primitives.MonoGame.UnitTests
             {
                 foreach (var pos in _testPositions.Positions())
                 {
-                    var monoPos = pos.ToMonoPoint();
+                    var sfmlPos = pos.ToVector2i();
                     var expected = pos - dir;
-                    Assert.Equal(expected.ToMonoPoint(), monoPos.Subtract(dir));
+                    Assert.Equal(expected.ToVector2i(), sfmlPos.Subtract(dir));
                 }
             }
         }
@@ -137,9 +137,9 @@ namespace SadRogue.Primitives.MonoGame.UnitTests
         {
             foreach (var pos in _testPositions.Positions())
             {
-                var monoPos = pos.ToMonoPoint();
-                var expected = new Point(pos.X - i, pos.Y - i).ToMonoPoint();
-                Assert.Equal(expected, monoPos.Subtract(i));
+                var sfmlPos = pos.ToVector2i();
+                var expected = new Point(pos.X - i, pos.Y - i).ToVector2i();
+                Assert.Equal(expected, sfmlPos.Subtract(i));
             }
         }
 
@@ -149,8 +149,8 @@ namespace SadRogue.Primitives.MonoGame.UnitTests
             foreach (var pos in _testPositions.Positions())
             {
                 var expected = new Point(_testPositions.Center.X * pos.X, _testPositions.Center.Y * pos.Y);
-                Assert.Equal(expected.ToMonoPoint(), _testPositions.Center.ToMonoPoint().Multiply(pos));
-                Assert.Equal(expected, _testPositions.Center.Multiply(pos.ToMonoPoint()));
+                Assert.Equal(expected.ToVector2i(), _testPositions.Center.ToVector2i().Multiply(pos));
+                Assert.Equal(expected, _testPositions.Center.Multiply(pos.ToVector2i()));
             }
         }
 
@@ -161,7 +161,7 @@ namespace SadRogue.Primitives.MonoGame.UnitTests
             foreach (var pos in _testPositions.Positions())
             {
                 var expected = new Point(pos.X * i, pos.Y * i);
-                Assert.Equal(expected.ToMonoPoint(), pos.ToMonoPoint().Multiply(i));
+                Assert.Equal(expected.ToVector2i(), pos.ToVector2i().Multiply(i));
             }
         }
 
@@ -173,7 +173,7 @@ namespace SadRogue.Primitives.MonoGame.UnitTests
             foreach (var pos in _testPositions.Positions())
             {
                 var expected = new Point((int)Math.Round(pos.X * d, MidpointRounding.AwayFromZero), (int)Math.Round(pos.Y * d, MidpointRounding.AwayFromZero));
-                Assert.Equal(expected.ToMonoPoint(), pos.ToMonoPoint().Multiply(d));
+                Assert.Equal(expected.ToVector2i(), pos.ToVector2i().Multiply(d));
             }
         }
 
@@ -184,8 +184,8 @@ namespace SadRogue.Primitives.MonoGame.UnitTests
             {
                 // Integer rounding
                 var expected = new Point((int)Math.Round((double)_testPositions.Center.X / pos.X, MidpointRounding.AwayFromZero), (int)Math.Round((double)_testPositions.Center.Y / pos.Y, MidpointRounding.AwayFromZero));
-                Assert.Equal(expected.ToMonoPoint(), _testPositions.Center.ToMonoPoint().Divide(pos));
-                Assert.Equal(expected, _testPositions.Center.Divide(pos.ToMonoPoint()));
+                Assert.Equal(expected.ToVector2i(), _testPositions.Center.ToVector2i().Divide(pos));
+                Assert.Equal(expected, _testPositions.Center.Divide(pos.ToVector2i()));
             }
         }
 
@@ -197,7 +197,7 @@ namespace SadRogue.Primitives.MonoGame.UnitTests
             {
                 // Integer rounding
                 var expected = new Point((int)Math.Round(pos.X / d, MidpointRounding.AwayFromZero), (int)Math.Round(pos.Y / d, MidpointRounding.AwayFromZero));
-                Assert.Equal(expected.ToMonoPoint(), pos.ToMonoPoint().Divide(d));
+                Assert.Equal(expected.ToVector2i(), pos.ToVector2i().Divide(d));
             }
         }
         #endregion

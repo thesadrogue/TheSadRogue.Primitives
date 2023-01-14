@@ -24,6 +24,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheSadRogue.Primitives.Perf
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheSadRogue.Primitives.MonoGame.UnitTests", "TheSadRogue.Primitives.MonoGame.UnitTests\TheSadRogue.Primitives.MonoGame.UnitTests.csproj", "{0BE00209-1CDC-4DB2-A165-1D4EEF24934C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheSadRogue.Primitives.SFML.UnitTests", "TheSadRogue.Primitives.SFML.UnitTests\TheSadRogue.Primitives.SFML.UnitTests.csproj", "{19CADFBD-121A-4A21-91FD-C8E5400B4596}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		TheSadRogue.Primitives.UnitTests.Shared\TheSadRogue.Primitives.UnitTests.Shared.projitems*{1921edde-6ff1-42c9-ac69-a09074b1cfaa}*SharedItemsImports = 5
@@ -63,6 +65,10 @@ Global
 		{0BE00209-1CDC-4DB2-A165-1D4EEF24934C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0BE00209-1CDC-4DB2-A165-1D4EEF24934C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0BE00209-1CDC-4DB2-A165-1D4EEF24934C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19CADFBD-121A-4A21-91FD-C8E5400B4596}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19CADFBD-121A-4A21-91FD-C8E5400B4596}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19CADFBD-121A-4A21-91FD-C8E5400B4596}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19CADFBD-121A-4A21-91FD-C8E5400B4596}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

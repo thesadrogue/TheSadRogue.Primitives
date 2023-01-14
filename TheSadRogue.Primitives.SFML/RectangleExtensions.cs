@@ -19,7 +19,7 @@ namespace SadRogue.Primitives
         [Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static IntRect ToIntRect(this SadRogueRectangle self)
-            => new IntRect(self.X, self.Y, self.X + self.Width, self.Y + self.Height);
+            => new IntRect(self.X, self.Y, self.Width, self.Height);
 
         /// <summary>
         /// Compares a <see cref="SadRogue.Primitives.Rectangle"/> to a <see cref="SFML.Graphics.IntRect"/>.
@@ -50,7 +50,7 @@ namespace SFML.Graphics
         [Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static SadRogueRectangle ToRectangle(this IntRect self)
-            => new SadRogueRectangle(self.Left, self.Top, self.Width - self.Left, self.Height - self.Top);
+            => new SadRogueRectangle(self.Left, self.Top, self.Width, self.Height);
 
         /// <summary>
         /// Compares a <see cref="SFML.Graphics.IntRect"/> to a <see cref="SadRogue.Primitives.Rectangle"/>.

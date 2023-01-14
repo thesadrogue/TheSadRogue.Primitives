@@ -1,8 +1,8 @@
-﻿using Microsoft.Xna.Framework;
+﻿using SFML.Graphics;
 using Xunit;
 using XUnit.ValueTuples;
 
-namespace SadRogue.Primitives.MonoGame.UnitTests
+namespace SadRogue.Primitives.SFML.UnitTests
 {
     public class RectangleTests
     {
@@ -20,25 +20,25 @@ namespace SadRogue.Primitives.MonoGame.UnitTests
 
         #region Conversion
         [Fact]
-        public void ToMonoGameRect()
+        public void ToSFMLRect()
         {
             var rect = new Rectangle(1, 3, 6, 8);
-            Microsoft.Xna.Framework.Rectangle monoRect = rect.ToMonoRectangle();
+            IntRect sfmlRect = rect.ToIntRect();
 
-            Assert.Equal(rect.Position.X, monoRect.X);
-            Assert.Equal(rect.Position.Y, monoRect.Y);
-            Assert.Equal(rect.Width, monoRect.Width);
-            Assert.Equal(rect.Height, monoRect.Height);
+            Assert.Equal(rect.Position.X, sfmlRect.Left);
+            Assert.Equal(rect.Position.Y, sfmlRect.Top);
+            Assert.Equal(rect.Width, sfmlRect.Width);
+            Assert.Equal(rect.Height, sfmlRect.Height);
         }
 
         [Fact]
         public void ToSadRogueRect()
         {
-            var rect = new Microsoft.Xna.Framework.Rectangle(1, 3, 6, 8);
+            var rect = new IntRect(1, 3, 6, 8);
             Rectangle sadRogueRect = rect.ToRectangle();
 
-            Assert.Equal(rect.X, sadRogueRect.Position.X);
-            Assert.Equal(rect.Y, sadRogueRect.Position.Y);
+            Assert.Equal(rect.Left, sadRogueRect.Position.X);
+            Assert.Equal(rect.Top, sadRogueRect.Position.Y);
             Assert.Equal(rect.Width, sadRogueRect.Width);
             Assert.Equal(rect.Height, sadRogueRect.Height);
         }
@@ -52,9 +52,9 @@ namespace SadRogue.Primitives.MonoGame.UnitTests
         {
             foreach (var rect2 in TestRectangles)
             {
-                var monoColor = rect2.ToMonoRectangle();
-                Assert.Equal(rect.Matches(rect2), rect.Matches(monoColor));
-                Assert.Equal(rect.Matches(rect2), monoColor.Matches(rect));
+                var sfmlRect = rect2.ToIntRect();
+                Assert.Equal(rect.Matches(rect2), rect.Matches(sfmlRect));
+                Assert.Equal(rect.Matches(rect2), sfmlRect.Matches(rect));
             }
         }
         #endregion

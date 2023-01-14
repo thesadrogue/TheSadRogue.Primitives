@@ -1,8 +1,8 @@
-﻿using Microsoft.Xna.Framework;
+﻿using SFML.Graphics;
 using Xunit;
 using XUnit.ValueTuples;
 
-namespace SadRogue.Primitives.MonoGame.UnitTests
+namespace SadRogue.Primitives.SFML.UnitTests
 {
     public class ColorTests
     {
@@ -20,21 +20,21 @@ namespace SadRogue.Primitives.MonoGame.UnitTests
 
         #region Conversion
         [Fact]
-        public void ToMonoGameColor()
+        public void ToSFMLColor()
         {
             var color = new Color(1, 3, 6, 8);
-            Microsoft.Xna.Framework.Color monoColor = color.ToMonoColor();
+            global::SFML.Graphics.Color sfmlColor = color.ToSFMLColor();
 
-            Assert.Equal(color.R, monoColor.R);
-            Assert.Equal(color.G, monoColor.G);
-            Assert.Equal(color.B, monoColor.B);
-            Assert.Equal(color.A, monoColor.A);
+            Assert.Equal(color.R, sfmlColor.R);
+            Assert.Equal(color.G, sfmlColor.G);
+            Assert.Equal(color.B, sfmlColor.B);
+            Assert.Equal(color.A, sfmlColor.A);
         }
 
         [Fact]
         public void ToSadRogueColor()
         {
-            var color = new Microsoft.Xna.Framework.Color(1, 3, 6, 8);
+            var color = new global::SFML.Graphics.Color(1, 3, 6, 8);
             Color sadRogueColor = color.ToSadRogueColor();
 
             Assert.Equal(color.R, sadRogueColor.R);
@@ -52,9 +52,9 @@ namespace SadRogue.Primitives.MonoGame.UnitTests
         {
             foreach (var color2 in TestColors)
             {
-                var monoColor = color2.ToMonoColor();
-                Assert.Equal(color.Matches(color2), color.Matches(monoColor));
-                Assert.Equal(color.Matches(color2), monoColor.Matches(color));
+                var sfmlColor = color2.ToSFMLColor();
+                Assert.Equal(color.Matches(color2), color.Matches(sfmlColor));
+                Assert.Equal(color.Matches(color2), sfmlColor.Matches(color));
             }
         }
         #endregion

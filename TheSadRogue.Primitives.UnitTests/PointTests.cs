@@ -223,8 +223,8 @@ namespace SadRogue.Primitives.UnitTests
         {
             foreach (var pos in _testPositions.Positions())
             {
-                var expected = new Point(_testPositions.Center.X + i, _testPositions.Center.Y + i);
-                Assert.Equal(expected, _testPositions.Center + i);
+                var expected = new Point(pos.X + i, pos.Y + i);
+                Assert.Equal(expected, pos + i);
             }
         }
 
@@ -258,8 +258,8 @@ namespace SadRogue.Primitives.UnitTests
         {
             foreach (var pos in _testPositions.Positions())
             {
-                var expected = new Point(_testPositions.Center.X - i, _testPositions.Center.Y - i);
-                Assert.Equal(expected, _testPositions.Center - i);
+                var expected = new Point(pos.X - i, pos.Y - i);
+                Assert.Equal(expected, pos - i);
             }
         }
 
@@ -292,11 +292,10 @@ namespace SadRogue.Primitives.UnitTests
         {
             foreach (var pos in _testPositions.Positions())
             {
-                var expected = new Point(_testPositions.Center.X * i, _testPositions.Center.Y * i);
-                Assert.Equal(expected, _testPositions.Center * i);
+                var expected = new Point(pos.X * i, pos.Y * i);
+                Assert.Equal(expected, pos * i);
             }
         }
-
 
         [Theory]
         [MemberDataEnumerable(nameof(DoubleTestCases))]
@@ -304,8 +303,8 @@ namespace SadRogue.Primitives.UnitTests
         {
             foreach (var pos in _testPositions.Positions())
             {
-                var expected = new Point((int)Math.Round(_testPositions.Center.X * d, MidpointRounding.AwayFromZero), (int)Math.Round(_testPositions.Center.Y * d, MidpointRounding.AwayFromZero));
-                Assert.Equal(expected, _testPositions.Center * d);
+                var expected = new Point((int)Math.Round(pos.X * d, MidpointRounding.AwayFromZero), (int)Math.Round(pos.Y * d, MidpointRounding.AwayFromZero));
+                Assert.Equal(expected, pos * d);
             }
         }
 
@@ -341,8 +340,8 @@ namespace SadRogue.Primitives.UnitTests
             foreach (var pos in _testPositions.Positions())
             {
                 // Integer rounding
-                var expected = new Point((int)Math.Round(_testPositions.Center.X / d, MidpointRounding.AwayFromZero), (int)Math.Round(_testPositions.Center.Y / d, MidpointRounding.AwayFromZero));
-                Assert.Equal(expected, _testPositions.Center / d);
+                var expected = new Point((int)Math.Round(pos.X / d, MidpointRounding.AwayFromZero), (int)Math.Round(pos.Y / d, MidpointRounding.AwayFromZero));
+                Assert.Equal(expected, pos / d);
             }
         }
 

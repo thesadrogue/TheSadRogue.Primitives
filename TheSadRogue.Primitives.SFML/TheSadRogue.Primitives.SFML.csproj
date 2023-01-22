@@ -28,6 +28,7 @@
 	<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	<PackageTags>2d;grid;primitives;point;rectangle;game;development;standard;sfml;sadrogue;thesadrogue;extensions</PackageTags>
 	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  <CheckEolTargetFramework Condition="$(TargetFramework.StartsWith('net5.0')) == true">false</CheckEolTargetFramework>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

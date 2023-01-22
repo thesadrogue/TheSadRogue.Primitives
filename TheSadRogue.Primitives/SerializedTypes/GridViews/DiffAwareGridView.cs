@@ -132,7 +132,7 @@ namespace SadRogue.Primitives.SerializedTypes.GridViews
         public static implicit operator DiffAwareGridView<T>(DiffAwareGridViewSerialized<T> view)
         {
             var diffView = new DiffAwareGridView<T>(view.BaseGrid, view.AutoCompress);
-            diffView.SetHistory(view.Diffs.Select(diff => (Diff<T>)diff));
+            diffView.SetHistory(view.Diffs.Select(diff => (Diff<T>)diff), view.CurrentDiffIndex);
 
             return diffView;
         }

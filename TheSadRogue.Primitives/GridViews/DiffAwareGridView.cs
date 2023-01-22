@@ -521,14 +521,14 @@ namespace SadRogue.Primitives.GridViews
             var gridValues = new Dictionary<Point, T>();
             if (historyList.Count == 0)
                 throw new ArgumentException($"Cannot use {nameof(SetHistory)} to clear history.", nameof(historyList));
-            if (currentIndex <= -1 || currentIndex > historyList.Count - 1)
+            if (currentIndex < -1 || currentIndex > historyList.Count - 1)
                 throw new ArgumentException("Index is not within valid range for history specified", nameof(currentIndex));
 
             // Validate history itself ahead of the current position
             for (int i = currentIndex + 1; i < historyList.Count; i++)
             {
                 if (historyList[i].Changes.Count == 0)
-                    throw new Exception($"Cannot have blank diffs in history of a {nameof(DiffAwareGridView<T>)}.");
+                    throw new ArgumentException($"Cannot have blank diffs in history of a {nameof(DiffAwareGridView<T>)}.", nameof(historyList));
 
                 foreach (var change in historyList[i])
                 {
@@ -552,7 +552,7 @@ namespace SadRogue.Primitives.GridViews
             for(int i = currentIndex; i >= 0; i--)
             {
                 if (historyList[i].Changes.Count == 0)
-                    throw new Exception($"Cannot have blank diffs in history of a {nameof(DiffAwareGridView<T>)}.");
+                    throw new ArgumentException($"Cannot have blank diffs in history of a {nameof(DiffAwareGridView<T>)}.", nameof(historyList));
 
                 foreach (var change in historyList[i].Reverse())
                 {

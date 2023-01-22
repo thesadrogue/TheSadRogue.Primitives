@@ -2,10 +2,65 @@
 using System.Collections.Generic;
 using System.Linq;
 using SadRogue.Primitives.GridViews;
+using SadRogue.Primitives.UnitTests.Mocks;
 using Xunit;
+using XUnit.ValueTuples;
 
 namespace SadRogue.Primitives.UnitTests.GridViews
 {
+    public class DiffValueChangeTests
+    {
+        private static readonly ValueChange<int> s_equivalentValue = new ValueChange<int>((1, 2), 1, 2);
+        public static readonly ValueChange<int>[] EquivalencyTestCases =
+        {
+            new ValueChange<int>((1, 2), 1, 2),
+            new ValueChange<int>((1, 2), 1, 3),
+            new ValueChange<int>((1, 2), 3, 2),
+            new ValueChange<int>((2, 3), 1, 2),
+        };
+
+        [Fact]
+        public void Construction()
+        {
+            var change = new ValueChange<int>((1, 2), 1, 2);
+            Assert.Equal(new Point(1, 2), change.Position);
+            Assert.Equal(1, change.OldValue);
+            Assert.Equal(2, change.NewValue);
+        }
+
+        [Fact]
+        public void EquivalencyTests()
+        {
+            var expected = s_equivalentValue;
+            var actual = EquivalencyTestCases[0];
+            Assert.True(expected.Equals(actual));
+            Assert.True(expected.Equals((object)actual));
+            Assert.True(expected.Matches(actual));
+            Assert.True(expected == actual);
+
+            expected = EquivalencyTestCases[0];
+            actual = s_equivalentValue;
+            Assert.True(expected.Equals(actual));
+            Assert.True(expected.Equals((object)actual));
+            Assert.True(expected.Matches(actual));
+            Assert.True(expected == actual);
+        }
+
+        [Theory]
+        [MemberDataEnumerable(nameof(EquivalencyTestCases))]
+        public void EqualityInequalityRelationshipTests(ValueChange<int> value)
+        {
+            foreach (var otherValue in EquivalencyTestCases)
+            {
+                Assert.Equal(otherValue.Equals(value), otherValue.Equals((object)value));
+                Assert.Equal(otherValue.Equals(value), otherValue.Matches(value));
+                Assert.Equal(otherValue.Equals(value), otherValue == value);
+
+                Assert.Equal(!otherValue.Equals(value), otherValue != value);
+                Assert.Equal(!otherValue.Equals(value), value != otherValue);
+            }
+        }
+    }
     public class DiffTests
     {
         [Fact]
@@ -45,8 +100,16 @@ namespace SadRogue.Primitives.UnitTests.GridViews
             Assert.Equal(change2, diff.Changes[1]);
             Assert.False(diff.IsFinalized);
 
+            // Validate that we can't add a change which doesn't change anything
+            var change3 = new ValueChange<bool>((1, 2), false, false);
+            Assert.Throws<Exception>(() => diff.Add(change3));
+
             diff.FinalizeChanges();
             Assert.True(diff.IsFinalized);
+
+            // Verify we can't add changes to a finalized set
+            var change4 = new ValueChange<bool>((1, 3), false, true);
+            Assert.Throws<Exception>(() => diff.Add(change4));
         }
 
         [Fact]
@@ -359,6 +422,68 @@ namespace SadRogue.Primitives.UnitTests.GridViews
         }
 
         [Fact]
+        public void SetValuesWithUnappliedDiffsThrowsException()
+        {
+            // Create a new grid view
+            var view = new DiffAwareGridView<int>(80, 25) { [1, 0] = 1 };
+
+            view.FinalizeCurrentDiff();
+
+            view[1, 2] = 10;
+            view.RevertToPreviousDiff();
+            Assert.Throws<InvalidOperationException>(() => view[1, 3] = 20);
+        }
+
+        [Fact]
+        public void EmptyDiffsRemovedOnPrevious()
+        {
+            // Create a new grid view and record its state
+            // ReSharper disable once RedundantArgumentDefaultValue
+            var view = new DiffAwareGridView<int>(80, 25, true) { [1, 0] = 1 };
+
+            // Finalize current diff
+            view.FinalizeCurrentDiff();
+
+            // Check that reverting a blank diff (made blank by compression) does nothing to the number of diffs
+            view[1, 0] = 2;
+            view[1, 0] = 1;
+            view.RevertToPreviousDiff();
+            Assert.Equal(1, view.Diffs.Count);
+        }
+
+        [Fact]
+        public void EmptyDiffsRemovedOnFinalize()
+        {
+            // Create a new grid view and record its state
+            var view = new DiffAwareGridView<int>(80, 25) { [1, 0] = 1 };
+            var arrayView = new ArrayView<int>(view.Width, view.Height);
+            arrayView.ApplyOverlay(view);
+
+            // Finalize current diff
+            view.FinalizeCurrentDiff();
+
+            // Check that finalizing a blank diff (made blank by compression) does nothing
+            view[1, 0] = 2;
+            view[1, 0] = 1;
+            view.FinalizeCurrentDiff();
+            Assert.Equal(1, view.Diffs.Count);
+            foreach (var pos in arrayView.Positions())
+                Assert.Equal(arrayView[pos], view[pos]);
+        }
+
+        [Fact]
+        public void FinalizingDiffWhenNotCurrentStateThrowsException()
+        {
+            // Create a new grid view and record a diff.
+            var view = new DiffAwareGridView<int>(80, 25) { [1, 0] = 1 };
+            view.FinalizeCurrentDiff();
+
+            // Revert to previous diff and validate that trying to finalize the current one throws exception.
+            view.RevertToPreviousDiff();
+            Assert.Throws<InvalidOperationException>(() => view.FinalizeCurrentDiff());
+        }
+
+        [Fact]
         public void SetHistory()
         {
             // Create a valid history by creating a view and changing some things
@@ -373,6 +498,9 @@ namespace SadRogue.Primitives.UnitTests.GridViews
             diffView[9, 8] = 9;
             diffView.FinalizeCurrentDiff();
 
+            diffView[5, 6] = 2;
+            diffView.FinalizeCurrentDiff();
+
             var diffs = diffView.Diffs.ToList();
 
             // Validate that we can wrap the current view in a diff-aware one and set the history to it
@@ -380,8 +508,24 @@ namespace SadRogue.Primitives.UnitTests.GridViews
             Assert.Empty(newView.Diffs);
             newView.SetHistory(diffs);
             Assert.Equal(diffs, newView.Diffs);
+            Assert.Equal(diffs.Count - 1, newView.CurrentDiffIndex);
 
-            // TODO: Create other test cases for the cases where histories are applied at a non-ending index
+            // Validate same thing for each possible index
+            while (diffView.CurrentDiffIndex > -1)
+                diffView.RevertToPreviousDiff();
+
+            for (int i = -1; i < diffs.Count; i++)
+            {
+                Assert.Equal(i, diffView.CurrentDiffIndex);
+
+                newView = new DiffAwareGridView<int>(underlyingView);
+                newView.SetHistory(diffs, i);
+                Assert.Equal(diffs, newView.Diffs);
+                Assert.Equal(i, newView.CurrentDiffIndex);
+
+                if (i + 1 < diffs.Count)
+                    diffView.ApplyNextDiff();
+            }
 
             // Change the diff so it isn't a valid history for the grid view we have
             var newDiff = new Diff<int>();
@@ -393,6 +537,107 @@ namespace SadRogue.Primitives.UnitTests.GridViews
             // Make sure we throw exception when trying to set history
             newView = new DiffAwareGridView<int>(underlyingView);
             Assert.Throws<ArgumentException>(() => newView.SetHistory(diffs));
+
+            // Validate same thing for each possible index
+            // Change the diff so it isn't a valid history for the grid view we have
+            newDiff = new Diff<int>();
+            foreach (var change in diffs[1])
+                newDiff.Add(change.Position == (5, 6) ? new ValueChange<int>(change.Position, 12, 77) : change);
+            diffs[1] = newDiff;
+
+            while (diffView.CurrentDiffIndex > -1)
+                diffView.RevertToPreviousDiff();
+
+            for (int i = -1; i < diffs.Count; i++)
+            {
+                Assert.Equal(i, diffView.CurrentDiffIndex);
+                newView = new DiffAwareGridView<int>(underlyingView);
+                Assert.Throws<ArgumentException>(() => newView.SetHistory(diffs, i));
+                if (i + 1 < diffs.Count)
+                    diffView.ApplyNextDiff();
+            }
+        }
+
+        [Fact]
+        public void SetEmptyHistoryThrowsException()
+        {
+            var view = new DiffAwareGridView<int>(80, 25);
+            Assert.Throws<ArgumentException>(() => view.SetHistory(new List<Diff<int>>()));
+        }
+
+        [Fact]
+        public void SetEmptyHistoryOutOfRangeCurrentIndexThrowsException()
+        {
+            var view = new DiffAwareGridView<int>(80, 25) { [1, 2] = 3 };
+            view.FinalizeCurrentDiff();
+
+            var history = view.Diffs.ToList();
+            Assert.Single(history);
+
+            Assert.Throws<ArgumentException>(() => view.SetHistory(history, history.Count));
+            Assert.Throws<ArgumentException>(() => view.SetHistory(history, -1));
+        }
+
+        [Fact]
+        public void SetHistoryWithBlankDiffThrowsException()
+        {
+            var view = new DiffAwareGridView<int>(80, 25);
+
+            var history = new List<Diff<int>> { new Diff<int>() };
+
+            Assert.Throws<ArgumentException>(() => view.SetHistory(history));
+            Assert.Throws<ArgumentException>(() => view.SetHistory(history, -1));
+        }
+
+        [Fact]
+        public void SetBaseline()
+        {
+            var rect = MockGridViews.RectangleBooleanGrid(80, 25);
+
+            var diffView = new DiffAwareGridView<bool>(rect.Width, rect.Height);
+            diffView.SetBaseline(rect);
+
+            diffView.FinalizeCurrentDiff();
+
+            foreach (var pos in rect.Positions())
+                Assert.Equal(rect[pos], diffView[pos]);
+
+            Assert.Empty(diffView.Diffs);
+            Assert.Equal(-1, diffView.CurrentDiffIndex);
+        }
+
+        [Fact]
+        public void SetBaselineErrors()
+        {
+            var diffView = new DiffAwareGridView<bool>(80, 25);
+
+            var badSizeRect = MockGridViews.RectangleBooleanGrid(diffView.Width, diffView.Height - 1);
+            Assert.Throws<ArgumentException>(() => diffView.SetBaseline(badSizeRect));
+
+            diffView[1, 2] = true;
+            var rect = MockGridViews.RectangleBooleanGrid(diffView.Width, diffView.Height);
+            Assert.Throws<InvalidOperationException>(() => diffView.SetBaseline(rect));
+
+            diffView.FinalizeCurrentDiff();
+            Assert.Throws<InvalidOperationException>(() => diffView.SetBaseline(rect));
+        }
+
+        [Fact]
+        public void ClearHistory()
+        {
+            var diffView = new DiffAwareGridView<int>(80, 25) { [1, 2] = 10 };
+
+            diffView.FinalizeCurrentDiff();
+            Assert.Single(diffView.Diffs);
+            Assert.Equal(0, diffView.CurrentDiffIndex);
+            var arrayView = new ArrayView<int>(diffView.Width, diffView.Height);
+            arrayView.ApplyOverlay(diffView);
+
+            diffView.ClearHistory();
+            Assert.Empty(diffView.Diffs);
+            Assert.Equal(-1, diffView.CurrentDiffIndex);
+            foreach (var pos in arrayView.Positions())
+                Assert.Equal(arrayView[pos], diffView[pos]);
         }
 
         private static void CheckViewState(IGridView<int> view, Dictionary<Point, int> fullChanges)

@@ -1184,76 +1184,160 @@ namespace SadRogue.Primitives
         public float GetLuma() => (R + R + B + G + G + G) / 6f;
 
         /// <summary>
-        /// Gets the brightness of a color.
+        /// Gets the lightness of a color (as defined by the HSL color space).
+        /// </summary>
+        /// <remarks>
+        /// This function exists largely for historical reasons; use GetHSLLightness and GetHSVBrightness instead.
+        /// </remarks>
+        /// <returns>The lightness value.</returns>
+        [Pure]
+        [Obsolete(
+            "Use GetHSLLightness for equivalent behavior, or GetHSVBrightness if you intend to use the HSV color space.")]
+        public float GetBrightness() => GetHSLLightness();
+
+        /// <summary>
+        /// Gets the lightness of a color (as defined by the HSL color space).
+        /// </summary>
+        /// <returns>The lightness value.</returns>
+        [Pure]
+        public float GetHSLLightness()
+        {
+            int r = R, g = G, b = B;
+            MinMaxRgb(out int min, out int max, r, g, b);
+
+            return (max + min) / (byte.MaxValue * 2f);
+        }
+
+        /// <summary>
+        /// Gets the brightness of a color (as defined by the HSV color space).
         /// </summary>
         /// <returns>The brightness value.</returns>
-        /// <remarks>Taken from the mono source code.</remarks>
         [Pure]
-        public float GetBrightness()
+        public float GetHSVBrightness()
         {
-            byte minval = Math.Min(R, Math.Min(G, B));
-            byte maxval = Math.Max(R, Math.Max(G, B));
+            int r = R, g = G, b = B;
 
-            return (float)(maxval + minval) / 510;
+            int max = r > g ? r : g;
+            if (b > max) max = b;
+
+            return max / (float)byte.MaxValue;
         }
 
         /// <summary>
-        /// Gets the saturation of a color.
+        /// Gets the hue of a color (as defined by the HSL color space).
         /// </summary>
-        /// <returns>The saturation value.</returns>
-        /// <remarks>Taken from the mono source code.</remarks>
+        /// <remarks>
+        /// This function exists largely for historical reason; use GetHSLHue and GetHSVHue instead.
+        /// </remarks>
+        /// <returns>The hue value.</returns>
         [Pure]
-        public float GetSaturation()
-        {
-            byte minval = Math.Min(R, Math.Min(G, B));
-            byte maxval = Math.Max(R, Math.Max(G, B));
-
-
-            if (maxval == minval)
-                return 0.0f;
-
-            int sum = maxval + minval;
-            if (sum > 255)
-                sum = 510 - sum;
-
-            return (float)(maxval - minval) / sum;
-        }
+        [Obsolete("Use GetHSLHue for equivalent behavior, or GetHSVHue if you intend to use the HSV color space.")]
+        public float GetHue() => GetHSLHue();
 
         /// <summary>
-        /// Gets the hue of a color.
+        /// Gets the hue of a color (as defined by the HSL color space).
         /// </summary>
         /// <returns>The hue value.</returns>
-        /// <remarks>Taken from the mono source code.</remarks>
         [Pure]
-        public float GetHue()
+        public float GetHSLHue()
         {
-            byte minval = Math.Min(R, Math.Min(G, B));
-            byte maxval = Math.Max(R, Math.Max(G, B));
+            int r = R, g = G, b = B;
 
+            if (r == g && g == b)
+                return 0f;
 
-            if (maxval == minval)
-                return 0.0f;
+            MinMaxRgb(out int min, out int max, r, g, b);
 
-            float diff = maxval - minval;
-            float rnorm = (maxval - R) / diff;
-            float gnorm = (maxval - G) / diff;
-            float bnorm = (maxval - B) / diff;
+            float delta = max - min;
+            float hue;
 
+            if (r == max)
+                hue = (g - b) / delta;
+            else if (g == max)
+                hue = (b - r) / delta + 2f;
+            else
+                hue = (r - g) / delta + 4f;
 
-            float hue = 0.0f;
-            if (R == maxval)
-                hue = 60.0f * (6.0f + bnorm - gnorm);
-
-            if (G == maxval)
-                hue = 60.0f * (2.0f + rnorm - bnorm);
-
-            if (B == maxval)
-                hue = 60.0f * (4.0f + gnorm - rnorm);
-
-            if (hue > 360.0f)
-                hue -= 360.0f;
+            hue *= 60f;
+            if (hue < 0f)
+                hue += 360f;
 
             return hue;
+        }
+
+        /// <summary>
+        /// Gets the hue of a color (as defined by the HSV color space).
+        /// </summary>
+        /// <returns>The hue value.</returns>
+        [Pure]
+        public float GetHSVHue() => GetHSLHue();
+
+        /// <summary>
+        /// Gets the saturation of a color (as defined by the HSL color space).
+        /// </summary>
+        /// <remarks>
+        /// This function exists largely for historical reason; use GetHSLSaturation and GetHSVSaturation instead.
+        /// </remarks>
+        /// <returns>The saturation value.</returns>
+        [Pure]
+        [Obsolete("Use GetHSLSaturation for equivalent behavior, or GetHSVSaturation if you intend to use the HSV color space.")]
+        public float GetSaturation() => GetHSLSaturation();
+
+        /// <summary>
+        /// Gets the saturation of a color (as defined by the HSL color space).
+        /// </summary>
+        /// <returns>The saturation value.</returns>
+        [Pure]
+        public float GetHSLSaturation()
+        {
+            int r = R, g = G, b = B;
+
+            if (r == g && g == b)
+                return 0f;
+
+            MinMaxRgb(out int min, out int max, r, g, b);
+
+            int div = max + min;
+            if (div > byte.MaxValue)
+                div = byte.MaxValue * 2 - max - min;
+
+            return (max - min) / (float)div;
+        }
+
+        /// <summary>
+        /// Gets the saturation of a color (as defined by the HSL color space).
+        /// </summary>
+        /// <returns>The saturation value.</returns>
+        [Pure]
+        public float GetHSVSaturation()
+        {
+            int r = R, g = G, b = B;
+            MinMaxRgb(out int min, out int max, r, g, b);
+
+            return max == 0 ? 0 : 1f - (float)min / max;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static void MinMaxRgb(out int min, out int max, int r, int g, int b)
+        {
+            if (r > g)
+            {
+                max = r;
+                min = g;
+            }
+            else
+            {
+                max = g;
+                min = r;
+            }
+            if (b > max)
+            {
+                max = b;
+            }
+            else if (b < min)
+            {
+                min = b;
+            }
         }
 
         /// <summary>
@@ -1323,60 +1407,73 @@ namespace SadRogue.Primitives
         }
 
         /// <summary>
-        /// Sets the color values based on HSL instead of RGB.
+        /// Creates a <see cref="Color"/> from the specified hue, saturation, lightness, and alpha values.
+        /// Taken from the MIT licensed Windows Community Toolkit:
+        /// https://github.com/CommunityToolkit/WindowsCommunityToolkit/blob/63cbb4a51bdef59083ccfc86bbcba41f966d0027/Microsoft.Toolkit.Uwp/Helpers/ColorHelper.cs#L246
         /// </summary>
-        /// <param name="h">The hue amount.</param>
-        /// <param name="s">The saturation amount.</param>
-        /// <param name="l">The luminance amount.</param>
-        /// <remarks>Taken from http://www.easyrgb.com/index.php?X=MATH&amp;H=19#text19 </remarks>
+        /// <param name="h">0..360 range hue</param>
+        /// <param name="s">0..1 range saturation</param>
+        /// <param name="l">0..1 range lightness</param>
+        /// <returns>The created <see cref="Color"/>.</returns>
         [Pure]
         public static Color FromHSL(float h, float s, float l)
         {
-            if (Math.Abs(s) < 0.0000000001)
-                return new Color(
-                    (byte)(l * 255),
-                    (byte)(l * 255),
-                    (byte)(l * 255)
-                );
+            if (h < 0 || h > 360)
+                throw new ArgumentOutOfRangeException(nameof(h));
+
+
+            double chroma = (1 - Math.Abs((2 * l) - 1)) * s;
+            double h1 = h / 60;
+            double x = chroma * (1 - Math.Abs((h1 % 2) - 1));
+            double m = l - (0.5 * chroma);
+            double r1, g1, b1;
+
+            if (h1 < 1)
+            {
+                r1 = chroma;
+                g1 = x;
+                b1 = 0;
+            }
+            else if (h1 < 2)
+            {
+                r1 = x;
+                g1 = chroma;
+                b1 = 0;
+            }
+            else if (h1 < 3)
+            {
+                r1 = 0;
+                g1 = chroma;
+                b1 = x;
+            }
+            else if (h1 < 4)
+            {
+                r1 = 0;
+                g1 = x;
+                b1 = chroma;
+            }
+            else if (h1 < 5)
+            {
+                r1 = x;
+                g1 = 0;
+                b1 = chroma;
+            }
             else
             {
-                float var_2;
-                float var_1;
-
-                if (l < 0.5)
-                    var_2 = l * (1 + s);
-                else
-                    var_2 = l + s - s * l;
-
-                var_1 = 2 * l - var_2;
-
-                return new Color(
-                    (byte)(255 * Hue_2_RGB(var_1, var_2, h + 1f / 3)),
-                    (byte)(255 * Hue_2_RGB(var_1, var_2, h)),
-                    (byte)(255 * Hue_2_RGB(var_1, var_2, h - 1f / 3))
-                );
+                r1 = chroma;
+                g1 = 0;
+                b1 = x;
             }
+
+            byte r = (byte)(255 * (r1 + m));
+            byte g = (byte)(255 * (g1 + m));
+            byte b = (byte)(255 * (b1 + m));
+            byte a = 255;
+
+            return new Color(r, g, b, a);
         }
 
-        private static float Hue_2_RGB(float v1, float v2, float vH)
-        {
-            if (vH < 0)
-                vH += 1;
 
-            if (vH > 1)
-                vH -= 1;
-
-            if (6 * vH < 1)
-                return v1 + (v2 - v1) * 6 * vH;
-
-            if (2 * vH < 1)
-                return v2;
-
-            if (3 * vH < 2)
-                return v1 + (v2 - v1) * (2f / 3 - vH) * 6;
-
-            return v1;
-        }
 
         /// <summary>
         /// Multiply <see cref="Color"/> by value.
@@ -1457,9 +1554,9 @@ namespace SadRogue.Primitives
         [Pure]
         public void Deconstruct(out float r, out float g, out float b)
         {
-            r = R;
-            g = G;
-            b = B;
+            r = R / 255f;
+            g = G / 255f;
+            b = B / 255f;
         }
 
         /// <summary>
@@ -1472,10 +1569,10 @@ namespace SadRogue.Primitives
         [Pure]
         public void Deconstruct(out float r, out float g, out float b, out float a)
         {
-            r = R;
-            g = G;
-            b = B;
-            a = A;
+            r = R / 255f;
+            g = G / 255f;
+            b = B / 255f;
+            a = A / 255f;
         }
 
         /// <summary>
@@ -1501,6 +1598,36 @@ namespace SadRogue.Primitives
         /// <param name="a"></param>
         [Pure]
         public void Deconstruct(out byte r, out byte g, out byte b, out byte a)
+        {
+            r = R;
+            g = G;
+            b = B;
+            a = A;
+        }
+
+        /// <summary>
+        /// Deconstruction method for <see cref="Color"/>.
+        /// </summary>
+        /// <param name="r"></param>
+        /// <param name="g"></param>
+        /// <param name="b"></param>
+        [Pure]
+        public void Deconstruct(out int r, out int g, out int b)
+        {
+            r = R;
+            g = G;
+            b = B;
+        }
+
+        /// <summary>
+        /// Deconstruction method for <see cref="Color"/> with Alpha.
+        /// </summary>
+        /// <param name="r"></param>
+        /// <param name="g"></param>
+        /// <param name="b"></param>
+        /// <param name="a"></param>
+        [Pure]
+        public void Deconstruct(out int r, out int g, out int b, out int a)
         {
             r = R;
             g = G;

@@ -108,7 +108,7 @@ namespace SadRogue.Primitives
 
 
             if (colorList.Length != stopList.Length)
-                throw new Exception("Both colors and stops much match in array length.");
+                throw new ArgumentException("Both colors and stops much match in array length.");
 
             Stops = new GradientStop[colorList.Length];
 

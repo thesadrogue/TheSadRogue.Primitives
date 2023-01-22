@@ -10,9 +10,9 @@ namespace SadRogue.Primitives.SerializedTypes.PointHashers
     public struct KnownSizeHasherSerialized
     {
         /// <summary>
-        /// The maximum-x value given to the KnownSizeHasher.
+        /// The Width given to the KnownSizeHasher.
         /// </summary>
-        public int MaxXValue;
+        public int BoundsWidth;
 
         /// <summary>
         /// Converts <see cref="KnownSizeHasherSerialized"/> to <see cref="KnownSizeHasher"/>.
@@ -20,7 +20,7 @@ namespace SadRogue.Primitives.SerializedTypes.PointHashers
         /// <param name="serialized"/>
         /// <returns/>
         public static implicit operator KnownSizeHasher(KnownSizeHasherSerialized serialized)
-            => new KnownSizeHasher(serialized.MaxXValue);
+            => new KnownSizeHasher(serialized.BoundsWidth);
 
         /// <summary>
         /// Converts <see cref="KnownSizeHasher"/> to <see cref="KnownSizeHasherSerialized"/>.
@@ -28,6 +28,6 @@ namespace SadRogue.Primitives.SerializedTypes.PointHashers
         /// <param name="sizeHasher"/>
         /// <returns/>
         public static implicit operator KnownSizeHasherSerialized(KnownSizeHasher sizeHasher)
-            => new KnownSizeHasherSerialized { MaxXValue = sizeHasher.MaxXValue };
+            => new KnownSizeHasherSerialized { BoundsWidth = sizeHasher.BoundsWidth };
     }
 }

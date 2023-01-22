@@ -113,10 +113,10 @@ namespace SadRogue.Primitives.UnitTests.Serialization
         }
 
         private static bool PointHasherKnownSizeCompare(KnownSizeHasher h1, KnownSizeHasher h2)
-            => h1.MaxXValue == h2.MaxXValue;
+            => h1.BoundsWidth == h2.BoundsWidth;
 
         private static bool PointHasherKnownRangeCompare(KnownRangeHasher h1, KnownRangeHasher h2)
-            => h1.MinExtent == h2.MinExtent && h1.MaxNormalizedX == h2.MaxNormalizedX;
+            => h1.MinExtent == h2.MinExtent && h1.BoundsWidth == h2.BoundsWidth;
 
         private static bool ElementWiseEquality<T>(IEnumerable<T> e1, IEnumerable<T> e2,
                                                    Func<T, T, bool>? compareFunc = null)

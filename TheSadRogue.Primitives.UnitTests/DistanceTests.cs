@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Xunit;
 using XUnit.ValueTuples;
 
@@ -73,8 +74,22 @@ namespace SadRogue.Primitives.UnitTests
             foreach (Distance dist in dists)
             {
                 Assert.Equal(dist == compareDist, dist.Equals(compareDist));
+                Assert.Equal(dist == compareDist, dist.Matches(compareDist));
                 // ReSharper disable once RedundantCast
                 Assert.Equal(dist == compareDist, dist.Equals((object)compareDist));
+            }
+        }
+
+        [Theory]
+        [MemberDataEnumerable(nameof(Distances))]
+        public void TestHashCode(Distance compareDist)
+        {
+            Distance[] dists = Distances;
+
+            foreach (Distance dist in dists)
+            {
+                if (compareDist.Matches(dist))
+                    Assert.Equal(compareDist.GetHashCode(), dist.GetHashCode());
             }
         }
 
@@ -110,8 +125,50 @@ namespace SadRogue.Primitives.UnitTests
 
         #region DistanceCalculations
 
-        // TODO: Test actual distance calculations
+        [Theory]
+        [MemberDataEnumerable(nameof(Distances))]
+        public void DistanceCalculationCorrect(Distance calc)
+        {
+            // Negative and positive coordinates, along with 0
+            var area = new Rectangle(-5, -7, 17, 12);
+            var start = area.MinExtent;
 
+            // These algorithms are so well known, we'll just do the calculation correctly with no optimizations
+            Func<double, double, double> correctAlgorithm = calc.Type switch
+            {
+                Distance.Types.Chebyshev => Chebyshev,
+                Distance.Types.Manhattan => Manhattan,
+                Distance.Types.Euclidean => Euclidean,
+                _ => throw new Exception("Unsupported type used.")
+            };
+
+            foreach (var pos in area.Positions())
+            {
+                var delta = pos - start;
+                double expected = correctAlgorithm(delta.X, delta.Y);
+
+                Assert.Equal(expected, calc.Calculate(start, pos));
+                Assert.Equal(expected, calc.Calculate(pos, start));
+                Assert.Equal(expected, calc.Calculate(start.X, start.Y, pos.X, pos.Y));
+                Assert.Equal(expected, calc.Calculate(pos.X, pos.Y, start.X, start.Y));
+                Assert.Equal(expected, calc.Calculate(delta));
+                Assert.Equal(expected, calc.Calculate(delta.X, delta.Y));
+            }
+        }
+
+        #endregion
+
+        #region Distance Calculation Baselines
+
+        public double Manhattan(double dx, double dy) => Math.Abs(dx) + Math.Abs(dy);
+        public double Chebyshev(double dx, double dy) => Math.Max(Math.Abs(dx), Math.Abs(dy));
+
+        public double Euclidean(double dx, double dy)
+        {
+            dx = Math.Abs(dx);
+            dy = Math.Abs(dy);
+            return Math.Sqrt(dx * dx + dy * dy);
+        }
         #endregion
     }
 }

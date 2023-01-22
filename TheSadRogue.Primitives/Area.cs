@@ -331,6 +331,9 @@ namespace SadRogue.Primitives
         /// <returns>True if the given map area intersects the current one, false otherwise.</returns>
         public bool Intersects(IReadOnlyArea area)
         {
+            if (ReferenceEquals(this, area))
+                return true;
+
             if (!area.Bounds.Intersects(Bounds))
                 return false;
 

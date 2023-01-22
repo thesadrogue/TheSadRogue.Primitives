@@ -131,9 +131,9 @@ namespace SadRogue.Primitives.UnitTests.Serialization
                 }
             },
             // KnownSizeHasherSerialized
-            new KnownSizeHasherSerialized { MaxXValue = 10 },
+            new KnownSizeHasherSerialized { BoundsWidth = 10 },
             // KnownRangeHasherSerialized
-            new KnownRangeHasherSerialized { MinExtent = new Point(1, 1), MaxNormalizedX = 9 },
+            new KnownRangeHasherSerialized { MinExtent = new Point(1, 1), BoundsWidth = 9 },
             // PaletteSerialized
             new PaletteSerialized
             {
@@ -227,9 +227,9 @@ namespace SadRogue.Primitives.UnitTests.Serialization
             { typeof(GradientStop), new[] { "Color", "Stop" } },
             { typeof(GradientStopSerialized), new[] { "Color", "Stop" } },
             { typeof(GradientSerialized), new[] { "Stops" } },
-            { typeof(KnownSizeHasher), new[] {"MaxXValue"} },
-            { typeof(KnownSizeHasherSerialized), new[] {"MaxXValue"} },
-            { typeof(KnownRangeHasherSerialized), new[] {"MinExtent", "MaxNormalizedX"} },
+            { typeof(KnownSizeHasher), new[] {"BoundsWidth"} },
+            { typeof(KnownSizeHasherSerialized), new[] {"BoundsWidth"} },
+            { typeof(KnownRangeHasherSerialized), new[] {"MinExtent", "BoundsWidth"} },
             { typeof(PaletteSerialized), new[] { "Colors" } },
             { typeof(Point), new[] { "X", "Y" } },
             { typeof(PointSerialized), new[] { "X", "Y" } },

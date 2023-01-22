@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using System;
+using Xunit;
 using XUnit.ValueTuples;
 using System.Linq;
 using System.Collections.Generic;
@@ -8,6 +9,11 @@ namespace SadRogue.Primitives.UnitTests
     public class RectangleTests
     {
         #region Test Data
+
+        public static Rectangle[] MiscTestRectangles = new Rectangle[] { (0, 0, 10, 20), (1, 2, 15, 17), (5, 2, 18, 6) };
+
+        public static Rectangle[] EmptyRectangles =
+            new Rectangle[] { (10, 11, 0, 20), (15, 14, 21, 0), (17, 14, 0, 0) };
 
         public static Rectangle[] EqualRectangles = new Rectangle[]
         {
@@ -57,6 +63,7 @@ namespace SadRogue.Primitives.UnitTests
             Rectangle compareTo = rad;
             Rectangle[] allRects = DifferentRectangles;
             Assert.True(rad == compareTo);
+            Assert.Equal(rad.GetHashCode(), compareTo.GetHashCode());
 
             Assert.Equal(1, allRects.Count(i => i == compareTo));
         }
@@ -67,22 +74,34 @@ namespace SadRogue.Primitives.UnitTests
         public void TestInequality(Rectangle rect)
         {
             Rectangle compareTo = rect;
+            (int, int, int, int) compareT1 = compareTo;
+            (Point, Point) compareT2 = compareTo;
+
             Rectangle[] allRects = DifferentRectangles;
             Assert.False(rect != compareTo);
+            Assert.False(rect != compareT1);
+            Assert.False(compareT1 != rect);
+            Assert.False(rect != compareT2);
+            Assert.False(compareT2 != rect);
 
             Assert.Equal(allRects.Length - 1, allRects.Count(i => i != compareTo));
         }
 
         [Theory]
         [MemberDataEnumerable(nameof(DifferentRectangles))]
-        public void TestEqualityInqeualityOpposite(Rectangle compareRect)
+        public void TestEqualityInequalityOpposite(Rectangle compareRect)
         {
             Rectangle[] rects = DifferentRectangles;
+            (int, int, int, int) compareT1 = compareRect;
+            (Point, Point) compareT2 = compareRect;
 
             foreach (Rectangle rect in rects)
+            {
                 Assert.NotEqual(rect == compareRect, rect != compareRect);
+                Assert.Equal(rect != compareRect, rect != compareT1);
+                Assert.Equal(rect != compareRect, rect != compareT2);
+            }
         }
-
         #endregion
 
         #region Tuple Conversions
@@ -117,8 +136,28 @@ namespace SadRogue.Primitives.UnitTests
             Assert.True(t2 == rect);
             Assert.True(rect.Equals(t1));
             Assert.True(rect.Equals(t2));
+            Assert.True(rect.Matches(t1));
+            Assert.True(rect.Matches(t2));
         }
 
+        #endregion
+
+        #region Deconstruction
+
+        [Theory]
+        [MemberDataEnumerable(nameof(MiscTestRectangles))]
+        public void Deconstruction(Rectangle rect)
+        {
+            var (x, y, width, height) = rect;
+            var (minExtent, maxExtent) = rect;
+
+            Assert.Equal(rect.X, x);
+            Assert.Equal(rect.Y, y);
+            Assert.Equal(rect.Width, width);
+            Assert.Equal(rect.Height, height);
+            Assert.Equal(rect.MinExtent, minExtent);
+            Assert.Equal(rect.MaxExtent, maxExtent);
+        }
         #endregion
 
         #region Bisection
@@ -253,6 +292,258 @@ namespace SadRogue.Primitives.UnitTests
             Assert.Empty(xLocations.Where(location => location < dividend.MinExtentX || location > dividend.MaxExtentX ));
             Assert.Empty(yLocations.Where(location => location < dividend.MinExtentY || location > dividend.MaxExtentY ));
         }
+
+        [Fact]
+        public void DivisionByZeroDivisorTest()
+        {
+            var rectangle = new Rectangle(1, 2, 50, 60);
+
+            var divisor = new Rectangle(1, 2, 0, 10);
+            Assert.Throws<ArgumentOutOfRangeException>(() => rectangle.Divide(divisor).ToArray());
+
+            divisor = new Rectangle(1, 2, 10, 0);
+            Assert.Throws<ArgumentOutOfRangeException>(() => rectangle.Divide(divisor).ToArray());
+        }
+        #endregion
+
+        #region CalculatedProperties
+
+        [Theory]
+        [MemberDataEnumerable(nameof(MiscTestRectangles))]
+        public void AreaTest(Rectangle rect)
+        {
+            Assert.Equal(rect.Width * rect.Height, rect.Area);
+        }
+
+        [Theory]
+        [MemberDataEnumerable(nameof(MiscTestRectangles))]
+        public void SizeTest(Rectangle rect)
+        {
+            Assert.Equal(new Point(rect.Width, rect.Height), rect.Size);
+        }
+
+        [Theory]
+        [MemberDataEnumerable(nameof(MiscTestRectangles))]
+        public void NonEmptyRectIsEmptyTest(Rectangle rect)
+        {
+            Assert.False(rect.IsEmpty);
+        }
+
+        [Theory]
+        [MemberDataEnumerable(nameof(EmptyRectangles))]
+        public void EmptyRectIsEmptyTest(Rectangle rect)
+        {
+            Assert.True(rect.IsEmpty);
+        }
+
+        #endregion
+
+        #region WithConstruction
+
+        [Fact]
+        public void WithExtents()
+        {
+            Point minExtent = (1, 2);
+            Point maxExtent = (3, 4);
+
+            var rect = Rectangle.WithExtents(minExtent, maxExtent);
+            CheckRect(rect, minExtent, maxExtent.X - minExtent.X + 1, maxExtent.Y - minExtent.Y + 1);
+        }
+
+        [Fact]
+        public void WithRadius()
+        {
+            Point center = (5, 10);
+            const int hRad = 6;
+            const int vRad = 7;
+
+            var rect = Rectangle.WithRadius(center, hRad, vRad);
+            CheckRect(rect, center - (hRad, vRad), hRad * 2 + 1, vRad * 2 + 1);
+        }
+
+        [Fact]
+        public void WithPositionAndSize()
+        {
+            Point position = (1, 2);
+            Point size = (3, 4);
+
+            var rect = Rectangle.WithPositionAndSize(position, size.X, size.Y);
+            var rect2 = Rectangle.WithPositionAndSize(position, size);
+
+            CheckRect(rect, position, size.X, size.Y);
+            Assert.Equal(rect, rect2);
+        }
+
+        #endregion
+
+        #region WithEditingFunctions
+
+        [Theory]
+        [MemberDataEnumerable(nameof(MiscTestRectangles))]
+        public void WithPosition(Rectangle rect)
+        {
+            Point newPos = (1, 2);
+            var newRect = rect.WithPosition(newPos);
+            var newRect2 = rect.WithX(newPos.X).WithY(newPos.Y);
+
+
+            CheckRect(newRect, newPos, rect.Width, rect.Height);
+            Assert.Equal(newRect, newRect2);
+        }
+
+        [Theory]
+        [MemberDataEnumerable(nameof(MiscTestRectangles))]
+        public void WithSize(Rectangle rect)
+        {
+            Point size = (15, 26);
+            var newRect = rect.WithSize(size);
+            var newRect2 = rect.WithWidth(size.X).WithHeight(size.Y);
+
+            CheckRect(newRect, rect.Position, size.X, size.Y);
+            Assert.Equal(newRect, newRect2);
+        }
+
+        [Theory]
+        [MemberDataEnumerable(nameof(MiscTestRectangles))]
+        public void WithMinExtent(Rectangle rect)
+        {
+            Point newExtent = (1, 4);
+            var newRect = rect.WithMinExtent(newExtent);
+            var newRect2 = rect.WithMinExtentX(newExtent.X).WithMinExtentY(newExtent.Y);
+
+            CheckRect(newRect, newExtent, rect.MaxExtentX - newExtent.X + 1, rect.MaxExtentY - newExtent.Y + 1);
+            Assert.Equal(newRect, newRect2);
+        }
+
+        [Theory]
+        [MemberDataEnumerable(nameof(MiscTestRectangles))]
+        public void WithMaxExtent(Rectangle rect)
+        {
+            Point newExtent = (1, 4);
+            var newRect = rect.WithMaxExtent(newExtent);
+            var newRect2 = rect.WithMaxExtentX(newExtent.X).WithMaxExtentY(newExtent.Y);
+
+            CheckRect(newRect, rect.Position, newExtent.X - rect.Position.X + 1, newExtent.Y - rect.Position.Y + 1);
+            Assert.Equal(newRect, newRect2);
+        }
+        #endregion
+
+        #region ChangeEditingFunctions
+        [Theory]
+        [MemberDataEnumerable(nameof(MiscTestRectangles))]
+        public void ChangePosition(Rectangle rect)
+        {
+            Point deltaPos = (1, 2);
+            var newRect = rect.ChangePosition(deltaPos);
+            var newRect2 = rect.ChangeX(deltaPos.X).ChangeY(deltaPos.Y);
+            var newRect3 = rect.Translate(deltaPos);
+            var newRect4 = rect.TranslateX(deltaPos.X).TranslateY(deltaPos.Y);
+            var newRect5 = rect.ChangePosition(Direction.DownRight);
+
+            CheckRect(newRect, rect.Position + deltaPos, rect.Width, rect.Height);
+            Assert.Equal(newRect, newRect2);
+            Assert.Equal(newRect, newRect3);
+            Assert.Equal(newRect, newRect4);
+
+            CheckRect(newRect5, rect.Position + Direction.DownRight, rect.Width, rect.Height);
+        }
+
+        [Theory]
+        [MemberDataEnumerable(nameof(MiscTestRectangles))]
+        public void ChangeSize(Rectangle rect)
+        {
+            Point deltaSize = (15, 26);
+            var newRect = rect.ChangeSize(deltaSize);
+            var newRect2 = rect.ChangeWidth(deltaSize.X).ChangeHeight(deltaSize.Y);
+
+            CheckRect(newRect, rect.Position, rect.Width + deltaSize.X, rect.Height + deltaSize.Y);
+            Assert.Equal(newRect, newRect2);
+        }
+
+        // [Theory]
+        // [MemberDataEnumerable(nameof(MiscTestRectangles))]
+        // public void ChangeMinExtent(Rectangle rect)
+        // {
+        //     Point deltaExtent = (1, 4);
+        //     var newRect = rect.ChangeMinExtent(deltaExtent);
+        //     var newRect2 = rect.ChangeMinExtentX(deltaExtent.X).ChangeMinExtentY(deltaExtent.Y);
+        //
+        //     CheckRect(newRect, rect.Position - deltaExtent, deltaExtent.X, deltaExtent.Y);
+        //     Assert.Equal(newRect, newRect2);
+        // }
+
+        // [Theory]
+        // [MemberDataEnumerable(nameof(MiscTestRectangles))]
+        // public void ChangeMaxExtent(Rectangle rect)
+        // {
+        //     Point deltaExtent = (1, 4);
+        //     var newRect = rect.ChangeMaxExtent(deltaExtent);
+        //     var newRect2 = rect.ChangeMaxExtentX(deltaExtent.X).ChangeMaxExtentY(deltaExtent.Y);
+        //
+        //     CheckRect(newRect, deltaExtent, deltaExtent.X, deltaExtent.Y);
+        //     Assert.Equal(newRect, newRect2);
+        // }
+        #endregion
+
+        #region Set Operations
+
+        [Fact]
+        public void TestDifference()
+        {
+            var orig = new Rectangle(1, 2, 40, 42);
+            var sub = new Rectangle(10, 11, 5, 6);
+
+            var diff = Rectangle.GetDifference(orig, sub);
+            foreach (var pos in orig.Positions())
+            {
+                bool inSet = !sub.Contains(pos);
+                Assert.Equal(inSet, diff.Contains(pos));
+            }
+        }
+
+        [Fact]
+        public void TestUnions()
+        {
+            var orig = new Rectangle(1, 2, 10, 15);
+            var unionOperand = new Rectangle(orig.MaxExtent - (3, 4), (13, 17));
+
+            var union = Rectangle.GetUnion(orig, unionOperand);
+            var exactUnion = Rectangle.GetExactUnion(orig, unionOperand);
+
+            var expectedUnion = new Rectangle(orig.MinExtent, unionOperand.MaxExtent);
+            Assert.Equal(expectedUnion, union);
+            Assert.Equal(expectedUnion, exactUnion.Bounds);
+            foreach (var pos in expectedUnion.Positions())
+            {
+                bool inSet = orig.Contains(pos) || unionOperand.Contains(pos);
+                Assert.Equal(inSet, exactUnion.Contains(pos));
+            }
+        }
+
+        [Fact]
+        public void TestIntersection()
+        {
+            var orig = new Rectangle(1, 2, 10, 15);
+            var intersectOperand = new Rectangle(orig.MaxExtent - (3, 4), (13, 17));
+
+            var intersection = Rectangle.GetIntersection(orig, intersectOperand);
+            Assert.True(orig.Contains(intersection));
+            Assert.True(intersectOperand.Contains(intersection));
+            foreach (var pos in new Rectangle(orig.MinExtent, intersectOperand.MaxExtent).Positions())
+            {
+                bool inSet = orig.Contains(pos) && intersectOperand.Contains(pos);
+                Assert.Equal(inSet, intersection.Contains(pos));
+            }
+        }
+
+        [Fact]
+        public void GetIntersectionNoIntersect()
+        {
+            var orig = new Rectangle(1, 2, 3, 4);
+            var intersect = new Rectangle(orig.MaxExtent + 1, (5, 6));
+
+            Assert.Equal(Rectangle.Empty, Rectangle.GetIntersection(orig, intersect));
+        }
         #endregion
 
         [Fact]
@@ -270,6 +561,15 @@ namespace SadRogue.Primitives.UnitTests
 
             var set3 = rect3.Positions().ToEnumerable().ToHashSet();
             Assert.Empty(set3);
+        }
+
+        private static void CheckRect(Rectangle rect, Point position, int width, int height)
+        {
+            Assert.Equal(position, rect.Position);
+            Assert.Equal(position, rect.MinExtent);
+            Assert.Equal(position + (width - 1, height - 1), rect.MaxExtent);
+            Assert.Equal(width, rect.Width);
+            Assert.Equal(height, rect.Height);
         }
     }
 }

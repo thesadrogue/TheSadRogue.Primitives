@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using SadRogue.Primitives.GridViews;
 using SadRogue.Primitives.UnitTests.Mocks;
@@ -116,6 +117,7 @@ namespace SadRogue.Primitives.UnitTests.GridViews
             Assert.Equal(expected, result);
         }
 
+        [SuppressMessage("ReSharper", "ParameterOnlyUsedForPreconditionCheck.Local")]
         private static void CheckViewportBounds(SettableViewport<bool> viewport, Point expectedMinCorner,
                                                 Point expectedMaxCorner)
         {

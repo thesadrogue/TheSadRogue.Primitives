@@ -42,7 +42,7 @@
 
   <!-- Dependencies -->
   <ItemGroup>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All"/>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
     <PackageReference Include="SFML.Graphics" Version="2.5.0" />
     <PackageReference Include="TheSadRogue.Primitives" Version="1.*" />
   </ItemGroup>

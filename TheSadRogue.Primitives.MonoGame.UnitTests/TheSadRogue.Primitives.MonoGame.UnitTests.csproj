@@ -1,32 +1,32 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <TargetFramework>net6.0</TargetFramework>
-        <LangVersion>8</LangVersion>
-        <Nullable>enable</Nullable>
-        <IsPackable>false</IsPackable>
-        <RootNamespace>SadRogue.Primitives.MonoGame.UnitTests</RootNamespace>
-        
-    </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <LangVersion>8</LangVersion>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+    <RootNamespace>SadRogue.Primitives.MonoGame.UnitTests</RootNamespace>
 
-    <ItemGroup>
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
-        <PackageReference Include="xunit" Version="2.4.1" />
-        <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-            <PrivateAssets>all</PrivateAssets>
-        </PackageReference>
-        <PackageReference Include="coverlet.collector" Version="3.1.2">
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-            <PrivateAssets>all</PrivateAssets>
-        </PackageReference>
-        <PackageReference Include="XUnit.ValueTuples" Version="1.0.1" />
-    </ItemGroup>
+  </PropertyGroup>
 
-    <ItemGroup>
-        <ProjectReference Include="..\TheSadRogue.Primitives.MonoGame\TheSadRogue.Primitives.MonoGame.csproj" />
-    </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.1"/>
+    <PackageReference Include="xunit" Version="2.4.2"/>
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="coverlet.collector" Version="3.2.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="XUnit.ValueTuples" Version="1.0.1"/>
+  </ItemGroup>
 
-    <Import Project="..\TheSadRogue.Primitives.UnitTests.Shared\TheSadRogue.Primitives.UnitTests.Shared.projitems" Label="Shared" />
+  <ItemGroup>
+    <ProjectReference Include="..\TheSadRogue.Primitives.MonoGame\TheSadRogue.Primitives.MonoGame.csproj"/>
+  </ItemGroup>
+
+  <Import Project="..\TheSadRogue.Primitives.UnitTests.Shared\TheSadRogue.Primitives.UnitTests.Shared.projitems" Label="Shared"/>
 
 </Project>

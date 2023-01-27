@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
@@ -7,11 +6,6 @@ namespace SadRogue.Primitives.UnitTests
 {
     public class PointTests
     {
-
-        #region Test Data
-        private readonly Rectangle _testPositions = new Rectangle((10, 20), 39, 27);
-        #endregion
-
         #region BearingOfLine
 
         [Theory]

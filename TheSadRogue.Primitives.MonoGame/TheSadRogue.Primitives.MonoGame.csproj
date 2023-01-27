@@ -2,50 +2,47 @@
 
   <PropertyGroup>
     <!-- Basic package info -->
-    <TargetFrameworks>netstandard2.1;netcoreapp3.1;net5.0;net6.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.1;netcoreapp3.1;net5.0;net6.0;net7.0</TargetFrameworks>
     <RootNamespace>SadRogue.Primitives</RootNamespace>
     <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
-	<Version>1.0.1</Version>
-	<Version Condition="'$(Configuration)'=='Debug'">$(Version)-debug</Version>
-	<Authors>Chris3606;Thraka</Authors>
-	<Company>TheSadRogue</Company>
-	<Copyright>Copyright © 2021 [Christopher Ridley (Chris3606) and TheSadRogue Steve De George JR (Thraka)]</Copyright>
-	<Description>A collection of extension methods that allow TheSadRogue.Primitives types to easily interface with MonoGame's equivalents.</Description>
-
-	<!-- More nuget package settings-->
-	<PackageId>TheSadRogue.Primitives.MonoGame</PackageId>
-	<PackageReleaseNotes>Multi-targeted to .NET 6.  Updated to depend on most recent 1.x release of core primitives.</PackageReleaseNotes>
-	<RepositoryUrl>https://github.com/thesadrogue/TheSadRogue.Primitives</RepositoryUrl>
-	<RepositoryType>git</RepositoryType>
-	<PublishRepositoryUrl>true</PublishRepositoryUrl>
-	<PackageLicenseExpression>MIT</PackageLicenseExpression>
-	<IncludeSymbols>true</IncludeSymbols>
+    <Version>1.1.0</Version>
+    <Version Condition="'$(Configuration)'=='Debug'">$(Version)-debug</Version>
+    <Authors>Chris3606;Thraka</Authors>
+    <Company>TheSadRogue</Company>
+    <Copyright>Copyright © 2023 [Christopher Ridley (Chris3606) and TheSadRogue Steve De George JR (Thraka)]</Copyright>
+    <Description>A collection of extension methods that allow TheSadRogue.Primitives types to easily interface with MonoGame's equivalents.</Description>
+  
+    <!-- More nuget package settings-->
+    <PackageId>TheSadRogue.Primitives.MonoGame</PackageId>
+    <PackageReleaseNotes>Multi-targeted to .NET 7.</PackageReleaseNotes>
+    <RepositoryUrl>https://github.com/thesadrogue/TheSadRogue.Primitives</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <IncludeSymbols>true</IncludeSymbols>
     <IncludeSource>true</IncludeSource>
-	<SymbolPackageFormat>snupkg</SymbolPackageFormat>
-	<PackageTags>2d;grid;primitives;point;rectangle;game;development;standard;monogame;sadrogue;thesadrogue;extensions</PackageTags>
-	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\$(Configuration)\netstandard2.0\TheSadRogue.Primitives.MonoGame.xml</DocumentationFile>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PackageTags>2d;grid;primitives;point;rectangle;game;development;standard;monogame;sadrogue;thesadrogue;extensions</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <CheckEolTargetFramework Condition="$(TargetFramework.StartsWith('net5.0')) == true">false</CheckEolTargetFramework>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>TRACE</DefineConstants>
-    <DocumentationFile>bin\$(Configuration)\netstandard2.0\TheSadRogue.Primitives.MonoGame.xml</DocumentationFile>
   </PropertyGroup>
 
   <!-- Dependencies -->
   <ItemGroup>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
-    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641" />
-    <PackageReference Include="TheSadRogue.Primitives" Version="1.*" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All"/>
+    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641"/>
+    <PackageReference Include="TheSadRogue.Primitives" Version="1.*"/>
   </ItemGroup>
 
   <!-- When packing, copy the nuget files to the nuget output directory -->
   <Target Name="CopyPackage" AfterTargets="Pack">
-    <Copy SourceFiles="$(OutputPath)\$(PackageId).$(PackageVersion).nupkg" DestinationFolder="$(OutputPath)..\..\..\nuget" />
-    <Copy SourceFiles="$(OutputPath)\$(PackageId).$(PackageVersion).snupkg" DestinationFolder="$(OutputPath)..\..\..\nuget" />
+    <Copy SourceFiles="$(OutputPath)\$(PackageId).$(PackageVersion).nupkg" DestinationFolder="$(OutputPath)..\..\..\nuget"/>
+    <Copy SourceFiles="$(OutputPath)\$(PackageId).$(PackageVersion).snupkg" DestinationFolder="$(OutputPath)..\..\..\nuget"/>
   </Target>
 </Project>

@@ -34,6 +34,14 @@ namespace SadRogue.Primitives.UnitTests
 
         [Theory]
         [MemberDataEnumerable(nameof(RadiusCases))]
+        public void IsOutlineTest(int radius)
+        {
+            foreach (var point in Shapes.GetCircle(s_center, radius - 1))
+                Assert.DoesNotContain(Shapes.GetCircle(s_center, radius), i => i == point);
+        }
+
+        [Theory]
+        [MemberDataEnumerable(nameof(RadiusCases))]
         public void EquivalentToSimpleImplementation(int radius)
         {
             var simple = SimpleCircle(s_center, radius).ToHashSet();

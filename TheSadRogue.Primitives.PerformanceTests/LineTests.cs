@@ -34,9 +34,9 @@ public class LineTests
 
     [Benchmark]
     [ArgumentsSource(nameof(GoRogueLineAlgorithms))]
-    public void GetPointsOnLine(Shapes.LineAlgorithm algo)
-        => Shapes.GetLine(LineToDraw.start, LineToDraw.end, algo).Consume(_consumer);
+    public void GetPointsOnLine(ShapeAlgorithms.LineAlgorithm algo)
+        => ShapeAlgorithms.GetLine(LineToDraw.start, LineToDraw.end, algo).Consume(_consumer);
 
-    public static IEnumerable<Shapes.LineAlgorithm> GoRogueLineAlgorithms()
-        => Enum.GetValues<Shapes.LineAlgorithm>();
+    public static IEnumerable<ShapeAlgorithms.LineAlgorithm> GoRogueLineAlgorithms()
+        => Enum.GetValues<ShapeAlgorithms.LineAlgorithm>();
 }

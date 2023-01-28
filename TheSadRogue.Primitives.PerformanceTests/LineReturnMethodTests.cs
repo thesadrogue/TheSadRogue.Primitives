@@ -107,7 +107,7 @@ public class LineReturnMethodTests
     public int BresenhamIEnumerable()
     {
         int sum = 0;
-        foreach (var pos in Lines.Get(LineToDraw.start, LineToDraw.end, Lines.Algorithm.Bresenham))
+        foreach (var pos in Shapes.GetLine(LineToDraw.start, LineToDraw.end, Shapes.LineAlgorithm.Bresenham))
             sum += pos.X + pos.Y;
 
         return sum;

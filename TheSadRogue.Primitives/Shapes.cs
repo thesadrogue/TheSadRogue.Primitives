@@ -4,15 +4,15 @@ using System.Collections.Generic;
 namespace SadRogue.Primitives
 {
     /// <summary>
-    /// Provides implementations of various (line-drawing) algorithms which are useful for
-    /// for generating points closest to a line between two points on a grid.
+    /// Provides implementations of various shape-drawing algorithms which are useful for
+    /// for generating shapes on a 2D integer grid.  These include lines, circles, etc.
     /// </summary>
-    public static class Lines
+    public static class Shapes
     {
         /// <summary>
         /// Various supported line-drawing algorithms.
         /// </summary>
-        public enum Algorithm
+        public enum LineAlgorithm
         {
             /// <summary>
             /// Bresenham line algorithm.  Points are guaranteed to be in order from start to finish.
@@ -50,8 +50,8 @@ namespace SadRogue.Primitives
         /// An IEnumerable of every point, in order, closest to a line between the two points
         /// specified (according to the algorithm given).
         /// </returns>
-        public static IEnumerable<Point> Get(Point start, Point end, Algorithm type = Algorithm.Bresenham)
-            => Get(start.X, start.Y, end.X, end.Y, type);
+        public static IEnumerable<Point> GetLine(Point start, Point end, LineAlgorithm type = LineAlgorithm.Bresenham)
+            => GetLine(start.X, start.Y, end.X, end.Y, type);
 
         /// <summary>
         /// Returns an IEnumerable of every point, in order, closest to a line between the two points
@@ -67,24 +67,58 @@ namespace SadRogue.Primitives
         /// An IEnumerable of every point, in order, closest to a line between the two points
         /// specified (according to the algorithm given).
         /// </returns>
-        public static IEnumerable<Point> Get(int startX, int startY, int endX, int endY,
-                                             Algorithm type = Algorithm.Bresenham)
+        public static IEnumerable<Point> GetLine(int startX, int startY, int endX, int endY,
+                                             LineAlgorithm type = LineAlgorithm.Bresenham)
         {
             switch (type)
             {
-                case Algorithm.Bresenham:
+                case LineAlgorithm.Bresenham:
                     return Bresenham(startX, startY, endX, endY);
 
-                case Algorithm.DDA:
+                case LineAlgorithm.DDA:
                     return DDA(startX, startY, endX, endY);
 
-                case Algorithm.Orthogonal:
+                case LineAlgorithm.Orthogonal:
                     return Ortho(startX, startY, endX, endY);
 
                 default:
-                    throw new ArgumentException("Unsupported line-drawing algorithm.", nameof(type)); // Should not occur
+                    throw new ArgumentException("Unsupported line-drawing algorithm.", nameof(type));
             }
         }
+
+        /// <summary>
+        /// Gets the points on the outside of a circle.
+        /// </summary>
+        /// <param name="center">Center of the circle.</param>
+        /// <param name="radius">The radius of the circle.</param>
+        public static IEnumerable<Point> GetCircle(Point center, int radius)
+            => Circle(center.X, center.Y, radius);
+
+
+        private static IEnumerable<Point> Circle(int centerX, int centerY, int radius)
+        {
+            int xi = -radius, yi = 0, err = 2 - 2 * radius; /* II. Quadrant */
+            do
+            {
+                yield return new Point(centerX - xi, centerY + yi); /*   I. Quadrant */
+                yield return new Point(centerX - yi, centerY - xi); /*  II. Quadrant */
+                yield return new Point(centerX + xi, centerY - yi); /* III. Quadrant */
+                yield return new Point(centerX + yi, centerY + xi); /*  IV. Quadrant */
+                // plot(centerX - xi, centerY + yi); /*   I. Quadrant */
+                // plot(centerX - yi, centerY - xi); /*  II. Quadrant */
+                // plot(centerX + xi, centerY - yi); /* III. Quadrant */
+                // plot(centerX + yi, centerY + xi); /*  IV. Quadrant */
+                radius = err;
+                if (radius <= yi)
+                    err += ++yi * 2 + 1;           /* e_xy+e_y < 0 */
+
+                if (radius > xi || err > yi)
+                    err += ++xi * 2 + 1; /* e_xy+e_x > 0 or no 2nd y-step */
+
+            } while (xi < 0);
+        }
+
+        // TODO: Ellipse
 
         private static IEnumerable<Point> Bresenham(int startX, int startY, int endX, int endY)
         {

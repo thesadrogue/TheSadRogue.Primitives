@@ -118,8 +118,8 @@ public class CircleTests
     {
         int sum = 0;
 
-        void Plot(Point point) => sum += point.X + point.Y;
-        PlotShapes.GetCircle(Center, Radius, Plot);
+        void PlotFunc(Point point) => sum += point.X + point.Y;
+        PlotShapes.GetCircle(Center, Radius, PlotFunc);
 
         return sum;
     }

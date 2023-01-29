@@ -94,7 +94,7 @@ public class CircleTests
 
     #region Circle
     [Benchmark]
-    public int PrimitivesCircle()
+    public int Primitives()
     {
         int sum = 0;
         foreach (var point in Shapes.GetCircle(Center, Radius))
@@ -103,7 +103,7 @@ public class CircleTests
         return sum;
     }
     [Benchmark]
-    public int PrimitivesCircleToEnumerable()
+    public int PrimitivesToEnumerable()
     {
         int sum = 0;
         foreach (var point in Shapes.GetCircle(Center, Radius).ToEnumerable())
@@ -114,7 +114,7 @@ public class CircleTests
 
 
     [Benchmark]
-    public int PlotCircle()
+    public int Plot()
     {
         int sum = 0;
 
@@ -125,7 +125,7 @@ public class CircleTests
     }
 
     [Benchmark]
-    public int YieldReturnCircle()
+    public int YieldReturn()
     {
         int sum = 0;
         foreach (var point in YieldReturnEnumerableShapes.GetCircle(Center, Radius))
@@ -143,7 +143,7 @@ public class EllipseTests
     public (Point f1, Point f2) Ellipse;
 
     [Benchmark]
-    public int PrimitivesEllipse()
+    public int Primitives()
     {
         int sum = 0;
         foreach (var point in Shapes.GetEllipse(Ellipse.f1, Ellipse.f2))
@@ -153,7 +153,7 @@ public class EllipseTests
     }
 
     [Benchmark]
-    public int PrimitivesEllipseToEnumerable()
+    public int PrimitivesToEnumerable()
     {
         int sum = 0;
         foreach (var point in Shapes.GetEllipse(Ellipse.f1, Ellipse.f2).ToEnumerable())
@@ -163,7 +163,7 @@ public class EllipseTests
     }
 
     [Benchmark]
-    public int YieldReturnEllipse()
+    public int YieldReturn()
     {
         int sum = 0;
         foreach (var point in YieldReturnEnumerableShapes.GetEllipse(Ellipse.f1.X, Ellipse.f1.Y, Ellipse.f2.X, Ellipse.f2.Y))

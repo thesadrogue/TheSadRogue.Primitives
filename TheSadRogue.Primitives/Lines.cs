@@ -383,6 +383,7 @@ namespace SadRogue.Primitives
                     return true;
             }
 
+            // Unreachable
             return false;
         }
 
@@ -708,7 +709,7 @@ namespace SadRogue.Primitives
         /// </returns>
         public static IEnumerable<Point> GetLine(int startX, int startY, int endX, int endY,
                                                  Algorithm type = Algorithm.Bresenham)
-            => GetLine(new Point(startX, startY), new Point(endX, endY));
+            => GetLine(new Point(startX, startY), new Point(endX, endY), type);
 
         /// <summary>
         /// Returns all points on the given line using Bresenham's line algorithm.

@@ -91,6 +91,7 @@ namespace SadRogue.Primitives
                     return true;
             }
 
+            // Unreachable
             return false;
         }
 
@@ -260,6 +261,7 @@ namespace SadRogue.Primitives
                     return true;
             }
 
+            // Unreachable
             return false;
         }
 

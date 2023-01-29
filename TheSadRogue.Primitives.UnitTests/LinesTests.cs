@@ -286,10 +286,21 @@ namespace SadRogue.Primitives.UnitTests
                 Assert.True(expectedBounds.Contains(point));
         }
 
+        [Theory]
+        [MemberDataTuple(nameof(AllTestCases))]
+        public void LineOverloadsEquivalent(Lines.Algorithm algo, (Point start, Point end) points)
+        {
+            var expected = Lines.GetLine(points.start, points.end, algo);
+            var actual = Lines.GetLine(points.start.X, points.start.Y, points.end.X, points.end.Y, algo);
+
+            Assert.Equal(expected, actual);
+        }
+
         [Fact]
         public void BadAlgorithmTest()
         {
             Assert.Throws<ArgumentException>(() => Lines.GetLine((1, 2), (3, 4), (Lines.Algorithm)100));
+            Assert.Throws<ArgumentException>(() => Lines.GetLine(1, 2, 3, 4, (Lines.Algorithm)100));
         }
 
         [Theory]

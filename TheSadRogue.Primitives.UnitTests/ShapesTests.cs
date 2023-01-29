@@ -18,7 +18,7 @@ namespace SadRogue.Primitives.UnitTests
         [MemberDataEnumerable(nameof(RadiusCases))]
         public void BoundsTest(int radius)
         {
-            var circle = CircleToHashSetDirect(ShapeAlgorithms.GetCircle(s_center, radius));
+            var circle = CircleToHashSetDirect(Shapes.GetCircle(s_center, radius));
 
             var bounds = new Rectangle(s_center, radius, radius);
 
@@ -37,9 +37,9 @@ namespace SadRogue.Primitives.UnitTests
         [MemberDataEnumerable(nameof(RadiusCases))]
         public void IsOutlineTest(int radius)
         {
-            var outer = CircleToHashSetDirect(ShapeAlgorithms.GetCircle(s_center, radius));
+            var outer = CircleToHashSetDirect(Shapes.GetCircle(s_center, radius));
 
-            foreach (var point in ShapeAlgorithms.GetCircle(s_center, radius - 1))
+            foreach (var point in Shapes.GetCircle(s_center, radius - 1))
                 Assert.DoesNotContain(point, outer);
         }
 
@@ -48,7 +48,7 @@ namespace SadRogue.Primitives.UnitTests
         public void EquivalentToSimpleImplementation(int radius)
         {
             var simple = SimpleCircle(s_center, radius).ToHashSet();
-            var actual = CircleToHashSetDirect(ShapeAlgorithms.GetCircle(s_center, radius));
+            var actual = CircleToHashSetDirect(Shapes.GetCircle(s_center, radius));
 
             Assert.Equal(simple, actual);
         }
@@ -58,11 +58,22 @@ namespace SadRogue.Primitives.UnitTests
         public void EnumerableEquivalentToCustomIterator(int radius)
         {
             var points = new List<Point>();
-            foreach (var point in ShapeAlgorithms.GetCircle(s_center, radius))
+            foreach (var point in Shapes.GetCircle(s_center, radius))
                 points.Add(point);
 
-            var enumerable = ShapeAlgorithms.GetCircle(s_center, radius).ToEnumerable().ToList();
+            var enumerable = Shapes.GetCircle(s_center, radius).ToEnumerable().ToList();
             Assert.Equal((IEnumerable<Point>)points, enumerable);
+        }
+
+        [Fact]
+        public void ZeroRadiusCircle()
+        {
+            var points = CircleToHashSetDirect(Shapes.GetCircle(s_center, 0));
+            var enumerable = Shapes.GetCircle(s_center, 0).ToEnumerable().ToHashSet();
+
+            Assert.Single(points);
+            Assert.Contains(s_center, points);
+            Assert.Equal(points, enumerable);
         }
 
         private HashSet<Point> CircleToHashSetDirect(CirclePositionsEnumerable enumerable)

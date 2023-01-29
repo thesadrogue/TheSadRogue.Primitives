@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using BenchmarkDotNet.Attributes;
 using SadRogue.Primitives;
@@ -62,7 +61,7 @@ public class ShapeTests
     public int PrimitivesCircle()
     {
         int sum = 0;
-        foreach (var point in ShapeAlgorithms.GetCircle(Center, Radius))
+        foreach (var point in Shapes.GetCircle(Center, Radius))
             sum += point.X + point.Y;
 
         return sum;
@@ -71,7 +70,7 @@ public class ShapeTests
     public int PrimitivesCircleToEnumerable()
     {
         int sum = 0;
-        foreach (var point in ShapeAlgorithms.GetCircle(Center, Radius).ToEnumerable())
+        foreach (var point in Shapes.GetCircle(Center, Radius).ToEnumerable())
             sum += point.X + point.Y;
 
         return sum;

@@ -118,7 +118,7 @@ namespace SadRogue.Primitives
             // foreach (var pos in this)
             //    yield return pos
             //
-            // However, this is slightly faster.
+            // However, this is notably faster.
             do
             {
                 yield return new Point(_center.X - _xi, _center.Y + _yi); /*   I. Quadrant */
@@ -145,6 +145,12 @@ namespace SadRogue.Primitives
         /// <summary>
         /// Gets the points on the outside of a circle.
         /// </summary>
+        /// <remarks>
+        /// This function returns a custom iterator which is very fast when used in a foreach loop.
+        /// If you need an IEnumerable to use with LINQ or other code, you can take the result of this function and
+        /// call <see cref="CirclePositionsEnumerable.ToEnumerable()"/> on it; however note that iterating over
+        /// this will not perform as well as iterating directly over this object.
+        /// </remarks>
         /// <param name="center">Center of the circle.</param>
         /// <param name="radius">The radius of the circle.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

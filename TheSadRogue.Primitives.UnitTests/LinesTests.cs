@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Xunit;
 using XUnit.ValueTuples;
 
@@ -12,7 +14,7 @@ namespace SadRogue.Primitives.UnitTests
         private const int ModifierX = 0x7fff;
         private const int ModifierY = 0x7fff;
 
-        private static IEnumerable<Point> Bresenham(int startX, int startY, int endX, int endY)
+        public static IEnumerable<Point> Bresenham(int startX, int startY, int endX, int endY)
         {
             int w = endX - startX;
             int h = endY - startY;
@@ -53,7 +55,7 @@ namespace SadRogue.Primitives.UnitTests
             }
         }
 
-        private static IEnumerable<Point> DDA(int startX, int startY, int endX, int endY)
+        public static IEnumerable<Point> DDA(int startX, int startY, int endX, int endY)
         {
             int dx = endX - startX;
             int dy = endY - startY;
@@ -150,7 +152,7 @@ namespace SadRogue.Primitives.UnitTests
             }
         }
 
-        private static IEnumerable<Point> Ortho(int startX, int startY, int endX, int endY)
+        public static IEnumerable<Point> Ortho(int startX, int startY, int endX, int endY)
         {
             int dx = endX - startX;
             int dy = endY - startY;
@@ -290,6 +292,53 @@ namespace SadRogue.Primitives.UnitTests
         public void BadAlgorithmTest()
         {
             Assert.Throws<ArgumentException>(() => Lines.GetLine((1, 2), (3, 4), (Lines.Algorithm)100));
+        }
+
+        [Theory]
+        [MemberDataTuple(nameof(AllTestCases))]
+        public void EquivalentToSimpleImplementation(Lines.Algorithm algo, (Point start, Point end) points)
+        {
+            Func<int, int, int, int, IEnumerable<Point>> expectedFunc = algo switch
+            {
+                Lines.Algorithm.Bresenham => SimpleAlgorithms.Bresenham,
+                Lines.Algorithm.DDA => SimpleAlgorithms.DDA,
+                Lines.Algorithm.Orthogonal => SimpleAlgorithms.Ortho,
+                _ => throw new Exception("Unsupported algorithm."),
+            };
+
+            var expected = expectedFunc(points.start.X, points.start.Y, points.end.X, points.end.Y);
+            var actual = Lines.GetLine(points.start, points.end, algo);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [MemberDataTuple(nameof(AllTestCases))]
+        public void FastIteratorsAreEquivalent(Lines.Algorithm algo, (Point start, Point end) points)
+        {
+            // TODO: Temporary shim; remove before merge!
+            if (algo == Lines.Algorithm.Orthogonal)
+                return;
+            var fastResult = new List<Point>();
+            switch (algo)
+            {
+                case Lines.Algorithm.Bresenham:
+                    foreach (var point in Lines.GetBresenhamLine(points.start, points.end))
+                        fastResult.Add(point);
+                    break;
+                case Lines.Algorithm.DDA:
+                    foreach (var point in Lines.GetDDALine(points.start, points.end))
+                        fastResult.Add(point);
+                    break;
+                // case Lines.Algorithm.Orthogonal:
+                //     foreach (var point in Lines.GetOrthogonalLine(points.start, points.end))
+                //         fastResult.Add(point);
+                //     break;
+            }
+
+            var enumerableResult = Lines.GetLine(points.start, points.end, algo).ToList();
+
+            Assert.Equal(fastResult, enumerableResult);
         }
     }
 }

@@ -5,16 +5,18 @@ using System.Runtime.CompilerServices;
 namespace SadRogue.Primitives
 {
     /// <summary>
-    /// A custom enumerator used to iterate over all positions on the on a line using Bresenham's line algorithm,
-    /// with a foreach loop efficiently.
-    /// Generally, you should use <see cref="Lines.GetBresenhamLine"/> to get an instance of this.
+    /// A custom enumerator used to iterate over all positions on the on a line using the
+    /// <see cref="Lines.Algorithm.Bresenham"/> line algorithm efficiently.
+    ///
+    /// Generally, you should use <see cref="Lines.GetBresenhamLine(SadRogue.Primitives.Point,SadRogue.Primitives.Point)"/>
+    /// to get an instance of this, rather than creating one yourself.
     /// </summary>
     /// <remarks>
-    /// This type is a struct, and as such is much more efficient than using the otherwise equivalent type of
-    /// IEnumerable&lt;Point&gt; with "yield return".  The type does contain a function <see cref="ToEnumerable"/> which
-    /// creates an IEnumerable&lt;Point&gt;, which can be convenient for allowing the returned positions to be used with
-    /// LINQ; however using this function is not recommended in situations where runtime performance is a primary
-    /// concern.
+    /// This type is a struct, and as such is much more efficient when used in a foreach loop than a function returning
+    /// IEnumerable&lt;Point&gt; by using "yield return".  This type does contain a function <see cref="ToEnumerable"/>
+    /// which creates an IEnumerable&lt;Point&gt;, which can be convenient for allowing the
+    /// returned positions to be used with LINQ; however using this function is not recommended in situations where
+    /// runtime performance is a primary concern.
     /// </remarks>
     public struct BresenhamEnumerable
     {
@@ -44,7 +46,7 @@ namespace SadRogue.Primitives
         private int _idx;
 
         /// <summary>
-        /// Creates an enumerator which iterates over all positions on the outside of the given circle.
+        /// Creates an enumerator which iterates over all positions on the line.
         /// </summary>
         /// <param name="start">Starting point for the line.</param>
         /// <param name="end">Ending point for the line.</param>
@@ -156,16 +158,18 @@ namespace SadRogue.Primitives
     }
 
     /// <summary>
-    /// A custom enumerator used to iterate over all positions on the on a line using the DDA line algorithm,
-    /// with a foreach loop efficiently.
-    /// Generally, you should use <see cref="Lines.GetDDALine"/> to get an instance of this.
+    /// A custom enumerator used to iterate over all positions on the on a line using the
+    /// <see cref="Lines.Algorithm.DDA"/> line algorithm efficiently.
+    ///
+    /// Generally, you should use <see cref="Lines.GetDDALine(SadRogue.Primitives.Point,SadRogue.Primitives.Point)"/>
+    /// to get an instance of this, rather than creating one yourself.
     /// </summary>
     /// <remarks>
-    /// This type is a struct, and as such is much more efficient than using the otherwise equivalent type of
-    /// IEnumerable&lt;Point&gt; with "yield return".  The type does contain a function <see cref="ToEnumerable"/> which
-    /// creates an IEnumerable&lt;Point&gt;, which can be convenient for allowing the returned positions to be used with
-    /// LINQ; however using this function is not recommended in situations where runtime performance is a primary
-    /// concern.
+    /// This type is a struct, and as such is much more efficient when used in a foreach loop than a function returning
+    /// IEnumerable&lt;Point&gt; by using "yield return".  This type does contain a function <see cref="ToEnumerable"/>
+    /// which creates an IEnumerable&lt;Point&gt;, which can be convenient for allowing the
+    /// returned positions to be used with LINQ; however using this function is not recommended in situations where
+    /// runtime performance is a primary concern.
     /// </remarks>
     public struct DDAEnumerable
     {
@@ -193,7 +197,7 @@ namespace SadRogue.Primitives
         private const int ModifierY = 0x7fff;
 
         /// <summary>
-        /// Creates an enumerator which iterates over all positions on the outside of the given circle.
+        /// Creates an enumerator which iterates over all positions on the line.
         /// </summary>
         /// <param name="start">Starting point for the line.</param>
         /// <param name="end">Ending point for the line.</param>
@@ -403,7 +407,7 @@ namespace SadRogue.Primitives
         /// note that it is NOT recommended to use this function in cases where performance is critical.
         /// </remarks>
         /// <returns>
-        /// An IEnumerable&lt;Point&gt; which iterates over all positions on the line according to Bresenham's line
+        /// An IEnumerable&lt;Point&gt; which iterates over all positions on the line according to the DDA line
         /// algorithm.
         /// </returns>
         public IEnumerable<Point> ToEnumerable()
@@ -471,16 +475,18 @@ namespace SadRogue.Primitives
     }
 
     /// <summary>
-    /// A custom enumerator used to iterate over all positions on the on a line according to the
-    /// <see cref="Lines.Algorithm.Orthogonal"/> line algorithm, with a foreach loop efficiently.
-    /// Generally, you should use <see cref="Lines.GetOrthogonalLine"/> to get an instance of this.
+    /// A custom enumerator used to iterate over all positions on the on a line using the
+    /// <see cref="Lines.Algorithm.Orthogonal"/> line algorithm efficiently.
+    ///
+    /// Generally, you should use <see cref="Lines.GetOrthogonalLine(SadRogue.Primitives.Point,SadRogue.Primitives.Point)"/>
+    /// to get an instance of this, rather than creating one yourself.
     /// </summary>
     /// <remarks>
-    /// This type is a struct, and as such is much more efficient than using the otherwise equivalent type of
-    /// IEnumerable&lt;Point&gt; with "yield return".  The type does contain a function <see cref="ToEnumerable"/> which
-    /// creates an IEnumerable&lt;Point&gt;, which can be convenient for allowing the returned positions to be used with
-    /// LINQ; however using this function is not recommended in situations where runtime performance is a primary
-    /// concern.
+    /// This type is a struct, and as such is much more efficient when used in a foreach loop than a function returning
+    /// IEnumerable&lt;Point&gt; by using "yield return".  This type does contain a function <see cref="ToEnumerable"/>
+    /// which creates an IEnumerable&lt;Point&gt;, which can be convenient for allowing the
+    /// returned positions to be used with LINQ; however using this function is not recommended in situations where
+    /// runtime performance is a primary concern.
     /// </remarks>
     public struct OrthogonalEnumerable
     {
@@ -506,8 +512,7 @@ namespace SadRogue.Primitives
         private readonly int _signY;
 
         /// <summary>
-        /// Creates an enumerator which iterates over all positions on the line, according to the
-        /// <see cref="Lines.Algorithm.Orthogonal"/> line algorithm.
+        /// Creates an enumerator which iterates over all positions on the line.
         /// </summary>
         /// <param name="start">Starting point for the line.</param>
         /// <param name="end">Ending point for the line.</param>
@@ -583,7 +588,7 @@ namespace SadRogue.Primitives
         /// note that it is NOT recommended to use this function in cases where performance is critical.
         /// </remarks>
         /// <returns>
-        /// An IEnumerable&lt;Point&gt; which iterates over all positions on the line according to Bresenham's line
+        /// An IEnumerable&lt;Point&gt; which iterates over all positions on the line according to the Orthogonal line
         /// algorithm.
         /// </returns>
         public IEnumerable<Point> ToEnumerable()
@@ -615,8 +620,8 @@ namespace SadRogue.Primitives
     }
 
     /// <summary>
-    /// Provides implementations of various line-drawing algorithms which are useful for
-    /// for generating lines on a 2D integer grid.
+    /// Provides implementations of various line-drawing algorithms which are useful for generating lines on a 2D
+    /// integer grid.
     /// </summary>
     public static class Lines
     {
@@ -650,18 +655,21 @@ namespace SadRogue.Primitives
         /// <summary>
         /// Returns an IEnumerable of every point, in order, closest to a line between the two points
         /// specified, using the line drawing algorithm given. The start and end points will be included.
-        /// Slower than functions such as <see cref="GetBresenhamLine"/>, <see cref="GetDDALine"/>, and
-        /// <see cref="GetOrthogonalLine"/>.
+        /// Slower than functions such as <see cref="GetBresenhamLine(SadRogue.Primitives.Point,SadRogue.Primitives.Point)"/>,
+        /// <see cref="GetDDALine(SadRogue.Primitives.Point,SadRogue.Primitives.Point)"/>, and
+        /// <see cref="GetOrthogonalLine(SadRogue.Primitives.Point,SadRogue.Primitives.Point)"/>.
         /// </summary>
         /// <remarks>
         /// You should only use this function if you need a single function which takes an arbitrary line algorithm,
-        /// or you need an IEnumerable object specifically (for example), to use with LINQ.  If you know what line
+        /// or you need an IEnumerable object specifically (for example, to use with LINQ).  If you know what line
         /// algorithm you want to use and you just need to iterate over the points in a foreach loop, you should use
-        /// <see cref="GetBresenhamLine"/>, <see cref="GetDDALine"/>, and <see cref="GetOrthogonalLine"/> as applicable
-        /// instead, since they perform significantly better.
+        /// <see cref="GetBresenhamLine(SadRogue.Primitives.Point,SadRogue.Primitives.Point)"/>,
+        /// <see cref="GetDDALine(SadRogue.Primitives.Point,SadRogue.Primitives.Point)"/>,
+        /// and <see cref="GetOrthogonalLine(SadRogue.Primitives.Point,SadRogue.Primitives.Point)"/> as applicable
+        /// instead, since they offer significantly better performance.
         /// </remarks>
-        /// <param name="start">The start point of the line.</param>
-        /// <param name="end">The end point of the line.</param>
+        /// <param name="start">The starting point of the line.</param>
+        /// <param name="end">The ending point of the line.</param>
         /// <param name="type">The line-drawing algorithm to use to generate the line.</param>
         /// <returns>
         /// An IEnumerable of every point, in order, closest to a line between the two points
@@ -687,20 +695,22 @@ namespace SadRogue.Primitives
         /// <summary>
         /// Returns an IEnumerable of every point, in order, closest to a line between the two points
         /// specified, using the line drawing algorithm given. The start and end points will be included.
-        /// Slower than functions such as <see cref="GetBresenhamLine"/>, <see cref="GetDDALine"/>, and
-        /// <see cref="GetOrthogonalLine"/>.
+        /// Slower than functions such as <see cref="GetBresenhamLine(int, int, int, int)"/>,
+        /// <see cref="GetDDALine(int, int, int, int)"/>, and
+        /// <see cref="GetOrthogonalLine(int, int, int, int)"/>.
         /// </summary>
         /// <remarks>
         /// You should only use this function if you need a single function which takes an arbitrary line algorithm,
-        /// or you need an IEnumerable object specifically (for example), to use with LINQ.  If you know what line
+        /// or you need an IEnumerable object specifically (for example, to use with LINQ).  If you know what line
         /// algorithm you want to use and you just need to iterate over the points in a foreach loop, you should use
-        /// <see cref="GetBresenhamLine"/>, <see cref="GetDDALine"/>, and <see cref="GetOrthogonalLine"/> as applicable
-        /// instead, since they perform significantly better.
+        /// <see cref="GetBresenhamLine(int, int, int, int)"/>,
+        /// <see cref="GetDDALine(int, int, int, int)"/>,
+        /// and <see cref="GetOrthogonalLine(int, int, int, int)"/> as applicable
+        /// instead, since they offer significantly better performance.
         /// </remarks>
         /// <param name="startX">X-coordinate of the starting point of the line.</param>
         /// <param name="startY">Y-coordinate of the starting point of the line.</param>
         /// <param name="endX">X-coordinate of the ending point of the line.</param>
-        /// ///
         /// <param name="endY">Y-coordinate of the ending point of the line.</param>
         /// <param name="type">The line-drawing algorithm to use to generate the line.</param>
         /// <returns>
@@ -712,34 +722,92 @@ namespace SadRogue.Primitives
             => GetLine(new Point(startX, startY), new Point(endX, endY), type);
 
         /// <summary>
-        /// Returns all points on the given line using Bresenham's line algorithm.
+        /// Returns all points on the given line using the <see cref="Algorithm.Bresenham"/> line algorithm.
         /// </summary>
         /// <remarks>
         /// This function returns a custom iterator which is very fast when used in a foreach loop.
         /// If you need an IEnumerable to use with LINQ or other code, you can take the result of this function and
         /// call <see cref="BresenhamEnumerable.ToEnumerable()"/> on it; however note that iterating over
         /// this will not perform as well as iterating directly over this object.
+        ///
+        /// If you need a single function which takes any of the supported line drawing algorithms as a parameter and
+        /// uses that to draw, you should use <see cref="GetLine(SadRogue.Primitives.Point,SadRogue.Primitives.Point,SadRogue.Primitives.Lines.Algorithm)"/>;
+        /// however again this will be slower than using these functions directly.
         /// </remarks>
         /// <param name="start">The start point of the line.</param>
         /// <param name="end">The end point of the line.</param>
-        /// <returns></returns>
+        /// <returns>
+        /// Every point, in order, closest to a line between the two points specified (according to Bresenham's line algorithm).
+        /// </returns>
         public static BresenhamEnumerable GetBresenhamLine(Point start, Point end)
             => new BresenhamEnumerable(start, end);
 
         /// <summary>
-        /// Returns all points on the given line using the DDA line algorithm.
+        /// Returns all points on the given line using the <see cref="Algorithm.Bresenham"/> line algorithm.
+        /// </summary>
+        /// <remarks>
+        /// This function returns a custom iterator which is very fast when used in a foreach loop.
+        /// If you need an IEnumerable to use with LINQ or other code, you can take the result of this function and
+        /// call <see cref="BresenhamEnumerable.ToEnumerable()"/> on it; however note that iterating over
+        /// this will not perform as well as iterating directly over this object.
+        ///
+        /// If you need a single function which takes any of the supported line drawing algorithms as a parameter and
+        /// uses that to draw, you should use <see cref="GetLine(int, int, int, int,SadRogue.Primitives.Lines.Algorithm)"/>;
+        /// however again this will be slower than using these functions directly.
+        /// </remarks>
+        /// <param name="startX">X-coordinate of the starting point of the line.</param>
+        /// <param name="startY">Y-coordinate of the starting point of the line.</param>
+        /// <param name="endX">X-coordinate of the ending point of the line.</param>
+        /// <param name="endY">Y-coordinate of the ending point of the line.</param>
+        /// <returns>
+        /// Every point, in order, closest to a line between the two points specified (according to Bresenham's line algorithm).
+        /// </returns>
+        public static BresenhamEnumerable GetBresenhamLine(int startX, int startY, int endX, int endY)
+            => GetBresenhamLine(new Point(startX, startY), new Point(endX, endY));
+
+        /// <summary>
+        /// Returns all points on the given line using the <see cref="Algorithm.DDA"/> line algorithm.
         /// </summary>
         /// <remarks>
         /// This function returns a custom iterator which is very fast when used in a foreach loop.
         /// If you need an IEnumerable to use with LINQ or other code, you can take the result of this function and
         /// call <see cref="DDAEnumerable.ToEnumerable()"/> on it; however note that iterating over
         /// this will not perform as well as iterating directly over this object.
+        ///
+        /// If you need a single function which takes any of the supported line drawing algorithms as a parameter and
+        /// uses that to draw, you should use <see cref="GetLine(SadRogue.Primitives.Point,SadRogue.Primitives.Point,SadRogue.Primitives.Lines.Algorithm)"/>;
+        /// however again this will be slower than using these functions directly.
         /// </remarks>
         /// <param name="start">The start point of the line.</param>
         /// <param name="end">The end point of the line.</param>
-        /// <returns></returns>
+        /// <returns>
+        /// Every point, in order, closest to a line between the two points specified (according to the DDA line algorithm).
+        /// </returns>
         public static DDAEnumerable GetDDALine(Point start, Point end)
             => new DDAEnumerable(start, end);
+
+        /// <summary>
+        /// Returns all points on the given line using the <see cref="Algorithm.DDA"/> line algorithm.
+        /// </summary>
+        /// <remarks>
+        /// This function returns a custom iterator which is very fast when used in a foreach loop.
+        /// If you need an IEnumerable to use with LINQ or other code, you can take the result of this function and
+        /// call <see cref="DDAEnumerable.ToEnumerable()"/> on it; however note that iterating over
+        /// this will not perform as well as iterating directly over this object.
+        ///
+        /// If you need a single function which takes any of the supported line drawing algorithms as a parameter and
+        /// uses that to draw, you should use <see cref="GetLine(int, int, int, int,SadRogue.Primitives.Lines.Algorithm)"/>;
+        /// however again this will be slower than using these functions directly.
+        /// </remarks>
+        /// <param name="startX">X-coordinate of the starting point of the line.</param>
+        /// <param name="startY">Y-coordinate of the starting point of the line.</param>
+        /// <param name="endX">X-coordinate of the ending point of the line.</param>
+        /// <param name="endY">Y-coordinate of the ending point of the line.</param>
+        /// <returns>
+        /// Every point, in order, closest to a line between the two points specified (according to the DDA line algorithm).
+        /// </returns>
+        public static DDAEnumerable GetDDALine(int startX, int startY, int endX, int endY)
+            => GetDDALine(new Point(startX, startY), new Point(endX, endY));
 
         /// <summary>
         /// Returns all points on the given line using the <see cref="Algorithm.Orthogonal"/> line algorithm.
@@ -749,11 +817,40 @@ namespace SadRogue.Primitives
         /// If you need an IEnumerable to use with LINQ or other code, you can take the result of this function and
         /// call <see cref="OrthogonalEnumerable.ToEnumerable()"/> on it; however note that iterating over
         /// this will not perform as well as iterating directly over this object.
+        ///
+        /// If you need a single function which takes any of the supported line drawing algorithms as a parameter and
+        /// uses that to draw, you should use <see cref="GetLine(SadRogue.Primitives.Point,SadRogue.Primitives.Point,SadRogue.Primitives.Lines.Algorithm)"/>;
+        /// however again this will be slower than using these functions directly.
         /// </remarks>
         /// <param name="start">The start point of the line.</param>
         /// <param name="end">The end point of the line.</param>
-        /// <returns></returns>
+        /// <returns>
+        /// Every point, in order, closest to a line between the two points specified (according to the "orthogonal" line algorithm).
+        /// </returns>
         public static OrthogonalEnumerable GetOrthogonalLine(Point start, Point end)
             => new OrthogonalEnumerable(start, end);
+
+        /// <summary>
+        /// Returns all points on the given line using the <see cref="Algorithm.Orthogonal"/> line algorithm.
+        /// </summary>
+        /// <remarks>
+        /// This function returns a custom iterator which is very fast when used in a foreach loop.
+        /// If you need an IEnumerable to use with LINQ or other code, you can take the result of this function and
+        /// call <see cref="OrthogonalEnumerable.ToEnumerable()"/> on it; however note that iterating over
+        /// this will not perform as well as iterating directly over this object.
+        ///
+        /// If you need a single function which takes any of the supported line drawing algorithms as a parameter and
+        /// uses that to draw, you should use <see cref="GetLine(int, int, int, int, SadRogue.Primitives.Lines.Algorithm)"/>;
+        /// however again this will be slower than using these functions directly.
+        /// </remarks>
+        /// <param name="startX">X-coordinate of the starting point of the line.</param>
+        /// <param name="startY">Y-coordinate of the starting point of the line.</param>
+        /// <param name="endX">X-coordinate of the ending point of the line.</param>
+        /// <param name="endY">Y-coordinate of the ending point of the line.</param>
+        /// <returns>
+        /// Every point, in order, closest to a line between the two points specified (according to the "orthogonal" line algorithm).
+        /// </returns>
+        public static OrthogonalEnumerable GetOrthogonalLine(int startX, int startY, int endX, int endY)
+            => GetOrthogonalLine(new Point(startX, startY), new Point(endX, endY));
     }
 }

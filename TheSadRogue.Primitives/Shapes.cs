@@ -5,15 +5,17 @@ using System.Runtime.CompilerServices;
 namespace SadRogue.Primitives
 {
     /// <summary>
-    /// A custom enumerator used to iterate over all positions on the outside of a circle with a foreach loop efficiently.
-    /// Generally, you should use <see cref="Shapes.GetCircle"/> to get an instance of this.
+    /// A custom enumerator used to iterate over all positions on the outside of a circle efficiently.
+    ///
+    /// Generally, you should use <see cref="Shapes.GetCircle"/> to get an instance of this, rather than creating one
+    /// yourself.
     /// </summary>
     /// <remarks>
-    /// This type is a struct, and as such is much more efficient than using the otherwise equivalent type of
-    /// IEnumerable&lt;Point&gt; with "yield return".  The type does contain a function <see cref="ToEnumerable"/> which
-    /// creates an IEnumerable&lt;Point&gt;, which can be convenient for allowing the returned positions to be used with
-    /// LINQ; however using this function is not recommended in situations where runtime performance is a primary
-    /// concern.
+    /// This type is a struct, and as such is much more efficient when used in a foreach loop than a function returning
+    /// IEnumerable&lt;Point&gt; by using "yield return".  This type does contain a function <see cref="ToEnumerable"/>
+    /// which creates an IEnumerable&lt;Point&gt;, which can be convenient for allowing the
+    /// returned positions to be used with LINQ; however using this function is not recommended in situations where
+    /// runtime performance is a primary concern.
     /// </remarks>
     public struct CirclePositionsEnumerable
     {
@@ -141,15 +143,17 @@ namespace SadRogue.Primitives
     }
 
     /// <summary>
-    /// A custom enumerator used to iterate over all positions on the outside of an ellipse with a foreach loop efficiently.
-    /// Generally, you should use <see cref="Shapes.GetEllipse"/> to get an instance of this.
+    /// A custom enumerator used to iterate over all positions on the outside of an ellipse efficiently.
+    ///
+    /// Generally, you should use <see cref="Shapes.GetEllipse"/> to get an instance of this, rather than creating one
+    /// yourself.
     /// </summary>
     /// <remarks>
-    /// This type is a struct, and as such is much more efficient than using the otherwise equivalent type of
-    /// IEnumerable&lt;Point&gt; with "yield return".  The type does contain a function <see cref="ToEnumerable"/> which
-    /// creates an IEnumerable&lt;Point&gt;, which can be convenient for allowing the returned positions to be used with
-    /// LINQ; however using this function is not recommended in situations where runtime performance is a primary
-    /// concern.
+    /// This type is a struct, and as such is much more efficient when used in a foreach loop than a function returning
+    /// IEnumerable&lt;Point&gt; by using "yield return".  This type does contain a function <see cref="ToEnumerable"/>
+    /// which creates an IEnumerable&lt;Point&gt;, which can be convenient for allowing the
+    /// returned positions to be used with LINQ; however using this function is not recommended in situations where
+    /// runtime performance is a primary concern.
     /// </remarks>
     public struct EllipsePositionsEnumerable
     {
@@ -212,7 +216,7 @@ namespace SadRogue.Primitives
         /// <summary>
         /// Advances the iterator to the next position.
         /// </summary>
-        /// <returns>True if the a new position on the outside of the circle exists; false otherwise.</returns>
+        /// <returns>True if the a new position on the outside of the ellipse exists; false otherwise.</returns>
         public bool MoveNext()
         {
             switch (_state)
@@ -281,7 +285,7 @@ namespace SadRogue.Primitives
         /// note that it is NOT recommended to use this function in cases where performance is critical.
         /// </remarks>
         /// <returns>
-        /// An IEnumerable&lt;Point&gt; which iterates over all positions on the outside of the circle specified to this
+        /// An IEnumerable&lt;Point&gt; which iterates over all positions on the outside of the ellipse specified to this
         /// enumerator.
         /// </returns>
         public IEnumerable<Point> ToEnumerable()
@@ -313,8 +317,8 @@ namespace SadRogue.Primitives
     }
 
     /// <summary>
-    /// Provides implementations of various shape algorithms which are useful for
-    /// for generating shapes on a 2D integer grid.
+    /// Provides implementations of various shape algorithms which are useful for for generating points representing
+    /// shapes on a 2D integer grid.
     /// </summary>
     public static class Shapes
     {
@@ -325,7 +329,7 @@ namespace SadRogue.Primitives
         /// This function returns a custom iterator which is very fast when used in a foreach loop.
         /// If you need an IEnumerable to use with LINQ or other code, you can take the result of this function and
         /// call <see cref="CirclePositionsEnumerable.ToEnumerable()"/> on it; however note that iterating over
-        /// this will not perform as well as iterating directly over this object.
+        /// that will not perform as well as iterating directly over this object.
         /// </remarks>
         /// <param name="center">Center of the circle.</param>
         /// <param name="radius">The radius of the circle.</param>
@@ -340,7 +344,7 @@ namespace SadRogue.Primitives
         /// This function returns a custom iterator which is very fast when used in a foreach loop.
         /// If you need an IEnumerable to use with LINQ or other code, you can take the result of this function and
         /// call <see cref="CirclePositionsEnumerable.ToEnumerable()"/> on it; however note that iterating over
-        /// this will not perform as well as iterating directly over this object.
+        /// that will not perform as well as iterating directly over this object.
         /// </remarks>
         /// <param name="f1">The first focus point of the ellipse.</param>
         /// <param name="f2">The second focus point of the ellipse.</param>

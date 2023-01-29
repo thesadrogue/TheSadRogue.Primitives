@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using Xunit;
 using XUnit.ValueTuples;
 
@@ -316,9 +314,6 @@ namespace SadRogue.Primitives.UnitTests
         [MemberDataTuple(nameof(AllTestCases))]
         public void FastIteratorsAreEquivalent(Lines.Algorithm algo, (Point start, Point end) points)
         {
-            // TODO: Temporary shim; remove before merge!
-            if (algo == Lines.Algorithm.Orthogonal)
-                return;
             var fastResult = new List<Point>();
             switch (algo)
             {
@@ -330,10 +325,10 @@ namespace SadRogue.Primitives.UnitTests
                     foreach (var point in Lines.GetDDALine(points.start, points.end))
                         fastResult.Add(point);
                     break;
-                // case Lines.Algorithm.Orthogonal:
-                //     foreach (var point in Lines.GetOrthogonalLine(points.start, points.end))
-                //         fastResult.Add(point);
-                //     break;
+                case Lines.Algorithm.Orthogonal:
+                    foreach (var point in Lines.GetOrthogonalLine(points.start, points.end))
+                        fastResult.Add(point);
+                    break;
             }
 
             var enumerableResult = Lines.GetLine(points.start, points.end, algo).ToList();

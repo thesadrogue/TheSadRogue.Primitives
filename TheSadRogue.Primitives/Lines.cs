@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
@@ -471,6 +470,150 @@ namespace SadRogue.Primitives
     }
 
     /// <summary>
+    /// A custom enumerator used to iterate over all positions on the on a line according to the
+    /// <see cref="Lines.Algorithm.Orthogonal"/> line algorithm, with a foreach loop efficiently.
+    /// Generally, you should use <see cref="Lines.GetOrthogonalLine"/> to get an instance of this.
+    /// </summary>
+    /// <remarks>
+    /// This type is a struct, and as such is much more efficient than using the otherwise equivalent type of
+    /// IEnumerable&lt;Point&gt; with "yield return".  The type does contain a function <see cref="ToEnumerable"/> which
+    /// creates an IEnumerable&lt;Point&gt;, which can be convenient for allowing the returned positions to be used with
+    /// LINQ; however using this function is not recommended in situations where runtime performance is a primary
+    /// concern.
+    /// </remarks>
+    public struct OrthogonalEnumerable
+    {
+        // Suppress warning stating to use auto-property because we want to guarantee micro-performance
+        // characteristics.
+        #pragma warning disable IDE0032 // Use auto property
+        private Point _current;
+        #pragma warning restore IDE0032 // Use auto property
+
+        /// <summary>
+        /// The current value for enumeration.
+        /// </summary>
+        public Point Current => _current;
+
+        private bool _first;
+        private int _workX;
+        private int _workY;
+        private int _ix;
+        private int _iy;
+        private readonly int _nx;
+        private readonly int _ny;
+        private readonly int _signX;
+        private readonly int _signY;
+
+        /// <summary>
+        /// Creates an enumerator which iterates over all positions on the line, according to the
+        /// <see cref="Lines.Algorithm.Orthogonal"/> line algorithm.
+        /// </summary>
+        /// <param name="start">Starting point for the line.</param>
+        /// <param name="end">Ending point for the line.</param>
+        public OrthogonalEnumerable(Point start, Point end)
+        {
+            _current = Point.None;
+
+            int dx = end.X - start.X;
+            int dy = end.Y - start.Y;
+
+            _nx = Math.Abs(dx);
+            _ny = Math.Abs(dy);
+
+            _signX = dx > 0 ? 1 : -1;
+            _signY = dy > 0 ? 1 : -1;
+
+            _workX = start.X;
+            _workY = start.Y;
+
+            _ix = 0;
+            _iy = 0;
+
+            _first = true;
+        }
+
+        /// <summary>
+        /// Advances the iterator to the next position.
+        /// </summary>
+        /// <returns>True if the a new position on the line exists; false otherwise.</returns>
+        public bool MoveNext()
+        {
+            if (_first)
+            {
+                _first = false;
+                _current = new Point(_workX, _workY);
+                return true;
+            }
+
+            if (_ix < _nx || _iy < _ny)
+            {
+                // Optimized version of `if ((0.5 + ix) / nx < (0.5 + iy) / ny)`
+                if ((1 + _ix + _ix) * _ny < (1 + _iy + _iy) * _nx)
+                {
+                    _workX += _signX;
+                    _ix++;
+                }
+                else
+                {
+                    _workY += _signY;
+                    _iy++;
+                }
+
+                _current = new Point(_workX, _workY);
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Returns this enumerator.
+        /// </summary>
+        /// <returns>This enumerator.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public OrthogonalEnumerable GetEnumerator() => this;
+
+        /// <summary>
+        /// Converts the result of the enumerable to a <see cref="IEnumerable{T}"/>, which can be useful if you need
+        /// to use the result with LINQ.
+        /// </summary>
+        /// <remarks>
+        /// Note that this function advances the state of the enumerator, evaluating it to its fullest extent.  Also
+        /// note that it is NOT recommended to use this function in cases where performance is critical.
+        /// </remarks>
+        /// <returns>
+        /// An IEnumerable&lt;Point&gt; which iterates over all positions on the line according to Bresenham's line
+        /// algorithm.
+        /// </returns>
+        public IEnumerable<Point> ToEnumerable()
+        {
+            // This is a re-implementation of the orthogonal line algorithm as implemented in MoveNext above, and is equivalent to:
+            // foreach (var pos in this)
+            //    yield return pos
+            //
+            // However, this is notably faster.
+            yield return new Point(_workX, _workY);
+
+            for (_ix = 0, _iy = 0; _ix < _nx || _iy < _ny;)
+            {
+                // Optimized version of `if ((0.5 + ix) / nx < (0.5 + iy) / ny)`
+                if ((1 + _ix + _ix) * _ny < (1 + _iy + _iy) * _nx)
+                {
+                    _workX += _signX;
+                    _ix++;
+                }
+                else
+                {
+                    _workY += _signY;
+                    _iy++;
+                }
+
+                yield return new Point(_workX, _workY);
+            }
+        }
+    }
+
+    /// <summary>
     /// Provides implementations of various line-drawing algorithms which are useful for
     /// for generating lines on a 2D integer grid.
     /// </summary>
@@ -532,7 +675,8 @@ namespace SadRogue.Primitives
                 case Algorithm.DDA:
                     return new DDAEnumerable(start, end).ToEnumerable();
                 case Algorithm.Orthogonal:
-                    return Ortho(start.X, start.Y, end.X, end.Y);
+                    return new OrthogonalEnumerable(start, end).ToEnumerable();
+
 
                 default:
                     throw new ArgumentException("Unsupported line-drawing algorithm.", nameof(type));
@@ -596,39 +740,19 @@ namespace SadRogue.Primitives
         public static DDAEnumerable GetDDALine(Point start, Point end)
             => new DDAEnumerable(start, end);
 
-        // TODO: Port ortho to custom iterator
-        private static IEnumerable<Point> Ortho(int startX, int startY, int endX, int endY)
-        {
-            int dx = endX - startX;
-            int dy = endY - startY;
-
-            int nx = Math.Abs(dx);
-            int ny = Math.Abs(dy);
-
-            int signX = dx > 0 ? 1 : -1;
-            int signY = dy > 0 ? 1 : -1;
-
-            int workX = startX;
-            int workY = startY;
-
-            yield return new Point(startX, startY);
-
-            for (int ix = 0, iy = 0; ix < nx || iy < ny;)
-            {
-                // Optimized version of `if ((0.5 + ix) / nx < (0.5 + iy) / ny)`
-                if ((1 + ix + ix) * ny < (1 + iy + iy) * nx)
-                {
-                    workX += signX;
-                    ix++;
-                }
-                else
-                {
-                    workY += signY;
-                    iy++;
-                }
-
-                yield return new Point(workX, workY);
-            }
-        }
+        /// <summary>
+        /// Returns all points on the given line using the <see cref="Algorithm.Orthogonal"/> line algorithm.
+        /// </summary>
+        /// <remarks>
+        /// This function returns a custom iterator which is very fast when used in a foreach loop.
+        /// If you need an IEnumerable to use with LINQ or other code, you can take the result of this function and
+        /// call <see cref="OrthogonalEnumerable.ToEnumerable()"/> on it; however note that iterating over
+        /// this will not perform as well as iterating directly over this object.
+        /// </remarks>
+        /// <param name="start">The start point of the line.</param>
+        /// <param name="end">The end point of the line.</param>
+        /// <returns></returns>
+        public static OrthogonalEnumerable GetOrthogonalLine(Point start, Point end)
+            => new OrthogonalEnumerable(start, end);
     }
 }

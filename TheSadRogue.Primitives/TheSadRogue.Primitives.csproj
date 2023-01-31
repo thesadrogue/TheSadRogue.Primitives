@@ -5,7 +5,7 @@
     <RootNamespace>SadRogue.Primitives</RootNamespace>
     <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
-    <Version>1.5.0</Version>
+    <Version>1.5.1</Version>
     <Version Condition="'$(Configuration)'=='Debug'">$(Version)-debug</Version>
     <Authors>Chris3606;Thraka</Authors>
     <Company>TheSadRogue</Company>
@@ -15,32 +15,9 @@
     <!-- More nuget package settings-->
     <PackageId>TheSadRogue.Primitives</PackageId>
     <PackageReleaseNotes>
-      - **Color Changes**
-        - GetHue can no longer return 360 instead of 0 in some cases
-        - GetHue, GetSaturation, and GetBrightness are obsolete; use GetHSVHue / GetHSLHue, GetHSVSaturation / GetHSLSaturation, etc instead as required
-        - FromHSL now performs color translation correctly (it previously produced incorrect values in a significant number of cases)
-        - Deconstruction of a Color object into a float now properly returns a value between 0 and 1 (it would return between 0 and 255 previously)
-      - **Point Hasher Changes**
-        - Fixed off-by-one issue in point hasher calculations
-        - Renamed properties to reflect their actual values
-      - **Area Changes**
-        - Optimized Area.Intersects to avoid full comparisons for referentially equal values
-      - **DiffAwareGridView Changes**
-        - Fixed serialization (implicit conversion to/from its serialized type was broken and wouldn't restore CurrentIndex properly)
-        - You can now set history index to -1 when using SetHistory
-      - **Rectangle Changes**
-        - IsEmpty now returns the correct value
-        - Rectangle.PositionsOnSide now throws ArgumentException as applicable
-      - **Point Changes**
-        - BearingOfLine overloads taking 2 points or 4 ints now return the correct line instead of the reciprocal one
-        - Using division operator on a Point and a value now returns a Point instead of a value tuple
-      - **Gradient Changes**
-        - Gradient constructor now throws ArgumentException as applicable
-      - **Palette Changes**
-        - Palette now implements IReadOnlyList
-        - Removed unnecessary in-memory value duplication in some constructors
-      - **IGridView Extension Changes**
-        - IGridView.ExtendToString no longer adds too many element separators in overloads which take a field size
+      - Added Lines class which contains static methods for creating lines on a grid
+          - For performance reasons, you should prefer to use GetBresenhamLine, GetDDALine, or GetOrthogonalLine, if possible, as opposed to the generic GetLine
+      - Added Shapes class which contains static methods for generating shapes on a grid
     </PackageReleaseNotes>
     <RepositoryUrl>https://github.com/thesadrogue/TheSadRogue.Primitives</RepositoryUrl>
     <RepositoryType>git</RepositoryType>

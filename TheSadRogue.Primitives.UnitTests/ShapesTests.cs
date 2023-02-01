@@ -100,7 +100,7 @@ namespace SadRogue.Primitives.UnitTests
             foreach (var point in Shapes.GetCircle(s_center, radius))
                 points.Add(point);
 
-            var enumerable = Shapes.GetCircle(s_center, radius).ToEnumerable().ToList();
+            var enumerable = Shapes.GetCircle(s_center, radius).ToList();
             Assert.Equal((IEnumerable<Point>)points, enumerable);
         }
 
@@ -108,7 +108,7 @@ namespace SadRogue.Primitives.UnitTests
         public void ZeroRadiusCircle()
         {
             var points = CircleToHashSetDirect(Shapes.GetCircle(s_center, 0));
-            var enumerable = Shapes.GetCircle(s_center, 0).ToEnumerable().ToHashSet();
+            var enumerable = Shapes.GetCircle(s_center, 0).ToHashSet();
 
             Assert.Single(points);
             Assert.Contains(s_center, points);
@@ -166,7 +166,7 @@ namespace SadRogue.Primitives.UnitTests
             foreach (var point in Shapes.GetEllipse(f1, f2))
                 points.Add(point);
 
-            var enumerable = Shapes.GetEllipse(f1, f2).ToEnumerable().ToList();
+            var enumerable = Shapes.GetEllipse(f1, f2).ToList();
             Assert.Equal((IEnumerable<Point>)points, enumerable);
         }
 

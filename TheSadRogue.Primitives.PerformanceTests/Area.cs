@@ -18,10 +18,10 @@ namespace TheSadRogue.Primitives.PerformanceTests
         [GlobalSetup]
         public void GlobalSetup()
         {
-            _area = new SadRogue.Primitives.Area(new SadRogue.Primitives.Rectangle(0, 0, Size, Size).Positions().ToEnumerable());
+            _area = new SadRogue.Primitives.Area(new SadRogue.Primitives.Rectangle(0, 0, Size, Size).Positions());
             _areaInterface = _area;
 
-            _area2 = new SadRogue.Primitives.Area(new SadRogue.Primitives.Rectangle(0, 0, Size / 2, Size / 2).Positions().ToEnumerable());
+            _area2 = new SadRogue.Primitives.Area(new SadRogue.Primitives.Rectangle(0, 0, Size / 2, Size / 2).Positions());
         }
 
         [Benchmark]

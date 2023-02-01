@@ -133,7 +133,7 @@ namespace SadRogue.Primitives.UnitTests
             area.Add(rect);
 
             Assert.Equal(rect.Width * rect.Height, area.Count);
-            Assert.Equal(rect.Positions().ToEnumerable(), area);
+            Assert.Equal(rect.Positions(), area);
         }
 
         [Fact]
@@ -200,7 +200,7 @@ namespace SadRogue.Primitives.UnitTests
         public void RemoveRectangle()
         {
             var rect = new Rectangle(1, 2, 15, 12);
-            var area = new Area(rect.Positions().ToEnumerable());
+            var area = new Area(rect.Positions());
 
             var bisection = rect.BisectVertically();
             _output.WriteLine($"Bisection:\n    Rect1: {bisection.Rect1}\n    Rect2: {bisection.Rect2}");
@@ -210,7 +210,7 @@ namespace SadRogue.Primitives.UnitTests
             _output.WriteLine($"Left: {left}");
             _output.WriteLine($"Area: {area.Bounds}");
             Assert.Equal(left.Width * left.Height, area.Count);
-            Assert.Equal(left.Positions().ToEnumerable().ToHashSet(), area.ToHashSet());
+            Assert.Equal(left.Positions().ToHashSet(), area.ToHashSet());
         }
 
         [Fact]
@@ -278,7 +278,7 @@ namespace SadRogue.Primitives.UnitTests
         public void ContainsPosition()
         {
             var rect = new Rectangle(1, 2, 15, 12);
-            var area = new Area(rect.Positions().ToEnumerable());
+            var area = new Area(rect.Positions());
 
             // Contains all points inside rectangle
             foreach (var pos in rect.Positions())
@@ -299,14 +299,14 @@ namespace SadRogue.Primitives.UnitTests
         public void ContainsArea()
         {
             var rect = new Rectangle(1, 2, 15, 12);
-            var area = new Area(rect.Positions().ToEnumerable());
+            var area = new Area(rect.Positions());
 
             // Contains proper subset
-            var subArea = new Area(rect.Expand(-1, -1).Positions().ToEnumerable());
+            var subArea = new Area(rect.Expand(-1, -1).Positions());
             Assert.True(area.Contains(subArea));
 
             // Contains equivalent
-            subArea = new Area(rect.Positions().ToEnumerable());
+            subArea = new Area(rect.Positions());
             Assert.True(area.Contains(subArea));
 
             // Doesn't contain anything outside
@@ -369,7 +369,7 @@ namespace SadRogue.Primitives.UnitTests
         public void EnumerableCorrect()
         {
             var rect = new Rectangle(0, 0, 15, 15);
-            var area = new Area(rect.Positions().ToEnumerable());
+            var area = new Area(rect.Positions());
             IReadOnlyArea areaInterface = area;
 
             var expected = new List<Point>();
@@ -402,7 +402,7 @@ namespace SadRogue.Primitives.UnitTests
         public void RectangleAreaPerimeterPositions()
         {
             var rect = new Rectangle(0, 0, 15, 15);
-            var area = new Area(rect.Positions().ToEnumerable());
+            var area = new Area(rect.Positions());
 
             var expected = rect.PerimeterPositions().ToHashSet();
             var actual1 = area.PerimeterPositions(AdjacencyRule.Cardinals).ToHashSet();
@@ -425,7 +425,7 @@ namespace SadRogue.Primitives.UnitTests
         public void IrregularAreaPerimeterPositionsCardinals()
         {
             var rect = new Rectangle(0, 0, 15, 15);
-            var area = new Area(rect.Positions().ToEnumerable());
+            var area = new Area(rect.Positions());
             area.Remove(rect.MaxExtent);
 
             var expected = rect.PerimeterPositions().ToHashSet();
@@ -449,7 +449,7 @@ namespace SadRogue.Primitives.UnitTests
         public void IrregularAreaPerimeterPositionsEightWay()
         {
             var rect = new Rectangle(0, 0, 15, 15);
-            var area = new Area(rect.Positions().ToEnumerable());
+            var area = new Area(rect.Positions());
             area.Remove(rect.MaxExtent);
 
             var expected = rect.PerimeterPositions().ToHashSet();

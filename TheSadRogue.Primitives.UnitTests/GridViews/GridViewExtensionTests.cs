@@ -73,7 +73,7 @@ namespace SadRogue.Primitives.UnitTests.GridViews
             const int gridHeight = 61;
 
             IGridView<bool> view = new ArrayView<bool>(gridWidth, gridHeight);
-            var set = view.Positions().ToEnumerable().ToHashSet();
+            var set = view.Positions().ToHashSet();
 
             Assert.Equal(view.Count, set.Count);
             for (int i = 0; i < view.Count; i++)
@@ -92,7 +92,7 @@ namespace SadRogue.Primitives.UnitTests.GridViews
             foreach (var pos in view.Positions())
                 l1.Add(pos);
 
-            var l2 = view.Positions().ToEnumerable().ToList();
+            var l2 = view.Positions().ToList();
 
             Assert.Equal((IEnumerable<Point>)l1, l2);
         }

@@ -77,7 +77,7 @@ namespace TheSadRogue.Primitives.PerformanceTests.GridViews
                 var pos = Point.FromIndex(i, _gridView.Width);
                 sum += pos.X + pos.Y;
             }
-                
+
 
             return sum;
         }
@@ -131,7 +131,7 @@ namespace TheSadRogue.Primitives.PerformanceTests.GridViews
         public int PositionsToEnumerableIteration()
         {
             int sum = 0;
-            foreach (var pos in _gridView.Positions().ToEnumerable())
+            foreach (var pos in _gridView.Positions())
                 sum += pos.X + pos.Y;
 
             return sum;

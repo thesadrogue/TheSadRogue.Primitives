@@ -445,7 +445,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="rectangle">Rectangle containing positions to remove.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void Remove(Rectangle rectangle) => Remove(rectangle.Positions().ToEnumerable());
+        public void Remove(Rectangle rectangle) => Remove(rectangle.Positions());
 
         /// <summary>
         /// Returns the string of each position in the area, in a square-bracket enclosed list,

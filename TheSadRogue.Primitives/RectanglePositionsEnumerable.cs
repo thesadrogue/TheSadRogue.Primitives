@@ -1,19 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
 namespace SadRogue.Primitives
 {
     /// <summary>
-    /// A custom enumerator used to iterate over all positions within a rectangle with a foreach loop efficiently.
+    /// A custom enumerator used to iterate over all positions within a rectangle efficiently.
     /// </summary>
     /// <remarks>
-    /// This type is a struct, and as such is much more efficient than using the otherwise equivalent type of
-    /// IEnumerable&lt;Point&gt; with "yield return".  The type does contain a function <see cref="ToEnumerable"/> which
-    /// creates an IEnumerable&lt;Point&gt;, which can be convenient for allowing the returned positions to be used with
-    /// LINQ; however using this function is not recommended in situations where runtime performance is a primary
-    /// concern.
+    /// This type is a struct, and as such is much more efficient when used in a foreach loop than a function returning
+    /// IEnumerable&lt;Point&gt; by using "yield return".  This type does contain implement <see cref="IEnumerable{Point}"/>,
+    /// so you can pass it to functions which require one (for example, System.LINQ).  However, this will have reduced
+    /// performance due to boxing of the iterator.
     /// </remarks>
-    public struct RectanglePositionsEnumerable
+    public struct RectanglePositionsEnumerable : IEnumerator<Point>, IEnumerable<Point>
     {
         // Suppress warning stating to use auto-property because we want to guarantee micro-performance
         // characteristics.
@@ -27,6 +28,8 @@ namespace SadRogue.Primitives
         public Point Current => _current;
 
         private readonly Rectangle _positions;
+
+        object IEnumerator.Current => _current;
 
         /// <summary>
         /// Creates an enumerator which iterates over all positions in the given rectangle.
@@ -68,29 +71,25 @@ namespace SadRogue.Primitives
         public RectanglePositionsEnumerable GetEnumerator() => this;
 
         /// <summary>
-        /// Converts the result of the enumerable to a <see cref="IEnumerable{T}"/>, which can be useful if you need
-        /// to use the result with LINQ.
+        /// Obsolete.
         /// </summary>
-        /// <remarks>
-        /// Note that this function advances the state of the enumerator, evaluating it to its fullest extent.  Also
-        /// note that it is NOT recommended to use this function in cases where performance is critical.
-        /// </remarks>
-        /// <returns>
-        /// An IEnumerable&lt;Point&gt; which iterates over all positions within the rectangle specified to this
-        /// enumerator.
-        /// </returns>
-        public IEnumerable<Point> ToEnumerable()
-        {
-            // This is equivalent of:
-            // foreach (var pos in this)
-            //    yield return pos
-            //
-            // However, this is slightly faster.
-            var maxExtent = _positions.MaxExtent;
+        /// <returns/>
+        [Obsolete(
+            "This method is obsolete; this structure itself implements IEnumerable directly and provides equivalent behavior, so you should no longer call this function.")]
+        public IEnumerable<Point> ToEnumerable() => this;
 
-            for (int y = _positions.MinExtentY; y <= maxExtent.Y; y++)
-                for (int x = _positions.MinExtentX; x <= maxExtent.X; x++)
-                    yield return new Point(x, y);
-        }
+        // Explicitly implemented to ensure we prefer the non-boxing versions where possible
+        #region Explicit Interface Implementations
+        /// <summary>
+        /// This iterator does not support resetting.
+        /// </summary>
+        /// <exception cref="NotSupportedException"/>
+        void IEnumerator.Reset() => throw new NotSupportedException();
+        IEnumerator<Point> IEnumerable<Point>.GetEnumerator() => this;
+        IEnumerator IEnumerable.GetEnumerator() => this;
+
+        void IDisposable.Dispose()
+        { }
+        #endregion
     }
 }

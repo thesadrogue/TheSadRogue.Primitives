@@ -553,13 +553,13 @@ namespace SadRogue.Primitives.UnitTests
             var rect2 = new Rectangle(1, 2, 0, 1);
             var rect3 = new Rectangle(1, 2, 0, 0);
 
-            var set1 = rect1.Positions().ToEnumerable().ToHashSet();
+            var set1 = rect1.Positions().ToHashSet();
             Assert.Empty(set1);
 
-            var set2 = rect2.Positions().ToEnumerable().ToHashSet();
+            var set2 = rect2.Positions().ToHashSet();
             Assert.Empty(set2);
 
-            var set3 = rect3.Positions().ToEnumerable().ToHashSet();
+            var set3 = rect3.Positions().ToHashSet();
             Assert.Empty(set3);
         }
 

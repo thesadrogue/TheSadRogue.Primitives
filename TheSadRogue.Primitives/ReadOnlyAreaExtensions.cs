@@ -18,9 +18,15 @@ namespace SadRogue.Primitives
         ///
         /// This may be significantly faster than the typical IEnumerable/IEnumerator usage for implementations which have
         /// <see cref="IReadOnlyArea.UseIndexEnumeration"/> set to true; however it won't have much benefit otherwise.
+        ///
+        /// If you have a value of a concrete type rather than an interface, and the GetEnumerator implementation for that
+        /// given type is particularly fast or a non-boxed type (like <see cref="Area"/>, you will probably get faster performance
+        /// out of that than by using this; however this will provide better performance if you are working with an interface
+        /// and thus don't know the type of area.  Use cases for this function are generally for iteration via IReadOnlyArea.
+        ///
         /// </remarks>
         /// <param name="self"/>
-        /// <returns>A custom enumerator that iterates over the positions in the area in the most efficient manner possible.</returns>
+        /// <returns>A custom enumerator that iterates over the positions in the area in the most efficient manner possible via a generic interface.</returns>
         public static ReadOnlyAreaPositionsEnumerator FastEnumerator(this IReadOnlyArea self)
             => new ReadOnlyAreaPositionsEnumerator(self);
 

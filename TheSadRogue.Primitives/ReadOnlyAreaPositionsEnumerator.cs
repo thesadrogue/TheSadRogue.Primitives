@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
 namespace SadRogue.Primitives
@@ -10,8 +12,13 @@ namespace SadRogue.Primitives
     /// This type is a struct, and will either use an indexer-based enumeration method, or a standard IEnumerator, depending on
     /// the area's <see cref="IReadOnlyArea.UseIndexEnumeration"/> value.  Therefore, it will provide the quickest way of iterating
     /// over positions in an area with a for-each loop.
+    ///
+    /// If you have a value of a concrete type rather than an interface, and the GetEnumerator implementation for that
+    /// given type is particularly fast or a non-boxed type (like <see cref="Area"/>, you will probably get faster performance
+    /// out of that than by using this; however this will provide better performance if you are working with an interface
+    /// and thus don't know the type of area.  Use cases for this class are generally for iteration via IReadOnlyArea.
     /// </remarks>
-    public struct ReadOnlyAreaPositionsEnumerator
+    public struct ReadOnlyAreaPositionsEnumerator : IEnumerator<Point>, IEnumerable<Point>
     {
         private readonly IReadOnlyArea _area;
         private readonly bool _useIndexEnumeration;
@@ -25,6 +32,8 @@ namespace SadRogue.Primitives
         /// The current value for enumeration.
         /// </summary>
         public Point Current => _useIndexEnumeration ? _area[_currentIdx] : _enumerator!.Current;
+
+        object IEnumerator.Current => _useIndexEnumeration ? _area[_currentIdx] : _enumerator!.Current;
 
         /// <summary>
         /// Creates an enumerator which iterates over all positions in the given area.
@@ -69,5 +78,19 @@ namespace SadRogue.Primitives
         /// <returns>This enumerator.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ReadOnlyAreaPositionsEnumerator GetEnumerator() => this;
+
+        // Explicitly implemented to ensure we prefer the non-boxing versions where possible
+        #region Explicit Interface Implementations
+        /// <summary>
+        /// This iterator does not support resetting.
+        /// </summary>
+        /// <exception cref="NotSupportedException"/>
+        void IEnumerator.Reset() => throw new NotSupportedException();
+        IEnumerator<Point> IEnumerable<Point>.GetEnumerator() => this;
+        IEnumerator IEnumerable.GetEnumerator() => this;
+
+        void IDisposable.Dispose()
+        { }
+        #endregion
     }
 }

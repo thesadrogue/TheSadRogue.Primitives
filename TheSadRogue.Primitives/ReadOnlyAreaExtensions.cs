@@ -8,8 +8,8 @@ namespace SadRogue.Primitives
     public static class ReadOnlyAreaExtensions
     {
         /// <summary>
-        /// Returns an enumerator which can be used to iterate over the positions in this area with a foreach loop
-        /// in the most efficient manner possible.
+        /// Returns an enumerator which can be used to iterate over the positions in this area in the most efficient
+        /// manner possible via a generic interface.
         /// </summary>
         /// <remarks>
         /// The enumerator returned will use the area's indexer to iterate over the positions (like you might a list),
@@ -21,8 +21,8 @@ namespace SadRogue.Primitives
         /// </remarks>
         /// <param name="self"/>
         /// <returns>A custom enumerator that iterates over the positions in the area in the most efficient manner possible.</returns>
-        public static ReadOnlyAreaPositionsEnumerable FastEnumerator(this IReadOnlyArea self)
-            => new ReadOnlyAreaPositionsEnumerable(self);
+        public static ReadOnlyAreaPositionsEnumerator FastEnumerator(this IReadOnlyArea self)
+            => new ReadOnlyAreaPositionsEnumerator(self);
 
         /// <summary>
         /// Returns all points that are on the border of the area, assuming the specified adjacency rule is used to determine adjacent cells
@@ -62,7 +62,7 @@ namespace SadRogue.Primitives
         /// </code>
         /// </example>
         /// </remarks>
-        /// 
+        ///
         /// <param name="area"/>
         /// <param name="rule">The AdjacencyRule to use for determining adjacency to cells which are outside of the area.</param>
         /// <returns>An enumerable of every point which is on the outer edge of the area specified.</returns>

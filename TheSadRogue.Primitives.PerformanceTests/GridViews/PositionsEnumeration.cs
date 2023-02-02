@@ -24,9 +24,9 @@ namespace TheSadRogue.Primitives.PerformanceTests.GridViews
                     yield return new Point(x, y);
         }
 
-        public static IEnumerable<Point> ToEnumerableShortcut(this RectanglePositionsEnumerable enumerable)
+        public static IEnumerable<Point> ToEnumerableShortcut(this RectanglePositionsEnumerator enumerator)
         {
-            foreach (var pos in enumerable)
+            foreach (var pos in enumerator)
                 yield return pos;
         }
     }

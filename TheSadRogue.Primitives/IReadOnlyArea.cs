@@ -10,7 +10,7 @@ namespace SadRogue.Primitives
         /// <summary>
         /// Whether or not it is more efficient for this implementation to use enumeration by index,
         /// rather than generic IEnumerable, when iterating over positions using <see cref="ReadOnlyAreaExtensions.FastEnumerator"/>
-        /// or <see cref="ReadOnlyAreaPositionsEnumerable"/>.
+        /// or <see cref="ReadOnlyAreaPositionsEnumerator"/>.
         /// </summary>
         /// <remarks>
         /// Set this to true if your indexer implementation scales well (constant time), and is relatively fast.  Implementations with

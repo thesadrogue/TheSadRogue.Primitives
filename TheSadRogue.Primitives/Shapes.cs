@@ -17,7 +17,7 @@ namespace SadRogue.Primitives
     /// so you can pass it to functions which require one (for example, System.LINQ).  However, this will have reduced
     /// performance due to boxing of the iterator.
     /// </remarks>
-    public struct CirclePositionsEnumerable : IEnumerator<Point>, IEnumerable<Point>
+    public struct CirclePositionsEnumerator : IEnumerator<Point>, IEnumerable<Point>
     {
         private readonly Point _center;
         private int _radius;
@@ -46,7 +46,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="center">Center of the circle.</param>
         /// <param name="radius">The radius of the circle.</param>
-        public CirclePositionsEnumerable(Point center, int radius)
+        public CirclePositionsEnumerator(Point center, int radius)
         {
             _center = center;
             _radius = radius;
@@ -104,7 +104,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <returns>This enumerator.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public CirclePositionsEnumerable GetEnumerator() => this;
+        public CirclePositionsEnumerator GetEnumerator() => this;
 
         /// <summary>
         /// Obsolete.
@@ -141,7 +141,7 @@ namespace SadRogue.Primitives
     /// so you can pass it to functions which require one (for example, System.LINQ).  However, this will have reduced
     /// performance due to boxing of the iterator.
     /// </remarks>
-    public struct EllipsePositionsEnumerable : IEnumerator<Point>, IEnumerable<Point>
+    public struct EllipsePositionsEnumerator : IEnumerator<Point>, IEnumerable<Point>
     {
         // Suppress warning stating to use auto-property because we want to guarantee micro-performance
         // characteristics.
@@ -174,7 +174,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="f1">The first focus point of the ellipse.</param>
         /// <param name="f2">The second focus point of the ellipse.</param>
-        public EllipsePositionsEnumerable(Point f1, Point f2)
+        public EllipsePositionsEnumerator(Point f1, Point f2)
         {
             (_x0, _y0) = f1;
             (_x1, _y1) = f2;
@@ -262,7 +262,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <returns>This enumerator.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public EllipsePositionsEnumerable GetEnumerator() => this;
+        public EllipsePositionsEnumerator GetEnumerator() => this;
 
         /// <summary>
         /// Obsolete.
@@ -304,8 +304,8 @@ namespace SadRogue.Primitives
         /// <param name="center">Center of the circle.</param>
         /// <param name="radius">The radius of the circle.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static CirclePositionsEnumerable GetCircle(Point center, int radius)
-            => new CirclePositionsEnumerable(center, radius);
+        public static CirclePositionsEnumerator GetCircle(Point center, int radius)
+            => new CirclePositionsEnumerator(center, radius);
 
         /// <summary>
         /// Gets the points on the outside of an ellipse.
@@ -318,7 +318,7 @@ namespace SadRogue.Primitives
         /// <param name="f1">The first focus point of the ellipse.</param>
         /// <param name="f2">The second focus point of the ellipse.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static EllipsePositionsEnumerable GetEllipse(Point f1, Point f2)
-            => new EllipsePositionsEnumerable(f1, f2);
+        public static EllipsePositionsEnumerator GetEllipse(Point f1, Point f2)
+            => new EllipsePositionsEnumerator(f1, f2);
     }
 }

@@ -11,7 +11,7 @@ namespace SadRogue.Primitives
     /// the area's <see cref="IReadOnlyArea.UseIndexEnumeration"/> value.  Therefore, it will provide the quickest way of iterating
     /// over positions in an area with a for-each loop.
     /// </remarks>
-    public struct ReadOnlyAreaPositionsEnumerable
+    public struct ReadOnlyAreaPositionsEnumerator
     {
         private readonly IReadOnlyArea _area;
         private readonly bool _useIndexEnumeration;
@@ -30,7 +30,7 @@ namespace SadRogue.Primitives
         /// Creates an enumerator which iterates over all positions in the given area.
         /// </summary>
         /// <param name="area">A read-only area containing the positions to iterate over.</param>
-        public ReadOnlyAreaPositionsEnumerable(IReadOnlyArea area)
+        public ReadOnlyAreaPositionsEnumerator(IReadOnlyArea area)
         {
             _area = area;
             _useIndexEnumeration = _area.UseIndexEnumeration;
@@ -68,6 +68,6 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <returns>This enumerator.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public ReadOnlyAreaPositionsEnumerable GetEnumerator() => this;
+        public ReadOnlyAreaPositionsEnumerator GetEnumerator() => this;
     }
 }

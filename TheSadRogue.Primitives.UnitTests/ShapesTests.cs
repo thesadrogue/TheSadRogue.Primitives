@@ -115,12 +115,12 @@ namespace SadRogue.Primitives.UnitTests
             Assert.Equal(points, enumerable);
         }
 
-        private HashSet<Point> CircleToHashSetDirect(CirclePositionsEnumerable enumerable)
+        private HashSet<Point> CircleToHashSetDirect(CirclePositionsEnumerator enumerator)
         {
             // We don't use ToEnumerable or LINQ to ensure we invoke the MoveNext implementation even if GetEnumerable
             // is implemented differently
             var points = new HashSet<Point>();
-            foreach (var point in enumerable)
+            foreach (var point in enumerator)
                 points.Add(point);
 
             return points;
@@ -170,12 +170,12 @@ namespace SadRogue.Primitives.UnitTests
             Assert.Equal((IEnumerable<Point>)points, enumerable);
         }
 
-        private HashSet<Point> EllipseToHashSetDirect(EllipsePositionsEnumerable enumerable)
+        private HashSet<Point> EllipseToHashSetDirect(EllipsePositionsEnumerator enumerator)
         {
             // We don't use ToEnumerable or LINQ to ensure we invoke the MoveNext implementation even if GetEnumerable
             // is implemented differently
             var points = new HashSet<Point>();
-            foreach (var point in enumerable)
+            foreach (var point in enumerator)
                 points.Add(point);
 
             return points;

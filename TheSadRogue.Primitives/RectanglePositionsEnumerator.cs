@@ -14,7 +14,7 @@ namespace SadRogue.Primitives
     /// so you can pass it to functions which require one (for example, System.LINQ).  However, this will have reduced
     /// performance due to boxing of the iterator.
     /// </remarks>
-    public struct RectanglePositionsEnumerable : IEnumerator<Point>, IEnumerable<Point>
+    public struct RectanglePositionsEnumerator : IEnumerator<Point>, IEnumerable<Point>
     {
         // Suppress warning stating to use auto-property because we want to guarantee micro-performance
         // characteristics.
@@ -35,7 +35,7 @@ namespace SadRogue.Primitives
         /// Creates an enumerator which iterates over all positions in the given rectangle.
         /// </summary>
         /// <param name="positions">A rectangle containing the positions to iterate over.</param>
-        public RectanglePositionsEnumerable(Rectangle positions)
+        public RectanglePositionsEnumerator(Rectangle positions)
         {
             _positions = positions;
 
@@ -68,7 +68,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <returns>This enumerator.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public RectanglePositionsEnumerable GetEnumerator() => this;
+        public RectanglePositionsEnumerator GetEnumerator() => this;
 
         /// <summary>
         /// Obsolete.

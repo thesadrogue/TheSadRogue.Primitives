@@ -18,7 +18,7 @@ namespace SadRogue.Primitives
     /// so you can pass it to functions which require one (for example, System.LINQ).  However, this will have reduced
     /// performance due to boxing of the iterator.
     /// </remarks>
-    public struct BresenhamEnumerable : IEnumerator<Point>, IEnumerable<Point>
+    public struct BresenhamEnumerator : IEnumerator<Point>, IEnumerable<Point>
     {
         // Suppress warning stating to use auto-property because we want to guarantee micro-performance
         // characteristics.
@@ -51,7 +51,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="start">Starting point for the line.</param>
         /// <param name="end">Ending point for the line.</param>
-        public BresenhamEnumerable(Point start, Point end)
+        public BresenhamEnumerator(Point start, Point end)
         {
             _current = Point.None;
 
@@ -118,7 +118,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <returns>This enumerator.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public BresenhamEnumerable GetEnumerator() => this;
+        public BresenhamEnumerator GetEnumerator() => this;
 
         /// <summary>
         /// Obsolete.
@@ -156,7 +156,7 @@ namespace SadRogue.Primitives
     /// so you can pass it to functions which require one (for example, System.LINQ).  However, this will have reduced
     /// performance due to boxing of the iterator.
     /// </remarks>
-    public struct DDAEnumerable : IEnumerator<Point>, IEnumerable<Point>
+    public struct DDAEnumerator : IEnumerator<Point>, IEnumerable<Point>
     {
         // Suppress warning stating to use auto-property because we want to guarantee micro-performance
         // characteristics.
@@ -188,7 +188,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="start">Starting point for the line.</param>
         /// <param name="end">Ending point for the line.</param>
-        public DDAEnumerable(Point start, Point end)
+        public DDAEnumerator(Point start, Point end)
         {
             (_startX, _startY) = (start.X, start.Y);
             (_endX, _endY) = (end.X, end.Y);
@@ -383,7 +383,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <returns>This enumerator.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public DDAEnumerable GetEnumerator() => this;
+        public DDAEnumerator GetEnumerator() => this;
 
         /// <summary>
         /// Obsolete.
@@ -421,7 +421,7 @@ namespace SadRogue.Primitives
     /// so you can pass it to functions which require one (for example, System.LINQ).  However, this will have reduced
     /// performance due to boxing of the iterator.
     /// </remarks>
-    public struct OrthogonalEnumerable : IEnumerator<Point>, IEnumerable<Point>
+    public struct OrthogonalEnumerator : IEnumerator<Point>, IEnumerable<Point>
     {
         // Suppress warning stating to use auto-property because we want to guarantee micro-performance
         // characteristics.
@@ -451,7 +451,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="start">Starting point for the line.</param>
         /// <param name="end">Ending point for the line.</param>
-        public OrthogonalEnumerable(Point start, Point end)
+        public OrthogonalEnumerator(Point start, Point end)
         {
             _current = Point.None;
 
@@ -512,7 +512,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <returns>This enumerator.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public OrthogonalEnumerable GetEnumerator() => this;
+        public OrthogonalEnumerator GetEnumerator() => this;
 
         /// <summary>
         /// Obsolete.
@@ -598,11 +598,11 @@ namespace SadRogue.Primitives
             switch (type)
             {
                 case Algorithm.Bresenham:
-                    return new BresenhamEnumerable(start, end);
+                    return new BresenhamEnumerator(start, end);
                 case Algorithm.DDA:
-                    return new DDAEnumerable(start, end);
+                    return new DDAEnumerator(start, end);
                 case Algorithm.Orthogonal:
-                    return new OrthogonalEnumerable(start, end);
+                    return new OrthogonalEnumerator(start, end);
 
 
                 default:
@@ -656,8 +656,8 @@ namespace SadRogue.Primitives
         /// <returns>
         /// Every point, in order, closest to a line between the two points specified (according to Bresenham's line algorithm).
         /// </returns>
-        public static BresenhamEnumerable GetBresenhamLine(Point start, Point end)
-            => new BresenhamEnumerable(start, end);
+        public static BresenhamEnumerator GetBresenhamLine(Point start, Point end)
+            => new BresenhamEnumerator(start, end);
 
         /// <summary>
         /// Returns all points on the given line using the <see cref="Algorithm.Bresenham"/> line algorithm.
@@ -678,7 +678,7 @@ namespace SadRogue.Primitives
         /// <returns>
         /// Every point, in order, closest to a line between the two points specified (according to Bresenham's line algorithm).
         /// </returns>
-        public static BresenhamEnumerable GetBresenhamLine(int startX, int startY, int endX, int endY)
+        public static BresenhamEnumerator GetBresenhamLine(int startX, int startY, int endX, int endY)
             => GetBresenhamLine(new Point(startX, startY), new Point(endX, endY));
 
         /// <summary>
@@ -698,8 +698,8 @@ namespace SadRogue.Primitives
         /// <returns>
         /// Every point, in order, closest to a line between the two points specified (according to the DDA line algorithm).
         /// </returns>
-        public static DDAEnumerable GetDDALine(Point start, Point end)
-            => new DDAEnumerable(start, end);
+        public static DDAEnumerator GetDDALine(Point start, Point end)
+            => new DDAEnumerator(start, end);
 
         /// <summary>
         /// Returns all points on the given line using the <see cref="Algorithm.DDA"/> line algorithm.
@@ -720,7 +720,7 @@ namespace SadRogue.Primitives
         /// <returns>
         /// Every point, in order, closest to a line between the two points specified (according to the DDA line algorithm).
         /// </returns>
-        public static DDAEnumerable GetDDALine(int startX, int startY, int endX, int endY)
+        public static DDAEnumerator GetDDALine(int startX, int startY, int endX, int endY)
             => GetDDALine(new Point(startX, startY), new Point(endX, endY));
 
         /// <summary>
@@ -740,8 +740,8 @@ namespace SadRogue.Primitives
         /// <returns>
         /// Every point, in order, closest to a line between the two points specified (according to the "orthogonal" line algorithm).
         /// </returns>
-        public static OrthogonalEnumerable GetOrthogonalLine(Point start, Point end)
-            => new OrthogonalEnumerable(start, end);
+        public static OrthogonalEnumerator GetOrthogonalLine(Point start, Point end)
+            => new OrthogonalEnumerator(start, end);
 
         /// <summary>
         /// Returns all points on the given line using the <see cref="Algorithm.Orthogonal"/> line algorithm.
@@ -762,7 +762,7 @@ namespace SadRogue.Primitives
         /// <returns>
         /// Every point, in order, closest to a line between the two points specified (according to the "orthogonal" line algorithm).
         /// </returns>
-        public static OrthogonalEnumerable GetOrthogonalLine(int startX, int startY, int endX, int endY)
+        public static OrthogonalEnumerator GetOrthogonalLine(int startX, int startY, int endX, int endY)
             => GetOrthogonalLine(new Point(startX, startY), new Point(endX, endY));
     }
 }

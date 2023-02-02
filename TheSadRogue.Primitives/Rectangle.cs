@@ -137,9 +137,11 @@ namespace SadRogue.Primitives
         #region To Enumerables
 
         /// <summary>
-        /// Returns an enumerable containing Rect1, then Rect 2.
+        /// Obsolete.
         /// </summary>
-        /// <returns>An enumerable containing Rect1, then Rect 2.</returns>
+        /// <returns/>
+        [Obsolete(
+            "This method is obsolete; this structure itself implements IEnumerable directly and provides equivalent behavior, so you should no longer call this function.")]
         public IEnumerable<Rectangle> ToEnumerable()
         {
             yield return Rect1;
@@ -688,7 +690,7 @@ namespace SadRogue.Primitives
         /// <returns>All positions in the rectangle.</returns>
         [Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public RectanglePositionsEnumerable Positions() => new RectanglePositionsEnumerable(this);
+        public RectanglePositionsEnumerator Positions() => new RectanglePositionsEnumerator(this);
 
         /// <summary>
         /// Creates and returns a new rectangle that has the same position and width as the current

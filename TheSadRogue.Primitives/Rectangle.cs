@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
@@ -7,20 +9,83 @@ using System.Runtime.Serialization;
 namespace SadRogue.Primitives
 {
     /// <summary>
+    /// A custom enumerator used to iterate over all rectangles in the given bisection result efficiently.  Generally,
+    /// you should simply use a <see cref="BisectionResult"/> in a foreach loop, rather than creating one of these
+    /// manually.
+    /// </summary>
+    /// <remarks>
+    /// This type is a struct, and as such is much more efficient when used in a foreach loop than a function returning
+    /// IEnumerable&lt;Point&gt; by using "yield return".
+    /// </remarks>
+    public struct BisectionResultEnumerator : IEnumerator<Rectangle>
+    {
+        // Suppress warning stating to use auto-property because we want to guarantee micro-performance
+        // characteristics.
+        #pragma warning disable IDE0032 // Use auto property
+        private Rectangle _current;
+        #pragma warning restore IDE0032 // Use auto property
+
+        /// <summary>
+        /// The current value for enumeration.
+        /// </summary>
+        public Rectangle Current => _current;
+
+        private int _state;
+        private readonly BisectionResult _result;
+        object IEnumerator.Current => _current;
+
+        /// <summary>
+        /// Creates an enumerator which iterates over all rectangles in the given bisection result.
+        /// </summary>
+        /// <param name="result">The bisection result to enumerate.</param>
+        public BisectionResultEnumerator(BisectionResult result)
+        {
+            _current = Rectangle.Empty;
+            _state = 0;
+            _result = result;
+        }
+
+        /// <summary>
+        /// Advances the iterator to the next position.
+        /// </summary>
+        /// <returns>True if there is a new Rectangle; false otherwise.</returns>
+        public bool MoveNext()
+        {
+            switch (_state)
+            {
+                case 0:
+                    _current = _result.Rect1;
+                    _state++;
+                    return true;
+                case 1:
+                    _current = _result.Rect2;
+                    _state++;
+                    return true;
+                default:
+                    return false;
+            }
+        }
+
+        /// <summary>
+        /// This iterator does not support resetting.
+        /// </summary>
+        /// <exception cref="NotSupportedException"/>
+        void IEnumerator.Reset() => throw new NotSupportedException();
+        void IDisposable.Dispose()
+        { }
+    }
+    /// <summary>
     /// Structure representing the result of a rectangle bisection.
     /// </summary>
-    [DataContract]
-    public readonly struct BisectionResult : IEquatable<BisectionResult>, IMatchable<BisectionResult>
+    public readonly struct BisectionResult : IEquatable<BisectionResult>, IMatchable<BisectionResult>, IEnumerable<Rectangle>
     {
         /// <summary>
         /// The first rectangle.
         /// </summary>
-        [DataMember]
         public readonly Rectangle Rect1;
         /// <summary>
         /// The second rectangle.
         /// </summary>
-        [DataMember]
         public readonly Rectangle Rect2;
 
         /// <summary>
@@ -134,7 +199,21 @@ namespace SadRogue.Primitives
         public static bool operator !=(BisectionResult left, BisectionResult right) => !(left == right);
         #endregion
 
-        #region To Enumerables
+        #region Enumerable Implementation
+
+        /// <summary>
+        /// Gets an enumerator that iterates over the rectangles in this result; first Rect1, then Rect2.
+        /// </summary>
+        /// <returns>An enumerator that iterates over the rectangles in this result; first Rect1, then Rect2</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public BisectionResultEnumerator GetEnumerator() => new BisectionResultEnumerator(this);
+
+        IEnumerator<Rectangle> IEnumerable<Rectangle>.GetEnumerator() => new BisectionResultEnumerator(this);
+        IEnumerator IEnumerable.GetEnumerator() => new BisectionResultEnumerator(this);
+
+        #endregion
+
+        #region To Enumerables (obsoleted)
 
         /// <summary>
         /// Obsolete.

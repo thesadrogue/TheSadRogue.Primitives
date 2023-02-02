@@ -176,8 +176,6 @@ namespace SadRogue.Primitives.UnitTests.Serialization
         {
             // AdjacencyRules
             AdjacencyRule.Cardinals, AdjacencyRule.EightWay,
-            // BisectionResult
-            new BisectionResult(new Rectangle(1, 2, 5, 7), new Rectangle(7, 8, 10, 19)),
             // BoundedRectangle
             new BoundedRectangle(new Rectangle(1, 4, 10, 14), new Rectangle(-10, -9, 100, 101)),
             // Colors
@@ -300,6 +298,8 @@ namespace SadRogue.Primitives.UnitTests.Serialization
             new ArrayView<int>(new[] { 1, 2, 3, 4 }, 2),
             // ArrayView2D
             MockGridViews.RectangleArrayView2D(50, 40),
+            // BisectionResult
+            new BisectionResult(new Rectangle(1, 2, 5, 7), new Rectangle(7, 8, 10, 19)),
             // Diff
             new Diff<int>
             {

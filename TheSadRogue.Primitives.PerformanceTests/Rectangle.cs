@@ -84,7 +84,7 @@ namespace TheSadRogue.Primitives.PerformanceTests
         public int BisectToEnumerable()
         {
             int sum = 0;
-            foreach (var rect in _rectangle.Bisect().ToEnumerable())
+            foreach (var rect in _rectangle.Bisect())
                 sum += rect.Width + rect.Height;
 
             return sum;
@@ -94,7 +94,7 @@ namespace TheSadRogue.Primitives.PerformanceTests
         public int BisectVerticallyToEnumerable()
         {
             int sum = 0;
-            foreach (var rect in _rectangle.BisectVertically().ToEnumerable())
+            foreach (var rect in _rectangle.BisectVertically())
                 sum += rect.Width + rect.Height;
 
             return sum;
@@ -104,7 +104,7 @@ namespace TheSadRogue.Primitives.PerformanceTests
         public int BisectHorizontallyToEnumerable()
         {
             int sum = 0;
-            foreach (var rect in _rectangle.BisectHorizontally().ToEnumerable())
+            foreach (var rect in _rectangle.BisectHorizontally())
                 sum += rect.Width + rect.Height;
 
             return sum;

@@ -13,7 +13,7 @@ namespace SadRogue.Primitives
     /// </summary>
     /// <remarks>
     /// This type is a struct, and as such is much more efficient when used in a foreach loop than a function returning
-    /// IEnumerable&lt;Point&gt; by using "yield return".  This type does contain implement <see cref="IEnumerable{Point}"/>,
+    /// IEnumerable&lt;Point&gt; by using "yield return".  This type does implement <see cref="IEnumerable{Point}"/>,
     /// so you can pass it to functions which require one (for example, System.LINQ).  However, this will have reduced
     /// performance due to boxing of the iterator.
     /// </remarks>
@@ -137,7 +137,7 @@ namespace SadRogue.Primitives
     /// </summary>
     /// <remarks>
     /// This type is a struct, and as such is much more efficient when used in a foreach loop than a function returning
-    /// IEnumerable&lt;Point&gt; by using "yield return".  This type does contain implement <see cref="IEnumerable{Point}"/>,
+    /// IEnumerable&lt;Point&gt; by using "yield return".  This type does implement <see cref="IEnumerable{Point}"/>,
     /// so you can pass it to functions which require one (for example, System.LINQ).  However, this will have reduced
     /// performance due to boxing of the iterator.
     /// </remarks>

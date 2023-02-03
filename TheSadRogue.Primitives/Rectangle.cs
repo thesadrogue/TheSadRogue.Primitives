@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
@@ -1122,23 +1121,8 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <returns>IEnumerable of all positions that reside on the inner perimeter of the rectangle.</returns>
         [Pure]
-        public IEnumerable<Point> PerimeterPositions()
-        {
-            for (int x = MinExtentX; x <= MaxExtentX; x++)
-                yield return new Point(x, MinExtentY); // Minimum y-side perimeter
-
-            // Start offset 1, since last loop returned the corner piece
-            for (int y = MinExtentY + 1; y <= MaxExtentY; y++)
-                yield return new Point(MaxExtentX, y);
-
-            // Again skip 1 because last loop returned the corner piece
-            for (int x = MaxExtentX - 1; x >= MinExtentX; x--)
-                yield return new Point(x, MaxExtentY);
-
-            // Skip 1 on both ends, because last loop returned one corner, first loop returned the other
-            for (int y = MaxExtentY - 1; y >= MinExtentY + 1; y--)
-                yield return new Point(MinExtentX, y);
-        }
+        public RectanglePerimeterPositionsEnumerator PerimeterPositions()
+            => new RectanglePerimeterPositionsEnumerator(this);
 
         /// <summary>
         /// Returns whether or not the given position lines on the given edge of the rectangle.

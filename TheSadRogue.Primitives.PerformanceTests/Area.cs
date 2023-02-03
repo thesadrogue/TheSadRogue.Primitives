@@ -48,7 +48,7 @@ namespace TheSadRogue.Primitives.PerformanceTests
         public int BenchmarkFastEnumerable()
         {
             int sum = 0;
-            foreach (var pos in _areaInterface.FastEnumerator())
+            foreach (var pos in new ReadOnlyAreaPositionsEnumerator(_areaInterface))
                 sum += pos.X + pos.Y;
 
             return sum;
@@ -58,7 +58,7 @@ namespace TheSadRogue.Primitives.PerformanceTests
         public int BenchmarkFastEnumerableAsConcrete()
         {
             int sum = 0;
-            foreach (var pos in _area.FastEnumerator())
+            foreach (var pos in new ReadOnlyAreaPositionsEnumerator(_area))
                 sum += pos.X + pos.Y;
 
             return sum;

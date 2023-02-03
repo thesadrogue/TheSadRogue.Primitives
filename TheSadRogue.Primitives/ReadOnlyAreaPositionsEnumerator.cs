@@ -53,7 +53,7 @@ namespace SadRogue.Primitives
             else
             {
                 _currentIdx = _count = 0;
-                _enumerator = _area.GetEnumerator();
+                _enumerator = ((IEnumerable<Point>)_area).GetEnumerator();
             }
         }
 

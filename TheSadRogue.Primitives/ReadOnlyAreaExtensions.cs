@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace SadRogue.Primitives
 {
@@ -8,25 +9,11 @@ namespace SadRogue.Primitives
     public static class ReadOnlyAreaExtensions
     {
         /// <summary>
-        /// Returns an enumerator which can be used to iterate over the positions in this area in the most efficient
-        /// manner possible via a generic interface.
+        /// Obsolete.
         /// </summary>
-        /// <remarks>
-        /// The enumerator returned will use the area's indexer to iterate over the positions (like you might a list),
-        /// if the area's <see cref="IReadOnlyArea.UseIndexEnumeration"/> is true.  Otherwise, it uses the typical IEnumerator
-        /// implementation for that area.
-        ///
-        /// This may be significantly faster than the typical IEnumerable/IEnumerator usage for implementations which have
-        /// <see cref="IReadOnlyArea.UseIndexEnumeration"/> set to true; however it won't have much benefit otherwise.
-        ///
-        /// If you have a value of a concrete type rather than an interface, and the GetEnumerator implementation for that
-        /// given type is particularly fast or a non-boxed type (like <see cref="Area"/>, you will probably get faster performance
-        /// out of that than by using this; however this will provide better performance if you are working with an interface
-        /// and thus don't know the type of area.  Use cases for this function are generally for iteration via IReadOnlyArea.
-        ///
-        /// </remarks>
-        /// <param name="self"/>
-        /// <returns>A custom enumerator that iterates over the positions in the area in the most efficient manner possible via a generic interface.</returns>
+        /// <returns/>
+        [Obsolete(
+            "This method is obsolete; IReadOnlyArea implements GetEnumerator and provides equivalent behavior, so you should no longer call this function; instead just use your area in a foreach loop directly.")]
         public static ReadOnlyAreaPositionsEnumerator FastEnumerator(this IReadOnlyArea self)
             => new ReadOnlyAreaPositionsEnumerator(self);
 
@@ -74,7 +61,7 @@ namespace SadRogue.Primitives
         /// <returns>An enumerable of every point which is on the outer edge of the area specified.</returns>
         public static IEnumerable<Point> PerimeterPositions(this IReadOnlyArea area, AdjacencyRule rule)
         {
-            foreach (var pos in area.FastEnumerator())
+            foreach (var pos in area)
             {
                 foreach (var dir in rule.DirectionsOfNeighborsCache)
                 {

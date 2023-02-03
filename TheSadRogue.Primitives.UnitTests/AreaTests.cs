@@ -387,14 +387,19 @@ namespace SadRogue.Primitives.UnitTests
                 l3.Add(pos);
 
             var l4 = new List<Point>();
-            foreach (var pos in area.FastEnumerator())
+            foreach (var pos in new ReadOnlyAreaPositionsEnumerator(area))
                 l4.Add(pos);
+
+            var l5 = new List<Point>();
+            foreach (var pos in (IEnumerable<Point>)area)
+                l5.Add(pos);
 
 
             Assert.Equal(expected, l1);
             Assert.Equal(expected, l2);
             Assert.Equal(expected, l3);
             Assert.Equal(expected, l4);
+            Assert.Equal(expected, l5);
         }
         #endregion
         #region Perimeter Positions

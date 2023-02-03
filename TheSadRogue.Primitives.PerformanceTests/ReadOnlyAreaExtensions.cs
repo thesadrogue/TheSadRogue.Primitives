@@ -15,7 +15,7 @@ namespace TheSadRogue.Primitives.PerformanceTests
 
         public static IEnumerable<Point> PerimeterPositionsNeighborsFunc(this IReadOnlyArea area, AdjacencyRule rule)
         {
-            foreach (var pos in area.FastEnumerator())
+            foreach (var pos in area)
             {
                 foreach (var neighbor in rule.Neighbors(pos))
                 {
@@ -31,7 +31,7 @@ namespace TheSadRogue.Primitives.PerformanceTests
         public static IEnumerable<Point> PerimeterPositionsArrayFor(this IReadOnlyArea area, AdjacencyRule rule)
         {
             var count = rule.DirectionsOfNeighborsCache.Length;
-            foreach (var pos in area.FastEnumerator())
+            foreach (var pos in area)
             {
                 for (int i = 0; i < count; i++)
                 {

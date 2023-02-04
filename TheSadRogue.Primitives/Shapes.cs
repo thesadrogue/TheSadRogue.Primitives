@@ -303,6 +303,7 @@ namespace SadRogue.Primitives
         /// </remarks>
         /// <param name="center">Center of the circle.</param>
         /// <param name="radius">The radius of the circle.</param>
+        /// <returns>Every point on the outer edges of the circle specified.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static CirclePositionsEnumerator GetCircle(Point center, int radius)
             => new CirclePositionsEnumerator(center, radius);
@@ -317,8 +318,23 @@ namespace SadRogue.Primitives
         /// </remarks>
         /// <param name="f1">The first focus point of the ellipse.</param>
         /// <param name="f2">The second focus point of the ellipse.</param>
+        /// <returns>Every point on the outer edges of the ellipse specified.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static EllipsePositionsEnumerator GetEllipse(Point f1, Point f2)
             => new EllipsePositionsEnumerator(f1, f2);
+
+        /// <summary>
+        /// Gets the points on the outside of a box defined by the outer edges of the given rectangle.
+        /// </summary>
+        /// <remarks>
+        /// This function returns a custom iterator which is very fast when used in a foreach loop.
+        /// If you need an IEnumerable to use with LINQ or other code, the returned struct does implement that interface;
+        /// however note that iterating over it this way will not perform as well as iterating directly over this object.
+        /// </remarks>
+        /// <param name="rectangle">A rectangle whose outer edges define the box to iterate over.</param>
+        /// <returns>Every point on the outer edges of the box specified.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static RectanglePerimeterPositionsEnumerator GetBox(Rectangle rectangle)
+            => rectangle.PerimeterPositions();
     }
 }

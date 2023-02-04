@@ -5,6 +5,18 @@ using System.Runtime.CompilerServices;
 
 namespace SadRogue.Primitives
 {
+    /// <summary>
+    /// A custom enumerator used to iterate over all positions on the outside edges of a rectangle efficiently.
+    ///
+    /// Generally, you should use <see cref="Rectangle.PerimeterPositions"/> to get an instance of this, rather than creating one
+    /// yourself.
+    /// </summary>
+    /// <remarks>
+    /// This type is a struct, and as such is much more efficient when used in a foreach loop than a function returning
+    /// IEnumerable&lt;Point&gt; by using "yield return".  This type does implement <see cref="IEnumerable{Point}"/>,
+    /// so you can pass it to functions which require one (for example, System.LINQ).  However, this will have reduced
+    /// performance due to boxing of the iterator.
+    /// </remarks>
     public struct RectanglePerimeterPositionsEnumerator : IEnumerator<Point>, IEnumerable<Point>
     {
         // Suppress warning stating to use auto-property because we want to guarantee micro-performance
@@ -34,7 +46,7 @@ namespace SadRogue.Primitives
             _minExtent = rectangle.MinExtent;
             _maxExtent = rectangle.MaxExtent;
             _current = Point.None;
-            _state = 0;
+            _state = rectangle.IsEmpty ? 4 : 0;
             _changingValue = _minExtent.X;
         }
 
@@ -44,22 +56,6 @@ namespace SadRogue.Primitives
         /// <returns>True if the a new position on the outside of the rectangle was found; false otherwise.</returns>
         public bool MoveNext()
         {
-            // for (int x = MinExtentX; x <= MaxExtentX; x++)
-            //     yield return new Point(x, MinExtentY); // Minimum y-side perimeter
-            //
-            // // Start offset 1, since last loop returned the corner piece
-            // for (int y = MinExtentY + 1; y <= MaxExtentY; y++)
-            //     yield return new Point(MaxExtentX, y);
-            //
-            // // Again skip 1 because last loop returned the corner piece
-            // for (int x = MaxExtentX - 1; x >= MinExtentX; x--)
-            //     yield return new Point(x, MaxExtentY);
-            //
-            // // Skip 1 on both ends, because last loop returned one corner, first loop returned the other
-            // for (int y = MaxExtentY - 1; y >= MinExtentY + 1; y--)
-            //     yield return new Point(MinExtentX, y);
-
-            // TODO: Eliminate property accesses?
             switch (_state)
             {
                 case 0:

@@ -71,6 +71,19 @@ namespace SadRogue.Primitives.UnitTests
             Direction.SetYIncreasesUpwardsUnsafe(false); // Ensure we reset to false for next test
         }
 
+        [Fact]
+        public void PerimeterPositionsEmptyRectangle()
+        {
+            var rect = Rectangle.Empty;
+            Assert.Empty(rect.PerimeterPositions());
+
+            rect = new Rectangle(1, 2, 0, 1);
+            Assert.Empty(rect.PerimeterPositions());
+
+            rect = new Rectangle(1, 2, 1, 0);
+            Assert.Empty(rect.PerimeterPositions());
+        }
+
         // Ensure we use the custom iterator directly, in case that and its GetEnumerator definition for IEnumerable
         // differ.
         private static HashSet<Point> PerimeterPositionsToHashSetDirect(RectanglePerimeterPositionsEnumerator enumerator)

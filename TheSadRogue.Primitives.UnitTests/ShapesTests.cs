@@ -50,6 +50,8 @@ namespace SadRogue.Primitives.UnitTests
         };
         private static readonly Point s_center = (1, 2);
 
+        public static readonly Rectangle[] BoxTestCases = { new Rectangle(1, 2, 3, 4), new Rectangle(-15, -16, 10, 9) };
+
         #endregion
 
         #region Circle Tests
@@ -214,6 +216,55 @@ namespace SadRogue.Primitives.UnitTests
                 yield return new Point(x0 - 1, y1);
                 yield return new Point(x1 + 1, y1--);
             }
+        }
+
+        #endregion
+
+        #region Box Tests
+
+        [Theory]
+        [MemberDataEnumerable(nameof(BoxTestCases))]
+        public void BoxEquivalentToSimpleImplementation(Rectangle rectangle)
+        {
+            var simple = SimpleBox(rectangle.MinExtentX, rectangle.MinExtentY, rectangle.MaxExtentX, rectangle.MaxExtentY).ToHashSet();
+            var actual = BoxToHashSetDirect(Shapes.GetBox(rectangle));
+
+            Assert.Equal(simple, actual);
+        }
+
+        [Theory]
+        [MemberDataEnumerable(nameof(BoxTestCases))]
+        public void BoxEnumerableEquivalentToCustomIterator(Rectangle rectangle)
+        {
+            var points = new List<Point>();
+            foreach (var point in Shapes.GetBox(rectangle))
+                points.Add(point);
+
+            var enumerable = Shapes.GetBox(rectangle).ToList();
+            Assert.Equal((IEnumerable<Point>)points, enumerable);
+        }
+
+        private HashSet<Point> BoxToHashSetDirect(RectanglePerimeterPositionsEnumerator enumerator)
+        {
+            // We don't use ToEnumerable or LINQ to ensure we invoke the MoveNext implementation even if GetEnumerable
+            // is implemented differently
+            var points = new HashSet<Point>();
+            foreach (var point in enumerator)
+                points.Add(point);
+
+            return points;
+        }
+
+        public static IEnumerable<Point> SimpleBox(int x0, int y0, int x1, int y1)
+        {
+            for (int x = x0; x <= x1; x++)
+                yield return new Point(x, y0);
+            for (int y = y0; y <= y1; y++)
+                yield return new Point(x1, y);
+            for (int x = x1; x >= x0; x--)
+                yield return new Point(x, y1);
+            for (int y = y1; y >= y0; y--)
+                yield return new Point(x0, y);
         }
 
         #endregion

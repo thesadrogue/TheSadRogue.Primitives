@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
@@ -13,12 +14,11 @@ namespace SadRogue.Primitives
     /// </summary>
     /// <remarks>
     /// This type is a struct, and as such is much more efficient when used in a foreach loop than a function returning
-    /// IEnumerable&lt;Point&gt; by using "yield return".  This type does contain a function <see cref="ToEnumerable"/>
-    /// which creates an IEnumerable&lt;Point&gt;, which can be convenient for allowing the
-    /// returned positions to be used with LINQ; however using this function is not recommended in situations where
-    /// runtime performance is a primary concern.
+    /// IEnumerable&lt;Point&gt; by using "yield return".  This type does implement <see cref="IEnumerable{Point}"/>,
+    /// so you can pass it to functions which require one (for example, System.LINQ).  However, this will have reduced
+    /// performance due to boxing of the iterator.
     /// </remarks>
-    public struct BresenhamEnumerable
+    public struct BresenhamEnumerator : IEnumerator<Point>, IEnumerable<Point>
     {
         // Suppress warning stating to use auto-property because we want to guarantee micro-performance
         // characteristics.
@@ -44,13 +44,14 @@ namespace SadRogue.Primitives
         private readonly int _dy2;
 
         private int _idx;
+        object IEnumerator.Current => _current;
 
         /// <summary>
         /// Creates an enumerator which iterates over all positions on the line.
         /// </summary>
         /// <param name="start">Starting point for the line.</param>
         /// <param name="end">Ending point for the line.</param>
-        public BresenhamEnumerable(Point start, Point end)
+        public BresenhamEnumerator(Point start, Point end)
         {
             _current = Point.None;
 
@@ -117,44 +118,29 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <returns>This enumerator.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public BresenhamEnumerable GetEnumerator() => this;
+        public BresenhamEnumerator GetEnumerator() => this;
 
         /// <summary>
-        /// Converts the result of the enumerable to a <see cref="IEnumerable{T}"/>, which can be useful if you need
-        /// to use the result with LINQ.
+        /// Obsolete.
         /// </summary>
-        /// <remarks>
-        /// Note that this function advances the state of the enumerator, evaluating it to its fullest extent.  Also
-        /// note that it is NOT recommended to use this function in cases where performance is critical.
-        /// </remarks>
-        /// <returns>
-        /// An IEnumerable&lt;Point&gt; which iterates over all positions on the line according to Bresenham's line
-        /// algorithm.
-        /// </returns>
-        public IEnumerable<Point> ToEnumerable()
-        {
-            // This is a re-implementation of bresenham's line algorithm as implemented in MoveNext above, and is equivalent to:
-            // foreach (var pos in this)
-            //    yield return pos
-            //
-            // However, this is notably faster.
-            for (int i = 0; i <= _longest; i++)
-            {
-                yield return new Point(_startX, _startY);
-                _numerator += _shortest;
-                if (!(_numerator < _longest))
-                {
-                    _numerator -= _longest;
-                    _startX += _dx1;
-                    _startY += _dy1;
-                }
-                else
-                {
-                    _startX += _dx2;
-                    _startY += _dy2;
-                }
-            }
-        }
+        /// <returns/>
+        [Obsolete(
+            "This method is obsolete; this structure itself implements IEnumerable directly and provides equivalent behavior, so you should no longer call this function.")]
+        public IEnumerable<Point> ToEnumerable() => this;
+
+        // Explicitly implemented to ensure we prefer the non-boxing versions where possible
+        #region Explicit Interface Implementations
+        /// <summary>
+        /// This iterator does not support resetting.
+        /// </summary>
+        /// <exception cref="NotSupportedException"/>
+        void IEnumerator.Reset() => throw new NotSupportedException();
+        IEnumerator<Point> IEnumerable<Point>.GetEnumerator() => this;
+        IEnumerator IEnumerable.GetEnumerator() => this;
+
+        void IDisposable.Dispose()
+        { }
+        #endregion
     }
 
     /// <summary>
@@ -166,12 +152,11 @@ namespace SadRogue.Primitives
     /// </summary>
     /// <remarks>
     /// This type is a struct, and as such is much more efficient when used in a foreach loop than a function returning
-    /// IEnumerable&lt;Point&gt; by using "yield return".  This type does contain a function <see cref="ToEnumerable"/>
-    /// which creates an IEnumerable&lt;Point&gt;, which can be convenient for allowing the
-    /// returned positions to be used with LINQ; however using this function is not recommended in situations where
-    /// runtime performance is a primary concern.
+    /// IEnumerable&lt;Point&gt; by using "yield return".  This type does implement <see cref="IEnumerable{Point}"/>,
+    /// so you can pass it to functions which require one (for example, System.LINQ).  However, this will have reduced
+    /// performance due to boxing of the iterator.
     /// </remarks>
-    public struct DDAEnumerable
+    public struct DDAEnumerator : IEnumerator<Point>, IEnumerable<Point>
     {
         // Suppress warning stating to use auto-property because we want to guarantee micro-performance
         // characteristics.
@@ -196,12 +181,14 @@ namespace SadRogue.Primitives
         private const int ModifierX = 0x7fff;
         private const int ModifierY = 0x7fff;
 
+        object IEnumerator.Current => _current;
+
         /// <summary>
         /// Creates an enumerator which iterates over all positions on the line.
         /// </summary>
         /// <param name="start">Starting point for the line.</param>
         /// <param name="end">Ending point for the line.</param>
-        public DDAEnumerable(Point start, Point end)
+        public DDAEnumerator(Point start, Point end)
         {
             (_startX, _startY) = (start.X, start.Y);
             (_endX, _endY) = (end.X, end.Y);
@@ -396,82 +383,29 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <returns>This enumerator.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public DDAEnumerable GetEnumerator() => this;
+        public DDAEnumerator GetEnumerator() => this;
 
         /// <summary>
-        /// Converts the result of the enumerable to a <see cref="IEnumerable{T}"/>, which can be useful if you need
-        /// to use the result with LINQ.
+        /// Obsolete.
         /// </summary>
-        /// <remarks>
-        /// Note that this function advances the state of the enumerator, evaluating it to its fullest extent.  Also
-        /// note that it is NOT recommended to use this function in cases where performance is critical.
-        /// </remarks>
-        /// <returns>
-        /// An IEnumerable&lt;Point&gt; which iterates over all positions on the line according to the DDA line
-        /// algorithm.
-        /// </returns>
-        public IEnumerable<Point> ToEnumerable()
-        {
-            // This is a re-implementation of the DDA line algorithm as implemented in MoveNext above, and is equivalent to:
-            // foreach (var pos in this)
-            //    yield return pos
-            //
-            // However, this is notably faster.
-            switch (_octantState)
-            {
-                case 0: // +x, +y
-                    for (_primary = _startX; _primary <= _endX; _primary++, _fraction += _move)
-                        yield return new Point(_primary, _startY + ((_fraction + ModifierY) >> 16));
-                    break;
-                case 1:
-                    for (_primary = _startY; _primary <= _endY; _primary++, _fraction += _move)
-                        yield return new Point(_startX + ((_fraction + ModifierX) >> 16), _primary);
-                    break;
-                case 2: // -x, +y
-                    for (_primary = _startX; _primary >= _endX; _primary--, _fraction += _move)
-                        yield return new Point(_primary, _startY + ((_fraction + ModifierY) >> 16));
-                    break;
-                case 3:
-                    for (_primary = _startY; _primary <= _endY; _primary++, _fraction += _move)
-                        yield return new Point(_startX - ((_fraction + ModifierX) >> 16), _primary);
-                    break;
-                case 6: // -x, -y
-                    for (_primary = _startX; _primary >= _endX; _primary--, _fraction += _move)
-                        yield return new Point(_primary, _startY - ((_fraction + ModifierY) >> 16));
-                    break;
-                case 7:
-                    for (_primary = _startY; _primary >= _endY; _primary--, _fraction += _move)
-                        yield return new Point(_startX - ((_fraction + ModifierX) >> 16), _primary);
-                    break;
-                case 4: // +x, -y
-                    for (_primary = _startX; _primary <= _endX; _primary++, _fraction += _move)
-                        yield return new Point(_primary, _startY - ((_fraction + ModifierY) >> 16));
-                    break;
-                case 5:
-                    for (_primary = _startY; _primary >= _endY; _primary--, _fraction += _move)
-                        yield return new Point(_startX + ((_fraction + ModifierX) >> 16), _primary);
-                    break;
-                case 8: // start == end
-                    yield return new Point(_startX, _startY);
-                    break;
-                case 9: // Horizontal, dx > 0
-                    for (_primary = _startX; _primary <= _endX; _primary++)
-                        yield return new Point(_primary, _startY);
-                    break;
-                case 10: // Horizontal, dx < 0
-                    for (_primary = _startX; _primary >= _endX; _primary--)
-                        yield return new Point(_primary, _startY);
-                    break;
-                case 11: // Vertical, dy > 0
-                    for (_primary = _startY; _primary <= _endY; _primary++)
-                        yield return new Point(_startX, _primary);
-                    break;
-                case 12: // Vertical, dy < 0
-                    for (_primary = _startY; _primary >= _endY; _primary--)
-                        yield return new Point(_startX, _primary);
-                    break;
-            }
-        }
+        /// <returns/>
+        [Obsolete(
+            "This method is obsolete; this structure itself implements IEnumerable directly and provides equivalent behavior, so you should no longer call this function.")]
+        public IEnumerable<Point> ToEnumerable() => this;
+
+        // Explicitly implemented to ensure we prefer the non-boxing versions where possible
+        #region Explicit Interface Implementations
+        /// <summary>
+        /// This iterator does not support resetting.
+        /// </summary>
+        /// <exception cref="NotSupportedException"/>
+        void IEnumerator.Reset() => throw new NotSupportedException();
+        IEnumerator<Point> IEnumerable<Point>.GetEnumerator() => this;
+        IEnumerator IEnumerable.GetEnumerator() => this;
+
+        void IDisposable.Dispose()
+        { }
+        #endregion
     }
 
     /// <summary>
@@ -483,12 +417,11 @@ namespace SadRogue.Primitives
     /// </summary>
     /// <remarks>
     /// This type is a struct, and as such is much more efficient when used in a foreach loop than a function returning
-    /// IEnumerable&lt;Point&gt; by using "yield return".  This type does contain a function <see cref="ToEnumerable"/>
-    /// which creates an IEnumerable&lt;Point&gt;, which can be convenient for allowing the
-    /// returned positions to be used with LINQ; however using this function is not recommended in situations where
-    /// runtime performance is a primary concern.
+    /// IEnumerable&lt;Point&gt; by using "yield return".  This type does implement <see cref="IEnumerable{Point}"/>,
+    /// so you can pass it to functions which require one (for example, System.LINQ).  However, this will have reduced
+    /// performance due to boxing of the iterator.
     /// </remarks>
-    public struct OrthogonalEnumerable
+    public struct OrthogonalEnumerator : IEnumerator<Point>, IEnumerable<Point>
     {
         // Suppress warning stating to use auto-property because we want to guarantee micro-performance
         // characteristics.
@@ -511,12 +444,14 @@ namespace SadRogue.Primitives
         private readonly int _signX;
         private readonly int _signY;
 
+        object IEnumerator.Current => _current;
+
         /// <summary>
         /// Creates an enumerator which iterates over all positions on the line.
         /// </summary>
         /// <param name="start">Starting point for the line.</param>
         /// <param name="end">Ending point for the line.</param>
-        public OrthogonalEnumerable(Point start, Point end)
+        public OrthogonalEnumerator(Point start, Point end)
         {
             _current = Point.None;
 
@@ -577,46 +512,29 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <returns>This enumerator.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public OrthogonalEnumerable GetEnumerator() => this;
+        public OrthogonalEnumerator GetEnumerator() => this;
 
         /// <summary>
-        /// Converts the result of the enumerable to a <see cref="IEnumerable{T}"/>, which can be useful if you need
-        /// to use the result with LINQ.
+        /// Obsolete.
         /// </summary>
-        /// <remarks>
-        /// Note that this function advances the state of the enumerator, evaluating it to its fullest extent.  Also
-        /// note that it is NOT recommended to use this function in cases where performance is critical.
-        /// </remarks>
-        /// <returns>
-        /// An IEnumerable&lt;Point&gt; which iterates over all positions on the line according to the Orthogonal line
-        /// algorithm.
-        /// </returns>
-        public IEnumerable<Point> ToEnumerable()
-        {
-            // This is a re-implementation of the orthogonal line algorithm as implemented in MoveNext above, and is equivalent to:
-            // foreach (var pos in this)
-            //    yield return pos
-            //
-            // However, this is notably faster.
-            yield return new Point(_workX, _workY);
+        /// <returns/>
+        [Obsolete(
+            "This method is obsolete; this structure itself implements IEnumerable directly and provides equivalent behavior, so you should no longer call this function.")]
+        public IEnumerable<Point> ToEnumerable() => this;
 
-            for (_ix = 0, _iy = 0; _ix < _nx || _iy < _ny;)
-            {
-                // Optimized version of `if ((0.5 + ix) / nx < (0.5 + iy) / ny)`
-                if ((1 + _ix + _ix) * _ny < (1 + _iy + _iy) * _nx)
-                {
-                    _workX += _signX;
-                    _ix++;
-                }
-                else
-                {
-                    _workY += _signY;
-                    _iy++;
-                }
+        // Explicitly implemented to ensure we prefer the non-boxing versions where possible
+        #region Explicit Interface Implementations
+        /// <summary>
+        /// This iterator does not support resetting.
+        /// </summary>
+        /// <exception cref="NotSupportedException"/>
+        void IEnumerator.Reset() => throw new NotSupportedException();
+        IEnumerator<Point> IEnumerable<Point>.GetEnumerator() => this;
+        IEnumerator IEnumerable.GetEnumerator() => this;
 
-                yield return new Point(_workX, _workY);
-            }
-        }
+        void IDisposable.Dispose()
+        { }
+        #endregion
     }
 
     /// <summary>
@@ -680,11 +598,11 @@ namespace SadRogue.Primitives
             switch (type)
             {
                 case Algorithm.Bresenham:
-                    return new BresenhamEnumerable(start, end).ToEnumerable();
+                    return new BresenhamEnumerator(start, end);
                 case Algorithm.DDA:
-                    return new DDAEnumerable(start, end).ToEnumerable();
+                    return new DDAEnumerator(start, end);
                 case Algorithm.Orthogonal:
-                    return new OrthogonalEnumerable(start, end).ToEnumerable();
+                    return new OrthogonalEnumerator(start, end);
 
 
                 default:
@@ -726,9 +644,8 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <remarks>
         /// This function returns a custom iterator which is very fast when used in a foreach loop.
-        /// If you need an IEnumerable to use with LINQ or other code, you can take the result of this function and
-        /// call <see cref="BresenhamEnumerable.ToEnumerable()"/> on it; however note that iterating over
-        /// this will not perform as well as iterating directly over this object.
+        /// If you need an IEnumerable to use with LINQ or other code, the returned struct does implement that interface;
+        /// however note that iterating over it this way will not perform as well as iterating directly over this object.
         ///
         /// If you need a single function which takes any of the supported line drawing algorithms as a parameter and
         /// uses that to draw, you should use <see cref="GetLine(SadRogue.Primitives.Point,SadRogue.Primitives.Point,SadRogue.Primitives.Lines.Algorithm)"/>;
@@ -739,17 +656,16 @@ namespace SadRogue.Primitives
         /// <returns>
         /// Every point, in order, closest to a line between the two points specified (according to Bresenham's line algorithm).
         /// </returns>
-        public static BresenhamEnumerable GetBresenhamLine(Point start, Point end)
-            => new BresenhamEnumerable(start, end);
+        public static BresenhamEnumerator GetBresenhamLine(Point start, Point end)
+            => new BresenhamEnumerator(start, end);
 
         /// <summary>
         /// Returns all points on the given line using the <see cref="Algorithm.Bresenham"/> line algorithm.
         /// </summary>
         /// <remarks>
         /// This function returns a custom iterator which is very fast when used in a foreach loop.
-        /// If you need an IEnumerable to use with LINQ or other code, you can take the result of this function and
-        /// call <see cref="BresenhamEnumerable.ToEnumerable()"/> on it; however note that iterating over
-        /// this will not perform as well as iterating directly over this object.
+        /// If you need an IEnumerable to use with LINQ or other code, the returned struct does implement that interface;
+        /// however note that iterating over it this way will not perform as well as iterating directly over this object.
         ///
         /// If you need a single function which takes any of the supported line drawing algorithms as a parameter and
         /// uses that to draw, you should use <see cref="GetLine(int, int, int, int,SadRogue.Primitives.Lines.Algorithm)"/>;
@@ -762,7 +678,7 @@ namespace SadRogue.Primitives
         /// <returns>
         /// Every point, in order, closest to a line between the two points specified (according to Bresenham's line algorithm).
         /// </returns>
-        public static BresenhamEnumerable GetBresenhamLine(int startX, int startY, int endX, int endY)
+        public static BresenhamEnumerator GetBresenhamLine(int startX, int startY, int endX, int endY)
             => GetBresenhamLine(new Point(startX, startY), new Point(endX, endY));
 
         /// <summary>
@@ -770,9 +686,8 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <remarks>
         /// This function returns a custom iterator which is very fast when used in a foreach loop.
-        /// If you need an IEnumerable to use with LINQ or other code, you can take the result of this function and
-        /// call <see cref="DDAEnumerable.ToEnumerable()"/> on it; however note that iterating over
-        /// this will not perform as well as iterating directly over this object.
+        /// If you need an IEnumerable to use with LINQ or other code, the returned struct does implement that interface;
+        /// however note that iterating over it this way will not perform as well as iterating directly over this object.
         ///
         /// If you need a single function which takes any of the supported line drawing algorithms as a parameter and
         /// uses that to draw, you should use <see cref="GetLine(SadRogue.Primitives.Point,SadRogue.Primitives.Point,SadRogue.Primitives.Lines.Algorithm)"/>;
@@ -783,17 +698,16 @@ namespace SadRogue.Primitives
         /// <returns>
         /// Every point, in order, closest to a line between the two points specified (according to the DDA line algorithm).
         /// </returns>
-        public static DDAEnumerable GetDDALine(Point start, Point end)
-            => new DDAEnumerable(start, end);
+        public static DDAEnumerator GetDDALine(Point start, Point end)
+            => new DDAEnumerator(start, end);
 
         /// <summary>
         /// Returns all points on the given line using the <see cref="Algorithm.DDA"/> line algorithm.
         /// </summary>
         /// <remarks>
         /// This function returns a custom iterator which is very fast when used in a foreach loop.
-        /// If you need an IEnumerable to use with LINQ or other code, you can take the result of this function and
-        /// call <see cref="DDAEnumerable.ToEnumerable()"/> on it; however note that iterating over
-        /// this will not perform as well as iterating directly over this object.
+        /// If you need an IEnumerable to use with LINQ or other code, the returned struct does implement that interface;
+        /// however note that iterating over it this way will not perform as well as iterating directly over this object.
         ///
         /// If you need a single function which takes any of the supported line drawing algorithms as a parameter and
         /// uses that to draw, you should use <see cref="GetLine(int, int, int, int,SadRogue.Primitives.Lines.Algorithm)"/>;
@@ -806,7 +720,7 @@ namespace SadRogue.Primitives
         /// <returns>
         /// Every point, in order, closest to a line between the two points specified (according to the DDA line algorithm).
         /// </returns>
-        public static DDAEnumerable GetDDALine(int startX, int startY, int endX, int endY)
+        public static DDAEnumerator GetDDALine(int startX, int startY, int endX, int endY)
             => GetDDALine(new Point(startX, startY), new Point(endX, endY));
 
         /// <summary>
@@ -814,9 +728,8 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <remarks>
         /// This function returns a custom iterator which is very fast when used in a foreach loop.
-        /// If you need an IEnumerable to use with LINQ or other code, you can take the result of this function and
-        /// call <see cref="OrthogonalEnumerable.ToEnumerable()"/> on it; however note that iterating over
-        /// this will not perform as well as iterating directly over this object.
+        /// If you need an IEnumerable to use with LINQ or other code, the returned struct does implement that interface;
+        /// however note that iterating over it this way will not perform as well as iterating directly over this object.
         ///
         /// If you need a single function which takes any of the supported line drawing algorithms as a parameter and
         /// uses that to draw, you should use <see cref="GetLine(SadRogue.Primitives.Point,SadRogue.Primitives.Point,SadRogue.Primitives.Lines.Algorithm)"/>;
@@ -827,17 +740,16 @@ namespace SadRogue.Primitives
         /// <returns>
         /// Every point, in order, closest to a line between the two points specified (according to the "orthogonal" line algorithm).
         /// </returns>
-        public static OrthogonalEnumerable GetOrthogonalLine(Point start, Point end)
-            => new OrthogonalEnumerable(start, end);
+        public static OrthogonalEnumerator GetOrthogonalLine(Point start, Point end)
+            => new OrthogonalEnumerator(start, end);
 
         /// <summary>
         /// Returns all points on the given line using the <see cref="Algorithm.Orthogonal"/> line algorithm.
         /// </summary>
         /// <remarks>
         /// This function returns a custom iterator which is very fast when used in a foreach loop.
-        /// If you need an IEnumerable to use with LINQ or other code, you can take the result of this function and
-        /// call <see cref="OrthogonalEnumerable.ToEnumerable()"/> on it; however note that iterating over
-        /// this will not perform as well as iterating directly over this object.
+        /// If you need an IEnumerable to use with LINQ or other code, the returned struct does implement that interface;
+        /// however note that iterating over it this way will not perform as well as iterating directly over this object.
         ///
         /// If you need a single function which takes any of the supported line drawing algorithms as a parameter and
         /// uses that to draw, you should use <see cref="GetLine(int, int, int, int, SadRogue.Primitives.Lines.Algorithm)"/>;
@@ -850,7 +762,7 @@ namespace SadRogue.Primitives
         /// <returns>
         /// Every point, in order, closest to a line between the two points specified (according to the "orthogonal" line algorithm).
         /// </returns>
-        public static OrthogonalEnumerable GetOrthogonalLine(int startX, int startY, int endX, int endY)
+        public static OrthogonalEnumerator GetOrthogonalLine(int startX, int startY, int endX, int endY)
             => GetOrthogonalLine(new Point(startX, startY), new Point(endX, endY));
     }
 }

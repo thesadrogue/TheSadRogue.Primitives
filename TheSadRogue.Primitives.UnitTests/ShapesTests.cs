@@ -50,6 +50,8 @@ namespace SadRogue.Primitives.UnitTests
         };
         private static readonly Point s_center = (1, 2);
 
+        public static readonly Rectangle[] BoxTestCases = { new Rectangle(1, 2, 3, 4), new Rectangle(-15, -16, 10, 9) };
+
         #endregion
 
         #region Circle Tests
@@ -100,27 +102,53 @@ namespace SadRogue.Primitives.UnitTests
             foreach (var point in Shapes.GetCircle(s_center, radius))
                 points.Add(point);
 
-            var enumerable = Shapes.GetCircle(s_center, radius).ToEnumerable().ToList();
-            Assert.Equal((IEnumerable<Point>)points, enumerable);
+            var enumerable = Shapes.GetCircle(s_center, radius);
+            Assert.Equal(points, enumerable);
+        }
+
+        [Theory]
+        [MemberDataEnumerable(nameof(RadiusCases))]
+        public void CircleEnumerableEquivalentToDeprecatedToEnumerable(int radius)
+        {
+            IEnumerable<Point> expected = Shapes.GetCircle(s_center, radius);
+#pragma warning disable CS0618
+            IEnumerable<Point> actual = Shapes.GetCircle(s_center, radius).ToEnumerable();
+#pragma warning restore CS0618
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [MemberDataEnumerable(nameof(RadiusCases))]
+        public void CircleEnumerator(int radius)
+        {
+            var list = new List<Point>();
+            using IEnumerator<Point> enumerator = ((IEnumerable<Point>)Shapes.GetCircle(s_center, radius)).GetEnumerator();
+            while (enumerator.MoveNext())
+                list.Add(enumerator.Current);
+
+            Assert.Equal(Shapes.GetCircle(s_center, radius), list);
+
+            Assert.Throws<NotSupportedException>(() => enumerator.Reset());
         }
 
         [Fact]
         public void ZeroRadiusCircle()
         {
             var points = CircleToHashSetDirect(Shapes.GetCircle(s_center, 0));
-            var enumerable = Shapes.GetCircle(s_center, 0).ToEnumerable().ToHashSet();
+            var enumerable = Shapes.GetCircle(s_center, 0).ToHashSet();
 
             Assert.Single(points);
             Assert.Contains(s_center, points);
             Assert.Equal(points, enumerable);
         }
 
-        private HashSet<Point> CircleToHashSetDirect(CirclePositionsEnumerable enumerable)
+        private HashSet<Point> CircleToHashSetDirect(CirclePositionsEnumerator enumerator)
         {
             // We don't use ToEnumerable or LINQ to ensure we invoke the MoveNext implementation even if GetEnumerable
             // is implemented differently
             var points = new HashSet<Point>();
-            foreach (var point in enumerable)
+            foreach (var point in enumerator)
                 points.Add(point);
 
             return points;
@@ -166,16 +194,43 @@ namespace SadRogue.Primitives.UnitTests
             foreach (var point in Shapes.GetEllipse(f1, f2))
                 points.Add(point);
 
-            var enumerable = Shapes.GetEllipse(f1, f2).ToEnumerable().ToList();
-            Assert.Equal((IEnumerable<Point>)points, enumerable);
+            var enumerable = Shapes.GetEllipse(f1, f2);
+            Assert.Equal(points, enumerable);
         }
 
-        private HashSet<Point> EllipseToHashSetDirect(EllipsePositionsEnumerable enumerable)
+        [Theory]
+        [MemberDataTuple(nameof(EllipseCases))]
+        public void EllipseEnumerableEquivalentToDeprecatedToEnumerable(Point f1, Point f2)
+        {
+            IEnumerable<Point> expected = Shapes.GetEllipse(f1, f2);
+#pragma warning disable CS0618
+            IEnumerable<Point> actual = Shapes.GetEllipse(f1, f2).ToEnumerable();
+#pragma warning restore CS0618
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [MemberDataTuple(nameof(EllipseCases))]
+        public void EllipseEnumerator(Point f1, Point f2)
+        {
+            var list = new List<Point>();
+            using IEnumerator<Point> enumerator = ((IEnumerable<Point>)Shapes.GetEllipse(f1, f2)).GetEnumerator();
+            while (enumerator.MoveNext())
+                list.Add(enumerator.Current);
+
+            Assert.Equal(Shapes.GetEllipse(f1, f2), list);
+
+            Assert.Throws<NotSupportedException>(() => enumerator.Reset());
+        }
+
+
+        private HashSet<Point> EllipseToHashSetDirect(EllipsePositionsEnumerator enumerator)
         {
             // We don't use ToEnumerable or LINQ to ensure we invoke the MoveNext implementation even if GetEnumerable
             // is implemented differently
             var points = new HashSet<Point>();
-            foreach (var point in enumerable)
+            foreach (var point in enumerator)
                 points.Add(point);
 
             return points;
@@ -214,6 +269,55 @@ namespace SadRogue.Primitives.UnitTests
                 yield return new Point(x0 - 1, y1);
                 yield return new Point(x1 + 1, y1--);
             }
+        }
+
+        #endregion
+
+        #region Box Tests
+
+        [Theory]
+        [MemberDataEnumerable(nameof(BoxTestCases))]
+        public void BoxEquivalentToSimpleImplementation(Rectangle rectangle)
+        {
+            var simple = SimpleBox(rectangle.MinExtentX, rectangle.MinExtentY, rectangle.MaxExtentX, rectangle.MaxExtentY).ToHashSet();
+            var actual = BoxToHashSetDirect(Shapes.GetBox(rectangle));
+
+            Assert.Equal(simple, actual);
+        }
+
+        [Theory]
+        [MemberDataEnumerable(nameof(BoxTestCases))]
+        public void BoxEnumerableEquivalentToCustomIterator(Rectangle rectangle)
+        {
+            var points = new List<Point>();
+            foreach (var point in Shapes.GetBox(rectangle))
+                points.Add(point);
+
+            var enumerable = Shapes.GetBox(rectangle).ToList();
+            Assert.Equal((IEnumerable<Point>)points, enumerable);
+        }
+
+        private HashSet<Point> BoxToHashSetDirect(RectanglePerimeterPositionsEnumerator enumerator)
+        {
+            // We don't use ToEnumerable or LINQ to ensure we invoke the MoveNext implementation even if GetEnumerable
+            // is implemented differently
+            var points = new HashSet<Point>();
+            foreach (var point in enumerator)
+                points.Add(point);
+
+            return points;
+        }
+
+        public static IEnumerable<Point> SimpleBox(int x0, int y0, int x1, int y1)
+        {
+            for (int x = x0; x <= x1; x++)
+                yield return new Point(x, y0);
+            for (int y = y0; y <= y1; y++)
+                yield return new Point(x1, y);
+            for (int x = x1; x >= x0; x--)
+                yield return new Point(x, y1);
+            for (int y = y1; y >= y0; y--)
+                yield return new Point(x0, y);
         }
 
         #endregion

@@ -171,7 +171,7 @@ namespace SadRogue.Primitives.GridViews
         /// <typeparam name="T" />
         /// <param name="gridView" />
         /// <returns>All positions in the IGridView.</returns>
-        public static RectanglePositionsEnumerable Positions<T>(this IGridView<T> gridView)
+        public static RectanglePositionsEnumerator Positions<T>(this IGridView<T> gridView)
             => gridView.Bounds().Positions();
     }
 }

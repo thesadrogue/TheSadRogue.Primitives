@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 namespace SadRogue.Primitives
 {
@@ -9,14 +10,16 @@ namespace SadRogue.Primitives
     {
         /// <summary>
         /// Whether or not it is more efficient for this implementation to use enumeration by index,
-        /// rather than generic IEnumerable, when iterating over positions using <see cref="ReadOnlyAreaExtensions.FastEnumerator"/>
-        /// or <see cref="ReadOnlyAreaPositionsEnumerable"/>.
+        /// rather than generic IEnumerable, when iterating over positions using <see cref="ReadOnlyAreaPositionsEnumerator"/>.
         /// </summary>
         /// <remarks>
         /// Set this to true if your indexer implementation scales well (constant time), and is relatively fast.  Implementations with
         /// more complex indexers should set this to false.
         ///
         /// The default interface implementation returns false, in order to preserve backwards compatibility with previous versions.
+        ///
+        /// If you set this to false, your IEnumerable.GetEnumerator() implementations must NOT call return a ReadOnlyAreaPositionsEnumerator,
+        /// as this will create an infinite loop.
         /// </remarks>
         public bool UseIndexEnumeration => false;
         /// <summary>
@@ -68,5 +71,26 @@ namespace SadRogue.Primitives
         /// <param name="area">The area to check.</param>
         /// <returns>True if the given area intersects the current one, false otherwise.</returns>
         bool Intersects(IReadOnlyArea area);
+
+        /// <summary>
+        /// Returns an enumerator which can be used to iterate over the positions in this area in the most efficient
+        /// manner possible via a generic interface.
+        /// </summary>
+        /// <remarks>
+        /// The enumerator returned will use the area's indexer to iterate over the positions (like you might a list),
+        /// if the area's <see cref="IReadOnlyArea.UseIndexEnumeration"/> is true.  Otherwise, it uses the typical IEnumerator
+        /// implementation for that area.
+        ///
+        /// This may be significantly faster than the typical IEnumerable/IEnumerator usage for implementations which have
+        /// <see cref="IReadOnlyArea.UseIndexEnumeration"/> set to true; however it won't have much benefit otherwise.
+        ///
+        /// If you have a value of a concrete type rather than an interface, and the GetEnumerator implementation for that
+        /// given type is particularly fast or a non-boxed type (like <see cref="Area"/>, you will probably get faster performance
+        /// out of that than by using this; however this will provide better performance if you are working with an interface
+        /// and thus don't know the type of area.  Use cases for this function are generally for iteration via IReadOnlyArea.
+        ///
+        /// </remarks>
+        /// <returns>A custom enumerator that iterates over the positions in the area in the most efficient manner possible via a generic interface.</returns>
+        new ReadOnlyAreaPositionsEnumerator GetEnumerator() => new ReadOnlyAreaPositionsEnumerator(this);
     }
 }

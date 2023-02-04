@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
@@ -12,12 +13,11 @@ namespace SadRogue.Primitives
     /// </summary>
     /// <remarks>
     /// This type is a struct, and as such is much more efficient when used in a foreach loop than a function returning
-    /// IEnumerable&lt;Point&gt; by using "yield return".  This type does contain a function <see cref="ToEnumerable"/>
-    /// which creates an IEnumerable&lt;Point&gt;, which can be convenient for allowing the
-    /// returned positions to be used with LINQ; however using this function is not recommended in situations where
-    /// runtime performance is a primary concern.
+    /// IEnumerable&lt;Point&gt; by using "yield return".  This type does implement <see cref="IEnumerable{Point}"/>,
+    /// so you can pass it to functions which require one (for example, System.LINQ).  However, this will have reduced
+    /// performance due to boxing of the iterator.
     /// </remarks>
-    public struct CirclePositionsEnumerable
+    public struct CirclePositionsEnumerator : IEnumerator<Point>, IEnumerable<Point>
     {
         private readonly Point _center;
         private int _radius;
@@ -39,12 +39,14 @@ namespace SadRogue.Primitives
 
         private int _state;
 
+        object IEnumerator.Current => _current;
+
         /// <summary>
         /// Creates an enumerator which iterates over all positions on the outside of the given circle.
         /// </summary>
         /// <param name="center">Center of the circle.</param>
         /// <param name="radius">The radius of the circle.</param>
-        public CirclePositionsEnumerable(Point center, int radius)
+        public CirclePositionsEnumerator(Point center, int radius)
         {
             _center = center;
             _radius = radius;
@@ -102,44 +104,29 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <returns>This enumerator.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public CirclePositionsEnumerable GetEnumerator() => this;
+        public CirclePositionsEnumerator GetEnumerator() => this;
 
         /// <summary>
-        /// Converts the result of the enumerable to a <see cref="IEnumerable{T}"/>, which can be useful if you need
-        /// to use the result with LINQ.
+        /// Obsolete.
         /// </summary>
-        /// <remarks>
-        /// Note that this function advances the state of the enumerator, evaluating it to its fullest extent.  Also
-        /// note that it is NOT recommended to use this function in cases where performance is critical.
-        /// </remarks>
-        /// <returns>
-        /// An IEnumerable&lt;Point&gt; which iterates over all positions on the outside of the circle specified to this
-        /// enumerator.
-        /// </returns>
-        public IEnumerable<Point> ToEnumerable()
-        {
-            // This is a re-implementation of the circle algorithm implemented in MoveNext above, and is equivalent to:
-            // foreach (var pos in this)
-            //    yield return pos
-            //
-            // However, this is notably faster.
-            do
-            {
-                yield return new Point(_center.X - _xi, _center.Y + _yi); /*   I. Quadrant */
-                yield return new Point(_center.X - _yi, _center.Y - _xi); /*  II. Quadrant */
-                yield return new Point(_center.X + _xi, _center.Y - _yi); /* III. Quadrant */
-                yield return new Point(_center.X + _yi, _center.Y + _xi); /*  IV. Quadrant */
-                _radius = _err;
-                if (_radius <= _yi)
-                    _err += ++_yi * 2 + 1;           /* e_xy+e_y < 0 */
+        /// <returns/>
+        [Obsolete(
+            "This method is obsolete; this structure itself implements IEnumerable directly and provides equivalent behavior, so you should no longer call this function.")]
+        public IEnumerable<Point> ToEnumerable() => this;
 
-                if (_radius > _xi || _err > _yi)
-                    _err += ++_xi * 2 + 1; /* e_xy+e_x > 0 or no 2nd y-step */
+        // Explicitly implemented to ensure we prefer the non-boxing versions where possible
+        #region Explicit Interface Implementations
+        /// <summary>
+        /// This iterator does not support resetting.
+        /// </summary>
+        /// <exception cref="NotSupportedException"/>
+        void IEnumerator.Reset() => throw new NotSupportedException();
+        IEnumerator<Point> IEnumerable<Point>.GetEnumerator() => this;
+        IEnumerator IEnumerable.GetEnumerator() => this;
 
-            } while (_xi < 0);
-
-            _terminate = true;
-        }
+        void IDisposable.Dispose()
+        { }
+        #endregion
     }
 
     /// <summary>
@@ -150,12 +137,11 @@ namespace SadRogue.Primitives
     /// </summary>
     /// <remarks>
     /// This type is a struct, and as such is much more efficient when used in a foreach loop than a function returning
-    /// IEnumerable&lt;Point&gt; by using "yield return".  This type does contain a function <see cref="ToEnumerable"/>
-    /// which creates an IEnumerable&lt;Point&gt;, which can be convenient for allowing the
-    /// returned positions to be used with LINQ; however using this function is not recommended in situations where
-    /// runtime performance is a primary concern.
+    /// IEnumerable&lt;Point&gt; by using "yield return".  This type does implement <see cref="IEnumerable{Point}"/>,
+    /// so you can pass it to functions which require one (for example, System.LINQ).  However, this will have reduced
+    /// performance due to boxing of the iterator.
     /// </remarks>
-    public struct EllipsePositionsEnumerable
+    public struct EllipsePositionsEnumerator : IEnumerator<Point>, IEnumerable<Point>
     {
         // Suppress warning stating to use auto-property because we want to guarantee micro-performance
         // characteristics.
@@ -181,12 +167,14 @@ namespace SadRogue.Primitives
         private bool _terminate;
         private long _err;
 
+        object IEnumerator.Current => _current;
+
         /// <summary>
         /// Creates an enumerator which iterates over all positions on the outside of the given ellipse.
         /// </summary>
         /// <param name="f1">The first focus point of the ellipse.</param>
         /// <param name="f2">The second focus point of the ellipse.</param>
-        public EllipsePositionsEnumerable(Point f1, Point f2)
+        public EllipsePositionsEnumerator(Point f1, Point f2)
         {
             (_x0, _y0) = f1;
             (_x1, _y1) = f2;
@@ -274,46 +262,29 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <returns>This enumerator.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public EllipsePositionsEnumerable GetEnumerator() => this;
+        public EllipsePositionsEnumerator GetEnumerator() => this;
 
         /// <summary>
-        /// Converts the result of the enumerable to a <see cref="IEnumerable{T}"/>, which can be useful if you need
-        /// to use the result with LINQ.
+        /// Obsolete.
         /// </summary>
-        /// <remarks>
-        /// Note that this function advances the state of the enumerator, evaluating it to its fullest extent.  Also
-        /// note that it is NOT recommended to use this function in cases where performance is critical.
-        /// </remarks>
-        /// <returns>
-        /// An IEnumerable&lt;Point&gt; which iterates over all positions on the outside of the ellipse specified to this
-        /// enumerator.
-        /// </returns>
-        public IEnumerable<Point> ToEnumerable()
-        {
-            // This is a re-implementation of the ellipse algorithm implemented in MoveNext above, and is equivalent to:
-            // foreach (var pos in this)
-            //    yield return pos
-            //
-            // However, this is notably faster.
-            do
-            {
-                yield return new Point(_x1, _y0); /*   I. Quadrant */
-                yield return new Point(_x0, _y0); /*  II. Quadrant */
-                yield return new Point(_x0, _y1); /* III. Quadrant */
-                yield return new Point(_x1, _y1); /*  IV. Quadrant */
-                long e2 = 2 * _err;
-                if (e2 <= _dy) { _y0++; _y1--; _err += _dy += _a; }  /* y step */
-                if (e2 >= _dx || 2 * _err > _dy) { _x0++; _x1--; _err += _dx += _b1; } /* x step */
-            } while (_x0 <= _x1);
+        /// <returns/>
+        [Obsolete(
+            "This method is obsolete; this structure itself implements IEnumerable directly and provides equivalent behavior, so you should no longer call this function.")]
+        public IEnumerable<Point> ToEnumerable() => this;
 
-            while (_y0 - _y1 < _b)
-            {  /* too early stop of flat ellipses a=1 */
-                yield return new Point(_x0 - 1, _y0); /* -> finish tip of ellipse */
-                yield return new Point(_x1 + 1, _y0++);
-                yield return new Point(_x0 - 1, _y1);
-                yield return new Point(_x1 + 1, _y1--);
-            }
-        }
+        // Explicitly implemented to ensure we prefer the non-boxing versions where possible
+        #region Explicit Interface Implementations
+        /// <summary>
+        /// This iterator does not support resetting.
+        /// </summary>
+        /// <exception cref="NotSupportedException"/>
+        void IEnumerator.Reset() => throw new NotSupportedException();
+        IEnumerator<Point> IEnumerable<Point>.GetEnumerator() => this;
+        IEnumerator IEnumerable.GetEnumerator() => this;
+
+        void IDisposable.Dispose()
+        { }
+        #endregion
     }
 
     /// <summary>
@@ -327,29 +298,43 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <remarks>
         /// This function returns a custom iterator which is very fast when used in a foreach loop.
-        /// If you need an IEnumerable to use with LINQ or other code, you can take the result of this function and
-        /// call <see cref="CirclePositionsEnumerable.ToEnumerable()"/> on it; however note that iterating over
-        /// that will not perform as well as iterating directly over this object.
+        /// If you need an IEnumerable to use with LINQ or other code, the returned struct does implement that interface;
+        /// however note that iterating over it this way will not perform as well as iterating directly over this object.
         /// </remarks>
         /// <param name="center">Center of the circle.</param>
         /// <param name="radius">The radius of the circle.</param>
+        /// <returns>Every point on the outer edges of the circle specified.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static CirclePositionsEnumerable GetCircle(Point center, int radius)
-            => new CirclePositionsEnumerable(center, radius);
+        public static CirclePositionsEnumerator GetCircle(Point center, int radius)
+            => new CirclePositionsEnumerator(center, radius);
 
         /// <summary>
         /// Gets the points on the outside of an ellipse.
         /// </summary>
         /// <remarks>
         /// This function returns a custom iterator which is very fast when used in a foreach loop.
-        /// If you need an IEnumerable to use with LINQ or other code, you can take the result of this function and
-        /// call <see cref="CirclePositionsEnumerable.ToEnumerable()"/> on it; however note that iterating over
-        /// that will not perform as well as iterating directly over this object.
+        /// If you need an IEnumerable to use with LINQ or other code, the returned struct does implement that interface;
+        /// however note that iterating over it this way will not perform as well as iterating directly over this object.
         /// </remarks>
         /// <param name="f1">The first focus point of the ellipse.</param>
         /// <param name="f2">The second focus point of the ellipse.</param>
+        /// <returns>Every point on the outer edges of the ellipse specified.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static EllipsePositionsEnumerable GetEllipse(Point f1, Point f2)
-            => new EllipsePositionsEnumerable(f1, f2);
+        public static EllipsePositionsEnumerator GetEllipse(Point f1, Point f2)
+            => new EllipsePositionsEnumerator(f1, f2);
+
+        /// <summary>
+        /// Gets the points on the outside of a box defined by the outer edges of the given rectangle.
+        /// </summary>
+        /// <remarks>
+        /// This function returns a custom iterator which is very fast when used in a foreach loop.
+        /// If you need an IEnumerable to use with LINQ or other code, the returned struct does implement that interface;
+        /// however note that iterating over it this way will not perform as well as iterating directly over this object.
+        /// </remarks>
+        /// <param name="rectangle">A rectangle whose outer edges define the box to iterate over.</param>
+        /// <returns>Every point on the outer edges of the box specified.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static RectanglePerimeterPositionsEnumerator GetBox(Rectangle rectangle)
+            => rectangle.PerimeterPositions();
     }
 }

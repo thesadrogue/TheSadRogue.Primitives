@@ -6,7 +6,7 @@ namespace TheSadRogue.Primitives.PerformanceTests
 {
     public static class RectangleTestingExtensions
     {
-        public static IEnumerable<SadRogue.Primitives.Rectangle> BisectHorizontallyNativeEnumerator(this SadRogue.Primitives.Rectangle rectangle)
+        public static IEnumerable<SadRogue.Primitives.Rectangle> BisectHorizontallyNoCustomIterator(this SadRogue.Primitives.Rectangle rectangle)
         {
             int startX = rectangle.MinExtentX;
             int stopY = rectangle.MaxExtentY;
@@ -16,6 +16,46 @@ namespace TheSadRogue.Primitives.PerformanceTests
 
             yield return new SadRogue.Primitives.Rectangle(new Point(startX, startY), new Point(stopX, bisection));
             yield return new SadRogue.Primitives.Rectangle(new Point(startX, bisection + 1), new Point(stopX, stopY));
+        }
+
+        public static IEnumerable<Point> PerimeterPositionsNoCustomIterator(this SadRogue.Primitives.Rectangle self)
+        {
+            for (int x = self.MinExtentX; x <= self.MaxExtentX; x++)
+                yield return new Point(x, self.MinExtentY); // Minimum y-side perimeter
+
+            // Start offset 1, since last loop returned the corner piece
+            for (int y = self.MinExtentY + 1; y <= self.MaxExtentY; y++)
+                yield return new Point(self.MaxExtentX, y);
+
+            // Again skip 1 because last loop returned the corner piece
+            for (int x = self.MaxExtentX - 1; x >= self.MinExtentX; x--)
+                yield return new Point(x, self.MaxExtentY);
+
+            // Skip 1 on both ends, because last loop returned one corner, first loop returned the other
+            for (int y = self.MaxExtentY - 1; y >= self.MinExtentY + 1; y--)
+                yield return new Point(self.MinExtentX, y);
+        }
+
+        public static IEnumerable<Point> PerimeterPositionsNoCustomIteratorCachedEnds(this SadRogue.Primitives.Rectangle self)
+        {
+            int minX = self.MinExtentX;
+            int minY = self.MinExtentY;
+            int maxX = self.MaxExtentX;
+            int maxY = self.MaxExtentY;
+            for (int x = minX; x <= maxX; x++)
+                yield return new Point(x, minY); // Minimum y-side perimeter
+
+            // Start offset 1, since last loop returned the corner piece
+            for (int y = minY + 1; y <= maxY; y++)
+                yield return new Point(maxX, y);
+
+            // Again skip 1 because last loop returned the corner piece
+            for (int x = maxX - 1; x >= minX; x--)
+                yield return new Point(x, maxY);
+
+            // Skip 1 on both ends, because last loop returned one corner, first loop returned the other
+            for (int y = maxY - 1; y >= minY + 1; y--)
+                yield return new Point(minX, y);
         }
     }
 
@@ -84,7 +124,7 @@ namespace TheSadRogue.Primitives.PerformanceTests
         public int BisectToEnumerable()
         {
             int sum = 0;
-            foreach (var rect in _rectangle.Bisect().ToEnumerable())
+            foreach (var rect in _rectangle.Bisect())
                 sum += rect.Width + rect.Height;
 
             return sum;
@@ -94,7 +134,7 @@ namespace TheSadRogue.Primitives.PerformanceTests
         public int BisectVerticallyToEnumerable()
         {
             int sum = 0;
-            foreach (var rect in _rectangle.BisectVertically().ToEnumerable())
+            foreach (var rect in _rectangle.BisectVertically())
                 sum += rect.Width + rect.Height;
 
             return sum;
@@ -104,7 +144,7 @@ namespace TheSadRogue.Primitives.PerformanceTests
         public int BisectHorizontallyToEnumerable()
         {
             int sum = 0;
-            foreach (var rect in _rectangle.BisectHorizontally().ToEnumerable())
+            foreach (var rect in _rectangle.BisectHorizontally())
                 sum += rect.Width + rect.Height;
 
             return sum;
@@ -114,11 +154,41 @@ namespace TheSadRogue.Primitives.PerformanceTests
         #region IEnumerable Implementations
 
         [Benchmark]
-        public int BisectHorizontallyNativeEnumerable()
+        public int BisectHorizontallyNoCustomIterator()
         {
             int sum = 0;
-            foreach (var rect in _rectangle.BisectHorizontallyNativeEnumerator())
+            foreach (var rect in _rectangle.BisectHorizontallyNoCustomIterator())
                 sum += rect.Width + rect.Height;
+
+            return sum;
+        }
+
+        [Benchmark]
+        public int PerimeterPositions()
+        {
+            int sum = 0;
+            foreach (var pos in _rectangle.PerimeterPositions())
+                sum += pos.X + pos.Y;
+
+            return sum;
+        }
+
+        [Benchmark]
+        public int PerimeterPositionsNoCustomIterator()
+        {
+            int sum = 0;
+            foreach (var pos in _rectangle.PerimeterPositionsNoCustomIterator())
+                sum += pos.X + pos.Y;
+
+            return sum;
+        }
+
+        [Benchmark]
+        public int PerimeterPositionsNoCustomIteratorCachedEnds()
+        {
+            int sum = 0;
+            foreach (var pos in _rectangle.PerimeterPositionsNoCustomIteratorCachedEnds())
+                sum += pos.X + pos.Y;
 
             return sum;
         }

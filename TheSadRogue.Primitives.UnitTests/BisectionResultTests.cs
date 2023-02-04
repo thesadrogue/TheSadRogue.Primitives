@@ -24,7 +24,7 @@ namespace SadRogue.Primitives.UnitTests
 
             var result = new BisectionResult(rect1, rect2);
 
-            var rects = result.ToEnumerable().ToArray();
+            var rects = result.ToArray();
             Assert.Equal(2, rects.Length);
 
             Assert.Equal(rect1, rects[0]);

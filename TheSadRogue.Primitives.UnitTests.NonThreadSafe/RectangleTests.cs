@@ -22,6 +22,105 @@ namespace SadRogue.Primitives.UnitTests
                 .ToArray();
         #endregion
 
+        #region Test Perimeter Positions
+
+        [Theory]
+        [MemberDataTuple(nameof(TestRectanglesWithYIncreasesUpwards))]
+        public void PerimeterPositions(Rectangle rect, bool yIncreaseUpwards)
+        {
+            Direction.SetYIncreasesUpwardsUnsafe(yIncreaseUpwards);
+
+            var expected = new HashSet<Point>();
+            foreach (var pos in rect.Positions())
+                if (pos.X == rect.MinExtentX || pos.X == rect.MaxExtentX || pos.Y == rect.MinExtentY ||
+                    pos.Y == rect.MaxExtentY)
+                    expected.Add(pos);
+
+            var actual = PerimeterPositionsToHashSetDirect(rect.PerimeterPositions());
+
+            Assert.Equal(expected, actual);
+
+            Direction.SetYIncreasesUpwardsUnsafe(false); // Ensure we reset to false for next test
+        }
+
+        [Theory]
+        [MemberDataTuple(nameof(TestRectanglesWithYIncreasesUpwards))]
+        public void PerimeterPositionsEnumerableIsEquivalent(Rectangle rect, bool yIncreaseUpwards)
+        {
+            Direction.SetYIncreasesUpwardsUnsafe(yIncreaseUpwards);
+
+            var expected = PerimeterPositionsToHashSetDirect(rect.PerimeterPositions());
+            var actual = rect.PerimeterPositions().ToHashSet();
+
+            Assert.Equal(expected, actual);
+
+            Direction.SetYIncreasesUpwardsUnsafe(false); // Ensure we reset to false for next test
+        }
+
+        [Theory]
+        [MemberDataTuple(nameof(TestRectanglesWithYIncreasesUpwards))]
+        public void PerimeterPositionsNoDuplicates(Rectangle rect, bool yIncreaseUpwards)
+        {
+            Direction.SetYIncreasesUpwardsUnsafe(yIncreaseUpwards);
+
+            int expected = rect.PerimeterPositions().ToHashSet().Count;
+            int actual = rect.PerimeterPositions().ToList().Count;
+
+            Assert.Equal(expected, actual);
+
+            Direction.SetYIncreasesUpwardsUnsafe(false); // Ensure we reset to false for next test
+        }
+
+        [Theory]
+        [MemberDataTuple(nameof(TestRectanglesWithYIncreasesUpwards))]
+        public void GenericEnumeratorCurrentIsEquivalent(Rectangle rect, bool yIncreaseUpwards)
+        {
+            Direction.SetYIncreasesUpwardsUnsafe(yIncreaseUpwards);
+
+            var list = rect.PerimeterPositions().ToArray();
+            Assert.Equal(rect.PerimeterPositions(), list);
+
+            Direction.SetYIncreasesUpwardsUnsafe(false); // Ensure we reset to false for next test
+        }
+
+        [Fact]
+        public void PerimeterPositionsReset()
+        {
+            var enumerator = new Rectangle(1, 2, 3, 4).PerimeterPositions();
+
+            var list = enumerator.ToList();
+            ((IEnumerator<Point>)enumerator).Reset();
+            var list2 = enumerator.ToList();
+
+            Assert.Equal(list, list2);
+        }
+
+        [Fact]
+        public void PerimeterPositionsEmptyRectangle()
+        {
+            var rect = Rectangle.Empty;
+            Assert.Empty(rect.PerimeterPositions());
+
+            rect = new Rectangle(1, 2, 0, 1);
+            Assert.Empty(rect.PerimeterPositions());
+
+            rect = new Rectangle(1, 2, 1, 0);
+            Assert.Empty(rect.PerimeterPositions());
+        }
+
+        // Ensure we use the custom iterator directly, in case that and its GetEnumerator definition for IEnumerable
+        // differ.
+        private static HashSet<Point> PerimeterPositionsToHashSetDirect(RectanglePerimeterPositionsEnumerator enumerator)
+        {
+            var list = new HashSet<Point>();
+            foreach (var pos in enumerator)
+                list.Add(pos);
+
+            return list;
+        }
+
+        #endregion
+
         #region Test Side Points
 
         [Theory]
@@ -40,7 +139,7 @@ namespace SadRogue.Primitives.UnitTests
             Assert.Equal(edgePoints.Length, hashSet.Count);
 
             // Verify correct points
-            HashSet<Point> expectedHash = rect.Positions().ToEnumerable().Where(pos => pos.Y == yToCheck).ToHashSet();
+            HashSet<Point> expectedHash = rect.Positions().Where(pos => pos.Y == yToCheck).ToHashSet();
             Assert.Equal(expectedHash, hashSet);
 
             Direction.SetYIncreasesUpwardsUnsafe(false); // Ensure we reset to false for next test
@@ -60,7 +159,7 @@ namespace SadRogue.Primitives.UnitTests
             Assert.Equal(edgePoints.Length, hashSet.Count);
 
             // Verify correct points
-            HashSet<Point> expectedHash = rect.Positions().ToEnumerable().Where(pos => pos.X == rect.MaxExtentX).ToHashSet();
+            HashSet<Point> expectedHash = rect.Positions().Where(pos => pos.X == rect.MaxExtentX).ToHashSet();
             Assert.Equal(expectedHash, hashSet);
 
             Direction.SetYIncreasesUpwardsUnsafe(false); // Ensure we reset to false for next test
@@ -82,7 +181,7 @@ namespace SadRogue.Primitives.UnitTests
             Assert.Equal(edgePoints.Length, hashSet.Count);
 
             // Verify correct points
-            HashSet<Point> expectedHash = rect.Positions().ToEnumerable().Where(pos => pos.Y == yToCheck).ToHashSet();
+            HashSet<Point> expectedHash = rect.Positions().Where(pos => pos.Y == yToCheck).ToHashSet();
             Assert.Equal(expectedHash, hashSet);
 
             Direction.SetYIncreasesUpwardsUnsafe(false); // Ensure we reset to false for next test
@@ -102,7 +201,7 @@ namespace SadRogue.Primitives.UnitTests
             Assert.Equal(edgePoints.Length, hashSet.Count);
 
             // Verify correct points
-            HashSet<Point> expectedHash = rect.Positions().ToEnumerable().Where(pos => pos.X == rect.MinExtentX).ToHashSet();
+            HashSet<Point> expectedHash = rect.Positions().Where(pos => pos.X == rect.MinExtentX).ToHashSet();
             Assert.Equal(expectedHash, hashSet);
 
             Direction.SetYIncreasesUpwardsUnsafe(false); // Ensure we reset to false for next test

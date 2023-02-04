@@ -30,7 +30,7 @@ namespace SadRogue.Primitives.UnitTests
             // Iteration should take place using the GetEnumerator function
             area.ClearCounts();
             var list = new List<Point>();
-            foreach (var pos in area.FastEnumerator())
+            foreach (var pos in new ReadOnlyAreaPositionsEnumerator(area))
                 list.Add(pos);
             Assert.Equal(area.Points, list);
             Assert.Equal(0, area.GetIndexCount);
@@ -40,7 +40,35 @@ namespace SadRogue.Primitives.UnitTests
             list.Clear();
             area.ClearCounts();
             area.UseIndexEnumeration = true;
+            foreach (var pos in new ReadOnlyAreaPositionsEnumerator(area))
+                list.Add(pos);
+
+            Assert.Equal(area.Points, list);
+            Assert.Equal(area.Points.Count, area.GetIndexCount);
+            Assert.Equal(0, area.GetEnumeratorCount);
+        }
+
+        [Fact]
+        public void DeprecatedFastEnumeratorFunctionTriggersCorrectEnumerator()
+        {
+            var area = new ReadOnlyAreaCountEnumerations { UseIndexEnumeration = false };
+
+            // Iteration should take place using the GetEnumerator function
+            area.ClearCounts();
+            var list = new List<Point>();
+#pragma warning disable CS0618
             foreach (var pos in area.FastEnumerator())
+#pragma warning restore CS0618
+                list.Add(pos);
+            Assert.Equal(area.Points, list);
+            Assert.Equal(0, area.GetIndexCount);
+            Assert.Equal(1, area.GetEnumeratorCount);
+
+            // Iteration should take place using the indexers
+            list.Clear();
+            area.ClearCounts();
+            area.UseIndexEnumeration = true;
+            foreach (var pos in new ReadOnlyAreaPositionsEnumerator(area))
                 list.Add(pos);
 
             Assert.Equal(area.Points, list);

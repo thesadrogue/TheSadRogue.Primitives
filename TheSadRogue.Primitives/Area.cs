@@ -108,7 +108,7 @@ namespace SadRogue.Primitives
         {
             Area retVal = new Area(pointHasher);
 
-            foreach (Point pos in area1.FastEnumerator())
+            foreach (Point pos in area1)
             {
                 if (area2.Contains(pos))
                     continue;
@@ -139,7 +139,7 @@ namespace SadRogue.Primitives
             if (area1.Count > area2.Count)
                 (area2, area1) = (area1, area2);
 
-            foreach (Point pos in area1.FastEnumerator())
+            foreach (Point pos in area1)
                 if (area2.Contains(pos))
                     retVal.Add(pos);
 
@@ -178,7 +178,7 @@ namespace SadRogue.Primitives
         {
             Area retVal = new Area(lhs.PointHasher);
 
-            foreach (Point pos in lhs.FastEnumerator())
+            foreach (Point pos in lhs)
                 retVal.Add(pos + rhs);
 
             return retVal;
@@ -281,7 +281,7 @@ namespace SadRogue.Primitives
         /// <param name="area">Area containing positions to add.</param>
         public void Add(IReadOnlyArea area)
         {
-            foreach (Point pos in area.FastEnumerator())
+            foreach (Point pos in area)
                 Add(pos);
         }
 
@@ -314,7 +314,7 @@ namespace SadRogue.Primitives
             if (!Bounds.Contains(area.Bounds))
                 return false;
 
-            foreach (Point pos in area.FastEnumerator())
+            foreach (Point pos in area)
                 if (!Contains(pos))
                     return false;
 
@@ -346,7 +346,7 @@ namespace SadRogue.Primitives
                 return false;
             }
 
-            foreach (Point pos in area.FastEnumerator())
+            foreach (Point pos in area)
                 if (Contains(pos))
                     return true;
 
@@ -445,7 +445,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="rectangle">Rectangle containing positions to remove.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void Remove(Rectangle rectangle) => Remove(rectangle.Positions().ToEnumerable());
+        public void Remove(Rectangle rectangle) => Remove(rectangle.Positions());
 
         /// <summary>
         /// Returns the string of each position in the area, in a square-bracket enclosed list,
@@ -475,13 +475,12 @@ namespace SadRogue.Primitives
         /// Returns an enumerator that iterates through all positions in the Area, in the order they were added.
         /// </summary>
         /// <returns>An enumerator that iterates through all the positions in the Area, in the order they were added.</returns>
-        public IEnumerator<Point> GetEnumerator() => _positions.GetEnumerator();
+        public List<Point>.Enumerator GetEnumerator() => _positions.GetEnumerator();
 
-        /// <summary>
-        /// Returns an enumerator that iterates through all positions in the Area, in the order they were added.
-        /// </summary>
-        /// <returns>An enumerator that iterates through all the positions in the Area, in the order they were added.</returns>
+        #region Explicit Interface Implementations
+        IEnumerator<Point> IEnumerable<Point>.GetEnumerator() => _positions.GetEnumerator();
         IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable)_positions).GetEnumerator();
+        #endregion
 
         private void RecalculateBounds()
         {

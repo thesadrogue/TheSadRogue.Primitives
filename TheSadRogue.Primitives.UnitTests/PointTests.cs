@@ -109,7 +109,7 @@ namespace SadRogue.Primitives.UnitTests
         public void IndicesAreUnique()
         {
             var rect = _testPositions.WithPosition((0, 0));
-            Assert.Equal(rect.Area, rect.Positions().ToEnumerable().Select(i => i.ToIndex(rect.Width)).ToHashSet().Count);
+            Assert.Equal(rect.Area, rect.Positions().Select(i => i.ToIndex(rect.Width)).ToHashSet().Count);
         }
 
         #endregion
@@ -142,9 +142,9 @@ namespace SadRogue.Primitives.UnitTests
         [Fact]
         public void EuclideanDistanceMagnitudeSameAsEuclideanMagnitude()
         {
-            var positionsByDistance = _testPositions.Positions().ToEnumerable()
+            var positionsByDistance = _testPositions.Positions()
                 .OrderBy(i => Distance.Euclidean.Calculate(_testPositions.Center, i)).ToArray();
-            var positionsByMagnitude = _testPositions.Positions().ToEnumerable()
+            var positionsByMagnitude = _testPositions.Positions()
                 .OrderBy(i => Point.EuclideanDistanceMagnitude(_testPositions.Center, i)).ToArray();
 
             Assert.Equal((IEnumerable<Point>)positionsByDistance, positionsByMagnitude);

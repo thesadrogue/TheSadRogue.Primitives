@@ -181,7 +181,7 @@ namespace SadRogue.Primitives.UnitTests
         public void BisectInHalfTest()
         {
             Rectangle rectangle = new Rectangle(0, 0, 5, 13);
-            List<Rectangle> rectangles = rectangle.Bisect().ToEnumerable().ToList();
+            List<Rectangle> rectangles = rectangle.Bisect().ToList();
             foreach (Point c in rectangles[0].Positions())
             {
                 Assert.True(rectangle.Contains(c));
@@ -202,7 +202,7 @@ namespace SadRogue.Primitives.UnitTests
             Assert.Equal(5, rectangles[1].Width);
 
             rectangle = new Rectangle(0, 0, 13, 5);
-            rectangles.AddRange(rectangle.Bisect().ToEnumerable());
+            rectangles.AddRange(rectangle.Bisect());
             foreach (Point c in rectangles[2].Positions())
             {
                 Assert.True(rectangle.Contains(c));
@@ -227,7 +227,7 @@ namespace SadRogue.Primitives.UnitTests
         public void BisectHorizontallyTest()
         {
             Rectangle rectangle = new Rectangle(0, 0, 5, 13);
-            List<Rectangle> rectangles = rectangle.BisectHorizontally().ToEnumerable().ToList();
+            List<Rectangle> rectangles = rectangle.BisectHorizontally().ToList();
             foreach (Point c in rectangles[0].Positions())
             {
                 Assert.True(rectangle.Contains(c));
@@ -247,7 +247,7 @@ namespace SadRogue.Primitives.UnitTests
         public void BisectVerticallyTest()
         {
             Rectangle rectangle = new Rectangle(0, 0, 13, 5);
-            List<Rectangle> rectangles = rectangle.BisectVertically().ToEnumerable().ToList();
+            List<Rectangle> rectangles = rectangle.BisectVertically().ToList();
             foreach (Point c in rectangles[0].Positions())
             {
                 Assert.True(rectangle.Contains(c));
@@ -260,6 +260,40 @@ namespace SadRogue.Primitives.UnitTests
             Assert.True(rectangles[1].Width <= 10);
             Assert.Equal(5, rectangles[0].Height);
             Assert.Equal(5, rectangles[1].Height);
+        }
+
+        [Fact]
+        public void BisectReset()
+        {
+            var result = new Rectangle(0, 0, 5, 13).BisectHorizontally();
+            using IEnumerator<Rectangle> enumerator = result.GetEnumerator();
+
+            Assert.True(enumerator.MoveNext());
+            Assert.Equal(result.Rect1, enumerator.Current);
+            Assert.True(enumerator.MoveNext());
+            Assert.Equal(result.Rect2, enumerator.Current);
+            Assert.False(enumerator.MoveNext());
+
+            enumerator.Reset();
+
+            Assert.True(enumerator.MoveNext());
+            Assert.Equal(result.Rect1, enumerator.Current);
+            Assert.True(enumerator.MoveNext());
+            Assert.Equal(result.Rect2, enumerator.Current);
+            Assert.False(enumerator.MoveNext());
+        }
+
+        [Fact]
+        public void BisectDeprecatedToEnumerable()
+        {
+            var result = new Rectangle(0, 0, 5, 13).BisectHorizontally();
+
+            var expected = result.ToList();
+#pragma warning disable CS0618
+            var actual = result.ToEnumerable().ToList();
+#pragma warning restore CS0618
+
+            Assert.Equal(expected, actual);
         }
 
         #endregion
@@ -553,14 +587,40 @@ namespace SadRogue.Primitives.UnitTests
             var rect2 = new Rectangle(1, 2, 0, 1);
             var rect3 = new Rectangle(1, 2, 0, 0);
 
-            var set1 = rect1.Positions().ToEnumerable().ToHashSet();
+            var set1 = rect1.Positions().ToHashSet();
             Assert.Empty(set1);
 
-            var set2 = rect2.Positions().ToEnumerable().ToHashSet();
+            var set2 = rect2.Positions().ToHashSet();
             Assert.Empty(set2);
 
-            var set3 = rect3.Positions().ToEnumerable().ToHashSet();
+            var set3 = rect3.Positions().ToHashSet();
             Assert.Empty(set3);
+        }
+
+        [Theory]
+        [MemberDataEnumerable(nameof(MiscTestRectangles))]
+        public void PositionsEnumeratorDeprecatedToEnumerableEquivalent(Rectangle rect)
+        {
+#pragma warning disable CS0618
+            Assert.Equal(rect.Positions(), rect.Positions().ToEnumerable());
+#pragma warning restore CS0618
+        }
+
+        [Theory]
+        [MemberDataEnumerable(nameof(MiscTestRectangles))]
+        public void PositionsEnumeratorReset(Rectangle rect)
+        {
+            using IEnumerator<Point> positions = ((IEnumerable<Point>)rect.Positions()).GetEnumerator();
+            var list = new List<Point>();
+            while (positions.MoveNext())
+                list.Add(positions.Current);
+
+            positions.Reset();
+            var list2 = new List<Point>();
+            while (positions.MoveNext())
+                list2.Add(positions.Current);
+
+            Assert.Equal(list, list2);
         }
 
         private static void CheckRect(Rectangle rect, Point position, int width, int height)

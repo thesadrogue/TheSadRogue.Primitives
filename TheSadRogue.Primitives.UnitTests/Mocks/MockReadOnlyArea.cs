@@ -30,6 +30,12 @@ namespace SadRogue.Primitives.UnitTests.Mocks
             return Points.GetEnumerator();
         }
 
+        ReadOnlyAreaPositionsEnumerator IReadOnlyArea.GetEnumerator()
+        {
+            GetEnumeratorCount++;
+            return new ReadOnlyAreaPositionsEnumerator(this);
+        }
+
         public Rectangle Bounds => throw new System.NotImplementedException();
 
         public int Count => Points.Count;

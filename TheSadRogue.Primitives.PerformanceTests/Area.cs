@@ -18,10 +18,10 @@ namespace TheSadRogue.Primitives.PerformanceTests
         [GlobalSetup]
         public void GlobalSetup()
         {
-            _area = new SadRogue.Primitives.Area(new SadRogue.Primitives.Rectangle(0, 0, Size, Size).Positions().ToEnumerable());
+            _area = new SadRogue.Primitives.Area(new SadRogue.Primitives.Rectangle(0, 0, Size, Size).Positions());
             _areaInterface = _area;
 
-            _area2 = new SadRogue.Primitives.Area(new SadRogue.Primitives.Rectangle(0, 0, Size / 2, Size / 2).Positions().ToEnumerable());
+            _area2 = new SadRogue.Primitives.Area(new SadRogue.Primitives.Rectangle(0, 0, Size / 2, Size / 2).Positions());
         }
 
         [Benchmark]
@@ -48,7 +48,7 @@ namespace TheSadRogue.Primitives.PerformanceTests
         public int BenchmarkFastEnumerable()
         {
             int sum = 0;
-            foreach (var pos in _areaInterface.FastEnumerator())
+            foreach (var pos in new ReadOnlyAreaPositionsEnumerator(_areaInterface))
                 sum += pos.X + pos.Y;
 
             return sum;
@@ -58,7 +58,7 @@ namespace TheSadRogue.Primitives.PerformanceTests
         public int BenchmarkFastEnumerableAsConcrete()
         {
             int sum = 0;
-            foreach (var pos in _area.FastEnumerator())
+            foreach (var pos in new ReadOnlyAreaPositionsEnumerator(_area))
                 sum += pos.X + pos.Y;
 
             return sum;

@@ -61,6 +61,18 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
         [Benchmark]
         public int RosenbergStrongBasedMinusMultiply() => SumHashesAlgorithm(RosenbergStrongBasedMinusMultiplyAlgorithm.Instance);
 
+        [Benchmark]
+        public int RosenbergStrongPure() => SumHashesAlgorithm(RosenbergStrongPureAlgorithm.Instance);
+
+        [Benchmark]
+        public int CantorPure() => SumHashesAlgorithm(CantorPureAlgorithm.Instance);
+
+        [Benchmark]
+        public int BareMinimum() => SumHashesAlgorithm(BareMinimumAlgorithm.Instance);
+
+        [Benchmark]
+        public int MultiplySum() => SumHashesAlgorithm(MultiplySumAlgorithm.Instance);
+
         private int SumHashesAlgorithm(IEqualityComparer<Point> algorithm)
         {
             int sum = 0;

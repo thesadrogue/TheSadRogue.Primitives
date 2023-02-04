@@ -2,6 +2,7 @@
 using BenchmarkDotNet.Attributes;
 using SadRogue.Primitives;
 using SadRogue.Primitives.PointHashers;
+using ShaiRandom;
 using TheSadRogue.Primitives.PerformanceTests.PointHashing.Algorithms;
 
 namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
@@ -9,12 +10,14 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
     /// <summary>
     /// A series of benchmarks that measure the amount of time it takes to retrieve values from a dictionary,
     /// where Points are being used as the key, when the dictionary is being passed different hashing algorithms to use.
+    ///
+    /// This version uses both positive and negative points, in order to maximize collision potential for most hashing algorithms.
     /// </summary>
     /// <remarks>
     /// This benchmark serves a similar purpose to <see cref="PointDictionaryAdd"/>; it simply provides another common
     /// real-world operation to benchmark, in order to gauge an algorithm's realistic effectiveness.
     /// </remarks>
-    public class PointDictionaryGet
+    public class PointDictionaryGetGaussian
     {
         public IEnumerable<int> SizeData => SharedTestParams.Sizes;
 
@@ -43,7 +46,7 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
         public void GlobalSetup()
         {
             // Create cached list of points
-            _points = SharedUtilities.PositiveArray(Size);
+            _points = SharedUtilities.GaussianArray(Size);
 
             // Create equality comparers now to ensure that the creation time isn't factored into benchmark
             // (since it is not for any other algorithms)

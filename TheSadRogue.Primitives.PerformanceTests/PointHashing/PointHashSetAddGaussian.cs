@@ -8,18 +8,20 @@ using TheSadRogue.Primitives.PerformanceTests.PointHashing.Algorithms;
 namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
 {
     /// <summary>
-    /// A series of benchmarks that measure the amount of time it takes to add Points to a dictionary,
-    /// where Points are being used as the key, when the dictionary is being passed different hashing algorithms to use.
+    /// A series of benchmarks that measure the amount of time it takes to add Points to a hash set,
+    /// when the hash set is being passed different hashing algorithms to use.
     ///
     /// This version uses both positive and negative points, in order to maximize collision potential for most hashing algorithms.
     /// </summary>
     /// <remarks>
-    /// Although dictionary add operations generally have more overhead than just the calls to GetHashCode they perform,
-    /// the operation is affected by both the time it takes to compute a hash, and the number of collisions
+    /// Although hash set creation operations generally have more overhead than just the calls to GetHashCode they
+    /// perform, the operation is affected by both the time it takes to compute a hash, and the number of collisions
     /// that hash generates.  This makes it a fairly well-rounded case which allows us to measure more real-world
     /// performance, which will take into account collisions as well as raw speed.
+    ///
+    /// It may be useful to compare these results to the corresponding Dictionary tests as well.
     /// </remarks>
-    public class PointDictionaryAddGaussian
+    public class PointHashSetAddGaussian
     {
         public IEnumerable<int> SizeData => SharedTestParams.Sizes;
 
@@ -36,6 +38,7 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
         [GlobalSetup]
         public void GlobalSetup()
         {
+            // Create cached list of points
             _points = SharedUtilities.GaussianArray(Size);
 
             // Create equality comparers now to ensure that the creation time isn't factored into benchmark
@@ -45,42 +48,42 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
         }
 
         [Benchmark]
-        public Dictionary<Point, int> CurrentPrimitives() => CreateAndPopulate(EqualityComparer<Point>.Default);
+        public HashSet<Point> CurrentPrimitives() => CreateAndPopulate(EqualityComparer<Point>.Default);
 
         [Benchmark]
-        public Dictionary<Point, int> OriginalGoRogue() => CreateAndPopulate(OriginalGoRogueAlgorithm.Instance);
+        public HashSet<Point> OriginalGoRogue() => CreateAndPopulate(OriginalGoRogueAlgorithm.Instance);
 
         [Benchmark]
-        public Dictionary<Point, int> KnownSize() => CreateAndPopulate(_sizeHasher);
+        public HashSet<Point> KnownSize() => CreateAndPopulate(_sizeHasher);
 
         [Benchmark]
-        public Dictionary<Point, int> KnownRange() => CreateAndPopulate(_rangeHasher);
+        public HashSet<Point> KnownRange() => CreateAndPopulate(_rangeHasher);
 
         [Benchmark]
-        public Dictionary<Point, int> RosenbergStrongBased() => CreateAndPopulate(RosenbergStrongBasedAlgorithm.Instance);
+        public HashSet<Point> RosenbergStrongBased() => CreateAndPopulate(RosenbergStrongBasedAlgorithm.Instance);
 
         [Benchmark]
-        public Dictionary<Point, int> RosenbergStrongBasedMinusMultiply() => CreateAndPopulate(RosenbergStrongBasedMinusMultiplyAlgorithm.Instance);
+        public HashSet<Point> RosenbergStrongBasedMinusMultiply() => CreateAndPopulate(RosenbergStrongBasedMinusMultiplyAlgorithm.Instance);
 
         [Benchmark]
-        public Dictionary<Point, int> RosenbergStrongPure() => CreateAndPopulate(RosenbergStrongPureAlgorithm.Instance);
+        public HashSet<Point> RosenbergStrongPure() => CreateAndPopulate(RosenbergStrongPureAlgorithm.Instance);
 
         [Benchmark]
-        public Dictionary<Point, int> CantorPure() => CreateAndPopulate(CantorPureAlgorithm.Instance);
+        public HashSet<Point> CantorPure() => CreateAndPopulate(CantorPureAlgorithm.Instance);
 
         [Benchmark]
-        public Dictionary<Point, int> BareMinimum() => CreateAndPopulate(BareMinimumAlgorithm.Instance);
+        public HashSet<Point> BareMinimum() => CreateAndPopulate(BareMinimumAlgorithm.Instance);
 
         [Benchmark]
-        public Dictionary<Point, int> MultiplySum() => CreateAndPopulate(MultiplySumAlgorithm.Instance);
+        public HashSet<Point> MultiplySum() => CreateAndPopulate(MultiplySumAlgorithm.Instance);
 
-        private Dictionary<Point, int> CreateAndPopulate(IEqualityComparer<Point> algorithm)
+        private HashSet<Point> CreateAndPopulate(IEqualityComparer<Point> algorithm)
         {
-            var dict = new Dictionary<Point, int>(algorithm);
+            var hashSet = new HashSet<Point>(algorithm);
             for (int i = 0; i < _points.Length; i++)
-                dict[_points[i]] = i;
+                hashSet.Add(_points[i]);
 
-            return dict;
+            return hashSet;
         }
     }
 }

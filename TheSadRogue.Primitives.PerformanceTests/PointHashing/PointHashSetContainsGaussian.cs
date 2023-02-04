@@ -9,6 +9,8 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
     /// <summary>
     /// A series of benchmarks that measure the amount of time it takes to see if a HashSet contains different points,
     /// when the hash set is being passed different hashing algorithms to use.
+    ///
+    /// This version uses both positive and negative points, in order to maximize collision potential for most hashing algorithms.
     /// </summary>
     /// <remarks>
     /// This benchmark serves a similar purpose to <see cref="PointHashSetAdd"/>; it simply provides another common
@@ -16,7 +18,7 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
     ///
     /// It may be useful to compare these results to the corresponding Dictionary tests as well.
     /// </remarks>
-    public class PointHashSetContains
+    public class PointHashSetContainsGaussian
     {
         public IEnumerable<int> SizeData => SharedTestParams.Sizes;
 
@@ -45,7 +47,7 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
         public void GlobalSetup()
         {
             // Create cached list of points
-            _points = SharedUtilities.PositiveArray(Size);
+            _points = SharedUtilities.GaussianArray(Size);
 
             // Create equality comparers now to ensure that the creation time isn't factored into benchmark
             // (since it is not for any other algorithms)

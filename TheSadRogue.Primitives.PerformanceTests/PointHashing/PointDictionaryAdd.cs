@@ -34,9 +34,7 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
         public void GlobalSetup()
         {
             // Create cached list of points
-            _points = new Point[Size * Size];
-            for (int i = 0; i < _points.Length; i++)
-                _points[i] = Point.FromIndex(i, Size);
+            _points = SharedUtilities.PositiveArray(Size);
 
             // Create equality comparers now to ensure that the creation time isn't factored into benchmark
             // (since it is not for any other algorithms)

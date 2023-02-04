@@ -36,6 +36,10 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
         private HashSet<Point> _knownRangeHashing = null!;
         private HashSet<Point> _rosenbergStrong = null!;
         private HashSet<Point> _rosenbergStrongMinusMultiply = null!;
+        private HashSet<Point> _rosenbergStrongPure = null!;
+        private HashSet<Point> _cantorPure = null!;
+        private HashSet<Point> _bareMinimum = null!;
+        private HashSet<Point> _multiplySum = null!;
 
         [GlobalSetup]
         public void GlobalSetup()
@@ -57,6 +61,10 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
             _knownRangeHashing = CreateAndPopulate(_rangeHasher);
             _rosenbergStrong = CreateAndPopulate(RosenbergStrongBasedAlgorithm.Instance);
             _rosenbergStrongMinusMultiply = CreateAndPopulate(RosenbergStrongBasedMinusMultiplyAlgorithm.Instance);
+            _rosenbergStrongPure = CreateAndPopulate(RosenbergStrongPureAlgorithm.Instance);
+            _cantorPure = CreateAndPopulate(CantorPureAlgorithm.Instance);
+            _bareMinimum = CreateAndPopulate(BareMinimumAlgorithm.Instance);
+            _multiplySum = CreateAndPopulate(MultiplySumAlgorithm.Instance);
         }
 
         [Benchmark]
@@ -93,6 +101,26 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
         public int RosenbergStrongBasedMinusMultiplyExisting() => CheckExistingFrom(_rosenbergStrongMinusMultiply);
         [Benchmark]
         public int RosenbergStrongBasedMinusMultiplyNonExisting() => CheckNonExistingFrom(_rosenbergStrongMinusMultiply);
+
+        [Benchmark]
+        public int RosenbergStrongPureExisting() => CheckExistingFrom(_rosenbergStrongPure);
+        [Benchmark]
+        public int RosenbergStrongPureNonExisting() => CheckNonExistingFrom(_rosenbergStrongPure);
+
+        [Benchmark]
+        public int CantorPureExisting() => CheckExistingFrom(_cantorPure);
+        [Benchmark]
+        public int CantorPureNonExisting() => CheckNonExistingFrom(_cantorPure);
+
+        [Benchmark]
+        public int BareMinimumExisting() => CheckExistingFrom(_bareMinimum);
+        [Benchmark]
+        public int BareMinimumNonExisting() => CheckNonExistingFrom(_bareMinimum);
+
+        [Benchmark]
+        public int MultiplySumExisting() => CheckExistingFrom(_multiplySum);
+        [Benchmark]
+        public int MultiplySumNonExisting() => CheckNonExistingFrom(_multiplySum);
 
         private int CheckExistingFrom(HashSet<Point> hashSet)
         {

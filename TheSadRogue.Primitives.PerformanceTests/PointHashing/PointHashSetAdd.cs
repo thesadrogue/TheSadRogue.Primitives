@@ -64,6 +64,18 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
         [Benchmark]
         public HashSet<Point> RosenbergStrongBasedMinusMultiply() => CreateAndPopulate(RosenbergStrongBasedMinusMultiplyAlgorithm.Instance);
 
+        [Benchmark]
+        public HashSet<Point> RosenbergStrongPure() => CreateAndPopulate(RosenbergStrongPureAlgorithm.Instance);
+
+        [Benchmark]
+        public HashSet<Point> CantorPure() => CreateAndPopulate(CantorPureAlgorithm.Instance);
+
+        [Benchmark]
+        public HashSet<Point> BareMinimum() => CreateAndPopulate(BareMinimumAlgorithm.Instance);
+
+        [Benchmark]
+        public HashSet<Point> MultiplySum() => CreateAndPopulate(MultiplySumAlgorithm.Instance);
+
         private HashSet<Point> CreateAndPopulate(IEqualityComparer<Point> algorithm)
         {
             var hashSet = new HashSet<Point>(algorithm);

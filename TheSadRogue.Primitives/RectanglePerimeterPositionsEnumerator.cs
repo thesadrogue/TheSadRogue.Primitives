@@ -20,7 +20,8 @@ namespace SadRogue.Primitives
 
         object IEnumerator.Current => _current;
 
-        private readonly Rectangle _rectangle;
+        private readonly Point _minExtent;
+        private readonly Point _maxExtent;
         private int _changingValue;
         private int _state;
 
@@ -30,10 +31,11 @@ namespace SadRogue.Primitives
         /// <param name="rectangle">A rectangle defining the area to iterate over perimeter for.</param>
         public RectanglePerimeterPositionsEnumerator(Rectangle rectangle)
         {
-            _rectangle = rectangle;
+            _minExtent = rectangle.MinExtent;
+            _maxExtent = rectangle.MaxExtent;
             _current = Point.None;
             _state = 0;
-            _changingValue = _rectangle.MinExtentX;
+            _changingValue = _minExtent.X;
         }
 
         /// <summary>
@@ -61,39 +63,39 @@ namespace SadRogue.Primitives
             switch (_state)
             {
                 case 0:
-                    _current = new Point(_changingValue, _rectangle.MinExtentY);
+                    _current = new Point(_changingValue, _minExtent.Y);
                     _changingValue++;
-                    if (_changingValue > _rectangle.MaxExtentX)
+                    if (_changingValue > _maxExtent.X)
                     {
                         _state++;
                         // Start offset 1, since last loop returned the corner piece
-                        _changingValue = _rectangle.MinExtentY + 1;
+                        _changingValue = _minExtent.Y + 1;
                     }
                     return true;
                 case 1:
-                    _current = new Point(_rectangle.MaxExtentX,_changingValue);
+                    _current = new Point(_maxExtent.X,_changingValue);
                     _changingValue++;
-                    if (_changingValue > _rectangle.MaxExtentY)
+                    if (_changingValue > _maxExtent.Y)
                     {
                         _state++;
                         // Again skip 1 because last loop returned the corner piece
-                        _changingValue = _rectangle.MaxExtentX - 1;
+                        _changingValue = _maxExtent.X - 1;
                     }
                     return true;
                 case 2:
-                    _current = new Point(_changingValue, _rectangle.MaxExtentY);
+                    _current = new Point(_changingValue, _maxExtent.Y);
                     _changingValue--;
-                    if (_changingValue < _rectangle.MinExtentX)
+                    if (_changingValue < _minExtent.X)
                     {
                         _state++;
                         // Skip 1 on both ends, because last loop returned one corner, first loop returned the other
-                        _changingValue = _rectangle.MaxExtentY - 1;
+                        _changingValue = _maxExtent.Y - 1;
                     }
                     return true;
                 case 3:
-                    _current = new Point(_rectangle.MinExtentX, _changingValue);
+                    _current = new Point(_minExtent.X, _changingValue);
                     _changingValue--;
-                    if (_changingValue <= _rectangle.MinExtentY)
+                    if (_changingValue <= _minExtent.Y)
                         _state++;
                     return true;
                 default:

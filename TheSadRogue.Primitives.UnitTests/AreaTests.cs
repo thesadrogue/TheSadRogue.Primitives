@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 using Xunit.Abstractions;
@@ -394,12 +396,25 @@ namespace SadRogue.Primitives.UnitTests
             foreach (var pos in (IEnumerable<Point>)area)
                 l5.Add(pos);
 
+            var l6 = new List<Point>();
+            foreach (var pos in (IEnumerable<Point>)new ReadOnlyAreaPositionsEnumerator(area))
+                l6.Add(pos);
+
+            var l7 = new List<Point>();
+            foreach (var pos in (IEnumerable)new ReadOnlyAreaPositionsEnumerator(area))
+                l7.Add((Point)pos);
+
+            Assert.Throws<NotSupportedException>(()
+                => ((IEnumerator<Point>)new ReadOnlyAreaPositionsEnumerator(area)).Reset());
+
 
             Assert.Equal(expected, l1);
             Assert.Equal(expected, l2);
             Assert.Equal(expected, l3);
             Assert.Equal(expected, l4);
             Assert.Equal(expected, l5);
+            Assert.Equal(expected, l6);
+            Assert.Equal(expected, l7);
         }
         #endregion
         #region Perimeter Positions

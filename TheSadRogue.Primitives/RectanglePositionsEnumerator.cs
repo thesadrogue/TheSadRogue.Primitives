@@ -39,7 +39,7 @@ namespace SadRogue.Primitives
         {
             _positions = positions;
 
-            _current = (_positions.Width * _positions.Height > 0) ? positions.MinExtent - new Point(1, 0) : _positions.MaxExtent;
+            _current = (_positions.Width * _positions.Height > 0) ? _positions.MinExtent - new Point(1, 0) : _positions.MaxExtent;
         }
 
         /// <summary>
@@ -80,11 +80,11 @@ namespace SadRogue.Primitives
 
         // Explicitly implemented to ensure we prefer the non-boxing versions where possible
         #region Explicit Interface Implementations
-        /// <summary>
-        /// This iterator does not support resetting.
-        /// </summary>
-        /// <exception cref="NotSupportedException"/>
-        void IEnumerator.Reset() => throw new NotSupportedException();
+
+        void IEnumerator.Reset()
+        {
+            _current = (_positions.Width * _positions.Height > 0) ? _positions.MinExtent - new Point(1, 0) : _positions.MaxExtent;
+        }
         IEnumerator<Point> IEnumerable<Point>.GetEnumerator() => this;
         IEnumerator IEnumerable.GetEnumerator() => this;
 

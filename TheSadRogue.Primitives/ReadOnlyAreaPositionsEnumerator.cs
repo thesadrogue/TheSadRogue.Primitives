@@ -47,7 +47,7 @@ namespace SadRogue.Primitives
             if (_useIndexEnumeration)
             {
                 _currentIdx = -1;
-                _count = area.Count;
+                _count = _area.Count;
                 _enumerator = null;
             }
             else

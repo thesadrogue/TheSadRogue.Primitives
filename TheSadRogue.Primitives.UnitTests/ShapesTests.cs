@@ -102,8 +102,34 @@ namespace SadRogue.Primitives.UnitTests
             foreach (var point in Shapes.GetCircle(s_center, radius))
                 points.Add(point);
 
-            var enumerable = Shapes.GetCircle(s_center, radius).ToList();
-            Assert.Equal((IEnumerable<Point>)points, enumerable);
+            var enumerable = Shapes.GetCircle(s_center, radius);
+            Assert.Equal(points, enumerable);
+        }
+
+        [Theory]
+        [MemberDataEnumerable(nameof(RadiusCases))]
+        public void CircleEnumerableEquivalentToDeprecatedToEnumerable(int radius)
+        {
+            IEnumerable<Point> expected = Shapes.GetCircle(s_center, radius);
+#pragma warning disable CS0618
+            IEnumerable<Point> actual = Shapes.GetCircle(s_center, radius).ToEnumerable();
+#pragma warning restore CS0618
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [MemberDataEnumerable(nameof(RadiusCases))]
+        public void CircleEnumerator(int radius)
+        {
+            var list = new List<Point>();
+            using IEnumerator<Point> enumerator = ((IEnumerable<Point>)Shapes.GetCircle(s_center, radius)).GetEnumerator();
+            while (enumerator.MoveNext())
+                list.Add(enumerator.Current);
+
+            Assert.Equal(Shapes.GetCircle(s_center, radius), list);
+
+            Assert.Throws<NotSupportedException>(() => enumerator.Reset());
         }
 
         [Fact]
@@ -168,9 +194,36 @@ namespace SadRogue.Primitives.UnitTests
             foreach (var point in Shapes.GetEllipse(f1, f2))
                 points.Add(point);
 
-            var enumerable = Shapes.GetEllipse(f1, f2).ToList();
-            Assert.Equal((IEnumerable<Point>)points, enumerable);
+            var enumerable = Shapes.GetEllipse(f1, f2);
+            Assert.Equal(points, enumerable);
         }
+
+        [Theory]
+        [MemberDataTuple(nameof(EllipseCases))]
+        public void EllipseEnumerableEquivalentToDeprecatedToEnumerable(Point f1, Point f2)
+        {
+            IEnumerable<Point> expected = Shapes.GetEllipse(f1, f2);
+#pragma warning disable CS0618
+            IEnumerable<Point> actual = Shapes.GetEllipse(f1, f2).ToEnumerable();
+#pragma warning restore CS0618
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [MemberDataTuple(nameof(EllipseCases))]
+        public void EllipseEnumerator(Point f1, Point f2)
+        {
+            var list = new List<Point>();
+            using IEnumerator<Point> enumerator = ((IEnumerable<Point>)Shapes.GetEllipse(f1, f2)).GetEnumerator();
+            while (enumerator.MoveNext())
+                list.Add(enumerator.Current);
+
+            Assert.Equal(Shapes.GetEllipse(f1, f2), list);
+
+            Assert.Throws<NotSupportedException>(() => enumerator.Reset());
+        }
+
 
         private HashSet<Point> EllipseToHashSetDirect(EllipsePositionsEnumerator enumerator)
         {

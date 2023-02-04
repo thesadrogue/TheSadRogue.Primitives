@@ -290,10 +290,21 @@ namespace SadRogue.Primitives.UnitTests
         [MemberDataTuple(nameof(AllTestCases))]
         public void LineOverloadsEquivalent(Lines.Algorithm algo, (Point start, Point end) points)
         {
-            var expected = Lines.GetLine(points.start, points.end, algo);
-            var actual = Lines.GetLine(points.start.X, points.start.Y, points.end.X, points.end.Y, algo);
+            var expected = Lines.GetLine(points.start, points.end, algo).ToList();
+            var actual = Lines.GetLine(points.start.X, points.start.Y, points.end.X, points.end.Y, algo).ToList();
+            var actual2 = algo switch
+            {
+                Lines.Algorithm.Bresenham => Lines
+                    .GetBresenhamLine(points.start.X, points.start.Y, points.end.X, points.end.Y).ToList(),
+                Lines.Algorithm.DDA => Lines.GetDDALine(points.start.X, points.start.Y, points.end.X, points.end.Y)
+                    .ToList(),
+                Lines.Algorithm.Orthogonal => Lines
+                    .GetOrthogonalLine(points.start.X, points.start.Y, points.end.X, points.end.Y).ToList(),
+                _ => throw new Exception("Unsupported line algorithm."),
+            };
 
             Assert.Equal(expected, actual);
+            Assert.Equal(expected, actual2);
         }
 
         [Fact]
@@ -345,6 +356,38 @@ namespace SadRogue.Primitives.UnitTests
             var enumerableResult = Lines.GetLine(points.start, points.end, algo).ToList();
 
             Assert.Equal(fastResult, enumerableResult);
+        }
+
+        [Theory]
+        [MemberDataTuple(nameof(AllTestCases))]
+        public void DeprecatedToEnumerableMatchesEnumerable(Lines.Algorithm algo, (Point start, Point end) points)
+        {
+            var expected = Lines.GetLine(points.start, points.end, algo);
+            var actual = algo switch
+            {
+#pragma warning disable CS0618
+                Lines.Algorithm.Bresenham => Lines.GetBresenhamLine(points.start, points.end).ToEnumerable(),
+
+                Lines.Algorithm.DDA => Lines.GetDDALine(points.start, points.end).ToEnumerable(),
+                Lines.Algorithm.Orthogonal => Lines.GetOrthogonalLine(points.start, points.end).ToEnumerable(),
+                _ => throw new Exception("Unsupported algo.")
+#pragma warning restore CS0618
+            };
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void ResetThrowsException()
+        {
+            var it = Lines.GetBresenhamLine((1, 2), (3, 4));
+            Assert.Throws<NotSupportedException>(() => ((IEnumerator<Point>)it).Reset());
+
+            var it2 = Lines.GetDDALine((1, 2), (3, 4));
+            Assert.Throws<NotSupportedException>(() => ((IEnumerator<Point>)it2).Reset());
+
+            var it3 = Lines.GetOrthogonalLine((1, 2), (3, 4));
+            Assert.Throws<NotSupportedException>(() => ((IEnumerator<Point>)it3).Reset());
         }
     }
 }

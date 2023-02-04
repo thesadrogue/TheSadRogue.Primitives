@@ -36,6 +36,7 @@ namespace SadRogue.Primitives
         private readonly Point _maxExtent;
         private int _changingValue;
         private int _state;
+        private bool _isEmpty;
 
         /// <summary>
         /// Creates an enumerator which iterates over all positions on the outside edges of the given rectangle.
@@ -46,8 +47,10 @@ namespace SadRogue.Primitives
             _minExtent = rectangle.MinExtent;
             _maxExtent = rectangle.MaxExtent;
             _current = Point.None;
-            _state = rectangle.IsEmpty ? 4 : 0;
+            _isEmpty = rectangle.IsEmpty;
+            _state = _isEmpty ? 4 : 0;
             _changingValue = _minExtent.X;
+
         }
 
         /// <summary>
@@ -108,11 +111,14 @@ namespace SadRogue.Primitives
 
         // Explicitly implemented to ensure we prefer the non-boxing versions where possible
         #region Explicit Interface Implementations
-        /// <summary>
-        /// This iterator does not support resetting.
-        /// </summary>
-        /// <exception cref="NotSupportedException"/>
-        void IEnumerator.Reset() => throw new NotSupportedException();
+
+        void IEnumerator.Reset()
+        {
+            _current = Point.None;
+            _state = _isEmpty ? 4 : 0;
+            _changingValue = _minExtent.X;
+        }
+
         IEnumerator<Point> IEnumerable<Point>.GetEnumerator() => this;
         IEnumerator IEnumerable.GetEnumerator() => this;
 

@@ -65,11 +65,11 @@ namespace SadRogue.Primitives
             }
         }
 
-        /// <summary>
-        /// This iterator does not support resetting.
-        /// </summary>
-        /// <exception cref="NotSupportedException"/>
-        void IEnumerator.Reset() => throw new NotSupportedException();
+        void IEnumerator.Reset()
+        {
+            _current = Rectangle.Empty;
+            _state = 0;
+        }
         void IDisposable.Dispose()
         { }
     }

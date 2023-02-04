@@ -71,6 +71,30 @@ namespace SadRogue.Primitives.UnitTests
             Direction.SetYIncreasesUpwardsUnsafe(false); // Ensure we reset to false for next test
         }
 
+        [Theory]
+        [MemberDataTuple(nameof(TestRectanglesWithYIncreasesUpwards))]
+        public void GenericEnumeratorCurrentIsEquivalent(Rectangle rect, bool yIncreaseUpwards)
+        {
+            Direction.SetYIncreasesUpwardsUnsafe(yIncreaseUpwards);
+
+            var list = rect.PerimeterPositions().ToArray();
+            Assert.Equal(rect.PerimeterPositions(), list);
+
+            Direction.SetYIncreasesUpwardsUnsafe(false); // Ensure we reset to false for next test
+        }
+
+        [Fact]
+        public void PerimeterPositionsReset()
+        {
+            var enumerator = new Rectangle(1, 2, 3, 4).PerimeterPositions();
+
+            var list = enumerator.ToList();
+            ((IEnumerator<Point>)enumerator).Reset();
+            var list2 = enumerator.ToList();
+
+            Assert.Equal(list, list2);
+        }
+
         [Fact]
         public void PerimeterPositionsEmptyRectangle()
         {

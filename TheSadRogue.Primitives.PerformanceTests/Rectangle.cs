@@ -6,7 +6,7 @@ namespace TheSadRogue.Primitives.PerformanceTests
 {
     public static class RectangleTestingExtensions
     {
-        public static IEnumerable<SadRogue.Primitives.Rectangle> BisectHorizontallyNativeEnumerator(this SadRogue.Primitives.Rectangle rectangle)
+        public static IEnumerable<SadRogue.Primitives.Rectangle> BisectHorizontallyNoCustomIterator(this SadRogue.Primitives.Rectangle rectangle)
         {
             int startX = rectangle.MinExtentX;
             int stopY = rectangle.MaxExtentY;
@@ -18,7 +18,7 @@ namespace TheSadRogue.Primitives.PerformanceTests
             yield return new SadRogue.Primitives.Rectangle(new Point(startX, bisection + 1), new Point(stopX, stopY));
         }
 
-        public static IEnumerable<Point> PerimeterPositionsNativeEnumerable(this SadRogue.Primitives.Rectangle self)
+        public static IEnumerable<Point> PerimeterPositionsNoCustomIterator(this SadRogue.Primitives.Rectangle self)
         {
             for (int x = self.MinExtentX; x <= self.MaxExtentX; x++)
                 yield return new Point(x, self.MinExtentY); // Minimum y-side perimeter
@@ -36,7 +36,7 @@ namespace TheSadRogue.Primitives.PerformanceTests
                 yield return new Point(self.MinExtentX, y);
         }
 
-        public static IEnumerable<Point> PerimeterPositionsNativeEnumerableCachedEnds(this SadRogue.Primitives.Rectangle self)
+        public static IEnumerable<Point> PerimeterPositionsNoCustomIteratorCachedEnds(this SadRogue.Primitives.Rectangle self)
         {
             int minX = self.MinExtentX;
             int minY = self.MinExtentY;
@@ -154,10 +154,10 @@ namespace TheSadRogue.Primitives.PerformanceTests
         #region IEnumerable Implementations
 
         [Benchmark]
-        public int BisectHorizontallyNativeEnumerable()
+        public int BisectHorizontallyNoCustomIterator()
         {
             int sum = 0;
-            foreach (var rect in _rectangle.BisectHorizontallyNativeEnumerator())
+            foreach (var rect in _rectangle.BisectHorizontallyNoCustomIterator())
                 sum += rect.Width + rect.Height;
 
             return sum;
@@ -174,20 +174,20 @@ namespace TheSadRogue.Primitives.PerformanceTests
         }
 
         [Benchmark]
-        public int PerimeterPositionsNativeEnumerable()
+        public int PerimeterPositionsNoCustomIterator()
         {
             int sum = 0;
-            foreach (var pos in _rectangle.PerimeterPositionsNativeEnumerable())
+            foreach (var pos in _rectangle.PerimeterPositionsNoCustomIterator())
                 sum += pos.X + pos.Y;
 
             return sum;
         }
 
         [Benchmark]
-        public int PerimeterPositionsNativeEnumerableCachedEnds()
+        public int PerimeterPositionsNoCustomIteratorCachedEnds()
         {
             int sum = 0;
-            foreach (var pos in _rectangle.PerimeterPositionsNativeEnumerableCachedEnds())
+            foreach (var pos in _rectangle.PerimeterPositionsNoCustomIteratorCachedEnds())
                 sum += pos.X + pos.Y;
 
             return sum;

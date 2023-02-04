@@ -106,7 +106,7 @@ public class CircleTests
     public int PrimitivesToEnumerable()
     {
         int sum = 0;
-        foreach (var point in Shapes.GetCircle(Center, Radius))
+        foreach (var point in (IEnumerable<Point>)Shapes.GetCircle(Center, Radius))
             sum += point.X + point.Y;
 
         return sum;
@@ -156,7 +156,7 @@ public class EllipseTests
     public int PrimitivesToEnumerable()
     {
         int sum = 0;
-        foreach (var point in Shapes.GetEllipse(Ellipse.f1, Ellipse.f2))
+        foreach (var point in (IEnumerable<Point>)Shapes.GetEllipse(Ellipse.f1, Ellipse.f2))
             sum += point.X + point.Y;
 
         return sum;

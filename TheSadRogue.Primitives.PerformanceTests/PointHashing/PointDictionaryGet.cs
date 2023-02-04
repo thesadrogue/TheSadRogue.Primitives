@@ -34,6 +34,10 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
         private Dictionary<Point, int> _knownRangeHashing = null!;
         private Dictionary<Point, int> _rosenbergStrong = null!;
         private Dictionary<Point, int> _rosenbergStrongMinusMultiply = null!;
+        private Dictionary<Point, int> _rosenbergStrongPure = null!;
+        private Dictionary<Point, int> _cantorPure = null!;
+        private Dictionary<Point, int> _bareMinimum = null!;
+        private Dictionary<Point, int> _multiplySum = null!;
 
         [GlobalSetup]
         public void GlobalSetup()
@@ -55,6 +59,10 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
             _knownRangeHashing = CreateAndPopulate(_rangeHasher);
             _rosenbergStrong = CreateAndPopulate(RosenbergStrongBasedAlgorithm.Instance);
             _rosenbergStrongMinusMultiply = CreateAndPopulate(RosenbergStrongBasedMinusMultiplyAlgorithm.Instance);
+            _rosenbergStrongPure = CreateAndPopulate(RosenbergStrongPureAlgorithm.Instance);
+            _cantorPure = CreateAndPopulate(CantorPureAlgorithm.Instance);
+            _bareMinimum = CreateAndPopulate(BareMinimumAlgorithm.Instance);
+            _multiplySum = CreateAndPopulate(MultiplySumAlgorithm.Instance);
         }
 
         [Benchmark]
@@ -74,6 +82,18 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
 
         [Benchmark]
         public int RosenbergStrongBasedMinusMultiply() => GetAllFrom(_rosenbergStrongMinusMultiply);
+
+        [Benchmark]
+        public int RosenbergStrongPure() => GetAllFrom(_rosenbergStrongPure);
+
+        [Benchmark]
+        public int CantorPure() => GetAllFrom(_cantorPure);
+
+        [Benchmark]
+        public int BareMinimum() => GetAllFrom(_bareMinimum);
+
+        [Benchmark]
+        public int MultiplySum() => GetAllFrom(_multiplySum);
 
         private int GetAllFrom(Dictionary<Point, int> dict)
         {

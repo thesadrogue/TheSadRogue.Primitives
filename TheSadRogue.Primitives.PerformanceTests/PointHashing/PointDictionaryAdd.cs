@@ -62,6 +62,18 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
         [Benchmark]
         public Dictionary<Point, int> RosenbergStrongBasedMinusMultiply() => CreateAndPopulate(RosenbergStrongBasedMinusMultiplyAlgorithm.Instance);
 
+        [Benchmark]
+        public Dictionary<Point, int> RosenbergStrongPure() => CreateAndPopulate(RosenbergStrongPureAlgorithm.Instance);
+
+        [Benchmark]
+        public Dictionary<Point, int> CantorPure() => CreateAndPopulate(CantorPureAlgorithm.Instance);
+
+        [Benchmark]
+        public Dictionary<Point, int> BareMinimum() => CreateAndPopulate(BareMinimumAlgorithm.Instance);
+
+        [Benchmark]
+        public Dictionary<Point, int> MultiplySum() => CreateAndPopulate(MultiplySumAlgorithm.Instance);
+
         private Dictionary<Point, int> CreateAndPopulate(IEqualityComparer<Point> algorithm)
         {
             var dict = new Dictionary<Point, int>(algorithm);

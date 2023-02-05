@@ -77,7 +77,7 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
         public int MultiplySum() => SumHashesAlgorithm(MultiplySumAlgorithm.Instance);
 
         [Benchmark]
-        public int BasicXor() => SumHashesAlgorithm(BasicXorAlgorithm.Instance);
+        public int HashCodeCombine() => SumHashesAlgorithm(HashCodeCombineAlgorithm.Instance);
 
         private int SumHashesAlgorithm(IEqualityComparer<Point> algorithm)
         {

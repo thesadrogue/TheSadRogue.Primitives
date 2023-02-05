@@ -39,7 +39,7 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
         private Dictionary<Point, int> _bareMinimum = null!;
         private Dictionary<Point, int> _bareMinimum8And24 = null!;
         private Dictionary<Point, int> _multiplySum = null!;
-        private Dictionary<Point, int> _basicXor = null!;
+        private Dictionary<Point, int> _hashCodeCombine = null!;
 
         [GlobalSetup]
         public void GlobalSetup()
@@ -64,7 +64,7 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
             _bareMinimum = CreateAndPopulate(BareMinimumAlgorithm.Instance);
             _bareMinimum8And24 = CreateAndPopulate(BareMinimum8And24Algorithm.Instance);
             _multiplySum = CreateAndPopulate(MultiplySumAlgorithm.Instance);
-            _basicXor = CreateAndPopulate(BasicXorAlgorithm.Instance);
+            _hashCodeCombine = CreateAndPopulate(HashCodeCombineAlgorithm.Instance);
         }
 
         [Benchmark]
@@ -101,7 +101,7 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
         public int MultiplySum() => GetAllFrom(_multiplySum);
 
         [Benchmark]
-        public int BasicXor() => GetAllFrom(_basicXor);
+        public int HashCodeCombine() => GetAllFrom(_hashCodeCombine);
 
         private int GetAllFrom(Dictionary<Point, int> dict)
         {

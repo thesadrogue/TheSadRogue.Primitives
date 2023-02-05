@@ -43,7 +43,7 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
         private HashSet<Point> _bareMinimum = null!;
         private HashSet<Point> _bareMinimum8And24 = null!;
         private HashSet<Point> _multiplySum = null!;
-        private HashSet<Point> _basicXor = null!;
+        private HashSet<Point> _hashCodeCombine = null!;
 
         [GlobalSetup]
         public void GlobalSetup()
@@ -68,7 +68,7 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
             _bareMinimum = CreateAndPopulate(BareMinimumAlgorithm.Instance);
             _bareMinimum8And24 = CreateAndPopulate(BareMinimum8And24Algorithm.Instance);
             _multiplySum = CreateAndPopulate(MultiplySumAlgorithm.Instance);
-            _basicXor = CreateAndPopulate(BasicXorAlgorithm.Instance);
+            _hashCodeCombine = CreateAndPopulate(HashCodeCombineAlgorithm.Instance);
         }
 
         [Benchmark]
@@ -132,9 +132,9 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
         public int MultiplySumNonExisting() => CheckNonExistingFrom(_multiplySum);
 
         [Benchmark]
-        public int BasicXorExisting() => CheckExistingFrom(_basicXor);
+        public int HashCodeCombineExisting() => CheckExistingFrom(_hashCodeCombine);
         [Benchmark]
-        public int BasicXorNonExisting() => CheckNonExistingFrom(_basicXor);
+        public int HashCodeCombineNonExisting() => CheckNonExistingFrom(_hashCodeCombine);
 
         private int CheckExistingFrom(HashSet<Point> hashSet)
         {

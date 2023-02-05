@@ -78,7 +78,7 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
         public Dictionary<Point, int> MultiplySum() => CreateAndPopulate(MultiplySumAlgorithm.Instance);
 
         [Benchmark]
-        public Dictionary<Point, int> BasicXor() => CreateAndPopulate(BasicXorAlgorithm.Instance);
+        public Dictionary<Point, int> HashCodeCombine() => CreateAndPopulate(HashCodeCombineAlgorithm.Instance);
 
         private Dictionary<Point, int> CreateAndPopulate(IEqualityComparer<Point> algorithm)
         {

@@ -406,23 +406,26 @@ namespace SadRogue.Primitives
         public override bool Equals(object? obj) => obj is Point c && Equals(c);
 
         /// <summary>
-        /// Returns a hash code for the Point. The important parts: it should be fairly fast and it
-        /// does not collide often.
+        /// Returns a hash code for the Point. It should provide very good performance when points
+        /// are used in Dictionary or HashSet, because it's very fast and produces a fairly low collision rate.
         /// </summary>
         /// <remarks>
-        /// This hashing algorithm uses a separate bit-mixing algorithm for <see cref="X"/> and
-        /// <see cref="Y"/>, with X and Y each multiplied by a different large integer, then xors
-        /// the mixed values, does a right shift, and finally multiplies by an overflowing prime
-        /// number.  This hashing algorithm should produce an exceptionally low collision rate for
-        /// coordinates between (0, 0) and (255, 255), and remain relatively reasonable beyond that.
+        /// This hashing algorithm is a very simple algorithm that is quite fast.  Its rate of collisions will be
+        /// fairly low for most traditional coordinate ranges.  In particular, most sensible positive coordinate ranges
+        /// (at least everything in the range (0, 0) -> (8192, 8192)) produce no collisions.  Including coordinates with
+        /// negative values increases the likelihood that collisions will occur; but the range (-4096, -4096) -> (4096, 4096)
+        /// produces only 8,192 collisions and no single hash value has more than a single collision.
+        ///
+        /// Particularly since Dictionary and HashSet implements prime modulus rather than simple bitmasks or shifts,
+        /// this collision rate should virtually never impact performance over these ranges (or even higher ranges, likely).
+        /// Since the algorithm is also fast, this makes it a good fit for a general-case hashing algorithm in C#.
         /// </remarks>
         /// <returns>The hash-code for the Point.</returns>
         [Pure]
         public override int GetHashCode()
         {
-            // Intentional overflow on both of these, part of hash-code generation
-            int x2 = (int)(0x9E3779B9 * X), y2 = 0x632BE5AB * Y;
-            return (int)(((uint)(x2 ^ y2) >> ((x2 & 7) + (y2 & 7))) * 0x85157AF5);
+            uint x = (uint)X, y = (uint)Y;
+            return (int)(x + (y << 16 | y >> 16));
         }
 
         /// <summary>

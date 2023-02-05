@@ -4,18 +4,18 @@ using SadRogue.Primitives;
 namespace TheSadRogue.Primitives.PerformanceTests.PointHashing.Algorithms
 {
     /// <summary>
-    /// Algorithm using the simplest function I could think of.  Currently the algorithm used by the primitives library.
+    /// A variation of <see cref="BareMinimumAlgorithm"/> that shifts by different values.
     /// </summary>
-    public sealed class BareMinimumAlgorithm : EqualityComparer<Point>
+    public sealed class BareMinimum8And24Algorithm : EqualityComparer<Point>
     {
-        public static readonly IEqualityComparer<Point> Instance = new BareMinimumAlgorithm();
+        public static readonly IEqualityComparer<Point> Instance = new BareMinimum8And24Algorithm();
 
         public override bool Equals(Point x, Point y) => x.Equals(y);
 
         public override int GetHashCode(Point p)
         {
             uint x = (uint)p.X, y = (uint)p.Y;
-            return (int)(x + (y << 16 | y >> 16));
+            return (int)(x + (y << 8 | y >> 24));
         }
     }
 }

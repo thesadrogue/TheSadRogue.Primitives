@@ -71,7 +71,13 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
         public int BareMinimum() => SumHashesAlgorithm(BareMinimumAlgorithm.Instance);
 
         [Benchmark]
+        public int BareMinimum8And24() => SumHashesAlgorithm(BareMinimum8And24Algorithm.Instance);
+
+        [Benchmark]
         public int MultiplySum() => SumHashesAlgorithm(MultiplySumAlgorithm.Instance);
+
+        [Benchmark]
+        public int BasicXor() => SumHashesAlgorithm(BasicXorAlgorithm.Instance);
 
         private int SumHashesAlgorithm(IEqualityComparer<Point> algorithm)
         {

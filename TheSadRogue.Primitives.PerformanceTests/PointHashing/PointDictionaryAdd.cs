@@ -70,7 +70,13 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
         public Dictionary<Point, int> BareMinimum() => CreateAndPopulate(BareMinimumAlgorithm.Instance);
 
         [Benchmark]
+        public Dictionary<Point, int> BareMinimum8And24() => CreateAndPopulate(BareMinimum8And24Algorithm.Instance);
+
+        [Benchmark]
         public Dictionary<Point, int> MultiplySum() => CreateAndPopulate(MultiplySumAlgorithm.Instance);
+
+        [Benchmark]
+        public Dictionary<Point, int> BasicXor() => CreateAndPopulate(BasicXorAlgorithm.Instance);
 
         private Dictionary<Point, int> CreateAndPopulate(IEqualityComparer<Point> algorithm)
         {

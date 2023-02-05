@@ -40,7 +40,9 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
         private Dictionary<Point, int> _rosenbergStrongPure = null!;
         private Dictionary<Point, int> _cantorPure = null!;
         private Dictionary<Point, int> _bareMinimum = null!;
+        private Dictionary<Point, int> _bareMinimum8And24 = null!;
         private Dictionary<Point, int> _multiplySum = null!;
+        private Dictionary<Point, int> _basicXor = null!;
 
         [GlobalSetup]
         public void GlobalSetup()
@@ -63,7 +65,9 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
             _rosenbergStrongPure = CreateAndPopulate(RosenbergStrongPureAlgorithm.Instance);
             _cantorPure = CreateAndPopulate(CantorPureAlgorithm.Instance);
             _bareMinimum = CreateAndPopulate(BareMinimumAlgorithm.Instance);
+            _bareMinimum8And24 = CreateAndPopulate(BareMinimum8And24Algorithm.Instance);
             _multiplySum = CreateAndPopulate(MultiplySumAlgorithm.Instance);
+            _basicXor = CreateAndPopulate(BasicXorAlgorithm.Instance);
         }
 
         [Benchmark]
@@ -94,7 +98,13 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
         public int BareMinimum() => GetAllFrom(_bareMinimum);
 
         [Benchmark]
+        public int BareMinimum8And24() => GetAllFrom(_bareMinimum8And24);
+
+        [Benchmark]
         public int MultiplySum() => GetAllFrom(_multiplySum);
+
+        [Benchmark]
+        public int BasicXor() => GetAllFrom(_basicXor);
 
         private int GetAllFrom(Dictionary<Point, int> dict)
         {

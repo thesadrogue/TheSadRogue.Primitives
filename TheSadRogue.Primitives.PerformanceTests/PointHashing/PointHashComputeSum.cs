@@ -78,6 +78,9 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
         public int BareMinimum8And24() => SumHashesAlgorithm(BareMinimum8And24Algorithm.Instance);
 
         [Benchmark]
+        public int SimpleShift() => SumHashesAlgorithm(SimpleShiftAlgorithm.Instance);
+
+        [Benchmark]
         public int MultiplySum() => SumHashesAlgorithm(MultiplySumAlgorithm.Instance);
 
         [Benchmark]

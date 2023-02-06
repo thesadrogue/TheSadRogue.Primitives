@@ -44,6 +44,7 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
         private HashSet<Point> _bareMinimum = null!;
         private HashSet<Point> _bareMinimumSubtract = null!;
         private HashSet<Point> _bareMinimum8And24 = null!;
+        private HashSet<Point> _simpleShift = null!;
         private HashSet<Point> _multiplySum = null!;
         private HashSet<Point> _hashCodeCombine = null!;
 
@@ -72,6 +73,7 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
             _bareMinimum = CreateAndPopulate(BareMinimumAlgorithm.Instance);
             _bareMinimumSubtract = CreateAndPopulate(BareMinimumSubtractAlgorithm.Instance);
             _bareMinimum8And24 = CreateAndPopulate(BareMinimum8And24Algorithm.Instance);
+            _simpleShift = CreateAndPopulate(SimpleShiftAlgorithm.Instance);
             _multiplySum = CreateAndPopulate(MultiplySumAlgorithm.Instance);
             _hashCodeCombine = CreateAndPopulate(HashCodeCombineAlgorithm.Instance);
         }
@@ -135,6 +137,11 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
         public int BareMinimum8And24Existing() => CheckExistingFrom(_bareMinimum8And24);
         [Benchmark]
         public int BareMinimum8And24NonExisting() => CheckNonExistingFrom(_bareMinimum8And24);
+
+        [Benchmark]
+        public int SimpleShiftExisting() => CheckExistingFrom(_simpleShift);
+        [Benchmark]
+        public int SimpleShiftNonExisting() => CheckNonExistingFrom(_simpleShift);
 
         [Benchmark]
         public int MultiplySumExisting() => CheckExistingFrom(_multiplySum);

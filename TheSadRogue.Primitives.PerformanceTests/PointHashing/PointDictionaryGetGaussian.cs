@@ -43,6 +43,7 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
         private Dictionary<Point, int> _bareMinimum = null!;
         private Dictionary<Point, int> _bareMinimumSubtract = null!;
         private Dictionary<Point, int> _bareMinimum8And24 = null!;
+        private Dictionary<Point, int> _simpleShift = null!;
         private Dictionary<Point, int> _multiplySum = null!;
         private Dictionary<Point, int> _hashCodeCombine = null!;
 
@@ -71,6 +72,7 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
             _bareMinimum = CreateAndPopulate(BareMinimumAlgorithm.Instance);
             _bareMinimumSubtract = CreateAndPopulate(BareMinimumSubtractAlgorithm.Instance);
             _bareMinimum8And24 = CreateAndPopulate(BareMinimum8And24Algorithm.Instance);
+            _simpleShift = CreateAndPopulate(SimpleShiftAlgorithm.Instance);
             _multiplySum = CreateAndPopulate(MultiplySumAlgorithm.Instance);
             _hashCodeCombine = CreateAndPopulate(HashCodeCombineAlgorithm.Instance);
         }
@@ -107,6 +109,9 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
 
         [Benchmark]
         public int BareMinimum8And24() => GetAllFrom(_bareMinimum8And24);
+
+        [Benchmark]
+        public int SimpleShift() => GetAllFrom(_simpleShift);
 
         [Benchmark]
         public int MultiplySum() => GetAllFrom(_multiplySum);

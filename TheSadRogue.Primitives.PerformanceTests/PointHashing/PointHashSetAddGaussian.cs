@@ -84,6 +84,9 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
         public HashSet<Point> BareMinimum8And24() => CreateAndPopulate(BareMinimum8And24Algorithm.Instance);
 
         [Benchmark]
+        public HashSet<Point> SimpleShift() => CreateAndPopulate(SimpleShiftAlgorithm.Instance);
+
+        [Benchmark]
         public HashSet<Point> MultiplySum() => CreateAndPopulate(MultiplySumAlgorithm.Instance);
 
         [Benchmark]

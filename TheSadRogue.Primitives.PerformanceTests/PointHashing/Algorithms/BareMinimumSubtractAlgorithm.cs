@@ -8,7 +8,7 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing.Algorithms
     /// </summary>
     public sealed class BareMinimumSubtractAlgorithm : EqualityComparer<Point>
     {
-        public static readonly IEqualityComparer<Point> Instance = new BareMinimumAlgorithm();
+        public static readonly IEqualityComparer<Point> Instance = new BareMinimumSubtractAlgorithm();
 
         public override bool Equals(Point x, Point y) => x.Equals(y);
 

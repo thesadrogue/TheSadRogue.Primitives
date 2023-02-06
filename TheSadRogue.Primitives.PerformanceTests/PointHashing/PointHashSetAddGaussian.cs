@@ -3,6 +3,7 @@ using BenchmarkDotNet.Attributes;
 using SadRogue.Primitives;
 using SadRogue.Primitives.PointHashers;
 using ShaiRandom;
+using ShaiRandom.Generators;
 using TheSadRogue.Primitives.PerformanceTests.PointHashing.Algorithms;
 
 namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
@@ -38,8 +39,10 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
         [GlobalSetup]
         public void GlobalSetup()
         {
-            // Create cached list of points
+            // Create cached list of points.  Shuffle list to ensure cache linearity of the hash slots based on the
+            // order in which we construct them isn't a factor.
             _points = SharedUtilities.GaussianArray(Size);
+            new Xoshiro256StarStarRandom(1).Shuffle(_points);
 
             // Create equality comparers now to ensure that the creation time isn't factored into benchmark
             // (since it is not for any other algorithms)
@@ -73,6 +76,9 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
 
         [Benchmark]
         public HashSet<Point> BareMinimum() => CreateAndPopulate(BareMinimumAlgorithm.Instance);
+
+        [Benchmark]
+        public HashSet<Point> BareMinimumSubtract() => CreateAndPopulate(BareMinimumSubtractAlgorithm.Instance);
 
         [Benchmark]
         public HashSet<Point> BareMinimum8And24() => CreateAndPopulate(BareMinimum8And24Algorithm.Instance);

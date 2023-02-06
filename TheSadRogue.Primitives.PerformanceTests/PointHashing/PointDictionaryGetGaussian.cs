@@ -3,6 +3,7 @@ using BenchmarkDotNet.Attributes;
 using SadRogue.Primitives;
 using SadRogue.Primitives.PointHashers;
 using ShaiRandom;
+using ShaiRandom.Generators;
 using TheSadRogue.Primitives.PerformanceTests.PointHashing.Algorithms;
 
 namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
@@ -40,6 +41,7 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
         private Dictionary<Point, int> _rosenbergStrongPure = null!;
         private Dictionary<Point, int> _cantorPure = null!;
         private Dictionary<Point, int> _bareMinimum = null!;
+        private Dictionary<Point, int> _bareMinimumSubtract = null!;
         private Dictionary<Point, int> _bareMinimum8And24 = null!;
         private Dictionary<Point, int> _multiplySum = null!;
         private Dictionary<Point, int> _hashCodeCombine = null!;
@@ -47,8 +49,10 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
         [GlobalSetup]
         public void GlobalSetup()
         {
-            // Create cached list of points
+            // Create cached list of points.  Shuffle list to ensure cache linearity of the hash slots based on the
+            // order in which we construct them isn't a factor.
             _points = SharedUtilities.GaussianArray(Size);
+            new Xoshiro256StarStarRandom(1).Shuffle(_points);
 
             // Create equality comparers now to ensure that the creation time isn't factored into benchmark
             // (since it is not for any other algorithms)
@@ -65,6 +69,7 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
             _rosenbergStrongPure = CreateAndPopulate(RosenbergStrongPureAlgorithm.Instance);
             _cantorPure = CreateAndPopulate(CantorPureAlgorithm.Instance);
             _bareMinimum = CreateAndPopulate(BareMinimumAlgorithm.Instance);
+            _bareMinimumSubtract = CreateAndPopulate(BareMinimumSubtractAlgorithm.Instance);
             _bareMinimum8And24 = CreateAndPopulate(BareMinimum8And24Algorithm.Instance);
             _multiplySum = CreateAndPopulate(MultiplySumAlgorithm.Instance);
             _hashCodeCombine = CreateAndPopulate(HashCodeCombineAlgorithm.Instance);
@@ -96,6 +101,9 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
 
         [Benchmark]
         public int BareMinimum() => GetAllFrom(_bareMinimum);
+
+        [Benchmark]
+        public int BareMinimumSubtract() => GetAllFrom(_bareMinimumSubtract);
 
         [Benchmark]
         public int BareMinimum8And24() => GetAllFrom(_bareMinimum8And24);

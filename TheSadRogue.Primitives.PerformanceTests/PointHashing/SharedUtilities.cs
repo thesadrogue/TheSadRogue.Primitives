@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using SadRogue.Primitives;
 using ShaiRandom;
 
@@ -32,9 +33,8 @@ public static class SharedUtilities
     public static Point[] GaussianArray(int size)
     {
         int totalSize = size * size;
-        var points = new Point[totalSize];
         ulong xc = 1UL, yc = 2UL;
-        HashSet<Point> pts = new(totalSize);
+        SadRogue.Primitives.Area pts = new();
         unchecked
         {
             while(pts.Count < totalSize)
@@ -47,10 +47,9 @@ public static class SharedUtilities
                 pts.Add(new Point((int)(MathUtils.Probit((xc >> 11) * 1.1102230246251565E-16) * 256.0),
                     (int)(MathUtils.Probit((yc >> 11) * 1.1102230246251565E-16) * 256.0)));
             }
-            pts.CopyTo(points);
         }
 
-        return points;
+        return pts.ToArray();
     }
 
 

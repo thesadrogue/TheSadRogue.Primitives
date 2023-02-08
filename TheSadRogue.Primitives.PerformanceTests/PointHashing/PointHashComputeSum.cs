@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
 using BenchmarkDotNet.Attributes;
 using SadRogue.Primitives;
-using SadRogue.Primitives.PointHashers;
 using ShaiRandom.Generators;
-using TheSadRogue.Primitives.PerformanceTests.PointHashing.Algorithms;
 
 namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
 {

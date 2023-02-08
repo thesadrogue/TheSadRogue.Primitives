@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
 using BenchmarkDotNet.Attributes;
 using SadRogue.Primitives;
-using SadRogue.Primitives.PointHashers;
 using ShaiRandom.Generators;
-using TheSadRogue.Primitives.PerformanceTests.PointHashing.Algorithms;
 
 namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
 {
@@ -12,126 +10,69 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
     /// where Points are being used as the key, when the dictionary is being passed different hashing algorithms to use.
     /// </summary>
     /// <remarks>
-    /// This benchmark serves a similar purpose to <see cref="PointDictionaryAdd"/>; it simply provides another common
-    /// real-world operation to benchmark, in order to gauge an algorithm's realistic effectiveness.
+    /// Although dictionary add operations generally have more overhead than just the calls to GetHashCode they perform,
+    /// the operation is affected by both the time it takes to compute a hash, and the number of collisions
+    /// that hash generates.  This makes it a fairly well-rounded case which allows us to measure more real-world
+    /// performance, which will take into account collisions as well as raw speed.
     /// </remarks>
     public class PointDictionaryGet
     {
         public IEnumerable<int> SizeData => SharedTestParams.Sizes;
+        public IEnumerable<HashingAlgorithm> AlgorithmData => SharedTestParams.Algorithms;
+        public IEnumerable<DataSet> DataSetData => SharedTestParams.DataSets;
 
         /// <summary>
-        /// An area of Size x Size will be used for the purposes of determining the series of points to retrieve.
+        /// The data set type to test.
+        /// </summary>
+        [ParamsSource(nameof(DataSetData))]
+        public DataSet DataSet;
+
+        /// <summary>
+        /// An area of Size x Size will be used for the purposes of determining the series of points to get.
         /// </summary>
         [ParamsSource(nameof(SizeData))]
         public int Size;
 
-        private Point[] _points = null!;
-        private IEqualityComparer<Point> _sizeHasher = null!;
-        private IEqualityComparer<Point> _rangeHasher = null!;
+        /// <summary>
+        /// The hashing algorithm to test; affects the equality comparer we use for the dictionary.
+        /// </summary>
+        [ParamsSource(nameof(AlgorithmData))]
+        public HashingAlgorithm Algorithm;
 
-        private Dictionary<Point, int> _currentPrimitives = null!;
-        private Dictionary<Point, int> _originalGoRogue = null!;
-        private Dictionary<Point, int> _knownSizeHashing = null!;
-        private Dictionary<Point, int> _knownRangeHashing = null!;
-        private Dictionary<Point, int> _rosenbergStrong = null!;
-        private Dictionary<Point, int> _rosenbergStrongMinusMultiply = null!;
-        private Dictionary<Point, int> _rosenbergStrongPure = null!;
-        private Dictionary<Point, int> _cantorPure = null!;
-        private Dictionary<Point, int> _bareMinimum = null!;
-        private Dictionary<Point, int> _bareMinimumSubtract = null!;
-        private Dictionary<Point, int> _bareMinimum8And24 = null!;
-        private Dictionary<Point, int> _simpleShift = null!;
-        private Dictionary<Point, int> _multiplySum = null!;
-        private Dictionary<Point, int> _hashCodeCombine = null!;
+        private Point[] _points = null!;
+        private Dictionary<Point, int> _dictionary = null!;
 
         [GlobalSetup]
         public void GlobalSetup()
         {
-            // Create cached list of points.  Shuffle list to ensure cache linearity of the hash slots based on the
-            // order in which we construct them isn't a factor.
-            _points = SharedUtilities.PositiveArray(Size);
+            // Create list of points based on our data set.
+            _points = SharedUtilities.GetDataSet(DataSet, Size);
+
+            // Shuffle list to ensure cache linearity of the hash slots based on the order in which we construct them
+            // isn't a factor. This is particularly important because some data sets generate points in a very linear
+            // order.
             new Xoshiro256StarStarRandom(1).Shuffle(_points);
 
-            // Create equality comparers now to ensure that the creation time isn't factored into benchmark
-            // (since it is not for any other algorithms)
-            _sizeHasher = new KnownSizeHasher(Size);
-            _rangeHasher = new KnownRangeHasher(new Point(0, 0), new Point(Size, Size));
-
-            // Create dictionaries to retrieve from (we don't want to time this part so we will cache them)
-            _currentPrimitives = CreateAndPopulate(EqualityComparer<Point>.Default);
-            _originalGoRogue = CreateAndPopulate(OriginalGoRogueAlgorithm.Instance);
-            _knownSizeHashing = CreateAndPopulate(_sizeHasher);
-            _knownRangeHashing = CreateAndPopulate(_rangeHasher);
-            _rosenbergStrong = CreateAndPopulate(RosenbergStrongBasedAlgorithm.Instance);
-            _rosenbergStrongMinusMultiply = CreateAndPopulate(RosenbergStrongBasedMinusMultiplyAlgorithm.Instance);
-            _rosenbergStrongPure = CreateAndPopulate(RosenbergStrongPureAlgorithm.Instance);
-            _cantorPure = CreateAndPopulate(CantorPureAlgorithm.Instance);
-            _bareMinimum = CreateAndPopulate(BareMinimumAlgorithm.Instance);
-            _bareMinimumSubtract = CreateAndPopulate(BareMinimumSubtractAlgorithm.Instance);
-            _bareMinimum8And24 = CreateAndPopulate(BareMinimum8And24Algorithm.Instance);
-            _simpleShift = CreateAndPopulate(SimpleShiftAlgorithm.Instance);
-            _multiplySum = CreateAndPopulate(MultiplySumAlgorithm.Instance);
-            _hashCodeCombine = CreateAndPopulate(HashCodeCombineAlgorithm.Instance);
+            // Determine the correct equality comparer to use for the current hashing algorithm, and create the
+            // dictionary using that comparer.  We very explicitly elect to NOT PASS A HASHER for CurrentPrimitives,
+            // rather than passing EqualityComparer.Default.  This is because the current primitives hashing function
+            // will always be measured by one of the other comparers anyway, so makes CurrentPrimitives a good measure
+            // of if there are optimizations and the like which make the default implementation faster than a custom
+            // equality comparer.
+            var comparer = SharedUtilities.GetHasher(Algorithm, Size);
+            _dictionary = (comparer == null) ? new Dictionary<Point, int>() : new Dictionary<Point, int>(comparer);
+            for (int i = 0; i < _points.Length; i++)
+                _dictionary[_points[i]] = i;
         }
 
         [Benchmark]
-        public int CurrentPrimitives() => GetAllFrom(_currentPrimitives);
-
-        [Benchmark]
-        public int OriginalGoRogue() => GetAllFrom(_originalGoRogue);
-
-        [Benchmark]
-        public int KnownSize() => GetAllFrom(_knownSizeHashing);
-
-        [Benchmark]
-        public int KnownRange() => GetAllFrom(_knownRangeHashing);
-
-        [Benchmark]
-        public int RosenbergStrongBased() => GetAllFrom(_rosenbergStrong);
-
-        [Benchmark]
-        public int RosenbergStrongBasedMinusMultiply() => GetAllFrom(_rosenbergStrongMinusMultiply);
-
-        [Benchmark]
-        public int RosenbergStrongPure() => GetAllFrom(_rosenbergStrongPure);
-
-        [Benchmark]
-        public int CantorPure() => GetAllFrom(_cantorPure);
-
-        [Benchmark]
-        public int BareMinimum() => GetAllFrom(_bareMinimum);
-
-        [Benchmark]
-        public int BareMinimumSubtract() => GetAllFrom(_bareMinimumSubtract);
-
-        [Benchmark]
-        public int BareMinimum8And24() => GetAllFrom(_bareMinimum8And24);
-
-        [Benchmark]
-        public int SimpleShift() => GetAllFrom(_simpleShift);
-
-        [Benchmark]
-        public int MultiplySum() => GetAllFrom(_multiplySum);
-
-        [Benchmark]
-        public int HashCodeCombine() => GetAllFrom(_hashCodeCombine);
-
-        private int GetAllFrom(Dictionary<Point, int> dict)
+        public int GetAllPoints()
         {
             int sum = 0;
             for (int i = 0; i < _points.Length; i++)
-                sum += dict[_points[i]];
+                sum += _dictionary[_points[i]];
 
             return sum;
-        }
-
-        private Dictionary<Point, int> CreateAndPopulate(IEqualityComparer<Point> algorithm)
-        {
-            var dict = new Dictionary<Point, int>(algorithm);
-            for (int i = 0; i < _points.Length; i++)
-                dict[_points[i]] = i;
-
-            return dict;
         }
     }
 }

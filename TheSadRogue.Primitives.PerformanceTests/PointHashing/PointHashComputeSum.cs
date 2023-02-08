@@ -18,79 +18,52 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
     public class PointHashComputeSum
     {
         public IEnumerable<int> SizeData => SharedTestParams.Sizes;
+        public IEnumerable<HashingAlgorithm> AlgorithmData => SharedTestParams.Algorithms;
+        public IEnumerable<DataSet> DataSetData => SharedTestParams.DataSets;
 
         /// <summary>
-        /// An area of Size x Size will be used for the purposes of determining the series of points to use
-        /// in the calculation.
+        /// The data set type to test.
+        /// </summary>
+        [ParamsSource(nameof(DataSetData))]
+        public DataSet DataSet;
+
+        /// <summary>
+        /// An area of Size x Size will be used for the purposes of determining the series of points to hash.
         /// </summary>
         [ParamsSource(nameof(SizeData))]
         public int Size;
 
+        /// <summary>
+        /// The hashing algorithm to test; affects the equality comparer we use to calculate hashes.
+        /// </summary>
+        [ParamsSource(nameof(AlgorithmData))]
+        public HashingAlgorithm Algorithm;
+
+
+
+        private IEqualityComparer<Point> _comparer = null!;
         private Point[] _points = null!;
-        private IEqualityComparer<Point> _sizeHasher = null!;
-        private IEqualityComparer<Point> _rangeHasher = null!;
 
         [GlobalSetup]
         public void GlobalSetup()
         {
-            // Create cached list of points.  Shuffle list to ensure cache linearity of the hash slots based on the
-            // order in which we construct them isn't a factor.
-            _points = SharedUtilities.PositiveArray(Size);
+            // Create list of points based on our data set.
+            _points = SharedUtilities.GetDataSet(DataSet, Size);
+
+            // Shuffle list to ensure cache linearity of the values isn't a factor.  In theory, the order of the values
+            // should not affect the time it takes to sum, however since some of our data sets do generate points in
+            // a very linear order, this should ensure no unwanted optimization can take place.
             new Xoshiro256StarStarRandom(1).Shuffle(_points);
 
-            // Create equality comparers now to ensure that the creation time isn't factored into benchmark
-            // (since it is not for any other algorithms)
-            _sizeHasher = new KnownSizeHasher(Size);
-            _rangeHasher = new KnownRangeHasher(new Point(0, 0), new Point(Size, Size));
+            // Determine the correct equality comparer to use for the current hashing algorithm
+            _comparer = SharedUtilities.GetHasher(Algorithm, Size) ?? EqualityComparer<Point>.Default;
         }
 
-        [Benchmark]
-        public int CurrentPrimitives() => SumHashesAlgorithm(EqualityComparer<Point>.Default);
-
-        [Benchmark]
-        public int OriginalGoRogue() => SumHashesAlgorithm(OriginalGoRogueAlgorithm.Instance);
-
-        [Benchmark]
-        public int KnownSize() => SumHashesAlgorithm(_sizeHasher);
-
-        [Benchmark]
-        public int KnownRange() => SumHashesAlgorithm(_rangeHasher);
-
-        [Benchmark]
-        public int RosenbergStrongBased() => SumHashesAlgorithm(RosenbergStrongBasedAlgorithm.Instance);
-
-        [Benchmark]
-        public int RosenbergStrongBasedMinusMultiply() => SumHashesAlgorithm(RosenbergStrongBasedMinusMultiplyAlgorithm.Instance);
-
-        [Benchmark]
-        public int RosenbergStrongPure() => SumHashesAlgorithm(RosenbergStrongPureAlgorithm.Instance);
-
-        [Benchmark]
-        public int CantorPure() => SumHashesAlgorithm(CantorPureAlgorithm.Instance);
-
-        [Benchmark]
-        public int BareMinimum() => SumHashesAlgorithm(BareMinimumAlgorithm.Instance);
-
-        [Benchmark]
-        public int BareMinimumSubtract() => SumHashesAlgorithm(BareMinimumSubtractAlgorithm.Instance);
-
-        [Benchmark]
-        public int BareMinimum8And24() => SumHashesAlgorithm(BareMinimum8And24Algorithm.Instance);
-
-        [Benchmark]
-        public int SimpleShift() => SumHashesAlgorithm(SimpleShiftAlgorithm.Instance);
-
-        [Benchmark]
-        public int MultiplySum() => SumHashesAlgorithm(MultiplySumAlgorithm.Instance);
-
-        [Benchmark]
-        public int HashCodeCombine() => SumHashesAlgorithm(HashCodeCombineAlgorithm.Instance);
-
-        private int SumHashesAlgorithm(IEqualityComparer<Point> algorithm)
+        public int SumHashes()
         {
             int sum = 0;
             for (int i = 0; i < _points.Length; i++)
-                sum += algorithm.GetHashCode(_points[i]);
+                sum += _comparer.GetHashCode(_points[i]);
 
             return sum;
         }

@@ -57,6 +57,7 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
             _comparer = SharedUtilities.GetHasher(Algorithm, Size) ?? EqualityComparer<Point>.Default;
         }
 
+        [Benchmark]
         public int SumHashes()
         {
             int sum = 0;

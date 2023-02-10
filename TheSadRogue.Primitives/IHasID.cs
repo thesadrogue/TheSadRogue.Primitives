@@ -1,7 +1,7 @@
 ﻿namespace SadRogue.Primitives
 {
     /// <summary>
-    /// Interface for a class that has an ID value, typically used for items in a spatial map, or generally
+    /// Interface for a class that has an integer ID value, typically used for items in a spatial map, or generally
     /// for purposes of hashing.
     /// </summary>
     /// <remarks>

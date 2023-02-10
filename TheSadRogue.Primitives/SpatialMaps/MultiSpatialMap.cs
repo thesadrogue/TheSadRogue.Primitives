@@ -15,6 +15,7 @@ namespace SadRogue.Primitives.SpatialMaps
     /// This class is useful for cases where you do not want to implement <see cref="IHasID" />, or if you need
     /// to use a value type in a spatial map. For simple cases, it is recommended to use <see cref="MultiSpatialMap{T}" />
     /// instead.
+    ///
     /// Be mindful of the efficiency of your hashing function specified in the <see cref="IEqualityComparer{T}" /> --
     /// it will in large part determine the performance of AdvancedMultiSpatialMap!
     /// </remarks>
@@ -771,8 +772,11 @@ namespace SadRogue.Primitives.SpatialMaps
     /// <remarks>
     /// See the <see cref="ISpatialMap{T}" /> for documentation on the practical purpose of spatial
     /// maps.
+    ///
     /// The objects stored in a MultiSpatialMap must implement <see cref="IHasID" />. This is used
-    /// internally to keep track of the objects, since uints are easily (and efficiently) hash-able.
+    /// internally to keep track of the objects, since uints are easily (and efficiently) hashable.  If you cannot
+    /// or do not wish to implement this interface, use <see cref="AdvancedMultiSpatialMap{T}"/> instead.
+    ///
     /// Although MultiSpatialMap is generally quite performant, if you know the spatial map will
     /// only have one item at any given position at a time, <see cref="SpatialMap{T}" /> may yield
     /// better performance.

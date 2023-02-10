@@ -1,41 +1,45 @@
 ﻿using System;
 using System.Collections.Generic;
+using SadRogue.Primitives.GridViews;
 
 namespace SadRogue.Primitives.SpatialMaps
 {
     /// <summary>
-    /// Interface common to spatial map implementations provided with GoRogue, which are designed
-    /// to be a convenient way to store items that reside on a map.  TLDR; If you're about
-    /// to use a List to store all the objects on a map, consider using a (GoRogue-provided) ISpatialMap
-    /// implementation instead.
+    /// Interface representing the common interface of a "spatial map", which is designed to be a convenient and efficient
+    /// way to store items that reside on a grid and their locations.  If you're about to use a List to
+    /// store all the objects on a grid, consider using one of the provided ISpatialMap implementation instead.
     /// </summary>
     /// <remarks>
-    /// Typical roguelikes will use a 2D array (or 1D array accessed as a 2D array), for terrain, and
-    /// lists of objects for things like entities, items, etc. This is simple but ultimately not
-    /// efficient; for example, in that implementation, determining if there is an object at a
-    /// location takes an amount of time proportional to the number of objects in this list. However,
-    /// the other simple option is to use an array with size equal to the size of the map (as many do
-    /// for terrain) for all object lists. This is even less ideal, as in that case, the time to
-    /// iterate over all objects becomes proportional to the size of the map (since one has to do
-    /// that for rendering, that's bad!), which is typically much larger than the number of objects in a
-    /// list. This is the problem spatial map implementations are designed to solve. They provide fast,
-    /// near-constant-time operations for getting the item(s) at a location, adding items, and removing
-    /// items.  As well, they allow you to iterate through all objects in the spatial map in time
-    /// proportional to the number of objects in it (the best possible). Effectively, it is a more efficient
-    /// list for objects that have a position associated with them.  Spatial maps also provide events for when
-    /// things are added, removed, etc., to allow you to conveniently respond to those types of actions.
-    /// Spatial maps have to keep track of the position of each item in them in order to provide
-    /// their fast-lookup functionality.  Spatial maps can be used as the primary authority for what an item's
-    /// position is in some cases -- however, in many cases, this may be undesirable, particularly when interfacing
-    /// with more traditional infrastructures from other libraries, which likely record each item's position as a field
-    /// or property of the item itself.  In these cases, where the item itself records its position, you will need to
-    /// call the <see cref="Move(T, Point)" /> function (or a similar overload) whenever an object moves, to keep the
-    /// spatial map's position for that item in sync with its actual position.
-    /// It is also worthy of note, that some implementations of ISpatialMap (such as <see cref="SpatialMap{T}" />) have
-    /// implemented
-    /// <see cref="Move(T, Point)" /> in such a way that it could fail in some cases.  Move will return false in cases where it
-    /// fails, so if you are using an implementation where that may happen, you may need to check this to avoid desync issues.
-    /// The Move function documentation for each implementation clearly states in what cases a call to Move can fail.
+    /// When representing objects considered to be located on a 2D grid, there are two main categories of use cases that
+    /// seem to be encountered repeatedly.  The first is when you have a grid with well defined bounds, and intend to
+    /// place or calculate one object or value for each location on the grid; the typical solution for this use case is
+    /// to use an array to store the items (or an <see cref="ArrayView{T}"/>, which may be more convenient).
+    ///
+    /// The other use case is when you have either an unbounded grid, or more commonly a series of objects where there is
+    /// not likely to be exactly one object per position.  This makes the array solution much less viable, since it
+    /// would waste a lot of memory.  Storing a list of all the objects is another possible option; but while this is fast
+    /// for iterating over all objects on the grid, it makes retrieving the object (or all objects) at a specific position
+    /// very inefficient.  The traditional answer to that is something like Dictionary&lt;Point, T&gt;, but this can be
+    /// complex to implement depending on the situation.  There are multiple constraints you might want to enforce; some
+    /// instances might want to ensure that a maximum of only one object is associated with a given location, whereas
+    /// others might want to allow _multiple_ objects at a location.  The latter is particularly troublesome to implement
+    /// efficiently in a way that minimizes allocations.
+    ///
+    /// A "spatial map", therefore, is a data structure designed to implement position-to-object mappings like the ones
+    /// described above simply and efficiently.  It acts as an abstraction over all of the above types of constraints
+    /// and more; and the library provides multiple implementations of the interface which are suited to various use
+    /// cases.
+    ///
+    /// Spatial maps allow you to add items at arbitrary positions, move items around, and remove them, all typically
+    /// in constant time, rather than time proportional to the number of items stored.  They also provide linear-time
+    /// iteration through all items in the structure (just like Dictionary does), although also like Dictionary, this
+    /// iteration will usually not be as fast as iterating through the items in a List, even though it shares the
+    /// same asymptotic characteristics.  Additionally, events are provided for when items are added, moved, and removed,
+    /// which can allow you to respond to these as needed.
+    ///
+    /// One common use case is using spatial maps to store objects that already have a Position field of some sort.  In
+    /// these cases, you will typically want to update the object's position in the spatial map whenever the object moves,
+    /// so the spatial map's recorded position and the object's recorded position stay in sync.
     /// </remarks>
     /// <typeparam name="T">The type of object that will be contained by the spatial map.</typeparam>
     public interface ISpatialMap<T> : IReadOnlySpatialMap<T>
@@ -328,7 +332,6 @@ namespace SadRogue.Primitives.SpatialMaps
         public Point OldPosition { get; private set; }
     }
 
-    // Class for dictionary-hashing of things that implement IHasID
     /// <summary>
     /// Class intended for comparing/hashing objects that implement <see cref="IHasID" />. Type T must be a
     /// reference type.

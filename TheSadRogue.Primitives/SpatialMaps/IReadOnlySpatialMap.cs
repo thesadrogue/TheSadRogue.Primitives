@@ -9,8 +9,8 @@ namespace SadRogue.Primitives.SpatialMaps
     /// <remarks>
     /// Simply exposes only those functions of <see cref="ISpatialMap{T}" /> that do not allow direct modification
     /// of the data (eg. adding/moving/removing items). This can allow for direct exposure of an ISpatialMap as a
-    /// property of type IReadOnlySpatialMap, without allowing such an exposure to break data
-    /// encapsulation principles of something like a game map.
+    /// property of type IReadOnlySpatialMap, without allowing such an exposure to break data encapsulation principles
+    /// of something like a game map.
     /// </remarks>
     public interface IReadOnlySpatialMap<T> : IEnumerable<ItemPositionPair<T>>
         where T : notnull

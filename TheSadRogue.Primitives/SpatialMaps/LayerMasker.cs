@@ -138,14 +138,15 @@ namespace SadRogue.Primitives.SpatialMaps
 
         /// <summary>
         /// Adds the given layers to the given layer mask, provided those layers are within the
-        /// supported number of layers. Any layer outside of this range will not be added.
+        /// supported number of layers. Any layer outside of this range in either of the function's parameters will not
+        /// be included.
         /// </summary>
         /// <param name="mask">The mask to add the layers to.</param>
         /// <param name="layers">Layers to include in the resulting layer mask.</param>
         /// <returns>
-        /// A layer mask including any original layers that were in the given mask (regardless of
-        /// whether they were within the supported number of layers), as well as the new layers
-        /// provided (provided they are within the supported number of layers).
+        /// A layer mask including any original layers that were in the given mask, as well as the new layers
+        /// provided.  However, the mask will exclude any layers not within the range of this LayerMasker's supported
+        /// layers.
         /// </returns>
         public uint AddLayers(uint mask, params int[] layers)
         {
@@ -153,8 +154,7 @@ namespace SadRogue.Primitives.SpatialMaps
             foreach (int layer in layers)
                 newMask |= (uint)1 << layer;
 
-            newMask &= AllLayers;
-            return mask | newMask;
+            return (mask | newMask) & AllLayers;
         }
 
         /// <summary>
@@ -174,8 +174,7 @@ namespace SadRogue.Primitives.SpatialMaps
             foreach (int layer in layers)
                 newMask |= (uint)1 << layer;
 
-            newMask &= AllLayers;
-            return mask | newMask;
+            return (mask | newMask) & AllLayers;
         }
 
         /// <summary>

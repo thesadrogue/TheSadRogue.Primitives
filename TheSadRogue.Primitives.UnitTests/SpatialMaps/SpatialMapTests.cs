@@ -49,6 +49,36 @@ namespace SadRogue.Primitives.UnitTests.SpatialMaps
         }
 
         [Fact]
+        public void SpatialMapAddIntOverloads()
+        {
+            var mySpatialMap = new SpatialMap<MyIDImpl>();
+
+            var myId1 = new MyIDImpl(0);
+            var myId2 = new MyIDImpl(1);
+            mySpatialMap.Add(myId1, 1, 2);
+            Assert.Equal(1, mySpatialMap.Count);
+
+            var retVal = mySpatialMap.Contains(1, 2);
+            Assert.True(retVal);
+
+            retVal = mySpatialMap.Contains(myId1);
+            Assert.True(retVal);
+
+            retVal = mySpatialMap.Contains(2, 3);
+            Assert.False(retVal);
+
+            retVal = mySpatialMap.Contains(myId2);
+            Assert.False(retVal);
+
+            Assert.Single(mySpatialMap.GetItemsAt(1, 2));
+            Assert.Empty(mySpatialMap.GetItemsAt(2, 3));
+
+            Assert.Throws<ArgumentException>(() => mySpatialMap.Add(myId2, (1, 2)));
+
+            Assert.Single(mySpatialMap.GetItemsAt((1, 2)));
+        }
+
+        [Fact]
         public void SpatialMapCreate()
         {
             var mySpatialMap = new SpatialMap<MyIDImpl>();
@@ -57,6 +87,7 @@ namespace SadRogue.Primitives.UnitTests.SpatialMaps
             Assert.Throws<ArgumentException>(() => mySpatialMap.Remove(new MyIDImpl(0)));
             Assert.Empty(mySpatialMap.Remove((1, 2)));
             Assert.Empty(mySpatialMap.Items);
+            Assert.Empty(mySpatialMap.Remove(1, 2));
         }
 
         [Fact]
@@ -81,7 +112,7 @@ namespace SadRogue.Primitives.UnitTests.SpatialMaps
             retVal = mySpatialMap.Contains((2, 3));
             Assert.True(retVal);
 
-            Assert.Throws<ArgumentException>(() => mySpatialMap.Move(myId2, (5, 6)));
+            Assert.Throws<ArgumentException>(() => mySpatialMap.Move(myId2, 5, 6));
             Assert.True(mySpatialMap.Contains((2, 3)));
             Assert.True(mySpatialMap.Contains((5, 6)));
         }
@@ -133,7 +164,7 @@ namespace SadRogue.Primitives.UnitTests.SpatialMaps
             Assert.False(mySpatialMap.Contains(myId2));
 
             Assert.Throws<ArgumentException>(() => mySpatialMap.Remove(myId1));
-            Assert.Empty(mySpatialMap.Remove((5, 6)));
+            Assert.Empty(mySpatialMap.Remove(5, 6));
         }
 
         // TODO: tests for MoveValid, etc.  Split into different test cases like LayeredSpatialMapTests

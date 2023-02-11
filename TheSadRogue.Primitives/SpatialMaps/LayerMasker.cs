@@ -85,17 +85,16 @@ namespace SadRogue.Primitives.SpatialMaps
     }
 
     /// <summary>
-    /// Allows convenient interpretation and creation of layer masks (bit-masks) that can be used
-    /// to interact with <see cref="LayeredSpatialMap{T}" /> and <see cref="GameFramework.Map" />.
+    /// Allows convenient interpretation and creation of layer masks (bit-masks which indicate one or more layers) that
+    /// can be used to interact with <see cref="LayeredSpatialMap{T}" />.
     /// </summary>
     /// <remarks>
-    /// A layer mask is simply a list of layers.  It is frequently used in <see cref="LayeredSpatialMap{T}" />
-    /// and <see cref="GameFramework.Map" /> as an optional parameter that indicates what layers should apply
-    /// to an operation or given set of functionality.
-    /// LayeredSpatialMap and Map both define their own LayerMask variable that should be used to retrieve
-    /// layer masks whenever possible.  For layer masks needed outside of that, or when constructing
-    /// those classes, use <see cref="Default" />.  There are also constants defined in
-    /// LayerMasker to represent "all layers" and "no layers".
+    /// A layer mask is simply a list of layers encoded as a bit mask.  It is frequently used in
+    /// <see cref="LayeredSpatialMap{T}" /> as an optional parameter that indicates what layers should apply
+    /// to an operation or given set of functionality.  LayeredSpatialMap defines its own LayerMask variable that should
+    /// be used to retrieve layer masks for use with that object whenever possible.  For layer masks needed outside of
+    /// that, use <see cref="Default" />; but this won't enforce the maximum number of layers automatically.  There are
+    /// also constants defined in LayerMasker to represent "all layers" and "no layers".
     /// </remarks>
     public sealed class LayerMasker
     {
@@ -125,7 +124,7 @@ namespace SadRogue.Primitives.SpatialMaps
                 throw new ArgumentOutOfRangeException(nameof(numberOfLayers),
                     $"{nameof(LayerMasker)} must support 1 and can support a maximum of 32 layers.");
 
-            NumberOfLayers = numberOfLayers; // Cast is fine since it's under 32 and obviously above 0
+            NumberOfLayers = numberOfLayers;
             AllLayers = (uint)1 << (NumberOfLayers - 1); // Last layer index
             AllLayers |= AllLayers - 1; // Propagate the right-most 1-bit all the way down
             NoLayers = 0;
@@ -250,7 +249,7 @@ namespace SadRogue.Primitives.SpatialMaps
         {
             uint mask = 0;
 
-            foreach (var layer in layers)
+            foreach (int layer in layers)
                 mask |= (uint)1 << layer;
 
             return mask & AllLayers; // And to ensure we do not set any layers that are out of the ones we care about
@@ -270,7 +269,7 @@ namespace SadRogue.Primitives.SpatialMaps
         {
             uint mask = 0;
 
-            foreach (var layer in layers)
+            foreach (int layer in layers)
                 mask |= (uint)1 << layer;
 
             return mask & AllLayers; // And to ensure we do not set any layers that are out of the ones we care about
@@ -292,7 +291,7 @@ namespace SadRogue.Primitives.SpatialMaps
             if (layer == 0) // Special case to avoid signing issues (shifting by negative number very bad)
                 return AllLayers;
 
-            var mask = (uint)1 << (layer - 1);
+            uint mask = (uint)1 << (layer - 1);
             mask |= mask - 1; // Propagate the right-most 1-bit all the way down
             return ~mask & AllLayers; // Invert so 1's are in upper half
         }
@@ -310,7 +309,7 @@ namespace SadRogue.Primitives.SpatialMaps
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public uint MaskAllBelow(int layer)
         {
-            var mask = (uint)1 << layer;
+            uint mask = (uint)1 << layer;
             mask |= mask - 1; // Propagate the right-most 1-bit all the way down
             return mask & AllLayers;
         }

@@ -7,76 +7,303 @@ namespace SadRogue.Primitives.UnitTests.SpatialMaps
 {
     public class SpatialMapTests
     {
-        private Point _newPos;
+        //private readonly ITestOutputHelper _output;
+        private readonly MockSpatialMapItem _initialItem;
+        private static readonly Point s_initialItemPos = (1, 2);
+        private static readonly Point s_newItemPos = (2, 3);
+        private readonly SpatialMap<MockSpatialMapItem> _spatialMap;
 
-        // Used to test events
-        private Point _oldPos;
-
-        private void OnItemMoved(object? s, ItemMovedEventArgs<MyIDImpl> e)
+        public SpatialMapTests()
         {
-            Assert.Equal(_oldPos, e.OldPosition);
-            Assert.Equal(_newPos, e.NewPosition);
+            //_output = output;
+
+            // Set up the spatial map and some initial test item
+            _spatialMap = new SpatialMap<MockSpatialMapItem>();
+            _initialItem = new MockSpatialMapItem(0);
+            _spatialMap.Add(_initialItem, s_initialItemPos);
+        }
+
+        #region Add Item
+        [Fact]
+        public void AddItemValid()
+        {
+            // Just the starting items to begin with, and none at new location
+            Assert.Empty(_spatialMap.GetItemsAt(s_newItemPos));
+            Assert.Equal(1, _spatialMap.Count);
+
+            // Add item at new location
+            var item = new MockSpatialMapItem(0);
+            _spatialMap.Add(item, s_newItemPos);
+            Assert.Single(_spatialMap.GetItemsAt(s_newItemPos));
+            Assert.Equal(2, _spatialMap.Count);
         }
 
         [Fact]
-        public void SpatialMapAdd()
+        public void AddItemXYValid()
         {
-            var mySpatialMap = new SpatialMap<MyIDImpl>();
+            // Just the starting items to begin with, and none at new location
+            Assert.Empty(_spatialMap.GetItemsAt(s_newItemPos));
+            Assert.Equal(1, _spatialMap.Count);
 
-            var myId1 = new MyIDImpl(0);
-            var myId2 = new MyIDImpl(1);
-            mySpatialMap.Add(myId1, (1, 2));
-            Assert.Equal(1, mySpatialMap.Count);
-
-            var retVal = mySpatialMap.Contains((1, 2));
-            Assert.True(retVal);
-
-            retVal = mySpatialMap.Contains(myId1);
-            Assert.True(retVal);
-
-            retVal = mySpatialMap.Contains((2, 3));
-            Assert.False(retVal);
-
-            retVal = mySpatialMap.Contains(myId2);
-            Assert.False(retVal);
-
-            Assert.Single(mySpatialMap.GetItemsAt((1, 2)));
-            Assert.Empty(mySpatialMap.GetItemsAt((2, 3)));
-
-            Assert.Throws<ArgumentException>(() => mySpatialMap.Add(myId2, (1, 2)));
-
-            Assert.Single(mySpatialMap.GetItemsAt((1, 2)));
+            // Add item at new location
+            var item = new MockSpatialMapItem(0);
+            _spatialMap.Add(item, s_newItemPos.X, s_newItemPos.Y);
+            Assert.Single(_spatialMap.GetItemsAt(s_newItemPos));
+            Assert.Equal(2, _spatialMap.Count);
         }
 
         [Fact]
-        public void SpatialMapAddIntOverloads()
+        public void AddItemInvalid()
         {
-            var mySpatialMap = new SpatialMap<MyIDImpl>();
+            var (item, position) = (new MockSpatialMapItem(0), _initialItemPos: s_initialItemPos);
+            Assert.Single(_spatialMap.GetItemsAt(position));
+            int prevCount = _spatialMap.Count;
 
-            var myId1 = new MyIDImpl(0);
-            var myId2 = new MyIDImpl(1);
-            mySpatialMap.Add(myId1, 1, 2);
-            Assert.Equal(1, mySpatialMap.Count);
+            // Should throw exception and not add item
+            Assert.Throws<ArgumentException>(() => _spatialMap.Add(item, position));
+            Assert.Single( _spatialMap.GetItemsAt(position));
+            Assert.Equal(prevCount, _spatialMap.Count);
 
-            var retVal = mySpatialMap.Contains(1, 2);
-            Assert.True(retVal);
-
-            retVal = mySpatialMap.Contains(myId1);
-            Assert.True(retVal);
-
-            retVal = mySpatialMap.Contains(2, 3);
-            Assert.False(retVal);
-
-            retVal = mySpatialMap.Contains(myId2);
-            Assert.False(retVal);
-
-            Assert.Single(mySpatialMap.GetItemsAt(1, 2));
-            Assert.Empty(mySpatialMap.GetItemsAt(2, 3));
-
-            Assert.Throws<ArgumentException>(() => mySpatialMap.Add(myId2, (1, 2)));
-
-            Assert.Single(mySpatialMap.GetItemsAt((1, 2)));
+            Assert.Throws<ArgumentException>(() => _spatialMap.Add(item, position.X, position.Y));
+            Assert.Single( _spatialMap.GetItemsAt(position));
+            Assert.Equal(prevCount, _spatialMap.Count);
         }
+        #endregion
+
+        #region Remove Item
+        [Fact]
+        public void RemoveItemValid()
+        {
+            _spatialMap.Remove(_initialItem);
+            Assert.Equal(0, _spatialMap.Count);
+            Assert.Empty(_spatialMap);
+        }
+
+        [Fact]
+        public void RemoveItemInvalid()
+        {
+            int prevCount = _spatialMap.Count;
+
+            var nonexistentItem = new MockSpatialMapItem(0);
+
+            Assert.Throws<ArgumentException>(() => _spatialMap.Remove(nonexistentItem));
+            Assert.Single(_spatialMap.GetItemsAt(s_initialItemPos));
+            Assert.Equal(prevCount, _spatialMap.Count);
+        }
+
+        [Fact]
+        public void RemoveByPositionValid()
+        {
+            var itemsRemoved = _spatialMap.Remove(s_initialItemPos);
+            Assert.Single(itemsRemoved);
+            Assert.Equal(0, _spatialMap.Count);
+            Assert.Empty(_spatialMap.GetItemsAt(s_initialItemPos));
+        }
+
+        [Fact]
+        public void RemoveByXYValid()
+        {
+            var itemsRemoved = _spatialMap.Remove(s_initialItemPos.X, s_initialItemPos.Y);
+            Assert.Single(itemsRemoved);
+            Assert.Equal(0, _spatialMap.Count);
+            Assert.Empty(_spatialMap.GetItemsAt(s_initialItemPos));
+        }
+
+        [Fact]
+        public void RemoveByPositionInvalid()
+        {
+            var itemsRemoved = _spatialMap.Remove(s_newItemPos);
+            Assert.Empty(itemsRemoved);
+            Assert.Equal(1, _spatialMap.Count);
+            Assert.Single(_spatialMap.GetItemsAt(s_initialItemPos));
+        }
+        #endregion
+
+        #region Move Items
+        [Fact]
+        public void MoveItemValid()
+        {
+            Assert.Empty(_spatialMap.GetItemsAt(s_newItemPos));
+
+
+            _spatialMap.Move(_initialItem, s_newItemPos);
+            Assert.Equal(1, _spatialMap.Count);
+            Assert.Empty(_spatialMap.GetItemsAt(s_initialItemPos));
+            Assert.Single(_spatialMap.GetItemsAt(s_newItemPos));
+        }
+
+        [Fact]
+        public void MoveItemXYValid()
+        {
+            Assert.Empty(_spatialMap.GetItemsAt(s_newItemPos));
+
+
+            _spatialMap.Move(_initialItem, s_newItemPos.X, s_newItemPos.Y);
+            Assert.Equal(1, _spatialMap.Count);
+            Assert.Empty(_spatialMap.GetItemsAt(s_initialItemPos));
+            Assert.Single(_spatialMap.GetItemsAt(s_newItemPos));
+        }
+
+        [Fact]
+        public void MoveItemInvalid()
+        {
+            // Create item and add to a different position
+            var lastItem = new MockSpatialMapItem(0);
+            _spatialMap.Add(lastItem, s_newItemPos);
+            Assert.Equal(2, _spatialMap.Count);
+
+            // Throws because there is already an item at the initial position
+            Assert.Throws<ArgumentException>(() => _spatialMap.Move(lastItem, s_initialItemPos));
+        }
+
+        [Fact]
+        public void MoveItemDoesNotExist()
+        {
+            int prevCount = _spatialMap.Count;
+
+            var nonexistentItem = new MockSpatialMapItem(0);
+
+            Assert.Throws<ArgumentException>(() => _spatialMap.Move(nonexistentItem, s_newItemPos));
+            Assert.Single(_spatialMap.GetItemsAt(s_initialItemPos));
+            Assert.Equal(prevCount, _spatialMap.Count);
+        }
+
+        [Fact]
+        public void MoveValidItemsAllValid()
+        {
+            var movedItems = _spatialMap.MoveValid(s_initialItemPos, s_newItemPos);
+            Assert.Single(movedItems);
+            Assert.Empty(_spatialMap.GetItemsAt(s_initialItemPos));
+            Assert.Single(_spatialMap.GetItemsAt(s_newItemPos));
+        }
+
+        [Fact]
+        public void MoveValidItemsXYAllValid()
+        {
+            var movedItems = _spatialMap.MoveValid(s_initialItemPos.X, s_initialItemPos.Y, s_newItemPos.X, s_newItemPos.Y);
+            Assert.Single(movedItems);
+            Assert.Empty(_spatialMap.GetItemsAt(s_initialItemPos));
+            Assert.Single(_spatialMap.GetItemsAt(s_newItemPos));
+        }
+
+        [Fact]
+        public void MoveValidItemsNoneValid()
+        {
+            // Create item and add it to a different position
+            var lastItem = new MockSpatialMapItem(0);
+            _spatialMap.Add(lastItem, s_newItemPos);
+            Assert.Equal(2, _spatialMap.Count);
+
+            // The object here cannot move because it's blocked by an existing item
+            Assert.Empty(_spatialMap.MoveValid(s_newItemPos, s_initialItemPos));
+            Assert.Single(_spatialMap.GetItemsAt(s_initialItemPos));
+            Assert.Single(_spatialMap.GetItemsAt(s_newItemPos));
+        }
+
+        [Fact]
+        public void MoveValidItemsXYNoneValid()
+        {
+            // Create item and add it to a different position
+            var lastItem = new MockSpatialMapItem(0);
+            _spatialMap.Add(lastItem, s_newItemPos);
+            Assert.Equal(2, _spatialMap.Count);
+
+            // The object here cannot move because it's blocked by an existing item
+            Assert.Empty(_spatialMap.MoveValid(s_newItemPos.X, s_newItemPos.Y, s_initialItemPos.X, s_initialItemPos.Y));
+            Assert.Single(_spatialMap.GetItemsAt(s_initialItemPos));
+            Assert.Single(_spatialMap.GetItemsAt(s_newItemPos));
+        }
+
+        [Fact]
+        public void MoveAllItemsValid()
+        {
+            // No items at new location to start
+            Assert.Empty(_spatialMap.GetItemsAt(s_newItemPos));
+
+            // No items blocked so should succeed
+            _spatialMap.MoveAll(s_initialItemPos, s_newItemPos);
+            Assert.Single(_spatialMap.GetItemsAt(s_newItemPos));
+            Assert.Empty(_spatialMap.GetItemsAt(s_initialItemPos));
+            Assert.Equal(1, _spatialMap.Count);
+        }
+
+        [Fact]
+        public void MoveAllItemsXYValid()
+        {
+            // No items at new location to start
+            Assert.Empty(_spatialMap.GetItemsAt(s_newItemPos));
+
+            // No items blocked so should succeed
+            _spatialMap.MoveAll(s_initialItemPos.X, s_initialItemPos.Y, s_newItemPos.X, s_newItemPos.Y);
+            Assert.Single(_spatialMap.GetItemsAt(s_newItemPos));
+            Assert.Empty(_spatialMap.GetItemsAt(s_initialItemPos));
+            Assert.Equal(1, _spatialMap.Count);
+        }
+
+        [Fact]
+        public void MoveAllItemsInvalid()
+        {
+            // Create item and add it to a different position
+            var lastItem = new MockSpatialMapItem(0);
+            _spatialMap.Add(lastItem, s_newItemPos);
+            Assert.Equal(2, _spatialMap.Count);
+
+            // The new position is blocked (by lastItem), so this should fail.
+            Assert.Throws<ArgumentException>(() => _spatialMap.MoveAll(s_initialItemPos, s_newItemPos));
+        }
+
+        [Fact]
+        public void MoveAllItemsXYInvalid()
+        {
+            // Create item and add it to a different position
+            var lastItem = new MockSpatialMapItem(0);
+            _spatialMap.Add(lastItem, s_newItemPos);
+            Assert.Equal(2, _spatialMap.Count);
+
+            // The new position is blocked (by lastItem), so this should fail.
+            Assert.Throws<ArgumentException>(() => _spatialMap.MoveAll(s_initialItemPos.X, s_initialItemPos.Y, s_newItemPos.X, s_newItemPos.Y));
+        }
+        #endregion
+
+        #region Contains
+        [Fact]
+        public void ContainsItem()
+        {
+            Assert.True(_spatialMap.Contains(_initialItem));
+
+            // Unadded item is not contained
+            var unaddedItem = new MockSpatialMapItem(0);
+            Assert.False(_spatialMap.Contains(unaddedItem));
+
+            // Moved items are still in the spatial map
+            _spatialMap.Move(_initialItem, s_newItemPos);
+            Assert.True(_spatialMap.Contains(_initialItem));
+        }
+
+        [Fact]
+        public void ContainsPosition()
+        {
+            Assert.True(_spatialMap.Contains(s_initialItemPos));
+            Assert.False(_spatialMap.Contains(s_newItemPos));
+
+            // Moved items update results from contained
+            _spatialMap.Move(_initialItem, s_newItemPos);
+            Assert.False(_spatialMap.Contains(s_initialItemPos));
+            Assert.True(_spatialMap.Contains(s_newItemPos));
+        }
+
+        [Fact]
+        public void ContainsXY()
+        {
+            Assert.True(_spatialMap.Contains(s_initialItemPos.X, s_initialItemPos.Y));
+            Assert.False(_spatialMap.Contains(s_newItemPos.X, s_newItemPos.Y));
+
+            // Moved items update results from contained
+            _spatialMap.Move(_initialItem, s_newItemPos);
+            Assert.False(_spatialMap.Contains(s_initialItemPos.X, s_initialItemPos.Y));
+            Assert.True(_spatialMap.Contains(s_newItemPos.X, s_newItemPos.Y));
+        }
+        #endregion
 
         [Fact]
         public void SpatialMapCreate()
@@ -84,89 +311,8 @@ namespace SadRogue.Primitives.UnitTests.SpatialMaps
             var mySpatialMap = new SpatialMap<MyIDImpl>();
 
             Assert.Equal(0, mySpatialMap.Count);
-            Assert.Throws<ArgumentException>(() => mySpatialMap.Remove(new MyIDImpl(0)));
-            Assert.Empty(mySpatialMap.Remove((1, 2)));
             Assert.Empty(mySpatialMap.Items);
-            Assert.Empty(mySpatialMap.Remove(1, 2));
+            Assert.Empty(mySpatialMap);
         }
-
-        [Fact]
-        public void SpatialMapMove()
-        {
-            var mySpatialMap = new SpatialMap<MyIDImpl>();
-
-            var myId1 = new MyIDImpl(0);
-            var myId2 = new MyIDImpl(1);
-            mySpatialMap.Add(myId1, (1, 2));
-            mySpatialMap.Add(myId2, (2, 3));
-
-            mySpatialMap.Move(myId1, (5, 6));
-            Assert.Equal(new Point(5, 6), mySpatialMap.GetPositionOf(myId1));
-
-            var retVal = mySpatialMap.Contains((5, 6));
-            Assert.True(retVal);
-
-            retVal = mySpatialMap.Contains((1, 2));
-            Assert.False(retVal);
-
-            retVal = mySpatialMap.Contains((2, 3));
-            Assert.True(retVal);
-
-            Assert.Throws<ArgumentException>(() => mySpatialMap.Move(myId2, 5, 6));
-            Assert.True(mySpatialMap.Contains((2, 3)));
-            Assert.True(mySpatialMap.Contains((5, 6)));
-        }
-
-        [Fact]
-        public void SpatialMapMoveEvent()
-        {
-            var mySpatialMap = new SpatialMap<MyIDImpl>();
-
-            var myId1 = new MyIDImpl(0);
-            var myId2 = new MyIDImpl(1);
-            var myId3 = new MyIDImpl(2);
-
-            mySpatialMap.Add(myId1, (1, 2));
-            mySpatialMap.Add(myId2, (2, 3));
-            mySpatialMap.Add(myId3, (3, 4));
-
-            mySpatialMap.ItemMoved += OnItemMoved;
-            _oldPos = (1, 2);
-            _newPos = (5, 6);
-            mySpatialMap.Move(myId1, (5, 6));
-            mySpatialMap.ItemMoved -= OnItemMoved;
-        }
-
-        [Fact]
-        public void SpatialMapRemove()
-        {
-            var mySpatialMap = new SpatialMap<MyIDImpl>();
-
-            var myId1 = new MyIDImpl(0);
-            var myId2 = new MyIDImpl(1);
-            var myId3 = new MyIDImpl(2);
-
-            mySpatialMap.Add(myId1, (1, 2));
-            mySpatialMap.Add(myId2, (2, 3));
-            mySpatialMap.Add(myId3, (3, 4));
-
-            mySpatialMap.Remove(myId1);
-
-            var retVal = mySpatialMap.Contains(myId1);
-            Assert.False(retVal);
-
-            retVal = mySpatialMap.Contains((1, 2));
-            Assert.False(retVal);
-
-            Assert.Single(mySpatialMap.Remove((2, 3)));
-
-            Assert.False(mySpatialMap.Contains((2, 3)));
-            Assert.False(mySpatialMap.Contains(myId2));
-
-            Assert.Throws<ArgumentException>(() => mySpatialMap.Remove(myId1));
-            Assert.Empty(mySpatialMap.Remove(5, 6));
-        }
-
-        // TODO: tests for MoveValid, etc.  Split into different test cases like LayeredSpatialMapTests
     }
 }

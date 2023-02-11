@@ -55,7 +55,7 @@ namespace SadRogue.Primitives.UnitTests.SpatialMaps
         [Fact]
         public void AddItemInvalid()
         {
-            var (item, position) = (new MockSpatialMapItem(0), _initialItemPos: s_initialItemPos);
+            var (item, position) = (new MockSpatialMapItem(0), s_initialItemPos);
             Assert.Single(_spatialMap.GetItemsAt(position));
             int prevCount = _spatialMap.Count;
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
@@ -6,18 +7,17 @@ namespace SadRogue.Primitives.SpatialMaps
 {
     /// <summary>
     /// A type designed to be returned from <see cref="LayerMasker.Layers"/> in order to enumerate over a set of layers
-    /// in a layer mask using foreach.
+    /// in a layer mask efficiently.
     /// </summary>
     /// <remarks>
     /// This type is a struct, and as such is much more efficient than using the otherwise equivalent type of
-    /// IEnumerable&lt;int&gt; with "yield return".  The type does contain a function <see cref="ToEnumerable"/> which
-    /// creates an IEnumerable&lt;int&gt;, which can be convenient for allowing the returned layer sets to be used with
-    /// LINQ; however using this function is not recommended in situations where runtime performance is a primary
-    /// concern.
+    /// IEnumerable&lt;int&gt; with "yield return".  The type does also implement <see cref="IEnumerable{T}"/>, so it
+    /// can be used with functions that require one (like System.LINQ); however using this function is not recommended
+    /// in situations where runtime performance is a primary concern.
     ///
     /// This iterator will enumerate the layers in reverse order; ie. highest active number to lowest active number.
     /// </remarks>
-    public struct LayerCollectionEnumerable
+    public struct LayerMaskEnumerator : IEnumerator<int>, IEnumerable<int>
     {
         private uint _mask;
 #pragma warning disable IDE0032 // Suppress use auto property; we need to guarantee performance characteristics
@@ -28,13 +28,15 @@ namespace SadRogue.Primitives.SpatialMaps
         /// </summary>
         public int Current => _current;
 
+        object IEnumerator.Current => _current;
+
         /// <summary>
         /// Constructs a new enumerator.
         /// </summary>
         /// <param name="mask">Layer mask to enumerate.</param>
         /// <param name="numLayers">Number of layers to be considered within the mask.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public LayerCollectionEnumerable(uint mask, int numLayers)
+        public LayerMaskEnumerator(uint mask, int numLayers)
         {
             _mask = mask << (32 - numLayers);
             _current = numLayers - 1;
@@ -62,26 +64,25 @@ namespace SadRogue.Primitives.SpatialMaps
         }
 
         /// <summary>
-        /// Converts the result of the enumerable to a <see cref="IEnumerable{T}"/>, which can be useful if you need
-        /// to use the result with LINQ.
-        /// </summary>
-        /// <remarks>
-        /// Note that this function advances the state of the enumerator, evaluating it to its fullest extent.  Also
-        /// note that it is NOT recommended to use this function in cases where performance is critical.
-        /// </remarks>
-        /// <returns>An IEnumerable&lt;int&gt; which contains all values active in the layer mask being enumerated by this enumerator.</returns>
-        public IEnumerable<int> ToEnumerable()
-        {
-            foreach (int layer in this)
-                yield return layer;
-        }
-
-        /// <summary>
         /// Returns this enumerator.
         /// </summary>
         /// <returns>This enumerator.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public LayerCollectionEnumerable GetEnumerator() => this;
+        public LayerMaskEnumerator GetEnumerator() => this;
+
+        // Explicitly implemented to ensure we prefer the non-boxing versions where possible
+        #region Explicit Interface Implementations
+        /// <summary>
+        /// This iterator does not support resetting.
+        /// </summary>
+        /// <exception cref="NotSupportedException"/>
+        void IEnumerator.Reset() => throw new NotSupportedException();
+        IEnumerator<int> IEnumerable<int>.GetEnumerator() => this;
+        IEnumerator IEnumerable.GetEnumerator() => this;
+
+        void IDisposable.Dispose()
+        { }
+        #endregion
     }
 
     /// <summary>
@@ -232,7 +233,7 @@ namespace SadRogue.Primitives.SpatialMaps
         /// layers for this LayerMasker.
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public LayerCollectionEnumerable Layers(uint mask) => new LayerCollectionEnumerable(mask, NumberOfLayers);
+        public LayerMaskEnumerator Layers(uint mask) => new LayerMaskEnumerator(mask, NumberOfLayers);
 
         /// <summary>
         /// Gets a layer mask including exactly the given layer indices. Any layer given outside the

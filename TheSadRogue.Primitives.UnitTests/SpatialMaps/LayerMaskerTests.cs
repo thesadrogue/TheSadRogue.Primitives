@@ -93,7 +93,7 @@ namespace SadRogue.Primitives.UnitTests.SpatialMaps
             int[] layers = { 0, 2, 5 };
 
             uint mask = masker.Mask(layers);
-            int[] layerReturn = masker.Layers(mask).ToEnumerable().ToArray();
+            int[] layerReturn = masker.Layers(mask).ToArray();
 
             layers = layers.OrderByDescending(i => i).ToArray();
 
@@ -107,7 +107,7 @@ namespace SadRogue.Primitives.UnitTests.SpatialMaps
                 Assert.Equal(layers[i], layerReturn[i]);
 
             masker = new LayerMasker(3);
-            layerReturn = masker.Layers(mask).ToEnumerable().ToArray();
+            layerReturn = masker.Layers(mask).ToArray();
             layers = layers.OrderByDescending(i => i).Where(i => i < 3).ToArray();
             Assert.Equal(layers.Length, layerReturn.Length);
             for (int i = 0; i < layers.Length; i++)

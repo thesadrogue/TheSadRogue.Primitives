@@ -23,6 +23,8 @@ namespace SadRogue.Primitives.SpatialMaps
     public class AdvancedMultiSpatialMap<T> : ISpatialMap<T>
         where T : notnull
     {
+        private static readonly List<T> s_emptyList = new List<T>();
+
         private readonly Dictionary<T, Point> _itemMapping;
         private readonly Dictionary<Point, List<T>> _positionMapping;
 
@@ -221,8 +223,25 @@ namespace SadRogue.Primitives.SpatialMaps
         /// <returns>Enumerator of ISpatialTuples.</returns>
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
+        /// <summary>
+        /// Gets the item(s) at the given position if there are any items, or returns
+        /// nothing if there is nothing at that position.
+        /// </summary>
+        /// <param name="position">The position to return the item(s) for.</param>
+        /// <returns>
+        /// The item(s) at the given position if there are any items, or nothing if there is nothing
+        /// at that position.
+        /// </returns>
+        public ListEnumerator<T> GetItemsAt(Point position)
+        {
+            if (!_positionMapping.TryGetValue(position, out var positionList))
+                return new ListEnumerator<T>(s_emptyList);
+
+            return new ListEnumerator<T>(positionList);
+        }
+
         /// <inheritdoc />
-        public IEnumerable<T> GetItemsAt(Point position)
+        IEnumerable<T> IReadOnlySpatialMap<T>.GetItemsAt(Point position)
         {
             if (!_positionMapping.TryGetValue(position, out var positionList))
                 yield break;
@@ -231,8 +250,20 @@ namespace SadRogue.Primitives.SpatialMaps
                 yield return positionList[i];
         }
 
+        /// <summary>
+        /// Gets the item(s) at the given position if there are any items, or returns
+        /// nothing if there is nothing at that position.
+        /// </summary>
+        /// <param name="x">The x-value of the position to return the item(s) for.</param>
+        /// <param name="y">The y-value of the position to return the item(s) for.</param>
+        /// <returns>
+        /// The item(s) at the given position if there are any items, or nothing if there is nothing
+        /// at that position.
+        /// </returns>
+        public ListEnumerator<T> GetItemsAt(int x, int y) => GetItemsAt(new Point(x, y));
+
         /// <inheritdoc />
-        public IEnumerable<T> GetItemsAt(int x, int y) => GetItemsAt(new Point(x, y));
+        IEnumerable<T> IReadOnlySpatialMap<T>.GetItemsAt(int x, int y) => GetItemsAt(new Point(x, y));
 
         /// <inheritdoc />
         public Point? GetPositionOfOrNull(T item)

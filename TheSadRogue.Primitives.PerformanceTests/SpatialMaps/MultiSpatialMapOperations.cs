@@ -19,7 +19,7 @@ namespace TheSadRogue.Primitives.PerformanceTests.SpatialMaps
         [Params(1, 10, 50, 100)]
         public int NumEntities;
 
-        [GlobalSetup(Targets = new[] { nameof(MoveTwice), nameof(TryMoveTwiceOriginal), nameof(TryMoveTwice), nameof(AddAndRemove), nameof(TryAddAndRemoveOriginal), nameof(TryAddAndRemove) })]
+        [GlobalSetup(Targets = new[] { nameof(MoveTwice), nameof(TryMoveTwiceOriginal), nameof(TryMoveTwice), nameof(AddAndRemove), nameof(TryAddAndRemoveOriginal), nameof(TryAddAndRemove), nameof(GetItemsAt) })]
         public void GlobalSetupObjectsAtMoveToLocation()
         {
             _testMap = new MultiSpatialMap<IDObject> { { _trackedObject, _initialPosition } };
@@ -139,7 +139,7 @@ namespace TheSadRogue.Primitives.PerformanceTests.SpatialMaps
         }
 
         [Benchmark]
-        public uint GetEntitiesAt()
+        public uint GetItemsAt()
         {
             uint sum = 0;
             foreach (var item in _testMap.GetItemsAt(_initialPosition))

@@ -385,9 +385,10 @@ namespace SadRogue.Primitives.SpatialMaps
             e.Item.PositionChanged += ItemOnPositionChanged;
         }
 
-        private void ItemOnPositionChanged(object? sender, ObjectPropertyChanged<Point> e)
+        private void ItemOnPositionChanged(object? sender, ValueChangedEventArgs<Point> e)
         {
-            _multiSpatialMap.Move((T)sender!, e.NewValue);
+            if (sender != null)
+                _multiSpatialMap.Move((T)sender, e.NewValue);
         }
 
         private void OnItemRemoved(object? sender, ItemEventArgs<T> e)

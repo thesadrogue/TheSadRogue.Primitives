@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using BenchmarkDotNet.Attributes;
-using Microsoft.VisualBasic;
 using SadRogue.Primitives;
 using SadRogue.Primitives.PointHashers;
 using TheSadRogue.Primitives.PerformanceTests.PointHashing.Algorithms;

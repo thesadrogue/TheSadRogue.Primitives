@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using BenchmarkDotNet.Attributes;
-using JetBrains.Annotations;
 using SadRogue.Primitives;
 using SadRogue.Primitives.SpatialMaps;
 

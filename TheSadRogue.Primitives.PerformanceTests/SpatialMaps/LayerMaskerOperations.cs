@@ -1,5 +1,4 @@
 ﻿using BenchmarkDotNet.Attributes;
-using JetBrains.Annotations;
 using SadRogue.Primitives.SpatialMaps;
 
 namespace TheSadRogue.Primitives.PerformanceTests.SpatialMaps;

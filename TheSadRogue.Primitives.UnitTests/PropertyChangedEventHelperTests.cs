@@ -37,6 +37,38 @@ namespace SadRogue.Primitives.UnitTests
         }
     }
 
+    public class ValueChangeEventsMockNullableRef
+    {
+        private readonly bool _fireChanging;
+        private readonly bool _supportsHandled;
+        private readonly bool _supportsCanceled;
+
+        private string? _value;
+
+        public string? Value
+        {
+            get => _value;
+            set
+            {
+                if (_fireChanging)
+                    this.SafelySetProperty(ref _value, value, ValueChanging, ValueChanged, _supportsCanceled,
+                        _supportsHandled);
+                else
+                    this.SafelySetProperty(ref _value, value, ValueChanged, _supportsHandled);
+            }
+        }
+
+        public event EventHandler<ValueChangingEventArgs<string?>>? ValueChanging;
+        public event EventHandler<ValueChangedEventArgs<string?>>? ValueChanged;
+
+        public ValueChangeEventsMockNullableRef(bool fireChanging, bool supportsCanceled, bool supportsHandled)
+        {
+            _fireChanging = fireChanging;
+            _supportsCanceled = supportsCanceled;
+            _supportsHandled = supportsHandled;
+        }
+    }
+
     public class PropertyChangedEventHelperTests
     {
         #region Test Data
@@ -226,6 +258,49 @@ namespace SadRogue.Primitives.UnitTests
 
             Assert.Equal(5, changedCounter);
             Assert.Equal(1, obj.Value);
+        }
+
+        [Theory]
+        [MemberDataTuple(nameof(ChangedTestData))]
+        public void EventsDontFireOnSameValue(bool fireChanging, bool supportsCanceled, bool supportsHandled)
+        {
+            var obj = new ValueChangeEventsMockNullableRef(fireChanging, supportsCanceled, supportsHandled);
+            int changingCounter = 0;
+            obj.ValueChanging += (s, e) =>
+            {
+                // ReSharper disable once AccessToModifiedClosure
+                changingCounter++;
+            };
+            int changedCounter = 0;
+            obj.ValueChanged += (s, e) =>
+            {
+                // ReSharper disable once AccessToModifiedClosure
+                changedCounter++;
+            };
+
+            obj.Value = null;
+            Assert.Equal(0, changingCounter);
+            Assert.Equal(0, changedCounter);
+
+            obj.Value = "hi";
+            changedCounter = 0;
+            changingCounter = 0;
+
+            obj.Value = "hi";
+            Assert.Equal(0, changingCounter);
+            Assert.Equal(0, changedCounter);
+        }
+
+        [Theory]
+        [MemberDataEnumerable(nameof(BooleanValues))]
+        public void InvalidOperationExceptionReverts(bool fireChanging)
+        {
+            var obj = new ValueChangeEventsMock(fireChanging, false, false);
+
+            obj.ValueChanged += (s, e) => throw new InvalidOperationException();
+
+            Assert.Throws<InvalidOperationException>(() => obj.Value = 1);
+            Assert.Equal(0, obj.Value);
         }
     }
 }

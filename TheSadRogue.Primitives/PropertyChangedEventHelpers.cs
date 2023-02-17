@@ -226,20 +226,21 @@ namespace SadRogue.Primitives
             var changingArgs = new ValueChangingEventArgs<TProperty>(propertyField, newValue, changingSupportsCancel);
 
             // Fire "pre-change" event
-            if (changingEvent == null) return;
-
-            if (changingSupportsCancel)
+            if (changingEvent != null)
             {
-                foreach (var del in changingEvent.GetInvocationList())
+                if (changingSupportsCancel)
                 {
-                    var handler = (EventHandler<ValueChangingEventArgs<TProperty>>)del;
-                    handler(self, changingArgs);
-                    if (changingArgs.IsCancelled)
-                        return;
+                    foreach (var del in changingEvent.GetInvocationList())
+                    {
+                        var handler = (EventHandler<ValueChangingEventArgs<TProperty>>)del;
+                        handler(self, changingArgs);
+                        if (changingArgs.IsCancelled)
+                            return;
+                    }
                 }
+                else // This is faster than the foreach loop above, so we should have a special case for this
+                    changingEvent.Invoke(self, changingArgs);
             }
-            else // This is faster than the foreach loop above, so we should have a special case for this
-                changingEvent.Invoke(self, changingArgs);
 
             // Set new value and fire event
             var oldValue = propertyField;

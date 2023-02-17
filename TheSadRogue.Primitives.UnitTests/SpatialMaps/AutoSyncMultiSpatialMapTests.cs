@@ -6,7 +6,7 @@ using Xunit;
 
 namespace SadRogue.Primitives.UnitTests.SpatialMaps
 {
-    public class AutoSyncSpatialMapTests
+    public class AutoSyncMultiSpatialMapTests
     {
         [Fact]
         public void MovementAutoSyncs()

@@ -163,21 +163,23 @@ namespace SadRogue.Primitives
             propertyField = newValue;
             try
             {
-                var args = new ValueChangedEventArgs<TProperty>(oldValue, newValue, supportsHandled);
-                if (changedEvent == null) return;
-
-                if (supportsHandled)
+                if (changedEvent != null)
                 {
-                    foreach (var del in changedEvent.GetInvocationList())
+                    var args = new ValueChangedEventArgs<TProperty>(oldValue, newValue, supportsHandled);
+                    if (supportsHandled)
                     {
-                        var handler = (EventHandler<ValueChangedEventArgs<TProperty>>)del;
-                        handler(self, args);
-                        if (args.IsHandled)
-                            return;
+                        foreach (var del in changedEvent.GetInvocationList())
+                        {
+                            var handler = (EventHandler<ValueChangedEventArgs<TProperty>>)del;
+                            handler(self, args);
+                            if (args.IsHandled)
+                                return;
+                        }
                     }
+                    else // This is faster than the foreach loop above, so we should have a special case for this
+                        changedEvent.Invoke(self, args);
                 }
-                else // This is faster than the foreach loop above, so we should have a special case for this
-                    changedEvent.Invoke(self, args);
+
             }
             catch (InvalidOperationException)
             {
@@ -247,21 +249,23 @@ namespace SadRogue.Primitives
             propertyField = newValue;
             try
             {
-                var changedArgs = new ValueChangedEventArgs<TProperty>(oldValue, newValue, changedSupportsHandled);
-                if (changedEvent == null) return;
-
-                if (changedSupportsHandled)
+                if (changedEvent != null)
                 {
-                    foreach (var del in changedEvent.GetInvocationList())
+                    var changedArgs = new ValueChangedEventArgs<TProperty>(oldValue, newValue, changedSupportsHandled);
+                    if (changedSupportsHandled)
                     {
-                        var handler = (EventHandler<ValueChangedEventArgs<TProperty>>)del;
-                        handler(self, changedArgs);
-                        if (changedArgs.IsHandled)
-                            return;
+                        foreach (var del in changedEvent.GetInvocationList())
+                        {
+                            var handler = (EventHandler<ValueChangedEventArgs<TProperty>>)del;
+                            handler(self, changedArgs);
+                            if (changedArgs.IsHandled)
+                                return;
+                        }
                     }
+                    else // This is faster than the foreach loop above, so we should have a special case for this
+                        changedEvent.Invoke(self, changedArgs);
                 }
-                else // This is faster than the foreach loop above, so we should have a special case for this
-                    changedEvent.Invoke(self, changedArgs);
+
             }
             catch (InvalidOperationException)
             {

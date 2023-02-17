@@ -4,7 +4,7 @@ using SadRogue.Primitives.SpatialMaps;
 namespace SadRogue.Primitives
 {
     /// <summary>
-    /// An interface describing an object which has a position on a grid and may be able to move around.
+    /// An interface describing an object which has a position on a grid and can move around.
     /// </summary>
     /// <remarks>
     /// Objects which have a position can implement this interface, which can be useful to make such objects easily
@@ -17,7 +17,7 @@ namespace SadRogue.Primitives
         /// <summary>
         /// The position of the object.
         /// </summary>
-        Point Position { get; }
+        Point Position { get; set; }
 
         /// <summary>
         /// Event which should be fired when the object's position changes.

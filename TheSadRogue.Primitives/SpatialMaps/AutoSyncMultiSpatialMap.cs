@@ -144,40 +144,85 @@ namespace SadRogue.Primitives.SpatialMaps
         public bool CanAdd(T newItem, int x, int y) => _multiSpatialMap.CanAdd(newItem, x, y);
 
         /// <summary>
-        /// Adds the given item at the given position, provided the item is not already in the
+        /// Adds the given item at its position, provided the item is not already in the
         /// spatial map. If the item is already added, throws ArgumentException.
         /// </summary>
         /// <param name="item">The item to add.</param>
-        /// <param name="position">The position at which to add the new item.</param>
-        public void Add(T item, Point position) => _multiSpatialMap.Add(item, position);
+        public void Add(T item) => _multiSpatialMap.Add(item, item.Position);
 
         /// <summary>
-        /// Adds the given item at the given position, provided the item is not already in the
-        /// spatial map. If the item is already added, throws ArgumentException.
+        /// Adds the given item at its position, provided the item is not already in the
+        /// spatial map. If the item is already added, or if the items position isn't hte one specified,
+        /// throws ArgumentException.
         /// </summary>
         /// <param name="item">The item to add.</param>
-        /// <param name="x">x-value of the position to add item to.</param>
-        /// <param name="y">y-value of the position to add item to.</param>
-        public void Add(T item, int x, int y) => _multiSpatialMap.Add(item, x, y);
+        /// <param name="position">The position at which to add the new item.  Must match the item's Position field.</param>
+        void ISpatialMap<T>.Add(T item, Point position)
+        {
+            if (item.Position != position)
+                throw new ArgumentException("Item's position did not match the one specified to the function.");
+
+            _multiSpatialMap.Add(item, position);
+        }
 
         /// <summary>
         /// Adds the given item at the given position, provided the item is not already in the
+        /// spatial map. If the item is already added, or if the items position isn't hte one specified,
+        /// throws ArgumentException.
+        /// </summary>
+        /// <param name="item">The item to add.</param>
+        /// <param name="x">x-value of the position to add item to.  Must match the item's Position field.</param>
+        /// <param name="y">y-value of the position to add item to.  Must match the item's Position field.</param>
+        void ISpatialMap<T>.Add(T item, int x, int y)
+        {
+            var position = new Point(x, y);
+            if (item.Position != position)
+                throw new ArgumentException("Item's position did not match the one specified to the function.");
+
+            _multiSpatialMap.Add(item, position);
+        }
+
+        /// <summary>
+        /// Adds the given item at the its position, provided the item is not already in the
         /// spatial map. If the item is already added, returns false.
         /// </summary>
         /// <param name="item">The item to add.</param>
-        /// <param name="position">The position at which to add the new item.</param>
         /// <returns>True if the item was successfully added; false otherwise.</returns>
-        public bool TryAdd(T item, Point position) => _multiSpatialMap.TryAdd(item, position);
+        public bool Try(T item) => _multiSpatialMap.TryAdd(item, item.Position);
+
+        /// <summary>
+        /// Adds the given item at the its position, provided the item is not already in the
+        /// spatial map. If the item is already added, or if the point specified doesn't match the object's position field,
+        /// returns false.
+        /// </summary>
+        /// <param name="item">The item to add.</param>
+        /// <param name="position">The position at which to add the new item.  Must match the item's Position field.</param>
+        /// <returns>True if the item was successfully added; false otherwise.</returns>
+        bool ISpatialMap<T>.TryAdd(T item, Point position)
+        {
+            if (item.Position != position)
+                return false;
+
+            return _multiSpatialMap.TryAdd(item, position);
+        }
 
         /// <summary>
         /// Adds the given item at the given position, provided the item is not already in the
-        /// spatial map. If the item is already added, returns false.
+        /// spatial map. If the item is already added, or if the point specified doesn't match the object's position field,
+        /// returns false.
         /// </summary>
         /// <param name="item">The item to add.</param>
-        /// <param name="x">x-value of the position to add item to.</param>
-        /// <param name="y">y-value of the position to add item to.</param>
+        /// <param name="x">x-value of the position to add item to.  Must match the item's Position field.</param>
+        /// <param name="y">y-value of the position to add item to.  Must match the item's Position field.</param>
         /// <returns>True if the item was successfully added; false otherwise.</returns>
-        public bool TryAdd(T item, int x, int y) => _multiSpatialMap.TryAdd(item, x, y);
+        bool ISpatialMap<T>.TryAdd(T item, int x, int y)
+        {
+            var position = new Point(x, y);
+            if (item.Position != position)
+                return false;
+
+            return _multiSpatialMap.TryAdd(item, position);
+        }
         #endregion
 
         #region Move

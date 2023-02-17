@@ -8,8 +8,6 @@ namespace SadRogue.Primitives.UnitTests
     public class ValueChangeEventsMock
     {
         private readonly bool _fireChanging;
-        private readonly bool _supportsHandled;
-        private readonly bool _supportsCanceled;
 
         private int _value;
 
@@ -19,29 +17,24 @@ namespace SadRogue.Primitives.UnitTests
             set
             {
                 if (_fireChanging)
-                    this.SafelySetProperty(ref _value, value, ValueChanging, ValueChanged, _supportsCanceled,
-                        _supportsHandled);
+                    this.SafelySetProperty(ref _value, value, ValueChanging, ValueChanged);
                 else
-                    this.SafelySetProperty(ref _value, value, ValueChanged, _supportsHandled);
+                    this.SafelySetProperty(ref _value, value, ValueChanged);
             }
         }
 
-        public event EventHandler<ValueChangingEventArgs<int>>? ValueChanging;
+        public event EventHandler<ValueChangedEventArgs<int>>? ValueChanging;
         public event EventHandler<ValueChangedEventArgs<int>>? ValueChanged;
 
-        public ValueChangeEventsMock(bool fireChanging, bool supportsCanceled, bool supportsHandled)
+        public ValueChangeEventsMock(bool fireChanging)
         {
             _fireChanging = fireChanging;
-            _supportsCanceled = supportsCanceled;
-            _supportsHandled = supportsHandled;
         }
     }
 
     public class ValueChangeEventsMockNullableRef
     {
         private readonly bool _fireChanging;
-        private readonly bool _supportsHandled;
-        private readonly bool _supportsCanceled;
 
         private string? _value;
 
@@ -51,48 +44,34 @@ namespace SadRogue.Primitives.UnitTests
             set
             {
                 if (_fireChanging)
-                    this.SafelySetProperty(ref _value, value, ValueChanging, ValueChanged, _supportsCanceled,
-                        _supportsHandled);
+                    this.SafelySetProperty(ref _value, value, ValueChanging, ValueChanged);
                 else
-                    this.SafelySetProperty(ref _value, value, ValueChanged, _supportsHandled);
+                    this.SafelySetProperty(ref _value, value, ValueChanged);
             }
         }
 
-        public event EventHandler<ValueChangingEventArgs<string?>>? ValueChanging;
+        public event EventHandler<ValueChangedEventArgs<string?>>? ValueChanging;
         public event EventHandler<ValueChangedEventArgs<string?>>? ValueChanged;
 
-        public ValueChangeEventsMockNullableRef(bool fireChanging, bool supportsCanceled, bool supportsHandled)
+        public ValueChangeEventsMockNullableRef(bool fireChanging)
         {
             _fireChanging = fireChanging;
-            _supportsCanceled = supportsCanceled;
-            _supportsHandled = supportsHandled;
         }
     }
 
     public class PropertyChangedEventHelperTests
     {
         #region Test Data
-        private static readonly bool[] s_booleans = { true, false };
-
-        public static IEnumerable<(bool fireChanging, bool supportsCanceled, bool supportsHandled)> ChangedTestData =
-            s_booleans.Combinate(s_booleans).Combinate(s_booleans);
-
-        public static IEnumerable<(bool supportsCanceled, bool supportsHandled)> ChangingTestData =
-            s_booleans.Combinate(s_booleans);
-
-        public static IEnumerable<bool> BooleanValues => s_booleans;
-
-        public static IEnumerable<(bool fireChanging, bool supportsCancel)> ValidChangingStates =
-            new[] { (true, true), (true, false), (false, false) };
+        public static IEnumerable<bool> BooleanValues => new[] {true, false };
 
         #endregion
 
 
         [Theory]
-        [MemberDataTuple(nameof(ChangedTestData))]
-        public void ChangedFires(bool fireChanging, bool supportsCanceled, bool supportsHandled)
+        [MemberDataEnumerable(nameof(BooleanValues))]
+        public void ChangedFires(bool fireChanging)
         {
-            var obj = new ValueChangeEventsMock(fireChanging, supportsCanceled, supportsHandled);
+            var obj = new ValueChangeEventsMock(fireChanging);
             int changedCounter = 0;
             obj.ValueChanged += (s, e) =>
             {
@@ -108,11 +87,10 @@ namespace SadRogue.Primitives.UnitTests
             Assert.Equal(1, changedCounter);
         }
 
-        [Theory]
-        [MemberDataTuple(nameof(ChangingTestData))]
-        public void ChangingFires(bool supportsCanceled, bool supportsHandled)
+        [Fact]
+        public void ChangingFires()
         {
-            var obj = new ValueChangeEventsMock(true, supportsCanceled, supportsHandled);
+            var obj = new ValueChangeEventsMock(true);
             int changingCounter = 0;
             int changedCounter = 0;
             obj.ValueChanging += (s, e) =>
@@ -144,127 +122,9 @@ namespace SadRogue.Primitives.UnitTests
 
         [Theory]
         [MemberDataEnumerable(nameof(BooleanValues))]
-        public void TestCancelled(bool supportsHandled)
+        public void EventsDontFireOnSameValue(bool fireChanging)
         {
-            var obj = new ValueChangeEventsMock(true, true, supportsHandled);
-
-            int changingCounter = 0;
-            obj.ValueChanging += (s, e) =>
-            {
-                changingCounter += 1;
-            };
-            obj.ValueChanging += (s, e) =>
-            {
-                changingCounter += 2;
-                e.IsCancelled = true;
-            };
-            // Should never execute due to cancellation
-            obj.ValueChanging += (s, e) =>
-            {
-                changingCounter = 5;
-            };
-
-            obj.ValueChanged += (s, e)
-                => Assert.Fail("Changed event should not be executed when event is cancelled during changing event.");
-
-            obj.Value = 1;
-
-            Assert.Equal(3, changingCounter);
-            Assert.Equal(0, obj.Value);
-        }
-
-        [Theory]
-        [MemberDataEnumerable(nameof(BooleanValues))]
-        public void CancelledUnsupported(bool supportsHandled)
-        {
-            var obj = new ValueChangeEventsMock(true, false, supportsHandled);
-
-            int changingCounter = 0;
-            obj.ValueChanging += (s, e) =>
-            {
-                changingCounter += 1;
-            };
-            obj.ValueChanging += (s, e) =>
-            {
-                changingCounter += 2;
-                e.IsCancelled = true; // Should do nothing since cancellation isn't supported
-            };
-            obj.ValueChanging += (s, e) =>
-            {
-                changingCounter = 5;
-            };
-
-            int changedCounter = 0;
-            obj.ValueChanged += (s, e)
-                => changedCounter++;
-
-            obj.Value = 1;
-
-            Assert.Equal(5, changingCounter);
-            Assert.Equal(1, changedCounter);
-            Assert.Equal(1, obj.Value);
-        }
-
-        [Theory]
-        [MemberDataTuple(nameof(ValidChangingStates))]
-        public void TestHandled(bool fireChanging, bool supportsCanceled)
-        {
-            var obj = new ValueChangeEventsMock(fireChanging, supportsCanceled, true);
-
-            int changedCounter = 0;
-            obj.ValueChanged += (s, e) =>
-            {
-                changedCounter += 1;
-            };
-            obj.ValueChanged += (s, e) =>
-            {
-                changedCounter += 2;
-                e.IsHandled = true;
-            };
-            // Should never execute due to the previous handler marking IsHandled
-            obj.ValueChanged += (s, e) =>
-            {
-                changedCounter = 5;
-            };
-
-            obj.Value = 1;
-
-            Assert.Equal(3, changedCounter);
-            Assert.Equal(1, obj.Value);
-        }
-
-        [Theory]
-        [MemberDataTuple(nameof(ValidChangingStates))]
-        public void HandledUnsupported(bool fireChanging, bool supportsCanceled)
-        {
-            var obj = new ValueChangeEventsMock(fireChanging, supportsCanceled, false);
-
-            int changedCounter = 0;
-            obj.ValueChanged += (s, e) =>
-            {
-                changedCounter += 1;
-            };
-            obj.ValueChanged += (s, e) =>
-            {
-                changedCounter += 2;
-                e.IsHandled = true;  // Should do nothing since handling isn't supported
-            };
-            obj.ValueChanged += (s, e) =>
-            {
-                changedCounter = 5;
-            };
-
-            obj.Value = 1;
-
-            Assert.Equal(5, changedCounter);
-            Assert.Equal(1, obj.Value);
-        }
-
-        [Theory]
-        [MemberDataTuple(nameof(ChangedTestData))]
-        public void EventsDontFireOnSameValue(bool fireChanging, bool supportsCanceled, bool supportsHandled)
-        {
-            var obj = new ValueChangeEventsMockNullableRef(fireChanging, supportsCanceled, supportsHandled);
+            var obj = new ValueChangeEventsMockNullableRef(fireChanging);
             int changingCounter = 0;
             obj.ValueChanging += (s, e) =>
             {
@@ -295,7 +155,7 @@ namespace SadRogue.Primitives.UnitTests
         [MemberDataEnumerable(nameof(BooleanValues))]
         public void InvalidOperationExceptionReverts(bool fireChanging)
         {
-            var obj = new ValueChangeEventsMock(fireChanging, false, false);
+            var obj = new ValueChangeEventsMock(fireChanging);
 
             obj.ValueChanged += (s, e) => throw new InvalidOperationException();
 

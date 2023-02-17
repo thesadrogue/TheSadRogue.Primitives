@@ -20,7 +20,7 @@ public class EventTestClass
         get => _changingValue;
         set => this.SafelySetProperty(ref _changingValue, value, ChangingValueChanging, ChangingValueChanged);
     }
-    public event EventHandler<ValueChangingEventArgs<int>>? ChangingValueChanging;
+    public event EventHandler<ValueChangedEventArgs<int>>? ChangingValueChanging;
     public event EventHandler<ValueChangedEventArgs<int>>? ChangingValueChanged;
 }
 

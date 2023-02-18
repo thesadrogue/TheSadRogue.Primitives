@@ -669,9 +669,7 @@ namespace SadRogue.Primitives.SpatialMaps
         public void MoveAll(Point current, Point target)
         {
             if (current == target)
-                throw new ArgumentException(
-                    $"Tried to move all items from {current} in {GetType().Name}, but the current and target positions were the same.",
-                    nameof(target));
+                return;
 
             List<T> currentList;
             try
@@ -725,7 +723,7 @@ namespace SadRogue.Primitives.SpatialMaps
         public bool TryMoveAll(Point current, Point target)
         {
             if (current == target)
-                return false;
+                return true;
 
             if (!_positionMapping.TryGetValue(current, out var currentList))
                 return false;

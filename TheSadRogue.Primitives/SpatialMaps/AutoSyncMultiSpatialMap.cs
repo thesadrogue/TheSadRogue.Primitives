@@ -56,9 +56,6 @@ namespace SadRogue.Primitives.SpatialMaps
             remove => _multiSpatialMap.ItemRemoved -= value;
         }
 
-        private bool _triggeredByMove;
-        private bool _triggeredByPositionSet;
-
         /// <summary>
         /// Constructor.
         /// </summary>
@@ -113,9 +110,6 @@ namespace SadRogue.Primitives.SpatialMaps
 
             _multiSpatialMap.ItemAdded += OnItemAdded;
             _multiSpatialMap.ItemRemoved += OnItemRemoved;
-            _multiSpatialMap.ItemMoved += OnItemMoved;
-            _triggeredByMove = false;
-            _triggeredByPositionSet = false;
         }
 
         #region Enumeration
@@ -257,7 +251,10 @@ namespace SadRogue.Primitives.SpatialMaps
         /// </summary>
         /// <param name="item">The item to move.</param>
         /// <param name="target">The position to move it to.</param>
-        public void Move(T item, Point target) => _multiSpatialMap.Move(item, target);
+        public void Move(T item, Point target)
+        {
+            item.Position = target;
+        }
 
         /// <summary>
         /// Moves the item specified to the position specified, updating its <see cref="IPositionable.Position"/> field
@@ -267,13 +264,24 @@ namespace SadRogue.Primitives.SpatialMaps
         /// <param name="item">The item to move.</param>
         /// <param name="targetX">X-value of the location to move it to.</param>
         /// <param name="targetY">Y-value of the location to move it to.</param>
-        public void Move(T item, int targetX, int targetY) => _multiSpatialMap.Move(item, targetX, targetY);
+        public void Move(T item, int targetX, int targetY)
+        {
+            item.Position = new Point(targetX, targetY);
+        }
 
         /// <inheritdoc />
-        public bool TryMove(T item, Point target) => _multiSpatialMap.TryMove(item, target);
+        public bool TryMove(T item, Point target)
+        {
+            if (!_multiSpatialMap.TryMove(item, target))
+                return false;
+
+            item.Position = target;
+            return true;
+
+        }
 
         /// <inheritdoc />
-        public bool TryMove(T item, int targetX, int targetY) => _multiSpatialMap.TryMove(item, targetX, targetY);
+        public bool TryMove(T item, int targetX, int targetY) => TryMove(item, new Point(targetX, targetY));
 
         /// <summary>
         /// Moves all items at the specified source location to the target location, updating their
@@ -282,10 +290,34 @@ namespace SadRogue.Primitives.SpatialMaps
         /// </summary>
         /// <param name="current">Location to move items from.</param>
         /// <param name="target">Location to move items to.</param>
-        public void MoveAll(Point current, Point target) => _multiSpatialMap.MoveAll(current, target);
+        public void MoveAll(Point current, Point target)
+        {
+            // Everything will move in MultiSpatialMap, so if this list contains any values, it's a complete list
+            var movedItems = _multiSpatialMap.MoveValid(current, target);
+
+            if (movedItems.Count == 0)
+                throw new ArgumentException(
+                    $"Tried to move all items from {current} in {GetType().Name}, but there was nothing at that position.",
+                    nameof(current));
+
+            foreach (var item in movedItems)
+                item.Position = target;
+        }
 
         /// <inheritdoc/>
-        public bool TryMoveAll(Point current, Point target) => _multiSpatialMap.TryMoveAll(current, target);
+        public bool TryMoveAll(Point current, Point target)
+        {
+            // Everything will move in MultiSpatialMap, so if this list contains any values, it's a complete list
+            var movedItems = _multiSpatialMap.MoveValid(current, target);
+
+            if (movedItems.Count == 0)
+                return false;
+
+            foreach (var item in movedItems)
+                item.Position = target;
+
+            return true;
+        }
 
         /// <summary>
         /// Moves all items at the specified source location to the target location, updating their
@@ -297,26 +329,40 @@ namespace SadRogue.Primitives.SpatialMaps
         /// <param name="targetX">X-value of the location to move items to.</param>
         /// <param name="targetY">Y-value of the location to move items to.</param>
         public void MoveAll(int currentX, int currentY, int targetX, int targetY)
-            => _multiSpatialMap.MoveAll(currentX, currentY, targetX, targetY);
+            => MoveAll(new Point(currentX, currentY), new Point(targetX, targetY));
 
         /// <inheritdoc/>
         public bool TryMoveAll(int currentX, int currentY, int targetX, int targetY)
-            => _multiSpatialMap.TryMoveAll(currentX, currentY, targetX, targetY);
+            => TryMoveAll(new Point(currentX, currentY), new Point(targetX, targetY));
 
         /// <inheritdoc />
-        public List<T> MoveValid(Point current, Point target) => _multiSpatialMap.MoveValid(current, target);
+        public List<T> MoveValid(Point current, Point target)
+        {
+            var list = _multiSpatialMap.MoveValid(current, target);
+            foreach (var obj in list)
+                obj.Position = target;
+
+            return list;
+        }
 
         /// <inheritdoc />
         public void MoveValid(Point current, Point target, List<T> itemsMovedOutput)
-            => _multiSpatialMap.MoveValid(current, target, itemsMovedOutput);
+        {
+            int idx = itemsMovedOutput.Count;
+            _multiSpatialMap.MoveValid(current, target, itemsMovedOutput);
+
+            int count = itemsMovedOutput.Count;
+            for (int i = idx; i < count; i++)
+                itemsMovedOutput[i].Position = target;
+        }
 
         /// <inheritdoc />
         public List<T> MoveValid(int currentX, int currentY, int targetX, int targetY)
-            => _multiSpatialMap.MoveValid(currentX, currentY, targetX, targetY);
+            => MoveValid(new Point(currentX, currentY), new Point(targetX, targetY));
 
         /// <inheritdoc />
         public void MoveValid(int currentX, int currentY, int targetX, int targetY, List<T> itemsMovedOutput)
-            => _multiSpatialMap.MoveValid(currentX, currentY, targetX, targetY, itemsMovedOutput);
+            => MoveValid(new Point(currentX, currentY), new Point(targetX, targetY), itemsMovedOutput);
         #endregion
 
         #region Contains
@@ -409,64 +455,16 @@ namespace SadRogue.Primitives.SpatialMaps
         public bool TryRemove(int x, int y) => _multiSpatialMap.TryRemove(x, y);
         #endregion
 
-        // There are 2 core handlers that deal with movement-related events below:
-        //    1. OnItemMoved: Called when the _multiSpatialMap's ItemMoved event happens
-        //    2. ItemOnPositionChanged: Called when an item's Position field changes.
-        //
-        // We want to handle both, because movement can happen one of two ways in an auto-synced map:
-        //    1. The user modifies an item's Position field.  This triggers ItemOnPositionChanged, and in this case we
-        //       need to ensure the spatial map stays synced up.
-        //    2. The user calls some sort of Move function on the spatial map.  In this case, the OnItemAdded function
-        //       is triggered, which needs to update the position field.
-        //
-        // Unfortunately, since by this definition one event always triggers the other, we need to ensure we avoid
-        // infinite looping.  The Position field will never raise its event if the position has not changed; so this
-        // stops a loop in that direction.  In the other direction, the Move function will tolerate the target being
-        // the same as the item's current position in the spatial map by returning early, and this will cost only about
-        // 13 nanoseconds extra time.
         #region Item Handlers
         private void OnItemAdded(object? sender, ItemEventArgs<T> e)
         {
             e.Item.PositionChanging += ItemOnPositionChanging;
         }
 
-        private void OnItemMoved(object? sender, ItemMovedEventArgs<T> e)
-        {
-            if (_triggeredByPositionSet)
-            {
-                _triggeredByPositionSet = false;
-                return;
-            }
-
-            _triggeredByMove = true;
-            try
-            {
-                e.Item.Position = e.NewPosition;
-            }
-            finally
-            {
-                _triggeredByMove = false;
-            }
-        }
-
         private void ItemOnPositionChanging(object? sender, ValueChangedEventArgs<Point> e)
         {
-            if (_triggeredByMove)
-            {
-                _triggeredByMove = false;
-                return;
-            }
-
-            _triggeredByPositionSet = true;
-            try
-            {
-                if (sender != null)
-                    _multiSpatialMap.Move((T)sender, e.NewValue);
-            }
-            finally
-            {
-                _triggeredByPositionSet = false;
-            }
+            if (sender != null)
+                _multiSpatialMap.Move((T)sender, e.NewValue);
         }
 
         private void OnItemRemoved(object? sender, ItemEventArgs<T> e)

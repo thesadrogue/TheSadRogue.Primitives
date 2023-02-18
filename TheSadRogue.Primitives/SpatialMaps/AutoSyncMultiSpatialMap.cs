@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using SadRogue.Primitives.Pooling;
 
 namespace SadRogue.Primitives.SpatialMaps
@@ -9,17 +8,21 @@ namespace SadRogue.Primitives.SpatialMaps
     /// <summary>
     /// A version of <see cref="AdvancedMultiSpatialMap{T}"/> which takes items that implement <see cref="IPositionable"/>,
     /// and uses that interface's properties/events to automatically ensure items are recorded at the proper positions
-    /// in the spatial map when they move.
+    /// in the spatial map when they move and that the position fields are updated if the spatial map's move functions
+    /// are used.
     /// </summary>
     /// <remarks>
-    /// You should not call the <see cref="ISpatialMap{T}.Move(T,SadRogue.Primitives.Point)"/> function (or any similar
-    /// functions) on an instance of this class; they will throw an exception.  This class automatically keeps items
-    /// synced up with their <see cref="IPositionable.Position"/> property.  If you need to manually control the
-    /// positions, you should use <see cref="AdvancedMultiSpatialMap{T}"/> instead.
+    /// This class automatically keeps the spatial map position of each object synced up with their
+    /// <see cref="IPositionable.Position"/> property; you may either use the Move functions of the spatial map,
+    /// in which case the Position fields of the objects are updated as appropriate, or you may change the Position
+    /// field, in which case the spatial map position is updated to match.
+    ///
+    /// If you want to manually control the positions of items in the spatial map, you should use
+    /// <see cref="AdvancedMultiSpatialMap{T}"/> instead.
     /// </remarks>
     /// <typeparam name="T">The type of object that will be contained by this spatial map.</typeparam>
     public class AutoSyncAdvancedMultiSpatialMap<T> : ISpatialMap<T>
-        where T : IPositionable
+        where T : class, IPositionable
     {
         private readonly AdvancedMultiSpatialMap<T> _multiSpatialMap;
 
@@ -241,83 +244,73 @@ namespace SadRogue.Primitives.SpatialMaps
         public bool CanMoveAll(int currentX, int currentY, int targetX, int targetY)
             => _multiSpatialMap.CanMoveAll(currentX, currentY, targetX, targetY);
 
-        [DoesNotReturn]
-        void ISpatialMap<T>.Move(T item, Point target)
-        {
-            ThrowMoveException();
-        }
+        /// <summary>
+        /// Moves the item specified to the position specified, updating its <see cref="IPositionable.Position"/> field
+        /// accordingly. If the item does not exist in the spatial map or is already at the target position, the function
+        /// throws ArgumentException.
+        /// </summary>
+        /// <param name="item">The item to move.</param>
+        /// <param name="target">The position to move it to.</param>
+        public void Move(T item, Point target) => _multiSpatialMap.Move(item, target);
 
-        [DoesNotReturn]
-        void ISpatialMap<T>.Move(T item, int targetX, int targetY)
-        {
-            ThrowMoveException();
-        }
+        /// <summary>
+        /// Moves the item specified to the position specified, updating its <see cref="IPositionable.Position"/> field
+        /// accordingly. If the item does not exist in the spatial map or is already at the target position, the function
+        /// throws ArgumentException.
+        /// </summary>
+        /// <param name="item">The item to move.</param>
+        /// <param name="targetX">X-value of the location to move it to.</param>
+        /// <param name="targetY">Y-value of the location to move it to.</param>
+        public void Move(T item, int targetX, int targetY) => _multiSpatialMap.Move(item, targetX, targetY);
 
-        [DoesNotReturn]
-        bool ISpatialMap<T>.TryMove(T item, Point target)
-        {
-            ThrowMoveException();
-            return false;
-        }
+        /// <inheritdoc />
+        public bool TryMove(T item, Point target) => _multiSpatialMap.TryMove(item, target);
 
-        [DoesNotReturn]
-        bool ISpatialMap<T>.TryMove(T item, int targetX, int targetY)
-        {
-            ThrowMoveException();
-            return false;
-        }
+        /// <inheritdoc />
+        public bool TryMove(T item, int targetX, int targetY) => _multiSpatialMap.TryMove(item, targetX, targetY);
 
-        [DoesNotReturn]
-        void ISpatialMap<T>.MoveAll(Point current, Point target)
-        {
-            ThrowMoveException();
-        }
+        /// <summary>
+        /// Moves all items at the specified source location to the target location, updating their
+        /// <see cref="IPositionable.Position"/> fields accordingly.  Throws ArgumentException if there are
+        /// no items to be moved.
+        /// </summary>
+        /// <param name="current">Location to move items from.</param>
+        /// <param name="target">Location to move items to.</param>
+        public void MoveAll(Point current, Point target) => _multiSpatialMap.MoveAll(current, target);
 
-        [DoesNotReturn]
-        bool ISpatialMap<T>.TryMoveAll(Point current, Point target)
-        {
-            ThrowMoveException();
-            return false;
-        }
+        /// <inheritdoc/>
+        public bool TryMoveAll(Point current, Point target) => _multiSpatialMap.TryMoveAll(current, target);
 
-        [DoesNotReturn]
-        void ISpatialMap<T>.MoveAll(int currentX, int currentY, int targetX, int targetY)
-        {
-            ThrowMoveException();
-        }
+        /// <summary>
+        /// Moves all items at the specified source location to the target location, updating their
+        /// <see cref="IPositionable.Position"/> fields accordingly.  Throws ArgumentException if there are
+        /// no items to be moved.
+        /// </summary>
+        /// <param name="currentX">X-value of the location to move items from.</param>
+        /// <param name="currentY">Y-value of the location to move items from.</param>
+        /// <param name="targetX">X-value of the location to move items to.</param>
+        /// <param name="targetY">Y-value of the location to move items to.</param>
+        public void MoveAll(int currentX, int currentY, int targetX, int targetY)
+            => _multiSpatialMap.MoveAll(currentX, currentY, targetX, targetY);
 
-        [DoesNotReturn]
-        bool ISpatialMap<T>.TryMoveAll(int currentX, int currentY, int targetX, int targetY)
-        {
-            ThrowMoveException();
-            return false;
-        }
+        /// <inheritdoc/>
+        public bool TryMoveAll(int currentX, int currentY, int targetX, int targetY)
+            => _multiSpatialMap.TryMoveAll(currentX, currentY, targetX, targetY);
 
-        [DoesNotReturn]
-        List<T> ISpatialMap<T>.MoveValid(Point current, Point target)
-        {
-            ThrowMoveException();
-            return default;
-        }
+        /// <inheritdoc />
+        public List<T> MoveValid(Point current, Point target) => _multiSpatialMap.MoveValid(current, target);
 
-        [DoesNotReturn]
-        void ISpatialMap<T>.MoveValid(Point current, Point target, List<T> itemsMovedOutput)
-        {
-            ThrowMoveException();
-        }
+        /// <inheritdoc />
+        public void MoveValid(Point current, Point target, List<T> itemsMovedOutput)
+            => _multiSpatialMap.MoveValid(current, target, itemsMovedOutput);
 
-        [DoesNotReturn]
-        List<T> ISpatialMap<T>.MoveValid(int currentX, int currentY, int targetX, int targetY)
-        {
-            ThrowMoveException();
-            return default;
-        }
+        /// <inheritdoc />
+        public List<T> MoveValid(int currentX, int currentY, int targetX, int targetY)
+            => _multiSpatialMap.MoveValid(currentX, currentY, targetX, targetY);
 
-        [DoesNotReturn]
-        void ISpatialMap<T>.MoveValid(int currentX, int currentY, int targetX, int targetY, List<T> itemsMovedOutput)
-        {
-            ThrowMoveException();
-        }
+        /// <inheritdoc />
+        public void MoveValid(int currentX, int currentY, int targetX, int targetY, List<T> itemsMovedOutput)
+            => _multiSpatialMap.MoveValid(currentX, currentY, targetX, targetY, itemsMovedOutput);
         #endregion
 
         #region Contains
@@ -410,10 +403,29 @@ namespace SadRogue.Primitives.SpatialMaps
         public bool TryRemove(int x, int y) => _multiSpatialMap.TryRemove(x, y);
         #endregion
 
+        // There are 2 core handlers that deal with movement-related events below:
+        //    1. OnItemMoved: Called when the _multiSpatialMap's ItemMoved event happens
+        //    2. ItemOnPositionChanged: Called when an item's Position field changes.
+        //
+        // We want to handle both, because movement can happen one of two ways in an auto-synced map:
+        //    1. The user modifies an item's Position field.  This triggers ItemOnPositionChanged, and in this case we
+        //       need to ensure the spatial map stays synced up.
+        //    2. The user calls some sort of Move function on the spatial map.  In this case, the OnItemAdded function
+        //       is triggered, which needs to update the position field.
+        //
+        // Unfortunately, since by this definition one event always triggers the other, we need to ensure we avoid
+        // infinite looping.  The Position field will never raise its event if the position has not changed; so this
+        // stops a loop in that direction.  In the other direction,
         #region Item Handlers
         private void OnItemAdded(object? sender, ItemEventArgs<T> e)
         {
             e.Item.PositionChanged += ItemOnPositionChanged;
+            ItemMoved += OnItemMoved;
+        }
+
+        private void OnItemMoved(object? sender, ItemMovedEventArgs<T> e)
+        {
+            e.Item.Position = e.NewPosition;
         }
 
         private void ItemOnPositionChanged(object? sender, ValueChangedEventArgs<Point> e)
@@ -425,28 +437,25 @@ namespace SadRogue.Primitives.SpatialMaps
         private void OnItemRemoved(object? sender, ItemEventArgs<T> e)
         {
             e.Item.PositionChanged -= ItemOnPositionChanged;
+            ItemMoved -= OnItemMoved;
         }
         #endregion
-
-        [DoesNotReturn]
-        private static void ThrowMoveException()
-        {
-            throw new NotSupportedException($"{nameof(AutoSyncAdvancedMultiSpatialMap<T>)} does not allow you " +
-                                            "to move items manually; it will move items automatically when their PositionChanged event is fired.  " +
-                                            "If you would like to move items manually, use the non-auto sync variants instead.");
-        }
     }
 
     /// <summary>
     /// A version of <see cref="MultiSpatialMap{T}"/> which takes items that implement <see cref="IPositionable"/>,
     /// and uses that interface's properties/events to automatically ensure items are recorded at the proper positions
-    /// in the spatial map when they move.
+    /// in the spatial map when they move and that the position fields are updated if the spatial map's move functions
+    /// are used.
     /// </summary>
     /// <remarks>
-    /// You should not call the <see cref="ISpatialMap{T}.Move(T,SadRogue.Primitives.Point)"/> function (or any similar
-    /// functions) on an instance of this class; they will throw an exception.  This class automatically keeps items
-    /// synced up with their <see cref="IPositionable.Position"/> property.  If you need to manually control the
-    /// positions, you should use <see cref="AdvancedMultiSpatialMap{T}"/> instead.
+    /// This class automatically keeps the spatial map position of each object synced up with their
+    /// <see cref="IPositionable.Position"/> property; you may either use the Move functions of the spatial map,
+    /// in which case the Position fields of the objects are updated as appropriate, or you may change the Position
+    /// field, in which case the spatial map position is updated to match.
+    ///
+    /// If you want to manually control the positions of items in the spatial map, you should use
+    /// <see cref="MultiSpatialMap{T}"/> instead.
     /// </remarks>
     /// <typeparam name="T">The type of object that will be contained by this spatial map.</typeparam>
     public sealed class AutoSyncMultiSpatialMap<T> : AutoSyncAdvancedMultiSpatialMap<T> where T : class, IHasID, IPositionable

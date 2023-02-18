@@ -283,6 +283,8 @@ namespace SadRogue.Primitives.SpatialMaps
                     nameof(item));
             }
 
+            if (oldPos == target) return;
+
             try
             {
                 _positionMapping.Add(target, item);
@@ -313,6 +315,9 @@ namespace SadRogue.Primitives.SpatialMaps
         {
             if (!_itemMapping.TryGetValue(item, out Point oldPos))
                 return false;
+
+            if (oldPos == target)
+                return true;
 
             if (!_positionMapping.TryAdd(target, item))
                 return false;

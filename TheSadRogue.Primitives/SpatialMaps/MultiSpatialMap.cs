@@ -288,7 +288,7 @@ namespace SadRogue.Primitives.SpatialMaps
 
         /// <summary>
         /// Moves the item specified to the position specified. If the item does not exist in the
-        /// spatial map or is already at the target position, the function throws ArgumentException.
+        /// spatial map, the function throws ArgumentException.
         /// </summary>
         /// <param name="item">The item to move.</param>
         /// <param name="target">The position to move it to.</param>
@@ -307,9 +307,7 @@ namespace SadRogue.Primitives.SpatialMaps
             }
 
             if (oldPos == target)
-                throw new ArgumentException(
-                    $"Tried to move item in {GetType().Name}, but the item was already at the target position.",
-                    nameof(target));
+                return;
 
             // Key guaranteed to exist due to state invariant of spatial map (oldPos existed in the other map)
             var oldPosList = _positionMapping[oldPos];
@@ -356,7 +354,7 @@ namespace SadRogue.Primitives.SpatialMaps
 
         /// <summary>
         /// Moves the item specified to the position specified. If the item does not exist in the
-        /// spatial map or is already at the target position, the function throws ArgumentException.
+        /// spatial map, the function throws ArgumentException.
         /// </summary>
         /// <param name="item">The item to move.</param>
         /// <param name="targetX">X-value of the location to move it to.</param>
@@ -370,7 +368,7 @@ namespace SadRogue.Primitives.SpatialMaps
                 return false;
 
             if (oldPos == target)
-                return false;
+                return true;
 
             // Key guaranteed to exist due to state invariant of spatial map (oldPos existed in the other map)
             var oldPosList = _positionMapping[oldPos];

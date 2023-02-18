@@ -56,6 +56,9 @@ namespace SadRogue.Primitives.SpatialMaps
             remove => _multiSpatialMap.ItemRemoved -= value;
         }
 
+        private bool _triggeredByMove;
+        private bool _triggeredByPositionSet;
+
         /// <summary>
         /// Constructor.
         /// </summary>
@@ -110,6 +113,9 @@ namespace SadRogue.Primitives.SpatialMaps
 
             _multiSpatialMap.ItemAdded += OnItemAdded;
             _multiSpatialMap.ItemRemoved += OnItemRemoved;
+            _multiSpatialMap.ItemMoved += OnItemMoved;
+            _triggeredByMove = false;
+            _triggeredByPositionSet = false;
         }
 
         #region Enumeration
@@ -422,24 +428,50 @@ namespace SadRogue.Primitives.SpatialMaps
         private void OnItemAdded(object? sender, ItemEventArgs<T> e)
         {
             e.Item.PositionChanging += ItemOnPositionChanging;
-            ItemMoved += OnItemMoved;
         }
 
         private void OnItemMoved(object? sender, ItemMovedEventArgs<T> e)
         {
-            e.Item.Position = e.NewPosition;
+            if (_triggeredByPositionSet)
+            {
+                _triggeredByPositionSet = false;
+                return;
+            }
+
+            _triggeredByMove = true;
+            try
+            {
+                e.Item.Position = e.NewPosition;
+            }
+            finally
+            {
+                _triggeredByMove = false;
+            }
         }
 
         private void ItemOnPositionChanging(object? sender, ValueChangedEventArgs<Point> e)
         {
-            if (sender != null)
-                _multiSpatialMap.Move((T)sender, e.NewValue);
+            if (_triggeredByMove)
+            {
+                _triggeredByMove = false;
+                return;
+            }
+
+            _triggeredByPositionSet = true;
+            try
+            {
+                if (sender != null)
+                    _multiSpatialMap.Move((T)sender, e.NewValue);
+            }
+            finally
+            {
+                _triggeredByPositionSet = false;
+            }
         }
 
         private void OnItemRemoved(object? sender, ItemEventArgs<T> e)
         {
             e.Item.PositionChanging -= ItemOnPositionChanging;
-            ItemMoved -= OnItemMoved;
         }
         #endregion
     }

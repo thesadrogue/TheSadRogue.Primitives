@@ -9,8 +9,7 @@ public class MultiSpatialMapAutoSync
     private readonly Point _initialPosition = (0, 1);
     private readonly Point _moveToPosition = (5, 6);
 
-    //private readonly IDPositionObject _addedObject = new IDPositionObject();
-    private readonly IDPositionObject _trackedObject = new IDPositionObject();
+    private readonly IDPositionObject _trackedObject = new();
 
     private readonly int _width = 10;
 
@@ -19,11 +18,11 @@ public class MultiSpatialMapAutoSync
     [Params(1, 10, 50, 100)]
     public int NumEntities;
 
-    [GlobalSetup(Targets = new[] { /*nameof(MoveTwice),*/ nameof(MoveTwiceUsingPositionField)})]
+    [GlobalSetup(Targets = new[] { nameof(MoveTwice), nameof(MoveTwiceUsingPositionField)})]
     public void GlobalSetupObjectsAtMoveToLocation()
     {
         _trackedObject.Position = _initialPosition;
-        _testMap = new AutoSyncMultiSpatialMap<IDPositionObject> { { _trackedObject, _initialPosition } };
+        _testMap = new AutoSyncMultiSpatialMap<IDPositionObject> {  _trackedObject  };
 
         // Put other entities on the map
         int idx = -1;
@@ -35,30 +34,30 @@ public class MultiSpatialMapAutoSync
         }
     }
 
-    // [GlobalSetup(Targets = new[] { nameof(MoveAllTwice)})]
-    // public void GlobalSetupNoObjectsAtMoveToLocation()
-    // {
-    //     _trackedObject.Position = _initialPosition;
-    //     _testMap = new AutoSyncMultiSpatialMap<IDPositionObject> { { _trackedObject, _initialPosition } };
-    //
-    //     // Put other entities on the map, avoiding the starting point
-    //     int idx = -1;
-    //     while (_testMap.Count < NumEntities)
-    //     {
-    //         idx += 1;
-    //         var point = Point.FromIndex(idx, _width);
-    //         if (point != _moveToPosition)
-    //             _testMap.Add(new IDPositionObject {Position = point});
-    //     }
-    // }
+    [GlobalSetup(Targets = new[] { nameof(MoveAllTwice)})]
+    public void GlobalSetupNoObjectsAtMoveToLocation()
+    {
+        _trackedObject.Position = _initialPosition;
+        _testMap = new AutoSyncMultiSpatialMap<IDPositionObject> { _trackedObject };
 
-    // [Benchmark]
-    // public int MoveTwice()
-    // {
-    //     _testMap.Move(_trackedObject, _moveToPosition);
-    //     _testMap.Move(_trackedObject, _initialPosition); // Move it back to not spoil next benchmark
-    //     return _testMap.Count; // Ensure nothing is optimized out
-    // }
+        // Put other entities on the map, avoiding the starting point
+        int idx = -1;
+        while (_testMap.Count < NumEntities)
+        {
+            idx += 1;
+            var point = Point.FromIndex(idx, _width);
+            if (point != _moveToPosition)
+                _testMap.Add(new IDPositionObject {Position = point});
+        }
+    }
+
+    [Benchmark]
+    public int MoveTwice()
+    {
+        _testMap.Move(_trackedObject, _moveToPosition);
+        _testMap.Move(_trackedObject, _initialPosition); // Move it back to not spoil next benchmark
+        return _testMap.Count; // Ensure nothing is optimized out
+    }
 
     [Benchmark]
     public int MoveTwiceUsingPositionField()
@@ -68,13 +67,13 @@ public class MultiSpatialMapAutoSync
         return _testMap.Count; // Ensure nothing is optimized out
     }
 
-    // [Benchmark]
-    // public int MoveAllTwice()
-    // {
-    //     _testMap.MoveAll(_initialPosition, _moveToPosition);
-    //     // Move it back to not spoil next benchmark.  Valid since the GlobalSetup function used for this benchmark
-    //     // doesn't put anything at _moveToPosition in the initial state.
-    //     _testMap.MoveAll(_moveToPosition, _initialPosition);
-    //     return _testMap.Count; // Ensure nothing is optimized out
-    // }
+    [Benchmark]
+    public int MoveAllTwice()
+    {
+        _testMap.MoveAll(_initialPosition, _moveToPosition);
+        // Move it back to not spoil next benchmark.  Valid since the GlobalSetup function used for this benchmark
+        // doesn't put anything at _moveToPosition in the initial state.
+        _testMap.MoveAll(_moveToPosition, _initialPosition);
+        return _testMap.Count; // Ensure nothing is optimized out
+    }
 }

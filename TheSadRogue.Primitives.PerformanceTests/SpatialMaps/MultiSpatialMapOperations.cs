@@ -18,7 +18,7 @@ namespace TheSadRogue.Primitives.PerformanceTests.SpatialMaps
         [Params(1, 10, 50, 100)]
         public int NumEntities;
 
-        [GlobalSetup(Targets = new[] { nameof(MoveTwice), nameof(TryMoveTwiceOriginal), nameof(TryMoveTwice), nameof(AddAndRemove), nameof(TryAddAndRemoveOriginal), nameof(TryAddAndRemove), nameof(GetItemsAt) })]
+        [GlobalSetup(Targets = new[] { nameof(MoveTwice),nameof(MoveToSame), nameof(TryMoveTwiceOriginal), nameof(TryMoveTwice), nameof(AddAndRemove), nameof(TryAddAndRemoveOriginal), nameof(TryAddAndRemove), nameof(GetItemsAt) })]
         public void GlobalSetupObjectsAtMoveToLocation()
         {
             _testMap = new MultiSpatialMap<IDObject> { { _trackedObject, _initialPosition } };
@@ -54,6 +54,13 @@ namespace TheSadRogue.Primitives.PerformanceTests.SpatialMaps
             _testMap.Move(_trackedObject, _moveToPosition);
             _testMap.Move(_trackedObject, _initialPosition); // Move it back to not spoil next benchmark
             return _testMap.Count; // Ensure nothing is optimized out
+        }
+
+        [Benchmark]
+        public int MoveToSame()
+        {
+            _testMap.Move(_trackedObject, _initialPosition);
+            return _testMap.Count;
         }
 
         [Benchmark]

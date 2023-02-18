@@ -20,6 +20,11 @@ namespace SadRogue.Primitives
         Point Position { get; set; }
 
         /// <summary>
+        /// Event which should be fired right before the object's position changes.
+        /// </summary>
+        event EventHandler<ValueChangedEventArgs<Point>>? PositionChanging;
+
+        /// <summary>
         /// Event which should be fired when the object's position changes.
         /// </summary>
         event EventHandler<ValueChangedEventArgs<Point>>? PositionChanged;

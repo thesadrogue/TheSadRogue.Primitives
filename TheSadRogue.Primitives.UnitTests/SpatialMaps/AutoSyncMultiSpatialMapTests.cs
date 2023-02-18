@@ -65,6 +65,19 @@ namespace SadRogue.Primitives.UnitTests.SpatialMaps
             Assert.Equal(1, map.Count);
         }
 
+        [Fact]
+        public void MapIsSyncedWhenPositionChangedTriggers()
+        {
+            var map = new AutoSyncMultiSpatialMap<MockPositionableSpatialMapItem>();
+            var item = new MockPositionableSpatialMapItem(1, (1, 2));
+            item.PositionChanged += (s, e)
+                => Assert.Equal(e.NewValue, map.GetPositionOf((MockPositionableSpatialMapItem)s!));
+            map.Add(item);
+
+            item.Position = (3, 4);
+            map.Move(item, (2, 3));
+        }
+
 
     }
 }

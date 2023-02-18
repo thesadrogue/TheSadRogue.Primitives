@@ -415,7 +415,9 @@ namespace SadRogue.Primitives.SpatialMaps
         //
         // Unfortunately, since by this definition one event always triggers the other, we need to ensure we avoid
         // infinite looping.  The Position field will never raise its event if the position has not changed; so this
-        // stops a loop in that direction.  In the other direction,
+        // stops a loop in that direction.  In the other direction, the Move function will tolerate the target being
+        // the same as the item's current position in the spatial map by returning early, and this will cost only about
+        // 13 nanoseconds extra time.
         #region Item Handlers
         private void OnItemAdded(object? sender, ItemEventArgs<T> e)
         {

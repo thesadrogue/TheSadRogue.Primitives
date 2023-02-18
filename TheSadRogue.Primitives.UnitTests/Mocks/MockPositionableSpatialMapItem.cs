@@ -23,10 +23,11 @@ namespace SadRogue.Primitives.UnitTests.Mocks
             get => _position;
             set
             {
-                this.SafelySetProperty(ref _position, value, PositionChanged);
+                this.SafelySetProperty(ref _position, value, PositionChanging, PositionChanged);
             }
         }
 
+        public event EventHandler<ValueChangedEventArgs<Point>>? PositionChanging;
         public event EventHandler<ValueChangedEventArgs<Point>>? PositionChanged;
 
         public override string ToString() => $"[{ID}, {Layer}]";

@@ -421,7 +421,7 @@ namespace SadRogue.Primitives.SpatialMaps
         #region Item Handlers
         private void OnItemAdded(object? sender, ItemEventArgs<T> e)
         {
-            e.Item.PositionChanged += ItemOnPositionChanged;
+            e.Item.PositionChanging += ItemOnPositionChanging;
             ItemMoved += OnItemMoved;
         }
 
@@ -430,7 +430,7 @@ namespace SadRogue.Primitives.SpatialMaps
             e.Item.Position = e.NewPosition;
         }
 
-        private void ItemOnPositionChanged(object? sender, ValueChangedEventArgs<Point> e)
+        private void ItemOnPositionChanging(object? sender, ValueChangedEventArgs<Point> e)
         {
             if (sender != null)
                 _multiSpatialMap.Move((T)sender, e.NewValue);
@@ -438,7 +438,7 @@ namespace SadRogue.Primitives.SpatialMaps
 
         private void OnItemRemoved(object? sender, ItemEventArgs<T> e)
         {
-            e.Item.PositionChanged -= ItemOnPositionChanged;
+            e.Item.PositionChanging -= ItemOnPositionChanging;
             ItemMoved -= OnItemMoved;
         }
         #endregion

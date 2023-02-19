@@ -424,6 +424,12 @@ namespace SadRogue.Primitives.SpatialMaps
         /// <returns>A string representation of the spatial map.</returns>
         public string ToString(Func<T, string> itemStringifier) => _multiSpatialMap.ToString(itemStringifier);
 
+        /// <summary>
+        /// Returns a string representation of the spatial map.
+        /// </summary>
+        /// <returns>A string representation of the spatial map.</returns>
+        public override string ToString() => _multiSpatialMap.ToString();
+
         #region Clear/Remove
         /// <inheritdoc />
         public void Clear() => _multiSpatialMap.Clear();

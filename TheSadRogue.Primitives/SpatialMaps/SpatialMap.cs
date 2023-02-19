@@ -204,7 +204,7 @@ namespace SadRogue.Primitives.SpatialMaps
         /// <remarks>
         /// Since this implementation guarantees that only one item can be at any given
         /// location at once, the return value is guaranteed to be at most one element. You may find it
-        /// more convenient to use the <see cref="GetItemsAt(Point)" /> function when you know you are
+        /// more convenient to use the <see cref="GetItem(Point)" /> function when you know you are
         /// dealing with a SpatialMap/AdvancedSpatialMap instance.
         /// </remarks>
         /// <param name="position">The position to return the item for.</param>
@@ -226,7 +226,7 @@ namespace SadRogue.Primitives.SpatialMaps
         /// <remarks>
         /// Since this implementation guarantees that only one item can be at any given
         /// location at once, the return value is guaranteed to be at most one element. You may find it
-        /// more convenient to use the <see cref="GetItemsAt(int, int)" /> function when you know you are
+        /// more convenient to use the <see cref="GetItem(int, int)" /> function when you know you are
         /// dealing with a SpatialMap/AdvancedSpatialMap instance.
         /// </remarks>
         /// <param name="x">The x-value of the position to return the item(s) for.</param>
@@ -598,9 +598,7 @@ namespace SadRogue.Primitives.SpatialMaps
         public void MoveAll(Point current, Point target)
         {
             if (current == target)
-                throw new ArgumentException(
-                    $"Tried to move all items from {current} in {GetType().Name}, but the current and target positions were the same.",
-                    nameof(target));
+                return;
 
             if (!_positionMapping.TryGetValue(current, out var item))
                 throw new ArgumentException(

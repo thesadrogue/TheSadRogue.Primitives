@@ -58,5 +58,8 @@ namespace SadRogue.Primitives.UnitTests
                 throw new Exception("Can't happen, prevents compiler from complaining.");
 
         }
+
+        public static IEnumerable<(T item, int index)> Enumerate<T>(this IEnumerable<T> self)
+            => self.Select((item, index) => (item, index));
     }
 }

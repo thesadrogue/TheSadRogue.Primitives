@@ -4,8 +4,7 @@ using SadRogue.Primitives;
 namespace TheSadRogue.Primitives.PerformanceTests.PointHashing.Algorithms
 {
     /// <summary>
-    /// IEqualityComparer using the method originally used in GoRogue 2 (currently the same as what is used
-    /// in the primitives library).
+    /// IEqualityComparer using the method originally used in GoRogue 2 and earlier versions of the primitives library.
     /// </summary>
     public sealed class OriginalGoRogueAlgorithm : EqualityComparer<Point>
     {

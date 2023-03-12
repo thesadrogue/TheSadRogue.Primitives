@@ -128,6 +128,14 @@ namespace SadRogue.Primitives.SpatialMaps
 
         #region Add
         /// <summary>
+        /// Returns true if the given item can be added at its current position, eg. if the item is not already in the spatial map;
+        /// false otherwise.
+        /// </summary>
+        /// <param name="newItem">Item to add.</param>
+        /// <returns>True if the item can be successfully added at its current position; false otherwise.</returns>
+        public bool CanAdd(T newItem) => _multiSpatialMap.CanAdd(newItem, newItem.Position);
+
+        /// <summary>
         /// Returns true if the given item can be added at the given position, eg. if the item is not already in the spatial map;
         /// false otherwise.
         /// </summary>
@@ -246,8 +254,7 @@ namespace SadRogue.Primitives.SpatialMaps
 
         /// <summary>
         /// Moves the item specified to the position specified, updating its <see cref="IPositionable.Position"/> field
-        /// accordingly. If the item does not exist in the spatial map or is already at the target position, the function
-        /// throws ArgumentException.
+        /// accordingly. If the item does not exist in the spatial map, the function throws ArgumentException.
         /// </summary>
         /// <param name="item">The item to move.</param>
         /// <param name="target">The position to move it to.</param>

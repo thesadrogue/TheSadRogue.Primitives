@@ -102,6 +102,14 @@ namespace SadRogue.Primitives.SpatialMaps
 
         #region Add
         /// <summary>
+        /// Returns true if the given item can be added at its current position, eg. the item is not already in the
+        /// spatial map and the position is not already filled; false otherwise.
+        /// </summary>
+        /// <param name="newItem">Item to add.</param>
+        /// <returns>True if the item can be successfully added at its current position; false otherwise.</returns>
+        public bool CanAdd(T newItem) => _spatialMap.CanAdd(newItem, newItem.Position);
+
+        /// <summary>
         /// Returns true if the given item can be added at the given position, eg. the item is not already in the
         /// spatial map and the position is not already filled; false otherwise.
         /// </summary>

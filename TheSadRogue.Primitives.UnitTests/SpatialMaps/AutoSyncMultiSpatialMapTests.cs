@@ -75,7 +75,5 @@ namespace SadRogue.Primitives.UnitTests.SpatialMaps
             item.Position = (3, 4);
             map.Move(item, (2, 3));
         }
-
-
     }
 }

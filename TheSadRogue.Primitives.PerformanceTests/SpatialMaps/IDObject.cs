@@ -15,7 +15,22 @@ namespace TheSadRogue.Primitives.PerformanceTests.SpatialMaps
         public uint ID { get; }
     }
 
-    public class IDPositionObject : IHasID, IPositionable
+    public class IDLayerObject : IHasID, IHasLayer
+    {
+        private static readonly IDGenerator s_idGenerator = new IDGenerator();
+
+        public IDLayerObject(int layer)
+        {
+            ID = s_idGenerator.UseID();
+            Layer = layer;
+        }
+
+        public uint ID { get; }
+
+        public int Layer { get; }
+    }
+
+    public class IDPositionLayerObject : IHasID, IPositionable, IHasLayer
     {
         private static readonly IDGenerator s_idGenerator = new IDGenerator();
 
@@ -30,26 +45,14 @@ namespace TheSadRogue.Primitives.PerformanceTests.SpatialMaps
         public event EventHandler<ValueChangedEventArgs<Point>>? PositionChanging;
         public event EventHandler<ValueChangedEventArgs<Point>>? PositionChanged;
 
-        public IDPositionObject()
-        {
-            ID = s_idGenerator.UseID();
-        }
+        public int Layer { get; }
 
-        public uint ID { get; }
-    }
-
-    public class IDLayerObject : IHasID, IHasLayer
-    {
-        private static readonly IDGenerator s_idGenerator = new IDGenerator();
-
-        public IDLayerObject(int layer)
+        public IDPositionLayerObject(int layer = 0)
         {
             ID = s_idGenerator.UseID();
             Layer = layer;
         }
 
         public uint ID { get; }
-
-        public int Layer { get; }
     }
 }

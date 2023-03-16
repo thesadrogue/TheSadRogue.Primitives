@@ -654,7 +654,7 @@ namespace SadRogue.Primitives.SpatialMaps
 
         /// <inheritdoc />
         public bool CanMoveAll(Point current, Point target)
-            => _positionMapping.ContainsKey(current) && current != target;
+            => _positionMapping.ContainsKey(current);
 
         /// <inheritdoc />
         public bool CanMoveAll(int currentX, int currentY, int targetX, int targetY)
@@ -668,9 +668,6 @@ namespace SadRogue.Primitives.SpatialMaps
         /// <param name="target">Location to move items to.</param>
         public void MoveAll(Point current, Point target)
         {
-            if (current == target)
-                return;
-
             List<T> currentList;
             try
             {
@@ -682,6 +679,9 @@ namespace SadRogue.Primitives.SpatialMaps
                     $"Tried to move all items from {current} in {GetType().Name}, but there was nothing at that position.",
                     nameof(current));
             }
+
+            if (current == target)
+                return;
 
             // We know the move will succeed, since they don't fail in MultiSpatialMap; so we can go ahead and remove
             // the old position list now.
@@ -722,11 +722,11 @@ namespace SadRogue.Primitives.SpatialMaps
         /// <inheritdoc/>
         public bool TryMoveAll(Point current, Point target)
         {
-            if (current == target)
-                return true;
-
             if (!_positionMapping.TryGetValue(current, out var currentList))
                 return false;
+
+            if (current == target)
+                return true;
 
             // We know the move will succeed, since they don't fail in MultiSpatialMap; so we can go ahead and remove
             // the old position list now.

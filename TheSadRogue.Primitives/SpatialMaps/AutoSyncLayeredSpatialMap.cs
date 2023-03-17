@@ -265,6 +265,10 @@ namespace SadRogue.Primitives.SpatialMaps
         /// <param name="target">Position to move the given item to.</param>
         public void Move(T item, Point target)
         {
+            if (!Contains(item)) throw new ArgumentException(
+                $"Tried to move item in {GetType().Name}, but the item does not exist.",
+                nameof(item));
+
             item.Position = target;
         }
 

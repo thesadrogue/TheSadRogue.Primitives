@@ -82,7 +82,7 @@ namespace SadRogue.Primitives.SpatialMaps
             // Create layers based on mask parameters
             for (int i = 0; i < _layers.Length; i++)
             {
-                var layerNum = i + startingLayer;
+                int layerNum = i + startingLayer;
                 if (LayerMasker.HasLayer(layersSupportingMultipleItems, layerNum))
                     _layers[i] = new AdvancedMultiSpatialMap<T>(itemComparer, customListPoolCreator(layerNum), pointComparer);
                 else
@@ -119,7 +119,7 @@ namespace SadRogue.Primitives.SpatialMaps
         /// <inheritdoc />
         public bool Contains(int x, int y, uint layerMask = uint.MaxValue)
         {
-            foreach (var relativeLayerNumber in _internalLayerMasker.Layers(layerMask >> StartingLayer))
+            foreach (int relativeLayerNumber in _internalLayerMasker.Layers(layerMask >> StartingLayer))
                 if (_layers[relativeLayerNumber].Contains(x, y))
                     return true;
 
@@ -133,7 +133,7 @@ namespace SadRogue.Primitives.SpatialMaps
         /// <inheritdoc />
         public IEnumerable<T> GetItemsAt(int x, int y, uint layerMask = uint.MaxValue)
         {
-            foreach (var relativeLayerNumber in _internalLayerMasker.Layers(layerMask >> StartingLayer))
+            foreach (int relativeLayerNumber in _internalLayerMasker.Layers(layerMask >> StartingLayer))
                 foreach (var item in _layers[relativeLayerNumber].GetItemsAt(x, y))
                     yield return item;
         }
@@ -145,8 +145,8 @@ namespace SadRogue.Primitives.SpatialMaps
         public IEnumerable<IReadOnlySpatialMap<T>> GetLayersInMask(uint layerMask = uint.MaxValue)
         {
             // LayerMasking will ignore layers that don't actually exist
-            foreach (var num in _internalLayerMasker.Layers(layerMask >> StartingLayer))
-                yield return _layers[num - StartingLayer];
+            foreach (int relativeLayerNumber in _internalLayerMasker.Layers(layerMask >> StartingLayer))
+                yield return _layers[relativeLayerNumber];
         }
 
         /// <inheritdoc />
@@ -156,9 +156,9 @@ namespace SadRogue.Primitives.SpatialMaps
         /// <inheritdoc />
         public bool CanMoveAll(int currentX, int currentY, int targetX, int targetY, uint layerMask = uint.MaxValue)
         {
-            var hasItems = false;
+            bool hasItems = false;
 
-            foreach (var relativeLayerNumber in _internalLayerMasker.Layers(layerMask >> StartingLayer))
+            foreach (int relativeLayerNumber in _internalLayerMasker.Layers(layerMask >> StartingLayer))
                 if (_layers[relativeLayerNumber].Contains(currentX, currentY))
                 {
                     hasItems = true;
@@ -496,7 +496,7 @@ namespace SadRogue.Primitives.SpatialMaps
         /// <returns>true if the given item can be moved to the given position; false otherwise.</returns>
         public bool CanMove(T item, Point target)
         {
-            var relativeLayer = item.Layer - StartingLayer;
+            int relativeLayer = item.Layer - StartingLayer;
             return relativeLayer >= 0 && relativeLayer < _layers.Length && _layers[relativeLayer].CanMove(item, target);
         }
 
@@ -613,7 +613,7 @@ namespace SadRogue.Primitives.SpatialMaps
         public List<T> Remove(Point position, uint layerMask = uint.MaxValue)
         {
             var list = new List<T>();
-            foreach (var relativeLayerNumber in _internalLayerMasker.Layers(layerMask >> StartingLayer))
+            foreach (int relativeLayerNumber in _internalLayerMasker.Layers(layerMask >> StartingLayer))
                 list.AddRange(_layers[relativeLayerNumber].Remove(position));
 
             return list;
@@ -632,7 +632,7 @@ namespace SadRogue.Primitives.SpatialMaps
         public bool TryRemove(Point position, uint layerMask = uint.MaxValue)
         {
             bool result = true;
-            foreach (var relativeLayerNumber in _internalLayerMasker.Layers(layerMask >> StartingLayer))
+            foreach (int relativeLayerNumber in _internalLayerMasker.Layers(layerMask >> StartingLayer))
             {
                 var layer = _layers[relativeLayerNumber];
                 if (layer.Contains(position))

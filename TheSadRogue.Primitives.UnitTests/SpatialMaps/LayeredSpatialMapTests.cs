@@ -401,5 +401,21 @@ namespace SadRogue.Primitives.UnitTests.SpatialMaps
                 idx--;
             }
         }
+
+        [Fact]
+        public void GetLayersInMaskNonExisting()
+        {
+            int[] layers = { 1, 2, 4, 5 };
+
+            // Any layers not in the layered spatial map are filtered out.
+            int idx = layers.Length - 1;
+            foreach (var layer in _spatialMap.GetLayersInMask(_spatialMap.LayerMasker.Mask(0, 1, 2, 4, 5, 7)))
+            {
+                var item = layer.GetItemsAt(_initialItemsPos).Single();
+                Assert.Equal(layers[idx], item.Layer);
+
+                idx--;
+            }
+        }
     }
 }

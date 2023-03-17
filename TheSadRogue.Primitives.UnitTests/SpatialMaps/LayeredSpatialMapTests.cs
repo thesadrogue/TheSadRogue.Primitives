@@ -271,12 +271,12 @@ namespace SadRogue.Primitives.UnitTests.SpatialMaps
             _spatialMap.Add(lastItem, _newItemsPos);
             Assert.Equal(_initialItems.Count + 1, _spatialMap.Count);
 
-            // Most of the objects can move; 1 is blocked by lastItem
+            // Most of the objects can move; 1 is blocked by lastItem, so none move
             var val = _spatialMap.TryMoveAll(_initialItemsPos, _newItemsPos, mask);
             Assert.False(val);
             Assert.Equal(2, layersInMask - 1);
-            Assert.Equal(_initialItems.Count - 2, _spatialMap.GetItemsAt(_initialItemsPos).Count());
-            Assert.Equal(2 + 1, _spatialMap.GetItemsAt(_newItemsPos).Count());
+            Assert.Equal(_initialItems.Count, _spatialMap.GetItemsAt(_initialItemsPos).Count());
+            Assert.Single(_spatialMap.GetItemsAt(_newItemsPos));
         }
 
         [Fact]

@@ -288,7 +288,7 @@ namespace SadRogue.Primitives.SpatialMaps
 
         /// <summary>
         /// Moves the item specified to the position specified. If the item does not exist in the
-        /// spatial map or is already at the target position, the function throws ArgumentException.
+        /// spatial map, the function throws ArgumentException.
         /// </summary>
         /// <param name="item">The item to move.</param>
         /// <param name="target">The position to move it to.</param>
@@ -307,9 +307,7 @@ namespace SadRogue.Primitives.SpatialMaps
             }
 
             if (oldPos == target)
-                throw new ArgumentException(
-                    $"Tried to move item in {GetType().Name}, but the item was already at the target position.",
-                    nameof(target));
+                return;
 
             // Key guaranteed to exist due to state invariant of spatial map (oldPos existed in the other map)
             var oldPosList = _positionMapping[oldPos];
@@ -356,7 +354,7 @@ namespace SadRogue.Primitives.SpatialMaps
 
         /// <summary>
         /// Moves the item specified to the position specified. If the item does not exist in the
-        /// spatial map or is already at the target position, the function throws ArgumentException.
+        /// spatial map, the function throws ArgumentException.
         /// </summary>
         /// <param name="item">The item to move.</param>
         /// <param name="targetX">X-value of the location to move it to.</param>
@@ -370,7 +368,7 @@ namespace SadRogue.Primitives.SpatialMaps
                 return false;
 
             if (oldPos == target)
-                return false;
+                return true;
 
             // Key guaranteed to exist due to state invariant of spatial map (oldPos existed in the other map)
             var oldPosList = _positionMapping[oldPos];
@@ -656,7 +654,7 @@ namespace SadRogue.Primitives.SpatialMaps
 
         /// <inheritdoc />
         public bool CanMoveAll(Point current, Point target)
-            => _positionMapping.ContainsKey(current) && current != target;
+            => _positionMapping.ContainsKey(current);
 
         /// <inheritdoc />
         public bool CanMoveAll(int currentX, int currentY, int targetX, int targetY)
@@ -670,11 +668,6 @@ namespace SadRogue.Primitives.SpatialMaps
         /// <param name="target">Location to move items to.</param>
         public void MoveAll(Point current, Point target)
         {
-            if (current == target)
-                throw new ArgumentException(
-                    $"Tried to move all items from {current} in {GetType().Name}, but the current and target positions were the same.",
-                    nameof(target));
-
             List<T> currentList;
             try
             {
@@ -686,6 +679,9 @@ namespace SadRogue.Primitives.SpatialMaps
                     $"Tried to move all items from {current} in {GetType().Name}, but there was nothing at that position.",
                     nameof(current));
             }
+
+            if (current == target)
+                return;
 
             // We know the move will succeed, since they don't fail in MultiSpatialMap; so we can go ahead and remove
             // the old position list now.
@@ -726,11 +722,11 @@ namespace SadRogue.Primitives.SpatialMaps
         /// <inheritdoc/>
         public bool TryMoveAll(Point current, Point target)
         {
-            if (current == target)
-                return false;
-
             if (!_positionMapping.TryGetValue(current, out var currentList))
                 return false;
+
+            if (current == target)
+                return true;
 
             // We know the move will succeed, since they don't fail in MultiSpatialMap; so we can go ahead and remove
             // the old position list now.

@@ -120,8 +120,7 @@ namespace SadRogue.Primitives.SpatialMaps
 
         /// <summary>
         /// Moves all items at the specified source location to the target location.  Throws ArgumentException if one or
-        /// more items cannot be moved or there are
-        /// no items to be moved.
+        /// more items cannot be moved or there are no items to be moved.
         /// </summary>
         /// <param name="current">Location to move items from.</param>
         /// <param name="target">Location to move items to.</param>
@@ -138,8 +137,7 @@ namespace SadRogue.Primitives.SpatialMaps
 
         /// <summary>
         /// Moves all items at the specified source location to the target location.  Throws ArgumentException if one or
-        /// more items cannot be moved or there are no items
-        /// to be moved.
+        /// more items cannot be moved or there are no items to be moved.
         /// </summary>
         /// <param name="currentX">X-value of the location to move items from.</param>
         /// <param name="currentY">Y-value of the location to move items from.</param>

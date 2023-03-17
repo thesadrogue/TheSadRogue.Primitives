@@ -204,7 +204,7 @@ namespace SadRogue.Primitives.SpatialMaps
         /// <remarks>
         /// Since this implementation guarantees that only one item can be at any given
         /// location at once, the return value is guaranteed to be at most one element. You may find it
-        /// more convenient to use the <see cref="GetItemsAt(Point)" /> function when you know you are
+        /// more convenient to use the <see cref="GetItem(Point)" /> function when you know you are
         /// dealing with a SpatialMap/AdvancedSpatialMap instance.
         /// </remarks>
         /// <param name="position">The position to return the item for.</param>
@@ -226,7 +226,7 @@ namespace SadRogue.Primitives.SpatialMaps
         /// <remarks>
         /// Since this implementation guarantees that only one item can be at any given
         /// location at once, the return value is guaranteed to be at most one element. You may find it
-        /// more convenient to use the <see cref="GetItemsAt(int, int)" /> function when you know you are
+        /// more convenient to use the <see cref="GetItem(int, int)" /> function when you know you are
         /// dealing with a SpatialMap/AdvancedSpatialMap instance.
         /// </remarks>
         /// <param name="x">The x-value of the position to return the item(s) for.</param>
@@ -283,6 +283,8 @@ namespace SadRogue.Primitives.SpatialMaps
                     nameof(item));
             }
 
+            if (oldPos == target) return;
+
             try
             {
                 _positionMapping.Add(target, item);
@@ -313,6 +315,9 @@ namespace SadRogue.Primitives.SpatialMaps
         {
             if (!_itemMapping.TryGetValue(item, out Point oldPos))
                 return false;
+
+            if (oldPos == target)
+                return true;
 
             if (!_positionMapping.TryAdd(target, item))
                 return false;
@@ -536,12 +541,16 @@ namespace SadRogue.Primitives.SpatialMaps
         /// <summary>
         /// Returns true if the given item can be moved from its current location to the specified one, eg. if the item
         /// does exists in the spatial map and if the new position is not already filled by some other item; false otherwise.
+        /// However, if the item is already at the specified position, always returns true.
         /// </summary>
         /// <param name="item">Item to move.</param>
         /// <param name="target">Location to move item to.</param>
         /// <returns>true if the given item can be moved to the given position; false otherwise.</returns>
         public bool CanMove(T item, Point target)
-            => _itemMapping.ContainsKey(item) && !_positionMapping.ContainsKey(target);
+        {
+            if (!_itemMapping.TryGetValue(item, out Point current)) return false;
+            return current == target || !_positionMapping.ContainsKey(target);
+        }
 
         /// <summary>
         /// Returns true if the given item can be moved from its current location to the specified one, eg. if the item
@@ -555,8 +564,7 @@ namespace SadRogue.Primitives.SpatialMaps
 
         /// <summary>
         /// Returns true if the item at the current position specified can be moved to the target position, eg. if an item exists
-        /// at the current
-        /// position and the new position is not already filled by some other item; false otherwise.
+        /// at the current position and the new position is not already filled by some other item; false otherwise.
         /// </summary>
         /// <param name="current">Location to move items from.</param>
         /// <param name="target">Location to move items to.</param>
@@ -565,12 +573,11 @@ namespace SadRogue.Primitives.SpatialMaps
         /// cannot be moved.
         /// </returns>
         public bool CanMoveAll(Point current, Point target)
-            => _positionMapping.ContainsKey(current) && !_positionMapping.ContainsKey(target);
+            => _positionMapping.ContainsKey(current) && (current == target || !_positionMapping.ContainsKey(target));
 
         /// <summary>
         /// Returns true if the item at the current position specified can be moved to the target position, eg. if an item exists
-        /// at the current
-        /// position and the new position is not already filled by some other item; false otherwise.
+        /// at the current position and the new position is not already filled by some other item; false otherwise.
         /// </summary>
         /// <param name="currentX">X-value of the location to move items from.</param>
         /// <param name="currentY">Y-value of the location to move items from.</param>
@@ -585,22 +592,20 @@ namespace SadRogue.Primitives.SpatialMaps
 
         /// <summary>
         /// Moves the item at the specified source location to the target location.  Throws ArgumentException if one or
-        /// more items cannot be moved, eg.
-        /// if no item exists at the current position or the new position is already filled by some other item.
+        /// more items cannot be moved, eg. if no item exists at the current position or the new position is
+        /// already filled by some other item.
         /// </summary>
         /// <param name="current">Location to move items from.</param>
         /// <param name="target">Location to move items to.</param>
         public void MoveAll(Point current, Point target)
         {
-            if (current == target)
-                throw new ArgumentException(
-                    $"Tried to move all items from {current} in {GetType().Name}, but the current and target positions were the same.",
-                    nameof(target));
-
             if (!_positionMapping.TryGetValue(current, out var item))
                 throw new ArgumentException(
                     $"Tried to move item from {current} in {GetType().Name}, but there was nothing at the that position.",
                     nameof(current));
+
+            if (current == target)
+                return;
 
             if (_positionMapping.ContainsKey(target))
                 throw new ArgumentException(
@@ -617,11 +622,11 @@ namespace SadRogue.Primitives.SpatialMaps
         /// <inheritdoc/>
         public bool TryMoveAll(Point current, Point target)
         {
-            if (current == target)
-                return false;
-
             if (!_positionMapping.TryGetValue(current, out var item))
                 return false;
+
+            if (current == target)
+                return true;
 
             if (_positionMapping.ContainsKey(target))
                 return false;

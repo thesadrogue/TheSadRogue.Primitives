@@ -1,4 +1,5 @@
-﻿using SadRogue.Primitives;
+﻿using System;
+using SadRogue.Primitives;
 
 namespace TheSadRogue.Primitives.PerformanceTests.SpatialMaps
 {
@@ -27,5 +28,31 @@ namespace TheSadRogue.Primitives.PerformanceTests.SpatialMaps
         public uint ID { get; }
 
         public int Layer { get; }
+    }
+
+    public class IDPositionLayerObject : IHasID, IPositionable, IHasLayer
+    {
+        private static readonly IDGenerator s_idGenerator = new IDGenerator();
+
+        private Point _position;
+
+        public Point Position
+        {
+            get => _position;
+            set => this.SafelySetProperty(ref _position, value, PositionChanging, PositionChanged);
+        }
+
+        public event EventHandler<ValueChangedEventArgs<Point>>? PositionChanging;
+        public event EventHandler<ValueChangedEventArgs<Point>>? PositionChanged;
+
+        public int Layer { get; }
+
+        public IDPositionLayerObject(int layer = 0)
+        {
+            ID = s_idGenerator.UseID();
+            Layer = layer;
+        }
+
+        public uint ID { get; }
     }
 }

@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 using SadRogue.Primitives.Pooling;
 
@@ -544,7 +543,6 @@ namespace SadRogue.Primitives.SpatialMaps
         /// Layer mask specifying which layers to search for items on. Defaults to all layers.
         /// </param>
         /// <returns>All items moved.</returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public List<T> MoveValid(Point current, Point target, uint layerMask = uint.MaxValue)
         {
             var result = new List<T>(0);
@@ -571,8 +569,8 @@ namespace SadRogue.Primitives.SpatialMaps
         /// Moves all items that can be moved, that are at the given position and on any layer specified by the given layer
         /// mask, to the new position. If no layer mask is specified, defaults to all layers.
         /// </summary>
-        /// <param name="current">Position to move all items from.</param>
-        /// <param name="target">Position to move all items to.</param>
+        /// <param name="current">Position to move items from.</param>
+        /// <param name="target">Position to move items to.</param>
         /// <param name="itemsMovedOutput">List in which to place all moved items.</param>
         /// <param name="layerMask">
         /// Layer mask specifying which layers to search for items on. Defaults to all layers.
@@ -582,7 +580,7 @@ namespace SadRogue.Primitives.SpatialMaps
             if (current == target)
                 return;
 
-            foreach (var relativeLayerNumber in _internalLayerMasker.Layers(layerMask >> StartingLayer))
+            foreach (int relativeLayerNumber in _internalLayerMasker.Layers(layerMask >> StartingLayer))
                 _layers[relativeLayerNumber].MoveValid(current, target, itemsMovedOutput);
         }
 
@@ -737,18 +735,14 @@ namespace SadRogue.Primitives.SpatialMaps
         /// </returns>
         public bool TryMoveAll(Point current, Point target, uint layerMask = uint.MaxValue)
         {
-            uint mask = layerMask >> StartingLayer;
-            bool result = true;
+            // This involves the same dictionary lookups that we are about to do in MoveAll; but, it is necessary to check
+            // if everything will move _prior_ to actually moving it, in order to ensure we don't move objects if one or
+            // more won't move (or if there are no objects).
+            if (!CanMoveAll(current, target, layerMask))
+                return false;
 
-            foreach (int relativeLayerNumber in _internalLayerMasker.Layers(mask))
-            {
-                var layer = _layers[relativeLayerNumber];
-                if (layer.Contains(current))
-                    result = layer.TryMoveAll(current, target) && result;
-            }
-
-            // No items should return false
-            return result;
+            MoveAll(current, target, layerMask);
+            return true;
         }
 
         /// <summary>
@@ -765,7 +759,7 @@ namespace SadRogue.Primitives.SpatialMaps
         /// the target position; false otherwise.
         /// </returns>
         public bool TryMoveAll(int currentX, int currentY, int targetX, int targetY, uint layerMask = uint.MaxValue)
-            => TryMoveAll(new Point(currentX, currentY), new Point(targetX, targetY));
+            => TryMoveAll(new Point(currentX, currentY), new Point(targetX, targetY), layerMask);
     }
 
     /// <summary>

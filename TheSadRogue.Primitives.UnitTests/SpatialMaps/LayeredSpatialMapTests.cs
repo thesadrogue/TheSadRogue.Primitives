@@ -50,6 +50,40 @@ namespace SadRogue.Primitives.UnitTests.SpatialMaps
         }
 
         [Fact]
+        public void Construction()
+        {
+            // No multiple item layers, 32 layers, starting at 0
+            var sm = new LayeredSpatialMap<MockSpatialMapItem>(32);
+            Assert.Equal(32, sm.NumberOfLayers);
+            Assert.Equal(0, sm.StartingLayer);
+            foreach (var layer in sm.Layers)
+                Assert.True(layer is AdvancedSpatialMap<MockSpatialMapItem>);
+
+            // Test multiple item layers
+            var multipleItemLayerMask = LayerMasker.Default.Mask(1, 2, 5);
+            sm = new LayeredSpatialMap<MockSpatialMapItem>(10, startingLayer: 0,
+                layersSupportingMultipleItems: multipleItemLayerMask);
+            Assert.Equal(10, sm.NumberOfLayers);
+            Assert.Equal(0, sm.StartingLayer);
+
+            int layerNum = 0;
+            foreach (var layer in sm.Layers)
+            {
+                Assert.Equal(LayerMasker.Default.HasLayer(multipleItemLayerMask, layerNum),
+                    layer is AdvancedMultiSpatialMap<MockSpatialMapItem>);
+                layerNum++;
+            }
+
+            // Test arbitrary starting layer (initial values)
+            const int startingLayer = 1;
+            const int numberOfLayers = 5;
+            sm = new LayeredSpatialMap<MockSpatialMapItem>(numberOfLayers, startingLayer: startingLayer);
+
+            Assert.Equal(numberOfLayers, sm.NumberOfLayers);
+            Assert.Equal(startingLayer, sm.StartingLayer);
+        }
+
+        [Fact]
         public void AddItemValid()
         {
             // Just the starting items to begin with, and none at new location
@@ -354,37 +388,18 @@ namespace SadRogue.Primitives.UnitTests.SpatialMaps
         // TODO: Layer-based function tests for functions other than MoveValid/MoveAll
 
         [Fact]
-        public void Construction()
+        public void GetLayersInMaskExisting()
         {
-            // No multiple item layers, 32 layers, starting at 0
-            var sm = new LayeredSpatialMap<MockSpatialMapItem>(32);
-            Assert.Equal(32, sm.NumberOfLayers);
-            Assert.Equal(0, sm.StartingLayer);
-            foreach (var layer in sm.Layers)
-                Assert.True(layer is AdvancedSpatialMap<MockSpatialMapItem>);
+            int[] layers = { 1, 2, 4, 5 };
 
-            // Test multiple item layers
-            var multipleItemLayerMask = LayerMasker.Default.Mask(1, 2, 5);
-            sm = new LayeredSpatialMap<MockSpatialMapItem>(10, startingLayer: 0,
-                layersSupportingMultipleItems: multipleItemLayerMask);
-            Assert.Equal(10, sm.NumberOfLayers);
-            Assert.Equal(0, sm.StartingLayer);
-
-            int layerNum = 0;
-            foreach (var layer in sm.Layers)
+            int idx = layers.Length - 1;
+            foreach (var layer in _spatialMap.GetLayersInMask(_spatialMap.LayerMasker.Mask(layers)))
             {
-                Assert.Equal(LayerMasker.Default.HasLayer(multipleItemLayerMask, layerNum),
-                    layer is AdvancedMultiSpatialMap<MockSpatialMapItem>);
-                layerNum++;
+                var item = layer.GetItemsAt(_initialItemsPos).Single();
+                Assert.Equal(layers[idx], item.Layer);
+
+                idx--;
             }
-
-            // Test arbitrary starting layer (initial values)
-            const int startingLayer = 1;
-            const int numberOfLayers = 5;
-            sm = new LayeredSpatialMap<MockSpatialMapItem>(numberOfLayers, startingLayer: startingLayer);
-
-            Assert.Equal(numberOfLayers, sm.NumberOfLayers);
-            Assert.Equal(startingLayer, sm.StartingLayer);
         }
     }
 }

@@ -191,8 +191,7 @@
   <a id="SadRogue_Primitives_IReadOnlyArea_UseIndexEnumeration_" data-uid="SadRogue.Primitives.IReadOnlyArea.UseIndexEnumeration*"></a>
   <h4 id="SadRogue_Primitives_IReadOnlyArea_UseIndexEnumeration" data-uid="SadRogue.Primitives.IReadOnlyArea.UseIndexEnumeration">UseIndexEnumeration</h4>
   <div class="markdown level1 summary"><p>Whether or not it is more efficient for this implementation to use enumeration by index,
-rather than generic IEnumerable, when iterating over positions using <a class="xref" href="SadRogue.Primitives.ReadOnlyAreaExtensions.html#SadRogue_Primitives_ReadOnlyAreaExtensions_FastEnumerator_SadRogue_Primitives_IReadOnlyArea_">FastEnumerator(IReadOnlyArea)</a>
-or <a class="xref" href="SadRogue.Primitives.ReadOnlyAreaPositionsEnumerable.html">ReadOnlyAreaPositionsEnumerable</a>.</p>
+rather than generic IEnumerable, when iterating over positions using <a class="xref" href="SadRogue.Primitives.ReadOnlyAreaPositionsEnumerator.html">ReadOnlyAreaPositionsEnumerator</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -218,6 +217,8 @@ or <a class="xref" href="SadRogue.Primitives.ReadOnlyAreaPositionsEnumerable.htm
   <div class="markdown level1 remarks"><p>Set this to true if your indexer implementation scales well (constant time), and is relatively fast.  Implementations with
 more complex indexers should set this to false.</p>
 <p>The default interface implementation returns false, in order to preserve backwards compatibility with previous versions.</p>
+<p>If you set this to false, your IEnumerable.GetEnumerator() implementations must NOT call return a ReadOnlyAreaPositionsEnumerator,
+as this will create an infinite loop.</p>
 </div>
   <h3 id="methods">Methods
   </h3>
@@ -364,6 +365,45 @@ more complex indexers should set this to false.</p>
   </table>
   
   
+  <a id="SadRogue_Primitives_IReadOnlyArea_GetEnumerator_" data-uid="SadRogue.Primitives.IReadOnlyArea.GetEnumerator*"></a>
+  <h4 id="SadRogue_Primitives_IReadOnlyArea_GetEnumerator" data-uid="SadRogue.Primitives.IReadOnlyArea.GetEnumerator">GetEnumerator()</h4>
+  <div class="markdown level1 summary"><p>Returns an enumerator which can be used to iterate over the positions in this area in the most efficient
+manner possible via a generic interface.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">virtual ReadOnlyAreaPositionsEnumerator GetEnumerator()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.ReadOnlyAreaPositionsEnumerator.html">ReadOnlyAreaPositionsEnumerator</a></td>
+        <td><p>A custom enumerator that iterates over the positions in the area in the most efficient manner possible via a generic interface.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="SadRogue_Primitives_IReadOnlyArea_GetEnumerator_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The enumerator returned will use the area's indexer to iterate over the positions (like you might a list),
+if the area's <a class="xref" href="SadRogue.Primitives.IReadOnlyArea.html#SadRogue_Primitives_IReadOnlyArea_UseIndexEnumeration">UseIndexEnumeration</a> is true.  Otherwise, it uses the typical IEnumerator
+implementation for that area.</p>
+<p>This may be significantly faster than the typical IEnumerable/IEnumerator usage for implementations which have
+<a class="xref" href="SadRogue.Primitives.IReadOnlyArea.html#SadRogue_Primitives_IReadOnlyArea_UseIndexEnumeration">UseIndexEnumeration</a> set to true; however it won't have much benefit otherwise.</p>
+<p>If you have a value of a concrete type rather than an interface, and the GetEnumerator implementation for that
+given type is particularly fast or a non-boxed type (like <a class="xref" href="SadRogue.Primitives.Area.html">Area</a>, you will probably get faster performance
+out of that than by using this; however this will provide better performance if you are working with an interface
+and thus don't know the type of area.  Use cases for this function are generally for iteration via IReadOnlyArea.</p>
+</div>
+  
+  
   <a id="SadRogue_Primitives_IReadOnlyArea_Intersects_" data-uid="SadRogue.Primitives.IReadOnlyArea.Intersects*"></a>
   <h4 id="SadRogue_Primitives_IReadOnlyArea_Intersects_SadRogue_Primitives_IReadOnlyArea_" data-uid="SadRogue.Primitives.IReadOnlyArea.Intersects(SadRogue.Primitives.IReadOnlyArea)">Intersects(IReadOnlyArea)</h4>
   <div class="markdown level1 summary"><p>Returns whether or not the given map area intersects the current one. If you intend to
@@ -411,6 +451,12 @@ of positions in the result (0 if no intersection).</p>
     </tbody>
   </table>
   <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="SadRogue.Primitives.PropertyChangedEventHelpers.html#SadRogue_Primitives_PropertyChangedEventHelpers_SafelySetProperty__2___0___1____1_System_EventHandler_SadRogue_Primitives_ValueChangedEventArgs___1___">PropertyChangedEventHelpers.SafelySetProperty&lt;TObject, TProperty&gt;(TObject, ref TProperty, TProperty, EventHandler&lt;ValueChangedEventArgs&lt;TProperty&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="SadRogue.Primitives.PropertyChangedEventHelpers.html#SadRogue_Primitives_PropertyChangedEventHelpers_SafelySetProperty__2___0___1____1_System_EventHandler_SadRogue_Primitives_ValueChangedEventArgs___1___System_EventHandler_SadRogue_Primitives_ValueChangedEventArgs___1___">PropertyChangedEventHelpers.SafelySetProperty&lt;TObject, TProperty&gt;(TObject, ref TProperty, TProperty, EventHandler&lt;ValueChangedEventArgs&lt;TProperty&gt;&gt;, EventHandler&lt;ValueChangedEventArgs&lt;TProperty&gt;&gt;)</a>
+  </div>
   <div>
       <a class="xref" href="SadRogue.Primitives.ReadOnlyAreaExtensions.html#SadRogue_Primitives_ReadOnlyAreaExtensions_FastEnumerator_SadRogue_Primitives_IReadOnlyArea_">ReadOnlyAreaExtensions.FastEnumerator(IReadOnlyArea)</a>
   </div>

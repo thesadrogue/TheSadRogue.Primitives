@@ -1,0 +1,428 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class AutoSyncMultiSpatialMap&lt;T&gt;
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class AutoSyncMultiSpatialMap&lt;T&gt;
+   ">
+    <meta name="generator" content="docfx 2.58.9.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncMultiSpatialMap`1">
+  
+  
+  <h1 id="SadRogue_Primitives_SpatialMaps_AutoSyncMultiSpatialMap_1" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncMultiSpatialMap`1" class="text-break">Class AutoSyncMultiSpatialMap&lt;T&gt;
+  </h1>
+  <div class="markdown level0 summary"><p>A version of <a class="xref" href="SadRogue.Primitives.SpatialMaps.MultiSpatialMap-1.html">MultiSpatialMap&lt;T&gt;</a> which takes items that implement <a class="xref" href="SadRogue.Primitives.IPositionable.html">IPositionable</a>,
+and uses that interface's properties/events to automatically ensure items are recorded at the proper positions
+in the spatial map when they move and that the position fields are updated if the spatial map's move functions
+are used.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><a class="xref" href="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap-1.html">AutoSyncAdvancedMultiSpatialMap</a>&lt;T&gt;</div>
+    <div class="level2"><span class="xref">AutoSyncMultiSpatialMap&lt;T&gt;</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="SadRogue.Primitives.SpatialMaps.ISpatialMap-1.html">ISpatialMap</a>&lt;T&gt;</div>
+    <div><a class="xref" href="SadRogue.Primitives.SpatialMaps.IReadOnlySpatialMap-1.html">IReadOnlySpatialMap</a>&lt;T&gt;</div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="SadRogue.Primitives.SpatialMaps.ItemPositionPair-1.html">ItemPositionPair</a>&lt;T&gt;&gt;</div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerable">IEnumerable</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap-1.html#SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_GetEnumerator">AutoSyncAdvancedMultiSpatialMap&lt;T&gt;.GetEnumerator()</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap-1.html#SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_AsReadOnly">AutoSyncAdvancedMultiSpatialMap&lt;T&gt;.AsReadOnly()</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap-1.html#SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_CanAdd__0_">AutoSyncAdvancedMultiSpatialMap&lt;T&gt;.CanAdd(T)</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap-1.html#SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_CanAdd__0_SadRogue_Primitives_Point_">AutoSyncAdvancedMultiSpatialMap&lt;T&gt;.CanAdd(T, Point)</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap-1.html#SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_CanAdd__0_System_Int32_System_Int32_">AutoSyncAdvancedMultiSpatialMap&lt;T&gt;.CanAdd(T, Int32, Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap-1.html#SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_Add__0_">AutoSyncAdvancedMultiSpatialMap&lt;T&gt;.Add(T)</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap-1.html#SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_Add__0_SadRogue_Primitives_Point_">AutoSyncAdvancedMultiSpatialMap&lt;T&gt;.Add(T, Point)</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap-1.html#SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_Add__0_System_Int32_System_Int32_">AutoSyncAdvancedMultiSpatialMap&lt;T&gt;.Add(T, Int32, Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap-1.html#SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_TryAdd__0_">AutoSyncAdvancedMultiSpatialMap&lt;T&gt;.TryAdd(T)</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap-1.html#SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_TryAdd__0_SadRogue_Primitives_Point_">AutoSyncAdvancedMultiSpatialMap&lt;T&gt;.TryAdd(T, Point)</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap-1.html#SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_TryAdd__0_System_Int32_System_Int32_">AutoSyncAdvancedMultiSpatialMap&lt;T&gt;.TryAdd(T, Int32, Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap-1.html#SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_CanMove__0_SadRogue_Primitives_Point_">AutoSyncAdvancedMultiSpatialMap&lt;T&gt;.CanMove(T, Point)</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap-1.html#SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_CanMove__0_System_Int32_System_Int32_">AutoSyncAdvancedMultiSpatialMap&lt;T&gt;.CanMove(T, Int32, Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap-1.html#SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_CanMoveAll_SadRogue_Primitives_Point_SadRogue_Primitives_Point_">AutoSyncAdvancedMultiSpatialMap&lt;T&gt;.CanMoveAll(Point, Point)</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap-1.html#SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_CanMoveAll_System_Int32_System_Int32_System_Int32_System_Int32_">AutoSyncAdvancedMultiSpatialMap&lt;T&gt;.CanMoveAll(Int32, Int32, Int32, Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap-1.html#SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_Move__0_SadRogue_Primitives_Point_">AutoSyncAdvancedMultiSpatialMap&lt;T&gt;.Move(T, Point)</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap-1.html#SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_Move__0_System_Int32_System_Int32_">AutoSyncAdvancedMultiSpatialMap&lt;T&gt;.Move(T, Int32, Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap-1.html#SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_TryMove__0_SadRogue_Primitives_Point_">AutoSyncAdvancedMultiSpatialMap&lt;T&gt;.TryMove(T, Point)</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap-1.html#SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_TryMove__0_System_Int32_System_Int32_">AutoSyncAdvancedMultiSpatialMap&lt;T&gt;.TryMove(T, Int32, Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap-1.html#SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_MoveAll_SadRogue_Primitives_Point_SadRogue_Primitives_Point_">AutoSyncAdvancedMultiSpatialMap&lt;T&gt;.MoveAll(Point, Point)</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap-1.html#SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_TryMoveAll_SadRogue_Primitives_Point_SadRogue_Primitives_Point_">AutoSyncAdvancedMultiSpatialMap&lt;T&gt;.TryMoveAll(Point, Point)</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap-1.html#SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_MoveAll_System_Int32_System_Int32_System_Int32_System_Int32_">AutoSyncAdvancedMultiSpatialMap&lt;T&gt;.MoveAll(Int32, Int32, Int32, Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap-1.html#SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_TryMoveAll_System_Int32_System_Int32_System_Int32_System_Int32_">AutoSyncAdvancedMultiSpatialMap&lt;T&gt;.TryMoveAll(Int32, Int32, Int32, Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap-1.html#SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_MoveValid_SadRogue_Primitives_Point_SadRogue_Primitives_Point_">AutoSyncAdvancedMultiSpatialMap&lt;T&gt;.MoveValid(Point, Point)</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap-1.html#SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_MoveValid_SadRogue_Primitives_Point_SadRogue_Primitives_Point_System_Collections_Generic_List__0__">AutoSyncAdvancedMultiSpatialMap&lt;T&gt;.MoveValid(Point, Point, List&lt;T&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap-1.html#SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_MoveValid_System_Int32_System_Int32_System_Int32_System_Int32_">AutoSyncAdvancedMultiSpatialMap&lt;T&gt;.MoveValid(Int32, Int32, Int32, Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap-1.html#SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_MoveValid_System_Int32_System_Int32_System_Int32_System_Int32_System_Collections_Generic_List__0__">AutoSyncAdvancedMultiSpatialMap&lt;T&gt;.MoveValid(Int32, Int32, Int32, Int32, List&lt;T&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap-1.html#SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_Contains__0_">AutoSyncAdvancedMultiSpatialMap&lt;T&gt;.Contains(T)</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap-1.html#SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_Contains_SadRogue_Primitives_Point_">AutoSyncAdvancedMultiSpatialMap&lt;T&gt;.Contains(Point)</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap-1.html#SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_Contains_System_Int32_System_Int32_">AutoSyncAdvancedMultiSpatialMap&lt;T&gt;.Contains(Int32, Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap-1.html#SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_GetItemsAt_SadRogue_Primitives_Point_">AutoSyncAdvancedMultiSpatialMap&lt;T&gt;.GetItemsAt(Point)</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap-1.html#SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_SadRogue_Primitives_SpatialMaps_IReadOnlySpatialMap_T__GetItemsAt_SadRogue_Primitives_Point_">AutoSyncAdvancedMultiSpatialMap&lt;T&gt;.IReadOnlySpatialMap&lt;T&gt;.GetItemsAt(Point)</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap-1.html#SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_GetItemsAt_System_Int32_System_Int32_">AutoSyncAdvancedMultiSpatialMap&lt;T&gt;.GetItemsAt(Int32, Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap-1.html#SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_SadRogue_Primitives_SpatialMaps_IReadOnlySpatialMap_T__GetItemsAt_System_Int32_System_Int32_">AutoSyncAdvancedMultiSpatialMap&lt;T&gt;.IReadOnlySpatialMap&lt;T&gt;.GetItemsAt(Int32, Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap-1.html#SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_GetPositionOfOrNull__0_">AutoSyncAdvancedMultiSpatialMap&lt;T&gt;.GetPositionOfOrNull(T)</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap-1.html#SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_TryGetPositionOf__0_SadRogue_Primitives_Point__">AutoSyncAdvancedMultiSpatialMap&lt;T&gt;.TryGetPositionOf(T, Point)</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap-1.html#SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_GetPositionOf__0_">AutoSyncAdvancedMultiSpatialMap&lt;T&gt;.GetPositionOf(T)</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap-1.html#SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_ToString_System_Func__0_System_String__">AutoSyncAdvancedMultiSpatialMap&lt;T&gt;.ToString(Func&lt;T, String&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap-1.html#SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_ToString">AutoSyncAdvancedMultiSpatialMap&lt;T&gt;.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap-1.html#SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_Clear">AutoSyncAdvancedMultiSpatialMap&lt;T&gt;.Clear()</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap-1.html#SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_Remove__0_">AutoSyncAdvancedMultiSpatialMap&lt;T&gt;.Remove(T)</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap-1.html#SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_TryRemove__0_">AutoSyncAdvancedMultiSpatialMap&lt;T&gt;.TryRemove(T)</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap-1.html#SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_Remove_SadRogue_Primitives_Point_">AutoSyncAdvancedMultiSpatialMap&lt;T&gt;.Remove(Point)</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap-1.html#SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_TryRemove_SadRogue_Primitives_Point_">AutoSyncAdvancedMultiSpatialMap&lt;T&gt;.TryRemove(Point)</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap-1.html#SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_Remove_System_Int32_System_Int32_">AutoSyncAdvancedMultiSpatialMap&lt;T&gt;.Remove(Int32, Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap-1.html#SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_TryRemove_System_Int32_System_Int32_">AutoSyncAdvancedMultiSpatialMap&lt;T&gt;.TryRemove(Int32, Int32)</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap-1.html#SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_Count">AutoSyncAdvancedMultiSpatialMap&lt;T&gt;.Count</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap-1.html#SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_Items">AutoSyncAdvancedMultiSpatialMap&lt;T&gt;.Items</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap-1.html#SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_Positions">AutoSyncAdvancedMultiSpatialMap&lt;T&gt;.Positions</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap-1.html#SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_ItemAdded">AutoSyncAdvancedMultiSpatialMap&lt;T&gt;.ItemAdded</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap-1.html#SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_ItemMoved">AutoSyncAdvancedMultiSpatialMap&lt;T&gt;.ItemMoved</a>
+    </div>
+    <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap-1.html#SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_ItemRemoved">AutoSyncAdvancedMultiSpatialMap&lt;T&gt;.ItemRemoved</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="SadRogue.Primitives.SpatialMaps.html">SadRogue.Primitives.SpatialMaps</a></h6>
+  <h6><strong>Assembly</strong>: TheSadRogue.Primitives.dll</h6>
+  <h5 id="SadRogue_Primitives_SpatialMaps_AutoSyncMultiSpatialMap_1_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class AutoSyncMultiSpatialMap&lt;T&gt; : AutoSyncAdvancedMultiSpatialMap&lt;T&gt;, ISpatialMap&lt;T&gt;, IReadOnlySpatialMap&lt;T&gt;, IEnumerable&lt;ItemPositionPair&lt;T&gt;&gt;, IEnumerable where T : class, IHasID, IPositionable</code></pre>
+  </div>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of object that will be contained by this spatial map.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="SadRogue_Primitives_SpatialMaps_AutoSyncMultiSpatialMap_1_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>This class automatically keeps the spatial map position of each object synced up with their
+<a class="xref" href="SadRogue.Primitives.IPositionable.html#SadRogue_Primitives_IPositionable_Position">Position</a> property; you may either use the Move functions of the spatial map,
+in which case the Position fields of the objects are updated as appropriate, or you may change the Position
+field, in which case the spatial map position is updated to match.</p>
+<p>If you want to manually control the positions of items in the spatial map, you should use
+<a class="xref" href="SadRogue.Primitives.SpatialMaps.MultiSpatialMap-1.html">MultiSpatialMap&lt;T&gt;</a> instead.</p>
+</div>
+  <h3 id="constructors">Constructors
+  </h3>
+  
+  
+  <a id="SadRogue_Primitives_SpatialMaps_AutoSyncMultiSpatialMap_1__ctor_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncMultiSpatialMap`1.#ctor*"></a>
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncMultiSpatialMap_1__ctor_SadRogue_Primitives_Pooling_IListPool__0__System_Collections_Generic_IEqualityComparer_SadRogue_Primitives_Point__System_Int32_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncMultiSpatialMap`1.#ctor(SadRogue.Primitives.Pooling.IListPool{`0},System.Collections.Generic.IEqualityComparer{SadRogue.Primitives.Point},System.Int32)">AutoSyncMultiSpatialMap(IListPool&lt;T&gt;, IEqualityComparer&lt;Point&gt;, Int32)</h4>
+  <div class="markdown level1 summary"><p>Constructor.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AutoSyncMultiSpatialMap(IListPool&lt;T&gt; listPool, IEqualityComparer&lt;Point&gt; pointComparer = null, int initialCapacity = 32)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Pooling.IListPool-1.html">IListPool</a>&lt;T&gt;</td>
+        <td><span class="parametername">listPool</span></td>
+        <td><p>The list pool implementation to use.  Specify <a class="xref" href="SadRogue.Primitives.Pooling.NoPoolingListPool-1.html">NoPoolingListPool&lt;T&gt;</a> to disable pooling entirely.
+This implementation <em>may</em> be shared with other spatial maps if you wish, however be aware that no thread safety is implemented
+by the default list pool implementations or the spatial map itself.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.iequalitycomparer-1">IEqualityComparer</a>&lt;<a class="xref" href="SadRogue.Primitives.Point.html">Point</a>&gt;</td>
+        <td><span class="parametername">pointComparer</span></td>
+        <td><p>Equality comparer to use for comparison and hashing of points, as object are added to/removed from/moved
+around the spatial map.  Be especially mindful of the efficiency of its GetHashCode function, as it will
+determine the efficiency of many MultiSpatialMap functions.  Defaults to the default equality
+comparer for Point, which uses a fairly efficient generalized hashing algorithm.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">initialCapacity</span></td>
+        <td><p>The initial maximum number of elements the spatial map can hold before it has to
+internally resize data structures. Defaults to 32.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_SpatialMaps_AutoSyncMultiSpatialMap_1__ctor_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncMultiSpatialMap`1.#ctor*"></a>
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncMultiSpatialMap_1__ctor_System_Collections_Generic_IEqualityComparer_SadRogue_Primitives_Point__System_Int32_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncMultiSpatialMap`1.#ctor(System.Collections.Generic.IEqualityComparer{SadRogue.Primitives.Point},System.Int32)">AutoSyncMultiSpatialMap(IEqualityComparer&lt;Point&gt;, Int32)</h4>
+  <div class="markdown level1 summary"><p>Constructor.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AutoSyncMultiSpatialMap(IEqualityComparer&lt;Point&gt; pointComparer = null, int initialCapacity = 32)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.iequalitycomparer-1">IEqualityComparer</a>&lt;<a class="xref" href="SadRogue.Primitives.Point.html">Point</a>&gt;</td>
+        <td><span class="parametername">pointComparer</span></td>
+        <td><p>Equality comparer to use for comparison and hashing of points, as object are added to/removed from/moved
+around the spatial map.  Be especially mindful of the efficiency of its GetHashCode function, as it will
+determine the efficiency of many MultiSpatialMap functions.  Defaults to the default equality
+comparer for Point, which uses a fairly efficient generalized hashing algorithm.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">initialCapacity</span></td>
+        <td><p>The initial maximum number of elements the spatial map can hold before it has to
+internally resize data structures. Defaults to 32.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.ISpatialMap-1.html">ISpatialMap&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.IReadOnlySpatialMap-1.html">IReadOnlySpatialMap&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">System.Collections.Generic.IEnumerable&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerable">System.Collections.IEnumerable</a>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="SadRogue.Primitives.PropertyChangedEventHelpers.html#SadRogue_Primitives_PropertyChangedEventHelpers_SafelySetProperty__2___0___1____1_System_EventHandler_SadRogue_Primitives_ValueChangedEventArgs___1___">PropertyChangedEventHelpers.SafelySetProperty&lt;TObject, TProperty&gt;(TObject, ref TProperty, TProperty, EventHandler&lt;ValueChangedEventArgs&lt;TProperty&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="SadRogue.Primitives.PropertyChangedEventHelpers.html#SadRogue_Primitives_PropertyChangedEventHelpers_SafelySetProperty__2___0___1____1_System_EventHandler_SadRogue_Primitives_ValueChangedEventArgs___1___System_EventHandler_SadRogue_Primitives_ValueChangedEventArgs___1___">PropertyChangedEventHelpers.SafelySetProperty&lt;TObject, TProperty&gt;(TObject, ref TProperty, TProperty, EventHandler&lt;ValueChangedEventArgs&lt;TProperty&gt;&gt;, EventHandler&lt;ValueChangedEventArgs&lt;TProperty&gt;&gt;)</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

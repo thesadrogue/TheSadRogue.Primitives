@@ -147,7 +147,7 @@ generally be encountered in Point instances that are hashed by this algorithm.</
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public KnownRangeHasher(Point minExtent, int maxNormalizedX)</code></pre>
+    <pre><code class="lang-csharp hljs">public KnownRangeHasher(Point minExtent, int boundsWidth)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -168,9 +168,37 @@ generally be encountered in Point instances that are hashed by this algorithm.</
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
-        <td><span class="parametername">maxNormalizedX</span></td>
-        <td><p>Maximum x-value that will generally occur in Points hashed by this hashing algorithm, AFTER
-the Point has been transposed by MinExtent (eg normalized such that the Point MinExtent would be (0, 0).</p>
+        <td><span class="parametername">boundsWidth</span></td>
+        <td><p>Width of the bounds that will generally encompass Points hashed by this hashing algorithm.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_PointHashers_KnownRangeHasher__ctor_" data-uid="SadRogue.Primitives.PointHashers.KnownRangeHasher.#ctor*"></a>
+  <h4 id="SadRogue_Primitives_PointHashers_KnownRangeHasher__ctor_SadRogue_Primitives_Rectangle_" data-uid="SadRogue.Primitives.PointHashers.KnownRangeHasher.#ctor(SadRogue.Primitives.Rectangle)">KnownRangeHasher(Rectangle)</h4>
+  <div class="markdown level1 summary"><p>Creates a new instance of the comparison/hashing algorithm implementation.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public KnownRangeHasher(Rectangle bounds)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a></td>
+        <td><span class="parametername">bounds</span></td>
+        <td><p>Bounds encompassing the area which points generally hashed by this algorithm will reside within.</p>
 </td>
       </tr>
     </tbody>
@@ -179,13 +207,14 @@ the Point has been transposed by MinExtent (eg normalized such that the Point Mi
   </h3>
   
   
-  <h4 id="SadRogue_Primitives_PointHashers_KnownRangeHasher_MaxNormalizedX" data-uid="SadRogue.Primitives.PointHashers.KnownRangeHasher.MaxNormalizedX">MaxNormalizedX</h4>
-  <div class="markdown level1 summary"><p>Maximum X value that will occur when points are normalized to start at (0, 0).</p>
+  <h4 id="SadRogue_Primitives_PointHashers_KnownRangeHasher_BoundsWidth" data-uid="SadRogue.Primitives.PointHashers.KnownRangeHasher.BoundsWidth">BoundsWidth</h4>
+  <div class="markdown level1 summary"><p>Width of the area which encompasses points which will generally be hashed by this algorithm, starting at
+<a class="xref" href="SadRogue.Primitives.PointHashers.KnownRangeHasher.html#SadRogue_Primitives_PointHashers_KnownRangeHasher_MinExtent">MinExtent</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public readonly int MaxNormalizedX</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly int BoundsWidth</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -318,6 +347,13 @@ the Point has been transposed by MinExtent (eg normalized such that the Point Mi
       </tr>
     </tbody>
   </table>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="SadRogue.Primitives.PropertyChangedEventHelpers.html#SadRogue_Primitives_PropertyChangedEventHelpers_SafelySetProperty__2___0___1____1_System_EventHandler_SadRogue_Primitives_ValueChangedEventArgs___1___">PropertyChangedEventHelpers.SafelySetProperty&lt;TObject, TProperty&gt;(TObject, ref TProperty, TProperty, EventHandler&lt;ValueChangedEventArgs&lt;TProperty&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="SadRogue.Primitives.PropertyChangedEventHelpers.html#SadRogue_Primitives_PropertyChangedEventHelpers_SafelySetProperty__2___0___1____1_System_EventHandler_SadRogue_Primitives_ValueChangedEventArgs___1___System_EventHandler_SadRogue_Primitives_ValueChangedEventArgs___1___">PropertyChangedEventHelpers.SafelySetProperty&lt;TObject, TProperty&gt;(TObject, ref TProperty, TProperty, EventHandler&lt;ValueChangedEventArgs&lt;TProperty&gt;&gt;, EventHandler&lt;ValueChangedEventArgs&lt;TProperty&gt;&gt;)</a>
+  </div>
 </article>
           </div>
           

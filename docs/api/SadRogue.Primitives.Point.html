@@ -915,8 +915,8 @@ distance formula without the square root.</p>
   
   <a id="SadRogue_Primitives_Point_GetHashCode_" data-uid="SadRogue.Primitives.Point.GetHashCode*"></a>
   <h4 id="SadRogue_Primitives_Point_GetHashCode" data-uid="SadRogue.Primitives.Point.GetHashCode">GetHashCode()</h4>
-  <div class="markdown level1 summary"><p>Returns a hash code for the Point. The important parts: it should be fairly fast and it
-does not collide often.</p>
+  <div class="markdown level1 summary"><p>Returns a hash code for the Point. It should provide very good performance when points
+are used in Dictionary or HashSet, because it's very fast and produces a fairly low collision rate.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -940,11 +940,14 @@ does not collide often.</p>
     </tbody>
   </table>
   <h5 id="SadRogue_Primitives_Point_GetHashCode_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>This hashing algorithm uses a separate bit-mixing algorithm for <a class="xref" href="SadRogue.Primitives.Point.html#SadRogue_Primitives_Point_X">X</a> and
-<a class="xref" href="SadRogue.Primitives.Point.html#SadRogue_Primitives_Point_Y">Y</a>, with X and Y each multiplied by a different large integer, then xors
-the mixed values, does a right shift, and finally multiplies by an overflowing prime
-number.  This hashing algorithm should produce an exceptionally low collision rate for
-coordinates between (0, 0) and (255, 255), and remain relatively reasonable beyond that.</p>
+  <div class="markdown level1 remarks"><p>This hashing algorithm is a very simple algorithm that is quite fast.  Its rate of collisions will be
+fairly low for most traditional coordinate ranges.  In particular, most sensible positive coordinate ranges
+(at least everything in the range (0, 0) -&gt; (8192, 8192)) produce no collisions.  Including coordinates with
+negative values increases the likelihood that collisions will occur; but the range (-4096, -4096) -&gt; (4096, 4096)
+produces only 8,192 collisions and no single hash value has more than a single collision.</p>
+<p>Particularly since Dictionary and HashSet implements prime modulus rather than simple bitmasks or shifts,
+this collision rate should virtually never impact performance over these ranges (or even higher ranges, likely).
+Since the algorithm is also fast, this makes it a good fit for a general-case hashing algorithm in C#.</p>
 </div>
   
   
@@ -2107,7 +2110,7 @@ to the nearest integer.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static (int, int) operator /(Point c, (int, int) tuple)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Point operator /(Point c, (int, int) tuple)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2141,7 +2144,7 @@ to the nearest integer.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-2">(, )</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a>&gt;</td>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
         <td><p>Position (c.X / tuple.x, c.Y / tuple.y), with each value rounded to the nearest integer.</p>
 </td>
       </tr>
@@ -3165,6 +3168,12 @@ rounded to nearest integer.</p>
   </div>
   <div>
       <a class="xref" href="SadRogue.Primitives.PointExtensions.html#SadRogue_Primitives_PointExtensions_Matches_SadRogue_Primitives_Point_SadRogue_Primitives_Point_">PointExtensions.Matches(Point, Point)</a>
+  </div>
+  <div>
+      <a class="xref" href="SadRogue.Primitives.PropertyChangedEventHelpers.html#SadRogue_Primitives_PropertyChangedEventHelpers_SafelySetProperty__2___0___1____1_System_EventHandler_SadRogue_Primitives_ValueChangedEventArgs___1___">PropertyChangedEventHelpers.SafelySetProperty&lt;TObject, TProperty&gt;(TObject, ref TProperty, TProperty, EventHandler&lt;ValueChangedEventArgs&lt;TProperty&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="SadRogue.Primitives.PropertyChangedEventHelpers.html#SadRogue_Primitives_PropertyChangedEventHelpers_SafelySetProperty__2___0___1____1_System_EventHandler_SadRogue_Primitives_ValueChangedEventArgs___1___System_EventHandler_SadRogue_Primitives_ValueChangedEventArgs___1___">PropertyChangedEventHelpers.SafelySetProperty&lt;TObject, TProperty&gt;(TObject, ref TProperty, TProperty, EventHandler&lt;ValueChangedEventArgs&lt;TProperty&gt;&gt;, EventHandler&lt;ValueChangedEventArgs&lt;TProperty&gt;&gt;)</a>
   </div>
 </article>
           </div>

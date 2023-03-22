@@ -85,12 +85,14 @@
     <h5>Implements</h5>
     <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="SadRogue.Primitives.BisectionResult.html">BisectionResult</a>&gt;</div>
     <div><a class="xref" href="SadRogue.Primitives.IMatchable-1.html">IMatchable</a>&lt;<a class="xref" href="SadRogue.Primitives.BisectionResult.html">BisectionResult</a>&gt;</div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a>&gt;</div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerable">IEnumerable</a></div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="SadRogue.Primitives.html">SadRogue.Primitives</a></h6>
   <h6><strong>Assembly</strong>: TheSadRogue.Primitives.dll</h6>
   <h5 id="SadRogue_Primitives_BisectionResult_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public sealed class BisectionResult : ValueType, IEquatable&lt;BisectionResult&gt;, IMatchable&lt;BisectionResult&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed class BisectionResult : ValueType, IEquatable&lt;BisectionResult&gt;, IMatchable&lt;BisectionResult&gt;, IEnumerable&lt;Rectangle&gt;, IEnumerable</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
@@ -347,6 +349,33 @@
   </table>
   
   
+  <a id="SadRogue_Primitives_BisectionResult_GetEnumerator_" data-uid="SadRogue.Primitives.BisectionResult.GetEnumerator*"></a>
+  <h4 id="SadRogue_Primitives_BisectionResult_GetEnumerator" data-uid="SadRogue.Primitives.BisectionResult.GetEnumerator">GetEnumerator()</h4>
+  <div class="markdown level1 summary"><p>Gets an enumerator that iterates over the rectangles in this result; first Rect1, then Rect2.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BisectionResultEnumerator GetEnumerator()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.BisectionResultEnumerator.html">BisectionResultEnumerator</a></td>
+        <td><p>An enumerator that iterates over the rectangles in this result; first Rect1, then Rect2</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <a id="SadRogue_Primitives_BisectionResult_GetHashCode_" data-uid="SadRogue.Primitives.BisectionResult.GetHashCode*"></a>
   <h4 id="SadRogue_Primitives_BisectionResult_GetHashCode" data-uid="SadRogue.Primitives.BisectionResult.GetHashCode">GetHashCode()</h4>
   <div class="markdown level1 summary"><p>Returns a hash code based on all of the rectangle's fields.</p>
@@ -418,7 +447,7 @@
   
   <a id="SadRogue_Primitives_BisectionResult_ToEnumerable_" data-uid="SadRogue.Primitives.BisectionResult.ToEnumerable*"></a>
   <h4 id="SadRogue_Primitives_BisectionResult_ToEnumerable" data-uid="SadRogue.Primitives.BisectionResult.ToEnumerable">ToEnumerable()</h4>
-  <div class="markdown level1 summary"><p>Returns an enumerable containing Rect1, then Rect 2.</p>
+  <div class="markdown level1 summary"><p>Obsolete.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -436,8 +465,7 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a>&gt;</td>
-        <td><p>An enumerable containing Rect1, then Rect 2.</p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
@@ -659,6 +687,19 @@
   </div>
   <div>
       <a class="xref" href="SadRogue.Primitives.IMatchable-1.html">IMatchable&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">System.Collections.Generic.IEnumerable&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerable">System.Collections.IEnumerable</a>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="SadRogue.Primitives.PropertyChangedEventHelpers.html#SadRogue_Primitives_PropertyChangedEventHelpers_SafelySetProperty__2___0___1____1_System_EventHandler_SadRogue_Primitives_ValueChangedEventArgs___1___">PropertyChangedEventHelpers.SafelySetProperty&lt;TObject, TProperty&gt;(TObject, ref TProperty, TProperty, EventHandler&lt;ValueChangedEventArgs&lt;TProperty&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="SadRogue.Primitives.PropertyChangedEventHelpers.html#SadRogue_Primitives_PropertyChangedEventHelpers_SafelySetProperty__2___0___1____1_System_EventHandler_SadRogue_Primitives_ValueChangedEventArgs___1___System_EventHandler_SadRogue_Primitives_ValueChangedEventArgs___1___">PropertyChangedEventHelpers.SafelySetProperty&lt;TObject, TProperty&gt;(TObject, ref TProperty, TProperty, EventHandler&lt;ValueChangedEventArgs&lt;TProperty&gt;&gt;, EventHandler&lt;ValueChangedEventArgs&lt;TProperty&gt;&gt;)</a>
   </div>
 </article>
           </div>

@@ -1,4 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
+  <!-- ReSharper disable UnknownProperty -->
 
   <PropertyGroup>
     <!-- Basic package info -->
@@ -45,8 +46,8 @@
 
   <!-- When packing, copy the nuget files to the nuget output directory -->
   <Target Name="CopyPackage" AfterTargets="Pack">
-    <Copy SourceFiles="$(OutputPath)\$(PackageId).$(PackageVersion).nupkg" DestinationFolder="$(OutputPath)..\..\..\nuget"/>
-    <Copy SourceFiles="$(OutputPath)\$(PackageId).$(PackageVersion).snupkg" DestinationFolder="$(OutputPath)..\..\..\nuget"/>
+    <Copy SourceFiles="$(OutputPath)\$(PackageId).$(Version).nupkg" DestinationFolder="$(OutputPath)..\..\..\nuget"/>
+    <Copy SourceFiles="$(OutputPath)\$(PackageId).$(Version).snupkg" DestinationFolder="$(OutputPath)..\..\..\nuget"/>
   </Target>
 
 </Project>

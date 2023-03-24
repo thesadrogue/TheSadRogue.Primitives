@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using BenchmarkDotNet.Attributes;
+﻿using BenchmarkDotNet.Attributes;
 using SadRogue.Primitives;
 using SadRogue.Primitives.SpatialMaps;
 
@@ -9,7 +8,7 @@ public class LayeredSpatialMapAutoSync
 {
     private readonly Point _initialPosition = (0, 1);
         private readonly Point _moveToPosition = (5, 6);
-        private readonly IDPositionLayerObject _trackedObject = new(0);
+        private readonly IDPositionLayerObject _trackedObject = new(layer: 0);
         private readonly int _width = 10;
         private AutoSyncLayeredSpatialMap<IDPositionLayerObject> _testMap = null!;
 

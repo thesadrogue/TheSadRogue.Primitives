@@ -1,0 +1,2583 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class AutoSyncAdvancedMultiSpatialMap&lt;T&gt;
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class AutoSyncAdvancedMultiSpatialMap&lt;T&gt;
+   ">
+    <meta name="generator" content="docfx 2.58.9.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1">
+  
+  
+  <h1 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1" class="text-break">Class AutoSyncAdvancedMultiSpatialMap&lt;T&gt;
+  </h1>
+  <div class="markdown level0 summary"><p>A version of <a class="xref" href="SadRogue.Primitives.SpatialMaps.AdvancedMultiSpatialMap-1.html">AdvancedMultiSpatialMap&lt;T&gt;</a> which takes items that implement <a class="xref" href="SadRogue.Primitives.IPositionable.html">IPositionable</a>,
+and uses that interface's properties/events to automatically ensure items are recorded at the proper positions
+in the spatial map when they move and that the position fields are updated if the spatial map's move functions
+are used.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><span class="xref">AutoSyncAdvancedMultiSpatialMap&lt;T&gt;</span></div>
+      <div class="level2"><a class="xref" href="SadRogue.Primitives.SpatialMaps.AutoSyncMultiSpatialMap-1.html">AutoSyncMultiSpatialMap&lt;T&gt;</a></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="SadRogue.Primitives.SpatialMaps.ISpatialMap-1.html">ISpatialMap</a>&lt;T&gt;</div>
+    <div><a class="xref" href="SadRogue.Primitives.SpatialMaps.IReadOnlySpatialMap-1.html">IReadOnlySpatialMap</a>&lt;T&gt;</div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="SadRogue.Primitives.SpatialMaps.ItemPositionPair-1.html">ItemPositionPair</a>&lt;T&gt;&gt;</div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerable">IEnumerable</a></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="SadRogue.Primitives.SpatialMaps.html">SadRogue.Primitives.SpatialMaps</a></h6>
+  <h6><strong>Assembly</strong>: TheSadRogue.Primitives.dll</h6>
+  <h5 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class AutoSyncAdvancedMultiSpatialMap&lt;T&gt; : Object, ISpatialMap&lt;T&gt;, IReadOnlySpatialMap&lt;T&gt;, IEnumerable&lt;ItemPositionPair&lt;T&gt;&gt;, IEnumerable where T : class, IPositionable</code></pre>
+  </div>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of object that will be contained by this spatial map.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>This class automatically keeps the spatial map position of each object synced up with their
+<a class="xref" href="SadRogue.Primitives.IPositionable.html#SadRogue_Primitives_IPositionable_Position">Position</a> property; you may either use the Move functions of the spatial map,
+in which case the Position fields of the objects are updated as appropriate, or you may change the Position
+field, in which case the spatial map position is updated to match.</p>
+<p>If you want to manually control the positions of items in the spatial map, you should use
+<a class="xref" href="SadRogue.Primitives.SpatialMaps.AdvancedMultiSpatialMap-1.html">AdvancedMultiSpatialMap&lt;T&gt;</a> instead.</p>
+</div>
+  <h3 id="constructors">Constructors
+  </h3>
+  
+  
+  <a id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1__ctor_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.#ctor*"></a>
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1__ctor_System_Collections_Generic_IEqualityComparer__0__SadRogue_Primitives_Pooling_IListPool__0__System_Collections_Generic_IEqualityComparer_SadRogue_Primitives_Point__System_Int32_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.#ctor(System.Collections.Generic.IEqualityComparer{`0},SadRogue.Primitives.Pooling.IListPool{`0},System.Collections.Generic.IEqualityComparer{SadRogue.Primitives.Point},System.Int32)">AutoSyncAdvancedMultiSpatialMap(IEqualityComparer&lt;T&gt;, IListPool&lt;T&gt;, IEqualityComparer&lt;Point&gt;, Int32)</h4>
+  <div class="markdown level1 summary"><p>Constructor.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AutoSyncAdvancedMultiSpatialMap(IEqualityComparer&lt;T&gt; itemComparer, IListPool&lt;T&gt; listPool, IEqualityComparer&lt;Point&gt; pointComparer = null, int initialCapacity = 32)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.iequalitycomparer-1">IEqualityComparer</a>&lt;T&gt;</td>
+        <td><span class="parametername">itemComparer</span></td>
+        <td><p>Equality comparer to use for comparison and hashing of type T. Be especially mindful of the
+efficiency of its GetHashCode function, as it will determine the efficiency of many AdvancedMultiSpatialMap
+functions.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Pooling.IListPool-1.html">IListPool</a>&lt;T&gt;</td>
+        <td><span class="parametername">listPool</span></td>
+        <td><p>The list pool implementation to use.  Specify <a class="xref" href="SadRogue.Primitives.Pooling.NoPoolingListPool-1.html">NoPoolingListPool&lt;T&gt;</a> to disable pooling entirely.
+This implementation <em>may</em> be shared with other spatial maps if you wish, however be aware that no thread safety is implemented
+by the default list pool implementations or the spatial map itself.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.iequalitycomparer-1">IEqualityComparer</a>&lt;<a class="xref" href="SadRogue.Primitives.Point.html">Point</a>&gt;</td>
+        <td><span class="parametername">pointComparer</span></td>
+        <td><p>Equality comparer to use for comparison and hashing of points, as object are added to/removed from/moved
+around the spatial map.  Be especially mindful of the efficiency of its GetHashCode function, as it will
+determine the efficiency of many AdvancedMultiSpatialMap functions.  Defaults to the default equality
+comparer for Point, which uses a fairly efficient generalized hashing algorithm.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">initialCapacity</span></td>
+        <td><p>The initial maximum number of elements the AdvancedMultiSpatialMap can hold before it has to
+internally resize data structures. Defaults to 32.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1__ctor_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.#ctor*"></a>
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1__ctor_System_Collections_Generic_IEqualityComparer__0__System_Collections_Generic_IEqualityComparer_SadRogue_Primitives_Point__System_Int32_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.#ctor(System.Collections.Generic.IEqualityComparer{`0},System.Collections.Generic.IEqualityComparer{SadRogue.Primitives.Point},System.Int32)">AutoSyncAdvancedMultiSpatialMap(IEqualityComparer&lt;T&gt;, IEqualityComparer&lt;Point&gt;, Int32)</h4>
+  <div class="markdown level1 summary"><p>Constructor.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AutoSyncAdvancedMultiSpatialMap(IEqualityComparer&lt;T&gt; itemComparer, IEqualityComparer&lt;Point&gt; pointComparer = null, int initialCapacity = 32)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.iequalitycomparer-1">IEqualityComparer</a>&lt;T&gt;</td>
+        <td><span class="parametername">itemComparer</span></td>
+        <td><p>Equality comparer to use for comparison and hashing of type T. Be especially mindful of the
+efficiency of its GetHashCode function, as it will determine the efficiency of many AdvancedMultiSpatialMap
+functions.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.iequalitycomparer-1">IEqualityComparer</a>&lt;<a class="xref" href="SadRogue.Primitives.Point.html">Point</a>&gt;</td>
+        <td><span class="parametername">pointComparer</span></td>
+        <td><p>Equality comparer to use for comparison and hashing of points, as object are added to/removed from/moved
+around the spatial map.  Be especially mindful of the efficiency of its GetHashCode function, as it will
+determine the efficiency of many AdvancedMultiSpatialMap functions.  Defaults to the default equality
+comparer for Point, which uses a fairly efficient generalized hashing algorithm.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">initialCapacity</span></td>
+        <td><p>The initial maximum number of elements the AdvancedMultiSpatialMap can hold before it has to
+internally resize data structures. Defaults to 32.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  
+  
+  <a id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_Count_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.Count*"></a>
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_Count" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.Count">Count</h4>
+  <div class="markdown level1 summary"><p>The number of items in the spatial map.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Count { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_Items_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.Items*"></a>
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_Items" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.Items">Items</h4>
+  <div class="markdown level1 summary"><p>Enumerable of the items stored in the spatial map: for use to iterate over all items with a foreach loop.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;T&gt; Items { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_Positions_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.Positions*"></a>
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_Positions" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.Positions">Positions</h4>
+  <div class="markdown level1 summary"><p>Enumerable of all positions that contain items.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;Point&gt; Positions { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="SadRogue.Primitives.Point.html">Point</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_Add_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.Add*"></a>
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_Add__0_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.Add(`0)">Add(T)</h4>
+  <div class="markdown level1 summary"><p>Adds the given item at its position, provided the item is not already in the
+spatial map. If the item is already added, throws ArgumentException.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Add(T item)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">item</span></td>
+        <td><p>The item to add.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_Add_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.Add*"></a>
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_Add__0_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.Add(`0,SadRogue.Primitives.Point)">Add(T, Point)</h4>
+  <div class="markdown level1 summary"><p>Changes the position field of the given item to the given value, and then adds it to the spatial map, provided
+the item is not already in the spatial map. If the item is already added, throws ArgumentException.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Add(T item, Point position)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">item</span></td>
+        <td><p>The item to add.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><span class="parametername">position</span></td>
+        <td><p>The position at which to add the new item.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_Add_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.Add*"></a>
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_Add__0_System_Int32_System_Int32_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.Add(`0,System.Int32,System.Int32)">Add(T, Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Changes the position field of the given item to the given value, and then adds it to the spatial map, provided
+the item is not already in the spatial map. If the item is already added, throws ArgumentException.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Add(T item, int x, int y)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">item</span></td>
+        <td><p>The item to add.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">x</span></td>
+        <td><p>x-value of the position to add item to.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">y</span></td>
+        <td><p>y-value of the position to add item to.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_AsReadOnly_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.AsReadOnly*"></a>
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_AsReadOnly" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.AsReadOnly">AsReadOnly()</h4>
+  <div class="markdown level1 summary"><p>Returns a read-only reference to the spatial map. Convenient for &quot;safely&quot; exposing the
+spatial as a property, without allowing direct modification.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlySpatialMap&lt;T&gt; AsReadOnly()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.SpatialMaps.IReadOnlySpatialMap-1.html">IReadOnlySpatialMap</a>&lt;T&gt;</td>
+        <td><p>The current spatial map, as a &quot;read-only&quot; reference.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_CanAdd_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.CanAdd*"></a>
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_CanAdd__0_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.CanAdd(`0)">CanAdd(T)</h4>
+  <div class="markdown level1 summary"><p>Returns true if the given item can be added at its current position, eg. if the item is not already in the spatial map;
+false otherwise.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool CanAdd(T newItem)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">newItem</span></td>
+        <td><p>Item to add.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True if the item can be successfully added at its current position; false otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_CanAdd_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.CanAdd*"></a>
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_CanAdd__0_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.CanAdd(`0,SadRogue.Primitives.Point)">CanAdd(T, Point)</h4>
+  <div class="markdown level1 summary"><p>Returns true if the given item can be added at the given position, eg. if the item is not already in the spatial map;
+false otherwise.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool CanAdd(T newItem, Point position)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">newItem</span></td>
+        <td><p>Item to add.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><span class="parametername">position</span></td>
+        <td><p>Position to add item to.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True if the item can be successfully added at the position given; false otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_CanAdd_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.CanAdd*"></a>
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_CanAdd__0_System_Int32_System_Int32_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.CanAdd(`0,System.Int32,System.Int32)">CanAdd(T, Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Returns true if the given item can be added at the given position, eg. if the item is not already in the spatial map;
+false otherwise.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool CanAdd(T newItem, int x, int y)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">newItem</span></td>
+        <td><p>Item to add.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">x</span></td>
+        <td><p>X-value of the position to add item to.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">y</span></td>
+        <td><p>Y-value of the position to add item to.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True if the item can be successfully added at the position given; false otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_CanMove_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.CanMove*"></a>
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_CanMove__0_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.CanMove(`0,SadRogue.Primitives.Point)">CanMove(T, Point)</h4>
+  <div class="markdown level1 summary"><p>Returns true if the given item can be moved from its current location to the specified one,
+eg. the item is contained within the spatial map; false otherwise.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool CanMove(T item, Point target)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">item</span></td>
+        <td><p>Item to move.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><span class="parametername">target</span></td>
+        <td><p>Location to move item to.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>true if the given item can be moved to the given position; false otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_CanMove_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.CanMove*"></a>
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_CanMove__0_System_Int32_System_Int32_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.CanMove(`0,System.Int32,System.Int32)">CanMove(T, Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Returns true if the given item can be moved from its current location to the specified one,
+eg. the item is contained within the spatial map; false otherwise.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool CanMove(T item, int targetX, int targetY)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">item</span></td>
+        <td><p>Item to move.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">targetX</span></td>
+        <td><p>X-value of the location to move item to.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">targetY</span></td>
+        <td><p>Y-value of the location to move item to.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>true if the given item can be moved to the given position; false otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_CanMoveAll_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.CanMoveAll*"></a>
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_CanMoveAll_SadRogue_Primitives_Point_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.CanMoveAll(SadRogue.Primitives.Point,SadRogue.Primitives.Point)">CanMoveAll(Point, Point)</h4>
+  <div class="markdown level1 summary"><p>Returns true if there are items at <code data-dev-comment-type="paramref" class="paramref">current</code> and all items at that position
+can be moved to <code data-dev-comment-type="paramref" class="paramref">target</code>; false otherwise.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool CanMoveAll(Point current, Point target)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><span class="parametername">current</span></td>
+        <td><p>Location to move items from.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><span class="parametername">target</span></td>
+        <td><p>Location to move items to.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>true if all items at the position current can be moved to the position target; false if one or more items
+cannot be moved or there are no items to move.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_CanMoveAll_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.CanMoveAll*"></a>
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_CanMoveAll_System_Int32_System_Int32_System_Int32_System_Int32_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.CanMoveAll(System.Int32,System.Int32,System.Int32,System.Int32)">CanMoveAll(Int32, Int32, Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Returns true if there are items at the current position specified, and all items at that position
+can be moved to the target position; false otherwise.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool CanMoveAll(int currentX, int currentY, int targetX, int targetY)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">currentX</span></td>
+        <td><p>X-value of the location to move items from.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">currentY</span></td>
+        <td><p>Y-value of the location to move items from.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">targetX</span></td>
+        <td><p>X-value of the location to move items to.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">targetY</span></td>
+        <td><p>Y-value of the location to move items to.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>true if all items at the position current can be moved to the position target; false if one or more items
+cannot be moved or there are no items to move.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_Clear_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.Clear*"></a>
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_Clear" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.Clear">Clear()</h4>
+  <div class="markdown level1 summary"><p>Clears all items out of the spatial map.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Clear()</code></pre>
+  </div>
+  
+  
+  <a id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_Contains_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.Contains*"></a>
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_Contains__0_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.Contains(`0)">Contains(T)</h4>
+  <div class="markdown level1 summary"><p>Returns whether or not the spatial map contains the given item.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Contains(T item)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">item</span></td>
+        <td><p>The item to check for.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True if the given item is contained in the spatial map, false if not.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_Contains_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.Contains*"></a>
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_Contains_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.Contains(SadRogue.Primitives.Point)">Contains(Point)</h4>
+  <div class="markdown level1 summary"><p>Returns if there is an item in the spatial map at the given position or not.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Contains(Point position)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><span class="parametername">position</span></td>
+        <td><p>The position to check for.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True if there is some item at the given position, false if not.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_Contains_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.Contains*"></a>
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_Contains_System_Int32_System_Int32_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.Contains(System.Int32,System.Int32)">Contains(Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Returns if there is an item in the spatial map at the given position or not.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Contains(int x, int y)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">x</span></td>
+        <td><p>The x-value of the position to check for.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">y</span></td>
+        <td><p>The y-value of the position to check for.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True if there is some item at the given position, false if not.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_GetEnumerator_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.GetEnumerator*"></a>
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_GetEnumerator" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.GetEnumerator">GetEnumerator()</h4>
+  <div class="markdown level1 summary"><p>Used by foreach loop, so that the class will give ISpatialTuple objects when used in a
+foreach loop. Generally should never be called explicitly.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerator&lt;ItemPositionPair&lt;T&gt;&gt; GetEnumerator()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerator-1">IEnumerator</a>&lt;<a class="xref" href="SadRogue.Primitives.SpatialMaps.ItemPositionPair-1.html">ItemPositionPair</a>&lt;T&gt;&gt;</td>
+        <td><p>An enumerator for the spatial map.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_GetItemsAt_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.GetItemsAt*"></a>
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_GetItemsAt_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.GetItemsAt(SadRogue.Primitives.Point)">GetItemsAt(Point)</h4>
+  <div class="markdown level1 summary"><p>Gets the item(s) at the given position if there are any items, or returns
+nothing if there is nothing at that position.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ListEnumerator&lt;T&gt; GetItemsAt(Point position)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><span class="parametername">position</span></td>
+        <td><p>The position to return the item(s) for.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.ListEnumerator-1.html">ListEnumerator</a>&lt;T&gt;</td>
+        <td><p>The item(s) at the given position if there are any items, or nothing if there is nothing
+at that position.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_GetItemsAt_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.GetItemsAt*"></a>
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_GetItemsAt_System_Int32_System_Int32_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.GetItemsAt(System.Int32,System.Int32)">GetItemsAt(Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Gets the item(s) at the given position if there are any items, or returns
+nothing if there is nothing at that position.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ListEnumerator&lt;T&gt; GetItemsAt(int x, int y)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">x</span></td>
+        <td><p>The x-value of the position to return the item(s) for.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">y</span></td>
+        <td><p>The y-value of the position to return the item(s) for.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.ListEnumerator-1.html">ListEnumerator</a>&lt;T&gt;</td>
+        <td><p>The item(s) at the given position if there are any items, or nothing if there is nothing
+at that position.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_GetPositionOf_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.GetPositionOf*"></a>
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_GetPositionOf__0_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.GetPositionOf(`0)">GetPositionOf(T)</h4>
+  <div class="markdown level1 summary"><p>Gets the position associated with the given item in the spatial map.  If the item does not exist in the
+spatial map, throws ArgumentException.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Point GetPositionOf(T item)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">item</span></td>
+        <td><p>The item to get the position for.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><p>The position associated with the given item.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_GetPositionOfOrNull_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.GetPositionOfOrNull*"></a>
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_GetPositionOfOrNull__0_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.GetPositionOfOrNull(`0)">GetPositionOfOrNull(T)</h4>
+  <div class="markdown level1 summary"><p>Gets the position associated with the given item in the spatial map, or null if that item is
+not found.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Nullable&lt;Point&gt; GetPositionOfOrNull(T item)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">item</span></td>
+        <td><p>The item to get the position for.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.nullable-1">Nullable</a>&lt;<a class="xref" href="SadRogue.Primitives.Point.html">Point</a>&gt;</td>
+        <td><p>The position associated with the given item, if it exists in the spatial map, or null
+if the item does not exist.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_Move_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.Move*"></a>
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_Move__0_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.Move(`0,SadRogue.Primitives.Point)">Move(T, Point)</h4>
+  <div class="markdown level1 summary"><p>Moves the item specified to the position specified, updating its <a class="xref" href="SadRogue.Primitives.IPositionable.html#SadRogue_Primitives_IPositionable_Position">Position</a> field
+accordingly. If the item does not exist in the spatial map, the function throws ArgumentException.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Move(T item, Point target)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">item</span></td>
+        <td><p>The item to move.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><span class="parametername">target</span></td>
+        <td><p>The position to move it to.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_Move_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.Move*"></a>
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_Move__0_System_Int32_System_Int32_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.Move(`0,System.Int32,System.Int32)">Move(T, Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Moves the item specified to the position specified, updating its <a class="xref" href="SadRogue.Primitives.IPositionable.html#SadRogue_Primitives_IPositionable_Position">Position</a> field
+accordingly. If the item does not exist in the spatial map or is already at the target position, the function
+throws ArgumentException.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Move(T item, int targetX, int targetY)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">item</span></td>
+        <td><p>The item to move.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">targetX</span></td>
+        <td><p>X-value of the location to move it to.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">targetY</span></td>
+        <td><p>Y-value of the location to move it to.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_MoveAll_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.MoveAll*"></a>
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_MoveAll_SadRogue_Primitives_Point_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.MoveAll(SadRogue.Primitives.Point,SadRogue.Primitives.Point)">MoveAll(Point, Point)</h4>
+  <div class="markdown level1 summary"><p>Moves all items at the specified source location to the target location, updating their
+<a class="xref" href="SadRogue.Primitives.IPositionable.html#SadRogue_Primitives_IPositionable_Position">Position</a> fields accordingly.  Throws ArgumentException if there are
+no items to be moved.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void MoveAll(Point current, Point target)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><span class="parametername">current</span></td>
+        <td><p>Location to move items from.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><span class="parametername">target</span></td>
+        <td><p>Location to move items to.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_MoveAll_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.MoveAll*"></a>
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_MoveAll_System_Int32_System_Int32_System_Int32_System_Int32_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.MoveAll(System.Int32,System.Int32,System.Int32,System.Int32)">MoveAll(Int32, Int32, Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Moves all items at the specified source location to the target location, updating their
+<a class="xref" href="SadRogue.Primitives.IPositionable.html#SadRogue_Primitives_IPositionable_Position">Position</a> fields accordingly.  Throws ArgumentException if there are
+no items to be moved.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void MoveAll(int currentX, int currentY, int targetX, int targetY)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">currentX</span></td>
+        <td><p>X-value of the location to move items from.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">currentY</span></td>
+        <td><p>Y-value of the location to move items from.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">targetX</span></td>
+        <td><p>X-value of the location to move items to.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">targetY</span></td>
+        <td><p>Y-value of the location to move items to.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_MoveValid_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.MoveValid*"></a>
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_MoveValid_SadRogue_Primitives_Point_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.MoveValid(SadRogue.Primitives.Point,SadRogue.Primitives.Point)">MoveValid(Point, Point)</h4>
+  <div class="markdown level1 summary"><p>Moves all items at the specified source location that can be moved to the target location. Returns all items that were
+moved.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;T&gt; MoveValid(Point current, Point target)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><span class="parametername">current</span></td>
+        <td><p>Location to move items from.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><span class="parametername">target</span></td>
+        <td><p>Location to move items to.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;T&gt;</td>
+        <td><p>All items that were moved, or an empty list if no items were moved.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_MoveValid_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.MoveValid*"></a>
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_MoveValid_SadRogue_Primitives_Point_SadRogue_Primitives_Point_System_Collections_Generic_List__0__" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.MoveValid(SadRogue.Primitives.Point,SadRogue.Primitives.Point,System.Collections.Generic.List{`0})">MoveValid(Point, Point, List&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Moves all items at the specified source location that can be moved to the target location. Adds all items that were
+moved to the given list.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void MoveValid(Point current, Point target, List&lt;T&gt; itemsMovedOutput)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><span class="parametername">current</span></td>
+        <td><p>Location to move items from.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><span class="parametername">target</span></td>
+        <td><p>Location to move items to.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;T&gt;</td>
+        <td><span class="parametername">itemsMovedOutput</span></td>
+        <td><p>A list to which all items successfully moved are added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_MoveValid_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.MoveValid*"></a>
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_MoveValid_System_Int32_System_Int32_System_Int32_System_Int32_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.MoveValid(System.Int32,System.Int32,System.Int32,System.Int32)">MoveValid(Int32, Int32, Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Moves all items at the specified location that can be moved to the target one. Returns all items that were moved.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;T&gt; MoveValid(int currentX, int currentY, int targetX, int targetY)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">currentX</span></td>
+        <td><p>X-value of the location to move items from.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">currentY</span></td>
+        <td><p>Y-value of the location to move items from.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">targetX</span></td>
+        <td><p>X-value of the location to move items to.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">targetY</span></td>
+        <td><p>Y-value of the location to move items to.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;T&gt;</td>
+        <td><p>All items that were moved, or nothing if no items were moved.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_MoveValid_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.MoveValid*"></a>
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_MoveValid_System_Int32_System_Int32_System_Int32_System_Int32_System_Collections_Generic_List__0__" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.MoveValid(System.Int32,System.Int32,System.Int32,System.Int32,System.Collections.Generic.List{`0})">MoveValid(Int32, Int32, Int32, Int32, List&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Moves all items at the specified source location that can be moved to the target location. Adds all items that were
+moved to the given list.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void MoveValid(int currentX, int currentY, int targetX, int targetY, List&lt;T&gt; itemsMovedOutput)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">currentX</span></td>
+        <td><p>X-value of the location to move items from.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">currentY</span></td>
+        <td><p>Y-value of the location to move items from.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">targetX</span></td>
+        <td><p>X-value of the location to move items to.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">targetY</span></td>
+        <td><p>Y-value of the location to move items to.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;T&gt;</td>
+        <td><span class="parametername">itemsMovedOutput</span></td>
+        <td><p>A list to which all items successfully moved are added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_Remove_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.Remove*"></a>
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_Remove__0_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.Remove(`0)">Remove(T)</h4>
+  <div class="markdown level1 summary"><p>Removes the item specified, if it exists.  Throws ArgumentException if the item is
+not in the spatial map.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Remove(T item)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">item</span></td>
+        <td><p>The item to remove.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_Remove_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.Remove*"></a>
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_Remove_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.Remove(SadRogue.Primitives.Point)">Remove(Point)</h4>
+  <div class="markdown level1 summary"><p>Removes all items at the specified location from the spatial map. Returns all items
+that were removed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;T&gt; Remove(Point position)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><span class="parametername">position</span></td>
+        <td><p>Position to remove items from.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;T&gt;</td>
+        <td><p>All items that were removed, or an empty list if no items were removed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_Remove_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.Remove*"></a>
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_Remove_System_Int32_System_Int32_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.Remove(System.Int32,System.Int32)">Remove(Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Removes all items at the specified location from the spatial map. Returns all items
+that were removed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;T&gt; Remove(int x, int y)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">x</span></td>
+        <td><p>X-value of the position to remove items from.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">y</span></td>
+        <td><p>Y-value of the position to remove items from.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;T&gt;</td>
+        <td><p>All items that were removed, or nothing if no items were removed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_ToString_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.ToString*"></a>
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_ToString" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.ToString">ToString()</h4>
+  <div class="markdown level1 summary"><p>Returns a string representation of the spatial map.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><p>A string representation of the spatial map.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_ToString_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.ToString*"></a>
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_ToString_System_Func__0_System_String__" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.ToString(System.Func{`0,System.String})">ToString(Func&lt;T, String&gt;)</h4>
+  <div class="markdown level1 summary"><p>Returns a string representation of the spatial map, allowing display of the
+spatial map's items in a specified way.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ToString(Func&lt;T, string&gt; itemStringifier)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;T, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td><span class="parametername">itemStringifier</span></td>
+        <td><p>Function that turns an item into a string.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><p>A string representation of the spatial map.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_TryAdd_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.TryAdd*"></a>
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_TryAdd__0_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.TryAdd(`0)">TryAdd(T)</h4>
+  <div class="markdown level1 summary"><p>Adds the given item at its position, provided the item is not already in the spatial map. If the item is
+already added, returns false.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryAdd(T item)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">item</span></td>
+        <td><p>The item to add.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True if the item was successfully added; false otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_TryAdd_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.TryAdd*"></a>
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_TryAdd__0_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.TryAdd(`0,SadRogue.Primitives.Point)">TryAdd(T, Point)</h4>
+  <div class="markdown level1 summary"><p>Changes the position field of the given item to the given value, and then adds it to the spatial map, provided
+the item is not already in the spatial map. If the item is already added, nothing is changed and the function returns false.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryAdd(T item, Point position)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">item</span></td>
+        <td><p>The item to add.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><span class="parametername">position</span></td>
+        <td><p>The position at which to add the new item.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True if the item was successfully added; false otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_TryAdd_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.TryAdd*"></a>
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_TryAdd__0_System_Int32_System_Int32_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.TryAdd(`0,System.Int32,System.Int32)">TryAdd(T, Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Changes the position field of the given item to the given value, and then adds it to the spatial map, provided
+the item is not already in the spatial map. If the item is already added, nothing is changed and the function returns false.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryAdd(T item, int x, int y)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">item</span></td>
+        <td><p>The item to add.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">x</span></td>
+        <td><p>x-value of the position to add item to.  Must match the item's Position field.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">y</span></td>
+        <td><p>y-value of the position to add item to.  Must match the item's Position field.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True if the item was successfully added; false otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_TryGetPositionOf_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.TryGetPositionOf*"></a>
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_TryGetPositionOf__0_SadRogue_Primitives_Point__" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.TryGetPositionOf(`0,SadRogue.Primitives.Point@)">TryGetPositionOf(T, out Point)</h4>
+  <div class="markdown level1 summary"><p>Attempts to get the position of the given item in the spatial map.  If successful, the function will return
+true and the position will be stored in the <code data-dev-comment-type="paramref" class="paramref">position</code> parameter.  If the item was not found,
+<code data-dev-comment-type="paramref" class="paramref">position</code> will have the default value for Point, and the function will return false.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryGetPositionOf(T item, out Point position)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">item</span></td>
+        <td><p>Item to retrieve the position of.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><span class="parametername">position</span></td>
+        <td><p>The position of the item if found, or default(Point) if not.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True if the item was found in the spatial map, false otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_TryMove_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.TryMove*"></a>
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_TryMove__0_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.TryMove(`0,SadRogue.Primitives.Point)">TryMove(T, Point)</h4>
+  <div class="markdown level1 summary"><p>Attempts to move the given item from its current location to the specified one. Does nothing and returns
+false if the item cannot be moved to the given location.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryMove(T item, Point target)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">item</span></td>
+        <td><p>Item to move.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><span class="parametername">target</span></td>
+        <td><p>Location to move item to.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True if the item was moved; false if not.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_TryMove_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.TryMove*"></a>
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_TryMove__0_System_Int32_System_Int32_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.TryMove(`0,System.Int32,System.Int32)">TryMove(T, Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Attempts to move the given item from its current location to the specified one. Does nothing and returns
+false if the item cannot be moved to the given location.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryMove(T item, int targetX, int targetY)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">item</span></td>
+        <td><p>Item to move.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">targetX</span></td>
+        <td><p>X-value of the location to move item to.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">targetY</span></td>
+        <td><p>Y-value of the location to move item to.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True if the item was moved; false if not.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_TryMoveAll_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.TryMoveAll*"></a>
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_TryMoveAll_SadRogue_Primitives_Point_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.TryMoveAll(SadRogue.Primitives.Point,SadRogue.Primitives.Point)">TryMoveAll(Point, Point)</h4>
+  <div class="markdown level1 summary"><p>Moves all items at the specified source location to the target location.  Returns false if one or
+more items cannot be moved or there are no items to be moved.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryMoveAll(Point current, Point target)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><span class="parametername">current</span></td>
+        <td><p>Location to move items from.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><span class="parametername">target</span></td>
+        <td><p>Location to move items to.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True if all items at <code data-dev-comment-type="paramref" class="paramref">current</code> were moved to <code data-dev-comment-type="paramref" class="paramref">target</code>; false otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_TryMoveAll_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.TryMoveAll*"></a>
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_TryMoveAll_System_Int32_System_Int32_System_Int32_System_Int32_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.TryMoveAll(System.Int32,System.Int32,System.Int32,System.Int32)">TryMoveAll(Int32, Int32, Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Moves all items at the specified source location to the target location.  Returns false if one or
+more items cannot be moved or there are no items to be moved.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryMoveAll(int currentX, int currentY, int targetX, int targetY)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">currentX</span></td>
+        <td><p>X-value of the location to move items from.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">currentY</span></td>
+        <td><p>Y-value of the location to move items from.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">targetX</span></td>
+        <td><p>X-value of the location to move items to.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">targetY</span></td>
+        <td><p>Y-value of the location to move items to.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True if all items at (currentX, currentY) were moved to (targetX, targetY); false otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_TryRemove_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.TryRemove*"></a>
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_TryRemove__0_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.TryRemove(`0)">TryRemove(T)</h4>
+  <div class="markdown level1 summary"><p>Removes the item specified, if it exists.  If the item is not in the spatial map, returns false.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryRemove(T item)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">item</span></td>
+        <td><p>The item to remove.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True if the item was successfully removed; false otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_TryRemove_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.TryRemove*"></a>
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_TryRemove_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.TryRemove(SadRogue.Primitives.Point)">TryRemove(Point)</h4>
+  <div class="markdown level1 summary"><p>Attempts to remove all items at the specified location from the spatial map. Returns true if the items
+were successfully removed; false if one or more failed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryRemove(Point position)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><span class="parametername">position</span></td>
+        <td><p>Position to remove items from.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True if the items were successfully removed; false otherwise</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_TryRemove_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.TryRemove*"></a>
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_TryRemove_System_Int32_System_Int32_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.TryRemove(System.Int32,System.Int32)">TryRemove(Int32, Int32)</h4>
+  <div class="markdown level1 summary"><p>Attempts to remove all items at the specified location from the spatial map. Returns true if the items
+were successfully removed; false if one or more failed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TryRemove(int x, int y)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">x</span></td>
+        <td><p>X-value of the position to remove items from.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">y</span></td>
+        <td><p>Y-value of the position to remove items from.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True if the items were successfully removed; false otherwise</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="events">Events
+  </h3>
+  
+  
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_ItemAdded" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.ItemAdded">ItemAdded</h4>
+  <div class="markdown level1 summary"><p>Event that is fired directly after an item has been added to the spatial map.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;ItemEventArgs&lt;T&gt;&gt; ItemAdded</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="SadRogue.Primitives.SpatialMaps.ItemEventArgs-1.html">ItemEventArgs</a>&lt;T&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_ItemMoved" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.ItemMoved">ItemMoved</h4>
+  <div class="markdown level1 summary"><p>Event that is fired directly after an item in the spatial map has been moved.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;ItemMovedEventArgs&lt;T&gt;&gt; ItemMoved</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="SadRogue.Primitives.SpatialMaps.ItemMovedEventArgs-1.html">ItemMovedEventArgs</a>&lt;T&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_ItemRemoved" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.ItemRemoved">ItemRemoved</h4>
+  <div class="markdown level1 summary"><p>Event that is fired directly after an item has been removed from the spatial map.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;ItemEventArgs&lt;T&gt;&gt; ItemRemoved</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="SadRogue.Primitives.SpatialMaps.ItemEventArgs-1.html">ItemEventArgs</a>&lt;T&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="eii">Explicit Interface Implementations
+  </h3>
+  
+  
+  <a id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_SadRogue_Primitives_SpatialMaps_IReadOnlySpatialMap_T__GetItemsAt_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.SadRogue#Primitives#SpatialMaps#IReadOnlySpatialMap{T}#GetItemsAt*"></a>
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_SadRogue_Primitives_SpatialMaps_IReadOnlySpatialMap_T__GetItemsAt_SadRogue_Primitives_Point_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.SadRogue#Primitives#SpatialMaps#IReadOnlySpatialMap{T}#GetItemsAt(SadRogue.Primitives.Point)">IReadOnlySpatialMap&lt;T&gt;.GetItemsAt(Point)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IEnumerable&lt;T&gt; IReadOnlySpatialMap&lt;T&gt;.GetItemsAt(Point position)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SadRogue.Primitives.Point.html">Point</a></td>
+        <td><span class="parametername">position</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_SadRogue_Primitives_SpatialMaps_IReadOnlySpatialMap_T__GetItemsAt_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.SadRogue#Primitives#SpatialMaps#IReadOnlySpatialMap{T}#GetItemsAt*"></a>
+  <h4 id="SadRogue_Primitives_SpatialMaps_AutoSyncAdvancedMultiSpatialMap_1_SadRogue_Primitives_SpatialMaps_IReadOnlySpatialMap_T__GetItemsAt_System_Int32_System_Int32_" data-uid="SadRogue.Primitives.SpatialMaps.AutoSyncAdvancedMultiSpatialMap`1.SadRogue#Primitives#SpatialMaps#IReadOnlySpatialMap{T}#GetItemsAt(System.Int32,System.Int32)">IReadOnlySpatialMap&lt;T&gt;.GetItemsAt(Int32, Int32)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IEnumerable&lt;T&gt; IReadOnlySpatialMap&lt;T&gt;.GetItemsAt(int x, int y)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">x</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">y</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.ISpatialMap-1.html">ISpatialMap&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="SadRogue.Primitives.SpatialMaps.IReadOnlySpatialMap-1.html">IReadOnlySpatialMap&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">System.Collections.Generic.IEnumerable&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerable">System.Collections.IEnumerable</a>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="SadRogue.Primitives.PropertyChangedEventHelpers.html#SadRogue_Primitives_PropertyChangedEventHelpers_SafelySetProperty__2___0___1____1_System_EventHandler_SadRogue_Primitives_ValueChangedEventArgs___1___">PropertyChangedEventHelpers.SafelySetProperty&lt;TObject, TProperty&gt;(TObject, ref TProperty, TProperty, EventHandler&lt;ValueChangedEventArgs&lt;TProperty&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="SadRogue.Primitives.PropertyChangedEventHelpers.html#SadRogue_Primitives_PropertyChangedEventHelpers_SafelySetProperty__2___0___1____1_System_EventHandler_SadRogue_Primitives_ValueChangedEventArgs___1___System_EventHandler_SadRogue_Primitives_ValueChangedEventArgs___1___">PropertyChangedEventHelpers.SafelySetProperty&lt;TObject, TProperty&gt;(TObject, ref TProperty, TProperty, EventHandler&lt;ValueChangedEventArgs&lt;TProperty&gt;&gt;, EventHandler&lt;ValueChangedEventArgs&lt;TProperty&gt;&gt;)</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

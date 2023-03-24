@@ -73,8 +73,8 @@
   
   <h1 id="SadRogue_Primitives_PointHashers_KnownSizeHasher" data-uid="SadRogue.Primitives.PointHashers.KnownSizeHasher" class="text-break">Class KnownSizeHasher
   </h1>
-  <div class="markdown level0 summary"><p>NON-GENERALIZED hashing algorithm for <a class="xref" href="SadRogue.Primitives.Point.html">Point</a> instances that calculates a hash, assuming a known
-maximum x-value.</p>
+  <div class="markdown level0 summary"><p>NON-GENERALIZED hashing algorithm for <a class="xref" href="SadRogue.Primitives.Point.html">Point</a> instances that calculates a hash, assuming points will
+fall between (0, 0) and some known maximum width.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -90,11 +90,11 @@ maximum x-value.</p>
   </div>
   <h5 id="SadRogue_Primitives_PointHashers_KnownSizeHasher_remarks"><strong>Remarks</strong></h5>
   <div class="markdown level0 remarks"><p>This is NOT an efficient generalized hashing algorithm; it generates a hash code using the assumption
-of a &quot;maximum width&quot; that can occur in any point given to it.  It simply uses the <a class="xref" href="SadRogue.Primitives.Point.html#SadRogue_Primitives_Point_ToIndex_System_Int32_">ToIndex(Int32)</a>
-function to generate a hash.  The algorithm WILL still function on points outside of the max x-value; however
-it will simply start to generate collisions.</p>
+that any points given to it fall between (0, 0) and the (width - 1, arbitrary_y).  It simply uses the
+<a class="xref" href="SadRogue.Primitives.Point.html#SadRogue_Primitives_Point_ToIndex_System_Int32_">ToIndex(Int32)</a> function to generate a hash.  The algorithm WILL still function on points
+outside of the assumed bounds; however it will simply start to generate collisions.</p>
 <p>This algorithm is nonetheless useful in some cases; the assumption that points will fall from
-(0, 0) to some known max width is fairly common (as it could apply to any fixed-size grid).  Since this
+(0, 0) to some known max x-value is fairly common (as it could apply to any fixed-size grid).  Since this
 algorithm can be significantly faster to compute than fully generalized algorithms, it can be useful for these
 cases.</p>
 </div>
@@ -109,7 +109,7 @@ cases.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public KnownSizeHasher(int maxXValue)</code></pre>
+    <pre><code class="lang-csharp hljs">public KnownSizeHasher(int boundsWidth)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -123,9 +123,9 @@ cases.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
-        <td><span class="parametername">maxXValue</span></td>
-        <td><p>Maximum x-value to assume for points that are hashed by this algorithm.
-It IS allowed to hash points outside this value, however doing so may generate
+        <td><span class="parametername">boundsWidth</span></td>
+        <td><p>The width of the area points are assumed to fall in.  Points are assumed to fall between (0, 0)
+and (boundsWidth - 1).  It WILL hash points outside this range, however doing so may generate
 collisions.</p>
 </td>
       </tr>
@@ -135,13 +135,13 @@ collisions.</p>
   </h3>
   
   
-  <h4 id="SadRogue_Primitives_PointHashers_KnownSizeHasher_MaxXValue" data-uid="SadRogue.Primitives.PointHashers.KnownSizeHasher.MaxXValue">MaxXValue</h4>
-  <div class="markdown level1 summary"><p>Maximum x-value that is generally expected for points that this hashing algorithm will receive.</p>
+  <h4 id="SadRogue_Primitives_PointHashers_KnownSizeHasher_BoundsWidth" data-uid="SadRogue.Primitives.PointHashers.KnownSizeHasher.BoundsWidth">BoundsWidth</h4>
+  <div class="markdown level1 summary"><p>The width of the area points are assumed to fall in.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public readonly int MaxXValue</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly int BoundsWidth</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -249,6 +249,13 @@ collisions.</p>
       </tr>
     </tbody>
   </table>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="SadRogue.Primitives.PropertyChangedEventHelpers.html#SadRogue_Primitives_PropertyChangedEventHelpers_SafelySetProperty__2___0___1____1_System_EventHandler_SadRogue_Primitives_ValueChangedEventArgs___1___">PropertyChangedEventHelpers.SafelySetProperty&lt;TObject, TProperty&gt;(TObject, ref TProperty, TProperty, EventHandler&lt;ValueChangedEventArgs&lt;TProperty&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="SadRogue.Primitives.PropertyChangedEventHelpers.html#SadRogue_Primitives_PropertyChangedEventHelpers_SafelySetProperty__2___0___1____1_System_EventHandler_SadRogue_Primitives_ValueChangedEventArgs___1___System_EventHandler_SadRogue_Primitives_ValueChangedEventArgs___1___">PropertyChangedEventHelpers.SafelySetProperty&lt;TObject, TProperty&gt;(TObject, ref TProperty, TProperty, EventHandler&lt;ValueChangedEventArgs&lt;TProperty&gt;&gt;, EventHandler&lt;ValueChangedEventArgs&lt;TProperty&gt;&gt;)</a>
+  </div>
 </article>
           </div>
           

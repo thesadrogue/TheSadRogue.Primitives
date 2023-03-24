@@ -329,8 +329,7 @@ to using the Equals and GetHashCode functions of the Point struct.</p>
   <a id="SadRogue_Primitives_Area_UseIndexEnumeration_" data-uid="SadRogue.Primitives.Area.UseIndexEnumeration*"></a>
   <h4 id="SadRogue_Primitives_Area_UseIndexEnumeration" data-uid="SadRogue.Primitives.Area.UseIndexEnumeration">UseIndexEnumeration</h4>
   <div class="markdown level1 summary"><p>Whether or not it is more efficient for this implementation to use enumeration by index,
-rather than generic IEnumerable, when iterating over positions using <a class="xref" href="SadRogue.Primitives.ReadOnlyAreaExtensions.html#SadRogue_Primitives_ReadOnlyAreaExtensions_FastEnumerator_SadRogue_Primitives_IReadOnlyArea_">FastEnumerator(IReadOnlyArea)</a>
-or <a class="xref" href="SadRogue.Primitives.ReadOnlyAreaPositionsEnumerable.html">ReadOnlyAreaPositionsEnumerable</a>.</p>
+rather than generic IEnumerable, when iterating over positions using <a class="xref" href="SadRogue.Primitives.ReadOnlyAreaPositionsEnumerator.html">ReadOnlyAreaPositionsEnumerator</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -356,6 +355,8 @@ or <a class="xref" href="SadRogue.Primitives.ReadOnlyAreaPositionsEnumerable.htm
   <div class="markdown level1 remarks"><p>Set this to true if your indexer implementation scales well (constant time), and is relatively fast.  Implementations with
 more complex indexers should set this to false.</p>
 <p>The default interface implementation returns false, in order to preserve backwards compatibility with previous versions.</p>
+<p>If you set this to false, your IEnumerable.GetEnumerator() implementations must NOT call return a ReadOnlyAreaPositionsEnumerator,
+as this will create an infinite loop.</p>
 </div>
   <h3 id="methods">Methods
   </h3>
@@ -729,7 +730,7 @@ to using the Equals and GetHashCode functions of the Point struct.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IEnumerator&lt;Point&gt; GetEnumerator()</code></pre>
+    <pre><code class="lang-csharp hljs">public List&lt;Point&gt;.Enumerator GetEnumerator()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -741,7 +742,7 @@ to using the Equals and GetHashCode functions of the Point struct.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerator-1">IEnumerator</a>&lt;<a class="xref" href="SadRogue.Primitives.Point.html">Point</a>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1.enumerator">List.Enumerator</a>&lt;&gt;</td>
         <td><p>An enumerator that iterates through all the positions in the Area, in the order they were added.</p>
 </td>
       </tr>
@@ -1256,6 +1257,13 @@ eg. [(1, 2), (3, 4), (5, 6)].</p>
   </div>
   <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerable">System.Collections.IEnumerable</a>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="SadRogue.Primitives.PropertyChangedEventHelpers.html#SadRogue_Primitives_PropertyChangedEventHelpers_SafelySetProperty__2___0___1____1_System_EventHandler_SadRogue_Primitives_ValueChangedEventArgs___1___">PropertyChangedEventHelpers.SafelySetProperty&lt;TObject, TProperty&gt;(TObject, ref TProperty, TProperty, EventHandler&lt;ValueChangedEventArgs&lt;TProperty&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="SadRogue.Primitives.PropertyChangedEventHelpers.html#SadRogue_Primitives_PropertyChangedEventHelpers_SafelySetProperty__2___0___1____1_System_EventHandler_SadRogue_Primitives_ValueChangedEventArgs___1___System_EventHandler_SadRogue_Primitives_ValueChangedEventArgs___1___">PropertyChangedEventHelpers.SafelySetProperty&lt;TObject, TProperty&gt;(TObject, ref TProperty, TProperty, EventHandler&lt;ValueChangedEventArgs&lt;TProperty&gt;&gt;, EventHandler&lt;ValueChangedEventArgs&lt;TProperty&gt;&gt;)</a>
   </div>
 </article>
           </div>

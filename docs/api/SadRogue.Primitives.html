@@ -94,13 +94,29 @@ unique position in the area.</p>
       <h4><a class="xref" href="SadRogue.Primitives.BisectionResult.html">BisectionResult</a></h4>
       <section><p>Structure representing the result of a rectangle bisection.</p>
 </section>
+      <h4><a class="xref" href="SadRogue.Primitives.BisectionResultEnumerator.html">BisectionResultEnumerator</a></h4>
+      <section><p>A custom enumerator used to iterate over all rectangles in the given bisection result efficiently.  Generally,
+you should simply use a <a class="xref" href="SadRogue.Primitives.BisectionResult.html">BisectionResult</a> in a foreach loop, rather than creating one of these
+manually.</p>
+</section>
       <h4><a class="xref" href="SadRogue.Primitives.BoundedRectangle.html">BoundedRectangle</a></h4>
       <section><p>This class defines a 2D rectangular area, whose area is automatically &quot;locked&quot; to
 being inside a rectangular bounding box as it is changed. A typical use might be
 keeping track of a camera's view area.</p>
 </section>
+      <h4><a class="xref" href="SadRogue.Primitives.BresenhamEnumerator.html">BresenhamEnumerator</a></h4>
+      <section><p>A custom enumerator used to iterate over all positions on the on a line using the
+<a class="xref" href="SadRogue.Primitives.Lines.Algorithm.html#SadRogue_Primitives_Lines_Algorithm_Bresenham">Bresenham</a> line algorithm efficiently.</p>
+<p>Generally, you should use <a class="xref" href="SadRogue.Primitives.Lines.html#SadRogue_Primitives_Lines_GetBresenhamLine_SadRogue_Primitives_Point_SadRogue_Primitives_Point_">GetBresenhamLine(Point, Point)</a>
+to get an instance of this, rather than creating one yourself.</p>
+</section>
       <h4><a class="xref" href="SadRogue.Primitives.ChebyshevDistance.html">ChebyshevDistance</a></h4>
       <section><p>Represents chebyshev distance (equivalent to 8-way movement with no extra cost for diagonals).</p>
+</section>
+      <h4><a class="xref" href="SadRogue.Primitives.CirclePositionsEnumerator.html">CirclePositionsEnumerator</a></h4>
+      <section><p>A custom enumerator used to iterate over all positions on the outside of a circle efficiently.</p>
+<p>Generally, you should use <a class="xref" href="SadRogue.Primitives.Shapes.html#SadRogue_Primitives_Shapes_GetCircle_SadRogue_Primitives_Point_System_Int32_">GetCircle(Point, Int32)</a> to get an instance of this, rather than creating one
+yourself.</p>
 </section>
       <h4><a class="xref" href="SadRogue.Primitives.Color.html">Color</a></h4>
       <section><p>Describes a 32-bit packed color.</p>
@@ -108,6 +124,12 @@ keeping track of a camera's view area.</p>
       <h4><a class="xref" href="SadRogue.Primitives.ColorExtensions.html">ColorExtensions</a></h4>
       <section><p>Contains set of operators that match ones defined by other packages for interoperability,
 so syntax may be uniform.  Functionality is similar to the corresponding actual operators for Color.</p>
+</section>
+      <h4><a class="xref" href="SadRogue.Primitives.DDAEnumerator.html">DDAEnumerator</a></h4>
+      <section><p>A custom enumerator used to iterate over all positions on the on a line using the
+<a class="xref" href="SadRogue.Primitives.Lines.Algorithm.html#SadRogue_Primitives_Lines_Algorithm_DDA">DDA</a> line algorithm efficiently.</p>
+<p>Generally, you should use <a class="xref" href="SadRogue.Primitives.Lines.html#SadRogue_Primitives_Lines_GetDDALine_SadRogue_Primitives_Point_SadRogue_Primitives_Point_">GetDDALine(Point, Point)</a>
+to get an instance of this, rather than creating one yourself.</p>
 </section>
       <h4><a class="xref" href="SadRogue.Primitives.Direction.html">Direction</a></h4>
       <section><p>Structure representing the concept of a &quot;direction&quot; on a grid, and &quot;defines&quot; the coordinate plane via the
@@ -130,6 +152,11 @@ various distance calculations.</p>
 which contains the corresponding value from this enum.  Useful for easy mapping of Distance
 types to a primitive type (for cases like a switch statement).</p>
 </section>
+      <h4><a class="xref" href="SadRogue.Primitives.EllipsePositionsEnumerator.html">EllipsePositionsEnumerator</a></h4>
+      <section><p>A custom enumerator used to iterate over all positions on the outside of an ellipse efficiently.</p>
+<p>Generally, you should use <a class="xref" href="SadRogue.Primitives.Shapes.html#SadRogue_Primitives_Shapes_GetEllipse_SadRogue_Primitives_Point_SadRogue_Primitives_Point_">GetEllipse(Point, Point)</a> to get an instance of this, rather than creating one
+yourself.</p>
+</section>
       <h4><a class="xref" href="SadRogue.Primitives.EuclideanDistance.html">EuclideanDistance</a></h4>
       <section><p>Represents euclidean distance (equivalent to 8-way movement with ~1.41 movement cost for diagonals).</p>
 </section>
@@ -139,12 +166,33 @@ types to a primitive type (for cases like a switch statement).</p>
       <h4><a class="xref" href="SadRogue.Primitives.GradientStop.html">GradientStop</a></h4>
       <section><p>A gradient stop. Defines a color and where it is located within the gradient.</p>
 </section>
+      <h4><a class="xref" href="SadRogue.Primitives.IDGenerator.html">IDGenerator</a></h4>
+      <section><p>Class designed as a helper for situations where you need to generate and assign a unique
+integer to each instance of a class, eg. for a class implementing <a class="xref" href="SadRogue.Primitives.IHasID.html">IHasID</a>.</p>
+</section>
+      <h4><a class="xref" href="SadRogue.Primitives.Lines.html">Lines</a></h4>
+      <section><p>Provides implementations of various line-drawing algorithms which are useful for generating lines on a 2D
+integer grid.</p>
+</section>
+      <h4><a class="xref" href="SadRogue.Primitives.Lines.Algorithm.html">Lines.Algorithm</a></h4>
+      <section><p>Various supported line-drawing algorithms.</p>
+</section>
+      <h4><a class="xref" href="SadRogue.Primitives.ListEnumerator-1.html">ListEnumerator&lt;T&gt;</a></h4>
+      <section><p>A custom enumerator that simply iterates over a List.  It differs from C#'s built-in iterator in that it
+also implements IEnumerable, and so can be used as a substitute for IEnumerable&lt;T&gt;.</p>
+</section>
       <h4><a class="xref" href="SadRogue.Primitives.ManhattanDistance.html">ManhattanDistance</a></h4>
       <section><p>Represents manhattan distance (equivalent to 4-way, cardinal-only movement).</p>
 </section>
       <h4><a class="xref" href="SadRogue.Primitives.MathHelpers.html">MathHelpers</a></h4>
       <section><p>Static class consisting of mathematical &quot;helper&quot; functions and constants that can be useful
 for performing operations on a 2D grid.</p>
+</section>
+      <h4><a class="xref" href="SadRogue.Primitives.OrthogonalEnumerator.html">OrthogonalEnumerator</a></h4>
+      <section><p>A custom enumerator used to iterate over all positions on the on a line using the
+<a class="xref" href="SadRogue.Primitives.Lines.Algorithm.html#SadRogue_Primitives_Lines_Algorithm_Orthogonal">Orthogonal</a> line algorithm efficiently.</p>
+<p>Generally, you should use <a class="xref" href="SadRogue.Primitives.Lines.html#SadRogue_Primitives_Lines_GetOrthogonalLine_SadRogue_Primitives_Point_SadRogue_Primitives_Point_">GetOrthogonalLine(Point, Point)</a>
+to get an instance of this, rather than creating one yourself.</p>
 </section>
       <h4><a class="xref" href="SadRogue.Primitives.Palette.html">Palette</a></h4>
       <section><p>A palette of colors.</p>
@@ -159,6 +207,9 @@ so syntax may be uniform.  Functionality is similar to the corresponding actual 
 </section>
       <h4><a class="xref" href="SadRogue.Primitives.PolarCoordinate.html">PolarCoordinate</a></h4>
       <section><p>A Polar Coordinate.</p>
+</section>
+      <h4><a class="xref" href="SadRogue.Primitives.PropertyChangedEventHelpers.html">PropertyChangedEventHelpers</a></h4>
+      <section><p>Helper functions useful for implementing events using <a class="xref" href="SadRogue.Primitives.ValueChangedEventArgs-1.html">ValueChangedEventArgs&lt;TProperty&gt;</a> as their parameter.</p>
 </section>
       <h4><a class="xref" href="SadRogue.Primitives.Radius.html">Radius</a></h4>
       <section><p>Structure representing different shapes that define the concept of a radius on a grid. You cannot
@@ -179,8 +230,14 @@ even if the location center point or shape of the radius is changing.</p>
       <h4><a class="xref" href="SadRogue.Primitives.ReadOnlyAreaExtensions.html">ReadOnlyAreaExtensions</a></h4>
       <section><p>Extension methods for IReadOnlyArea.</p>
 </section>
-      <h4><a class="xref" href="SadRogue.Primitives.ReadOnlyAreaPositionsEnumerable.html">ReadOnlyAreaPositionsEnumerable</a></h4>
+      <h4><a class="xref" href="SadRogue.Primitives.ReadOnlyAreaPositionsEnumerator.html">ReadOnlyAreaPositionsEnumerator</a></h4>
       <section><p>A custom enumerator used to iterate over all positions within an area with a foreach loop efficiently.</p>
+</section>
+      <h4><a class="xref" href="SadRogue.Primitives.ReadOnlyListEnumerator-1.html">ReadOnlyListEnumerator&lt;T&gt;</a></h4>
+      <section><p>A structure similar to <a class="xref" href="SadRogue.Primitives.ListEnumerator-1.html">ListEnumerator&lt;T&gt;</a>, but for <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList&lt;T&gt;</a>.  It is not quite
+as fast as <a class="xref" href="SadRogue.Primitives.ListEnumerator-1.html">ListEnumerator&lt;T&gt;</a>, but is still faster than using the typical Enumerable implementation
+for IReadOnlyList.  You should only use this if you can't use <a class="xref" href="SadRogue.Primitives.ListEnumerator-1.html">ListEnumerator&lt;T&gt;</a> due to the type
+you're working with; they share the same characteristics otherwise.</p>
 </section>
       <h4><a class="xref" href="SadRogue.Primitives.Rectangle.html">Rectangle</a></h4>
       <section><p>Represents a 2D rectangle. Provides numerous static functions that enable creation and common operations
@@ -190,14 +247,43 @@ involving rectangles.</p>
       <section><p>Contains set of operators that match ones defined by other packages for interoperability,
 so syntax may be uniform.  Functionality is similar to the corresponding actual operators for Color.</p>
 </section>
-      <h4><a class="xref" href="SadRogue.Primitives.RectanglePositionsEnumerable.html">RectanglePositionsEnumerable</a></h4>
-      <section><p>A custom enumerator used to iterate over all positions within a rectangle with a foreach loop efficiently.</p>
+      <h4><a class="xref" href="SadRogue.Primitives.RectanglePerimeterPositionsEnumerator.html">RectanglePerimeterPositionsEnumerator</a></h4>
+      <section><p>A custom enumerator used to iterate over all positions on the outside edges of a rectangle efficiently.</p>
+<p>Generally, you should use <a class="xref" href="SadRogue.Primitives.Rectangle.html#SadRogue_Primitives_Rectangle_PerimeterPositions">PerimeterPositions()</a> to get an instance of this, rather than creating one
+yourself.</p>
+</section>
+      <h4><a class="xref" href="SadRogue.Primitives.RectanglePositionsEnumerator.html">RectanglePositionsEnumerator</a></h4>
+      <section><p>A custom enumerator used to iterate over all positions within a rectangle efficiently.</p>
+</section>
+      <h4><a class="xref" href="SadRogue.Primitives.Shapes.html">Shapes</a></h4>
+      <section><p>Provides implementations of various shape algorithms which are useful for for generating points representing
+shapes on a 2D integer grid.</p>
+</section>
+      <h4><a class="xref" href="SadRogue.Primitives.ToStringExtensions.html">ToStringExtensions</a></h4>
+      <section><p>Static class containing extension extension methods for printing various built-in C# classes
+(as well as some grid views) as strings neatly.</p>
+<p>Useful for debugging, and within the primitives library for ToString implementations.</p>
+</section>
+      <h4><a class="xref" href="SadRogue.Primitives.ValueChangedEventArgs-1.html">ValueChangedEventArgs&lt;TProperty&gt;</a></h4>
+      <section><p>Event arguments for an event fired when an object's properties are changed.  Often used with
+<a class="xref" href="SadRogue.Primitives.PropertyChangedEventHelpers.html#SadRogue_Primitives_PropertyChangedEventHelpers_SafelySetProperty__2___0___1____1_System_EventHandler_SadRogue_Primitives_ValueChangedEventArgs___1___">SafelySetProperty&lt;TObject, TProperty&gt;(TObject, ref TProperty, TProperty, EventHandler&lt;ValueChangedEventArgs&lt;TProperty&gt;&gt;)</a>
+and other overloads of that function.</p>
 </section>
     <h3 id="interfaces">Interfaces
   </h3>
+      <h4><a class="xref" href="SadRogue.Primitives.IHasID.html">IHasID</a></h4>
+      <section><p>Interface for a class that has an integer ID value, typically used for items in a spatial map, or generally
+for purposes of hashing.</p>
+</section>
+      <h4><a class="xref" href="SadRogue.Primitives.IHasLayer.html">IHasLayer</a></h4>
+      <section><p>Interface for objects that reside on a &quot;Z-index&quot; or &quot;layer&quot;.</p>
+</section>
       <h4><a class="xref" href="SadRogue.Primitives.IMatchable-1.html">IMatchable&lt;T&gt;</a></h4>
       <section><p>Interface implemented to define a form of checking value equality, without guarantees that it corresponds
 to GetHashCode.</p>
+</section>
+      <h4><a class="xref" href="SadRogue.Primitives.IPositionable.html">IPositionable</a></h4>
+      <section><p>An interface describing an object which has a position on a grid and can move around.</p>
 </section>
       <h4><a class="xref" href="SadRogue.Primitives.IReadOnlyArea.html">IReadOnlyArea</a></h4>
       <section><p>Read-only interface for an arbitrary 2D area.</p>

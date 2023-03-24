@@ -4611,6 +4611,87 @@ The value is a 32-bit unsigned integer, with R in the least significant octet.</
   
   
   <a id="SadRogue_Primitives_Color_Deconstruct_" data-uid="SadRogue.Primitives.Color.Deconstruct*"></a>
+  <h4 id="SadRogue_Primitives_Color_Deconstruct_System_Int32__System_Int32__System_Int32__" data-uid="SadRogue.Primitives.Color.Deconstruct(System.Int32@,System.Int32@,System.Int32@)">Deconstruct(out Int32, out Int32, out Int32)</h4>
+  <div class="markdown level1 summary"><p>Deconstruction method for <a class="xref" href="SadRogue.Primitives.Color.html">Color</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Deconstruct(out int r, out int g, out int b)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">r</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">g</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">b</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_Color_Deconstruct_" data-uid="SadRogue.Primitives.Color.Deconstruct*"></a>
+  <h4 id="SadRogue_Primitives_Color_Deconstruct_System_Int32__System_Int32__System_Int32__System_Int32__" data-uid="SadRogue.Primitives.Color.Deconstruct(System.Int32@,System.Int32@,System.Int32@,System.Int32@)">Deconstruct(out Int32, out Int32, out Int32, out Int32)</h4>
+  <div class="markdown level1 summary"><p>Deconstruction method for <a class="xref" href="SadRogue.Primitives.Color.html">Color</a> with Alpha.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Deconstruct(out int r, out int g, out int b, out int a)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">r</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">g</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">b</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">a</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_Color_Deconstruct_" data-uid="SadRogue.Primitives.Color.Deconstruct*"></a>
   <h4 id="SadRogue_Primitives_Color_Deconstruct_System_Single__System_Single__System_Single__" data-uid="SadRogue.Primitives.Color.Deconstruct(System.Single@,System.Single@,System.Single@)">Deconstruct(out Single, out Single, out Single)</h4>
   <div class="markdown level1 summary"><p>Deconstruction method for <a class="xref" href="SadRogue.Primitives.Color.html">Color</a>.</p>
 </div>
@@ -4783,7 +4864,9 @@ The value is a 32-bit unsigned integer, with R in the least significant octet.</
   
   <a id="SadRogue_Primitives_Color_FromHSL_" data-uid="SadRogue.Primitives.Color.FromHSL*"></a>
   <h4 id="SadRogue_Primitives_Color_FromHSL_System_Single_System_Single_System_Single_" data-uid="SadRogue.Primitives.Color.FromHSL(System.Single,System.Single,System.Single)">FromHSL(Single, Single, Single)</h4>
-  <div class="markdown level1 summary"><p>Sets the color values based on HSL instead of RGB.</p>
+  <div class="markdown level1 summary"><p>Creates a <a class="xref" href="SadRogue.Primitives.Color.html">Color</a> from the specified hue, saturation, lightness, and alpha values.
+Taken from the MIT licensed Windows Community Toolkit:
+<a href="https://github.com/CommunityToolkit/WindowsCommunityToolkit/blob/63cbb4a51bdef59083ccfc86bbcba41f966d0027/Microsoft.Toolkit.Uwp/Helpers/ColorHelper.cs#L246">https://github.com/CommunityToolkit/WindowsCommunityToolkit/blob/63cbb4a51bdef59083ccfc86bbcba41f966d0027/Microsoft.Toolkit.Uwp/Helpers/ColorHelper.cs#L246</a></p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -4803,19 +4886,19 @@ The value is a 32-bit unsigned integer, with R in the least significant octet.</
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">Single</a></td>
         <td><span class="parametername">h</span></td>
-        <td><p>The hue amount.</p>
+        <td><p>0..360 range hue</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">Single</a></td>
         <td><span class="parametername">s</span></td>
-        <td><p>The saturation amount.</p>
+        <td><p>0..1 range saturation</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">Single</a></td>
         <td><span class="parametername">l</span></td>
-        <td><p>The luminance amount.</p>
+        <td><p>0..1 range lightness</p>
 </td>
       </tr>
     </tbody>
@@ -4831,13 +4914,11 @@ The value is a 32-bit unsigned integer, with R in the least significant octet.</
     <tbody>
       <tr>
         <td><a class="xref" href="SadRogue.Primitives.Color.html">Color</a></td>
-        <td></td>
+        <td><p>The created <a class="xref" href="SadRogue.Primitives.Color.html">Color</a>.</p>
+</td>
       </tr>
     </tbody>
   </table>
-  <h5 id="SadRogue_Primitives_Color_FromHSL_System_Single_System_Single_System_Single__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>Taken from <a href="http://www.easyrgb.com/index.php?X=MATH">http://www.easyrgb.com/index.php?X=MATH</a>&amp;H=19#text19</p>
-</div>
   
   
   <a id="SadRogue_Primitives_Color_FromNonPremultiplied_" data-uid="SadRogue.Primitives.Color.FromNonPremultiplied*"></a>
@@ -4905,7 +4986,7 @@ The value is a 32-bit unsigned integer, with R in the least significant octet.</
   
   <a id="SadRogue_Primitives_Color_GetBrightness_" data-uid="SadRogue.Primitives.Color.GetBrightness*"></a>
   <h4 id="SadRogue_Primitives_Color_GetBrightness" data-uid="SadRogue.Primitives.Color.GetBrightness">GetBrightness()</h4>
-  <div class="markdown level1 summary"><p>Gets the brightness of a color.</p>
+  <div class="markdown level1 summary"><p>Gets the lightness of a color (as defined by the HSL color space).</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -4923,13 +5004,13 @@ The value is a 32-bit unsigned integer, with R in the least significant octet.</
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">Single</a></td>
-        <td><p>The brightness value.</p>
+        <td><p>The lightness value.</p>
 </td>
       </tr>
     </tbody>
   </table>
   <h5 id="SadRogue_Primitives_Color_GetBrightness_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>Taken from the mono source code.</p>
+  <div class="markdown level1 remarks"><p>This function exists largely for historical reasons; use GetHSLLightness and GetHSVBrightness instead.</p>
 </div>
   
   
@@ -4960,9 +5041,171 @@ The value is a 32-bit unsigned integer, with R in the least significant octet.</
   </table>
   
   
+  <a id="SadRogue_Primitives_Color_GetHSLHue_" data-uid="SadRogue.Primitives.Color.GetHSLHue*"></a>
+  <h4 id="SadRogue_Primitives_Color_GetHSLHue" data-uid="SadRogue.Primitives.Color.GetHSLHue">GetHSLHue()</h4>
+  <div class="markdown level1 summary"><p>Gets the hue of a color (as defined by the HSL color space).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float GetHSLHue()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">Single</a></td>
+        <td><p>The hue value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_Color_GetHSLLightness_" data-uid="SadRogue.Primitives.Color.GetHSLLightness*"></a>
+  <h4 id="SadRogue_Primitives_Color_GetHSLLightness" data-uid="SadRogue.Primitives.Color.GetHSLLightness">GetHSLLightness()</h4>
+  <div class="markdown level1 summary"><p>Gets the lightness of a color (as defined by the HSL color space).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float GetHSLLightness()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">Single</a></td>
+        <td><p>The lightness value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_Color_GetHSLSaturation_" data-uid="SadRogue.Primitives.Color.GetHSLSaturation*"></a>
+  <h4 id="SadRogue_Primitives_Color_GetHSLSaturation" data-uid="SadRogue.Primitives.Color.GetHSLSaturation">GetHSLSaturation()</h4>
+  <div class="markdown level1 summary"><p>Gets the saturation of a color (as defined by the HSL color space).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float GetHSLSaturation()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">Single</a></td>
+        <td><p>The saturation value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_Color_GetHSVBrightness_" data-uid="SadRogue.Primitives.Color.GetHSVBrightness*"></a>
+  <h4 id="SadRogue_Primitives_Color_GetHSVBrightness" data-uid="SadRogue.Primitives.Color.GetHSVBrightness">GetHSVBrightness()</h4>
+  <div class="markdown level1 summary"><p>Gets the brightness of a color (as defined by the HSV color space).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float GetHSVBrightness()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">Single</a></td>
+        <td><p>The brightness value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_Color_GetHSVHue_" data-uid="SadRogue.Primitives.Color.GetHSVHue*"></a>
+  <h4 id="SadRogue_Primitives_Color_GetHSVHue" data-uid="SadRogue.Primitives.Color.GetHSVHue">GetHSVHue()</h4>
+  <div class="markdown level1 summary"><p>Gets the hue of a color (as defined by the HSV color space).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float GetHSVHue()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">Single</a></td>
+        <td><p>The hue value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="SadRogue_Primitives_Color_GetHSVSaturation_" data-uid="SadRogue.Primitives.Color.GetHSVSaturation*"></a>
+  <h4 id="SadRogue_Primitives_Color_GetHSVSaturation" data-uid="SadRogue.Primitives.Color.GetHSVSaturation">GetHSVSaturation()</h4>
+  <div class="markdown level1 summary"><p>Gets the saturation of a color (as defined by the HSL color space).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float GetHSVSaturation()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">Single</a></td>
+        <td><p>The saturation value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <a id="SadRogue_Primitives_Color_GetHue_" data-uid="SadRogue.Primitives.Color.GetHue*"></a>
   <h4 id="SadRogue_Primitives_Color_GetHue" data-uid="SadRogue.Primitives.Color.GetHue">GetHue()</h4>
-  <div class="markdown level1 summary"><p>Gets the hue of a color.</p>
+  <div class="markdown level1 summary"><p>Gets the hue of a color (as defined by the HSL color space).</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -4986,7 +5229,7 @@ The value is a 32-bit unsigned integer, with R in the least significant octet.</
     </tbody>
   </table>
   <h5 id="SadRogue_Primitives_Color_GetHue_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>Taken from the mono source code.</p>
+  <div class="markdown level1 remarks"><p>This function exists largely for historical reason; use GetHSLHue and GetHSVHue instead.</p>
 </div>
   
   
@@ -5019,7 +5262,7 @@ The value is a 32-bit unsigned integer, with R in the least significant octet.</
   
   <a id="SadRogue_Primitives_Color_GetSaturation_" data-uid="SadRogue.Primitives.Color.GetSaturation*"></a>
   <h4 id="SadRogue_Primitives_Color_GetSaturation" data-uid="SadRogue.Primitives.Color.GetSaturation">GetSaturation()</h4>
-  <div class="markdown level1 summary"><p>Gets the saturation of a color.</p>
+  <div class="markdown level1 summary"><p>Gets the saturation of a color (as defined by the HSL color space).</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -5043,7 +5286,7 @@ The value is a 32-bit unsigned integer, with R in the least significant octet.</
     </tbody>
   </table>
   <h5 id="SadRogue_Primitives_Color_GetSaturation_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>Taken from the mono source code.</p>
+  <div class="markdown level1 remarks"><p>This function exists largely for historical reason; use GetHSLSaturation and GetHSVSaturation instead.</p>
 </div>
   
   
@@ -5446,6 +5689,12 @@ The value is a 32-bit unsigned integer, with R in the least significant octet.</
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>
       <a class="xref" href="SadRogue.Primitives.ColorExtensions.html#SadRogue_Primitives_ColorExtensions_Matches_SadRogue_Primitives_Color_SadRogue_Primitives_Color_">ColorExtensions.Matches(Color, Color)</a>
+  </div>
+  <div>
+      <a class="xref" href="SadRogue.Primitives.PropertyChangedEventHelpers.html#SadRogue_Primitives_PropertyChangedEventHelpers_SafelySetProperty__2___0___1____1_System_EventHandler_SadRogue_Primitives_ValueChangedEventArgs___1___">PropertyChangedEventHelpers.SafelySetProperty&lt;TObject, TProperty&gt;(TObject, ref TProperty, TProperty, EventHandler&lt;ValueChangedEventArgs&lt;TProperty&gt;&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="SadRogue.Primitives.PropertyChangedEventHelpers.html#SadRogue_Primitives_PropertyChangedEventHelpers_SafelySetProperty__2___0___1____1_System_EventHandler_SadRogue_Primitives_ValueChangedEventArgs___1___System_EventHandler_SadRogue_Primitives_ValueChangedEventArgs___1___">PropertyChangedEventHelpers.SafelySetProperty&lt;TObject, TProperty&gt;(TObject, ref TProperty, TProperty, EventHandler&lt;ValueChangedEventArgs&lt;TProperty&gt;&gt;, EventHandler&lt;ValueChangedEventArgs&lt;TProperty&gt;&gt;)</a>
   </div>
 </article>
           </div>

@@ -93,13 +93,12 @@
   
   <a id="SadRogue_Primitives_ReadOnlyAreaExtensions_FastEnumerator_" data-uid="SadRogue.Primitives.ReadOnlyAreaExtensions.FastEnumerator*"></a>
   <h4 id="SadRogue_Primitives_ReadOnlyAreaExtensions_FastEnumerator_SadRogue_Primitives_IReadOnlyArea_" data-uid="SadRogue.Primitives.ReadOnlyAreaExtensions.FastEnumerator(SadRogue.Primitives.IReadOnlyArea)">FastEnumerator(IReadOnlyArea)</h4>
-  <div class="markdown level1 summary"><p>Returns an enumerator which can be used to iterate over the positions in this area with a foreach loop
-in the most efficient manner possible.</p>
+  <div class="markdown level1 summary"><p>Obsolete.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static ReadOnlyAreaPositionsEnumerable FastEnumerator(this IReadOnlyArea self)</code></pre>
+    <pre><code class="lang-csharp hljs">public static ReadOnlyAreaPositionsEnumerator FastEnumerator(this IReadOnlyArea self)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -128,19 +127,11 @@ in the most efficient manner possible.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="SadRogue.Primitives.ReadOnlyAreaPositionsEnumerable.html">ReadOnlyAreaPositionsEnumerable</a></td>
-        <td><p>A custom enumerator that iterates over the positions in the area in the most efficient manner possible.</p>
-</td>
+        <td><a class="xref" href="SadRogue.Primitives.ReadOnlyAreaPositionsEnumerator.html">ReadOnlyAreaPositionsEnumerator</a></td>
+        <td></td>
       </tr>
     </tbody>
   </table>
-  <h5 id="SadRogue_Primitives_ReadOnlyAreaExtensions_FastEnumerator_SadRogue_Primitives_IReadOnlyArea__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The enumerator returned will use the area's indexer to iterate over the positions (like you might a list),
-if the area's <a class="xref" href="SadRogue.Primitives.IReadOnlyArea.html#SadRogue_Primitives_IReadOnlyArea_UseIndexEnumeration">UseIndexEnumeration</a> is true.  Otherwise, it uses the typical IEnumerator
-implementation for that area.</p>
-<p>This may be significantly faster than the typical IEnumerable/IEnumerator usage for implementations which have
-<a class="xref" href="SadRogue.Primitives.IReadOnlyArea.html#SadRogue_Primitives_IReadOnlyArea_UseIndexEnumeration">UseIndexEnumeration</a> set to true; however it won't have much benefit otherwise.</p>
-</div>
   
   
   <a id="SadRogue_Primitives_ReadOnlyAreaExtensions_PerimeterPositions_" data-uid="SadRogue.Primitives.ReadOnlyAreaExtensions.PerimeterPositions*"></a>

@@ -698,6 +698,39 @@ namespace SadRogue.Primitives.SpatialMaps
         public T GetItem(int x, int y) => GetItem(new Point(x, y));
 
         /// <summary>
+        /// Tries to get the item at the given position, and returns true if it is successful, false otherwise.
+        /// The out variable is filled with the value retrieved on success, or default(T) if no item exists.
+        /// </summary>
+        /// <remarks>
+        /// Intended to be a more convenient function as compared to <see cref="GetItemsAt(Point)" />, since
+        /// this spatial map implementation only allows a single item to at any given location at a time.
+        /// </remarks>
+        /// <param name="position">The position to return the item for.</param>
+        /// <param name="item">The item retrieved, or default(T) if there was no item at the given location.</param>
+        /// <returns>
+        /// True if there was an item at given position, false if no item exists at that location.
+        /// </returns>
+        public bool TryGetItem(Point position, [MaybeNullWhen(false)] out T item)
+            => _positionMapping.TryGetValue(position, out item);
+
+        /// <summary>
+        /// Tries to get the item at the given position, and returns true if it is successful, false otherwise.
+        /// The out variable is filled with the value retrieved on success, or default(T) if no item exists.
+        /// </summary>
+        /// <remarks>
+        /// Intended to be a more convenient function as compared to <see cref="GetItemsAt(Point)" />, since
+        /// this spatial map implementation only allows a single item to at any given location at a time.
+        /// </remarks>
+        /// <param name="x">The x-value of the position to return the item for.</param>
+        /// <param name="y">The y-value of the position to return the item for.</param>
+        /// <param name="item">The item retrieved, or default(T) if there was no item at the given location.</param>
+        /// <returns>
+        /// True if there was an item at given position, false if no item exists at that location.
+        /// </returns>
+        public bool TryGetItem(int x, int y, [MaybeNull] out T item)
+            => TryGetItem(new Point(x, y), out item);
+
+        /// <summary>
         /// Gets the item at the given position, or default(T) if no item exists.
         /// </summary>
         /// <remarks>
@@ -711,7 +744,7 @@ namespace SadRogue.Primitives.SpatialMaps
         [return: MaybeNull]
         public T GetItemOrDefault(Point position)
         {
-            _positionMapping.TryGetValue(position, out var item);
+            _positionMapping.TryGetValue(position, out T item);
             return item;
         }
 

@@ -84,7 +84,7 @@ namespace SadRogue.Primitives.SpatialMaps
         /// The item(s) at the given position that reside on a layer included in the layer mask if
         /// there are any items, or nothing if there is nothing at that position.
         /// </returns>
-        IEnumerable<T> GetItemsAt(Point position, uint layerMask = uint.MaxValue);
+        ReadOnlyLayeredSpatialMapItemsAtEnumerator<T> GetItemsAt(Point position, uint layerMask = uint.MaxValue);
 
         /// <summary>
         /// Gets the item(s) associated with the given position that reside on any layer included in
@@ -100,7 +100,7 @@ namespace SadRogue.Primitives.SpatialMaps
         /// The item(s) at the given position that reside on a layer included in the layer mask if
         /// there are any items, or nothing if there is nothing at that position.
         /// </returns>
-        IEnumerable<T> GetItemsAt(int x, int y, uint layerMask = uint.MaxValue);
+        ReadOnlyLayeredSpatialMapItemsAtEnumerator<T> GetItemsAt(int x, int y, uint layerMask = uint.MaxValue);
 
         /// <summary>
         /// Gets a read-only spatial map representing the layer specified.

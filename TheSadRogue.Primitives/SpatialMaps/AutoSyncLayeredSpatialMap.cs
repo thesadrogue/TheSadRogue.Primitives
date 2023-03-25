@@ -515,10 +515,10 @@ namespace SadRogue.Primitives.SpatialMaps
         IEnumerable<T> IReadOnlySpatialMap<T>.GetItemsAt(int x, int y) => _layeredSpatialMap.GetItemsAt(x, y);
 
         /// <inheritdoc />
-        public IEnumerable<T> GetItemsAt(Point position, uint layerMask = uint.MaxValue) => _layeredSpatialMap.GetItemsAt(position, layerMask);
+        public ReadOnlyLayeredSpatialMapItemsAtEnumerator<T> GetItemsAt(Point position, uint layerMask = uint.MaxValue) => _layeredSpatialMap.GetItemsAt(position, layerMask);
 
         /// <inheritdoc />
-        public IEnumerable<T> GetItemsAt(int x, int y, uint layerMask = uint.MaxValue) => _layeredSpatialMap.GetItemsAt(x, y, layerMask);
+        public ReadOnlyLayeredSpatialMapItemsAtEnumerator<T> GetItemsAt(int x, int y, uint layerMask = uint.MaxValue) => _layeredSpatialMap.GetItemsAt(x, y, layerMask);
 
         /// <inheritdoc />
         public Point? GetPositionOfOrNull(T item) => _layeredSpatialMap.GetPositionOfOrNull(item);

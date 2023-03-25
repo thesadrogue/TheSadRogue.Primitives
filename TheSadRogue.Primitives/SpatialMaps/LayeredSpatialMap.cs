@@ -129,16 +129,12 @@ namespace SadRogue.Primitives.SpatialMaps
         }
 
         /// <inheritdoc />
-        public IEnumerable<T> GetItemsAt(Point position, uint layerMask = uint.MaxValue)
-            => GetItemsAt(position.X, position.Y, layerMask);
+        public ReadOnlyLayeredSpatialMapItemsAtEnumerator<T> GetItemsAt(Point position, uint layerMask = uint.MaxValue)
+            => new ReadOnlyLayeredSpatialMapItemsAtEnumerator<T>(this, position, layerMask);
 
         /// <inheritdoc />
-        public IEnumerable<T> GetItemsAt(int x, int y, uint layerMask = uint.MaxValue)
-        {
-            foreach (int relativeLayerNumber in _internalLayerMasker.Layers(layerMask >> StartingLayer))
-                foreach (var item in _layers[relativeLayerNumber].GetItemsAt(x, y))
-                    yield return item;
-        }
+        public ReadOnlyLayeredSpatialMapItemsAtEnumerator<T> GetItemsAt(int x, int y, uint layerMask = uint.MaxValue)
+            => GetItemsAt(new Point(x, y), layerMask);
 
         /// <inheritdoc />
         public IReadOnlySpatialMap<T> GetLayer(int layer) => _layers[layer - StartingLayer].AsReadOnly();

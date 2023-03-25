@@ -19,7 +19,7 @@ namespace SadRogue.Primitives.UnitTests.SpatialMaps
             mySpatialMap.Add(myId1, (1, 2));
             Assert.Equal(1, mySpatialMap.Count);
 
-            var retVal = mySpatialMap.Contains((1, 2));
+            bool retVal = mySpatialMap.Contains((1, 2));
             Assert.True(retVal);
 
             retVal = mySpatialMap.Contains(myId1);
@@ -31,7 +31,7 @@ namespace SadRogue.Primitives.UnitTests.SpatialMaps
             retVal = mySpatialMap.Contains(myId2);
             Assert.False(retVal);
 
-            var count = mySpatialMap.GetItemsAt((1, 2)).Count();
+            int count = mySpatialMap.GetItemsAt((1, 2)).Count();
             Assert.Equal(1, count);
 
             count = mySpatialMap.GetItemsAt((2, 3)).Count();
@@ -71,7 +71,7 @@ namespace SadRogue.Primitives.UnitTests.SpatialMaps
             mySpatialMap.Move(myId1, (5, 6));
             Assert.Equal(new Point(5, 6), mySpatialMap.GetPositionOf(myId1));
 
-            var retVal = mySpatialMap.Contains((5, 6));
+            bool retVal = mySpatialMap.Contains((5, 6));
             Assert.True(retVal);
 
             retVal = mySpatialMap.Contains((1, 2));
@@ -107,7 +107,7 @@ namespace SadRogue.Primitives.UnitTests.SpatialMaps
             mySpatialMap.Remove(myId1);
 
 
-            var retVal = mySpatialMap.Contains(myId1);
+            bool retVal = mySpatialMap.Contains(myId1);
             Assert.False(retVal);
 
             retVal = mySpatialMap.Contains((1, 2));
@@ -142,13 +142,13 @@ namespace SadRogue.Primitives.UnitTests.SpatialMaps
             mySpatialMap.Add(myId4, (1, 2));
 
             // Move the two items at (1, 2) to (3, 4) (already occupied location)
-            var val = mySpatialMap.TryMoveAll((1, 2), (3, 4));
+            bool val = mySpatialMap.TryMoveAll((1, 2), (3, 4));
             Assert.True(val);
             Assert.Equal(new Point(3, 4), mySpatialMap.GetPositionOf(myId1));
             Assert.Equal(new Point(3, 4), mySpatialMap.GetPositionOf(myId4));
             Assert.Equal(3, mySpatialMap.GetItemsAt((3, 4)).Count());
 
-            var retVal = mySpatialMap.Contains((3, 4));
+            bool retVal = mySpatialMap.Contains((3, 4));
             Assert.True(retVal);
 
             retVal = mySpatialMap.Contains((1, 2));
@@ -188,7 +188,7 @@ namespace SadRogue.Primitives.UnitTests.SpatialMaps
             Assert.Equal(new Point(3, 4), mySpatialMap.GetPositionOf(myId4));
             Assert.Equal(3, mySpatialMap.GetItemsAt((3, 4)).Count());
 
-            var retVal = mySpatialMap.Contains((3, 4));
+            bool retVal = mySpatialMap.Contains((3, 4));
             Assert.True(retVal);
 
             retVal = mySpatialMap.Contains((1, 2));
@@ -230,7 +230,7 @@ namespace SadRogue.Primitives.UnitTests.SpatialMaps
             Assert.Equal(new Point(3, 4), mySpatialMap.GetPositionOf(myId4));
             Assert.Equal(3, mySpatialMap.GetItemsAt((3, 4)).Count());
 
-            var retVal = mySpatialMap.Contains((3, 4));
+            bool retVal = mySpatialMap.Contains((3, 4));
             Assert.True(retVal);
 
             retVal = mySpatialMap.Contains((1, 2));

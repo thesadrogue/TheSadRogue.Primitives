@@ -11,7 +11,7 @@ namespace SadRogue.Primitives.UnitTests.Serialization
     internal static class Comparisons
     {
         // Dictionary of object types mapping them to custom methods to use in order to determine equality.
-        private static readonly Dictionary<Type, Func<object, object, bool>> _equalityMethods =
+        private static readonly Dictionary<Type, Func<object, object, bool>> s_equalityMethods =
             new Dictionary<Type, Func<object, object, bool>>
             {
                 [typeof(ArrayView2D<int>)] = CastFromObject<IGridView<int>>(GridViewCompare),
@@ -37,7 +37,7 @@ namespace SadRogue.Primitives.UnitTests.Serialization
             };
 
         public static Func<object, object, bool> GetComparisonFunc(object obj)
-            => _equalityMethods.GetValueOrDefault(obj.GetType(), (o1, o2) => o1.Equals(o2));
+            => s_equalityMethods.GetValueOrDefault(obj.GetType(), (o1, o2) => o1.Equals(o2));
 
         private static Func<object, object, bool> CastFromObject<T>(Func<T, T, bool> func)
             => (o1, o2) => func((T) o1, (T) o2);

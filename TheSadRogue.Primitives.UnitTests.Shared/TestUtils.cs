@@ -49,7 +49,7 @@ namespace SadRogue.Primitives.UnitTests
                     Assert.Equal(list1[i], list[i]);
         }
 
-        public static IEnumerable<T> Enumerable<T>(params T[] objs) => objs;
+        public static IEnumerable<T> Enumerable<T>(params T[] objects) => objects;
 
         public static void NotNull([NotNull]object? obj)
         {

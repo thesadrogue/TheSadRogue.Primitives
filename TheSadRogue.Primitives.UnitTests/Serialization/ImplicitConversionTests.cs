@@ -25,7 +25,7 @@ namespace SadRogue.Primitives.UnitTests.Serialization
             var methods = typeToScan.GetMethods();
             foreach (var method in methods)
             {
-                if (method.IsStatic && method.Name == "op_Implicit" && method.ReturnType == to)
+                if (method is { IsStatic: true, Name: "op_Implicit" } && method.ReturnType == to)
                 {
                     // Check return type
                     var methodParams = method.GetParameters();
@@ -67,13 +67,13 @@ namespace SadRogue.Primitives.UnitTests.Serialization
             TestUtils.NotNull(toOriginal);
 
             // Convert to expressive type and assert it returns a valid object of the correct type
-            var expressive = toExpressive.Invoke(null, new[] { original });
+            object? expressive = toExpressive.Invoke(null, new[] { original });
             TestUtils.NotNull(expressive);
             Assert.Equal(expressiveType, expressive.GetType());
 
             // Convert from the expressive type back to the original and assert it returns a valid object
             // of the correct type
-            var converted = toOriginal.Invoke(null, new[] { expressive });
+            object? converted = toOriginal.Invoke(null, new[] { expressive });
             TestUtils.NotNull(converted);
             Assert.Equal(originalType, converted.GetType());
 

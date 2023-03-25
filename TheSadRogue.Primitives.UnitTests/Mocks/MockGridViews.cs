@@ -63,21 +63,21 @@ namespace SadRogue.Primitives.UnitTests.Mocks
     /// <typeparam name="T"/>
     public class GridViewBaseDefaultImplementationMock<T> : GridViewBase<T>
     {
-        public readonly ArrayView<T> View;
+        private readonly ArrayView<T> _view;
 
-        public override int Height => View.Height;
+        public override int Height => _view.Height;
 
-        public override int Width => View.Width;
+        public override int Width => _view.Width;
 
         public override T this[Point pos]
         {
-            get => View[pos];
+            get => _view[pos];
             //set => View[pos] = value;
         }
 
         public GridViewBaseDefaultImplementationMock(int width, int height)
         {
-            View = new ArrayView<T>(width, height);
+            _view = new ArrayView<T>(width, height);
         }
     }
 
@@ -115,34 +115,34 @@ namespace SadRogue.Primitives.UnitTests.Mocks
     /// <typeparam name="T"/>
     public class SettableGridViewDefaultImplementationMock<T> : ISettableGridView<T>
     {
-        public readonly ArrayView<T> View;
-        public int Height => View.Height;
+        private readonly ArrayView<T> _view;
+        public int Height => _view.Height;
 
-        public int Width => View.Width;
+        public int Width => _view.Width;
 
-        public int Count => View.Count;
+        public int Count => _view.Count;
 
         public T this[int x, int y]
         {
-            get => View[x, y];
-            set => View[x, y] = value;
+            get => _view[x, y];
+            set => _view[x, y] = value;
         }
 
         public T this[Point pos]
         {
-            get => View[pos];
-            set => View[pos] = value;
+            get => _view[pos];
+            set => _view[pos] = value;
         }
 
         public T this[int index1D]
         {
-            get => View[index1D];
-            set => View[index1D] = value;
+            get => _view[index1D];
+            set => _view[index1D] = value;
         }
 
         public SettableGridViewDefaultImplementationMock(int width, int height)
         {
-            View = new ArrayView<T>(width, height);
+            _view = new ArrayView<T>(width, height);
         }
     }
 

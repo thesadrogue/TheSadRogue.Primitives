@@ -64,17 +64,17 @@ namespace SadRogue.Primitives.UnitTests
         public static AdjacencyRule[] AdjacencyRules
             => new[] { AdjacencyRule.Cardinals, AdjacencyRule.Diagonals, AdjacencyRule.EightWay };
 
-        public static Direction[] EightWayDirectionsClockwise
+        private static Direction[] EightWayDirectionsClockwise
             => new[]
             {
                 Direction.Up, Direction.UpRight, Direction.Right, Direction.DownRight, Direction.Down,
                 Direction.DownLeft, Direction.Left, Direction.UpLeft
             };
 
-        public static Direction[] DiagonalDirectionsClockwise
+        private static Direction[] DiagonalDirectionsClockwise
             => new[] { Direction.UpRight, Direction.DownRight, Direction.DownLeft, Direction.UpLeft };
 
-        public static Direction[] CardinalsDirectionsClockwise
+        private static Direction[] CardinalsDirectionsClockwise
             => new[] { Direction.Up, Direction.Right, Direction.Down, Direction.Left };
 
         public static IEnumerable<(AdjacencyRule, Direction)> ClockwisePairs
@@ -97,8 +97,8 @@ namespace SadRogue.Primitives.UnitTests
         public static IEnumerable<(Point, AdjacencyRule)> PointAdjacencyPairs =>
             TestUtils.Enumerable<Point>((1, 2), (-1, -2), (0, 4), (3, 0)).Combinate(AdjacencyRules);
 
-        public static Direction[] ValidDirections = AdjacencyRule.EightWay.DirectionsOfNeighborsClockwise().ToArray();
-        public static Direction[] AllDirections => ValidDirections.Append(Direction.None).ToArray();
+        private static readonly Direction[] s_validDirections = AdjacencyRule.EightWay.DirectionsOfNeighborsClockwise().ToArray();
+        private static Direction[] AllDirections => s_validDirections.Append(Direction.None).ToArray();
 
         public static IEnumerable<(Point, AdjacencyRule, Direction)> PointClockwisePairs =>
             PointAdjacencyPairs.Combinate(AllDirections);
@@ -319,7 +319,7 @@ namespace SadRogue.Primitives.UnitTests
 
         [Theory]
         [MemberDataEnumerable(nameof(AdjacencyRules))]
-        public void TestEqualityInqeualityOpposite(AdjacencyRule compareRule)
+        public void TestEqualityInequalityOpposite(AdjacencyRule compareRule)
         {
             AdjacencyRule[] rules = AdjacencyRules;
 

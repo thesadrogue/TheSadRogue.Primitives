@@ -19,7 +19,7 @@ namespace SadRogue.Primitives.UnitTests.Serialization
         ///        serialization.
         ///     2. All types in this list serialize to JSON objects (JObject) when using Newtonsoft.Json
         /// </summary>
-        private static readonly IEnumerable<object> _expressiveTypes = new object[]
+        private static readonly IEnumerable<object> s_expressiveTypes = new object[]
         {
             // ArrayViewSerialized
             new ArrayViewSerialized<int>
@@ -157,7 +157,7 @@ namespace SadRogue.Primitives.UnitTests.Serialization
         /// Any expressive types (ones that implicitly convert for the sake of serialization), that don't serialize
         /// to JSON Object (generally instead serialize to primitive types like integers).
         /// </summary>
-        private static readonly IEnumerable<object> _expressivePrimitiveTypes = new object[]
+        private static readonly IEnumerable<object> s_expressivePrimitiveTypes = new object[]
         {
             // AdjacencyRule.Types
             AdjacencyRule.Types.Cardinals, AdjacencyRule.Types.Diagonals,
@@ -172,7 +172,7 @@ namespace SadRogue.Primitives.UnitTests.Serialization
         /// <summary>
         /// List of all non-expressive types that serialize to JSON objects (JObject)
         /// </summary>
-        private static readonly object[] _nonExpressiveJsonObjects =
+        private static readonly object[] s_nonExpressiveJsonObjects =
         {
             // AdjacencyRules
             AdjacencyRule.Cardinals, AdjacencyRule.EightWay,
@@ -288,7 +288,7 @@ namespace SadRogue.Primitives.UnitTests.Serialization
         /// <summary>
         /// List of non-serializable objects that do have serializable equivalents (expressive types).
         /// </summary>
-        private static readonly object[] _nonSerializableValuesWithExpressiveTypes =
+        private static readonly object[] s_nonSerializableValuesWithExpressiveTypes =
         {
             // Area
             new Area(null, (1, 2), (3, 4), (5, 6)),
@@ -333,20 +333,20 @@ namespace SadRogue.Primitives.UnitTests.Serialization
         /// <summary>
         /// All types that should serialize with binary serializers.
         /// </summary>
-        public static IEnumerable<object> BinarySerializableTypes => _expressiveTypes.Concat(_expressivePrimitiveTypes);
+        public static IEnumerable<object> BinarySerializableTypes => s_expressiveTypes.Concat(s_expressivePrimitiveTypes);
 
         /// <summary>
         /// All objects that should serialize to JSON objects.  All should have entries in TypeSerializedFields
         /// </summary>
         public static IEnumerable<object> SerializableValuesJsonObjects
-            => _expressiveTypes.Concat(_nonExpressiveJsonObjects);
+            => s_expressiveTypes.Concat(s_nonExpressiveJsonObjects);
 
         /// <summary>
         /// Objects that should have expressive versions of types.  Each item must have an entry in
         /// RegularToExpressiveTypes
         /// </summary>
         public static IEnumerable<object> AllNonExpressiveTypes
-            => _nonExpressiveJsonObjects.Concat(SerializableValuesNonJsonObjects).Concat(_nonSerializableValuesWithExpressiveTypes);
+            => s_nonExpressiveJsonObjects.Concat(SerializableValuesNonJsonObjects).Concat(s_nonSerializableValuesWithExpressiveTypes);
 
         /// <summary>
         /// All JSON objects for which we can test serialization equality

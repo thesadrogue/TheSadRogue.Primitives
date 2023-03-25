@@ -2,11 +2,11 @@
 {
     public class MockSpatialMapItem : IHasID, IHasLayer
     {
-        private static readonly IDGenerator _idGen = new IDGenerator();
+        private static readonly IDGenerator s_idGen = new IDGenerator();
 
         public MockSpatialMapItem(int layer)
         {
-            ID = _idGen.UseID();
+            ID = s_idGen.UseID();
             Layer = layer;
         }
 

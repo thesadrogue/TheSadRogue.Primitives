@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
+using JetBrains.Annotations;
 
 namespace SadRogue.Primitives
 {
@@ -11,12 +11,13 @@ namespace SadRogue.Primitives
     /// </summary>
     /// <remarks>
     /// Point instances can be created using the standard Point c = new Point(x, y) syntax.  In addition,
-    /// you may create a coord from a c# 7 tuple, like Point c = (x, y);.  As well, Point supports C#
+    /// you may create a point from a c# 7 tuple, like Point c = (x, y);.  As well, Point supports C#
     /// Deconstruction syntax.
     ///
     /// Point also provides operators and static helper functions that perform common grid math/operations,
     /// as well as interoperability with other grid-based classes like <see cref="Direction"/>.
     /// </remarks>
+    [PublicAPI]
     [DataContract]
     public readonly struct Point : IEquatable<Point>, IEquatable<(int x, int y)>, IMatchable<Point>,
                                    IMatchable<(int x, int y)>
@@ -63,7 +64,7 @@ namespace SadRogue.Primitives
         /// <param name="start">Position of line starting point.</param>
         /// <param name="end">Position of line ending point.</param>
         /// <returns>The degree bearing of the line specified by the two given points.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static double BearingOfLine(Point start, Point end) => BearingOfLine(end - start);
 
@@ -75,7 +76,7 @@ namespace SadRogue.Primitives
         /// <param name="endX">X-value of the position of line ending point.</param>
         /// <param name="endY">X-value of the position of line ending point.</param>
         /// <returns>The degree bearing of the line specified by the two given points.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static double BearingOfLine(int startX, int startY, int endX, int endY)
             => BearingOfLine(new Point(startX, startY), new Point(endX, endY));
@@ -90,13 +91,13 @@ namespace SadRogue.Primitives
         /// is the change in y-values across the line.
         /// </param>
         /// <returns>The degree bearing of the line with the given dx and dy values.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static double BearingOfLine(Point deltaChange)
         {
             int dx = deltaChange.X;
             int dy = deltaChange.Y;
 
-            dy *= Direction.s_yMult;
+            dy *= Direction.s_yMultiplier;
             double angle = Math.Atan2(dy, dx);
             double degree = MathHelpers.ToDegree(angle);
             degree += 450; // Rotate to all positive such that 0 is up
@@ -111,7 +112,7 @@ namespace SadRogue.Primitives
         /// <param name="dx">Change in x-value across the line.</param>
         /// <param name="dy">Change in y-value across the line.</param>
         /// <returns>The degree bearing of the line with the given dx and dy values.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static double BearingOfLine(int dx, int dy)
             => BearingOfLine(new Point(dx, dy));
@@ -128,7 +129,7 @@ namespace SadRogue.Primitives
         /// The "magnitude" of the euclidean distance between the two points -- basically the
         /// distance formula without the square root.
         /// </returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static double EuclideanDistanceMagnitude(Point c1, Point c2) => EuclideanDistanceMagnitude(c2 - c1);
 
@@ -146,7 +147,7 @@ namespace SadRogue.Primitives
         /// The "magnitude" of the euclidean distance between the two points -- basically the
         /// distance formula without the square root.
         /// </returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static double EuclideanDistanceMagnitude(int firstX, int firstY, int secondX, int secondY)
             => EuclideanDistanceMagnitude(new Point(firstX, firstY), new Point(secondX, secondY));
@@ -165,7 +166,7 @@ namespace SadRogue.Primitives
         /// The "magnitude" of the euclidean distance of two locations with the given dx and dy
         /// values -- basically the distance formula without the square root.
         /// </returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static double EuclideanDistanceMagnitude(Point deltaChange)
             => deltaChange.X * deltaChange.X + deltaChange.Y * deltaChange.Y;
@@ -182,7 +183,7 @@ namespace SadRogue.Primitives
         /// The "magnitude" of the euclidean distance of two locations with the given dx and dy
         /// values -- basically the distance formula without the square root.
         /// </returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static double EuclideanDistanceMagnitude(int dx, int dy)
             => EuclideanDistanceMagnitude(new Point(dx, dy));
@@ -192,7 +193,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="other">Position to compare.</param>
         /// <returns>True if the two positions are equal, false if not.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public bool Matches(Point other) => Equals(other);
 
         /// <summary>
@@ -201,7 +202,7 @@ namespace SadRogue.Primitives
         /// <param name="c1">The first point.</param>
         /// <param name="c2">The second point.</param>
         /// <returns>The midpoint between <paramref name="c1"/> and <paramref name="c2"/>.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Point Midpoint(Point c1, Point c2)
             => new Point((int)Math.Round((c1.X + c2.X) / 2.0f, MidpointRounding.AwayFromZero),
@@ -215,7 +216,7 @@ namespace SadRogue.Primitives
         /// <param name="secondX">X-value for the second point.</param>
         /// <param name="secondY">Y-value for the second point.</param>
         /// <returns>The midpoint between the two points.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Point Midpoint(int firstX, int firstY, int secondX, int secondY)
             => Midpoint(new Point(firstX, firstY), new Point(secondX, secondY));
@@ -226,7 +227,7 @@ namespace SadRogue.Primitives
         /// <param name="c1"></param>
         /// <param name="c2"></param>
         /// <returns>The coordinate(<paramref name="c1"/> - <paramref name="c2"/>).</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static Point operator -(Point c1, Point c2) => new Point(c1.X - c2.X, c1.Y - c2.Y);
 
         /// <summary>
@@ -235,7 +236,7 @@ namespace SadRogue.Primitives
         /// <param name="point"/>
         /// <param name="direction"/>
         /// <returns>The coordinate (point.X - direction.DeltaX, point.Y - direction.DeltaY).</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static Point operator -(Point point, Direction direction)
             => new Point(point.X - direction.DeltaX, point.Y - direction.DeltaY);
 
@@ -245,7 +246,7 @@ namespace SadRogue.Primitives
         /// <param name="c"></param>
         /// <param name="i"></param>
         /// <returns>The coordinate (c.X - <paramref name="i"/>, c.Y - <paramref name="i"/>).</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static Point operator -(Point c, int i) => new Point(c.X - i, c.Y - i);
 
         /// <summary>
@@ -256,7 +257,7 @@ namespace SadRogue.Primitives
         /// <returns>
         /// True if either the x-values or y-values are not equal, false if they are both equal.
         /// </returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static bool operator !=(Point c1, Point c2) => !(c1 == c2);
 
         /// <summary>
@@ -265,7 +266,7 @@ namespace SadRogue.Primitives
         /// <param name="c1"/>
         /// <param name="c2"/>
         /// <returns>Position (c1.X * c2.X, c1.Y * c2.Y)</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static Point operator *(Point c1, Point c2) => new Point(c1.X * c2.X, c1.Y * c2.Y);
 
         /// <summary>
@@ -274,7 +275,7 @@ namespace SadRogue.Primitives
         /// <param name="c"></param>
         /// <param name="i"></param>
         /// <returns>Coordinate (c.X * <paramref name="i"/>, c.Y * <paramref name="i"/>)</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static Point operator *(Point c, int i) => new Point(c.X * i, c.Y * i);
 
         /// <summary>
@@ -287,7 +288,7 @@ namespace SadRogue.Primitives
         /// Position (c.X * <paramref name="i"/>, c.Y * <paramref name="i"/>), with the resulting values
         /// rounded to nearest integer.
         /// </returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static Point operator *(Point c, double i) =>
             new Point((int)Math.Round(c.X * i, MidpointRounding.AwayFromZero),
                 (int)Math.Round(c.Y * i, MidpointRounding.AwayFromZero));
@@ -299,7 +300,7 @@ namespace SadRogue.Primitives
         /// <param name="c1"/>
         /// <param name="c2"/>
         /// <returns>Position (c1.X / c2.X, c1.Y / c2.Y), with each value rounded to the nearest integer.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static Point operator /(Point c1, Point c2) =>
             new Point((int)Math.Round(c1.X / (double)c2.X, MidpointRounding.AwayFromZero),
                 (int)Math.Round(c1.Y / (double)c2.Y, MidpointRounding.AwayFromZero));
@@ -311,7 +312,7 @@ namespace SadRogue.Primitives
         /// <param name="c"></param>
         /// <param name="i"></param>
         /// <returns>(c.X / <paramref name="i"/>, c.Y / <paramref name="i"/>), with the resulting values rounded to the nearest integer.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static Point operator /(Point c, double i) =>
             new Point((int)Math.Round(c.X / i, MidpointRounding.AwayFromZero),
                 (int)Math.Round(c.Y / i, MidpointRounding.AwayFromZero));
@@ -322,7 +323,7 @@ namespace SadRogue.Primitives
         /// <param name="c1"></param>
         /// <param name="c2"></param>
         /// <returns>The position (c1.X + c2.X, c1.Y + c2.Y)</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static Point operator +(Point c1, Point c2) => new Point(c1.X + c2.X, c1.Y + c2.Y);
 
         /// <summary>
@@ -331,7 +332,7 @@ namespace SadRogue.Primitives
         /// <param name="c"></param>
         /// <param name="i"></param>
         /// <returns>Position (c.X + <paramref name="i"/>, c.Y + <paramref name="i"/>.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static Point operator +(Point c, int i) => new Point(c.X + i, c.Y + i);
 
         /// <summary>
@@ -342,7 +343,7 @@ namespace SadRogue.Primitives
         /// <returns>
         /// Position (c.X + d.DeltaX, c.Y + d.DeltaY)
         /// </returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static Point operator +(Point c, Direction d) => new Point(c.X + d.DeltaX, c.Y + d.DeltaY);
 
         /// <summary>
@@ -351,7 +352,7 @@ namespace SadRogue.Primitives
         /// <param name="c1"></param>
         /// <param name="c2"></param>
         /// <returns>True if the two positions are equal, false if not.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static bool operator ==(Point c1, Point c2) => c1.X == c2.X && c1.Y == c2.Y;
 
         /// <summary>
@@ -360,7 +361,7 @@ namespace SadRogue.Primitives
         /// <param name="index">The index in 1D form.</param>
         /// <param name="width">The width of the 2D array.</param>
         /// <returns>The position represented by the 1D index given.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Point FromIndex(int index, int width) => new Point(index % width, index / width);
 
@@ -371,7 +372,7 @@ namespace SadRogue.Primitives
         /// <param name="y">Y-value of the coordinate.</param>
         /// <param name="width">The width of the 2D array, used to do the math to calculate index.</param>
         /// <returns>The 1D index of the position specified.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static int ToIndex(int x, int y, int width) => y * width + x;
 
@@ -381,7 +382,7 @@ namespace SadRogue.Primitives
         /// <param name="index">The index in 1D form.</param>
         /// <param name="width">The width of the 2D array.</param>
         /// <returns>The X-value for the location represented by the given index.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static int ToXValue(int index, int width) => index % width;
 
@@ -391,7 +392,7 @@ namespace SadRogue.Primitives
         /// <param name="index">The index in 1D form.</param>
         /// <param name="width">The width of the 2D array.</param>
         /// <returns>The Y-value for the location represented by the given index.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static int ToYValue(int index, int width) => index / width;
 
@@ -400,9 +401,9 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="obj">The object to compare the current Point to.</param>
         /// <returns>
-        /// True if <paramref name="obj"/> is a Coord instance, and the two positions are equal, false otherwise.
+        /// True if <paramref name="obj"/> is a Point instance, and the two positions are equal, false otherwise.
         /// </returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public override bool Equals(object? obj) => obj is Point c && Equals(c);
 
         /// <summary>
@@ -416,12 +417,12 @@ namespace SadRogue.Primitives
         /// negative values increases the likelihood that collisions will occur; but the range (-4096, -4096) -> (4096, 4096)
         /// produces only 8,192 collisions and no single hash value has more than a single collision.
         ///
-        /// Particularly since Dictionary and HashSet implements prime modulus rather than simple bitmasks or shifts,
+        /// Particularly since Dictionary and HashSet implements prime modulus rather than simple bit masks or shifts,
         /// this collision rate should virtually never impact performance over these ranges (or even higher ranges, likely).
         /// Since the algorithm is also fast, this makes it a good fit for a general-case hashing algorithm in C#.
         /// </remarks>
         /// <returns>The hash-code for the Point.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public override int GetHashCode()
         {
             uint x = (uint)X, y = (uint)Y;
@@ -434,7 +435,7 @@ namespace SadRogue.Primitives
         /// <param name="width">The width of the 2D map/array this location is referring to --
         /// used to do the math to calculate index.</param>
         /// <returns>The 1D index of this Point.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public int ToIndex(int width) => Y * width + X;
 
@@ -442,7 +443,7 @@ namespace SadRogue.Primitives
         /// Returns representation (X, Y).
         /// </summary>
         /// <returns>String (X, Y)</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public override string ToString() => $"({X},{Y})";
 
         /// <summary>
@@ -454,7 +455,7 @@ namespace SadRogue.Primitives
         /// delta-y value.
         /// </param>
         /// <returns>The position (<see cref="X"/> + deltaChange.X, <see cref="Y"/> + deltaChange.Y)</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Point Translate(Point deltaChange) => new Point(X + deltaChange.X, Y + deltaChange.Y);
 
@@ -465,7 +466,7 @@ namespace SadRogue.Primitives
         /// <param name="dx">Change in x-value to apply.</param>
         /// <param name="dy">Change in y-value to apply.</param>
         /// <returns>The position (<see cref="X"/> + dx, <see cref="Y"/> + dy)</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Point Translate(int dx, int dy) => Translate(new Point(dx, dy));
 
@@ -474,7 +475,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="x">X-value for the new Point.</param>
         /// <returns>A new Point, with its X value changed to the given one.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Point WithX(int x) => new Point(x, Y);
 
@@ -483,7 +484,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="y">Y-value for the new Point.</param>
         /// <returns>A new Point, with its Y value changed to the given one.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Point WithY(int y) => new Point(X, y);
 
@@ -492,7 +493,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="other">Position to compare.</param>
         /// <returns>True if the two positions are equal, false if not.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public bool Equals(Point other) => X == other.X && Y == other.Y;
 
         #region TupleCompatibility
@@ -502,7 +503,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="x" />
         /// <param name="y" />
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public void Deconstruct(out int x, out int y)
         {
             x = X;
@@ -514,7 +515,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="c" />
         /// <returns />
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static implicit operator (int x, int y)(Point c) => (c.X, c.Y);
 
         /// <summary>
@@ -522,7 +523,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="tuple" />
         /// <returns />
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static implicit operator Point((int x, int y) tuple) => new Point(tuple.x, tuple.y);
 
         /// <summary>
@@ -531,7 +532,7 @@ namespace SadRogue.Primitives
         /// <param name="tuple" />
         /// <param name="c" />
         /// <returns>A tuple (tuple.x + c.X, tuple.y + c.Y).</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static (int x, int y) operator +((int x, int y) tuple, Point c) => (tuple.x + c.X, tuple.y + c.Y);
 
         /// <summary>
@@ -540,7 +541,7 @@ namespace SadRogue.Primitives
         /// <param name="c" />
         /// <param name="tuple" />
         /// <returns>Position (c.X + tuple.x, c.Y + tuple.y).</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static Point operator +(Point c, (int x, int y) tuple) => new Point(c.X + tuple.x, c.Y + tuple.y);
 
         /// <summary>
@@ -549,7 +550,7 @@ namespace SadRogue.Primitives
         /// <param name="tuple" />
         /// <param name="c" />
         /// <returns>A tuple (tuple.x - c.X, tuple.y - c.Y).</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static (int x, int y) operator -((int x, int y) tuple, Point c) => (tuple.x - c.X, tuple.y - c.Y);
 
         /// <summary>
@@ -558,7 +559,7 @@ namespace SadRogue.Primitives
         /// <param name="c" />
         /// <param name="tuple" />
         /// <returns>Position (c.X - tuple.x, c.Y - tuple.y).</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static Point operator -(Point c, (int x, int y) tuple) => new Point(c.X - tuple.x, c.Y - tuple.y);
 
         /// <summary>
@@ -567,7 +568,7 @@ namespace SadRogue.Primitives
         /// <param name="tuple"/>
         /// <param name="c"/>
         /// <returns>Position (tuple.x * c.X, tuple.y * c.Y).</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static (int x, int y) operator *((int x, int y) tuple, Point c) => (tuple.x * c.X, tuple.y * c.Y);
 
         /// <summary>
@@ -576,7 +577,7 @@ namespace SadRogue.Primitives
         /// <param name="c"/>
         /// <param name="tuple"/>
         /// <returns>Position (c.X * tuple.x, c.Y * tuple.y).</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static Point operator *(Point c, (int x, int y) tuple) => new Point(c.X * tuple.x, c.Y * tuple.y);
 
         /// <summary>
@@ -585,7 +586,7 @@ namespace SadRogue.Primitives
         /// <param name="tuple"/>
         /// <param name="c"/>
         /// <returns>Position (tuple.x / c.X, tuple.y / c.Y), with each value rounded to the nearest integer.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static (int x, int y) operator /((int x, int y) tuple, Point c)
             => new Point((int)Math.Round(tuple.x / (double)c.X, MidpointRounding.AwayFromZero),
                 (int)Math.Round(tuple.y / (double)c.Y, MidpointRounding.AwayFromZero));
@@ -596,7 +597,7 @@ namespace SadRogue.Primitives
         /// <param name="tuple"/>
         /// <param name="c"/>
         /// <returns>Position (c.X / tuple.x, c.Y / tuple.y), with each value rounded to the nearest integer.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static Point operator /(Point c, (int x, int y) tuple)
             => new Point((int)Math.Round(c.X / (double)tuple.x, MidpointRounding.AwayFromZero),
                 (int)Math.Round(c.Y / (double)tuple.y, MidpointRounding.AwayFromZero));
@@ -607,7 +608,7 @@ namespace SadRogue.Primitives
         /// <param name="c"></param>
         /// <param name="tuple"></param>
         /// <returns>True if the two positions are equal, false if not.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static bool operator ==(Point c, (int x, int y) tuple) => c.X == tuple.x && c.Y == tuple.y;
 
         /// <summary>
@@ -618,7 +619,7 @@ namespace SadRogue.Primitives
         /// <returns>
         /// True if either the x-values or y-values are not equal, false if they are both equal.
         /// </returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static bool operator !=(Point c, (int x, int y) tuple) => !(c == tuple);
 
         /// <summary>
@@ -627,7 +628,7 @@ namespace SadRogue.Primitives
         /// <param name="tuple"></param>
         /// <param name="c"></param>
         /// <returns>True if the two positions are equal, false if not.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static bool operator ==((int x, int y) tuple, Point c) => tuple.x == c.X && tuple.y == c.Y;
 
         /// <summary>
@@ -638,7 +639,7 @@ namespace SadRogue.Primitives
         /// <returns>
         /// True if either the x-values or y-values are not equal, false if they are both equal.
         /// </returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static bool operator !=((int x, int y) tuple, Point c) => !(tuple == c);
 
         /// <summary>
@@ -646,7 +647,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="other">Tuple to compare.</param>
         /// <returns>True if the two positions are equal, false if not.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public bool Equals((int x, int y) other) => X == other.x && Y == other.y;
 
         /// <summary>
@@ -654,7 +655,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="other">Point to compare.</param>
         /// <returns>True if the two positions are equal, false if not.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public bool Matches((int x, int y) other) => Equals(other);
         #endregion
 
@@ -671,7 +672,7 @@ namespace SadRogue.Primitives
         /// Returns a Polar Coordinate that is equivalent to this (Cartesian) Coordinate
         /// </summary>
         /// <returns>The Equivalent Polar Coordinate</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public PolarCoordinate ToPolarCoordinate() => PolarCoordinate.FromCartesian(this);
 
@@ -680,7 +681,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="degrees">The amount of Degrees to rotate this point clockwise</param>
         /// <returns>The equivalent point after a rotation</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public  Point Rotate(double degrees)
         {
             double radians = MathHelpers.ToRadian(degrees);
@@ -695,7 +696,7 @@ namespace SadRogue.Primitives
         /// <param name="degrees">The amount of Degrees to rotate this point</param>
         /// <param name="origin">The Point around which to rotate</param>
         /// <returns>The equivalent point after a rotation</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public Point Rotate(double degrees, Point origin)
         {
             Point rotatingPoint = this - origin;
@@ -712,7 +713,7 @@ namespace SadRogue.Primitives
         /// <param name="originX">X-value of the location around which to rotate</param>
         /// <param name="originY">Y-value of the location around which to rotate</param>
         /// <returns>The equivalent point after a rotation</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Point Rotate(double degrees, int originX, int originY)
             => Rotate(degrees, new Point(originX, originY));

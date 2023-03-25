@@ -1,5 +1,5 @@
-﻿using System.Diagnostics.Contracts;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
+using JetBrains.Annotations;
 using MonoRectangle = Microsoft.Xna.Framework.Rectangle;
 using SadRogueRectangle = SadRogue.Primitives.Rectangle;
 
@@ -9,6 +9,7 @@ namespace SadRogue.Primitives
     /// Extension methods for <see cref="SadRogue.Primitives.Rectangle"/> that enable operations involving
     /// <see cref="Microsoft.Xna.Framework.Rectangle"/>.
     /// </summary>
+    [PublicAPI]
     public static class SadRogueRectangleExtensions
     {
         /// <summary>
@@ -16,7 +17,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="self"/>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static MonoRectangle ToMonoRectangle(this SadRogueRectangle self)
             => new MonoRectangle(self.X, self.Y, self.Width, self.Height);
@@ -27,7 +28,7 @@ namespace SadRogue.Primitives
         /// <param name="self"/>
         /// <param name="other"/>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool Matches(this SadRogueRectangle self, MonoRectangle other)
             => self.X == other.X && self.Y == other.Y && self.Width == other.Width && self.Height == other.Height;
@@ -40,6 +41,7 @@ namespace Microsoft.Xna.Framework
     /// Extension methods for <see cref="Microsoft.Xna.Framework.Rectangle"/> that enable operations involving
     /// <see cref="SadRogue.Primitives.Rectangle"/>.
     /// </summary>
+    [PublicAPI]
     public static class MonoRectangleExtensions
     {
         /// <summary>
@@ -47,7 +49,7 @@ namespace Microsoft.Xna.Framework
         /// </summary>
         /// <param name="self"/>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static SadRogueRectangle ToRectangle(this MonoRectangle self)
             => new SadRogueRectangle(self.X, self.Y, self.Width, self.Height);
@@ -58,7 +60,7 @@ namespace Microsoft.Xna.Framework
         /// <param name="self"/>
         /// <param name="other"/>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool Matches(this MonoRectangle self, SadRogueRectangle other)
             => self.X == other.X && self.Y == other.Y && self.Width == other.Width && self.Height == other.Height;

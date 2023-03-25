@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text;
+using JetBrains.Annotations;
 
 namespace SadRogue.Primitives
 {
@@ -10,6 +11,7 @@ namespace SadRogue.Primitives
     /// Represents an arbitrarily-shaped 2D area. Stores and provides access to a list of each
     /// unique position in the area.
     /// </summary>
+    [PublicAPI]
     public class Area : IReadOnlyArea
     {
         private readonly HashSet<Point> _positionsSet;
@@ -158,10 +160,7 @@ namespace SadRogue.Primitives
         /// <returns>An area containing only those positions in one or both of the given areas.</returns>
         public static Area GetUnion(IReadOnlyArea area1, IReadOnlyArea area2, IEqualityComparer<Point>? pointHasher = null)
         {
-            Area retVal = new Area(pointHasher);
-
-            retVal.Add(area1);
-            retVal.Add(area2);
+            Area retVal = new Area(pointHasher) { area1, area2 };
 
             return retVal;
         }

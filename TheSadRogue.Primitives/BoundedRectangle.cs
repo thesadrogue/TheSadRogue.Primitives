@@ -1,5 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
+using JetBrains.Annotations;
 
 namespace SadRogue.Primitives
 {
@@ -8,6 +8,7 @@ namespace SadRogue.Primitives
     /// being inside a rectangular bounding box as it is changed. A typical use might be
     /// keeping track of a camera's view area.
     /// </summary>
+    [PublicAPI]
     [DataContract]
     public class BoundedRectangle : IMatchable<BoundedRectangle>
     {
@@ -48,7 +49,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="other">BoundedRectangle to compare.</param>
         /// <returns>True if the two BoundedRectangles are the same, false if not.</returns>
-        public bool Matches([AllowNull]BoundedRectangle other)
+        public bool Matches(BoundedRectangle? other)
             => !ReferenceEquals(other, null) && _area == other._area && _boundingBox == other._boundingBox;
 
         /// <summary>

@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
+using JetBrains.Annotations;
 using SadRogue.Primitives;
 using MonoPoint = Microsoft.Xna.Framework.Point;
 using SadRoguePoint = SadRogue.Primitives.Point;
@@ -11,6 +11,7 @@ namespace SadRogue.Primitives
     /// Extension methods for <see cref="SadRogue.Primitives.Point"/> that enable operations involving
     /// <see cref="Microsoft.Xna.Framework.Point"/>.
     /// </summary>
+    [PublicAPI]
     public static class SadRoguePointExtensions
     {
         /// <summary>
@@ -18,7 +19,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="self"/>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static MonoPoint ToMonoPoint(this SadRoguePoint self) => new MonoPoint(self.X, self.Y);
 
@@ -28,7 +29,7 @@ namespace SadRogue.Primitives
         /// <param name="self"/>
         /// <param name="other"/>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static SadRoguePoint Add(this SadRoguePoint self, MonoPoint other)
             => new SadRoguePoint(self.X + other.X, self.Y + other.Y);
@@ -39,7 +40,7 @@ namespace SadRogue.Primitives
         /// <param name="self"/>
         /// <param name="other"/>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static SadRoguePoint Subtract(this SadRoguePoint self, MonoPoint other)
             => new SadRoguePoint(self.X - other.X, self.Y - other.Y);
@@ -50,7 +51,7 @@ namespace SadRogue.Primitives
         /// <param name="self"/>
         /// <param name="other"/>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static SadRoguePoint Multiply(this SadRoguePoint self, MonoPoint other)
             => new SadRoguePoint(self.X * other.X, self.Y * other.Y);
@@ -62,7 +63,7 @@ namespace SadRogue.Primitives
         /// <param name="self"/>
         /// <param name="other"/>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static SadRoguePoint Divide(this SadRoguePoint self, MonoPoint other)
             => new SadRoguePoint((int)Math.Round(self.X / (double)other.X, MidpointRounding.AwayFromZero),
@@ -74,7 +75,7 @@ namespace SadRogue.Primitives
         /// <param name="self"/>
         /// <param name="other"/>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool Matches(this SadRoguePoint self, MonoPoint other) => self.X == other.X && self.Y == other.Y;
     }
@@ -86,6 +87,7 @@ namespace Microsoft.Xna.Framework
     /// Extension methods for <see cref="Microsoft.Xna.Framework.Point"/> that enable operations involving
     /// <see cref="SadRogue.Primitives.Point"/>.
     /// </summary>
+    [PublicAPI]
     public static class MonoPointExtensions
     {
         /// <summary>
@@ -93,7 +95,7 @@ namespace Microsoft.Xna.Framework
         /// </summary>
         /// <param name="self"/>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static SadRoguePoint ToPoint(this MonoPoint self) => new SadRoguePoint(self.X, self.Y);
 
@@ -103,7 +105,7 @@ namespace Microsoft.Xna.Framework
         /// <param name="self"/>
         /// <param name="other"/>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static MonoPoint Add(this MonoPoint self, SadRoguePoint other)
             => new MonoPoint(self.X + other.X, self.Y + other.Y);
@@ -114,7 +116,7 @@ namespace Microsoft.Xna.Framework
         /// <param name="self"/>
         /// <param name="i"/>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static MonoPoint Add(this MonoPoint self, int i) => new MonoPoint(self.X + i, self.Y + i);
 
@@ -124,7 +126,7 @@ namespace Microsoft.Xna.Framework
         /// <param name="self"/>
         /// <param name="dir"/>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static MonoPoint Add(this MonoPoint self, Direction dir)
             => new MonoPoint(self.X + dir.DeltaX, self.Y + dir.DeltaY);
@@ -135,7 +137,7 @@ namespace Microsoft.Xna.Framework
         /// <param name="self"/>
         /// <param name="other"/>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static MonoPoint Subtract(this MonoPoint self, SadRoguePoint other)
             => new MonoPoint(self.X - other.X, self.Y - other.Y);
@@ -146,7 +148,7 @@ namespace Microsoft.Xna.Framework
         /// <param name="self"/>
         /// <param name="i"/>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static MonoPoint Subtract(this MonoPoint self, int i) => new MonoPoint(self.X - i, self.Y - i);
 
@@ -156,7 +158,7 @@ namespace Microsoft.Xna.Framework
         /// <param name="self"/>
         /// <param name="dir"/>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static MonoPoint Subtract(this MonoPoint self, Direction dir)
             => new MonoPoint(self.X - dir.DeltaX, self.Y - dir.DeltaY);
@@ -167,7 +169,7 @@ namespace Microsoft.Xna.Framework
         /// <param name="self"/>
         /// <param name="other"/>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static MonoPoint Multiply(this MonoPoint self, SadRoguePoint other)
             => new MonoPoint(self.X * other.X, self.Y * other.Y);
@@ -178,7 +180,7 @@ namespace Microsoft.Xna.Framework
         /// <param name="self"/>
         /// <param name="i"/>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static MonoPoint Multiply(this MonoPoint self, int i) => new MonoPoint(self.X * i, self.Y * i);
 
@@ -189,7 +191,7 @@ namespace Microsoft.Xna.Framework
         /// <param name="self"/>
         /// <param name="d"/>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static MonoPoint Multiply(this MonoPoint self, double d)
             => new MonoPoint((int)Math.Round(self.X * d, MidpointRounding.AwayFromZero),
@@ -202,7 +204,7 @@ namespace Microsoft.Xna.Framework
         /// <param name="self"/>
         /// <param name="other"/>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static MonoPoint Divide(this MonoPoint self, SadRoguePoint other)
             => new MonoPoint((int)Math.Round(self.X / (double)other.X, MidpointRounding.AwayFromZero),
@@ -215,7 +217,7 @@ namespace Microsoft.Xna.Framework
         /// <param name="self"/>
         /// <param name="d"/>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static MonoPoint Divide(this MonoPoint self, double d)
             => new MonoPoint((int)Math.Round(self.X / d, MidpointRounding.AwayFromZero),
@@ -227,7 +229,7 @@ namespace Microsoft.Xna.Framework
         /// <param name="self"/>
         /// <param name="other"/>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool Matches(this MonoPoint self, SadRoguePoint other) => self.X == other.X && self.Y == other.Y;
     }

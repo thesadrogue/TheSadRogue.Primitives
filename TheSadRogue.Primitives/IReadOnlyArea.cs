@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
+using JetBrains.Annotations;
 
 namespace SadRogue.Primitives
 {
     /// <summary>
     /// Read-only interface for an arbitrary 2D area.
     /// </summary>
+    [PublicAPI]
     public interface IReadOnlyArea : IMatchable<IReadOnlyArea>, IEnumerable<Point>
     {
         /// <summary>

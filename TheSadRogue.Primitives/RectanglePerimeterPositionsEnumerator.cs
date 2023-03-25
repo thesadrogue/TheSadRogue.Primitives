@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using JetBrains.Annotations;
 
 namespace SadRogue.Primitives
 {
@@ -17,6 +18,7 @@ namespace SadRogue.Primitives
     /// so you can pass it to functions which require one (for example, System.LINQ).  However, this will have reduced
     /// performance due to boxing of the iterator.
     /// </remarks>
+    [PublicAPI]
     public struct RectanglePerimeterPositionsEnumerator : IEnumerator<Point>, IEnumerable<Point>
     {
         // Suppress warning stating to use auto-property because we want to guarantee micro-performance

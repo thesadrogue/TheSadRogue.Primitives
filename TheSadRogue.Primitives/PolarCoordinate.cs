@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
+using JetBrains.Annotations;
 
 namespace SadRogue.Primitives
 {
@@ -14,11 +14,12 @@ namespace SadRogue.Primitives
     /// Polar Coordinates are very, very slow and should not be used often
     /// </remarks>
     [DataContract]
+    [PublicAPI]
     public readonly struct PolarCoordinate : IEquatable<PolarCoordinate>, IMatchable<PolarCoordinate>,
                                              IEquatable<(double radius, double theta)>, IMatchable<(double radius, double theta)>
     {
         /// <summary>
-        /// The distance away from the Origin (0,0) of this Polar Coord
+        /// The distance away from the Origin (0,0) of this Polar Coordinate
         /// </summary>
         [DataMember] public readonly double Radius;
 
@@ -30,8 +31,8 @@ namespace SadRogue.Primitives
         /// <summary>
         /// Creates a new Polar Coordinate with the given Radius and Theta
         /// </summary>
-        /// <param name="radius">Radius of the Polar Coord</param>
-        /// <param name="theta">Degree of rotation (clockwise) of the Polar Coord</param>
+        /// <param name="radius">Radius of the Polar Coordinate</param>
+        /// <param name="theta">Degree of rotation (clockwise) of the Polar Coordinate</param>
         public PolarCoordinate(double radius, double theta)
         {
             Radius = radius;
@@ -39,7 +40,7 @@ namespace SadRogue.Primitives
         }
 
         /// <summary>
-        /// Ovverride ToString to help you debug
+        /// Override ToString to help you debug
         /// </summary>
         /// <returns>A short representation of the Polar Coordinate</returns>
         public override string ToString()
@@ -53,7 +54,7 @@ namespace SadRogue.Primitives
         /// <param name="left">The first polar coordinate to analyze</param>
         /// <param name="right">The Second polar coordinate to analyze</param>
         /// <returns>Whether or not these two Polar Coordinates are similar enough to be considered "Equal"</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static bool operator ==(PolarCoordinate left, PolarCoordinate right) =>
             Math.Round(left.Theta - right.Theta, 5, MidpointRounding.AwayFromZero) == 0.0 && Math.Round(left.Radius - right.Radius, 5, MidpointRounding.AwayFromZero) == 0.0;
 
@@ -76,7 +77,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="other">The other Polar Coordinate to analyze</param>
         /// <returns>Whether these two PolarCoordinates are equal</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public bool Equals(PolarCoordinate other) => this == other;
 
         /// <summary>
@@ -84,7 +85,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="obj">The object against which to compare</param>
         /// <returns>Whether or not these objects are equal</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public override bool Equals(object? obj)
         {
             if (obj is PolarCoordinate polar)
@@ -97,7 +98,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="other">The other Polar Coordinate to analyze</param>
         /// <returns>Whether these two PolarCoordinates are equal</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public bool Matches(PolarCoordinate other) => Equals(other);
 
         /// <summary>
@@ -111,8 +112,8 @@ namespace SadRogue.Primitives
         /// <summary>
         /// Returns the Cartesian Equivalent of this Polar Coordinate
         /// </summary>
-        /// <returns>A Cartesian Coordinate that points at the same spot on the map as the Polar Coord</returns>
-        [Pure]
+        /// <returns>A Cartesian Coordinate that points at the same spot on the map as the Polar Coordinate</returns>
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Point ToCartesian()
             => new Point((int)Math.Round(Radius * Math.Cos(Theta), 0, MidpointRounding.AwayFromZero), (int)Math.Round(Radius * Math.Sin(Theta), 0, MidpointRounding.AwayFromZero));
@@ -122,7 +123,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="cartesian">The cartesian point to analyze</param>
         /// <returns>An Equivalent Polar Coordinate</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static PolarCoordinate FromCartesian(Point cartesian)
         {
             double radius = Math.Sqrt(cartesian.X * cartesian.X + cartesian.Y * cartesian.Y);
@@ -136,7 +137,7 @@ namespace SadRogue.Primitives
         /// <param name="cartesianX">X-value of the cartesian point to analyze.</param>
         /// <param name="cartesianY">Y-value of the cartesian point to analyze.</param>
         /// <returns>An Equivalent Polar Coordinate</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static PolarCoordinate FromCartesian(int cartesianX, int cartesianY)
             => FromCartesian(new Point(cartesianX, cartesianY));
@@ -148,7 +149,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="radius" />
         /// <param name="theta" />
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public void Deconstruct(out double radius, out double theta)
         {
             radius = Radius;
@@ -160,7 +161,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="c" />
         /// <returns />
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static implicit operator (double radius, double theta)(PolarCoordinate c) => (c.Radius, c.Theta);
 
         /// <summary>
@@ -168,7 +169,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="tuple" />
         /// <returns />
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static implicit operator PolarCoordinate((double radius, double theta) tuple)
             => new PolarCoordinate(tuple.radius, tuple.theta);
 
@@ -193,7 +194,7 @@ namespace SadRogue.Primitives
         /// <param name="c"></param>
         /// <param name="tuple"></param>
         /// <returns>True if the two polar coordinates are equivalent, false if not.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static bool operator ==(PolarCoordinate c, (double radius, double theta) tuple) => c.Equals(tuple);
 
         /// <summary>
@@ -204,7 +205,7 @@ namespace SadRogue.Primitives
         /// <returns>
         /// True if either the radius or theta values are not equal, false if they are both equal.
         /// </returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static bool operator !=(PolarCoordinate c, (double radius, double theta) tuple)
             => !(c == tuple);
 
@@ -214,7 +215,7 @@ namespace SadRogue.Primitives
         /// <param name="tuple"></param>
         /// <param name="c"></param>
         /// <returns>True if the two polar coordinates are equal, false if not.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static bool operator ==((double radius, double theta) tuple, PolarCoordinate c)
             => c.Equals(tuple);
 
@@ -226,7 +227,7 @@ namespace SadRogue.Primitives
         /// <returns>
         /// True if either the radius or theta values are not equal, false if they are both equal.
         /// </returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static bool operator !=((double radius, double theta) tuple, PolarCoordinate c)
             => !(tuple == c);
 
@@ -245,7 +246,7 @@ namespace SadRogue.Primitives
         /// As the radius gets larger, there will be increased likelihood of functions producing gaps in output.
         /// You've been warned.
         /// </remarks>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static Dictionary<string, Func<double, Point>> Functions => new Dictionary<string, Func<double, Point>>()
         {
             {

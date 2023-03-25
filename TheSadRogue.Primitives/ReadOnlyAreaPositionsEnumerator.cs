@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using JetBrains.Annotations;
 
 namespace SadRogue.Primitives
 {
@@ -18,6 +19,7 @@ namespace SadRogue.Primitives
     /// out of that than by using this; however this will provide better performance if you are working with an interface
     /// and thus don't know the type of area.  Use cases for this class are generally for iteration via IReadOnlyArea.
     /// </remarks>
+    [PublicAPI]
     public struct ReadOnlyAreaPositionsEnumerator : IEnumerator<Point>, IEnumerable<Point>
     {
         private readonly IReadOnlyArea _area;

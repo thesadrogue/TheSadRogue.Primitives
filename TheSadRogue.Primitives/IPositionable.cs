@@ -1,4 +1,5 @@
 ﻿using System;
+using JetBrains.Annotations;
 using SadRogue.Primitives.SpatialMaps;
 
 namespace SadRogue.Primitives
@@ -12,6 +13,7 @@ namespace SadRogue.Primitives
     ///
     /// Other algorithms may be able to make use of this interface as well if all they need is an object with a position.
     /// </remarks>
+    [PublicAPI]
     public interface IPositionable
     {
         /// <summary>

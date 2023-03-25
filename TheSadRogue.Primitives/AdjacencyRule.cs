@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
+using JetBrains.Annotations;
 
 namespace SadRogue.Primitives
 {
@@ -12,6 +12,7 @@ namespace SadRogue.Primitives
     /// coordinate, and which directions those neighbors are in. Cannot be instantiated -- pre-made
     /// static instances are provided.
     /// </summary>
+    [PublicAPI]
     [DataContract]
     public readonly struct AdjacencyRule : IEquatable<AdjacencyRule>, IMatchable<AdjacencyRule>
     {
@@ -105,7 +106,7 @@ namespace SadRogue.Primitives
         /// method. Cardinals are returned before any diagonals.
         /// </summary>
         /// <returns>Directions that lead to neighboring locations.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public IEnumerable<Direction> DirectionsOfNeighbors() => DirectionsOfNeighborsCache;
 
@@ -119,7 +120,7 @@ namespace SadRogue.Primitives
         /// causes the default starting direction to be used, which is UP for CARDINALS/EIGHT_WAY, and UP_RIGHT
         /// for diagonals.</param>
         /// <returns>Directions that lead to neighboring locations.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public IEnumerable<Direction> DirectionsOfNeighborsClockwise(Direction startingDirection = default)
             => DirectionsOfNeighborsClockwiseType(Type, startingDirection);
@@ -133,7 +134,7 @@ namespace SadRogue.Primitives
         /// causes the default starting direction to be used, which is UP for CARDINALS/EIGHT_WAY, and UP_LEFT
         /// for diagonals.</param>
         /// <returns>Directions that lead to neighboring locations.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public IEnumerable<Direction> DirectionsOfNeighborsCounterClockwise(Direction startingDirection = default)
             => DirectionsOfNeighborsCounterClockwiseType(Type, startingDirection);
 
@@ -142,7 +143,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="other">AdjacencyRule to compare.</param>
         /// <returns>True if the two directions are the same, false if not.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool Matches(AdjacencyRule other) => Equals(other);
 
@@ -152,7 +153,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="startingLocation">Location to return neighbors for.</param>
         /// <returns>All neighbors of the given location.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public IEnumerable<Point> Neighbors(Point startingLocation)
         {
             foreach (Direction dir in DirectionsOfNeighbors())
@@ -167,7 +168,7 @@ namespace SadRogue.Primitives
         /// <param name="startingLocationY">Y-value of the location to return neighbors for.</param>
         /// <returns>All neighbors of the given location.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public IEnumerable<Point> Neighbors(int startingLocationX, int startingLocationY)
             => Neighbors(new Point(startingLocationX, startingLocationY));
 
@@ -184,7 +185,7 @@ namespace SadRogue.Primitives
         /// for DIAGONALS.
         /// </param>
         /// <returns>All neighbors of the given location.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public IEnumerable<Point> NeighborsClockwise(Point startingLocation, Direction startingDirection = default)
         {
             foreach (Direction dir in DirectionsOfNeighborsClockwise(startingDirection))
@@ -205,7 +206,7 @@ namespace SadRogue.Primitives
         /// for DIAGONALS.
         /// </param>
         /// <returns>All neighbors of the given location.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public IEnumerable<Point> NeighborsClockwise(int startingLocationX, int startingLocationY,
                                                      Direction startingDirection = default)
@@ -224,7 +225,7 @@ namespace SadRogue.Primitives
         /// <see cref="Direction.UpLeft"/> for DIAGONALS.
         /// </param>
         /// <returns>All neighbors of the given location.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public IEnumerable<Point> NeighborsCounterClockwise(Point startingLocation,
                                                             Direction startingDirection = default)
         {
@@ -246,7 +247,7 @@ namespace SadRogue.Primitives
         /// <see cref="Direction.UpLeft"/> for DIAGONALS.
         /// </param>
         /// <returns>All neighbors of the given location.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public IEnumerable<Point> NeighborsCounterClockwise(int startingLocationX, int startingLocationY,
                                                             Direction startingDirection = default)
@@ -257,7 +258,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="other">AdjacencyRule to compare.</param>
         /// <returns>True if the two directions are the same, false if not.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public bool Equals(AdjacencyRule other) => Type == other.Type;
 
         /// <summary>
@@ -267,14 +268,14 @@ namespace SadRogue.Primitives
         /// <returns>
         /// True if <paramref name="obj"/> is an AdjacencyRule, and the two adjacency rules are equal, false otherwise.
         /// </returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public override bool Equals(object? obj) => obj is AdjacencyRule c && Equals(c);
 
         /// <summary>
         /// Returns a hash-map value for the current object.
         /// </summary>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public override int GetHashCode() => Type.GetHashCode();
 
         /// <summary>
@@ -283,7 +284,7 @@ namespace SadRogue.Primitives
         /// <param name="lhs"/>
         /// <param name="rhs"/>
         /// <returns>True if the two adjacency rules are equal, false if not.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static bool operator ==(AdjacencyRule lhs, AdjacencyRule rhs) => lhs.Type == rhs.Type;
 
         /// <summary>
@@ -294,21 +295,21 @@ namespace SadRogue.Primitives
         /// <returns>
         /// True if the types are not equal, false if they are both equal.
         /// </returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static bool operator !=(AdjacencyRule lhs, AdjacencyRule rhs) => !(lhs == rhs);
 
         /// <summary>
         /// Implicitly converts an AdjacencyRule to its corresponding <see cref="Type"/>.
         /// </summary>
         /// <param name="rule"/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static implicit operator Types(AdjacencyRule rule) => rule.Type;
 
         /// <summary>
         /// Implicitly converts an <see cref="Types"/> enum value to its corresponding AdjacencyRule.
         /// </summary>
         /// <param name="type"/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static implicit operator AdjacencyRule(Types type) => type switch
         {
             Types.Cardinals => Cardinals,
@@ -322,7 +323,7 @@ namespace SadRogue.Primitives
         /// Returns a string representation of the <see cref="AdjacencyRule"/>.
         /// </summary>
         /// <returns>A string representation of the <see cref="AdjacencyRule"/>.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public override string ToString() => s_writeValues[(int)Type];
 
         private static IEnumerable<Direction> DirectionsOfNeighborsType(Types type)

@@ -1,6 +1,7 @@
 ﻿using System;
-using System.Diagnostics.Contracts;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
+using JetBrains.Annotations;
 using SadRogue.Primitives;
 using SFML.System;
 using SadRoguePoint = SadRogue.Primitives.Point;
@@ -11,6 +12,8 @@ namespace SadRogue.Primitives
     /// Extension methods for <see cref="SadRogue.Primitives.Point"/> that enable operations involving
     /// similar types from SFML.
     /// </summary>
+    [PublicAPI]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
     public static class SadRoguePointExtensions
     {
         /// <summary>
@@ -18,7 +21,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="self"/>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector2i ToVector2i(this SadRoguePoint self) => new Vector2i(self.X, self.Y);
 
@@ -27,7 +30,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="self"/>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector2u ToVector2u(this SadRoguePoint self) => new Vector2u((uint)self.X, (uint)self.Y);
 
@@ -36,7 +39,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="self"/>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector2f ToVector2f(this SadRoguePoint self) => new Vector2f(self.X, self.Y);
 
@@ -46,7 +49,7 @@ namespace SadRogue.Primitives
         /// <param name="self"/>
         /// <param name="other"/>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static SadRoguePoint Add(this SadRoguePoint self, Vector2i other)
             => new SadRoguePoint(self.X + other.X, self.Y + other.Y);
@@ -57,7 +60,7 @@ namespace SadRogue.Primitives
         /// <param name="self"/>
         /// <param name="other"/>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static SadRoguePoint Add(this SadRoguePoint self, Vector2u other)
             => new SadRoguePoint(self.X + (int)other.X, self.Y + (int)other.Y);
@@ -69,7 +72,7 @@ namespace SadRogue.Primitives
         /// <param name="self"/>
         /// <param name="other"/>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static SadRoguePoint Add(this SadRoguePoint self, Vector2f other)
             => new SadRoguePoint((int)Math.Round(self.X + other.X, MidpointRounding.AwayFromZero),
@@ -81,7 +84,7 @@ namespace SadRogue.Primitives
         /// <param name="self"/>
         /// <param name="other"/>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static SadRoguePoint Subtract(this SadRoguePoint self, Vector2i other)
             => new SadRoguePoint(self.X - other.X, self.Y - other.Y);
@@ -92,7 +95,7 @@ namespace SadRogue.Primitives
         /// <param name="self"/>
         /// <param name="other"/>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static SadRoguePoint Subtract(this SadRoguePoint self, Vector2u other)
             => new SadRoguePoint(self.X - (int)other.X, self.Y - (int)other.Y);
@@ -104,7 +107,7 @@ namespace SadRogue.Primitives
         /// <param name="self"/>
         /// <param name="other"/>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static SadRoguePoint Subtract(this SadRoguePoint self, Vector2f other)
             => new SadRoguePoint((int)Math.Round(self.X - other.X, MidpointRounding.AwayFromZero),
@@ -116,7 +119,7 @@ namespace SadRogue.Primitives
         /// <param name="self"/>
         /// <param name="other"/>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static SadRoguePoint Multiply(this SadRoguePoint self, Vector2i other)
             => new SadRoguePoint(self.X * other.X, self.Y * other.Y);
@@ -127,7 +130,7 @@ namespace SadRogue.Primitives
         /// <param name="self"/>
         /// <param name="other"/>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static SadRoguePoint Multiply(this SadRoguePoint self, Vector2u other)
             => new SadRoguePoint(self.X * (int)other.X, self.Y * (int)other.Y);
@@ -139,7 +142,7 @@ namespace SadRogue.Primitives
         /// <param name="self"/>
         /// <param name="other"/>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static SadRoguePoint Multiply(this SadRoguePoint self, Vector2f other)
             => new SadRoguePoint((int)Math.Round(self.X * other.X, MidpointRounding.AwayFromZero),
@@ -152,7 +155,7 @@ namespace SadRogue.Primitives
         /// <param name="self"/>
         /// <param name="other"/>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static SadRoguePoint Divide(this SadRoguePoint self, Vector2i other)
             => new SadRoguePoint((int)Math.Round(self.X / (double)other.X, MidpointRounding.AwayFromZero),
@@ -165,7 +168,7 @@ namespace SadRogue.Primitives
         /// <param name="self"/>
         /// <param name="other"/>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static SadRoguePoint Divide(this SadRoguePoint self, Vector2u other)
             => new SadRoguePoint((int)Math.Round(self.X / (double)other.X, MidpointRounding.AwayFromZero),
@@ -178,7 +181,7 @@ namespace SadRogue.Primitives
         /// <param name="self"/>
         /// <param name="other"/>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static SadRoguePoint Divide(this SadRoguePoint self, Vector2f other)
             => new SadRoguePoint((int)Math.Round(self.X / other.X, MidpointRounding.AwayFromZero),
@@ -190,7 +193,7 @@ namespace SadRogue.Primitives
         /// <param name="self"/>
         /// <param name="other"/>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool Matches(this SadRoguePoint self, Vector2i other) => self.X == other.X && self.Y == other.Y;
 
@@ -200,7 +203,7 @@ namespace SadRogue.Primitives
         /// <param name="self"/>
         /// <param name="other"/>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool Matches(this SadRoguePoint self, Vector2u other) => self.X == other.X && self.Y == other.Y;
 
@@ -210,7 +213,7 @@ namespace SadRogue.Primitives
         /// <param name="self"/>
         /// <param name="other"/>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool Matches(this SadRoguePoint self, Vector2f other)
             => Math.Abs(self.X - other.X) < 0.0000000001 && Math.Abs(self.Y - other.Y) < 0.0000000001;
@@ -223,6 +226,8 @@ namespace SFML.System
     /// Extension methods for <see cref="SFML.System.Vector2i"/> that enable operations involving
     /// <see cref="SadRogue.Primitives.Point"/>.
     /// </summary>
+    [PublicAPI]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
     public static class Vector2iExtensions
     {
         /// <summary>
@@ -230,7 +235,7 @@ namespace SFML.System
         /// </summary>
         /// <param name="self"/>
         /// <returns/>
-        [Pure]
+        [global::System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static SadRoguePoint ToPoint(this Vector2i self) => new SadRoguePoint(self.X, self.Y);
 
@@ -240,7 +245,7 @@ namespace SFML.System
         /// <param name="self"/>
         /// <param name="other"/>
         /// <returns/>
-        [Pure]
+        [global::System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector2i Add(this Vector2i self, SadRoguePoint other)
             => new Vector2i(self.X + other.X, self.Y + other.Y);
@@ -251,7 +256,7 @@ namespace SFML.System
         /// <param name="self"/>
         /// <param name="i"/>
         /// <returns/>
-        [Pure]
+        [global::System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector2i Add(this Vector2i self, int i) => new Vector2i(self.X + i, self.Y + i);
 
@@ -261,7 +266,7 @@ namespace SFML.System
         /// <param name="self"/>
         /// <param name="dir"/>
         /// <returns/>
-        [Pure]
+        [global::System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector2i Add(this Vector2i self, Direction dir)
             => new Vector2i(self.X + dir.DeltaX, self.Y + dir.DeltaY);
@@ -272,7 +277,7 @@ namespace SFML.System
         /// <param name="self"/>
         /// <param name="other"/>
         /// <returns/>
-        [Pure]
+        [global::System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector2i Subtract(this Vector2i self, SadRoguePoint other)
             => new Vector2i(self.X - other.X, self.Y - other.Y);
@@ -283,7 +288,7 @@ namespace SFML.System
         /// <param name="self"/>
         /// <param name="i"/>
         /// <returns/>
-        [Pure]
+        [global::System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector2i Subtract(this Vector2i self, int i) => new Vector2i(self.X - i, self.Y - i);
 
@@ -293,7 +298,7 @@ namespace SFML.System
         /// <param name="self"/>
         /// <param name="dir"/>
         /// <returns/>
-        [Pure]
+        [global::System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector2i Subtract(this Vector2i self, Direction dir)
             => new Vector2i(self.X - dir.DeltaX, self.Y - dir.DeltaY);
@@ -304,7 +309,7 @@ namespace SFML.System
         /// <param name="self"/>
         /// <param name="other"/>
         /// <returns/>
-        [Pure]
+        [global::System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector2i Multiply(this Vector2i self, SadRoguePoint other)
             => new Vector2i(self.X * other.X, self.Y * other.Y);
@@ -315,7 +320,7 @@ namespace SFML.System
         /// <param name="self"/>
         /// <param name="i"/>
         /// <returns/>
-        [Pure]
+        [global::System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector2i Multiply(this Vector2i self, int i) => new Vector2i(self.X * i, self.Y * i);
 
@@ -326,7 +331,7 @@ namespace SFML.System
         /// <param name="self"/>
         /// <param name="d"/>
         /// <returns/>
-        [Pure]
+        [global::System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector2i Multiply(this Vector2i self, double d)
             => new Vector2i((int)Math.Round(self.X * d, MidpointRounding.AwayFromZero),
@@ -339,7 +344,7 @@ namespace SFML.System
         /// <param name="self"/>
         /// <param name="other"/>
         /// <returns/>
-        [Pure]
+        [global::System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector2i Divide(this Vector2i self, SadRoguePoint other)
             => new Vector2i((int)Math.Round(self.X / (double)other.X, MidpointRounding.AwayFromZero),
@@ -352,7 +357,7 @@ namespace SFML.System
         /// <param name="self"/>
         /// <param name="d"/>
         /// <returns/>
-        [Pure]
+        [global::System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector2i Divide(this Vector2i self, double d)
             => new Vector2i((int)Math.Round(self.X / d, MidpointRounding.AwayFromZero),
@@ -364,7 +369,7 @@ namespace SFML.System
         /// <param name="self"/>
         /// <param name="other"/>
         /// <returns/>
-        [Pure]
+        [global::System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool Matches(this Vector2i self, SadRoguePoint other) => self.X == other.X && self.Y == other.Y;
     }
@@ -373,6 +378,8 @@ namespace SFML.System
     /// Extension methods for <see cref="SFML.System.Vector2u"/> that enable operations involving
     /// <see cref="SadRogue.Primitives.Point"/>.
     /// </summary>
+    [PublicAPI]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
     public static class Vector2uExtensions
     {
         /// <summary>
@@ -380,7 +387,7 @@ namespace SFML.System
         /// </summary>
         /// <param name="self"/>
         /// <returns/>
-        [Pure]
+        [global::System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static SadRoguePoint ToPoint(this Vector2u self) => new SadRoguePoint((int)self.X, (int)self.Y);
 
@@ -390,7 +397,7 @@ namespace SFML.System
         /// <param name="self"/>
         /// <param name="other"/>
         /// <returns/>
-        [Pure]
+        [global::System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector2u Add(this Vector2u self, SadRoguePoint other)
             => new Vector2u(self.X + (uint)other.X, self.Y + (uint)other.Y);
@@ -401,7 +408,7 @@ namespace SFML.System
         /// <param name="self"/>
         /// <param name="i"/>
         /// <returns/>
-        [Pure]
+        [global::System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector2u Add(this Vector2u self, int i) => new Vector2u(self.X + (uint)i, self.Y + (uint)i);
 
@@ -411,7 +418,7 @@ namespace SFML.System
         /// <param name="self"/>
         /// <param name="dir"/>
         /// <returns/>
-        [Pure]
+        [global::System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector2u Add(this Vector2u self, Direction dir)
             => new Vector2u((uint)(self.X + dir.DeltaX), (uint)(self.Y + dir.DeltaY));
@@ -422,7 +429,7 @@ namespace SFML.System
         /// <param name="self"/>
         /// <param name="other"/>
         /// <returns/>
-        [Pure]
+        [global::System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector2u Subtract(this Vector2u self, SadRoguePoint other)
             => new Vector2u((uint)(self.X - other.X), (uint)(self.Y - other.Y));
@@ -433,7 +440,7 @@ namespace SFML.System
         /// <param name="self"/>
         /// <param name="i"/>
         /// <returns/>
-        [Pure]
+        [global::System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector2u Subtract(this Vector2u self, int i)
             => new Vector2u((uint)(self.X - i), (uint)(self.Y - i));
@@ -444,7 +451,7 @@ namespace SFML.System
         /// <param name="self"/>
         /// <param name="dir"/>
         /// <returns/>
-        [Pure]
+        [global::System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector2u Subtract(this Vector2u self, Direction dir)
             => new Vector2u((uint)(self.X - dir.DeltaX), (uint)(self.Y - dir.DeltaY));
@@ -455,7 +462,7 @@ namespace SFML.System
         /// <param name="self"/>
         /// <param name="other"/>
         /// <returns/>
-        [Pure]
+        [global::System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector2u Multiply(this Vector2u self, SadRoguePoint other)
             => new Vector2u((uint)(self.X * other.X), (uint)(self.Y * other.Y));
@@ -466,7 +473,7 @@ namespace SFML.System
         /// <param name="self"/>
         /// <param name="i"/>
         /// <returns/>
-        [Pure]
+        [global::System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector2u Multiply(this Vector2u self, int i)
             => new Vector2u((uint)(self.X * i), (uint)(self.Y * i));
@@ -478,7 +485,7 @@ namespace SFML.System
         /// <param name="self"/>
         /// <param name="d"/>
         /// <returns/>
-        [Pure]
+        [global::System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector2u Multiply(this Vector2u self, double d)
             => new Vector2u((uint)Math.Round(self.X * d, MidpointRounding.AwayFromZero),
@@ -491,7 +498,7 @@ namespace SFML.System
         /// <param name="self"/>
         /// <param name="other"/>
         /// <returns/>
-        [Pure]
+        [global::System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector2u Divide(this Vector2u self, SadRoguePoint other)
             => new Vector2u((uint)Math.Round(self.X / (double)other.X, MidpointRounding.AwayFromZero),
@@ -504,7 +511,7 @@ namespace SFML.System
         /// <param name="self"/>
         /// <param name="d"/>
         /// <returns/>
-        [Pure]
+        [global::System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector2u Divide(this Vector2u self, double d)
             => new Vector2u((uint)Math.Round(self.X / d, MidpointRounding.AwayFromZero),
@@ -516,7 +523,7 @@ namespace SFML.System
         /// <param name="self"/>
         /// <param name="other"/>
         /// <returns/>
-        [Pure]
+        [global::System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool Matches(this Vector2u self, SadRoguePoint other) => self.X == other.X && self.Y == other.Y;
     }
@@ -525,6 +532,8 @@ namespace SFML.System
     /// Extension methods for <see cref="SFML.System.Vector2f"/> that enable operations involving
     /// <see cref="SadRogue.Primitives.Point"/>.
     /// </summary>
+    [PublicAPI]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
     public static class Vector2fExtensions
     {
         /// <summary>
@@ -533,7 +542,7 @@ namespace SFML.System
         /// </summary>
         /// <param name="self"/>
         /// <returns/>
-        [Pure]
+        [global::System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static SadRoguePoint ToPoint(this Vector2f self)
             => new SadRoguePoint((int)Math.Round(self.X, MidpointRounding.AwayFromZero),
@@ -545,7 +554,7 @@ namespace SFML.System
         /// <param name="self"/>
         /// <param name="other"/>
         /// <returns/>
-        [Pure]
+        [global::System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector2f Add(this Vector2f self, SadRoguePoint other)
             => new Vector2f(self.X + other.X, self.Y + other.Y);
@@ -556,7 +565,7 @@ namespace SFML.System
         /// <param name="self"/>
         /// <param name="i"/>
         /// <returns/>
-        [Pure]
+        [global::System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector2f Add(this Vector2f self, int i) => new Vector2f(self.X + i, self.Y + i);
 
@@ -566,7 +575,7 @@ namespace SFML.System
         /// <param name="self"/>
         /// <param name="dir"/>
         /// <returns/>
-        [Pure]
+        [global::System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector2f Add(this Vector2f self, Direction dir)
             => new Vector2f(self.X + dir.DeltaX, self.Y + dir.DeltaY);
@@ -577,7 +586,7 @@ namespace SFML.System
         /// <param name="self"/>
         /// <param name="other"/>
         /// <returns/>
-        [Pure]
+        [global::System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector2f Subtract(this Vector2f self, SadRoguePoint other)
             => new Vector2f(self.X - other.X, self.Y - other.Y);
@@ -588,7 +597,7 @@ namespace SFML.System
         /// <param name="self"/>
         /// <param name="i"/>
         /// <returns/>
-        [Pure]
+        [global::System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector2f Subtract(this Vector2f self, int i) => new Vector2f(self.X - i, self.Y - i);
 
@@ -598,7 +607,7 @@ namespace SFML.System
         /// <param name="self"/>
         /// <param name="dir"/>
         /// <returns/>
-        [Pure]
+        [global::System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector2f Subtract(this Vector2f self, Direction dir)
             => new Vector2f(self.X - dir.DeltaX, self.Y - dir.DeltaY);
@@ -609,7 +618,7 @@ namespace SFML.System
         /// <param name="self"/>
         /// <param name="other"/>
         /// <returns/>
-        [Pure]
+        [global::System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector2f Multiply(this Vector2f self, SadRoguePoint other)
             => new Vector2f(self.X * other.X, self.Y * other.Y);
@@ -620,7 +629,7 @@ namespace SFML.System
         /// <param name="self"/>
         /// <param name="i"/>
         /// <returns/>
-        [Pure]
+        [global::System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector2f Multiply(this Vector2f self, int i) => new Vector2f(self.X * i, self.Y * i);
 
@@ -630,7 +639,7 @@ namespace SFML.System
         /// <param name="self"/>
         /// <param name="d"/>
         /// <returns/>
-        [Pure]
+        [global::System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector2f Multiply(this Vector2f self, double d)
             => new Vector2f(self.X * (float)d, self.Y * (float)d);
@@ -641,7 +650,7 @@ namespace SFML.System
         /// <param name="self"/>
         /// <param name="other"/>
         /// <returns/>
-        [Pure]
+        [global::System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector2f Divide(this Vector2f self, SadRoguePoint other)
             => new Vector2f(self.X / other.X, self.Y / other.Y);
@@ -652,7 +661,7 @@ namespace SFML.System
         /// <param name="self"/>
         /// <param name="d"/>
         /// <returns/>
-        [Pure]
+        [global::System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector2f Divide(this Vector2f self, double d)
             => new Vector2f(self.X / (float)d, self.Y / (float)d);
@@ -663,7 +672,7 @@ namespace SFML.System
         /// <param name="self"/>
         /// <param name="other"/>
         /// <returns/>
-        [Pure]
+        [global::System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool Matches(this Vector2f self, SadRoguePoint other)
             => Math.Abs(self.X - other.X) < 0.0000000001 && Math.Abs(self.Y - other.Y) < 0.0000000001;

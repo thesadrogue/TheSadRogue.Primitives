@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
+using JetBrains.Annotations;
 
 namespace SadRogue.Primitives
 {
@@ -11,6 +12,7 @@ namespace SadRogue.Primitives
     /// A palette of colors.
     /// </summary>
     [DataContract]
+    [PublicAPI]
     public class Palette : IReadOnlyList<Color>, IMatchable<Palette>
     {
         [DataMember] private readonly Color[] _colors;

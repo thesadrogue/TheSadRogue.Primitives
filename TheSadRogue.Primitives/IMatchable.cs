@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using JetBrains.Annotations;
 
 namespace SadRogue.Primitives
 {
@@ -7,6 +8,7 @@ namespace SadRogue.Primitives
     /// to GetHashCode.
     /// </summary>
     /// <typeparam name="T">Type of object being compared.</typeparam>
+    [PublicAPI]
     public interface IMatchable<in T>
     {
         /// <summary>

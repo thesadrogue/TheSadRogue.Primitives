@@ -1,25 +1,25 @@
 ﻿using System;
-using System.Diagnostics.Contracts;
 using BenchmarkDotNet.Attributes;
+using JetBrains.Annotations;
 using SadRogue.Primitives;
 
 namespace TheSadRogue.Primitives.PerformanceTests
 {
     public readonly struct SwitchExpressionDistance
     {
-        public static readonly SwitchExpressionDistance Chebyshev = new(Distance.Types.Chebyshev);
+        private static readonly SwitchExpressionDistance s_chebyshev = new(Distance.Types.Chebyshev);
 
-        public static readonly SwitchExpressionDistance Euclidean = new(Distance.Types.Euclidean);
+        private static readonly SwitchExpressionDistance s_euclidean = new(Distance.Types.Euclidean);
 
-        public static readonly SwitchExpressionDistance Manhattan = new(Distance.Types.Manhattan);
+        private static readonly SwitchExpressionDistance s_manhattan = new(Distance.Types.Manhattan);
 
-        public readonly Distance.Types Type;
+        private readonly Distance.Types _type;
 
 
-        private SwitchExpressionDistance(Distance.Types type) => Type = type;
+        private SwitchExpressionDistance(Distance.Types type) => _type = type;
 
-        [Pure]
-        public double Calculate(double dx, double dy) => Type switch
+        [System.Diagnostics.Contracts.Pure]
+        public double Calculate(double dx, double dy) => _type switch
         {
             Distance.Types.Chebyshev => Math.Max(Math.Abs(dx),
                 Math.Abs(dy)), // Radius is the longest axial distance
@@ -29,12 +29,12 @@ namespace TheSadRogue.Primitives.PerformanceTests
                 $"{nameof(Calculate)} does not support distance calculation {this}: this is a bug!")
         };
 
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static implicit operator SwitchExpressionDistance(Distance.Types type) => type switch
         {
-            Distance.Types.Manhattan => Manhattan,
-            Distance.Types.Euclidean => Euclidean,
-            Distance.Types.Chebyshev => Chebyshev,
+            Distance.Types.Manhattan => s_manhattan,
+            Distance.Types.Euclidean => s_euclidean,
+            Distance.Types.Chebyshev => s_chebyshev,
             _ => throw new Exception(
                 $"Could not convert {nameof(Distance.Types)} to {nameof(Distance)} -- this is a bug!")
         };
@@ -42,21 +42,21 @@ namespace TheSadRogue.Primitives.PerformanceTests
 
     public readonly struct SwitchStatementDistance
     {
-        public static readonly SwitchStatementDistance Chebyshev = new(Distance.Types.Chebyshev);
+        private static readonly SwitchStatementDistance s_chebyshev = new(Distance.Types.Chebyshev);
 
-        public static readonly SwitchStatementDistance Euclidean = new(Distance.Types.Euclidean);
+        private static readonly SwitchStatementDistance s_euclidean = new(Distance.Types.Euclidean);
 
-        public static readonly SwitchStatementDistance Manhattan = new(Distance.Types.Manhattan);
+        private static readonly SwitchStatementDistance s_manhattan = new(Distance.Types.Manhattan);
 
-        public readonly Distance.Types Type;
+        private readonly Distance.Types _type;
 
 
-        private SwitchStatementDistance(Distance.Types type) => Type = type;
+        private SwitchStatementDistance(Distance.Types type) => _type = type;
 
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public double Calculate(double dx, double dy)
         {
-            switch (Type)
+            switch (_type)
             {
                 case Distance.Types.Chebyshev:
                     return Math.Max(Math.Abs(dx), Math.Abs(dy));
@@ -69,12 +69,12 @@ namespace TheSadRogue.Primitives.PerformanceTests
             }
         }
 
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static implicit operator SwitchStatementDistance(Distance.Types type) => type switch
         {
-            Distance.Types.Manhattan => Manhattan,
-            Distance.Types.Euclidean => Euclidean,
-            Distance.Types.Chebyshev => Chebyshev,
+            Distance.Types.Manhattan => s_manhattan,
+            Distance.Types.Euclidean => s_euclidean,
+            Distance.Types.Chebyshev => s_chebyshev,
             _ => throw new Exception(
                 $"Could not convert {nameof(Distance.Types)} to {nameof(Distance)} -- this is a bug!")
         };
@@ -82,21 +82,17 @@ namespace TheSadRogue.Primitives.PerformanceTests
 
     public readonly struct DistanceFunc
     {
-        public static readonly DistanceFunc Chebyshev = new(Distance.Types.Chebyshev);
+        private static readonly DistanceFunc s_chebyshev = new(Distance.Types.Chebyshev);
 
-        public static readonly DistanceFunc Euclidean = new(Distance.Types.Euclidean);
+        private static readonly DistanceFunc s_euclidean = new(Distance.Types.Euclidean);
 
-        public static readonly DistanceFunc Manhattan = new(Distance.Types.Manhattan);
-
-        public readonly Distance.Types Type;
+        private static readonly DistanceFunc s_manhattan = new(Distance.Types.Manhattan);
 
         private readonly Func<double, double, double> _func;
 
         private DistanceFunc(Distance.Types type)
         {
-
-            Type = type;
-            _func = Type switch
+            _func = type switch
             {
                 Distance.Types.Chebyshev => ChebyshevDistance,
                 Distance.Types.Manhattan => ManhattanDistance,
@@ -105,7 +101,17 @@ namespace TheSadRogue.Primitives.PerformanceTests
             };
         }
 
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
+        public static implicit operator DistanceFunc(Distance.Types type) => type switch
+        {
+            Distance.Types.Manhattan => s_manhattan,
+            Distance.Types.Euclidean => s_euclidean,
+            Distance.Types.Chebyshev => s_chebyshev,
+            _ => throw new Exception(
+                $"Could not convert {nameof(Distance.Types)} to {nameof(Distance)} -- this is a bug!")
+        };
+
+        [System.Diagnostics.Contracts.Pure]
         public double Calculate(double dx, double dy) => _func(dx, dy);
 
         private static double ChebyshevDistance(double dx, double dy) => Math.Max(Math.Abs(dx), Math.Abs(dy));
@@ -117,19 +123,22 @@ namespace TheSadRogue.Primitives.PerformanceTests
 
     public class DistanceDispatch
     {
+        [UsedImplicitly]
         [Params(4)]
         public int DeltaX;
 
+        [UsedImplicitly]
         [Params(7)]
         public int DeltaY;
 
+        [UsedImplicitly]
         [ParamsAllValues]
         public Distance.Types DistanceType;
 
         private Distance _distance = null!;
         private SwitchExpressionDistance _switchExpressionDistance;
         private SwitchStatementDistance _switchStatementDistance;
-        private SwitchStatementDistance _funcDistance;
+        private DistanceFunc _funcDistance;
 
         [GlobalSetup]
         public void GlobalSetup()

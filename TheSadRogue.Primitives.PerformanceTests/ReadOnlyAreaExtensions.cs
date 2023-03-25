@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using BenchmarkDotNet.Attributes;
+using JetBrains.Annotations;
 using SadRogue.Primitives;
 
 namespace TheSadRogue.Primitives.PerformanceTests
@@ -30,7 +31,7 @@ namespace TheSadRogue.Primitives.PerformanceTests
 
         public static IEnumerable<Point> PerimeterPositionsArrayFor(this IReadOnlyArea area, AdjacencyRule rule)
         {
-            var count = rule.DirectionsOfNeighborsCache.Length;
+            int count = rule.DirectionsOfNeighborsCache.Length;
             foreach (var pos in area)
             {
                 for (int i = 0; i < count; i++)
@@ -47,6 +48,7 @@ namespace TheSadRogue.Primitives.PerformanceTests
     }
     public class ReadOnlyAreaExtensions
     {
+        [UsedImplicitly]
         [Params(10, 100, 200)]
         public int Size;
 

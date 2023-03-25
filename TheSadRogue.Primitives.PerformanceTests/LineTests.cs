@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using BenchmarkDotNet.Attributes;
+using JetBrains.Annotations;
 using SadRogue.Primitives;
 
 namespace TheSadRogue.Primitives.PerformanceTests;
@@ -230,6 +231,7 @@ internal static class FunctionPointerLines
 
 public class LineTests
 {
+    [UsedImplicitly]
     [ParamsSource(nameof(TestCases))]
     public (Point start, Point end) LineToDraw;
 

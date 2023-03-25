@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using BenchmarkDotNet.Attributes;
+using JetBrains.Annotations;
 using SadRogue.Primitives;
 using ShaiRandom.Generators;
 
@@ -31,18 +32,21 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
         /// <summary>
         /// The data set type to test.
         /// </summary>
+        [UsedImplicitly]
         [ParamsSource(nameof(DataSetData))]
         public DataSet DataSet;
 
         /// <summary>
         /// An area of Size x Size will be used for the purposes of determining the series of points to add.
         /// </summary>
+        [UsedImplicitly]
         [ParamsSource(nameof(SizeData))]
         public int Size;
 
         /// <summary>
         /// The hashing algorithm to test; affects the equality comparer we use for the dictionary.
         /// </summary>
+        [UsedImplicitly]
         [ParamsSource(nameof(AlgorithmData))]
         public HashingAlgorithm Algorithm;
 

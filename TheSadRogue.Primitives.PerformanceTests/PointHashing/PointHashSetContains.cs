@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using BenchmarkDotNet.Attributes;
+using JetBrains.Annotations;
 using SadRogue.Primitives;
 using ShaiRandom.Generators;
 
@@ -24,18 +25,21 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
         /// <summary>
         /// The data set type to test.
         /// </summary>
+        [UsedImplicitly]
         [ParamsSource(nameof(DataSetData))]
         public DataSet DataSet;
 
         /// <summary>
         /// An area of Size x Size will be used for the purposes of determining the series of points to get.
         /// </summary>
+        [UsedImplicitly]
         [ParamsSource(nameof(SizeData))]
         public int Size;
 
         /// <summary>
         /// The hashing algorithm to test; affects the equality comparer we use for the HashSet.
         /// </summary>
+        [UsedImplicitly]
         [ParamsSource(nameof(AlgorithmData))]
         public HashingAlgorithm Algorithm;
 
@@ -61,16 +65,16 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
             // equality comparer.
             var comparer = SharedUtilities.GetHasher(Algorithm, Size);
             _hashSet = (comparer == null) ? new HashSet<Point>() : new HashSet<Point>(comparer);
-            for (int i = 0; i < _points.Length; i++)
-                _hashSet.Add(_points[i]);
+            foreach (var point in _points)
+                _hashSet.Add(point);
         }
 
         [Benchmark]
         public int CheckForPoints()
         {
             int sum = 0;
-            for (int i = 0; i < _points.Length; i++)
-                if (_hashSet.Contains(_points[i]))
+            foreach (var point in _points)
+                if (_hashSet.Contains(point))
                     sum++;
 
             return sum;

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using BenchmarkDotNet.Attributes;
+using JetBrains.Annotations;
 using SadRogue.Primitives;
 using SadRogue.Primitives.GridViews;
 using SadRogue.Primitives.PointHashers;
@@ -20,15 +21,16 @@ namespace TheSadRogue.Primitives.PerformanceTests.GridViews
     /// variables for the data structures must also be of the concrete type (ie. BitArrayView or ArrayView) rather than
     /// the interface they implement (ie. IMapView).  Making them interfaces will trigger vtable indirections when calling
     /// interface methods; however, accessing them as their concrete type should _not_, since the types are sealed.
-    /// This is a mirco-optimization, but since the get benchmarks take on the order of half a nanosecond or less, it is
+    /// This is a micro-optimization, but since the get benchmarks take on the order of half a nanosecond or less, it is
     /// relevant here.
     /// </remarks>
     public class BitArray
     {
+        [UsedImplicitly]
         [Params(10, 100, 200)]
         public int Size;
 
-        private readonly Point _on = new Point(1, 2);
+        private readonly Point _on = new(1, 2);
 
         private ArrayView<bool> _boolArrayView = null!;
         private BitArrayView _bitArrayView = null!;

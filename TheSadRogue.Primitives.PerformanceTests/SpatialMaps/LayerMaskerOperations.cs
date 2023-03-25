@@ -1,4 +1,5 @@
 ﻿using BenchmarkDotNet.Attributes;
+using JetBrains.Annotations;
 using SadRogue.Primitives.SpatialMaps;
 
 namespace TheSadRogue.Primitives.PerformanceTests.SpatialMaps;
@@ -8,6 +9,7 @@ namespace TheSadRogue.Primitives.PerformanceTests.SpatialMaps;
 /// </summary>
 public class LayerMaskerOperations
 {
+    [UsedImplicitly]
     [Params(2, 8, 16, 32)]
     public int NumberOfLayers;
 

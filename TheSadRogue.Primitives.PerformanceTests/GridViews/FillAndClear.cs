@@ -1,5 +1,6 @@
 ﻿using System;
 using BenchmarkDotNet.Attributes;
+using JetBrains.Annotations;
 using SadRogue.Primitives.GridViews;
 
 namespace TheSadRogue.Primitives.PerformanceTests.GridViews
@@ -13,9 +14,11 @@ namespace TheSadRogue.Primitives.PerformanceTests.GridViews
 
     public class FillAndClear
     {
+        [UsedImplicitly]
         [Params(10, 100, 200)]
         public int Size;
 
+        [UsedImplicitly]
         [ParamsAllValues]
         public FillTestTypes Type;
 

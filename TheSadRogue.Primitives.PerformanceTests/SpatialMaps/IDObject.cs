@@ -5,7 +5,7 @@ namespace TheSadRogue.Primitives.PerformanceTests.SpatialMaps
 {
     public class IDObject : IHasID
     {
-        private static readonly IDGenerator s_idGenerator = new IDGenerator();
+        private static readonly IDGenerator s_idGenerator = new();
 
         public IDObject()
         {
@@ -17,7 +17,7 @@ namespace TheSadRogue.Primitives.PerformanceTests.SpatialMaps
 
     public class IDLayerObject : IHasID, IHasLayer
     {
-        private static readonly IDGenerator s_idGenerator = new IDGenerator();
+        private static readonly IDGenerator s_idGenerator = new();
 
         public IDLayerObject(int layer)
         {
@@ -32,7 +32,7 @@ namespace TheSadRogue.Primitives.PerformanceTests.SpatialMaps
 
     public class IDPositionLayerObject : IHasID, IPositionable, IHasLayer
     {
-        private static readonly IDGenerator s_idGenerator = new IDGenerator();
+        private static readonly IDGenerator s_idGenerator = new();
 
         private Point _position;
 

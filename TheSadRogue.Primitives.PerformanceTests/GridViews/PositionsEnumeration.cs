@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using BenchmarkDotNet.Attributes;
+using JetBrains.Annotations;
 using SadRogue.Primitives;
 using SadRogue.Primitives.GridViews;
 
@@ -33,6 +34,7 @@ namespace TheSadRogue.Primitives.PerformanceTests.GridViews
 
     public class PositionsEnumeration
     {
+        [UsedImplicitly]
         [Params(10, 100, 200)]
         public int Size;
 

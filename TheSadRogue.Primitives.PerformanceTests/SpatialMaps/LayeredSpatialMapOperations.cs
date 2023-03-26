@@ -178,7 +178,6 @@ namespace TheSadRogue.Primitives.PerformanceTests.SpatialMaps
                     _testMap.Add(new IDLayerObject(i), Point.FromIndex(idx, _width));
                 }
             }
-
         }
 
         [GlobalSetup(Targets = new[] { nameof(MoveAllTwice), nameof(MoveValidTwice), nameof(TryMoveAllTwice) })]

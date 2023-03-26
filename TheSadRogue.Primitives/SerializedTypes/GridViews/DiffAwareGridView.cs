@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 using SadRogue.Primitives.GridViews;
 
 namespace SadRogue.Primitives.SerializedTypes.GridViews
@@ -9,6 +10,7 @@ namespace SadRogue.Primitives.SerializedTypes.GridViews
     /// Serializable (pure-data) object representing a <see cref="Diff{T}"/>.
     /// </summary>
     /// <typeparam name="T">Type of value being changed.</typeparam>
+    [PublicAPI]
     [Serializable]
     public struct DiffSerialized<T> where T : struct
     {
@@ -42,6 +44,7 @@ namespace SadRogue.Primitives.SerializedTypes.GridViews
     /// Serializable (pure-data) object representing a <see cref="ValueChange{T}"/>.
     /// </summary>
     /// <typeparam name="T">Type of value being changed.</typeparam>
+    [PublicAPI]
     [Serializable]
     public struct ValueChangeSerialized<T> where T : struct
     {

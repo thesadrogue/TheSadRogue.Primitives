@@ -1,4 +1,6 @@
-﻿namespace SadRogue.Primitives.GridViews
+﻿using JetBrains.Annotations;
+
+namespace SadRogue.Primitives.GridViews
 {
     /// <summary>
     /// Interface designed to act as a standardized input/output format that defines minimal required data
@@ -30,6 +32,7 @@
     /// such that an arbitrary callback is used to retrieve the data.
     /// </remarks>
     /// <typeparam name="T">The type of value being returned by the indexer functions.</typeparam>
+    [PublicAPI]
     public interface IGridView<out T>
     {
         /// <summary>

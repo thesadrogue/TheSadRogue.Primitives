@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using JetBrains.Annotations;
 
 namespace SadRogue.Primitives.GridViews
 {
@@ -6,6 +7,7 @@ namespace SadRogue.Primitives.GridViews
     /// A convenient base class to inherit from when implementing <see cref="ISettableGridView{T}"/> that minimizes
     /// the number of items you must implement by implementing indexers in terms of a single indexer taking a Point.
     /// </summary>
+    [PublicAPI]
     public abstract class SettableGridViewBase<T> : ISettableGridView<T>
     {
         /// <inheritdoc />

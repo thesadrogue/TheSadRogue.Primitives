@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using JetBrains.Annotations;
 
 namespace SadRogue.Primitives.Pooling
 {
@@ -13,6 +14,7 @@ namespace SadRogue.Primitives.Pooling
     /// doesn't have any way to take into account list capacity when requesting a list.
     /// </remarks>
     /// <typeparam name="T">Type of items being stored in the list.</typeparam>
+    [PublicAPI]
     public interface IListPool<T>
     {
         /// <summary>

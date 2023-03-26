@@ -1,4 +1,5 @@
 ﻿using System;
+using JetBrains.Annotations;
 
 namespace SadRogue.Primitives.GridViews
 {
@@ -8,6 +9,7 @@ namespace SadRogue.Primitives.GridViews
     /// grid view, a (specified) default value is returned.
     /// </summary>
     /// <typeparam name="T">The type being exposed by the UnboundedViewport.</typeparam>
+    [PublicAPI]
     public class UnboundedViewport<T> : GridViewBase<T>
     {
         /// <summary>

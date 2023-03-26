@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
+using JetBrains.Annotations;
 
 namespace SadRogue.Primitives.SpatialMaps
 {
@@ -19,6 +20,7 @@ namespace SadRogue.Primitives.SpatialMaps
     /// it will, in large part, determine the performance of AdvancedSpatialMap!
     /// </remarks>
     /// <typeparam name="T">The type of object that will be contained by this AdvancedSpatialMap.</typeparam>
+    [PublicAPI]
     public class AdvancedSpatialMap<T> : ISpatialMap<T>
         where T : notnull
     {
@@ -752,6 +754,7 @@ namespace SadRogue.Primitives.SpatialMaps
     /// The type of object that will be contained by this SpatialMap. Must implement <see cref="IHasID" />
     /// and be a reference-type.
     /// </typeparam>
+    [PublicAPI]
     public sealed class SpatialMap<T> : AdvancedSpatialMap<T> where T : class, IHasID
     {
         /// <summary>

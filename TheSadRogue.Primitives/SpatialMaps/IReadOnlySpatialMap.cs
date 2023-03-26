@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 
 namespace SadRogue.Primitives.SpatialMaps
 {
@@ -12,6 +13,7 @@ namespace SadRogue.Primitives.SpatialMaps
     /// property of type IReadOnlySpatialMap, without allowing such an exposure to break data encapsulation principles
     /// of something like a game map.
     /// </remarks>
+    [PublicAPI]
     public interface IReadOnlySpatialMap<T> : IEnumerable<ItemPositionPair<T>>
         where T : notnull
     {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 
 namespace SadRogue.Primitives.SpatialMaps
 {
@@ -20,6 +21,7 @@ namespace SadRogue.Primitives.SpatialMaps
     /// <see cref="AdvancedSpatialMap{T}"/> instead.
     /// </remarks>
     /// <typeparam name="T">The type of object that will be contained by this spatial map.</typeparam>
+    [PublicAPI]
     public class AutoSyncAdvancedSpatialMap<T> : ISpatialMap<T>
         where T : class, IPositionable
     {
@@ -601,6 +603,7 @@ namespace SadRogue.Primitives.SpatialMaps
     /// <see cref="SpatialMap{T}"/> instead.
     /// </remarks>
     /// <typeparam name="T">The type of object that will be contained by this spatial map.</typeparam>
+    [PublicAPI]
     public sealed class AutoSyncSpatialMap<T> : AutoSyncAdvancedSpatialMap<T> where T : class, IHasID, IPositionable
     {
         /// <summary>

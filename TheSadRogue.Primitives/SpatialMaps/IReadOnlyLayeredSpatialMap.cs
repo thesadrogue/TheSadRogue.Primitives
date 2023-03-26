@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using JetBrains.Annotations;
 
 namespace SadRogue.Primitives.SpatialMaps
 {
@@ -9,6 +10,7 @@ namespace SadRogue.Primitives.SpatialMaps
     /// <typeparam name="T">
     /// Type of element stored in the layered spatial map -- must implement <see cref="IHasLayer" />.
     /// </typeparam>
+    [PublicAPI]
     public interface IReadOnlyLayeredSpatialMap<T> : IReadOnlySpatialMap<T> where T : IHasLayer
     {
         /// <summary>

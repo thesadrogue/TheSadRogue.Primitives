@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 using SadRogue.Primitives.Pooling;
 
 namespace SadRogue.Primitives.SpatialMaps
@@ -22,6 +23,7 @@ namespace SadRogue.Primitives.SpatialMaps
     /// <see cref="AdvancedLayeredSpatialMap{T}"/> instead.
     /// </remarks>
     /// <typeparam name="T">The type of object that will be contained by this spatial map.</typeparam>
+    [PublicAPI]
     public class AutoSyncAdvancedLayeredSpatialMap<T> : ISpatialMap<T>, IReadOnlyLayeredSpatialMap<T>
         where T : class, IHasLayer, IPositionable
     {
@@ -660,6 +662,7 @@ namespace SadRogue.Primitives.SpatialMaps
     /// <see cref="LayeredSpatialMap{T}"/> instead.
     /// </remarks>
     /// <typeparam name="T">The type of object that will be contained by this spatial map.</typeparam>
+    [PublicAPI]
     public sealed class AutoSyncLayeredSpatialMap<T> : AutoSyncAdvancedLayeredSpatialMap<T>
         where T : class, IHasID, IPositionable, IHasLayer
     {

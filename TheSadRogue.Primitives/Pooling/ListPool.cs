@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using JetBrains.Annotations;
 
 namespace SadRogue.Primitives.Pooling
 {
@@ -7,6 +8,7 @@ namespace SadRogue.Primitives.Pooling
     /// A basic implementation of <see cref="IListPool{T}"/> which uses a simple List of lists to store the pool.
     /// </summary>
     /// <typeparam name="T">Type of items being stored in the list.</typeparam>
+    [PublicAPI]
     public sealed class ListPool<T> : IListPool<T>
     {
         /// <summary>

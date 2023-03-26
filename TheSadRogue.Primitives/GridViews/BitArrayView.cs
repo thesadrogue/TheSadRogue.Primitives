@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Runtime.CompilerServices;
+using JetBrains.Annotations;
 
 namespace SadRogue.Primitives.GridViews
 {
@@ -15,6 +16,7 @@ namespace SadRogue.Primitives.GridViews
     /// corresponding operation for a boolean array, which can make it a very useful alternative as a "visited" array
     /// when iterating over a grid.
     /// </remarks>
+    [PublicAPI]
     public sealed class BitArrayView : SettableGridView1DIndexBase<bool>, ICloneable, IMatchable<BitArrayView>
     {
         private readonly BitArray _array;
@@ -67,11 +69,7 @@ namespace SadRogue.Primitives.GridViews
         /// <returns>The cloned BitArrayView.</returns>
         public object Clone()
         {
-            var newObj = new BitArrayView(Width, Height);
-
-            for (int x = 0; x < Width; x++)
-                for (int y = 0; y < Height; y++)
-                    newObj[x, y] = _array[Point.ToIndex(x, y, Width)];
+            var newObj = new BitArrayView((BitArray)_array.Clone(), Width);
 
             return newObj;
         }

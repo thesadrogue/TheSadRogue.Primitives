@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using JetBrains.Annotations;
 
 namespace SadRogue.Primitives.GridViews
 {
@@ -12,6 +13,7 @@ namespace SadRogue.Primitives.GridViews
     /// structure takes an index (although this should typically be considered a micro-optimization).
     /// </remarks>
     /// <typeparam name="T">The type of value being stored.</typeparam>
+    [PublicAPI]
     public abstract class GridView1DIndexBase<T> : IGridView<T>
     {
         /// <inheritdoc />

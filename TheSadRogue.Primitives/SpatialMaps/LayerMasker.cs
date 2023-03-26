@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using JetBrains.Annotations;
 
 namespace SadRogue.Primitives.SpatialMaps
 {
@@ -17,6 +18,7 @@ namespace SadRogue.Primitives.SpatialMaps
     ///
     /// This iterator will enumerate the layers in reverse order; ie. highest active number to lowest active number.
     /// </remarks>
+    [PublicAPI]
     public struct LayerMaskEnumerator : IEnumerator<int>, IEnumerable<int>
     {
         private uint _mask;
@@ -97,6 +99,7 @@ namespace SadRogue.Primitives.SpatialMaps
     /// that, use <see cref="Default" />; but this won't enforce the maximum number of layers automatically.  There are
     /// also constants defined in LayerMasker to represent "all layers" and "no layers".
     /// </remarks>
+    [PublicAPI]
     public sealed class LayerMasker
     {
         /// <summary>

@@ -222,13 +222,13 @@ namespace SadRogue.Primitives.SpatialMaps
         /// This custom iterator will perform many times better (up to 25x better, in fact) than an IEnumerable, when
         /// used in a foreach loop, since it is a value type and thus incurs no GC allocation and no boxing/unboxing.
         ///
-        /// The returned enumerator also contains a function you can use to retrieve an IEnumerable if you wish to use
+        /// The returned enumerator also contains implements IEnumerable if you wish to use
         /// the returned values with System.Linq or similar:
         /// <code>
-        /// var array = myLayerMasker.Layers(myLayerMask).ToEnumerable().ToArray()
+        /// var array = myLayerMasker.Layers(myLayerMask).ToArray()
         /// </code>
         ///
-        /// Note, however, that using this function will entirely erase the performance benefits of the custom type.
+        /// Note, however, that using this function will degrade the performance benefits of the custom type.
         /// </remarks>
         /// <param name="mask">Layer mask to return layers for.</param>
         /// <returns>

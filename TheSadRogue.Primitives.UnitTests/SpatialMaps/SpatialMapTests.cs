@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using SadRogue.Primitives.SpatialMaps;
 using SadRogue.Primitives.UnitTests.Mocks;
 using Xunit;
@@ -302,6 +303,24 @@ namespace SadRogue.Primitives.UnitTests.SpatialMaps
             _spatialMap.Move(_initialItem, s_newItemPos);
             Assert.False(_spatialMap.Contains(s_initialItemPos.X, s_initialItemPos.Y));
             Assert.True(_spatialMap.Contains(s_newItemPos.X, s_newItemPos.Y));
+        }
+        #endregion
+
+        #region GetItemsAt
+        // Test that GetItemsAt returns the correct items at s_initialItemPos
+        [Fact]
+        public void GetItemsAt()
+        {
+            var itemsAt = _spatialMap.GetItemsAt(s_initialItemPos).ToArray();
+            Assert.Single(itemsAt);
+            Assert.Equal(_initialItem, itemsAt[0]);
+        }
+
+        // Test that GetItemsAt returns no items at empty locations
+        [Fact]
+        public void GetItemsAtEmpty()
+        {
+            Assert.Empty(_spatialMap.GetItemsAt(s_newItemPos));
         }
         #endregion
 

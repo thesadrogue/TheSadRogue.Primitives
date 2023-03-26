@@ -8,6 +8,89 @@ using JetBrains.Annotations;
 namespace SadRogue.Primitives.SpatialMaps
 {
     /// <summary>
+    /// A custom enumerator used to iterate over the item at a given location in a spatial map implementation efficiently.
+    ///
+    /// Generally, you should use <see cref="AdvancedSpatialMap{T}.GetItemsAt(Point)"/> (or one of its overloads)
+    /// to get an instance of this, rather than creating one yourself.
+    /// </summary>
+    /// <remarks>
+    /// This type is a struct, and as such is notably more efficient when used in a foreach loop than a function returning
+    /// IEnumerable&lt;T&gt; by using "yield return".  This type does implement <see cref="IEnumerable{T}"/>,
+    /// so you can pass it to functions which require one (for example, System.LINQ).  However, this will have reduced
+    /// performance due to boxing of the iterator.
+    /// </remarks>
+    [PublicAPI]
+    public struct SpatialMapItemsAtEnumerator<T> : IEnumerable<T>, IEnumerator<T>
+        where T : notnull
+    {
+        // Suppress warning stating to use auto-property because we want to guarantee micro-performance
+        // characteristics.
+#pragma warning disable IDE0032 // Use auto property
+        private T _current;
+#pragma warning restore IDE0032 // Use auto property
+
+        /// <summary>
+        /// The current value for enumeration.
+        /// </summary>
+        public T Current => _current;
+
+        private readonly AdvancedSpatialMap<T> _map;
+        private readonly Point _position;
+        private bool _hasReturnedValue;
+        
+
+        object IEnumerator.Current => _current;
+
+        /// <summary>
+        /// Creates an enumerator which iterates over all items at the given point in the spatial map given.
+        /// </summary>
+        /// <param name="map">The spatial map to check for items in.</param>
+        /// <param name="position">The position to retrieve items at.</param>
+        public SpatialMapItemsAtEnumerator(AdvancedSpatialMap<T> map, Point position)
+        {
+            _map = map;
+            _hasReturnedValue = false;
+            _current = default!;
+            _position = position;
+        }
+
+        /// <summary>
+        /// Advances the iterator to the next item.
+        /// </summary>
+        /// <returns>True if the a new item at the position given; false otherwise.</returns>
+        public bool MoveNext()
+        {
+            if (_hasReturnedValue)
+                return false;
+
+            _hasReturnedValue = true;
+            return _map.TryGetItem(_position, out _current!);
+        }
+
+        /// <summary>
+        /// Returns this enumerator.
+        /// </summary>
+        /// <returns>This enumerator.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public SpatialMapItemsAtEnumerator<T> GetEnumerator() => this;
+
+        // Explicitly implemented to ensure we prefer the non-boxing versions where possible
+        #region Explicit Interface Implementations
+
+        /// <inheritdoc />
+        void IEnumerator.Reset()
+        {
+            _hasReturnedValue = false;
+        }
+        IEnumerator<T> IEnumerable<T>.GetEnumerator() => this;
+        IEnumerator IEnumerable.GetEnumerator() => this;
+
+        void IDisposable.Dispose()
+        { }
+        #endregion
+    }
+
+    /// <summary>
     /// A more complex version of <see cref="SpatialMap{T}" /> that does not require the items in it to implement
     /// <see cref="IHasID" />, instead requiring the specification of a custom <see cref="IEqualityComparer{T}" />
     /// to use for hashing and comparison of items.
@@ -204,6 +287,10 @@ namespace SadRogue.Primitives.SpatialMaps
         /// or nothing if there is nothing at that position.
         /// </summary>
         /// <remarks>
+        /// This function returns a custom iterator which is very fast when used in a foreach loop.
+        /// If you need an IEnumerable to use with LINQ or other code, the returned struct does implement that interface;
+        /// however note that iterating over it this way will not perform as well as iterating directly over this object.
+        /// 
         /// Since this implementation guarantees that only one item can be at any given
         /// location at once, the return value is guaranteed to be at most one element. You may find it
         /// more convenient to use the <see cref="GetItem(Point)" /> function when you know you are
@@ -214,12 +301,48 @@ namespace SadRogue.Primitives.SpatialMaps
         /// The item at the given position as a 1-element enumerable, if there is an item there, or
         /// nothing if there is no item there.
         /// </returns>
-        public IEnumerable<T> GetItemsAt(Point position)
-        {
-            _positionMapping.TryGetValue(position, out var item);
-            if (item != null)
-                yield return item;
-        }
+        public SpatialMapItemsAtEnumerator<T> GetItemsAt(Point position)
+            => new SpatialMapItemsAtEnumerator<T>(this, position);
+
+        /// <summary>
+        /// Gets the item at the given position as a 1-element enumerable if there is any item there,
+        /// or nothing if there is nothing at that position.
+        /// </summary>
+        /// <remarks>
+        /// This function returns a custom iterator which is very fast when used in a foreach loop.
+        /// If you need an IEnumerable to use with LINQ or other code, the returned struct does implement that interface;
+        /// however note that iterating over it this way will not perform as well as iterating directly over this object.
+        /// 
+        /// Since this implementation guarantees that only one item can be at any given
+        /// location at once, the return value is guaranteed to be at most one element. You may find it
+        /// more convenient to use the <see cref="GetItem(int, int)" /> function when you know you are
+        /// dealing with a SpatialMap/AdvancedSpatialMap instance.
+        /// </remarks>
+        /// <param name="x">The x-value of the position to return the item(s) for.</param>
+        /// <param name="y">The y-value of the position to return the item(s) for.</param>
+        /// <returns>
+        /// The item at the given position as a 1-element enumerable, if there is an item there, or
+        /// nothing if there is no item there.
+        /// </returns>
+        public SpatialMapItemsAtEnumerator<T> GetItemsAt(int x, int y) => GetItemsAt(new Point(x, y));
+
+        /// <summary>
+        /// Gets the item at the given position as a 1-element enumerable if there is any item there,
+        /// or nothing if there is nothing at that position.
+        /// </summary>
+        /// <remarks>
+        /// Since this implementation guarantees that only one item can be at any given
+        /// location at once, the return value is guaranteed to be at most one element. You may find it
+        /// more convenient to use the <see cref="GetItem(Point)" /> function when you know you are
+        /// dealing with a SpatialMap/AdvancedSpatialMap instance.
+        /// </remarks>
+        /// <param name="position">The position to return the item for.</param>
+        /// <returns>
+        /// The item at the given position as a 1-element enumerable, if there is an item there, or
+        /// nothing if there is no item there.
+        /// </returns>
+        IEnumerable<T> IReadOnlySpatialMap<T>.GetItemsAt(Point position)
+            => GetItemsAt(position);
 
         /// <summary>
         /// Gets the item at the given position as a 1-element enumerable if there is any item there,
@@ -237,7 +360,7 @@ namespace SadRogue.Primitives.SpatialMaps
         /// The item at the given position as a 1-element enumerable, if there is an item there, or
         /// nothing if there is no item there.
         /// </returns>
-        public IEnumerable<T> GetItemsAt(int x, int y) => GetItemsAt(new Point(x, y));
+        IEnumerable<T> IReadOnlySpatialMap<T>.GetItemsAt(int x, int y) => GetItemsAt(x, y);
 
         /// <inheritdoc />
         public Point? GetPositionOfOrNull(T item)

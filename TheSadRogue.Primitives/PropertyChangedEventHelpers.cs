@@ -1,4 +1,5 @@
 ﻿using System;
+using JetBrains.Annotations;
 
 namespace SadRogue.Primitives
 {
@@ -17,6 +18,7 @@ namespace SadRogue.Primitives
     /// mark the event as "handled" and stop other event handlers from being run.
     /// </remarks>
     /// <typeparam name="TProperty">Type of the property changed.</typeparam>
+    [PublicAPI]
     public class ValueChangedEventArgs<TProperty> : EventArgs
     {
         /// <summary>
@@ -45,6 +47,7 @@ namespace SadRogue.Primitives
     /// <summary>
     /// Helper functions useful for implementing events using <see cref="ValueChangedEventArgs{TProperty}"/> as their parameter.
     /// </summary>
+    [PublicAPI]
     public static class PropertyChangedEventHelpers
     {
         /// <summary>

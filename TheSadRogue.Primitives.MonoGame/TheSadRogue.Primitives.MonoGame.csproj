@@ -1,4 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
+  <!-- ReSharper disable UnknownProperty -->
 
   <PropertyGroup>
     <!-- Basic package info -->
@@ -7,6 +8,7 @@
     <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
     <Version>1.1.1</Version>
+    <!-- ReSharper disable once UnknownProperty -->
     <Version Condition="'$(Configuration)'=='Debug'">$(Version)-debug</Version>
     <Authors>Chris3606;Thraka</Authors>
     <Company>TheSadRogue</Company>
@@ -39,14 +41,15 @@
 
   <!-- Dependencies -->
   <ItemGroup>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All"/>
-    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641" PrivateAssets="All"/>
-    <PackageReference Include="TheSadRogue.Primitives" Version="1.*"/>
+    <PackageReference Include="JetBrains.Annotations" Version="2022.3.1" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
+    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641" PrivateAssets="All" />
+    <PackageReference Include="TheSadRogue.Primitives" Version="1.*" />
   </ItemGroup>
 
   <!-- When packing, copy the nuget files to the nuget output directory -->
   <Target Name="CopyPackage" AfterTargets="Pack">
-    <Copy SourceFiles="$(OutputPath)\$(PackageId).$(PackageVersion).nupkg" DestinationFolder="$(OutputPath)..\..\..\nuget"/>
-    <Copy SourceFiles="$(OutputPath)\$(PackageId).$(PackageVersion).snupkg" DestinationFolder="$(OutputPath)..\..\..\nuget"/>
+    <Copy SourceFiles="$(OutputPath)\$(PackageId).$(Version).nupkg" DestinationFolder="$(OutputPath)..\..\..\nuget" />
+    <Copy SourceFiles="$(OutputPath)\$(PackageId).$(Version).snupkg" DestinationFolder="$(OutputPath)..\..\..\nuget" />
   </Target>
 </Project>

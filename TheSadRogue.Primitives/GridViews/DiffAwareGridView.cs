@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
+using JetBrains.Annotations;
 
 namespace SadRogue.Primitives.GridViews
 {
@@ -10,6 +11,7 @@ namespace SadRogue.Primitives.GridViews
     /// Records a value change in a diff as recorded by a <see cref="DiffAwareGridView{T}"/>.
     /// </summary>
     /// <typeparam name="T">Type of value being changed.</typeparam>
+    [PublicAPI]
     [DataContract]
     public readonly struct ValueChange<T> : IEquatable<ValueChange<T>>, IMatchable<ValueChange<T>>
         where T : struct
@@ -97,6 +99,7 @@ namespace SadRogue.Primitives.GridViews
     /// Represents a unique patch/diff of the state of a <see cref="DiffAwareGridView{T}"/>.
     /// </summary>
     /// <typeparam name="T">Type of value stored in the grid view.</typeparam>
+    [PublicAPI]
     public class Diff<T> : IEnumerable<ValueChange<T>>
         where T : struct
     {
@@ -252,6 +255,7 @@ namespace SadRogue.Primitives.GridViews
     /// algorithm.
     /// </remarks>
     /// <typeparam name="T">Type of value in the grid view.  Must be a value type.</typeparam>
+    [PublicAPI]
     public class DiffAwareGridView<T> : SettableGridViewBase<T>
         where T : struct
     {

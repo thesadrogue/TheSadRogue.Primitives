@@ -19,10 +19,10 @@ namespace SadRogue.Primitives.UnitTests
             Point center = (1, 1);
             var positions = AdjacencyRule.EightWay.DirectionsOfNeighborsClockwise(Direction.Up).Select(i => center + i).ToArray();
 
-            var bearings = positions.Select(i => Point.BearingOfLine(center, i)).ToArray();
-            var bearings2 = positions.Select(i => Point.BearingOfLine(i - center)).ToArray();
-            var bearings3 = positions.Select(i => Point.BearingOfLine((i - center).X, (i - center).Y)).ToArray();
-            var bearings4 = positions.Select(i => Point.BearingOfLine(center.X, center.Y, i.X, i.Y)).ToArray();
+            double[] bearings = positions.Select(i => Point.BearingOfLine(center, i)).ToArray();
+            double[] bearings2 = positions.Select(i => Point.BearingOfLine(i - center)).ToArray();
+            double[] bearings3 = positions.Select(i => Point.BearingOfLine((i - center).X, (i - center).Y)).ToArray();
+            double[] bearings4 = positions.Select(i => Point.BearingOfLine(center.X, center.Y, i.X, i.Y)).ToArray();
 
             Assert.Equal(8, bearings.Length);
 

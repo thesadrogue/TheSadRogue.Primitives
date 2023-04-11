@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
+using JetBrains.Annotations;
 
 namespace SadRogue.Primitives
 {
@@ -20,23 +20,24 @@ namespace SadRogue.Primitives
     /// Each subclass requires an entry in <see cref="Distance.Types"/> to function properly.  The class is only
     /// abstract in order to allow an internal implementation which will maximize performance.
     /// </remarks>
+    [PublicAPI]
     [DataContract]
     public abstract class Distance : IMatchable<Distance>
     {
         /// <summary>
         /// Represents chebyshev distance (equivalent to 8-way movement with no extra cost for diagonals).
         /// </summary>
-        public static ChebyshevDistance Chebyshev = new ChebyshevDistance();
+        public static readonly ChebyshevDistance Chebyshev = new ChebyshevDistance();
 
         /// <summary>
         /// Represents euclidean distance (equivalent to 8-way movement with ~1.41 movement cost for diagonals).
         /// </summary>
-        public static EuclideanDistance Euclidean = new EuclideanDistance();
+        public static readonly EuclideanDistance Euclidean = new EuclideanDistance();
 
         /// <summary>
         /// Represents manhattan distance (equivalent to 4-way, cardinal-only movement).
         /// </summary>
-        public static ManhattanDistance Manhattan = new ManhattanDistance();
+        public static readonly ManhattanDistance Manhattan = new ManhattanDistance();
 
         /// <summary>
         /// Enum value representing the method of calculating distance -- useful for using
@@ -45,7 +46,7 @@ namespace SadRogue.Primitives
         [DataMember]
         public Types Type { get; }
 
-        private static readonly string[] s_writeVals = Enum.GetNames(typeof(Types));
+        private static readonly string[] s_writeValues = Enum.GetNames(typeof(Types));
 
         /// <summary>
         /// Creates a new Distance class to represent the distance calculation specified by the type.
@@ -81,10 +82,10 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <remarks>
         /// The 2D radius shape corresponding to the definition of a radius according to the distance calculation
-        /// casted will be returned.
+        /// given will be returned.
         /// </remarks>
         /// <param name="distance"/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static implicit operator Radius(Distance distance) => distance.Type switch
         {
             Types.Manhattan => Radius.Diamond,
@@ -98,10 +99,10 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <remarks>
         /// The adjacency rule corresponding to the definition of a adjacency according to the
-        /// distance calculation casted will be returned.
+        /// distance calculation given will be returned.
         /// </remarks>
         /// <param name="distance"/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static implicit operator AdjacencyRule(Distance distance) => distance.Type switch
         {
             Types.Manhattan => AdjacencyRule.Cardinals,
@@ -115,14 +116,14 @@ namespace SadRogue.Primitives
         /// Implicitly converts a Distance to its corresponding <see cref="Type"/>.
         /// </summary>
         /// <param name="distance"/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static implicit operator Types(Distance distance) => distance.Type;
 
         /// <summary>
         /// Implicitly converts an <see cref="Types"/> enum value to its corresponding Distance.
         /// </summary>
         /// <param name="type"/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static implicit operator Distance(Types type) => type switch
         {
             Types.Manhattan => Manhattan,
@@ -137,7 +138,7 @@ namespace SadRogue.Primitives
         /// <param name="start">Starting point.</param>
         /// <param name="end">Ending point.</param>
         /// <returns>The distance between the two points.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public double Calculate(Point start, Point end) => Calculate(start.X, start.Y, end.X, end.Y);
 
@@ -149,7 +150,7 @@ namespace SadRogue.Primitives
         /// <param name="endX">X-Coordinate of the ending point.</param>
         /// <param name="endY">Y-Coordinate of the ending point.</param>
         /// <returns>The distance between the two points.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public double Calculate(double startX, double startY, double endX, double endY)
         {
@@ -164,7 +165,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="deltaChange">The delta-x and delta-y between the two locations.</param>
         /// <returns>The distance between two locations withe the given delta-change values.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public double Calculate(Point deltaChange) => Calculate(deltaChange.X, deltaChange.Y);
 
@@ -174,14 +175,14 @@ namespace SadRogue.Primitives
         /// <param name="dx">The delta-x between the two locations.</param>
         /// <param name="dy">The delta-y between the two locations.</param>
         /// <returns>The distance between two locations with the given delta-change values.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public abstract double Calculate(double dx, double dy);
 
         /// <summary>
         /// Returns a hash-map value for the current object.
         /// </summary>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public override int GetHashCode() => Type.GetHashCode();
 
         /// <summary>
@@ -189,15 +190,15 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="other">Distance to compare.</param>
         /// <returns>True if the two distance calculation methods are the same, false if not.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public bool Matches(Distance? other) => !(other is null) && Type == other.Type;
 
         /// <summary>
         /// Returns a string representation of the distance calculation method represented.
         /// </summary>
         /// <returns>A string representation of the distance method represented.</returns>
-        [Pure]
-        public override string ToString() => s_writeVals[(int)Type];
+        [System.Diagnostics.Contracts.Pure]
+        public override string ToString() => s_writeValues[(int)Type];
     }
 
     /// <summary>

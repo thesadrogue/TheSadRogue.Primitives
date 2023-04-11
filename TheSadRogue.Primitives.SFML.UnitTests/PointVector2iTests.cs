@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using SFML.System;
 using Xunit;
 using XUnit.ValueTuples;
 
 namespace SadRogue.Primitives.SFML.UnitTests
 {
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
     public class PointVector2iTests
     {
         #region Test Data
@@ -144,7 +146,7 @@ namespace SadRogue.Primitives.SFML.UnitTests
         }
 
         [Fact]
-        public void TestMultPoint()
+        public void TestMultiplyPoint()
         {
             foreach (var pos in _testPositions.Positions())
             {
@@ -156,7 +158,7 @@ namespace SadRogue.Primitives.SFML.UnitTests
 
         [Theory]
         [MemberDataEnumerable(nameof(IntTestCases))]
-        public void TestMultInt(int i)
+        public void TestMultiplyInt(int i)
         {
             foreach (var pos in _testPositions.Positions())
             {
@@ -168,7 +170,7 @@ namespace SadRogue.Primitives.SFML.UnitTests
 
         [Theory]
         [MemberDataEnumerable(nameof(DoubleTestCases))]
-        public void TestMultDouble(double d)
+        public void TestMultiplyDouble(double d)
         {
             foreach (var pos in _testPositions.Positions())
             {
@@ -178,7 +180,7 @@ namespace SadRogue.Primitives.SFML.UnitTests
         }
 
         [Fact]
-        public void TestDivPoint()
+        public void TestDividePoint()
         {
             foreach (var pos in _testPositions.Positions())
             {
@@ -191,7 +193,7 @@ namespace SadRogue.Primitives.SFML.UnitTests
 
         [Theory]
         [MemberDataEnumerable(nameof(DoubleTestCases))]
-        public void TestDivDouble(double d)
+        public void TestDivideDouble(double d)
         {
             foreach (var pos in _testPositions.Positions())
             {

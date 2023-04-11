@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
+using JetBrains.Annotations;
 using SadRogue.Primitives.GridViews;
 
 namespace SadRogue.Primitives
@@ -19,6 +19,7 @@ namespace SadRogue.Primitives
     /// shape).
     /// </remarks>
     [DataContract]
+    [PublicAPI]
     public readonly struct Radius : IEquatable<Radius>, IMatchable<Radius>
     {
         /// <summary>
@@ -46,7 +47,7 @@ namespace SadRogue.Primitives
         /// </summary>
         [DataMember] public readonly Types Type;
 
-        private static readonly string[] s_writeVals = Enum.GetNames(typeof(Types));
+        private static readonly string[] s_writeValues = Enum.GetNames(typeof(Types));
 
         private Radius(Types type) => Type = type;
 
@@ -77,7 +78,7 @@ namespace SadRogue.Primitives
         /// Returns an IEnumerable of all positions in a radius of the current shape defined by the given parameters.
         /// </summary>
         /// <remarks>
-        /// If you are getting positions for a radius of the same size frequently, it may be more performant to instead
+        /// If you are getting positions for a radius of the same size frequently, it may be more performance-savvy to instead
         /// construct a <see cref="RadiusLocationContext"/> to represent it, and pass that to
         /// <see cref="PositionsInRadius(RadiusLocationContext)"/>.
         ///
@@ -90,7 +91,7 @@ namespace SadRogue.Primitives
         /// <param name="bounds">Bounds to restrict the returned values by.</param>
         /// <returns>All points in the radius shape defined by the given parameters, in order from least distance to greatest
         /// if <see cref="Radius.Diamond"/> or <see cref="Radius.Square"/> is being used.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public IEnumerable<Point> PositionsInRadius(Point center, int radius, Rectangle bounds)
             => PositionsInRadius(new RadiusLocationContext(center, radius, bounds));
@@ -99,7 +100,7 @@ namespace SadRogue.Primitives
         /// Returns an IEnumerable of all positions in a radius of the current shape defined by the given parameters.
         /// </summary>
         /// <remarks>
-        /// If you are getting positions for a radius of the same size frequently, it may be more performant to instead
+        /// If you are getting positions for a radius of the same size frequently, it may be more performance-savvy to instead
         /// construct a <see cref="RadiusLocationContext"/> to represent it, and pass that to
         /// <see cref="PositionsInRadius(RadiusLocationContext)"/>.
         ///
@@ -113,7 +114,7 @@ namespace SadRogue.Primitives
         /// <param name="bounds">Bounds to restrict the returned values by.</param>
         /// <returns>All points in the radius shape defined by the given parameters, in order from least distance to greatest
         /// if <see cref="Radius.Diamond"/> or <see cref="Radius.Square"/> is being used.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public IEnumerable<Point> PositionsInRadius(int centerX, int centerY, int radius, Rectangle bounds)
             => PositionsInRadius(new RadiusLocationContext(new Point(centerX, centerY), radius, bounds));
@@ -122,7 +123,7 @@ namespace SadRogue.Primitives
         /// Returns an IEnumerable of all positions in a radius of the current shape defined by the given parameters.
         /// </summary>
         /// <remarks>
-        /// If you are getting positions for a radius of the same size frequently, it may be more performant to instead
+        /// If you are getting positions for a radius of the same size frequently, it may be more performance-savvy to instead
         /// construct a <see cref="RadiusLocationContext"/> to represent it, and pass that to
         /// <see cref="PositionsInRadius(RadiusLocationContext)"/>.
         ///
@@ -133,7 +134,7 @@ namespace SadRogue.Primitives
         /// <param name="radius">Length of the radius.</param>
         /// <returns>All points in the radius shape defined by the given parameters, in order from least distance to greatest
         /// if <see cref="Radius.Diamond"/> or <see cref="Radius.Square"/> is being used.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public IEnumerable<Point> PositionsInRadius(Point center, int radius)
             => PositionsInRadius(new RadiusLocationContext(center, radius));
@@ -142,7 +143,7 @@ namespace SadRogue.Primitives
         /// Returns an IEnumerable of all positions in a radius of the current shape defined by the given parameters.
         /// </summary>
         /// <remarks>
-        /// If you are getting positions for a radius of the same size frequently, it may be more performant to instead
+        /// If you are getting positions for a radius of the same size frequently, it may be more performance-savvy to instead
         /// construct a <see cref="RadiusLocationContext"/> to represent it, and pass that to
         /// <see cref="PositionsInRadius(RadiusLocationContext)"/>.
         ///
@@ -154,14 +155,14 @@ namespace SadRogue.Primitives
         /// <param name="radius">Length of the radius.</param>
         /// <returns>All points in the radius shape defined by the given parameters, in order from least distance to greatest
         /// if <see cref="Radius.Diamond"/> or <see cref="Radius.Square"/> is being used.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public IEnumerable<Point> PositionsInRadius(int centerX, int centerY, int radius)
             => PositionsInRadius(new Point(centerX, centerY), radius);
 
         /// <summary>
         /// Returns an IEnumerable of all positions in a radius of the current shape defined by the given context.  Creating
-        /// a context to store, and using this function instead of another overload may be more performant when you plan to get
+        /// a context to store, and using this function instead of another overload may be more performance-savvy when you plan to get
         /// the positions for a radius of the same size multiple times, even if the shape/position are changing.
         /// </summary>
         /// <remarks>
@@ -174,7 +175,7 @@ namespace SadRogue.Primitives
         /// <param name="context">Context defining radius parameters.</param>
         /// <returns>All points in the radius shape defined by the given context, in order from least distance to greatest
         /// if <see cref="Radius.Diamond"/> or <see cref="Radius.Square"/> is being used.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public IEnumerable<Point> PositionsInRadius(RadiusLocationContext context)
         {
             if (context._newlyInitialized)
@@ -191,19 +192,16 @@ namespace SadRogue.Primitives
             q.Enqueue(context.Center);
             context._inQueue[startArrayIndex, startArrayIndex] = true;
 
-            Point cur;
-            Point localNeighbor;
-
             while (q.Count != 0)
             {
-                cur = q.Dequeue();
+                Point cur = q.Dequeue();
                 yield return cur;
 
                 // Add neighbors
-                for (int i = 0; i < rule.DirectionsOfNeighborsCache.Length; i++)
+                foreach (var dir in rule.DirectionsOfNeighborsCache)
                 {
-                    var neighbor = cur + rule.DirectionsOfNeighborsCache[i];
-                    localNeighbor = neighbor - topLeft;
+                    Point neighbor = cur + dir;
+                    Point localNeighbor = neighbor - topLeft;
 
                     if (distCalc.Calculate(context.Center, neighbor) > context.Radius ||
                         context._inQueue[localNeighbor.X, localNeighbor.Y] ||
@@ -221,7 +219,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="other">Radius to compare.</param>
         /// <returns>True if the two radius shapes are the same, false if not.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public bool Equals(Radius other) => Type == other.Type;
 
         /// <summary>
@@ -231,14 +229,14 @@ namespace SadRogue.Primitives
         /// <returns>
         /// True if <paramref name="obj"/> is a Radius, and the two radius shapes are equal, false otherwise.
         /// </returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public override bool Equals(object? obj) => obj is Radius c && Equals(c);
 
         /// <summary>
         /// Returns a hash-map value for the current object.
         /// </summary>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public override int GetHashCode() => Type.GetHashCode();
 
         /// <summary>
@@ -254,7 +252,7 @@ namespace SadRogue.Primitives
         /// <param name="lhs"/>
         /// <param name="rhs"/>
         /// <returns>True if the two radius shapes are equal, false if not.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static bool operator ==(Radius lhs, Radius rhs) => lhs.Type == rhs.Type;
 
         /// <summary>
@@ -265,7 +263,7 @@ namespace SadRogue.Primitives
         /// <returns>
         /// True if the types are not equal, false if they are both equal.
         /// </returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static bool operator !=(Radius lhs, Radius rhs) => !(lhs == rhs);
 
         /// <summary>
@@ -273,10 +271,10 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <remarks>
         /// The rule corresponding to the proper definition of distance that creates the
-        /// radius shape casted will be returned.
+        /// radius shape given will be returned.
         /// </remarks>
-        /// <param name="radius">Radius type being casted.</param>
-        [Pure]
+        /// <param name="radius">Radius type being given.</param>
+        [System.Diagnostics.Contracts.Pure]
         public static implicit operator AdjacencyRule(Radius radius) => radius.Type switch
         {
             Types.Circle => AdjacencyRule.EightWay,
@@ -290,10 +288,10 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <remarks>
         /// The <see cref="Distance"/> instance corresponding to the proper definition of
-        /// distance that creates the radius shape casted will be returned.
+        /// distance that creates the radius shape given will be returned.
         /// </remarks>
-        /// <param name="radius">Radius type being casted.</param>
-        [Pure]
+        /// <param name="radius">Radius type being given.</param>
+        [System.Diagnostics.Contracts.Pure]
         public static implicit operator Distance(Radius radius) => radius.Type switch
         {
             Types.Circle => Distance.Euclidean,
@@ -306,14 +304,14 @@ namespace SadRogue.Primitives
         /// Implicitly converts a Radius to its corresponding <see cref="Type"/>.
         /// </summary>
         /// <param name="radius"/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static implicit operator Types(Radius radius) => radius.Type;
 
         /// <summary>
         /// Implicitly converts an <see cref="Types"/> enum value to its corresponding Radius.
         /// </summary>
         /// <param name="type"/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static implicit operator Radius(Types type) => type switch
         {
             Types.Circle => Circle,
@@ -326,15 +324,16 @@ namespace SadRogue.Primitives
         /// Returns a string representation of the Radius.
         /// </summary>
         /// <returns>A string representation of the Radius.</returns>
-        public override string ToString() => s_writeVals[(int)Type];
+        public override string ToString() => s_writeValues[(int)Type];
     }
 
     /// <summary>
     /// A context representing information necessary to get all the positions in a radius via functions like
     /// <see cref="SadRogue.Primitives.Radius.PositionsInRadius(RadiusLocationContext)"/>.  Storing a context and re-using it may be
-    /// more performant in cases where you're getting the positions in a radius of the same size many times,
+    /// more performance-savvy in cases where you're getting the positions in a radius of the same size many times,
     /// even if the location center point or shape of the radius is changing.
     /// </summary>
+    [PublicAPI]
     public class RadiusLocationContext
     {
         internal BitArrayView _inQueue;

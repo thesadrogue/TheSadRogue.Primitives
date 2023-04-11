@@ -56,7 +56,7 @@ namespace SadRogue.Primitives.UnitTests
 
         [Theory]
         [MemberDataEnumerable(nameof(Radiuses))]
-        public void TestEqualityInqeualityOpposite(Radius compareRad)
+        public void TestEqualityInequalityOpposite(Radius compareRad)
         {
             Radius[] rads = Radiuses;
 

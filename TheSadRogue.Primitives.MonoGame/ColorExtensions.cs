@@ -1,5 +1,5 @@
-﻿using System.Diagnostics.Contracts;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
+using JetBrains.Annotations;
 using MonoColor = Microsoft.Xna.Framework.Color;
 using SadRogueColor = SadRogue.Primitives.Color;
 
@@ -9,6 +9,7 @@ namespace SadRogue.Primitives
     /// Extension methods for <see cref="SadRogue.Primitives.Color"/> that enable operations involving
     /// <see cref="Microsoft.Xna.Framework.Color"/>.
     /// </summary>
+    [PublicAPI]
     public static class SadRogueColorExtensions
     {
         /// <summary>
@@ -16,7 +17,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="self"/>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static MonoColor ToMonoColor(this SadRogueColor self) => new MonoColor(self.R, self.G, self.B, self.A);
 
@@ -26,7 +27,7 @@ namespace SadRogue.Primitives
         /// <param name="self"/>
         /// <param name="other"/>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool Matches(this SadRogueColor self, MonoColor other)
             => self.R == other.R && self.G == other.G && self.B == other.B && self.A == other.A;
@@ -39,6 +40,7 @@ namespace Microsoft.Xna.Framework
     /// Extension methods for <see cref="Microsoft.Xna.Framework.Color"/> that enable operations involving
     /// <see cref="SadRogue.Primitives.Color"/>.
     /// </summary>
+    [PublicAPI]
     public static class MonoColorExtensions
     {
         /// <summary>
@@ -46,7 +48,7 @@ namespace Microsoft.Xna.Framework
         /// </summary>
         /// <param name="self"/>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static SadRogueColor ToSadRogueColor(this MonoColor self)
             => new SadRogueColor(self.R, self.G, self.B, self.A);
@@ -57,7 +59,7 @@ namespace Microsoft.Xna.Framework
         /// <param name="self"/>
         /// <param name="other"/>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool Matches(this MonoColor self, SadRogueColor other)
             => self.R == other.R && self.G == other.G && self.B == other.B && self.A == other.A;

@@ -1,4 +1,5 @@
 ﻿using System;
+using JetBrains.Annotations;
 
 namespace SadRogue.Primitives.GridViews
 {
@@ -15,6 +16,7 @@ namespace SadRogue.Primitives.GridViews
     /// and return a default value for locations outside the parent grid view, see <see cref="UnboundedViewport{T}" />.
     /// </remarks>
     /// <typeparam name="T">The type being exposed by the Viewport.</typeparam>
+    [PublicAPI]
     public class Viewport<T> : GridViewBase<T>
     {
         private readonly BoundedRectangle _boundedRect;

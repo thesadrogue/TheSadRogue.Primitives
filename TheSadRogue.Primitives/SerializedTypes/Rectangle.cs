@@ -1,10 +1,12 @@
 ﻿using System;
+using JetBrains.Annotations;
 
 namespace SadRogue.Primitives.SerializedTypes
 {
     /// <summary>
     /// Serializable (pure-data) object representing a <see cref="BisectionResult"/>.
     /// </summary>
+    [PublicAPI]
     [Serializable]
     public struct BisectionResultSerialized
     {
@@ -42,6 +44,7 @@ namespace SadRogue.Primitives.SerializedTypes
     /// <summary>
     /// Serializable (pure-data) object representing a <see cref="Rectangle"/>.
     /// </summary>
+    [PublicAPI]
     [Serializable]
     public struct RectangleSerialized
     {

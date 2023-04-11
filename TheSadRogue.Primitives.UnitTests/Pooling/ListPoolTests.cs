@@ -96,8 +96,8 @@ namespace SadRogue.Primitives.UnitTests.Pooling
             var returnedLists = Enumerable.Range(0, lists.Length).Select(i => listPool.Rent()).ToArray();
             Assert.Equal(lists.Length, returnedLists.Length);
 
-            for (int i = 0; i < returnedLists.Length; i++)
-                Assert.DoesNotContain(lists, l => ReferenceEquals(l, returnedLists[i]));
+            foreach (var list in returnedLists)
+                Assert.DoesNotContain(lists, l => ReferenceEquals(l, list));
         }
     }
 }

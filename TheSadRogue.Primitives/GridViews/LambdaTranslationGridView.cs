@@ -1,4 +1,5 @@
 ﻿using System;
+using JetBrains.Annotations;
 
 namespace SadRogue.Primitives.GridViews
 {
@@ -9,6 +10,7 @@ namespace SadRogue.Primitives.GridViews
     /// </summary>
     /// <typeparam name="T1">The type of your underlying data.</typeparam>
     /// <typeparam name="T2">The type of the data being exposed by the grid view.</typeparam>
+    [PublicAPI]
     public sealed class LambdaTranslationGridView<T1, T2> : TranslationGridView<T1, T2>
     {
         private readonly Func<Point, T1, T2> _getter;

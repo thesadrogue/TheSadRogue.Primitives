@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 
 namespace SadRogue.Primitives.SerializedTypes
 {
     /// <summary>
     /// Serializable (pure-data) object representing a <see cref="GradientStop"/>.
     /// </summary>
+    [PublicAPI]
     [Serializable]
     public struct GradientStopSerialized
     {
@@ -40,6 +42,7 @@ namespace SadRogue.Primitives.SerializedTypes
     /// <summary>
     /// Serializable (pure-data) object representing a <see cref="Gradient"/>.
     /// </summary>
+    [PublicAPI]
     [Serializable]
     public struct GradientSerialized
     {

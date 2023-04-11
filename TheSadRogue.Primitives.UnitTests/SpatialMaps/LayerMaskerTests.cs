@@ -145,7 +145,7 @@ namespace SadRogue.Primitives.UnitTests.SpatialMaps
         public void MaskAllAbove()
         {
             var masker = new LayerMasker();
-            var mask = masker.MaskAllAbove(3);
+            uint mask = masker.MaskAllAbove(3);
             Assert.Equal(uint.MaxValue - 7, mask);
 
             mask = masker.MaskAllAbove(8);
@@ -172,7 +172,7 @@ namespace SadRogue.Primitives.UnitTests.SpatialMaps
         public void MaskAllBelow()
         {
             var masker = new LayerMasker();
-            var mask = masker.MaskAllBelow(3);
+            uint mask = masker.MaskAllBelow(3);
             Assert.Equal((uint)15, mask);
 
             mask = masker.MaskAllBelow(7);

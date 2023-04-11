@@ -57,7 +57,7 @@ namespace SadRogue.Primitives.UnitTests
 
         [Theory]
         [MemberDataEnumerable(nameof(Distances))]
-        public void TestEqualityInqeualityOpposite(Distance compareDist)
+        public void TestEqualityInequalityOpposite(Distance compareDist)
         {
             Distance[] dists = Distances;
 
@@ -160,10 +160,10 @@ namespace SadRogue.Primitives.UnitTests
 
         #region Distance Calculation Baselines
 
-        public double Manhattan(double dx, double dy) => Math.Abs(dx) + Math.Abs(dy);
-        public double Chebyshev(double dx, double dy) => Math.Max(Math.Abs(dx), Math.Abs(dy));
+        private double Manhattan(double dx, double dy) => Math.Abs(dx) + Math.Abs(dy);
+        private double Chebyshev(double dx, double dy) => Math.Max(Math.Abs(dx), Math.Abs(dy));
 
-        public double Euclidean(double dx, double dy)
+        private double Euclidean(double dx, double dy)
         {
             dx = Math.Abs(dx);
             dy = Math.Abs(dy);

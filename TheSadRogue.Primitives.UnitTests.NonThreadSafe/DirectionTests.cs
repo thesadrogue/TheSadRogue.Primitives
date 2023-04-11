@@ -16,13 +16,13 @@ namespace SadRogue.Primitives.UnitTests
 
         public static Direction[] ValidDirections = AdjacencyRule.EightWay.DirectionsOfNeighborsClockwise().ToArray();
         public static Direction[] AllDirections => ValidDirections.Append(Direction.None).ToArray();
-        public static Point[] TestPoints => new[] { new Point(1, 2), new Point(0, 0), new Point(-2, -5) };
+        private static Point[] TestPoints => new[] { new Point(1, 2), new Point(0, 0), new Point(-2, -5) };
         public static IEnumerable<(Point, Direction)> PointDirPairs => TestPoints.Combinate(AllDirections);
 
         public static IEnumerable<(Direction, int)> AddSubDirPairs
             => ValidDirections.Combinate(Enumerable.Range(0, 11));
 
-        public static IEnumerable<(Point, Point, Direction)> GetDirectionBasePairs =>
+        private static IEnumerable<(Point, Point, Direction)> GetDirectionBasePairs =>
             new (Point p1, Point p2, Direction d)[]
             {
                 ((0, 0), (0, 0), Direction.None), ((0, 0), (0, 0) + Direction.Up, Direction.Up),
@@ -49,10 +49,10 @@ namespace SadRogue.Primitives.UnitTests
                 ((0, 0), (0, 0) + Direction.Left, Direction.Left), ((0, 0), (0, 0) + Direction.UpLeft, Direction.Up)
             };
 
-        public static IEnumerable<(Point, Point, Direction)> GetDirectionPairs
+        private static IEnumerable<(Point, Point, Direction)> GetDirectionPairs
             => GetDirectionBasePairs.Concat(GetDirectionBasePairs.Select(i => (i.Item1 + 5, i.Item2 + 5, i.Item3)));
 
-        public static IEnumerable<(Point, Point, Direction)> GetCardinalDirectionPairs
+        private static IEnumerable<(Point, Point, Direction)> GetCardinalDirectionPairs
             => GetCardinalDirectionBasePairs.Concat(
                 GetCardinalDirectionBasePairs.Select(i => (i.Item1 + 5, i.Item2 + 5, i.Item3)));
 

@@ -1,10 +1,13 @@
-﻿namespace SadRogue.Primitives.GridViews
+﻿using JetBrains.Annotations;
+
+namespace SadRogue.Primitives.GridViews
 {
     /// <summary>
     /// Similar to <see cref="Viewport{T}" />, but implements <see cref="ISettableGridView{T}" />and thus implements
     /// "set" functionality via relative coordinates.
     /// </summary>
     /// <typeparam name="T">Type being exposed by map view.</typeparam>
+    [PublicAPI]
     public class SettableViewport<T> : Viewport<T>, ISettableGridView<T>
     {
         /// <summary>

@@ -11,7 +11,8 @@ namespace SadRogue.Primitives.UnitTests
         private readonly ITestOutputHelper _output;
 
         #region Test Data
-        public static readonly (string, Func<double, Point>)[] PolarFuncs = PolarCoordinate.Functions.Select(pair => (pair.Key, pair.Value)).ToArray();
+
+        private static readonly (string, Func<double, Point>)[] s_polarFuncs = PolarCoordinate.Functions.Select(pair => (pair.Key, pair.Value)).ToArray();
 
         public static (Point, PolarCoordinate)[] PolarCartesianConversionTestData =
         {
@@ -43,25 +44,25 @@ namespace SadRogue.Primitives.UnitTests
         #region Manual Helper Tests
         [Fact]
         //[Theory(Skip = "For manual checking")]
-        //[MemberDataTuple(nameof(PolarFuncts))]
+        //[MemberDataTuple(nameof(PolarFuncs))]
         //public void PrintPolarFunctionsTest(string name, Func<double, Point> f)
         public void PrintPolarFunctionsTest()
         {
             int size = 500;
             double resolution = 0.01;
-            foreach ((string, Func<double, Point>) pfunc in PolarFuncs)
+            foreach ((string, Func<double, Point>) polarFunc in s_polarFuncs)
             {
                 bool[,] map = new bool[size, size];
                 for (double x = -size / 2.0; x < size / 2.0; x += resolution)
                 {
-                    Point here = pfunc.Item2(x) + size / 2;
+                    Point here = polarFunc.Item2(x) + size / 2;
                     if (here.X < size && here.X >= 0 && here.Y < size && here.Y >= 0)
                     {
                         map[here.X, here.Y] = true;
                     }
                 }
 
-                _output.WriteLine(pfunc.Item1);
+                _output.WriteLine(polarFunc.Item1);
                 for (int i = 0; i < size; i++)
                 {
                     string line = "";
@@ -126,14 +127,14 @@ namespace SadRogue.Primitives.UnitTests
 
         [Theory]
         [MemberDataEnumerable(nameof(TestCoordinates))]
-        public void TestEqualityInequalityRelationship(PolarCoordinate testCoord)
+        public void TestEqualityInequalityRelationship(PolarCoordinate testCoordinate)
         {
             (double radius, double delta) tuple = (s_equalPolar.Radius, s_equalPolar.Theta);
 
-            Assert.Single(TestCoordinates.Where(i => i.Equals(testCoord)));
-            Assert.Single(TestCoordinates.Where(i => i.Matches(testCoord)));
-            Assert.Single(TestCoordinates.Where(i => i.Equals((object)testCoord)));
-            Assert.Single(TestCoordinates.Where(i => i == testCoord));
+            Assert.Single(TestCoordinates.Where(i => i.Equals(testCoordinate)));
+            Assert.Single(TestCoordinates.Where(i => i.Matches(testCoordinate)));
+            Assert.Single(TestCoordinates.Where(i => i.Equals((object)testCoordinate)));
+            Assert.Single(TestCoordinates.Where(i => i == testCoordinate));
             Assert.Single(TestCoordinates.Where(i => i.Equals(tuple)));
             Assert.Single(TestCoordinates.Where(i => i.Matches(tuple)));
             Assert.Single(TestCoordinates.Where(i => i == tuple));
@@ -141,22 +142,22 @@ namespace SadRogue.Primitives.UnitTests
             // Test equality and inequality relationship, also across operators (lhs and rhs types)
             foreach (var other in TestCoordinates)
             {
-                Assert.Equal(!(testCoord == other), other != testCoord);
-                Assert.Equal(!(testCoord == tuple), tuple != testCoord);
+                Assert.Equal(!(testCoordinate == other), other != testCoordinate);
+                Assert.Equal(!(testCoordinate == tuple), tuple != testCoordinate);
 
-                Assert.Equal(!(other == testCoord), testCoord != other);
-                Assert.Equal(!(tuple == testCoord), testCoord != tuple);
+                Assert.Equal(!(other == testCoordinate), testCoordinate != other);
+                Assert.Equal(!(tuple == testCoordinate), testCoordinate != tuple);
 
             }
         }
 
         [Theory]
         [MemberDataEnumerable(nameof(TestCoordinates))]
-        public void TestGetHashCode(PolarCoordinate testCoord)
+        public void TestGetHashCode(PolarCoordinate testCoordinate)
         {
             foreach (var other in TestCoordinates)
-                if (testCoord.Equals(other))
-                    Assert.Equal(testCoord.GetHashCode(), other.GetHashCode());
+                if (testCoordinate.Equals(other))
+                    Assert.Equal(testCoordinate.GetHashCode(), other.GetHashCode());
         }
         #endregion
 
@@ -164,27 +165,27 @@ namespace SadRogue.Primitives.UnitTests
 
         [Theory]
         [MemberDataEnumerable(nameof(TestCoordinates))]
-        public void TestTupleConversions(PolarCoordinate coord)
+        public void TestTupleConversions(PolarCoordinate coordinate)
         {
             // Convert to tuple
-            (double radius, double theta) tuple = coord;
+            (double radius, double theta) tuple = coordinate;
 
-            Assert.Equal(coord.Radius, tuple.radius);
-            Assert.Equal(coord.Theta, tuple.theta);
+            Assert.Equal(coordinate.Radius, tuple.radius);
+            Assert.Equal(coordinate.Theta, tuple.theta);
 
             // Convert back
-            PolarCoordinate coord2 = tuple;
-            Assert.Equal(coord, coord2);
+            PolarCoordinate coordinate2 = tuple;
+            Assert.Equal(coordinate, coordinate2);
         }
 
         [Theory]
         [MemberDataEnumerable(nameof(TestCoordinates))]
-        public void TestDeconstruction(PolarCoordinate coord)
+        public void TestDeconstruction(PolarCoordinate coordinate)
         {
-            (double radius, double theta) = coord;
+            (double radius, double theta) = coordinate;
 
-            Assert.Equal(coord.Radius, radius);
-            Assert.Equal(coord.Theta, theta);
+            Assert.Equal(coordinate.Radius, radius);
+            Assert.Equal(coordinate.Theta, theta);
         }
         #endregion
     }

@@ -1,4 +1,5 @@
 ﻿using BenchmarkDotNet.Attributes;
+using JetBrains.Annotations;
 using SadRogue.Primitives;
 
 namespace TheSadRogue.Primitives.PerformanceTests
@@ -8,12 +9,15 @@ namespace TheSadRogue.Primitives.PerformanceTests
     /// </summary>
     public class PositionsInRadius
     {
+        [UsedImplicitly]
         [Params(10, 50, 100, 200)]
         public int MapSize;
 
+        [UsedImplicitly]
         [Params(5, 10, 25)]
         public int Radius;
 
+        [UsedImplicitly]
         [ParamsAllValues]
         public Radius.Types RadiusShapeType;
 

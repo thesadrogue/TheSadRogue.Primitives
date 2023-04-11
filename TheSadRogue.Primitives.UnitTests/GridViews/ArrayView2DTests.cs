@@ -27,7 +27,7 @@ namespace SadRogue.Primitives.UnitTests.GridViews
         [Fact]
         public void ConstructExistingArray()
         {
-            var array = new bool[Width, Height];
+            bool[,] array = new bool[Width, Height];
             array[_center.X, _center.Y] = true;
 
             var view = new ArrayView2D<bool>(array);
@@ -57,9 +57,10 @@ namespace SadRogue.Primitives.UnitTests.GridViews
         {
             // Create view
             var positionsToSet = new Point[] { (1, 2), (3, 4), (25, 47) };
+            // ReSharper disable once UseObjectOrCollectionInitializer
             var view = new ArrayView2D<bool>(Width, Height);
 
-            // Set positions with indexers
+            // Set positions with indexers explicitly to test them
             view[positionsToSet[0]] = true;
             view[positionsToSet[1].X, positionsToSet[1].Y] = true;
             view[positionsToSet[2].ToIndex(Width)] = true;
@@ -79,7 +80,7 @@ namespace SadRogue.Primitives.UnitTests.GridViews
         public void TestCloneDeepCopies()
         {
             // Create view with one array
-            var array = new bool[Width, Height];
+            bool[,] array = new bool[Width, Height];
             array[_center.X, _center.Y] = true;
             var view = new ArrayView2D<bool>(array);
 
@@ -107,7 +108,7 @@ namespace SadRogue.Primitives.UnitTests.GridViews
         public void TestMatches()
         {
             // Create a couple views that use the same array
-            var array = new bool[Width, Height];
+            bool[,] array = new bool[Width, Height];
             var view = new ArrayView2D<bool>(array);
             var view2 = new ArrayView2D<bool>(array);
 
@@ -127,7 +128,7 @@ namespace SadRogue.Primitives.UnitTests.GridViews
         public void TestToAndFromArrayConversion()
         {
             // Create view with one array
-            var array = new bool[Width, Height];
+            bool[,] array = new bool[Width, Height];
             var view = new ArrayView2D<bool>(array);
             var view2 = ArrayView2D<bool>.FromMultidimensionalArray(array);
 

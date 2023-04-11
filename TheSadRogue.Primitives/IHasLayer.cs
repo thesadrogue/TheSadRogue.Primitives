@@ -1,4 +1,6 @@
-﻿namespace SadRogue.Primitives
+﻿using JetBrains.Annotations;
+
+namespace SadRogue.Primitives
 {
     /// <summary>
     /// Interface for objects that reside on a "Z-index" or "layer".
@@ -8,6 +10,7 @@
     /// can be used by any code that wants to work with objects that have some sort of layer assigned to them; but
     /// the library's code primarily uses it as part of the <see cref="SpatialMaps.LayeredSpatialMap{T}" /> implementation.
     /// </remarks>
+    [PublicAPI]
     public interface IHasLayer
     {
         /// <summary>

@@ -1,10 +1,12 @@
 ﻿using System;
+using JetBrains.Annotations;
 
 namespace SadRogue.Primitives.SerializedTypes
 {
     /// <summary>
     /// Serializable (pure-data) object representing a <see cref="Point"/>.
     /// </summary>
+    [PublicAPI]
     [Serializable]
     public struct PointSerialized
     {

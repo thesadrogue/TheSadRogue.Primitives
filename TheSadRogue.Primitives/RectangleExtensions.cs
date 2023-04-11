@@ -1,9 +1,12 @@
-﻿namespace SadRogue.Primitives
+﻿using JetBrains.Annotations;
+
+namespace SadRogue.Primitives
 {
     /// <summary>
     /// Contains set of operators that match ones defined by other packages for interoperability,
     /// so syntax may be uniform.  Functionality is similar to the corresponding actual operators for Color.
     /// </summary>
+    [PublicAPI]
     public static class RectangleExtensions
     {
         /// <summary>

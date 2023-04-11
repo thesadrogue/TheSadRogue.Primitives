@@ -1,4 +1,5 @@
 ﻿using System;
+using JetBrains.Annotations;
 using SadRogue.Primitives.PointHashers;
 
 namespace SadRogue.Primitives.SerializedTypes.PointHashers
@@ -6,6 +7,7 @@ namespace SadRogue.Primitives.SerializedTypes.PointHashers
     /// <summary>
     /// Serializable (pure-data) object representing a <see cref="KnownSizeHasher"/>.
     /// </summary>
+    [PublicAPI]
     [Serializable]
     public struct KnownSizeHasherSerialized
     {

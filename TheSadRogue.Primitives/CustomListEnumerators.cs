@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 
 namespace SadRogue.Primitives
 {
@@ -19,6 +20,7 @@ namespace SadRogue.Primitives
     /// require one (for example, System.LINQ).  However, this will have reduced performance due to boxing of the iterator.
     /// </remarks>
     /// <typeparam name="T">Type of items in the list.</typeparam>
+    [PublicAPI]
     public struct ListEnumerator<T> : IEnumerator<T>, IEnumerable<T>
     {
         private readonly int _size;
@@ -103,6 +105,7 @@ namespace SadRogue.Primitives
     /// you're working with; they share the same characteristics otherwise.
     /// </summary>
     /// <typeparam name="T">Types of elements stored in the list.</typeparam>
+    [PublicAPI]
     public struct ReadOnlyListEnumerator<T> : IEnumerator<T>, IEnumerable<T>
     {
         private readonly int _size;

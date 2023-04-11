@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using JetBrains.Annotations;
 using SadRogue.Primitives.Pooling;
 
 namespace SadRogue.Primitives.SpatialMaps
@@ -23,6 +24,7 @@ namespace SadRogue.Primitives.SpatialMaps
     /// value
     /// MUST NOT change while the item is in the AdvancedLayeredSpatialMap.
     /// </typeparam>
+    [PublicAPI]
     public class AdvancedLayeredSpatialMap<T> : ISpatialMap<T>, IReadOnlyLayeredSpatialMap<T>
         where T : IHasLayer
     {
@@ -780,6 +782,7 @@ namespace SadRogue.Primitives.SpatialMaps
     /// must be a reference type, and its <see cref="IHasLayer.Layer" /> value MUST NOT change while the item is in the
     /// spatial map.
     /// </typeparam>
+    [PublicAPI]
     public sealed class LayeredSpatialMap<T> : AdvancedLayeredSpatialMap<T> where T : class, IHasLayer, IHasID
     {
         /// <summary>

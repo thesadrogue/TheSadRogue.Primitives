@@ -1,4 +1,5 @@
 ﻿using System;
+using JetBrains.Annotations;
 
 namespace SadRogue.Primitives.GridViews
 {
@@ -8,6 +9,7 @@ namespace SadRogue.Primitives.GridViews
     /// <see cref="LambdaGridView{T}" />.
     /// </summary>
     /// <typeparam name="T">The type of value being returned by the indexer functions.</typeparam>
+    [PublicAPI]
     public sealed class LambdaSettableGridView<T> : SettableGridViewBase<T>
     {
         private readonly Func<int> _heightGetter;

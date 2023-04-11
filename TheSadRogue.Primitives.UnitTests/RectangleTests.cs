@@ -15,7 +15,7 @@ namespace SadRogue.Primitives.UnitTests
         public static Rectangle[] EmptyRectangles =
             new Rectangle[] { (10, 11, 0, 20), (15, 14, 21, 0), (17, 14, 0, 0) };
 
-        public static Rectangle[] EqualRectangles = new Rectangle[]
+        private static readonly Rectangle[] s_equalRectangles = new Rectangle[]
         {
             new Rectangle(1, 2, 11, 17), new Rectangle(new Point(1, 2), new Point(11, 18)),
             new Rectangle(new Point(6, 10), 5, 8)
@@ -27,22 +27,23 @@ namespace SadRogue.Primitives.UnitTests
         };
 
         public static IEnumerable<(Rectangle, Rectangle)> PairwiseEqualRects =
-            EqualRectangles.Combinate(EqualRectangles);
+            s_equalRectangles.Combinate(s_equalRectangles);
 
-        public static Rectangle[] Dividends = new Rectangle[]
+        private static readonly Rectangle[] s_dividends = new[]
         {
             new Rectangle((0,0), (21,21)),
             new Rectangle((20,20), (45,45)),
             new Rectangle((0,15), (51, 85))
         };
-        public static Rectangle[] Divisors = new Rectangle[]
+
+        private static readonly Rectangle[] s_divisors = new[]
         {
             new Rectangle((0,0), (3,3)),
             new Rectangle((0,0), (3, 11)),
             new Rectangle((-1,-1), (14, 6)),
         };
         public static IEnumerable<(Rectangle, Rectangle)> DivisionTestData =
-            Dividends.Combinate(Divisors);
+            s_dividends.Combinate(s_divisors);
 
         #endregion
 
@@ -166,7 +167,7 @@ namespace SadRogue.Primitives.UnitTests
         {
             Rectangle rectangle = new Rectangle(0, 0, 30, 30);
             List<Rectangle> rectangles = rectangle.BisectRecursive(5).ToList();
-            Assert.Equal(16, rectangles.Count());
+            Assert.Equal(16, rectangles.Count);
             for (int i = 0; i < 30; i++)
             {
                 for (int j = 0; j < 30; j++)

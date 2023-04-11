@@ -1,4 +1,5 @@
 ﻿using BenchmarkDotNet.Attributes;
+using JetBrains.Annotations;
 using SadRogue.Primitives;
 using SadRogue.Primitives.SpatialMaps;
 
@@ -13,6 +14,7 @@ public class SpatialMapAutoSync
     private readonly int _width = 10;
     private AutoSyncSpatialMap<IDPositionLayerObject> _testMap = null!;
 
+    [UsedImplicitly]
     [Params(1, 10, 50, 100)]
     public int NumEntities;
 

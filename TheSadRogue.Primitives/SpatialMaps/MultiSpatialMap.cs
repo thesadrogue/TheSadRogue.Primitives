@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using JetBrains.Annotations;
 using SadRogue.Primitives.Pooling;
 
 namespace SadRogue.Primitives.SpatialMaps
@@ -20,6 +21,7 @@ namespace SadRogue.Primitives.SpatialMaps
     /// it will in large part determine the performance of AdvancedMultiSpatialMap!
     /// </remarks>
     /// <typeparam name="T">The type of object that will be contained by this AdvancedMultiSpatialMap.</typeparam>
+    [PublicAPI]
     public class AdvancedMultiSpatialMap<T> : ISpatialMap<T>
         where T : notnull
     {
@@ -246,7 +248,7 @@ namespace SadRogue.Primitives.SpatialMaps
             if (!_positionMapping.TryGetValue(position, out var positionList))
                 yield break;
 
-            for (var i = positionList.Count - 1; i >= 0; i--)
+            for (int i = positionList.Count - 1; i >= 0; i--)
                 yield return positionList[i];
         }
 
@@ -804,7 +806,7 @@ namespace SadRogue.Primitives.SpatialMaps
     /// internally to keep track of the objects, since uints are easily (and efficiently) hashable.  If you cannot
     /// or do not wish to implement this interface, use <see cref="AdvancedMultiSpatialMap{T}"/> instead.
     ///
-    /// Although MultiSpatialMap is generally quite performant, if you know the spatial map will
+    /// Although MultiSpatialMap is generally quite fast, if you know the spatial map will
     /// only have one item at any given position at a time, <see cref="SpatialMap{T}" /> may yield
     /// better performance.
     /// </remarks>
@@ -812,6 +814,7 @@ namespace SadRogue.Primitives.SpatialMaps
     /// The type of items being stored in the spatial map. Must implement <see cref="IHasID" /> and be
     /// a reference-type.
     /// </typeparam>
+    [PublicAPI]
     public sealed class MultiSpatialMap<T> : AdvancedMultiSpatialMap<T> where T : class, IHasID
     {
         /// <summary>

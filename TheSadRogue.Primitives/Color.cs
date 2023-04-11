@@ -4,16 +4,17 @@
 
 using System;
 using System.Diagnostics;
-using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using System.Text;
+using JetBrains.Annotations;
 
 namespace SadRogue.Primitives
 {
     /// <summary>
     /// Describes a 32-bit packed color.
     /// </summary>
+    [PublicAPI]
     [DataContract]
     [DebuggerDisplay("{DebugDisplayString,nq}")]
     public readonly struct Color : IEquatable<Color>, IMatchable<Color>
@@ -344,7 +345,7 @@ namespace SadRogue.Primitives
         /// <param name="a"><see cref="Color"/> instance on the left of the equal sign.</param>
         /// <param name="b"><see cref="Color"/> instance on the right of the equal sign.</param>
         /// <returns><c>true</c> if the instances are equal; <c>false</c> otherwise.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static bool operator ==(Color a, Color b) => a._packedValue == b._packedValue;
 
         /// <summary>
@@ -353,14 +354,14 @@ namespace SadRogue.Primitives
         /// <param name="a"><see cref="Color"/> instance on the left of the not equal sign.</param>
         /// <param name="b"><see cref="Color"/> instance on the right of the not equal sign.</param>
         /// <returns><c>true</c> if the instances are not equal; <c>false</c> otherwise.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static bool operator !=(Color a, Color b) => a._packedValue != b._packedValue;
 
         /// <summary>
         /// Gets the hash code of this <see cref="Color"/>.
         /// </summary>
         /// <returns>Hash code of this <see cref="Color"/>.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public override int GetHashCode() => _packedValue.GetHashCode();
 
         /// <summary>
@@ -368,7 +369,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="obj">The <see cref="Color"/> to compare.</param>
         /// <returns><c>true</c> if the instances are equal; <c>false</c> otherwise.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public override bool Equals(object? obj) => obj is Color color && Equals(color);
 
         #region Color Bank Ansi
@@ -1179,7 +1180,7 @@ namespace SadRogue.Primitives
         /// Gets the luma of an existing color.
         /// </summary>
         /// <returns>A value based on this code: (color.R + color.R + color.B + color.G + color.G + color.G) / 6f</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public float GetLuma() => (R + R + B + G + G + G) / 6f;
 
@@ -1190,7 +1191,7 @@ namespace SadRogue.Primitives
         /// This function exists largely for historical reasons; use GetHSLLightness and GetHSVBrightness instead.
         /// </remarks>
         /// <returns>The lightness value.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [Obsolete(
             "Use GetHSLLightness for equivalent behavior, or GetHSVBrightness if you intend to use the HSV color space.")]
         public float GetBrightness() => GetHSLLightness();
@@ -1199,7 +1200,7 @@ namespace SadRogue.Primitives
         /// Gets the lightness of a color (as defined by the HSL color space).
         /// </summary>
         /// <returns>The lightness value.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public float GetHSLLightness()
         {
             int r = R, g = G, b = B;
@@ -1212,7 +1213,7 @@ namespace SadRogue.Primitives
         /// Gets the brightness of a color (as defined by the HSV color space).
         /// </summary>
         /// <returns>The brightness value.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public float GetHSVBrightness()
         {
             int r = R, g = G, b = B;
@@ -1230,7 +1231,7 @@ namespace SadRogue.Primitives
         /// This function exists largely for historical reason; use GetHSLHue and GetHSVHue instead.
         /// </remarks>
         /// <returns>The hue value.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [Obsolete("Use GetHSLHue for equivalent behavior, or GetHSVHue if you intend to use the HSV color space.")]
         public float GetHue() => GetHSLHue();
 
@@ -1238,7 +1239,7 @@ namespace SadRogue.Primitives
         /// Gets the hue of a color (as defined by the HSL color space).
         /// </summary>
         /// <returns>The hue value.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public float GetHSLHue()
         {
             int r = R, g = G, b = B;
@@ -1269,7 +1270,7 @@ namespace SadRogue.Primitives
         /// Gets the hue of a color (as defined by the HSV color space).
         /// </summary>
         /// <returns>The hue value.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public float GetHSVHue() => GetHSLHue();
 
         /// <summary>
@@ -1279,7 +1280,7 @@ namespace SadRogue.Primitives
         /// This function exists largely for historical reason; use GetHSLSaturation and GetHSVSaturation instead.
         /// </remarks>
         /// <returns>The saturation value.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [Obsolete("Use GetHSLSaturation for equivalent behavior, or GetHSVSaturation if you intend to use the HSV color space.")]
         public float GetSaturation() => GetHSLSaturation();
 
@@ -1287,7 +1288,7 @@ namespace SadRogue.Primitives
         /// Gets the saturation of a color (as defined by the HSL color space).
         /// </summary>
         /// <returns>The saturation value.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public float GetHSLSaturation()
         {
             int r = R, g = G, b = B;
@@ -1308,7 +1309,7 @@ namespace SadRogue.Primitives
         /// Gets the saturation of a color (as defined by the HSL color space).
         /// </summary>
         /// <returns>The saturation value.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public float GetHSVSaturation()
         {
             int r = R, g = G, b = B;
@@ -1347,7 +1348,7 @@ namespace SadRogue.Primitives
         /// <param name="value2">Destination <see cref="Color"/>.</param>
         /// <param name="amount">Interpolation factor.</param>
         /// <returns>Interpolated <see cref="Color"/>.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static Color Lerp(Color value1, Color value2, float amount)
         {
             amount = MathHelpers.Clamp(amount, 0, 1);
@@ -1363,7 +1364,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="other"/>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public bool Matches(Color other) => Equals(other);
 
         /// <summary>
@@ -1372,7 +1373,7 @@ namespace SadRogue.Primitives
         /// <param name="value">Source <see cref="Color"/>.</param>
         /// <param name="scale">Multiplicator.</param>
         /// <returns>Multiplication result.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Color Multiply(Color value, float scale) => new Color((int)(value.R * scale),
             (int)(value.G * scale), (int)(value.B * scale), (int)(value.A * scale));
@@ -1384,7 +1385,7 @@ namespace SadRogue.Primitives
         /// <param name="endingColor">The ending color which will be at index `steps - 1` in the array.</param>
         /// <param name="steps">The gradient steps in the array which uses <see cref="Lerp(Color, Color, float)"/>.</param>
         /// <returns>An array of colors.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static Color[] LerpSteps(Color startingColor, Color endingColor, int steps)
         {
             Color[] colors = new Color[steps];
@@ -1415,7 +1416,7 @@ namespace SadRogue.Primitives
         /// <param name="s">0..1 range saturation</param>
         /// <param name="l">0..1 range lightness</param>
         /// <returns>The created <see cref="Color"/>.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static Color FromHSL(float h, float s, float l)
         {
             if (h < 0 || h > 360)
@@ -1481,7 +1482,7 @@ namespace SadRogue.Primitives
         /// <param name="value">Source <see cref="Color"/>.</param>
         /// <param name="scale">Multiplicator.</param>
         /// <returns>Multiplication result.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static Color operator *(Color value, float scale) => new Color((int)(value.R * scale),
             (int)(value.G * scale), (int)(value.B * scale), (int)(value.A * scale));
 
@@ -1504,7 +1505,7 @@ namespace SadRogue.Primitives
         /// {R:[red] G:[green] B:[blue] A:[alpha]}
         /// </summary>
         /// <returns><see cref="string"/> representation of this <see cref="Color"/>.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder(25);
@@ -1528,7 +1529,7 @@ namespace SadRogue.Primitives
         /// <param name="b">Blue component value.</param>
         /// <param name="a">Alpha component value.</param>
         /// <returns>A <see cref="Color"/> which contains premultiplied alpha data.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Color FromNonPremultiplied(int r, int g, int b, int a)
             => new Color(r * a / 255, g * a / 255, b * a / 255, a);
@@ -1540,7 +1541,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="other">The <see cref="Color"/> to compare.</param>
         /// <returns><c>true</c> if the instances are equal; <c>false</c> otherwise.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public bool Equals(Color other) => PackedValue == other.PackedValue;
 
         #endregion
@@ -1551,7 +1552,7 @@ namespace SadRogue.Primitives
         /// <param name="r"></param>
         /// <param name="g"></param>
         /// <param name="b"></param>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public void Deconstruct(out float r, out float g, out float b)
         {
             r = R / 255f;
@@ -1566,7 +1567,7 @@ namespace SadRogue.Primitives
         /// <param name="g"></param>
         /// <param name="b"></param>
         /// <param name="a"></param>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public void Deconstruct(out float r, out float g, out float b, out float a)
         {
             r = R / 255f;
@@ -1581,7 +1582,7 @@ namespace SadRogue.Primitives
         /// <param name="r"></param>
         /// <param name="g"></param>
         /// <param name="b"></param>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public void Deconstruct(out byte r, out byte g, out byte b)
         {
             r = R;
@@ -1596,7 +1597,7 @@ namespace SadRogue.Primitives
         /// <param name="g"></param>
         /// <param name="b"></param>
         /// <param name="a"></param>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public void Deconstruct(out byte r, out byte g, out byte b, out byte a)
         {
             r = R;
@@ -1611,7 +1612,7 @@ namespace SadRogue.Primitives
         /// <param name="r"></param>
         /// <param name="g"></param>
         /// <param name="b"></param>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public void Deconstruct(out int r, out int g, out int b)
         {
             r = R;
@@ -1626,7 +1627,7 @@ namespace SadRogue.Primitives
         /// <param name="g"></param>
         /// <param name="b"></param>
         /// <param name="a"></param>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public void Deconstruct(out int r, out int g, out int b, out int a)
         {
             r = R;

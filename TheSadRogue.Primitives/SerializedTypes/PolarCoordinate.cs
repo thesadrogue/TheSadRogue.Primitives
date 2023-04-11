@@ -1,15 +1,17 @@
 ﻿using System;
+using JetBrains.Annotations;
 
 namespace SadRogue.Primitives.SerializedTypes
 {
     /// <summary>
     /// Serializable (pure-data) object representing a <see cref="PolarCoordinate"/>.
     /// </summary>
+    [PublicAPI]
     [Serializable]
     public struct PolarCoordinateSerialized
     {
         /// <summary>
-        /// The distance away from the Origin (0,0) of this Polar Coord
+        /// The distance away from the Origin (0,0) of this Polar Coordinate
         /// </summary>
         public double Radius;
 

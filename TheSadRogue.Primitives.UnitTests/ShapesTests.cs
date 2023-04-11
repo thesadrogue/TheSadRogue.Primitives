@@ -236,11 +236,11 @@ namespace SadRogue.Primitives.UnitTests
             return points;
         }
 
-        public static IEnumerable<Point> SimpleEllipse(int x0, int y0, int x1, int y1)
+        private static IEnumerable<Point> SimpleEllipse(int x0, int y0, int x1, int y1)
         {
             int a = Math.Abs(x1 - x0), b = Math.Abs(y1 - y0), b1 = b & 1; /* values of diameter */
             long dx = 4 * (1 - a) * b * b, dy = 4 * (b1 + 1) * a * a; /* error increment */
-            long err = dx + dy + b1 * a * a, e2; /* error of 1.step */
+            long err = dx + dy + b1 * a * a;
 
             if (x0 > x1) { x0 = x1; x1 += a; } /* if called with swapped points */
             if (y0 > y1)
@@ -257,7 +257,7 @@ namespace SadRogue.Primitives.UnitTests
                 yield return new Point(x0, y0); /*  II. Quadrant */
                 yield return new Point(x0, y1); /* III. Quadrant */
                 yield return new Point(x1, y1); /*  IV. Quadrant */
-                e2 = 2 * err;
+                long e2 = 2 * err; /* error of 1.step */
                 if (e2 <= dy) { y0++; y1--; err += dy += a; }  /* y step */
                 if (e2 >= dx || 2 * err > dy) { x0++; x1--; err += dx += b1; } /* x step */
             } while (x0 <= x1);
@@ -308,7 +308,7 @@ namespace SadRogue.Primitives.UnitTests
             return points;
         }
 
-        public static IEnumerable<Point> SimpleBox(int x0, int y0, int x1, int y1)
+        private static IEnumerable<Point> SimpleBox(int x0, int y0, int x1, int y1)
         {
             for (int x = x0; x <= x1; x++)
                 yield return new Point(x, y0);

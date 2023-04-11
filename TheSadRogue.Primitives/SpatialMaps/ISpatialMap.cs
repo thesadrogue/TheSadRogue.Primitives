@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using SadRogue.Primitives.GridViews;
 
 namespace SadRogue.Primitives.SpatialMaps
@@ -42,6 +43,7 @@ namespace SadRogue.Primitives.SpatialMaps
     /// so the spatial map's recorded position and the object's recorded position stay in sync.
     /// </remarks>
     /// <typeparam name="T">The type of object that will be contained by the spatial map.</typeparam>
+    [PublicAPI]
     public interface ISpatialMap<T> : IReadOnlySpatialMap<T>
         where T : notnull
     {
@@ -249,6 +251,7 @@ namespace SadRogue.Primitives.SpatialMaps
     /// <see cref="IReadOnlySpatialMap{T}.ItemRemoved" />, etc.)
     /// </summary>
     /// <typeparam name="T">Type of item.</typeparam>
+    [PublicAPI]
     public class ItemEventArgs<T> : EventArgs
     {
         /// <summary>
@@ -287,6 +290,7 @@ namespace SadRogue.Primitives.SpatialMaps
     /// Event arguments for spatial maps <see cref="IReadOnlySpatialMap{T}.ItemMoved" /> event.
     /// </summary>
     /// <typeparam name="T">Type of item being stored.</typeparam>
+    [PublicAPI]
     public class ItemMovedEventArgs<T> : EventArgs
     {
         /// <summary>

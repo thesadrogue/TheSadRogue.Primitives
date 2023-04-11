@@ -8,8 +8,8 @@ namespace SadRogue.Primitives.UnitTests.PointHashers
     public class KnownRangeHasherTests
     {
         #region Test Data
-        private static readonly Point[] _points = { (1, 2), (3, 4), (6, 5)};
-        public static IEnumerable<(Point p1, Point p2)> PointPairs = _points.Combinate(_points);
+        private static readonly Point[] s_points = { (1, 2), (3, 4), (6, 5)};
+        public static IEnumerable<(Point p1, Point p2)> PointPairs = s_points.Combinate(s_points);
         #endregion
 
         [Fact]

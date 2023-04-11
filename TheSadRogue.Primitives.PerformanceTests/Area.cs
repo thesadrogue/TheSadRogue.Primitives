@@ -1,4 +1,5 @@
 ﻿using BenchmarkDotNet.Attributes;
+using JetBrains.Annotations;
 using SadRogue.Primitives;
 
 namespace TheSadRogue.Primitives.PerformanceTests
@@ -8,6 +9,7 @@ namespace TheSadRogue.Primitives.PerformanceTests
     /// </summary>
     public class Area
     {
+        [UsedImplicitly]
         [Params(10, 100, 200)]
         public int Size;
 
@@ -68,6 +70,7 @@ namespace TheSadRogue.Primitives.PerformanceTests
         public int BenchmarkManualFor()
         {
             int sum = 0;
+            // ReSharper disable once ForCanBeConvertedToForeach
             for (int i = 0; i < _areaInterface.Count; i++)
             {
                 var pos = _areaInterface[i];
@@ -95,6 +98,7 @@ namespace TheSadRogue.Primitives.PerformanceTests
         public int BenchmarkManualForAsConcrete()
         {
             int sum = 0;
+            // ReSharper disable once ForCanBeConvertedToForeach
             for (int i = 0; i < _area.Count; i++)
             {
                 var pos = _area[i];

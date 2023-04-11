@@ -194,7 +194,7 @@ namespace SadRogue.Primitives.UnitTests
             IEnumerator e = gradient.GetEnumerator();
             while (e.MoveNext())
             {
-                var stopObj = e.Current;
+                object? stopObj = e.Current;
                 Assert.NotNull(stopObj);
                 var stop = (GradientStop)stopObj;
                 objectEnumerableStops.Add(stop);
@@ -307,9 +307,8 @@ namespace SadRogue.Primitives.UnitTests
 
             float lerpVal = 0f;
             float increment = 1f / (samplesExpected.Length - 1);
-            for (int i = 0; i < samplesExpected.Length; i++)
+            foreach (var expected in samplesExpected)
             {
-                var expected = samplesExpected[i];
                 var actual = gradient.Lerp(lerpVal);
                 Assert.InRange(expected.R - actual.R, -5, 5);
                 Assert.InRange(expected.G - actual.G, -5, 5);

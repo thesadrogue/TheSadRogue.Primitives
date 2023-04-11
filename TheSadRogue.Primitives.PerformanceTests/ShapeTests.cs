@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using BenchmarkDotNet.Attributes;
+using JetBrains.Annotations;
 using SadRogue.Primitives;
 
 namespace TheSadRogue.Primitives.PerformanceTests;
@@ -53,7 +54,7 @@ internal static class YieldReturnEnumerableShapes
     {
         int a = Math.Abs(x1 - x0), b = Math.Abs(y1 - y0), b1 = b & 1; /* values of diameter */
         long dx = 4 * (1 - a) * b * b, dy = 4 * (b1 + 1) * a * a; /* error increment */
-        long err = dx + dy + b1 * a * a, e2; /* error of 1.step */
+        long err = dx + dy + b1 * a * a;
 
         if (x0 > x1) { x0 = x1; x1 += a; } /* if called with swapped points */
         if (y0 > y1)
@@ -70,7 +71,7 @@ internal static class YieldReturnEnumerableShapes
             yield return new Point(x0, y0); /*  II. Quadrant */
             yield return new Point(x0, y1); /* III. Quadrant */
             yield return new Point(x1, y1); /*  IV. Quadrant */
-            e2 = 2 * err;
+            long e2 = 2 * err; /* error of 1.step */
             if (e2 <= dy) { y0++; y1--; err += dy += a; }  /* y step */
             if (e2 >= dx || 2 * err > dy) { x0++; x1--; err += dx += b1; } /* x step */
         } while (x0 <= x1);
@@ -87,8 +88,10 @@ internal static class YieldReturnEnumerableShapes
 
 public class CircleTests
 {
+    [UsedImplicitly]
     public static readonly Point Center = new (1, 1);
 
+    [UsedImplicitly]
     [Params(5, 10, 25, 50)]
     public int Radius;
 
@@ -139,6 +142,7 @@ public class CircleTests
 
 public class EllipseTests
 {
+    [UsedImplicitly]
     [ParamsSource(nameof(TestCases))]
     public (Point f1, Point f2) Ellipse;
 

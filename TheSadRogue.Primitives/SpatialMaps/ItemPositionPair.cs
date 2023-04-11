@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
+using JetBrains.Annotations;
 
 namespace SadRogue.Primitives.SpatialMaps
 {
@@ -10,6 +10,7 @@ namespace SadRogue.Primitives.SpatialMaps
     /// Item-location pair denoting an entry in a spatial map.
     /// </summary>
     /// <typeparam name="TItem">The type of item stored in the pairing.</typeparam>
+    [PublicAPI]
     [DataContract]
     public readonly struct ItemPositionPair<TItem> : IEquatable<ItemPositionPair<TItem>>, IMatchable<ItemPositionPair<TItem>>
         where TItem : notnull
@@ -39,7 +40,7 @@ namespace SadRogue.Primitives.SpatialMaps
         /// Returns a string representing the item and the position it's located at.
         /// </summary>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public override string ToString() => $"{Item}: {Position}";
 
         #region Tuple Compatibility
@@ -73,7 +74,7 @@ namespace SadRogue.Primitives.SpatialMaps
         /// Converts the pair to an equivalent tuple.
         /// </summary>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public (TItem item, Point position) ToTuple() => (Item, Position);
 
@@ -96,7 +97,7 @@ namespace SadRogue.Primitives.SpatialMaps
         /// </summary>
         /// <param name="other"/>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool Equals(ItemPositionPair<TItem> other)
             => Item.Equals(other.Item) && Position.Equals(other.Position);
@@ -106,7 +107,7 @@ namespace SadRogue.Primitives.SpatialMaps
         /// </summary>
         /// <param name="other"/>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool Matches(ItemPositionPair<TItem> other) => Equals(other);
 
@@ -115,7 +116,7 @@ namespace SadRogue.Primitives.SpatialMaps
         /// </summary>
         /// <param name="obj"/>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object? obj)
             => obj is ItemPositionPair<TItem> pair && Equals(pair);
@@ -124,7 +125,7 @@ namespace SadRogue.Primitives.SpatialMaps
         /// Returns a hash code based on all of the pair's fields.
         /// </summary>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override int GetHashCode() => Item.GetHashCode() ^ Position.GetHashCode();
 

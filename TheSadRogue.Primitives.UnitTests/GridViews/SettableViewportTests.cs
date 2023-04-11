@@ -48,6 +48,7 @@ namespace SadRogue.Primitives.UnitTests.GridViews
 
             var grid = MockGridViews.RectangleBooleanGrid(gridWidth, gridHeight);
 
+            // ReSharper disable once UseObjectOrCollectionInitializer
             var viewport = new SettableViewport<bool>(grid, new Rectangle(1, 2, viewportWidth, viewportHeight));
 
             viewport[0, 0] = false;

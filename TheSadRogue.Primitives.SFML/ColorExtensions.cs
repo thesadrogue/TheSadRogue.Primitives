@@ -1,5 +1,5 @@
-﻿using System.Diagnostics.Contracts;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
+using JetBrains.Annotations;
 using SFMLColor = SFML.Graphics.Color;
 using SadRogueColor = SadRogue.Primitives.Color;
 
@@ -9,6 +9,7 @@ namespace SadRogue.Primitives
     /// Extension methods for <see cref="SadRogue.Primitives.Color"/> that enable operations involving
     /// <see cref="SFML.Graphics.Color"/>.
     /// </summary>
+    [PublicAPI]
     public static class SadRogueColorExtensions
     {
         /// <summary>
@@ -16,7 +17,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="self"/>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static SFMLColor ToSFMLColor(this SadRogueColor self) => new SFMLColor(self.R, self.G, self.B, self.A);
 
@@ -26,7 +27,7 @@ namespace SadRogue.Primitives
         /// <param name="self"/>
         /// <param name="other"/>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool Matches(this SadRogueColor self, SFMLColor other)
             => self.R == other.R && self.G == other.G && self.B == other.B && self.A == other.A;
@@ -39,6 +40,7 @@ namespace SFML.Graphics
     /// Extension methods for <see cref="SFML.Graphics.Color"/> that enable operations involving
     /// <see cref="SadRogue.Primitives.Color"/>.
     /// </summary>
+    [PublicAPI]
     public static class SFMLColorExtensions
     {
         /// <summary>
@@ -46,7 +48,7 @@ namespace SFML.Graphics
         /// </summary>
         /// <param name="self"/>
         /// <returns/>
-        [Pure]
+        [global::System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static SadRogueColor ToSadRogueColor(this SFMLColor self)
             => new SadRogueColor(self.R, self.G, self.B, self.A);
@@ -57,7 +59,7 @@ namespace SFML.Graphics
         /// <param name="self"/>
         /// <param name="other"/>
         /// <returns/>
-        [Pure]
+        [global::System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool Matches(this SFMLColor self, SadRogueColor other)
             => self.R == other.R && self.G == other.G && self.B == other.B && self.A == other.A;

@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 
 namespace SadRogue.Primitives
 {
     /// <summary>
     /// Extension methods for IReadOnlyArea.
     /// </summary>
+    [PublicAPI]
     public static class ReadOnlyAreaExtensions
     {
         /// <summary>

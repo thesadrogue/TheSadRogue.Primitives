@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using BenchmarkDotNet.Attributes;
+using JetBrains.Annotations;
 using SadRogue.Primitives;
 
 namespace TheSadRogue.Primitives.PerformanceTests
@@ -64,8 +65,11 @@ namespace TheSadRogue.Primitives.PerformanceTests
     /// </summary>
     public class Rectangle
     {
+        [UsedImplicitly]
         [Params(10, 50, 100)]
         public int Width;
+
+        [UsedImplicitly]
         [Params(10, 50, 100)]
         public int Height;
 

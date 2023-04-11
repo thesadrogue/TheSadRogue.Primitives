@@ -1,4 +1,5 @@
 ﻿using System;
+using JetBrains.Annotations;
 using SadRogue.Primitives.GridViews;
 
 namespace SadRogue.Primitives.SerializedTypes.GridViews
@@ -7,6 +8,7 @@ namespace SadRogue.Primitives.SerializedTypes.GridViews
     /// Serializable (pure-data) object representing an <see cref="ArrayView{T}"/>.
     /// </summary>
     /// <typeparam name="T">Type of value being exposed via the grid view.</typeparam>
+    [PublicAPI]
     [Serializable]
     public struct ArrayViewSerialized<T>
     {

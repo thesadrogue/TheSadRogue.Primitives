@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using BenchmarkDotNet.Attributes;
+using JetBrains.Annotations;
 using SadRogue.Primitives;
 using ShaiRandom.Generators;
 
@@ -22,18 +23,21 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
         /// <summary>
         /// The data set type to test.
         /// </summary>
+        [UsedImplicitly]
         [ParamsSource(nameof(DataSetData))]
         public DataSet DataSet;
 
         /// <summary>
         /// An area of Size x Size will be used for the purposes of determining the series of points to hash.
         /// </summary>
+        [UsedImplicitly]
         [ParamsSource(nameof(SizeData))]
         public int Size;
 
         /// <summary>
         /// The hashing algorithm to test; affects the equality comparer we use to calculate hashes.
         /// </summary>
+        [UsedImplicitly]
         [ParamsSource(nameof(AlgorithmData))]
         public HashingAlgorithm Algorithm;
 
@@ -61,8 +65,8 @@ namespace TheSadRogue.Primitives.PerformanceTests.PointHashing
         public int SumHashes()
         {
             int sum = 0;
-            for (int i = 0; i < _points.Length; i++)
-                sum += _comparer.GetHashCode(_points[i]);
+            foreach (var point in _points)
+                sum += _comparer.GetHashCode(point);
 
             return sum;
         }

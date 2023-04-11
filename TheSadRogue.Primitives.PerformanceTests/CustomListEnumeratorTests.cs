@@ -1,18 +1,20 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using BenchmarkDotNet.Attributes;
+using JetBrains.Annotations;
 using SadRogue.Primitives;
 
 namespace TheSadRogue.Primitives.PerformanceTests;
 
 public class CustomListEnumeratorTests
 {
+    [UsedImplicitly]
     [Params(5, 25, 50, 100)]
     public int Size;
 
     private List<int> _list = null!;
     private IReadOnlyList<int> _readOnlyList = null!;
-    private IEnumerable<int> _ienumerable = null!;
+    private IEnumerable<int> _iEnumerable = null!;
 
     [GlobalSetup]
     public void GlobalSetup()
@@ -22,7 +24,7 @@ public class CustomListEnumeratorTests
             _list.Add(i);
 
         _readOnlyList = _list;
-        _ienumerable = _list;
+        _iEnumerable = _list;
     }
 
     [Benchmark]
@@ -49,7 +51,7 @@ public class CustomListEnumeratorTests
     public int SumIntsIEnumerable()
     {
         int sum = 0;
-        foreach (int item in _ienumerable)
+        foreach (int item in _iEnumerable)
             sum += item;
 
         return sum;

@@ -1,4 +1,5 @@
 ﻿using BenchmarkDotNet.Attributes;
+using JetBrains.Annotations;
 using SadRogue.Primitives;
 
 namespace TheSadRogue.Primitives.PerformanceTests
@@ -9,6 +10,7 @@ namespace TheSadRogue.Primitives.PerformanceTests
     /// </summary>
     public class AdjacencyRuleCache
     {
+        [UsedImplicitly]
         [ParamsAllValues]
         public AdjacencyRule.Types RuleType;
 

@@ -118,10 +118,7 @@ namespace SadRogue.Primitives.UnitTests.GridViews
             unboundedViewport.ViewArea = unboundedViewport.ViewArea.WithPosition((gridWidth - 1, gridHeight - 1));
 
             foreach (var pos in unboundedViewport.Positions())
-                if (pos.X == 0 && pos.Y == 0)
-                    Assert.Equal(0, unboundedViewport[pos]);
-                else
-                    Assert.Equal(1, unboundedViewport[pos]);
+                Assert.Equal(pos is { X: 0, Y: 0 } ? 0 : 1, unboundedViewport[pos]);
         }
 
         [Fact]

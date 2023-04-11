@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
+using JetBrains.Annotations;
 
 namespace SadRogue.Primitives
 {
@@ -23,15 +23,16 @@ namespace SadRogue.Primitives
     /// left corner, and matches a typical mathematical definition of a euclidean coordinate plane, as well as the scene
     /// coordinate plane defined by Unity and other game engines.
     /// </remarks>
+    [PublicAPI]
     [DataContract]
     public readonly struct Direction : IEquatable<Direction>, IMatchable<Direction>
     {
-        private static readonly string[] s_writeVals = Enum.GetNames(typeof(Types));
+        private static readonly string[] s_writeValues = Enum.GetNames(typeof(Types));
 
         // All directions that aren't NONE.
         private static readonly Types[] s_validTypes = Enum.GetValues(typeof(Types)).Cast<Types>().Skip(1).ToArray();
 
-        private static readonly (int dx, int dy)[] s_deltaVals;
+        private static readonly (int dx, int dy)[] s_deltaValues;
 
         private static bool s_yIncreasesUpward;
 
@@ -39,12 +40,12 @@ namespace SadRogue.Primitives
 
         static Direction()
         {
-            s_deltaVals = new (int, int)[9];
+            s_deltaValues = new (int, int)[9];
 
             // These delta values don't change so we initialize these now
-            s_deltaVals[(int)Types.Left] = (-1, 0);
-            s_deltaVals[(int)Types.Right] = (1, 0);
-            s_deltaVals[(int)Types.None] = (0, 0);
+            s_deltaValues[(int)Types.Left] = (-1, 0);
+            s_deltaValues[(int)Types.Right] = (1, 0);
+            s_deltaValues[(int)Types.None] = (0, 0);
 
             // Initialize direction instances to point to each type
             Up = new Direction(Types.Up);
@@ -59,7 +60,7 @@ namespace SadRogue.Primitives
 
             // YIncreasesUpward property setter sets all the remaining dx/dy values in the array
             s_initYInc = false;
-            // Initializes rest of distance values.  Safe to do becuase nobody can be using directions, as they haven't been initialized.
+            // Initializes rest of distance values.  Safe to do because nobody can be using directions, as they haven't been initialized.
             SetYIncreasesUpwardsUnsafe(false);
         }
 
@@ -177,12 +178,12 @@ namespace SadRogue.Primitives
         /// <summary>
         /// Change in x-value represented by this direction.
         /// </summary>
-        public int DeltaX => s_deltaVals[(int)Type].dx;
+        public int DeltaX => s_deltaValues[(int)Type].dx;
 
         /// <summary>
         /// Change in y-value represented by this direction.
         /// </summary>
-        public int DeltaY => s_deltaVals[(int)Type].dy;
+        public int DeltaY => s_deltaValues[(int)Type].dy;
 
         /// <summary>
         /// Enum type corresponding to direction being represented.
@@ -194,7 +195,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="other">Direction to compare.</param>
         /// <returns>True if the two directions are the same, false if not.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public bool Equals(Direction other) => Type == other.Type;
 
         /// <summary>
@@ -204,14 +205,14 @@ namespace SadRogue.Primitives
         /// <returns>
         /// True if <paramref name="obj"/> is a Direction, and the two directions are equal, false otherwise.
         /// </returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public override bool Equals(object? obj) => obj is Direction c && Equals(c);
 
         /// <summary>
         /// Returns a hash-map value for the current object.
         /// </summary>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public override int GetHashCode() => Type.GetHashCode();
 
         /// <summary>
@@ -219,7 +220,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="other">Direction to compare.</param>
         /// <returns>True if the two directions are the same, false if not.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public bool Matches(Direction other) => Equals(other);
 
         /// <summary>
@@ -228,7 +229,7 @@ namespace SadRogue.Primitives
         /// <param name="lhs"/>
         /// <param name="rhs"/>
         /// <returns>True if the two directions are equal, false if not.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static bool operator ==(Direction lhs, Direction rhs) => lhs.Type == rhs.Type;
 
         /// <summary>
@@ -239,21 +240,21 @@ namespace SadRogue.Primitives
         /// <returns>
         /// True if the types are not equal, false if they are both equal.
         /// </returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static bool operator !=(Direction lhs, Direction rhs) => !(lhs == rhs);
 
         /// <summary>
         /// Implicitly converts a Direction to its corresponding <see cref="Type"/>.
         /// </summary>
         /// <param name="direction"/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static implicit operator Types(Direction direction) => direction.Type;
 
         /// <summary>
         /// Implicitly converts an <see cref="Types"/> enum value to its corresponding Direction.
         /// </summary>
         /// <param name="type"/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static implicit operator Direction(Types type) => type switch
         {
             Types.Up => Up,
@@ -270,7 +271,7 @@ namespace SadRogue.Primitives
         };
 
         // Do not change manually outside of YIncreasesUpwards functionality
-        internal static int s_yMult;
+        internal static int s_yMultiplier;
 
         /// <summary>
         /// Changes the value of <see cref="YIncreasesUpward"/>.  This operation is not safe to perform if another thread may be directly or indirectly using Directions.
@@ -283,14 +284,14 @@ namespace SadRogue.Primitives
             {
                 s_initYInc = true;
                 s_yIncreasesUpward = newValue;
-                s_yMult = s_yIncreasesUpward ? -1 : 1;
+                s_yMultiplier = s_yIncreasesUpward ? -1 : 1;
 
-                s_deltaVals[(int)Types.Up] = (0, -1 * s_yMult);
-                s_deltaVals[(int)Types.Down] = (0, 1 * s_yMult);
-                s_deltaVals[(int)Types.UpLeft] = (-1, -1 * s_yMult);
-                s_deltaVals[(int)Types.UpRight] = (1, -1 * s_yMult);
-                s_deltaVals[(int)Types.DownLeft] = (-1, 1 * s_yMult);
-                s_deltaVals[(int)Types.DownRight] = (1, 1 * s_yMult);
+                s_deltaValues[(int)Types.Up] = (0, -1 * s_yMultiplier);
+                s_deltaValues[(int)Types.Down] = (0, 1 * s_yMultiplier);
+                s_deltaValues[(int)Types.UpLeft] = (-1, -1 * s_yMultiplier);
+                s_deltaValues[(int)Types.UpRight] = (1, -1 * s_yMultiplier);
+                s_deltaValues[(int)Types.DownLeft] = (-1, 1 * s_yMultiplier);
+                s_deltaValues[(int)Types.DownRight] = (1, 1 * s_yMultiplier);
             }
         }
 
@@ -304,7 +305,7 @@ namespace SadRogue.Primitives
         /// <returns>
         /// The cardinal direction that most closely matches the heading indicated by the given line.
         /// </returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Direction GetCardinalDirection(Point start, Point end)
             => GetCardinalDirection(new Point(end.X - start.X, end.Y - start.Y));
@@ -321,7 +322,7 @@ namespace SadRogue.Primitives
         /// <returns>
         /// The cardinal direction that most closely matches the heading indicated by the given line.
         /// </returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Direction GetCardinalDirection(int startX, int startY, int endX, int endY)
             => GetCardinalDirection(new Point(startX, startY), new Point(endX, endY));
@@ -339,7 +340,7 @@ namespace SadRogue.Primitives
         /// <returns>
         /// The cardinal direction that most closely matches the degree heading of the given line.
         /// </returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static Direction GetCardinalDirection(Point deltaChange)
         {
             int dx = deltaChange.X;
@@ -348,7 +349,7 @@ namespace SadRogue.Primitives
             if (dx == 0 && dy == 0)
                 return None;
 
-            dy *= s_yMult;
+            dy *= s_yMultiplier;
 
             double angle = Math.Atan2(dy, dx);
             double degree = MathHelpers.ToDegree(angle);
@@ -380,7 +381,7 @@ namespace SadRogue.Primitives
         /// <returns>
         /// The cardinal direction that most closely matches the degree heading of the given line.
         /// </returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Direction GetCardinalDirection(int dx, int dy) => GetCardinalDirection(new Point(dx, dy));
 
@@ -393,7 +394,7 @@ namespace SadRogue.Primitives
         /// <returns>
         /// The direction that most closely matches the heading indicated by the given line.
         /// </returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Direction GetDirection(Point start, Point end)
             => GetDirection(new Point(end.X - start.X, end.Y - start.Y));
@@ -409,7 +410,7 @@ namespace SadRogue.Primitives
         /// <returns>
         /// The direction that most closely matches the heading indicated by the given line.
         /// </returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Direction GetDirection(int startX, int startY, int endX, int endY)
             => GetDirection(new Point(startX, startY), new Point(endX, endY));
@@ -426,7 +427,7 @@ namespace SadRogue.Primitives
         /// <returns>
         /// The direction that most closely matches the heading indicated by the given input.
         /// </returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static Direction GetDirection(Point deltaChange)
         {
             int dx = deltaChange.X;
@@ -435,7 +436,7 @@ namespace SadRogue.Primitives
             if (dx == 0 && dy == 0)
                 return None;
 
-            dy *= s_yMult;
+            dy *= s_yMultiplier;
 
             double angle = Math.Atan2(dy, dx);
             double degree = MathHelpers.ToDegree(angle);
@@ -478,7 +479,7 @@ namespace SadRogue.Primitives
         /// <returns>
         /// The direction that most closely matches the heading indicated by the given input.
         /// </returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Direction GetDirection(int dx, int dy) => GetDirection(new Point(dx, dy));
 
@@ -490,7 +491,7 @@ namespace SadRogue.Primitives
         /// <returns>
         /// The given direction moved counter-clockwise <paramref name="i"/> times.
         /// </returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static Direction operator -(Direction d, int i)
             => d == None ? None : (Direction)s_validTypes[WrapAround((int)d.Type - i - 1, 8)];
 
@@ -499,7 +500,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="d"/>
         /// <returns>The direction one unit counterclockwise of <paramref name="d"/>.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static Direction operator --(Direction d)
             => d == None ? None : (Direction)s_validTypes[WrapAround((int)d.Type - 2, 8)];
 
@@ -511,7 +512,7 @@ namespace SadRogue.Primitives
         /// <returns>
         /// The given direction moved clockwise <paramref name="i"/> times.
         /// </returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static Direction operator +(Direction d, int i)
             => d == None ? None : (Direction)s_validTypes[WrapAround((int)d.Type + i - 1, 8)];
 
@@ -520,7 +521,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="d"/>
         /// <returns>The direction one unit clockwise of <paramref name="d"/>.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static Direction operator ++(Direction d)
             => d == None ? None : (Direction)s_validTypes[WrapAround((int)d.Type, 8)];
 
@@ -528,7 +529,7 @@ namespace SadRogue.Primitives
         /// Returns true if the current direction is a cardinal direction.
         /// </summary>
         /// <returns>True if the current direction is a cardinal direction, false otherwise.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool IsCardinal() => this != None && (DeltaX == 0 || DeltaY == 0);
 
@@ -536,8 +537,8 @@ namespace SadRogue.Primitives
         /// Writes the string (eg. "UP", "UP_RIGHT", etc.) for the direction.
         /// </summary>
         /// <returns>String representation of the direction.</returns>
-        [Pure]
-        public override string ToString() => s_writeVals[(int)Type];
+        [System.Diagnostics.Contracts.Pure]
+        public override string ToString() => s_writeValues[(int)Type];
 
         #region Tuple Compatibility
 
@@ -549,7 +550,7 @@ namespace SadRogue.Primitives
         /// <returns>
         /// Tuple (tuple.y + d.DeltaX, tuple.y + d.DeltaY).
         /// </returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static (int x, int y) operator +((int x, int y) tuple, Direction d)
             => (tuple.x + d.DeltaX, tuple.y + d.DeltaY);
 

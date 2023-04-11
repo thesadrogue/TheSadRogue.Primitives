@@ -18,6 +18,7 @@ namespace SadRogue.Primitives.UnitTests.Serialization.SerializedTypesIndividual
             var view = new ArrayView<bool>(20, 30);
             view.Fill(true);
 
+            // ReSharper disable once UseObjectOrCollectionInitializer
             var diffAware = new DiffAwareGridView<bool>(view);
 
             diffAware[(1, 2)] = false;

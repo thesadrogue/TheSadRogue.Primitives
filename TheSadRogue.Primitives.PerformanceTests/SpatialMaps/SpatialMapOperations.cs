@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using BenchmarkDotNet.Attributes;
+using JetBrains.Annotations;
 using SadRogue.Primitives;
 using SadRogue.Primitives.SpatialMaps;
 
@@ -10,11 +11,12 @@ namespace TheSadRogue.Primitives.PerformanceTests.SpatialMaps
         private readonly Point _initialPosition = (0, 1);
         private readonly Point _moveToPosition = (5, 6);
         private readonly Point _addPosition = (1, 1);
-        private readonly IDObject _addedObject = new IDObject();
-        private readonly IDObject _trackedObject = new IDObject();
+        private readonly IDObject _addedObject = new();
+        private readonly IDObject _trackedObject = new();
         private readonly int _width = 10;
         private SpatialMap<IDObject> _testMap = null!;
 
+        [UsedImplicitly]
         [Params(1, 10, 50, 100)]
         public int NumEntities;
 

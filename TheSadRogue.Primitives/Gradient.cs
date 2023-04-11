@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Runtime.Serialization;
+using JetBrains.Annotations;
 
 namespace SadRogue.Primitives
 {
     /// <summary>
     /// A gradient stop. Defines a color and where it is located within the gradient.
     /// </summary>
+    [PublicAPI]
     [DataContract]
     public readonly struct GradientStop : IEquatable<GradientStop>, IMatchable<GradientStop>
     {
@@ -40,7 +41,7 @@ namespace SadRogue.Primitives
         /// <param name="lhs"/>
         /// <param name="rhs"/>
         /// <returns>True if the gradients have the same color and stop; false otherwise.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static bool operator ==(GradientStop lhs, GradientStop rhs)
             => lhs.Color == rhs.Color && Math.Abs(lhs.Stop - rhs.Stop) < 0.0000000001;
 
@@ -50,14 +51,14 @@ namespace SadRogue.Primitives
         /// <param name="lhs"/>
         /// <param name="rhs"/>
         /// <returns>True if the gradients have different color or stop values, false otherwise.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public static bool operator !=(GradientStop lhs, GradientStop rhs) => !(lhs == rhs);
 
         /// <summary>
         /// Gets a hash code based upon the stop's color and stop values.
         /// </summary>
         /// <returns>A hash code based upon the stop's color and stop values.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public override int GetHashCode() => Color.GetHashCode() ^ Stop.GetHashCode();
 
         /// <summary>
@@ -65,7 +66,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="obj"/>
         /// <returns>True if <paramref name="obj"/> is a gradient stop with the same color and stop value.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public override bool Equals(object? obj) => obj is GradientStop g && this == g;
 
         /// <summary>
@@ -73,7 +74,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="g"/>
         /// <returns>True if this gradient stop and the specified one have the same color and stop values; false otherwise.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public bool Equals(GradientStop g) => Color == g.Color && Math.Abs(Stop - g.Stop) < 0.0000000001;
 
         /// <summary>
@@ -81,7 +82,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="other"/>
         /// <returns>True if this gradient stop and the specified one have the same color and stop values; false otherwise.</returns>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         public bool Matches(GradientStop other) => Equals(other);
     }
 
@@ -89,6 +90,7 @@ namespace SadRogue.Primitives
     /// Represents a gradient with multiple color stops.
     /// </summary>
     [DataContract]
+    [PublicAPI]
     public class Gradient : IEnumerable<GradientStop>, IMatchable<Gradient>
     {
         /// <summary>

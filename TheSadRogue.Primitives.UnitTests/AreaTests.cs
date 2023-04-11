@@ -375,8 +375,8 @@ namespace SadRogue.Primitives.UnitTests
             IReadOnlyArea areaInterface = area;
 
             var expected = new List<Point>();
-            for (int i = 0; i < area.Count; i++)
-                expected.Add(area[i]);
+            foreach (var point in area)
+                expected.Add(point);
 
             List<Point> l1 = area.ToList();
 
@@ -401,7 +401,7 @@ namespace SadRogue.Primitives.UnitTests
                 l6.Add(pos);
 
             var l7 = new List<Point>();
-            foreach (var pos in (IEnumerable)new ReadOnlyAreaPositionsEnumerator(area))
+            foreach (object? pos in (IEnumerable)new ReadOnlyAreaPositionsEnumerator(area))
                 l7.Add((Point)pos);
 
             Assert.Throws<NotSupportedException>(()

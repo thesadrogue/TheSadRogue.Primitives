@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using JetBrains.Annotations;
 
 namespace SadRogue.Primitives.GridViews
 {
@@ -7,6 +8,7 @@ namespace SadRogue.Primitives.GridViews
     /// Extensions for <see cref="IGridView{T}" /> implementations that provide basic utility functions
     /// for them.
     /// </summary>
+    [PublicAPI]
     public static class GridViewExtensions
     {
         /// <summary>
@@ -23,8 +25,8 @@ namespace SadRogue.Primitives.GridViews
             if (self.Height != overlay.Height || self.Width != overlay.Width)
                 throw new ArgumentException("Overlay size must match current grid view size.");
 
-            for (var y = 0; y < self.Height; ++y)
-                for (var x = 0; x < self.Width; ++x)
+            for (int y = 0; y < self.Height; ++y)
+                for (int x = 0; x < self.Width; ++x)
                     self[x, y] = overlay[x, y];
         }
 
@@ -96,10 +98,10 @@ namespace SadRogue.Primitives.GridViews
             elementStringifier ??= obj => obj?.ToString() ?? "null";
 
             var result = new StringBuilder(begin);
-            for (var y = 0; y < gridView.Height; y++)
+            for (int y = 0; y < gridView.Height; y++)
             {
                 result.Append(beginRow);
-                for (var x = 0; x < gridView.Width; x++)
+                for (int x = 0; x < gridView.Width; x++)
                 {
                     result.Append(elementStringifier(gridView[x, y]));
                     if (x != gridView.Width - 1) result.Append(elementSeparator);
@@ -147,10 +149,10 @@ namespace SadRogue.Primitives.GridViews
             elementStringifier ??= obj => obj?.ToString() ?? "null";
 
             var result = new StringBuilder(begin);
-            for (var y = 0; y < gridView.Height; y++)
+            for (int y = 0; y < gridView.Height; y++)
             {
                 result.Append(beginRow);
-                for (var x = 0; x < gridView.Width; x++)
+                for (int x = 0; x < gridView.Width; x++)
                 {
                     result.Append(string.Format($"{{0, {fieldSize}}}", elementStringifier(gridView[x, y])));
                     if (x != gridView.Width - 1) result.Append(elementSeparator);

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.Serialization;
+using JetBrains.Annotations;
 
 namespace SadRogue.Primitives
 {
@@ -8,7 +9,7 @@ namespace SadRogue.Primitives
     /// integer to each instance of a class, eg. for a class implementing <see cref="IHasID" />.
     /// </summary>
     /// <remarks>
-    /// This is one way to fulfill the requirement of assigning a persistant, unique ID to each instance of an object,
+    /// This is one way to fulfill the requirement of assigning a persistent, unique ID to each instance of an object,
     /// which is a fairly common requirement when defining objects that exist on a grid.
     ///
     /// The class may be initialized with a starting unsigned integer -- if none is given, 0 is the default
@@ -16,6 +17,7 @@ namespace SadRogue.Primitives
     /// This class is NOT thread-safe on its own -- if it needs to be, you can simply use a lock to wrap
     /// any calls to UseID.
     /// </remarks>
+    [PublicAPI]
     [DataContract]
     public class IDGenerator : IMatchable<IDGenerator>
     {

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using JetBrains.Annotations;
 
 namespace SadRogue.Primitives.Pooling
 {
@@ -9,6 +10,7 @@ namespace SadRogue.Primitives.Pooling
     /// or algorithm which takes a list pool.
     /// </summary>
     /// <typeparam name="T">Type of items in the list.</typeparam>
+    [PublicAPI]
     public sealed class NoPoolingListPool<T> : IListPool<T>
     {
         /// <summary>

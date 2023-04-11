@@ -2,15 +2,15 @@
 {
     internal class MyIDImpl : IHasID
     {
-        private static readonly IDGenerator idGen = new IDGenerator();
+        private static readonly IDGenerator s_idGen = new IDGenerator();
 
         public MyIDImpl(int myInt)
         {
-            ID = idGen.UseID();
+            ID = s_idGen.UseID();
             MyInt = myInt;
         }
 
-        public int MyInt { get; }
+        private int MyInt { get; }
 
         public uint ID { get; }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
+using JetBrains.Annotations;
 
 namespace SadRogue.Primitives.GridViews
 {
@@ -14,6 +15,7 @@ namespace SadRogue.Primitives.GridViews
     /// If you need a 1D array instead of 2D, then you should use <see cref="ArrayView{T}" /> instead.
     /// </remarks>
     /// <typeparam name="T">The type of value being stored.</typeparam>
+    [PublicAPI]
     public sealed class ArrayView2D<T> : SettableGridViewBase<T>, ICloneable, IMatchable<ArrayView2D<T>>
     {
         private readonly T[,] _array;
@@ -40,10 +42,7 @@ namespace SadRogue.Primitives.GridViews
         public object Clone()
         {
             var newObj = new ArrayView2D<T>(Width, Height);
-
-            for (var x = 0; x < Width; x++)
-                for (var y = 0; y < Height; y++)
-                    newObj[x, y] = _array[x, y];
+            Array.Copy(_array, newObj._array, _array.Length);
 
             return newObj;
         }

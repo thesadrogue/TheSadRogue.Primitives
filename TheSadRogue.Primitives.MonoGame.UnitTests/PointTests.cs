@@ -144,7 +144,7 @@ namespace SadRogue.Primitives.MonoGame.UnitTests
         }
 
         [Fact]
-        public void TestMultPoint()
+        public void TestMultiplyPoint()
         {
             foreach (var pos in _testPositions.Positions())
             {
@@ -156,7 +156,7 @@ namespace SadRogue.Primitives.MonoGame.UnitTests
 
         [Theory]
         [MemberDataEnumerable(nameof(IntTestCases))]
-        public void TestMultInt(int i)
+        public void TestMultiplyInt(int i)
         {
             foreach (var pos in _testPositions.Positions())
             {
@@ -168,7 +168,7 @@ namespace SadRogue.Primitives.MonoGame.UnitTests
 
         [Theory]
         [MemberDataEnumerable(nameof(DoubleTestCases))]
-        public void TestMultDouble(double d)
+        public void TestMultiplyDouble(double d)
         {
             foreach (var pos in _testPositions.Positions())
             {
@@ -178,7 +178,7 @@ namespace SadRogue.Primitives.MonoGame.UnitTests
         }
 
         [Fact]
-        public void TestDivPoint()
+        public void TestDividePoint()
         {
             foreach (var pos in _testPositions.Positions())
             {
@@ -191,7 +191,7 @@ namespace SadRogue.Primitives.MonoGame.UnitTests
 
         [Theory]
         [MemberDataEnumerable(nameof(DoubleTestCases))]
-        public void TestDivDouble(double d)
+        public void TestDivideDouble(double d)
         {
             foreach (var pos in _testPositions.Positions())
             {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
+using JetBrains.Annotations;
 
 namespace SadRogue.Primitives
 {
@@ -7,6 +8,7 @@ namespace SadRogue.Primitives
     /// Static class consisting of mathematical "helper" functions and constants that can be useful
     /// for performing operations on a 2D grid.
     /// </summary>
+    [PublicAPI]
     public static class MathHelpers
     {
         /// <summary>

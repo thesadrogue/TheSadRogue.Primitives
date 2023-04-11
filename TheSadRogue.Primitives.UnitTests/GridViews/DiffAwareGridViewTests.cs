@@ -488,6 +488,7 @@ namespace SadRogue.Primitives.UnitTests.GridViews
         {
             // Create a valid history by creating a view and changing some things
             var underlyingView = new ArrayView<int>(10, 10);
+            // ReSharper disable once UseObjectOrCollectionInitializer
             var diffView = new DiffAwareGridView<int>(underlyingView);
             diffView[1, 2] = 10;
             diffView[5, 6] = 12;

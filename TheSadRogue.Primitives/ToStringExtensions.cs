@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using JetBrains.Annotations;
 using SadRogue.Primitives.GridViews;
 
 namespace SadRogue.Primitives
@@ -11,6 +12,7 @@ namespace SadRogue.Primitives
     ///
     /// Useful for debugging, and within the primitives library for ToString implementations.
     /// </summary>
+    [PublicAPI]
     public static class ToStringExtensions
     {
         /// <summary>
@@ -40,7 +42,7 @@ namespace SadRogue.Primitives
             elementStringifier ??= obj => obj?.ToString() ?? "null";
 
             var result = new StringBuilder(begin);
-            var first = true;
+            bool first = true;
             foreach (var item in enumerable)
             {
                 if (first)
@@ -118,7 +120,7 @@ namespace SadRogue.Primitives
             valueStringifier ??= obj => obj?.ToString() ?? "null";
 
             var result = new StringBuilder(begin);
-            var first = true;
+            bool first = true;
             foreach (var (key, value) in dictionary)
             {
                 if (first)
@@ -158,10 +160,10 @@ namespace SadRogue.Primitives
             elementStringifier ??= obj => obj?.ToString() ?? "null";
 
             var result = new StringBuilder(begin);
-            for (var x = 0; x < array.GetLength(0); x++)
+            for (int x = 0; x < array.GetLength(0); x++)
             {
                 result.Append(beginRow);
-                for (var y = 0; y < array.GetLength(1); y++)
+                for (int y = 0; y < array.GetLength(1); y++)
                 {
                     result.Append(elementStringifier(array[x, y]));
                     if (y != array.GetLength(1) - 1) result.Append(elementSeparator);

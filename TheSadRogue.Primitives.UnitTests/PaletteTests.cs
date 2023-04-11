@@ -39,8 +39,8 @@ namespace SadRogue.Primitives.UnitTests
             Assert.Equal(4, palette.Length);
             Assert.Equal(4, palette.Count);
 
-            for (int i = 0; i < palette.Length; i++)
-                Assert.Equal(new Color(), palette[i]);
+            foreach (var color in palette)
+                Assert.Equal(new Color(), color);
         }
         #endregion
 
@@ -89,7 +89,7 @@ namespace SadRogue.Primitives.UnitTests
             IEnumerator e = palette.GetEnumerator();
             while (e.MoveNext())
             {
-                var colorObj = e.Current;
+                object? colorObj = e.Current;
                 Assert.NotNull(colorObj);
                 var stop = (Color)colorObj;
                 objectEnumerableColors.Add(stop);

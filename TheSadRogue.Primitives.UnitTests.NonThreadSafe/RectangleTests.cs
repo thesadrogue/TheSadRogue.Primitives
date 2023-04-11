@@ -10,10 +10,10 @@ namespace SadRogue.Primitives.UnitTests
     {
         #region Test Data
 
-        public static Rectangle[] TestRectangles = new Rectangle[] { (0, 0, 10, 20), (1, 2, 15, 17), (5, 2, 18, 6) };
+        private static readonly Rectangle[] s_testRectangles = { (0, 0, 10, 20), (1, 2, 15, 17), (5, 2, 18, 6) };
 
         public static (Rectangle rect, bool yIncreaseUpwards)[] TestRectanglesWithYIncreasesUpwards =
-            TestRectangles.Combinate(TestUtils.Enumerable(true, false)).ToArray();
+            s_testRectangles.Combinate(TestUtils.Enumerable(true, false)).ToArray();
 
         public static (Direction dir, bool yIncreaseUpwards)[] NonCardinalsWithYIncreasesUpwards =
             AdjacencyRule.EightWay.DirectionsOfNeighborsCache

@@ -1,5 +1,5 @@
-﻿using System.Diagnostics.Contracts;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
+using JetBrains.Annotations;
 using SFML.Graphics;
 using SadRogueRectangle = SadRogue.Primitives.Rectangle;
 
@@ -9,6 +9,7 @@ namespace SadRogue.Primitives
     /// Extension methods for <see cref="SadRogue.Primitives.Rectangle"/> that enable operations involving
     /// <see cref="SFML.Graphics.IntRect"/>.
     /// </summary>
+    [PublicAPI]
     public static class RectangleExtensions
     {
         /// <summary>
@@ -16,7 +17,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="self"/>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static IntRect ToIntRect(this SadRogueRectangle self)
             => new IntRect(self.X, self.Y, self.Width, self.Height);
@@ -27,7 +28,7 @@ namespace SadRogue.Primitives
         /// <param name="self"/>
         /// <param name="other"/>
         /// <returns/>
-        [Pure]
+        [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool Matches(this SadRogueRectangle self, IntRect other)
             => self.X == other.Left && self.Y == other.Top && self.Width == other.Width && self.Height == other.Height;
@@ -40,6 +41,7 @@ namespace SFML.Graphics
     /// Extension methods for <see cref="SFML.Graphics.IntRect"/> that enable operations involving
     /// <see cref="SadRogue.Primitives.Rectangle"/>.
     /// </summary>
+    [PublicAPI]
     public static class IntRectExtensions
     {
         /// <summary>
@@ -47,7 +49,7 @@ namespace SFML.Graphics
         /// </summary>
         /// <param name="self"/>
         /// <returns/>
-        [Pure]
+        [global::System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static SadRogueRectangle ToRectangle(this IntRect self)
             => new SadRogueRectangle(self.Left, self.Top, self.Width, self.Height);
@@ -58,7 +60,7 @@ namespace SFML.Graphics
         /// <param name="self"/>
         /// <param name="other"/>
         /// <returns/>
-        [Pure]
+        [global::System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool Matches(this IntRect self, SadRogueRectangle other)
             => self.Left == other.X && self.Top == other.Y && self.Width == other.Width && self.Height == other.Height;

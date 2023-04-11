@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using JetBrains.Annotations;
 
 namespace SadRogue.Primitives.PointHashers
 {
@@ -18,6 +19,7 @@ namespace SadRogue.Primitives.PointHashers
     /// Since this algorithm can be significantly faster to compute than fully generalized algorithms, it can be
     /// useful for these cases.
     /// </remarks>
+    [PublicAPI]
     public class KnownRangeHasher : EqualityComparer<Point>
     {
         /// <summary>

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using JetBrains.Annotations;
 
 namespace SadRogue.Primitives
 {
@@ -18,6 +19,7 @@ namespace SadRogue.Primitives
     /// so you can pass it to functions which require one (for example, System.LINQ).  However, this will have reduced
     /// performance due to boxing of the iterator.
     /// </remarks>
+    [PublicAPI]
     public struct BresenhamEnumerator : IEnumerator<Point>, IEnumerable<Point>
     {
         // Suppress warning stating to use auto-property because we want to guarantee micro-performance
@@ -156,6 +158,7 @@ namespace SadRogue.Primitives
     /// so you can pass it to functions which require one (for example, System.LINQ).  However, this will have reduced
     /// performance due to boxing of the iterator.
     /// </remarks>
+    [PublicAPI]
     public struct DDAEnumerator : IEnumerator<Point>, IEnumerable<Point>
     {
         // Suppress warning stating to use auto-property because we want to guarantee micro-performance
@@ -421,6 +424,7 @@ namespace SadRogue.Primitives
     /// so you can pass it to functions which require one (for example, System.LINQ).  However, this will have reduced
     /// performance due to boxing of the iterator.
     /// </remarks>
+    [PublicAPI]
     public struct OrthogonalEnumerator : IEnumerator<Point>, IEnumerable<Point>
     {
         // Suppress warning stating to use auto-property because we want to guarantee micro-performance
@@ -541,6 +545,7 @@ namespace SadRogue.Primitives
     /// Provides implementations of various line-drawing algorithms which are useful for generating lines on a 2D
     /// integer grid.
     /// </summary>
+    [PublicAPI]
     public static class Lines
     {
         /// <summary>

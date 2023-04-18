@@ -49,6 +49,7 @@ namespace SadRogue.Primitives.UnitTests.SpatialMaps
             }
         }
 
+        #region Creation
         [Fact]
         public void Construction()
         {
@@ -82,7 +83,9 @@ namespace SadRogue.Primitives.UnitTests.SpatialMaps
             Assert.Equal(numberOfLayers, sm.NumberOfLayers);
             Assert.Equal(startingLayer, sm.StartingLayer);
         }
+        #endregion
 
+        #region Add/Remove Items
         [Fact]
         public void AddItemValid()
         {
@@ -158,7 +161,9 @@ namespace SadRogue.Primitives.UnitTests.SpatialMaps
             Assert.Equal(s_initialItems.Count, _spatialMap.Count);
             Assert.Equal(s_initialItems.Count, _spatialMap.GetItemsAt(s_initialItemsPos).Count());
         }
+        #endregion
 
+        #region Move Items
         [Fact]
         public void MoveItemValid()
         {
@@ -354,7 +359,9 @@ namespace SadRogue.Primitives.UnitTests.SpatialMaps
             Assert.Equal(s_initialItems.Count, _spatialMap.GetItemsAt(s_initialItemsPos).Count());
             Assert.Single(_spatialMap.GetItemsAt(s_newItemsPos));
         }
+        #endregion
 
+        #region Contains
         [Fact]
         public void ContainsItem()
         {
@@ -382,11 +389,54 @@ namespace SadRogue.Primitives.UnitTests.SpatialMaps
             Assert.True(_spatialMap.Contains(s_initialItemsPos));
             Assert.True(_spatialMap.Contains(s_newItemsPos));
         }
+        #endregion
+
+        #region GetItemsAt
+        [Fact]
+        public void GetItemsAtWithItems()
+        {
+            int[] layers = { 1, 2, 4, 5 };
+
+            int idx = layers.Length - 1;
+            foreach (var item in _spatialMap.GetItemsAt(s_initialItemsPos, _spatialMap.LayerMasker.Mask(layers)))
+            {
+                Assert.Equal(layers[idx], item.Layer);
+                idx--;
+            }
+
+            Assert.Equal(-1, idx);
+        }
+
+        [Fact]
+        public void GetItemsAtNoItems()
+        {
+            Assert.Empty(_spatialMap.GetItemsAt(s_newItemsPos, _spatialMap.LayerMasker.Mask(1, 2, 4, 5)));
+        }
+
+        [Fact]
+        public void GetItemsAtMultipleItemsOnOneLayer()
+        {
+            int[] layers = { 1, 4 };
+            var map = new LayeredSpatialMap<MockSpatialMapItem>(NumLayers, startingLayer: StartingLayer, layersSupportingMultipleItems: uint.MaxValue)
+            {
+                { new MockSpatialMapItem(layers[0]), s_initialItemsPos },
+                { new MockSpatialMapItem(layers[0]), s_initialItemsPos },
+                { new MockSpatialMapItem(layers[1]), s_initialItemsPos }
+            };
+
+            var items = map.GetItemsAt(s_initialItemsPos, map.LayerMasker.Mask(layers)).ToArray();
+            Assert.Equal(3, items.Length);
+            Assert.Equal(layers[1], items[0].Layer);
+            Assert.Equal(layers[0], items[1].Layer);
+            Assert.Equal(layers[0], items[2].Layer);
+        }
+        #endregion
 
         // TODO: Remaining functions such as getting all items, etc.
 
         // TODO: Layer-based function tests for functions other than MoveValid/MoveAll
 
+        #region Layers in Mask
         [Fact]
         public void GetLayersInMaskExisting()
         {
@@ -417,5 +467,6 @@ namespace SadRogue.Primitives.UnitTests.SpatialMaps
                 idx--;
             }
         }
+        #endregion
     }
 }

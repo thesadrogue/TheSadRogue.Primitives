@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using BenchmarkDotNet.Attributes;
 using JetBrains.Annotations;
 using SadRogue.Primitives;
@@ -6,6 +9,130 @@ using SadRogue.Primitives.SpatialMaps;
 
 namespace TheSadRogue.Primitives.PerformanceTests.SpatialMaps
 {
+    /// <summary>
+    /// An alternative custom enumerator for layered spatial map items at a position, that uses the IEnumerable
+    /// interface to store the underlying iterator, instead of breaking it into separate fields.
+    /// </summary>
+    /// <typeparam name="T">Type of items stored in the spatial map.</typeparam>
+    public struct ReadOnlyLayeredSpatialMapItemsAtEnumeratorInterface<T> : IEnumerable<T>, IEnumerator<T>
+        where T : IHasLayer
+    {
+        // Suppress warning stating to use auto-property because we want to guarantee micro-performance
+        // characteristics.
+#pragma warning disable IDE0032 // Use auto property
+        private T _current;
+#pragma warning restore IDE0032 // Use auto property
+
+        /// <summary>
+        /// The current value for enumeration.
+        /// </summary>
+        public T Current => _current;
+
+        private readonly IReadOnlyLayeredSpatialMap<T> _map;
+        private LayerMaskEnumerator _layerIdxEnumerator;
+        private IEnumerator<T>? _currentLayerEnumerator;
+        private readonly Point _position;
+        private int _state;
+
+        object IEnumerator.Current => _current;
+
+        public ReadOnlyLayeredSpatialMapItemsAtEnumeratorInterface(IReadOnlyLayeredSpatialMap<T> map, Point position, uint layerMask)
+        {
+            _map = map;
+            _position = position;
+            _layerIdxEnumerator = map.LayerMasker.Layers(layerMask);
+
+            _currentLayerEnumerator = null;
+            _state = 1; // Next layer
+            _current = default!; // Set in MoveNext before use
+        }
+
+        public bool MoveNext()
+        {
+            switch (_state)
+            {
+                case 2: // Done
+                    return false;
+                case 0: // Current iterator
+                    if (_currentLayerEnumerator!.MoveNext())
+                    {
+                        _current = _currentLayerEnumerator.Current;
+                        return true;
+                    }
+                    _state = 1;
+                    goto case 1;
+                case 1: // Next layer
+                    while (true) // Find layer
+                    {
+                        if (!_layerIdxEnumerator.MoveNext())
+                        {
+                            _state = 2; // Done
+                            return false;
+                        }
+
+                        var layer = _map.GetLayer(_layerIdxEnumerator.Current);
+                        _currentLayerEnumerator = layer.GetItemsAt(_position).GetEnumerator();
+
+                        if (_currentLayerEnumerator.MoveNext())
+                        {
+                            _current = _currentLayerEnumerator.Current;
+                            _state = 0; // Current iterator
+                            return true;
+                        }
+                    }
+            }
+
+            // Unreachable
+            return false;
+        }
+
+        /// <summary>
+        /// Returns this enumerator.
+        /// </summary>
+        /// <returns>This enumerator.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public ReadOnlyLayeredSpatialMapItemsAtEnumeratorInterface<T> GetEnumerator() => this;
+
+        // Explicitly implemented to ensure we prefer the non-boxing versions where possible
+        #region Explicit Interface Implementations
+
+        /// <summary>
+        /// This iterator does not support resetting.
+        /// </summary>
+        /// <exception cref="NotSupportedException"/>
+        void IEnumerator.Reset()
+        {
+            ((IEnumerator)_layerIdxEnumerator).Reset();
+            _state = 1; // Next layer
+            _currentLayerEnumerator = null;
+        }
+        IEnumerator<T> IEnumerable<T>.GetEnumerator() => this;
+        IEnumerator IEnumerable.GetEnumerator() => this;
+
+        void IDisposable.Dispose()
+        { }
+        #endregion
+    }
+
+    /// <summary>
+    /// A set of GetItemsAt implementations which use different implementation strategies.
+    /// </summary>
+    public static class CustomLayeredSpatialMapGetPositionsAtExtensions
+    {
+        public static ReadOnlyLayeredSpatialMapItemsAtEnumeratorInterface<T> GetItemsAtCustomEnumeratorInterface<T>(this IReadOnlyLayeredSpatialMap<T> map, Point position, uint layerMask)
+            where T : IHasLayer
+            => new(map, position, layerMask);
+
+        public static IEnumerable<T> GetItemsAtYieldReturn<T>(this IReadOnlyLayeredSpatialMap<T> map, Point position,
+            uint layerMask)
+            where T : IHasLayer
+        {
+            foreach (int layerNumber in map.LayerMasker.Layers(layerMask))
+                foreach (var item in map.GetLayer(layerNumber).GetItemsAt(position))
+                    yield return item;
+        }
+    }
+
     /// <summary>
     /// Basic benchmarks for LayeredSpatialMap, roughly equivalent to the benchmarks for other spatial map implementations.
     /// </summary>
@@ -34,7 +161,8 @@ namespace TheSadRogue.Primitives.PerformanceTests.SpatialMaps
         [Params(1, 2, 3)]
         public int NumLayers;
 
-        [GlobalSetup(Targets = new[] { nameof(MoveTwice), nameof(TryMoveTwiceOriginal), nameof(TryMoveTwice), nameof(AddAndRemove), nameof(TryAddAndRemoveOriginal), nameof(TryAddAndRemove) })]
+        [GlobalSetup(Targets = new[]{ nameof(MoveTwice), nameof(TryMoveTwiceOriginal), nameof(TryMoveTwice), nameof(AddAndRemove), nameof(TryAddAndRemoveOriginal),
+            nameof(TryAddAndRemove), nameof(GetItemsAt), nameof(GetItemsAtCustomEnumerator), nameof(GetItemsAtCustomEnumeratorInterface), nameof(GetItemsAtYieldReturn) })]
         public void GlobalSetupObjectsAtMoveToLocation()
         {
             _testMap = new LayeredSpatialMap<IDLayerObject>(NumLayers, layersSupportingMultipleItems: uint.MaxValue) { { _trackedObject, _initialPosition } };
@@ -50,7 +178,6 @@ namespace TheSadRogue.Primitives.PerformanceTests.SpatialMaps
                     _testMap.Add(new IDLayerObject(i), Point.FromIndex(idx, _width));
                 }
             }
-
         }
 
         [GlobalSetup(Targets = new[] { nameof(MoveAllTwice), nameof(MoveValidTwice), nameof(TryMoveAllTwice) })]
@@ -160,6 +287,47 @@ namespace TheSadRogue.Primitives.PerformanceTests.SpatialMaps
             _testMap.TryRemove(_addedObject);
 
             return _testMap.Count;
+        }
+
+        [Benchmark]
+        public uint GetItemsAt()
+        {
+            // Could use Consumer.Consume here, but this will stay consistent with other cases, which must _not_ use consume in order to avoid boxing
+            uint sum = 0;
+            foreach (var i in _testMap.GetItemsAt(_initialPosition))
+                sum += i.ID;
+
+            return sum;
+        }
+
+        [Benchmark]
+        public uint GetItemsAtCustomEnumerator()
+        {
+            uint sum = 0;
+            foreach (var i in new ReadOnlyLayeredSpatialMapItemsAtEnumerator<IDLayerObject>(_testMap, _initialPosition, uint.MaxValue))
+                sum += i.ID;
+
+            return sum;
+        }
+
+        [Benchmark]
+        public uint GetItemsAtCustomEnumeratorInterface()
+        {
+            uint sum = 0;
+            foreach (var i in _testMap.GetItemsAtCustomEnumeratorInterface(_initialPosition, uint.MaxValue))
+                sum += i.ID;
+
+            return sum;
+        }
+
+        [Benchmark]
+        public uint GetItemsAtYieldReturn()
+        {
+            uint sum = 0;
+            foreach (var i in _testMap.GetItemsAtYieldReturn(_initialPosition, uint.MaxValue))
+                sum += i.ID;
+
+            return sum;
         }
     }
 }

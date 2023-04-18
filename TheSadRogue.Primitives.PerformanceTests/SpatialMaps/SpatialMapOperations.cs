@@ -6,6 +6,19 @@ using SadRogue.Primitives.SpatialMaps;
 
 namespace TheSadRogue.Primitives.PerformanceTests.SpatialMaps
 {
+    /// <summary>
+    /// A set of GetItemsAt implementations which use different implementation strategies.
+    /// </summary>
+    public static class CustomSpatialMapGetPositionsAtExtensions
+    {
+        public static IEnumerable<T> GetItemsAtYieldReturn<T>(this AdvancedSpatialMap<T> map, Point position)
+            where T : notnull
+        {
+            if (map.TryGetItem(position, out T? val))
+                yield return val;
+        }
+    }
+
     public class SpatialMapOperations
     {
         private readonly Point _initialPosition = (0, 1);
@@ -124,6 +137,37 @@ namespace TheSadRogue.Primitives.PerformanceTests.SpatialMaps
             _testMap.TryRemove(_addedObject);
 
             return _testMap.Count;
+        }
+
+        [Benchmark]
+        public uint GetItemsAt()
+        {
+            // Could use Consumer.Consume here, but this will stay consistent with other cases, which must _not_ use consume in order to avoid boxing
+            uint sum = 0;
+            foreach (var i in _testMap.GetItemsAt(_initialPosition))
+                sum += i.ID;
+
+            return sum;
+        }
+
+        [Benchmark]
+        public uint GetItemsAtCustomEnumerator()
+        {
+            uint sum = 0;
+            foreach (var i in new SpatialMapItemsAtEnumerator<IDObject>(_testMap, _initialPosition))
+                sum += i.ID;
+
+            return sum;
+        }
+
+        [Benchmark]
+        public uint GetItemsAtYieldReturn()
+        {
+            uint sum = 0;
+            foreach (var i in _testMap.GetItemsAtYieldReturn(_initialPosition))
+                sum += i.ID;
+
+            return sum;
         }
     }
 }

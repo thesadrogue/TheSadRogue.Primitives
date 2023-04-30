@@ -5,7 +5,7 @@
     <RootNamespace>SadRogue.Primitives</RootNamespace>
     <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
-    <Version>1.6.0-rc1</Version>
+    <Version>1.6.0-rc2</Version>
     <Version Condition="'$(Configuration)'=='Debug'">$(Version)-debug</Version>
     <Authors>Chris3606;Thraka</Authors>
     <Company>TheSadRogue</Company>
@@ -15,31 +15,7 @@
     <!-- More nuget package settings-->
     <PackageId>TheSadRogue.Primitives</PackageId>
     <PackageReleaseNotes>
-      - Added spatial maps, which are an efficient way to represent items on a grid, particularly when the items are sparse relative to the number of cells.
-      - Added interfaces for common concepts found in data structures/objects that reside on 2D grids
-          - IHasID: A structure that has a unique or pseudo-unique integer identifier
-          - IHasLayer: A structure that has a z-index (aka layer) on which it resides
-          - IPositionable: A structure that has a 2D position, and fires events when that position changes.
-      - Added `LayerMasker` which is a helper class for creating 32-bit integer-based masks of specific z-indices/rendering layers.
-      - Added more custom iterators, and changed iterator paradigm in library to allow for increased performance
-          - Changes apply to classes/functions including: Rectangle.Positions(), Rectangle.PerimeterPositions(), all line and shape algorithms, LayerMasker functions, BisectionResult, and Area
-          - Custom enumerables now implement `IEnumerator` and `IEnumerable` directly; therefore their `ToEnumerable()` function is obsolete.  You should simply remove the call to that function since the same behavior is obtained without it.
-          - This also applies to Area; FastEnumerator()` is now deprecated as its behavior is achieved by default when iterating over IReadOnlyArea implementations.
-          - Iteration over a value known to be of type `Area` is now faster
-      - Added a ListEnumerator type which is functionally identical to C#'s built-in enumerator for lists, but also implements IEnumerable so supports being returned from functions like the primitives library typically does for functions such as Rectangle.Positions()
-      - Added `Box` shape algorithm
-      - Modified default hashing algorithm for Point to one with better performance
-          - New hashing algorithm collides less and remains viable over a very large range of points; see Point.GetHashCode() documentation for details
-      - Optimized spatial maps compared to the GoRogue implementation
-          - The result of MultiSpatialMap.GetItemsAt is now significantly faster to iterate over if the value is of known type MultiSpatialMap
-      - Added auto-syncing variants of spatial maps
-          - Anything implementing IPositionable can be used with the auto-syncing variants
-          - With these variants, if you change the Position field of an object within the spatial map, OR if you call a movement function on the spatial map, both the spatial map and the Position field update and remain in sync
-      - Modified SpatialMap API slightly
-          - Move functions (and variants) now tolerate the current position and target position being the same without failing
-      - Fixed bugs in LayeredSpatialMap
-          - LayeredSpatialMap.TryMoveAll guarantees that objects aren't moved at all if one or more can't be moved
-          - LayeredSpatialMap.GetLayersInMask now returns the correct layers
+      - Optimized spatial map's GetItemsAt function to use a custom iterator where possible
     </PackageReleaseNotes>
     <RepositoryUrl>https://github.com/thesadrogue/TheSadRogue.Primitives</RepositoryUrl>
     <RepositoryType>git</RepositoryType>

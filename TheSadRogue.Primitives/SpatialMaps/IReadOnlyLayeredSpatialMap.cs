@@ -94,6 +94,7 @@ namespace SadRogue.Primitives.SpatialMaps
                 case State.Generic:
                     if (_genericEnumerator!.MoveNext())
                     {
+                        // ReSharper disable once AssignNullToNotNullAttribute
                         _current = _genericEnumerator.Current;
                         return true;
                     }
@@ -132,6 +133,7 @@ namespace SadRogue.Primitives.SpatialMaps
                                 _genericEnumerator = layer.GetItemsAt(_position).GetEnumerator();
                                 if (_genericEnumerator.MoveNext())
                                 {
+                                    // ReSharper disable once AssignNullToNotNullAttribute
                                     _current = _genericEnumerator.Current;
                                     _state = State.Generic;
                                     return true;

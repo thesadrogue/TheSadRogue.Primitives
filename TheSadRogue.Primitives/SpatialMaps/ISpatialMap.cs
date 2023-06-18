@@ -341,7 +341,7 @@ namespace SadRogue.Primitives.SpatialMaps
     /// <typeparam name="T">
     /// Type of object being compared. Type T must be a reference type that implements <see cref="IHasID" />.
     /// </typeparam>
-    internal class IDComparer<T> : IEqualityComparer<T> where T : class, IHasID
+    public class IDComparer<T> : IEqualityComparer<T> where T : class, IHasID
     {
         /// <summary>
         /// Equality comparison. Performs comparison via the object's <see cref="object.ReferenceEquals(object, object)" />

@@ -5,7 +5,7 @@
     <RootNamespace>SadRogue.Primitives</RootNamespace>
     <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
-    <Version>1.6.0-rc2</Version>
+    <Version>1.6.0-rc3</Version>
     <Version Condition="'$(Configuration)'=='Debug'">$(Version)-debug</Version>
     <Authors>Chris3606;Thraka</Authors>
     <Company>TheSadRogue</Company>
@@ -15,7 +15,7 @@
     <!-- More nuget package settings-->
     <PackageId>TheSadRogue.Primitives</PackageId>
     <PackageReleaseNotes>
-      - Optimized spatial map's GetItemsAt function to use a custom iterator where possible
+      - Made IDComparer a public API; this is useful for using keys implementing `IHasID` in a dictionary.
     </PackageReleaseNotes>
     <RepositoryUrl>https://github.com/thesadrogue/TheSadRogue.Primitives</RepositoryUrl>
     <RepositoryType>git</RepositoryType>

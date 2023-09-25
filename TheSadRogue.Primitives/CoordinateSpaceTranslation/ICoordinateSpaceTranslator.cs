@@ -4,7 +4,7 @@
     /// Interface for a class which performs a translation from one coordinate space to another.
     /// </summary>
     /// <remarks>
-    /// This interface provides no concrete definitions from the coordinate spaces, other than there are two of them
+    /// This interface provides no concrete definitions of the coordinate spaces, other than there are two of them
     /// and it is possible to translate between them bidirectionally.
     ///
     /// It consists simply of two functions which perform the translation, and the <see cref="UpdateSpaceDefinition"/>,

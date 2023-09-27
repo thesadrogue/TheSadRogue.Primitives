@@ -8,9 +8,9 @@ namespace SadRogue.Primitives.GridViews
     /// underlying grid view.  Instead, if you access a position that cannot map to any valid position in the underlying
     /// grid view, a (specified) default value is returned.
     /// </summary>
-    /// <typeparam name="T">The type being exposed by the UnboundedViewport.</typeparam>
+    /// <typeparam name="T">The type being exposed by the DefaultValueViewport.</typeparam>
     [PublicAPI]
-    public class UnboundedViewport<T> : GridViewBase<T>
+    public class DefaultValueViewport<T> : GridViewBase<T>
     {
         /// <summary>
         /// The value to return if a position is accessed that is outside the actual underlying grid view.
@@ -29,7 +29,7 @@ namespace SadRogue.Primitives.GridViews
         /// <param name="defaultValue">
         /// The value to return if a position is accessed that is outside the actual underlying grid view.
         /// </param>
-        public UnboundedViewport(IGridView<T> gridView, Rectangle viewArea, T defaultValue)
+        public DefaultValueViewport(IGridView<T> gridView, Rectangle viewArea, T defaultValue)
         {
             GridView = gridView;
             _viewArea = viewArea;
@@ -43,12 +43,12 @@ namespace SadRogue.Primitives.GridViews
         /// <param name="defaultValue">
         /// The value to return if a position is accessed that is outside the actual underlying grid view.
         /// </param>
-        public UnboundedViewport(IGridView<T> gridView, T defaultValue)
+        public DefaultValueViewport(IGridView<T> gridView, T defaultValue)
             : this(gridView, gridView.Bounds(), defaultValue)
         { }
 
         /// <summary>
-        /// The grid view that this UnboundedViewport is exposing values from.
+        /// The grid view that this DefaultValueViewport is exposing values from.
         /// </summary>
         public IGridView<T> GridView { get; private set; }
 

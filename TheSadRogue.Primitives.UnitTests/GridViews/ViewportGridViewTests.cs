@@ -92,12 +92,12 @@ namespace SadRogue.Primitives.UnitTests.GridViews
         }
 
         [Fact]
-        public void UnboundedViewportTest()
+        public void DefaultValueViewportTest()
         {
             const int gridWidth = 100;
             const int gridHeight = 100;
             var grid = new ArrayView<int>(gridWidth, gridHeight);
-            var unboundedViewport = new UnboundedViewport<int>(grid, 1);
+            var unboundedViewport = new DefaultValueViewport<int>(grid, 1);
 
             foreach (var pos in grid.Positions())
                 Assert.Equal(0, unboundedViewport[pos]);
@@ -122,10 +122,10 @@ namespace SadRogue.Primitives.UnitTests.GridViews
         }
 
         [Fact]
-        public void UnboundedViewportToStringTest()
+        public void DefaultValueViewportToStringTest()
         {
             var view = MockGridViews.RectangleBooleanGrid(71, 50);
-            var viewport = new UnboundedViewport<bool>(view, new Rectangle(view.Bounds().MaxExtent, 3, 2), false);
+            var viewport = new DefaultValueViewport<bool>(view, new Rectangle(view.Bounds().MaxExtent, 3, 2), false);
 
             string expected =
                 "True True True False False False False\nTrue True True False False False False\nFalse False False False False False False\nFalse False False False False False False\nFalse False False False False False False";

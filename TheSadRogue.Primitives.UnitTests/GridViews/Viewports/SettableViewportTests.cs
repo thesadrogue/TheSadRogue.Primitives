@@ -1,12 +1,14 @@
-﻿using SadRogue.Primitives.GridViews;
+﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using SadRogue.Primitives.GridViews;
+using SadRogue.Primitives.GridViews.Viewports;
 using SadRogue.Primitives.UnitTests.Mocks;
 using Xunit;
-// Should disable this because the functions triggering it are just assertion methods
-// ReSharper disable ParameterOnlyUsedForPreconditionCheck.Local
 
-namespace SadRogue.Primitives.UnitTests.GridViews
+namespace SadRogue.Primitives.UnitTests.GridViews.Viewports
 {
-    public class ViewportGridViewTests
+    public class SettableViewportTests
     {
         [Fact]
         public void ViewportBoundingRectangleTest()
@@ -18,7 +20,7 @@ namespace SadRogue.Primitives.UnitTests.GridViews
 
             var grid = MockGridViews.RectangleBooleanGrid(gridWidth, gridHeight);
 
-            var viewport = new Viewport<bool>(grid, new Rectangle(0, 0, viewportWidth, viewportHeight));
+            var viewport = new SettableViewport<bool>(grid, new Rectangle(0, 0, viewportWidth, viewportHeight));
             CheckViewportBounds(viewport, (0, 0), (viewportWidth - 1, viewportHeight - 1));
 
             // Should end up being 0, 0 thanks to bounding
@@ -38,13 +40,39 @@ namespace SadRogue.Primitives.UnitTests.GridViews
         }
 
         [Fact]
+        public void ViewportSetTest()
+        {
+            const int viewportWidth = 1280 / 12;
+            const int viewportHeight = 768 / 12;
+            const int gridWidth = 267;
+            const int gridHeight = 250;
+
+            var grid = MockGridViews.RectangleBooleanGrid(gridWidth, gridHeight);
+
+            // ReSharper disable once UseObjectOrCollectionInitializer
+            var viewport = new SettableViewport<bool>(grid, new Rectangle(1, 2, viewportWidth, viewportHeight));
+
+            viewport[0, 0] = false;
+            viewport[new Point(1, 1)] = false;
+
+            viewport[Point.ToIndex(2, 2, viewport.Width)] = false;
+
+            var internalFalsePoints = new HashSet<Point> { (1, 2), (2, 3), (3, 4) };
+            foreach (var pos in grid.Positions())
+            {
+                bool expected = !grid.Bounds().PerimeterPositions().Contains(pos) && !internalFalsePoints.Contains(pos);
+                Assert.Equal(expected, grid[pos]);
+            }
+        }
+
+        [Fact]
         public void ViewportSimpleConstructorTest()
         {
             const int gridWidth = 267;
             const int gridHeight = 250;
 
             var grid = MockGridViews.RectangleBooleanGrid(gridWidth, gridHeight);
-            var viewport = new Viewport<bool>(grid);
+            var viewport = new SettableViewport<bool>(grid);
 
             CheckViewportBounds(viewport, (0, 0), (gridWidth - 1, gridHeight - 1));
         }
@@ -53,7 +81,7 @@ namespace SadRogue.Primitives.UnitTests.GridViews
         public void ViewportToStringTest()
         {
             var grid = MockGridViews.RectangleBooleanGrid(56, 42);
-            var viewport = new Viewport<bool>(grid, new Rectangle(0, 0, 5, 4));
+            var viewport = new SettableViewport<bool>(grid, new Rectangle(0, 0, 5, 4));
 
             string result = viewport.ToString();
             string expected = "False False False False False\nFalse True True True True\nFalse True True True True\nFalse True True True True";
@@ -71,7 +99,7 @@ namespace SadRogue.Primitives.UnitTests.GridViews
         public void ViewportToStringWithStringifierTest()
         {
             var grid = MockGridViews.RectangleBooleanGrid(56, 42);
-            var viewport = new Viewport<bool>(grid, new Rectangle(0, 0, 5, 4));
+            var viewport = new SettableViewport<bool>(grid, new Rectangle(0, 0, 5, 4));
 
             string Stringifier(bool i) => i ? "1" : "0";
 
@@ -91,57 +119,8 @@ namespace SadRogue.Primitives.UnitTests.GridViews
             Assert.Equal(expected, result);
         }
 
-        [Fact]
-        public void DefaultValueViewportTest()
-        {
-            const int gridWidth = 100;
-            const int gridHeight = 100;
-            var grid = new ArrayView<int>(gridWidth, gridHeight);
-            var unboundedViewport = new DefaultValueViewport<int>(grid, 1);
-
-            foreach (var pos in grid.Positions())
-                Assert.Equal(0, unboundedViewport[pos]);
-
-            unboundedViewport.ViewArea = unboundedViewport.ViewArea.Translate((5, 5));
-
-            foreach (var pos in unboundedViewport.Positions())
-                if (pos.X < gridWidth - 5 && pos.Y < gridHeight - 5)
-                    Assert.Equal(0, unboundedViewport[pos]);
-                else
-                    Assert.Equal(1, unboundedViewport[pos]);
-
-            unboundedViewport.ViewArea = unboundedViewport.ViewArea.WithSize(5, 5);
-
-            foreach (var pos in unboundedViewport.Positions())
-                Assert.Equal(0, unboundedViewport[pos]);
-
-            unboundedViewport.ViewArea = unboundedViewport.ViewArea.WithPosition((gridWidth - 1, gridHeight - 1));
-
-            foreach (var pos in unboundedViewport.Positions())
-                Assert.Equal(pos is { X: 0, Y: 0 } ? 0 : 1, unboundedViewport[pos]);
-        }
-
-        [Fact]
-        public void DefaultValueViewportToStringTest()
-        {
-            var view = MockGridViews.RectangleBooleanGrid(71, 50);
-            var viewport = new DefaultValueViewport<bool>(view, new Rectangle(view.Bounds().MaxExtent, 3, 2), false);
-
-            string expected =
-                "True True True False False False False\nTrue True True False False False False\nFalse False False False False False False\nFalse False False False False False False\nFalse False False False False False False";
-            string actual = viewport.ToString();
-            Assert.Equal(expected, actual);
-
-            expected = expected.Replace("True", "1").Replace("False", "0");
-            actual = viewport.ToString(b => b ? "1" : "0");
-            Assert.Equal(expected, actual);
-
-            expected = expected.Replace("0", " 0").Replace("1", " 1");
-            actual = viewport.ToString(2, b => b ? "1" : "0");
-            Assert.Equal(expected, actual);
-        }
-
-        private static void CheckViewportBounds(Viewport<bool> viewport, Point expectedMinCorner,
+        [SuppressMessage("ReSharper", "ParameterOnlyUsedForPreconditionCheck.Local")]
+        private static void CheckViewportBounds(SettableViewport<bool> viewport, Point expectedMinCorner,
                                                 Point expectedMaxCorner)
         {
             Assert.Equal(expectedMaxCorner.X - expectedMinCorner.X + 1, viewport.Width);
@@ -169,9 +148,19 @@ namespace SadRogue.Primitives.UnitTests.GridViews
                 // translation is working properly.
                 if (pos.X == 0 || pos.Y == 0 || pos.X == viewport.GridView.Width - 1 ||
                     pos.Y == viewport.GridView.Height - 1)
-                    Assert.False(viewport[pos - viewport.ViewArea.MinExtent]);
+                {
+                    var viewPos = pos - viewport.ViewArea.MinExtent;
+                    Assert.False(viewport[viewPos]);
+                    Assert.False(viewport[pos.X - viewport.ViewArea.MinExtentX, pos.Y - viewport.ViewArea.MinExtentY]);
+                    Assert.False(viewport[viewPos.ToIndex(viewport.Width)]);
+                }
                 else
-                    Assert.True(viewport[pos - viewport.ViewArea.MinExtent]);
+                {
+                    var viewPos = pos - viewport.ViewArea.MinExtent;
+                    Assert.True(viewport[viewPos]);
+                    Assert.True(viewport[pos.X - viewport.ViewArea.MinExtentX, pos.Y - viewport.ViewArea.MinExtentY]);
+                    Assert.True(viewport[viewPos.ToIndex(viewport.Width)]);
+                }
             }
         }
     }

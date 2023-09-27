@@ -1,7 +1,7 @@
 ﻿using System;
 using JetBrains.Annotations;
 
-namespace SadRogue.Primitives.GridViews
+namespace SadRogue.Primitives.GridViews.Viewports
 {
     /// <summary>
     /// Implements <see cref="IGridView{T}"/> to expose a "viewport", or sub-area, of another grid view.
@@ -17,7 +17,7 @@ namespace SadRogue.Primitives.GridViews
     /// </remarks>
     /// <typeparam name="T">The type being exposed by the Viewport.</typeparam>
     [PublicAPI]
-    public class Viewport<T> : GridViewBase<T>
+    public class Viewport<T> : GridViewBase<T>, IViewport<T>
     {
         private readonly BoundedRectangle _boundedRect;
 

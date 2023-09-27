@@ -1,7 +1,7 @@
 ﻿using System;
 using JetBrains.Annotations;
 
-namespace SadRogue.Primitives.GridViews
+namespace SadRogue.Primitives.GridViews.Viewports
 {
     /// <summary>
     /// Similar to <see cref="Viewport{T}"/>, except that the view area is in no way bounded to the edges of the
@@ -10,7 +10,7 @@ namespace SadRogue.Primitives.GridViews
     /// </summary>
     /// <typeparam name="T">The type being exposed by the DefaultValueViewport.</typeparam>
     [PublicAPI]
-    public class DefaultValueViewport<T> : GridViewBase<T>
+    public class DefaultValueViewport<T> : GridViewBase<T>, IViewport<T>
     {
         /// <summary>
         /// The value to return if a position is accessed that is outside the actual underlying grid view.
@@ -59,6 +59,9 @@ namespace SadRogue.Primitives.GridViews
         /// <see cref="Viewport{T}" /> class.
         /// </summary>
         public ref Rectangle ViewArea => ref _viewArea;
+
+        /// <inheritdoc/>
+        ref readonly Rectangle IViewport<T>.ViewArea => ref _viewArea;
 
         /// <summary>
         /// The height of the area being represented.

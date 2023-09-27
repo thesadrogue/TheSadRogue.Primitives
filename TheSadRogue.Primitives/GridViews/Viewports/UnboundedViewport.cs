@@ -1,6 +1,9 @@
 ﻿using System;
+using JetBrains.Annotations;
+using SadRogue.Primitives.CoordinateSpaceTranslation;
+using SadRogue.Primitives.UnboundedGridViews;
 
-namespace SadRogue.Primitives.GridViews
+namespace SadRogue.Primitives.GridViews.Viewports
 {
     /// <summary>
     /// Implements <see cref="IGridView{T}"/> to expose a "viewport", or sub-area, of an unbounded grid view.
@@ -8,13 +11,14 @@ namespace SadRogue.Primitives.GridViews
     /// return the proper value of type T from the underlying view.
     /// </summary>
     /// <remarks>
-    /// This implementation, potentially paired with a <see cref="ViewportCoordinateSpaceTranslator"/>, provides
+    /// This implementation, potentially paired with a <see cref="ViewportCoordinateSpaceTranslator{T}"/>, provides
     /// the code necessary to implement a viewport that can move around a potentially infinite grid and expose the
     /// section within the viewport as a grid view.  This allows you to expose an infinite grid view to an algorithm
     /// which expects a finite grid view, and have the algorithm work as if the grid were finite.
     /// </remarks>
     /// <typeparam name="T">The type being exposed by the Viewport.</typeparam>
-    public class UnboundedViewport<T> : GridViewBase<T>
+    [PublicAPI]
+    public class UnboundedViewport<T> : GridViewBase<T>, IViewport<T>
     {
         // Analyzer misreads this because of ref return
 #pragma warning disable IDE0044
@@ -43,6 +47,9 @@ namespace SadRogue.Primitives.GridViews
         /// assigned to.
         /// </summary>
         public ref Rectangle ViewArea => ref _viewArea;
+
+        /// <inheritdoc/>
+        ref readonly Rectangle IViewport<T>.ViewArea => ref _viewArea;
 
         /// <summary>
         /// The height of the area being represented.

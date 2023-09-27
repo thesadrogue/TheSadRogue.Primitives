@@ -1,6 +1,7 @@
-﻿using JetBrains.Annotations;
+﻿using SadRogue.Primitives.GridViews;
+using JetBrains.Annotations;
 
-namespace SadRogue.Primitives.GridViews
+namespace SadRogue.Primitives.UnboundedGridViews
 {
     /// <summary>
     /// An interface similar to <see cref="IGridView{T}"/>, except for it doesn't have a defined size.  Instead, it

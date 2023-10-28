@@ -8,7 +8,7 @@ namespace SadRogue.Primitives.UnboundedGridViews
     /// simply maps arbitrary 2D coordinates to a value.
     /// </summary>
     /// <remarks>
-    ///  This is useful for representing infinite grids, grids that are chunk-loaded dynamically, or grids that have
+    /// This is useful for representing infinite grids, grids that are chunk-loaded dynamically, or grids that have
     /// coordinate system which do not start at (0, 0).  Unlike <see cref="IGridView{T}"/>, coordinates given to the
     /// indexers in this interface are completely arbitrary, and do not need to be within any bounds.
     /// </remarks>

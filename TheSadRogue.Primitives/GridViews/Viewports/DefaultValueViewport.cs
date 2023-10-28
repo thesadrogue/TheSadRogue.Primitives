@@ -5,10 +5,10 @@ namespace SadRogue.Primitives.GridViews.Viewports
 {
     /// <summary>
     /// Similar to <see cref="Viewport{T}"/>, except that the view area is in no way bounded to the edges of the
-    /// underlying grid view.  Instead, if you access a position that cannot map to any valid position in the underlying
-    /// grid view, a (specified) default value is returned.
+    /// underlying <see cref="IGridView{T}"/>.  Instead, if you access a position that cannot map to any valid position
+    /// in the underlying grid view, a (specified) default value is returned.
     /// </summary>
-    /// <typeparam name="T">The type being exposed by the DefaultValueViewport.</typeparam>
+    /// <typeparam name="T">The type being exposed by this grid view.</typeparam>
     [PublicAPI]
     public class DefaultValueViewport<T> : GridViewBase<T>, IViewport<T>
     {

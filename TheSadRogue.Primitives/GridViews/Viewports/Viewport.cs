@@ -4,7 +4,7 @@ using JetBrains.Annotations;
 namespace SadRogue.Primitives.GridViews.Viewports
 {
     /// <summary>
-    /// Implements <see cref="IGridView{T}"/> to expose a "viewport", or sub-area, of another grid view.
+    /// Implements <see cref="IViewport{T}"/> to expose a sub-area of another <see cref="IGridView{T}"/>.
     /// Its indexers perform relative to absolute coordinate translations based on the viewport size/location, and
     /// return the proper value of type T from the underlying view.
     /// </summary>

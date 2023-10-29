@@ -3,6 +3,13 @@ using SadRogue.Primitives.GridViews.Viewports;
 
 namespace SadRogue.Primitives.CoordinateSpaceTranslation
 {
+    /// <summary>
+    /// A coordinate space translator which defines a coordinate space translator based on a viewport.  The local
+    /// coordinate space is defined as the view area, and it uses the viewport's position to define the global
+    /// coordinate space.  The coordinate space translator's definitions are updated based on the viewport's
+    /// view area when <see cref="UpdateSpaceDefinition"/> is called.
+    /// </summary>
+    /// <typeparam name="T">The type of values associated with positions in the viewport.</typeparam>
     [PublicAPI]
     public class ViewportCoordinateSpaceTranslator<T> : ICoordinateSpaceTranslator
     {

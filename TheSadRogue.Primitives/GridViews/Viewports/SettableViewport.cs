@@ -1,6 +1,6 @@
 ﻿using JetBrains.Annotations;
 
-namespace SadRogue.Primitives.GridViews
+namespace SadRogue.Primitives.GridViews.Viewports
 {
     /// <summary>
     /// Similar to <see cref="Viewport{T}" />, but implements <see cref="ISettableGridView{T}" />and thus implements

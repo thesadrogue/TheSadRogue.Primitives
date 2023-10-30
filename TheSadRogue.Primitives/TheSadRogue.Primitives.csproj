@@ -5,7 +5,7 @@
     <RootNamespace>SadRogue.Primitives</RootNamespace>
     <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
-    <Version>1.6.0-rc3</Version>
+    <Version>1.6.0-rc4</Version>
     <Version Condition="'$(Configuration)'=='Debug'">$(Version)-debug</Version>
     <Authors>Chris3606;Thraka</Authors>
     <Company>TheSadRogue</Company>
@@ -15,7 +15,14 @@
     <!-- More nuget package settings-->
     <PackageId>TheSadRogue.Primitives</PackageId>
     <PackageReleaseNotes>
-      - Made IDComparer a public API; this is useful for using keys implementing `IHasID` in a dictionary.
+      - Renamed UnboundedViewport to to DefaultValueViewport
+      - Moved all viewports to `SadRogue.Primitives.Viewport` namespace
+      - Added `IViewport` interface which is an abstraction over a grid view which exposes a portion of another viewport
+      - Added `SadRogue.Primitives.UnboundedGridViews`
+          - Implements interfaces like `IGridView`, but with no bounds (eg no width/height and not guaranteed to start at (0, 0)
+      - Added new viewports (`UnboundedViewport` and a settable variant) which expose sub-areas of `IUnboundedViewport` objects as `IGridView`
+      - Added `SadRogue.Primitives.CoordinateSpaceTranslation` namespace, which implements coordinate translation from global to local coordinates
+          - In combination with unbounded grid views, this now allows for an arbitrary, infinite grid to be easily represented to an algorithm as a finite grid
     </PackageReleaseNotes>
     <RepositoryUrl>https://github.com/thesadrogue/TheSadRogue.Primitives</RepositoryUrl>
     <RepositoryType>git</RepositoryType>

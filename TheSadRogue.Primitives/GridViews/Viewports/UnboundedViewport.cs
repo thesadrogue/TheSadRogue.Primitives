@@ -1,64 +1,55 @@
 ﻿using System;
 using JetBrains.Annotations;
+using SadRogue.Primitives.CoordinateSpaceTranslation;
+using SadRogue.Primitives.UnboundedGridViews;
 
-namespace SadRogue.Primitives.GridViews
+namespace SadRogue.Primitives.GridViews.Viewports
 {
     /// <summary>
-    /// Similar to <see cref="Viewport{T}"/>, except that the view area is in no way bounded to the edges of the
-    /// underlying grid view.  Instead, if you access a position that cannot map to any valid position in the underlying
-    /// grid view, a (specified) default value is returned.
+    /// Implements <see cref="IGridView{T}"/> to expose a "viewport", or sub-area, of an unbounded grid view.
+    /// Its indexers perform relative to absolute coordinate translations based on the viewport size/location, and
+    /// return the proper value of type T from the underlying view.
     /// </summary>
-    /// <typeparam name="T">The type being exposed by the UnboundedViewport.</typeparam>
+    /// <remarks>
+    /// This implementation, potentially paired with a <see cref="ViewportCoordinateSpaceTranslator{T}"/>, provides
+    /// the code necessary to implement a viewport that can move around a potentially infinite grid and expose the
+    /// section within the viewport as a grid view.  This allows you to expose an infinite grid view to an algorithm
+    /// which expects a finite grid view, and have the algorithm work as if the grid were finite.
+    /// </remarks>
+    /// <typeparam name="T">The type being exposed by the Viewport.</typeparam>
     [PublicAPI]
-    public class UnboundedViewport<T> : GridViewBase<T>
+    public class UnboundedViewport<T> : GridViewBase<T>, IViewport<T>
     {
-        /// <summary>
-        /// The value to return if a position is accessed that is outside the actual underlying grid view.
-        /// </summary>
-        public readonly T DefaultValue;
-
         // Analyzer misreads this because of ref return
 #pragma warning disable IDE0044
         private Rectangle _viewArea;
 #pragma warning restore IDE0044
+
         /// <summary>
-        /// Constructor. Takes the parent grid view, and the initial subsection of that grid view to represent.
+        /// Constructor. Takes a unbounded grid view, and the initial subsection of that grid view to represent.
         /// </summary>
-        /// <param name="gridView">The grid view being represented.</param>
+        /// <param name="gridView">The unbounded grid view being represented.</param>
         /// <param name="viewArea">The initial subsection of that grid to represent.</param>
-        /// <param name="defaultValue">
-        /// The value to return if a position is accessed that is outside the actual underlying grid view.
-        /// </param>
-        public UnboundedViewport(IGridView<T> gridView, Rectangle viewArea, T defaultValue)
+        public UnboundedViewport(IUnboundedGridView<T> gridView, Rectangle viewArea)
         {
             GridView = gridView;
             _viewArea = viewArea;
-            DefaultValue = defaultValue;
         }
-
-        /// <summary>
-        /// Constructor. Takes the grid view to represent. The viewport will represent the entire given grid view.
-        /// </summary>
-        /// <param name="gridView">The grid view to represent.</param>
-        /// <param name="defaultValue">
-        /// The value to return if a position is accessed that is outside the actual underlying grid view.
-        /// </param>
-        public UnboundedViewport(IGridView<T> gridView, T defaultValue)
-            : this(gridView, gridView.Bounds(), defaultValue)
-        { }
 
         /// <summary>
         /// The grid view that this UnboundedViewport is exposing values from.
         /// </summary>
-        public IGridView<T> GridView { get; private set; }
+        public IUnboundedGridView<T> GridView { get; private set; }
 
         /// <summary>
-        /// The area of the base GridView that this Viewport is exposing. Although this property does
+        /// The area of the base grid view that this viewport is exposing. Although this property does
         /// not explicitly expose a set accessor, it is returning a reference and as such may be
-        /// assigned to. This viewport is NOT bounded to base map edges -- for this functionality, see the
-        /// <see cref="Viewport{T}" /> class.
+        /// assigned to.
         /// </summary>
         public ref Rectangle ViewArea => ref _viewArea;
+
+        /// <inheritdoc/>
+        ref readonly Rectangle IViewport<T>.ViewArea => ref _viewArea;
 
         /// <summary>
         /// The height of the area being represented.
@@ -78,17 +69,9 @@ namespace SadRogue.Primitives.GridViews
         /// Viewport-relative position of the location to retrieve the value for.
         /// </param>
         /// <returns>
-        /// The "value" associated with the absolute location represented on the underlying grid view,
-        /// or <see cref="DefaultValue" /> if the absolute position does not exist in the underlying grid view.
+        /// The "value" associated with the absolute location represented on the underlying grid view.
         /// </returns>
-        public override T this[Point relativePosition]
-        {
-            get
-            {
-                var pos = _viewArea.Position + relativePosition;
-                return GridView.Contains(pos) ? GridView[pos] : DefaultValue;
-            }
-        }
+        public override T this[Point relativePosition] => GridView[ViewArea.Position + relativePosition];
 
         /// <summary>
         /// Returns a string representation of the grid values inside the viewport.

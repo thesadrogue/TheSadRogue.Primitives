@@ -1,10 +1,10 @@
 ﻿using System;
 using JetBrains.Annotations;
 
-namespace SadRogue.Primitives.GridViews
+namespace SadRogue.Primitives.GridViews.Viewports
 {
     /// <summary>
-    /// Implements <see cref="IGridView{T}"/> to expose a "viewport", or sub-area, of another grid view.
+    /// Implements <see cref="IViewport{T}"/> to expose a sub-area of another <see cref="IGridView{T}"/>.
     /// Its indexers perform relative to absolute coordinate translations based on the viewport size/location, and
     /// return the proper value of type T from the underlying view.
     /// </summary>
@@ -13,11 +13,11 @@ namespace SadRogue.Primitives.GridViews
     /// of the viewport can be outside the boundary of its parent grid view.  The viewport cannot be bigger than
     /// the underlying grid view, and the viewport's position is "locked" to the edge so that it cannot be set in such a
     /// way that a portion of the viewport lies outside the bounds of the parent view.  If you would rather allow this
-    /// and return a default value for locations outside the parent grid view, see <see cref="UnboundedViewport{T}" />.
+    /// and return a default value for locations outside the parent grid view, see <see cref="DefaultValueViewport{T}" />.
     /// </remarks>
     /// <typeparam name="T">The type being exposed by the Viewport.</typeparam>
     [PublicAPI]
-    public class Viewport<T> : GridViewBase<T>
+    public class Viewport<T> : GridViewBase<T>, IViewport<T>
     {
         private readonly BoundedRectangle _boundedRect;
 

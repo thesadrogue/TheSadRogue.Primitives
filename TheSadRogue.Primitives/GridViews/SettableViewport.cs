@@ -3,7 +3,7 @@
 namespace SadRogue.Primitives.GridViews
 {
     /// <summary>
-    /// Similar to <see cref="Viewport{T}" />, but implements <see cref="ISettableGridView{T}" />and thus implements
+    /// Similar to <see cref="Viewport{T}" />, but implements <see cref="ISettableGridView{T}" /> and thus implements
     /// "set" functionality via relative coordinates.
     /// </summary>
     /// <typeparam name="T">Type being exposed by map view.</typeparam>

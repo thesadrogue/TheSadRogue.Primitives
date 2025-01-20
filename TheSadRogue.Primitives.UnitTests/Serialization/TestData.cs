@@ -154,22 +154,6 @@ namespace SadRogue.Primitives.UnitTests.Serialization
         };
 
         /// <summary>
-        /// Any expressive types (ones that implicitly convert for the sake of serialization), that don't serialize
-        /// to JSON Object (generally instead serialize to primitive types like integers).
-        /// </summary>
-        private static readonly IEnumerable<object> s_expressivePrimitiveTypes = new object[]
-        {
-            // AdjacencyRule.Types
-            AdjacencyRule.Types.Cardinals, AdjacencyRule.Types.Diagonals,
-            // Direction.Types
-            Direction.Types.Down, Direction.Types.Right,
-            // Distance.Types
-            Distance.Types.Chebyshev, Distance.Types.Euclidean,
-            // Radius.Types
-            Radius.Types.Square, Radius.Types.Circle,
-        };
-
-        /// <summary>
         /// List of all non-expressive types that serialize to JSON objects (JObject)
         /// </summary>
         private static readonly object[] s_nonExpressiveJsonObjects =
@@ -329,11 +313,6 @@ namespace SadRogue.Primitives.UnitTests.Serialization
         #endregion
 
         #region Combinatory Data
-
-        /// <summary>
-        /// All types that should serialize with binary serializers.
-        /// </summary>
-        public static IEnumerable<object> BinarySerializableTypes => s_expressiveTypes.Concat(s_expressivePrimitiveTypes);
 
         /// <summary>
         /// All objects that should serialize to JSON objects.  All should have entries in TypeSerializedFields

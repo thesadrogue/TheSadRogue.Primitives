@@ -133,6 +133,7 @@ namespace SadRogue.Primitives
         /// Gets the list of colors in the palette.
         /// </summary>
         /// <returns>The colors in the palette.</returns>
+        [MustDisposeResource]
         public IEnumerator<Color> GetEnumerator() => ((IEnumerable<Color>)_colors).GetEnumerator();
 
         /// <summary>

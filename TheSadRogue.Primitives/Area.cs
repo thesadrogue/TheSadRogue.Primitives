@@ -478,6 +478,8 @@ namespace SadRogue.Primitives
 
         #region Explicit Interface Implementations
         IEnumerator<Point> IEnumerable<Point>.GetEnumerator() => _positions.GetEnumerator();
+
+        [MustDisposeResource]
         IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable)_positions).GetEnumerator();
         #endregion
 

@@ -120,8 +120,10 @@ namespace SadRogue.Primitives.SpatialMaps
         /// foreach loop. Generally should never be called explicitly.
         /// </summary>
         /// <returns>An enumerator for the spatial map.</returns>
+        [MustDisposeResource]
         public IEnumerator<ItemPositionPair<T>> GetEnumerator() => _multiSpatialMap.GetEnumerator();
 
+        [MustDisposeResource]
         IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable)_multiSpatialMap).GetEnumerator();
         #endregion
 

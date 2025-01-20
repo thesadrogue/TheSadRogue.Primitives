@@ -37,7 +37,7 @@ namespace SadRogue.Primitives.SpatialMaps
         private readonly AdvancedSpatialMap<T> _map;
         private readonly Point _position;
         private bool _hasReturnedValue;
-        
+
 
         object IEnumerator.Current => _current;
 
@@ -290,7 +290,7 @@ namespace SadRogue.Primitives.SpatialMaps
         /// This function returns a custom iterator which is very fast when used in a foreach loop.
         /// If you need an IEnumerable to use with LINQ or other code, the returned struct does implement that interface;
         /// however note that iterating over it this way will not perform as well as iterating directly over this object.
-        /// 
+        ///
         /// Since this implementation guarantees that only one item can be at any given
         /// location at once, the return value is guaranteed to be at most one element. You may find it
         /// more convenient to use the <see cref="GetItem(Point)" /> function when you know you are
@@ -312,7 +312,7 @@ namespace SadRogue.Primitives.SpatialMaps
         /// This function returns a custom iterator which is very fast when used in a foreach loop.
         /// If you need an IEnumerable to use with LINQ or other code, the returned struct does implement that interface;
         /// however note that iterating over it this way will not perform as well as iterating directly over this object.
-        /// 
+        ///
         /// Since this implementation guarantees that only one item can be at any given
         /// location at once, the return value is guaranteed to be at most one element. You may find it
         /// more convenient to use the <see cref="GetItem(int, int)" /> function when you know you are
@@ -408,7 +408,8 @@ namespace SadRogue.Primitives.SpatialMaps
                     nameof(item));
             }
 
-            if (oldPos == target) return;
+            if (oldPos == target)
+                return;
 
             try
             {

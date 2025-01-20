@@ -105,7 +105,7 @@ namespace SadRogue.Primitives
         /// <param name="value1">Starting value.</param>
         /// <param name="value2">Ending value.</param>
         /// <param name="amount">The weight to apply to <paramref name="value2"/>.</param>
-        /// <returns></returns>
+        /// <returns>The interpolated value between <paramref name="value1"/> and <paramref name="value2"/>.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static float Lerp(float value1, float value2, float amount) =>
             value1 + (value2 - value1) * amount;
@@ -116,7 +116,7 @@ namespace SadRogue.Primitives
         /// <param name="value1">Starting value.</param>
         /// <param name="value2">Ending value.</param>
         /// <param name="amount">The weight to apply to <paramref name="value2"/>.</param>
-        /// <returns></returns>
+        /// <returns>The interpolated value between <paramref name="value1"/> and <paramref name="value2"/>.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static double Lerp(double value1, double value2, double amount) =>
             value1 + (value2 - value1) * amount;

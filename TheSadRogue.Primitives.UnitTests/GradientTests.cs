@@ -192,6 +192,7 @@ namespace SadRogue.Primitives.UnitTests
 
             var objectEnumerableStops = new List<GradientStop>();
             IEnumerator e = gradient.GetEnumerator();
+            using var e1 = e as IDisposable;
             while (e.MoveNext())
             {
                 object? stopObj = e.Current;

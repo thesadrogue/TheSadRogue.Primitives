@@ -9,6 +9,10 @@
 *.userosscache
 *.sln.docstates
 
+# Claude's local settings
+.claude/**.local.md
+.claude/**.local.json
+
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 

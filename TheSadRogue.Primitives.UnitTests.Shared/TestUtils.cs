@@ -11,7 +11,7 @@ namespace SadRogue.Primitives.UnitTests
     /// </summary>
     public static class TestUtils
     {
-        public static void Fail(string message) => Assert.True(false, message);
+        public static void Fail(string message) => Assert.Fail(message);
 
         public static IEnumerable<T> Yield<T>(this T obj)
         {

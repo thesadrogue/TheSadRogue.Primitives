@@ -53,10 +53,10 @@ namespace SadRogue.Primitives.UnitTests
         [MemberDataEnumerable(nameof(SampleStops))]
         public void TestEqualityInequalityRelationship(GradientStop testStop)
         {
-            Assert.Single(SampleStops.Where(i => i.Equals(testStop)));
-            Assert.Single(SampleStops.Where(i => i.Matches(testStop)));
-            Assert.Single(SampleStops.Where(i => i.Equals((object)testStop)));
-            Assert.Single(SampleStops.Where(i => i == testStop));
+            Assert.Single(SampleStops, i => i.Equals(testStop));
+            Assert.Single(SampleStops, i => i.Matches(testStop));
+            Assert.Single(SampleStops, i => i.Equals((object)testStop));
+            Assert.Single(SampleStops, i => i == testStop);
             foreach (var other in SampleStops)
             {
                 Assert.Equal(!(testStop == other), testStop != other);

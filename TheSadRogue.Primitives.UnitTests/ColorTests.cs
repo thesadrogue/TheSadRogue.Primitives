@@ -428,10 +428,10 @@ namespace SadRogue.Primitives.UnitTests
         [MemberDataEnumerable(nameof(NotEqualColors))]
         public void TestEqualityInequalityRelationship(Color testColor)
         {
-            Assert.Single(NotEqualColors.Where(i => i.Equals(testColor)));
-            Assert.Single(NotEqualColors.Where(i => i.Equals((object)testColor)));
-            Assert.Single(NotEqualColors.Where(i => i.Matches(testColor)));
-            Assert.Single(NotEqualColors.Where(i => i == testColor));
+            Assert.Single(NotEqualColors, i => i.Equals(testColor));
+            Assert.Single(NotEqualColors, i => i.Equals((object)testColor));
+            Assert.Single(NotEqualColors, i => i.Matches(testColor));
+            Assert.Single(NotEqualColors, i => i == testColor);
         }
 
         [Theory]

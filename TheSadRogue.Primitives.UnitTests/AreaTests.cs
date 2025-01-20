@@ -356,7 +356,7 @@ namespace SadRogue.Primitives.UnitTests
             var area = new Area(s_pointsToAdd);
             var notEquivalentArea = new Area(null, s_pointsToAdd[0], s_pointsToAdd[2], (2, 3));
             // Required for test case to be valid
-            Assert.DoesNotContain((2, 3), s_pointsToAdd);
+            Assert.DoesNotContain(new Point(2, 3), s_pointsToAdd);
 
             // Ensure this is a valid test case
             Assert.Equal(area.Count, notEquivalentArea.Count);

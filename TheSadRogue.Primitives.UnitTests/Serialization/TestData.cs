@@ -336,6 +336,13 @@ namespace SadRogue.Primitives.UnitTests.Serialization
         public static IEnumerable<object> BinarySerializableTypes => s_expressiveTypes.Concat(s_expressivePrimitiveTypes);
 
         /// <summary>
+        /// All non-expressive types which should serialize to JSON objects.
+        /// </summary>
+        /// <remarks>
+        /// Among other things, these types should serialize as dictionary keys.
+        /// </remarks>
+        public static IEnumerable<object> NonExpressiveSerializableObjectTypes => s_nonExpressiveJsonObjects;
+        /// <summary>
         /// All objects that should serialize to JSON objects.  All should have entries in TypeSerializedFields
         /// </summary>
         public static IEnumerable<object> SerializableValuesJsonObjects

@@ -30,6 +30,11 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <CheckEolTargetFramework Condition="$(TargetFramework.StartsWith('net5.0')) == true">false</CheckEolTargetFramework>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <!-- 
+    SFML 2.x is broken on .NET 8+; this is the best we can do. As long as nobody tries to build for unsupported
+    targets this shouldn't affect anything.
+    -->
+    <NoWarn>$(NoWarn);NETSDK1206</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

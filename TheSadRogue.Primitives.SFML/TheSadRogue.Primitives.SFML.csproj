@@ -41,7 +41,7 @@
     <PackageReference Include="JetBrains.Annotations" Version="2024.3.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
     <PackageReference Include="SFML.Graphics" Version="2.6.0" />
-    <PackageReference Include="TheSadRogue.Primitives" Version="1.6.0" />
+    <PackageReference Include="TheSadRogue.Primitives" Version="1.*" />
   </ItemGroup>
 
   <!-- When packing, copy the nuget files to the nuget output directory -->

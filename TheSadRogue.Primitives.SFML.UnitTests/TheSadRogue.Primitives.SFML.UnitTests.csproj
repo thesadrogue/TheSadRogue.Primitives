@@ -1,11 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <IsPackable>false</IsPackable>
     <LangVersion>8</LangVersion>
     <RootNamespace>SadRogue.Primitives.SFML.UnitTests</RootNamespace>
+    <!--
+    SFML 2.x is broken on .NET 8+; this is the best we can do. As long as nobody tries to build for unsupported
+    targets this shouldn't affect anything.
+    -->
+    <NoWarn>$(NoWarn);NETSDK1206</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>

@@ -324,8 +324,8 @@ namespace SadRogue.Primitives.UnitTests
                 yLocations.Add(actual.MaxExtentY);
             }
 
-            Assert.Empty(xLocations.Where(location => location < dividend.MinExtentX || location > dividend.MaxExtentX ));
-            Assert.Empty(yLocations.Where(location => location < dividend.MinExtentY || location > dividend.MaxExtentY ));
+            Assert.DoesNotContain(xLocations, location => location < dividend.MinExtentX || location > dividend.MaxExtentX);
+            Assert.DoesNotContain(yLocations, location => location < dividend.MinExtentY || location > dividend.MaxExtentY);
         }
 
         [Fact]

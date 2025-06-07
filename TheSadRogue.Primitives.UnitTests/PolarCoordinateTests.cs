@@ -131,13 +131,13 @@ namespace SadRogue.Primitives.UnitTests
         {
             (double radius, double delta) tuple = (s_equalPolar.Radius, s_equalPolar.Theta);
 
-            Assert.Single(TestCoordinates.Where(i => i.Equals(testCoordinate)));
-            Assert.Single(TestCoordinates.Where(i => i.Matches(testCoordinate)));
-            Assert.Single(TestCoordinates.Where(i => i.Equals((object)testCoordinate)));
-            Assert.Single(TestCoordinates.Where(i => i == testCoordinate));
-            Assert.Single(TestCoordinates.Where(i => i.Equals(tuple)));
-            Assert.Single(TestCoordinates.Where(i => i.Matches(tuple)));
-            Assert.Single(TestCoordinates.Where(i => i == tuple));
+            Assert.Single(TestCoordinates, i => i.Equals(testCoordinate));
+            Assert.Single(TestCoordinates, i => i.Matches(testCoordinate));
+            Assert.Single(TestCoordinates, i => i.Equals((object)testCoordinate));
+            Assert.Single(TestCoordinates, i => i == testCoordinate);
+            Assert.Single(TestCoordinates, i => i.Equals(tuple));
+            Assert.Single(TestCoordinates, i => i.Matches(tuple));
+            Assert.Single(TestCoordinates, i => i == tuple);
 
             // Test equality and inequality relationship, also across operators (lhs and rhs types)
             foreach (var other in TestCoordinates)

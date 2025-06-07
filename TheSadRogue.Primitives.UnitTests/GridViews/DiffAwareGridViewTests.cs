@@ -448,7 +448,9 @@ namespace SadRogue.Primitives.UnitTests.GridViews
             view[1, 0] = 2;
             view[1, 0] = 1;
             view.RevertToPreviousDiff();
+#pragma warning disable xUnit2013
             Assert.Equal(1, view.Diffs.Count);
+#pragma warning restore xUnit2013
         }
 
         [Fact]
@@ -466,7 +468,9 @@ namespace SadRogue.Primitives.UnitTests.GridViews
             view[1, 0] = 2;
             view[1, 0] = 1;
             view.FinalizeCurrentDiff();
+#pragma warning disable xUnit2013
             Assert.Equal(1, view.Diffs.Count);
+#pragma warning restore xUnit2013
             foreach (var pos in arrayView.Positions())
                 Assert.Equal(arrayView[pos], view[pos]);
         }

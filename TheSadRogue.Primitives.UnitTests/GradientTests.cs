@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Xunit;
 using XUnit.ValueTuples;
-using System.Linq;
 
 namespace SadRogue.Primitives.UnitTests
 {

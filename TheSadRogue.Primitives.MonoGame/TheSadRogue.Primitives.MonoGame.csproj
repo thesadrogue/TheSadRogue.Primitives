@@ -7,12 +7,12 @@
     <RootNamespace>SadRogue.Primitives</RootNamespace>
     <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
-    <Version>1.1.2</Version>
+    <Version>1.1.3</Version>
     <!-- ReSharper disable once UnknownProperty -->
     <Version Condition="'$(Configuration)'=='Debug'">$(Version)-debug</Version>
     <Authors>Chris3606;Thraka</Authors>
     <Company>TheSadRogue</Company>
-    <Copyright>Copyright © 2025 [Christopher Ridley (Chris3606) and TheSadRogue Steve De George JR (Thraka)]</Copyright>
+    <Copyright>Copyright © 2026 [Christopher Ridley (Chris3606) and TheSadRogue Steve De George JR (Thraka)]</Copyright>
     <Description>A collection of extension methods that allow TheSadRogue.Primitives types to easily interface with MonoGame's equivalents.</Description>
 
     <!-- More nuget package settings-->

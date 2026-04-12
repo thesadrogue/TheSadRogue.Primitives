@@ -9,7 +9,7 @@ namespace SadRogue.Primitives.GridViews
     /// A grid view that wraps a C# BitArray into a settable grid view of boolean values.
     /// </summary>
     /// <remarks>
-    /// This grid view con be useful to represent a region or area of a 2d grid where points are either "on" or "off".
+    /// This grid view can be useful to represent a region or area of a 2d grid where points are either "on" or "off".
     /// HashSet&lt;Point&gt; can work for this purpose, but hashing can be slow.  bool[] or ArrayView&lt;bool&gt;
     /// are other options, but this class uses approximately 8x less memory than those options, and is only very slightly
     /// slower (less than 0.5ns) in terms of index access.  The Fill operation is actually much faster than the

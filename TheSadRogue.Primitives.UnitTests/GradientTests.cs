@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Xunit;
 using XUnit.ValueTuples;
-using System.Linq;
 
 namespace SadRogue.Primitives.UnitTests
 {
@@ -192,6 +191,7 @@ namespace SadRogue.Primitives.UnitTests
 
             var objectEnumerableStops = new List<GradientStop>();
             IEnumerator e = gradient.GetEnumerator();
+            using var e1 = e as IDisposable;
             while (e.MoveNext())
             {
                 object? stopObj = e.Current;

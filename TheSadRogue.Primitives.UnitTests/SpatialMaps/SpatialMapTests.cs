@@ -68,6 +68,155 @@ namespace SadRogue.Primitives.UnitTests.SpatialMaps
             Assert.Throws<ArgumentException>(() => _spatialMap.Add(item, position.X, position.Y));
             Assert.Single( _spatialMap.GetItemsAt(position));
             Assert.Equal(prevCount, _spatialMap.Count);
+
+            // Should also throw exception (position is valid but item is already added)
+            Assert.Throws<ArgumentException>(() => _spatialMap.Add(_initialItem, s_newItemPos));
+            Assert.Single( _spatialMap.GetItemsAt(position));
+            Assert.Empty( _spatialMap.GetItemsAt(s_newItemPos));
+            Assert.Equal(prevCount, _spatialMap.Count);
+
+            Assert.Throws<ArgumentException>(() => _spatialMap.Add(_initialItem, s_newItemPos.X, s_newItemPos.Y));
+            Assert.Single( _spatialMap.GetItemsAt(position));
+            Assert.Empty( _spatialMap.GetItemsAt(s_newItemPos));
+            Assert.Equal(prevCount, _spatialMap.Count);
+        }
+        #endregion
+
+        #region TryAdd Item
+        [Fact]
+        public void TryAddItemValid()
+        {
+            // Just the starting items to begin with, and none at new location
+            Assert.Empty(_spatialMap.GetItemsAt(s_newItemPos));
+            Assert.Equal(1, _spatialMap.Count);
+
+            // Add item at new location
+            var item = new MockSpatialMapItem(0);
+            Assert.True(_spatialMap.TryAdd(item, s_newItemPos));
+            Assert.Single(_spatialMap.GetItemsAt(s_newItemPos));
+            Assert.Equal(2, _spatialMap.Count);
+        }
+
+        [Fact]
+        public void TryAddItemXYValid()
+        {
+            // Just the starting items to begin with, and none at new location
+            Assert.Empty(_spatialMap.GetItemsAt(s_newItemPos));
+            Assert.Equal(1, _spatialMap.Count);
+
+            // Add item at new location
+            var item = new MockSpatialMapItem(0);
+            Assert.True(_spatialMap.TryAdd(item, s_newItemPos.X, s_newItemPos.Y));
+            Assert.Single(_spatialMap.GetItemsAt(s_newItemPos));
+            Assert.Equal(2, _spatialMap.Count);
+        }
+
+        [Fact]
+        public void TryAddItemInvalid()
+        {
+            var (item, position) = (new MockSpatialMapItem(0), s_initialItemPos);
+            Assert.Single(_spatialMap.GetItemsAt(position));
+            int prevCount = _spatialMap.Count;
+
+            // Should return false and not add item
+            Assert.False(_spatialMap.TryAdd(item, position));
+            Assert.Single( _spatialMap.GetItemsAt(position));
+            Assert.Equal(prevCount, _spatialMap.Count);
+
+            Assert.False(_spatialMap.TryAdd(item, position.X, position.Y));
+            Assert.Single( _spatialMap.GetItemsAt(position));
+            Assert.Equal(prevCount, _spatialMap.Count);
+
+            // Should also return false (position is valid but item is already added)
+            Assert.False(_spatialMap.TryAdd(_initialItem, s_newItemPos));
+            Assert.Single( _spatialMap.GetItemsAt(position));
+            Assert.Empty( _spatialMap.GetItemsAt(s_newItemPos));
+            Assert.Equal(prevCount, _spatialMap.Count);
+
+            Assert.False(_spatialMap.TryAdd(_initialItem, s_newItemPos.X, s_newItemPos.Y));
+            Assert.Single( _spatialMap.GetItemsAt(position));
+            Assert.Empty( _spatialMap.GetItemsAt(s_newItemPos));
+            Assert.Equal(prevCount, _spatialMap.Count);
+        }
+        #endregion
+
+        #region CanAdd Item
+        [Fact]
+        public void CanAddItemValid()
+        {
+            // Just the starting items to begin with, and none at new location
+            Assert.Empty(_spatialMap.GetItemsAt(s_newItemPos));
+            Assert.Equal(1, _spatialMap.Count);
+
+            // Should be able to add item (but this function won't actually add it)
+            var item = new MockSpatialMapItem(0);
+            Assert.True(_spatialMap.CanAdd(item, s_newItemPos));
+            Assert.Empty(_spatialMap.GetItemsAt(s_newItemPos));
+            Assert.Equal(1, _spatialMap.Count);
+        }
+
+        [Fact]
+        public void CanAddItemXYValid()
+        {
+            // Just the starting items to begin with, and none at new location
+            Assert.Empty(_spatialMap.GetItemsAt(s_newItemPos));
+            Assert.Equal(1, _spatialMap.Count);
+
+            // Should be able to add item (but this function won't actually add it)
+            var item = new MockSpatialMapItem(0);
+            Assert.True(_spatialMap.CanAdd(item, s_newItemPos.X, s_newItemPos.Y));
+            Assert.Empty(_spatialMap.GetItemsAt(s_newItemPos));
+            Assert.Equal(1, _spatialMap.Count);
+        }
+
+        [Fact]
+        public void CanAddItemInvalid()
+        {
+            var (item, position) = (new MockSpatialMapItem(0), s_initialItemPos);
+            Assert.Single(_spatialMap.GetItemsAt(position));
+            int prevCount = _spatialMap.Count;
+
+            // Should return false and not add item
+            Assert.False(_spatialMap.CanAdd(item, position));
+            Assert.Single( _spatialMap.GetItemsAt(position));
+            Assert.Equal(prevCount, _spatialMap.Count);
+
+            Assert.False(_spatialMap.CanAdd(item, position.X, position.Y));
+            Assert.Single( _spatialMap.GetItemsAt(position));
+            Assert.Equal(prevCount, _spatialMap.Count);
+
+            // Should also return false (position is valid but item is already added)
+            Assert.False(_spatialMap.CanAdd(_initialItem, s_newItemPos));
+            Assert.Single( _spatialMap.GetItemsAt(position));
+            Assert.Empty( _spatialMap.GetItemsAt(s_newItemPos));
+            Assert.Equal(prevCount, _spatialMap.Count);
+
+            Assert.False(_spatialMap.CanAdd(_initialItem, s_newItemPos.X, s_newItemPos.Y));
+            Assert.Single( _spatialMap.GetItemsAt(position));
+            Assert.Empty( _spatialMap.GetItemsAt(s_newItemPos));
+            Assert.Equal(prevCount, _spatialMap.Count);
+        }
+        #endregion
+
+        #region ClearItems
+
+        [Fact]
+        public void ClearItems()
+        {
+            var (item, position) = (new MockSpatialMapItem(0), s_newItemPos);
+            _spatialMap.Add(item, position);
+
+            Assert.Single(_spatialMap.GetItemsAt(s_initialItemPos));
+            Assert.Single(_spatialMap.GetItemsAt(s_newItemPos));
+            Assert.Equal(2, _spatialMap.Count);
+
+            _spatialMap.Clear();
+
+            Assert.Empty(_spatialMap.GetItemsAt(s_initialItemPos));
+            Assert.Empty(_spatialMap.GetItemsAt(s_newItemPos));
+            Assert.Empty(_spatialMap.Items);
+            Assert.Empty(_spatialMap.Positions);
+            Assert.Equal(0, _spatialMap.Count);
         }
         #endregion
 
@@ -158,6 +307,16 @@ namespace SadRogue.Primitives.UnitTests.SpatialMaps
         }
 
         [Fact]
+        public void MoveItemSameLocation()
+        {
+            Assert.Single(_spatialMap.GetItemsAt(s_initialItemPos));
+
+            _spatialMap.Move(_initialItem, s_initialItemPos);
+            Assert.Single(_spatialMap.GetItemsAt(s_initialItemPos));
+            Assert.Equal(1, _spatialMap.Count);
+        }
+
+        [Fact]
         public void MoveItemDoesNotExist()
         {
             int prevCount = _spatialMap.Count;
@@ -168,7 +327,9 @@ namespace SadRogue.Primitives.UnitTests.SpatialMaps
             Assert.Single(_spatialMap.GetItemsAt(s_initialItemPos));
             Assert.Equal(prevCount, _spatialMap.Count);
         }
+        #endregion
 
+        #region MoveValid Items
         [Fact]
         public void MoveValidItemsAllValid()
         {
@@ -214,7 +375,9 @@ namespace SadRogue.Primitives.UnitTests.SpatialMaps
             Assert.Single(_spatialMap.GetItemsAt(s_initialItemPos));
             Assert.Single(_spatialMap.GetItemsAt(s_newItemPos));
         }
+        #endregion
 
+        #region MoveAll Items
         [Fact]
         public void MoveAllItemsValid()
         {

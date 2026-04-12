@@ -235,11 +235,11 @@ namespace SadRogue.Primitives
         public override double Calculate(double dx, double dy) => Math.Max(Math.Abs(dx), Math.Abs(dy));
     }
 
-    /// /// <summary>
+    /// <summary>
     /// Represents euclidean distance (equivalent to 8-way movement with ~1.41 movement cost for diagonals).
     /// </summary>
     /// <remarks>
-    /// You can't create instances of this class; instead, use <see cref="Distance.Chebyshev"/>.
+    /// You can't create instances of this class; instead, use <see cref="Distance.Euclidean"/>.
     /// </remarks>
     [DataContract]
     public class EuclideanDistance : Distance

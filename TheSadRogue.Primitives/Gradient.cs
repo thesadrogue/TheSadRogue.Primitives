@@ -110,7 +110,7 @@ namespace SadRogue.Primitives
 
 
             if (colorList.Length != stopList.Length)
-                throw new ArgumentException("Both colors and stops much match in array length.");
+                throw new ArgumentException("Both colors and stops must match in array length.");
 
             Stops = new GradientStop[colorList.Length];
 
@@ -167,6 +167,7 @@ namespace SadRogue.Primitives
         /// Gets an enumerator with all of the gradient stops.
         /// </summary>
         /// <returns>An enumerator</returns>
+        [MustDisposeResource]
         public IEnumerator<GradientStop> GetEnumerator() => ((IEnumerable<GradientStop>)Stops).GetEnumerator();
 
         /// <summary>

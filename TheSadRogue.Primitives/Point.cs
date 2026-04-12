@@ -74,7 +74,7 @@ namespace SadRogue.Primitives
         /// <param name="startX">X-value of the position of line starting point.</param>
         /// <param name="startY">Y-value of the position of line starting point.</param>
         /// <param name="endX">X-value of the position of line ending point.</param>
-        /// <param name="endY">X-value of the position of line ending point.</param>
+        /// <param name="endY">Y-value of the position of line ending point.</param>
         /// <returns>The degree bearing of the line specified by the two given points.</returns>
         [System.Diagnostics.Contracts.Pure]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -331,7 +331,7 @@ namespace SadRogue.Primitives
         /// </summary>
         /// <param name="c"></param>
         /// <param name="i"></param>
-        /// <returns>Position (c.X + <paramref name="i"/>, c.Y + <paramref name="i"/>.</returns>
+        /// <returns>Position (c.X + <paramref name="i"/>, c.Y + <paramref name="i"/>).</returns>
         [System.Diagnostics.Contracts.Pure]
         public static Point operator +(Point c, int i) => new Point(c.X + i, c.Y + i);
 

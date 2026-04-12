@@ -87,13 +87,17 @@ namespace SadRogue.Primitives.UnitTests
 
             var objectEnumerableColors = new List<Color>();
             IEnumerator e = palette.GetEnumerator();
-            while (e.MoveNext())
+            using ((IDisposable)e)
             {
-                object? colorObj = e.Current;
-                Assert.NotNull(colorObj);
-                var stop = (Color)colorObj;
-                objectEnumerableColors.Add(stop);
+                while (e.MoveNext())
+                {
+                    object? colorObj = e.Current;
+                    Assert.NotNull(colorObj);
+                    var stop = (Color)colorObj;
+                    objectEnumerableColors.Add(stop);
+                }
             }
+
             Assert.Equal(colors, objectEnumerableColors);
         }
 

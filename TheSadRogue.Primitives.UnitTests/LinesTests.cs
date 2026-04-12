@@ -240,7 +240,7 @@ namespace SadRogue.Primitives.UnitTests
             (Lines.Algorithm.Orthogonal, Distance.Manhattan)
         };
 
-        private static readonly Lines.Algorithm[] s_allLineAlgorithms = Enum.GetValues<Lines.Algorithm>().ToArray();
+        private static readonly Lines.Algorithm[] s_allLineAlgorithms = Enum.GetValues<Lines.Algorithm>();
 
         public static IEnumerable<(Lines.Algorithm algo, (Point start, Point end) points)> OrderedTestCases =
             s_orderedAlgorithms.Combinate(s_testLines);

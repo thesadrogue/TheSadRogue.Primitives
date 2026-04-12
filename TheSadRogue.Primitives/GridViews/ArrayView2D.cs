@@ -92,7 +92,7 @@ namespace SadRogue.Primitives.GridViews
         /// Converts to 2D array, without copying the values.  Typically using this method is unnecessary
         /// and you can use the implicit conversion defined for this type instead.
         /// </summary>
-        /// <returns>The underlying ArrayView data as a 1D array.</returns>
+        /// <returns>The underlying ArrayView data as a 2D array.</returns>
         public T[,] ToMultidimensionalArray() => _array;
 
         /// <summary>

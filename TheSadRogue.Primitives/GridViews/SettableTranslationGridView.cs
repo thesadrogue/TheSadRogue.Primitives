@@ -133,7 +133,7 @@ namespace SadRogue.Primitives.GridViews
 
         /// <summary>
         /// Translates the view type into the appropriate form for your underlying data. Takes a value from
-        /// the underlying data, and it corresponding position. If a position is not needed to perform
+        /// the underlying data, and its corresponding position. If a position is not needed to perform
         /// the translation, use <see cref="TranslateSet(T2)" /> instead.
         /// </summary>
         /// <param name="position">The position of the given mapped data type.</param>

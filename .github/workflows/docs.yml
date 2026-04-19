@@ -2,8 +2,8 @@ name: Deploy Docs
 
 on:
   push:
-    branches: [ "deploy-docs-in-gh-actions" ]
-    tags: [ "v*" ]
+    tags:
+      - "v*"
   workflow_dispatch:
 
 permissions:

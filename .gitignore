@@ -9,6 +9,9 @@
 *.userosscache
 *.sln.docstates
 
+# Documentation (auto-generated)
+docs/
+
 # Claude's local settings
 .claude/**.local.md
 .claude/**.local.json
